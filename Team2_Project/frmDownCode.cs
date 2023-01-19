@@ -12,7 +12,7 @@ using Team2_Project.Utils;
 
 namespace Team2_Project
 {
-    public partial class frmDownCode : frmCodeControlBase
+    public partial class frmDownCode : frmListUpAreaDown
     {
         public frmDownCode()
         {
