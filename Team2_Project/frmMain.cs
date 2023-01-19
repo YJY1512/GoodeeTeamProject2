@@ -60,7 +60,7 @@ namespace Team2_Project
 
             if (showPanelTreenode3)
             {
-                pnltreenode3.Height = 164;
+                pnltreenode3.Height = 247;
                 treeView3.ExpandAll();
             }
             else
@@ -70,7 +70,7 @@ namespace Team2_Project
 
             if (showPanelTreenode4)
             {
-                pnltreenode4.Height = 89;
+                pnltreenode4.Height = 100;
                 treeView4.ExpandAll();
             }
             else
@@ -79,6 +79,10 @@ namespace Team2_Project
             }
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnsystem_Click(object sender, EventArgs e)
         {
             showPanelTreenode1 = !showPanelTreenode1;
@@ -344,8 +348,9 @@ namespace Team2_Project
                 btn.Tag = btn.Name;
                 BtnClick(btn, e);
             }    
-        }   
+        }
 
+        
     }
     class TabTag
     {
