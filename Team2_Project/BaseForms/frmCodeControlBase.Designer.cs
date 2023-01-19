@@ -29,8 +29,6 @@ namespace Team2_Project.BaseForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.lblSearchCode = new System.Windows.Forms.Label();
             this.txtSearchCode = new System.Windows.Forms.TextBox();
             this.txtSearchName = new System.Windows.Forms.TextBox();
@@ -63,8 +61,6 @@ namespace Team2_Project.BaseForms
             this.cboMinUse = new System.Windows.Forms.ComboBox();
             this.nudSort = new System.Windows.Forms.NumericUpDown();
             this.pnlSub.SuspendLayout();
-            this.pnlListL.SuspendLayout();
-            this.pnlListR.SuspendLayout();
             this.pnlArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -76,8 +72,6 @@ namespace Team2_Project.BaseForms
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +88,6 @@ namespace Team2_Project.BaseForms
             // 
             // pnlListL
             // 
-            this.pnlListL.Controls.Add(this.dataGridView1);
             this.pnlListL.Size = new System.Drawing.Size(1362, 418);
             // 
             // lblListTitleL
@@ -106,7 +99,6 @@ namespace Team2_Project.BaseForms
             // 
             // pnlListR
             // 
-            this.pnlListR.Controls.Add(this.dataGridView2);
             this.pnlListR.Size = new System.Drawing.Size(33, 418);
             // 
             // lblListTitleR
@@ -170,28 +162,6 @@ namespace Team2_Project.BaseForms
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Size = new System.Drawing.Size(1399, 663);
             this.splitContainer1.SplitterDistance = 461;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1362, 418);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(33, 418);
-            this.dataGridView2.TabIndex = 0;
             // 
             // lblSearchCode
             // 
@@ -497,8 +467,6 @@ namespace Team2_Project.BaseForms
             this.Text = "frmCodeControlBase";
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
-            this.pnlListL.ResumeLayout(false);
-            this.pnlListR.ResumeLayout(false);
             this.pnlArea.ResumeLayout(false);
             this.pnlArea.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -513,8 +481,6 @@ namespace Team2_Project.BaseForms
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.ResumeLayout(false);
 
@@ -544,8 +510,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label DeStar1;
         protected System.Windows.Forms.Label label6;
         protected System.Windows.Forms.Label label4;
-        protected System.Windows.Forms.DataGridView dataGridView1;
-        protected System.Windows.Forms.DataGridView dataGridView2;
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.ComboBox comboBox1;
         protected System.Windows.Forms.Button btnAddDetail;
