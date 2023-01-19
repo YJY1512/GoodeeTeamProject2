@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using Team2_Project_DTO;
 
 namespace Team2_Project_DAO
 {
@@ -46,18 +47,20 @@ namespace Team2_Project_DAO
             }
         }
 
-        public void Insert()
+        public bool Insert(EmployeeDTO data)
         {
-            //string sql = @"";
+            string sql = @"";
 
-            //using (SqlCommand cmd = new SqlCommand(sql, conn))
-            //{
-            //    cmd.Parameters.AddWithValue("@, )
-            //    cmd.ExecuteNonQuery();
-            //}
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                //cmd.Parameters.AddWithValue("@, )
+                //cmd.ExecuteNonQuery();
+            }
+
+            return true;
         }
 
-        public bool Update()
+        public bool Update(EmployeeDTO data)
         {
             return true;
         }

@@ -20,19 +20,19 @@ namespace Team2_Project.Services
             return dt;
         }
 
-        public bool Insert()
+        public bool Insert(EmployeeDTO data)
         {
             EmployeeDAO db = new EmployeeDAO();
-            db.Insert();
+            bool result = db.Insert(data);
             db.Dispose();
 
             return false;
         }
 
-        public bool Update()
+        public bool Update(EmployeeDTO data)
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Update();
+            bool result = db.Update(data);
             db.Dispose();
 
             return result;

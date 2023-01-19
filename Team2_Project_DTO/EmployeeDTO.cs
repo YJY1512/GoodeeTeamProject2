@@ -13,6 +13,6 @@ namespace Team2_Project_DTO
         public char User_Type { get; set; } //사용자 권한
         public string UserGroup_Code { get; set; } //권한그룹코드
         public string UserGroup_Name { get; set; } //권한그룹명
-        public string Use_YN { get; set; } //퇴사여부
+        public char Use_YN { get; set; } //퇴사여부
     }
 }
