@@ -30,7 +30,6 @@ namespace Team2_Project
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("생산요청 관리");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("생산계획 관리");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("시유 작업지시 생성");
@@ -76,14 +75,10 @@ namespace Team2_Project
             System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("시스템 운영관리", new System.Windows.Forms.TreeNode[] {
             treeNode25,
             treeNode26});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tStripName = new System.Windows.Forms.ToolStripLabel();
-            this.tStripDept = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnltreenode4 = new System.Windows.Forms.Panel();
             this.treeView4 = new System.Windows.Forms.TreeView();
@@ -106,8 +101,6 @@ namespace Team2_Project
             this.label1 = new System.Windows.Forms.Label();
             this.imageList64 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.tStripTime = new System.Windows.Forms.ToolStripLabel();
-            this.tStripDate = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
@@ -120,6 +113,12 @@ namespace Team2_Project
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tabControl1 = new Team2_Project.Controls.ccTabControl();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tStripName = new System.Windows.Forms.ToolStripLabel();
+            this.tStripDept = new System.Windows.Forms.ToolStripLabel();
+            this.tStripDate = new System.Windows.Forms.ToolStripLabel();
+            this.tStripTime = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnltreenode4.SuspendLayout();
@@ -158,63 +157,15 @@ namespace Team2_Project
             // 
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.toolStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStrip1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripSeparator2,
-            this.tStripName,
-            this.tStripDept,
-            this.toolStripSeparator1});
+            this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1335, 34);
             this.toolStrip1.TabIndex = 19;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(81, 31);
-            this.toolStripButton1.Text = "LogOut";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.toolStripSeparator2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 34);
-            // 
-            // tStripName
-            // 
-            this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripName.ForeColor = System.Drawing.Color.White;
-            this.tStripName.Name = "tStripName";
-            this.tStripName.Size = new System.Drawing.Size(30, 31);
-            this.tStripName.Text = "이름";
-            // 
-            // tStripDept
-            // 
-            this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripDept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripDept.ForeColor = System.Drawing.Color.White;
-            this.tStripDept.Name = "tStripDept";
-            this.tStripDept.Size = new System.Drawing.Size(30, 31);
-            this.tStripDept.Text = "부서";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
             // 
             // panel2
             // 
@@ -444,7 +395,7 @@ namespace Team2_Project
             // 
             this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.ItemHeight = 25;
+            this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
             treeNode22.Name = "node1";
@@ -555,33 +506,16 @@ namespace Team2_Project
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tStripTime,
-            this.tStripDate});
-            this.toolStrip3.Location = new System.Drawing.Point(216, 581);
+            this.toolStripButton1,
+            this.tStripName,
+            this.tStripDept,
+            this.tStripDate,
+            this.tStripTime});
+            this.toolStrip3.Location = new System.Drawing.Point(216, 579);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1119, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(1119, 27);
             this.toolStrip3.TabIndex = 33;
             this.toolStrip3.Text = "toolStrip3";
-            // 
-            // tStripTime
-            // 
-            this.tStripTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripTime.ForeColor = System.Drawing.Color.White;
-            this.tStripTime.Name = "tStripTime";
-            this.tStripTime.Size = new System.Drawing.Size(105, 22);
-            this.tStripTime.Text = "toolStripLabel2";
-            // 
-            // tStripDate
-            // 
-            this.tStripDate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripDate.ForeColor = System.Drawing.Color.White;
-            this.tStripDate.Name = "tStripDate";
-            this.tStripDate.Size = new System.Drawing.Size(105, 22);
-            this.tStripDate.Text = "toolStripLabel1";
             // 
             // panel1
             // 
@@ -733,6 +667,65 @@ namespace Team2_Project
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(5);
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(55, 24);
+            this.toolStripButton2.Text = "설정";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(81, 24);
+            this.toolStripButton1.Text = "LogOut";
+            // 
+            // tStripName
+            // 
+            this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tStripName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripName.ForeColor = System.Drawing.Color.White;
+            this.tStripName.Name = "tStripName";
+            this.tStripName.Size = new System.Drawing.Size(30, 24);
+            this.tStripName.Text = "이름";
+            // 
+            // tStripDept
+            // 
+            this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tStripDept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripDept.ForeColor = System.Drawing.Color.White;
+            this.tStripDept.Name = "tStripDept";
+            this.tStripDept.Size = new System.Drawing.Size(30, 24);
+            this.tStripDept.Text = "부서";
+            // 
+            // tStripDate
+            // 
+            this.tStripDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
+            this.tStripDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripDate.ForeColor = System.Drawing.Color.White;
+            this.tStripDate.Name = "tStripDate";
+            this.tStripDate.Size = new System.Drawing.Size(37, 24);
+            this.tStripDate.Text = "Date";
+            // 
+            // tStripTime
+            // 
+            this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
+            this.tStripTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripTime.ForeColor = System.Drawing.Color.White;
+            this.tStripTime.Name = "tStripTime";
+            this.tStripTime.Size = new System.Drawing.Size(39, 24);
+            this.tStripTime.Text = "Time";
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -743,7 +736,7 @@ namespace Team2_Project
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -780,11 +773,6 @@ namespace Team2_Project
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripLabel tStripName;
-        private System.Windows.Forms.ToolStripLabel tStripDept;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnltreenode4;
         private System.Windows.Forms.TreeView treeView4;
@@ -807,8 +795,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ImageList imageList64;
         private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripLabel tStripTime;
-        private System.Windows.Forms.ToolStripLabel tStripDate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button9;
@@ -821,6 +807,12 @@ namespace Team2_Project
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSearch;
         private Controls.ccTabControl tabControl1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel tStripName;
+        private System.Windows.Forms.ToolStripLabel tStripDept;
+        private System.Windows.Forms.ToolStripLabel tStripDate;
+        private System.Windows.Forms.ToolStripLabel tStripTime;
     }
 }
 
