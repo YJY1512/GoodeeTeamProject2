@@ -437,8 +437,6 @@ namespace Team2_Project.BaseForms
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label lblListTitleR;
@@ -469,5 +467,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label label11;
         protected System.Windows.Forms.Label lblInfoCodeMa;
         protected System.Windows.Forms.NumericUpDown nudSort;
+        protected System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
