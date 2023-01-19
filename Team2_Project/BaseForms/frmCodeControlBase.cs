@@ -10,25 +10,12 @@ using System.Windows.Forms;
 
 namespace Team2_Project.BaseForms
 {
-    public partial class frmCodeControlBase : frmListUpListDownAreaRight
+    public partial class frmCodeControlBase : frmListListRightLeft
     {
         public frmCodeControlBase()
         {
             InitializeComponent();
         }
-
-        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
     }
