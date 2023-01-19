@@ -444,7 +444,7 @@ namespace Team2_Project
             // 
             this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.ItemHeight = 25;
+            this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
             treeNode22.Name = "node1";
