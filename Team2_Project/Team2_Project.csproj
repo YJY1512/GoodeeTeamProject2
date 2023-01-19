@@ -262,9 +262,6 @@
     <EmbeddedResource Include="Controls\ucSearch.resx">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDefectCode.resx">
-      <DependentUpon>frmDefectCode.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmNop.resx">
       <DependentUpon>frmNop.cs</DependentUpon>
     </EmbeddedResource>
