@@ -77,11 +77,11 @@ namespace Team2_Project.BaseForms
             this.pnlSub.Controls.Add(this.lblSearchName);
             this.pnlSub.Controls.Add(this.txtSearchCode);
             this.pnlSub.Controls.Add(this.lblSearchCode);
-            this.pnlSub.Size = new System.Drawing.Size(1318, 65);
+            this.pnlSub.Size = new System.Drawing.Size(1478, 65);
             // 
             // pnlListL
             // 
-            this.pnlListL.Size = new System.Drawing.Size(438, 596);
+            this.pnlListL.Size = new System.Drawing.Size(491, 596);
             // 
             // lblTitleL
             // 
@@ -90,7 +90,7 @@ namespace Team2_Project.BaseForms
             // pnlListR
             // 
             this.pnlListR.Controls.Add(this.splitContainer2);
-            this.pnlListR.Size = new System.Drawing.Size(876, 596);
+            this.pnlListR.Size = new System.Drawing.Size(983, 596);
             // 
             // lblTitleR
             // 
@@ -129,14 +129,14 @@ namespace Team2_Project.BaseForms
             this.splitContainer2.Panel2.Controls.Add(this.label11);
             this.splitContainer2.Panel2.Controls.Add(this.lblInfoCodeMa);
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
-            this.splitContainer2.Size = new System.Drawing.Size(876, 596);
+            this.splitContainer2.Size = new System.Drawing.Size(983, 596);
             this.splitContainer2.SplitterDistance = 363;
             this.splitContainer2.TabIndex = 0;
             // 
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(659, 183);
+            this.cboUseYN.Location = new System.Drawing.Point(730, 180);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(121, 24);
             this.cboUseYN.TabIndex = 33;
@@ -146,7 +146,7 @@ namespace Team2_Project.BaseForms
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(507, 187);
+            this.label14.Location = new System.Drawing.Point(578, 184);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 17);
             this.label14.TabIndex = 32;
@@ -156,7 +156,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(530, 187);
+            this.label10.Location = new System.Drawing.Point(601, 184);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 31;
@@ -164,7 +164,7 @@ namespace Team2_Project.BaseForms
             // 
             // nudSort
             // 
-            this.nudSort.Location = new System.Drawing.Point(659, 63);
+            this.nudSort.Location = new System.Drawing.Point(730, 60);
             this.nudSort.Name = "nudSort";
             this.nudSort.Size = new System.Drawing.Size(99, 24);
             this.nudSort.TabIndex = 30;
@@ -173,7 +173,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(507, 107);
+            this.label13.Location = new System.Drawing.Point(578, 104);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 17);
             this.label13.TabIndex = 29;
@@ -184,7 +184,7 @@ namespace Team2_Project.BaseForms
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(507, 67);
+            this.label12.Location = new System.Drawing.Point(578, 64);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);
             this.label12.TabIndex = 28;
@@ -192,7 +192,7 @@ namespace Team2_Project.BaseForms
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(659, 103);
+            this.txtRemark.Location = new System.Drawing.Point(730, 100);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(200, 64);
@@ -202,7 +202,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(530, 107);
+            this.label8.Location = new System.Drawing.Point(601, 104);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 17);
             this.label8.TabIndex = 26;
@@ -212,7 +212,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(530, 67);
+            this.label9.Location = new System.Drawing.Point(601, 64);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 17);
             this.label9.TabIndex = 25;
@@ -264,7 +264,7 @@ namespace Team2_Project.BaseForms
             // 
             // txtInfoNameMa
             // 
-            this.txtInfoNameMa.Location = new System.Drawing.Point(217, 103);
+            this.txtInfoNameMa.Location = new System.Drawing.Point(294, 100);
             this.txtInfoNameMa.Name = "txtInfoNameMa";
             this.txtInfoNameMa.Size = new System.Drawing.Size(190, 24);
             this.txtInfoNameMa.TabIndex = 21;
@@ -291,21 +291,21 @@ namespace Team2_Project.BaseForms
             // 
             // txtInfoNameMi
             // 
-            this.txtInfoNameMi.Location = new System.Drawing.Point(217, 183);
+            this.txtInfoNameMi.Location = new System.Drawing.Point(294, 180);
             this.txtInfoNameMi.Name = "txtInfoNameMi";
             this.txtInfoNameMi.Size = new System.Drawing.Size(190, 24);
             this.txtInfoNameMi.TabIndex = 19;
             // 
             // txtInfoCodeMi
             // 
-            this.txtInfoCodeMi.Location = new System.Drawing.Point(217, 143);
+            this.txtInfoCodeMi.Location = new System.Drawing.Point(294, 140);
             this.txtInfoCodeMi.Name = "txtInfoCodeMi";
             this.txtInfoCodeMi.Size = new System.Drawing.Size(190, 24);
             this.txtInfoCodeMi.TabIndex = 19;
             // 
             // txtInfoCodeMa
             // 
-            this.txtInfoCodeMa.Location = new System.Drawing.Point(217, 63);
+            this.txtInfoCodeMa.Location = new System.Drawing.Point(294, 60);
             this.txtInfoCodeMa.Name = "txtInfoCodeMa";
             this.txtInfoCodeMa.Size = new System.Drawing.Size(190, 24);
             this.txtInfoCodeMa.TabIndex = 19;
@@ -339,7 +339,7 @@ namespace Team2_Project.BaseForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(876, 43);
+            this.panel1.Size = new System.Drawing.Size(983, 43);
             this.panel1.TabIndex = 3;
             // 
             // label1
@@ -420,7 +420,7 @@ namespace Team2_Project.BaseForms
             // frmCodeControlBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1318, 704);
+            this.ClientSize = new System.Drawing.Size(1478, 704);
             this.Name = "frmCodeControlBase";
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
