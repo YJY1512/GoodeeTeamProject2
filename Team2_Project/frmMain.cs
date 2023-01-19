@@ -182,7 +182,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "비가동 관리")
             {
-                OpenChildPage<frmNopCode>();
+                OpenChildPage<frmNopMaCode>();
             }
             else
             {
