@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using Team2_Project_DTO;
 
 namespace Team2_Project_DAO
 {
@@ -46,25 +47,136 @@ namespace Team2_Project_DAO
             }
         }
 
-        public void Insert()
+        public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
-            //string sql = @"";
+            Ins_Emp = "1000"; //나중에 수정!!!
 
-            //using (SqlCommand cmd = new SqlCommand(sql, conn))
-            //{
-            //    cmd.Parameters.AddWithValue("@, )
-            //    cmd.ExecuteNonQuery();
-            //}
+            string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, User_Type, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
+values (@User_ID, @User_Name, @User_ID, @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
+
+            string sql2 = @"insert into UserGroup_Mapping (UserGroup_Code, User_ID, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
+values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
+
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = sql1;
+                    cmd.Connection = conn;
+                    cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
+                    cmd.Parameters.AddWithValue("@User_Name", data.User_Name);
+                    cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
+                    cmd.Parameters.AddWithValue("@Use_YN", data.User_ID);
+                    cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
+                    cmd.Transaction = trans;
+
+                    if (cmd.ExecuteNonQuery() < 1)
+                    {
+                        return false;
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    cmd.CommandText = sql2;
+                    cmd.Parameters.AddWithValue("@UserGroup_Code", data.UserGroup_Code);
+                    cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
+                    cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
+
+                    if (cmd.ExecuteNonQuery() < 1)
+                    {
+                        return false;
+                    }
+
+                    trans.Commit();
+                }
+
+                return true;
+            }
+            catch
+            {
+                trans.Rollback();
+                return false;
+            }
         }
 
-        public void Update()
+        public bool Update(EmployeeDTO data, string Ins_Emp)
         {
+            Ins_Emp = "1000"; //나중에 수정!!!
 
+            string sql1 = @"update User_Master
+                            set User_Name = @User_Name, User_Type = @User_Type, Use_YN = @Use_YN, Up_Date = getdate(), Up_Emp = @Up_Emp
+                            where User_ID = @User_ID";
+
+            string sql2 = @"update UserGroup_Mapping
+                            set UserGroup_Code = @UserGroup_Code, Up_Date = getdate(), Up_Emp = @Up_Emp
+                            where User_ID = @User_ID";
+
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = sql1;
+                    cmd.Connection = conn;
+                    cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
+                    cmd.Parameters.AddWithValue("@User_Name", data.User_Name);
+                    cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
+                    cmd.Parameters.AddWithValue("@Use_YN", data.User_ID);
+                    cmd.Parameters.AddWithValue("@Up_Emp", Ins_Emp);
+                    cmd.Transaction = trans;
+
+                    if (cmd.ExecuteNonQuery() < 1)
+                    {
+                        return false;
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    cmd.CommandText = sql2;
+                    cmd.Parameters.AddWithValue("@UserGroup_Code", data.UserGroup_Code);
+                    cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
+                    cmd.Parameters.AddWithValue("@Up_Emp", Ins_Emp);
+
+                    if (cmd.ExecuteNonQuery() < 1)
+                    {
+                        return false;
+                    }
+
+                    trans.Commit();
+                }
+
+                return true;
+            }
+            catch
+            {
+                trans.Rollback();
+                return false;
+            }
         }
 
-        public void Delete()
+        public bool Delete(string empID)
         {
+            string sql = @"delete from User_Master where User_ID = @User_ID";
+            int iRowAffect = 0;
 
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@User_ID", empID);
+                    if (cmd.ExecuteNonQuery() < 1)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
