@@ -95,7 +95,7 @@ namespace Team2_Project.BaseForms
             // pnlListL
             // 
             this.pnlListL.Controls.Add(this.dataGridView1);
-            this.pnlListL.Size = new System.Drawing.Size(1077, 418);
+            this.pnlListL.Size = new System.Drawing.Size(1362, 418);
             // 
             // lblListTitleL
             // 
@@ -107,7 +107,7 @@ namespace Team2_Project.BaseForms
             // pnlListR
             // 
             this.pnlListR.Controls.Add(this.dataGridView2);
-            this.pnlListR.Size = new System.Drawing.Size(318, 418);
+            this.pnlListR.Size = new System.Drawing.Size(33, 418);
             // 
             // lblListTitleR
             // 
@@ -154,16 +154,16 @@ namespace Team2_Project.BaseForms
             // splitContainer2
             // 
             this.splitContainer2.Size = new System.Drawing.Size(1399, 461);
-            this.splitContainer2.SplitterDistance = 1077;
+            this.splitContainer2.SplitterDistance = 1362;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
             // 
             // pnlListTitleL
             // 
-            this.pnlListTitleL.Size = new System.Drawing.Size(1077, 43);
+            this.pnlListTitleL.Size = new System.Drawing.Size(1362, 43);
             // 
             // pnlListTitleR
             // 
-            this.pnlListTitleR.Size = new System.Drawing.Size(318, 43);
+            this.pnlListTitleR.Size = new System.Drawing.Size(33, 43);
             // 
             // splitContainer1
             // 
@@ -179,7 +179,7 @@ namespace Team2_Project.BaseForms
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1077, 418);
+            this.dataGridView1.Size = new System.Drawing.Size(1362, 418);
             this.dataGridView1.TabIndex = 0;
             // 
             // dataGridView2
@@ -190,7 +190,7 @@ namespace Team2_Project.BaseForms
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(318, 418);
+            this.dataGridView2.Size = new System.Drawing.Size(33, 418);
             this.dataGridView2.TabIndex = 0;
             // 
             // lblSearchCode
@@ -549,10 +549,10 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.ComboBox comboBox1;
         protected System.Windows.Forms.Button btnAddDetail;
-        private System.Windows.Forms.ComboBox cboMaUse;
         protected System.Windows.Forms.Label label11;
         protected System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown nudSort;
-        private System.Windows.Forms.ComboBox cboMinUse;
+        protected System.Windows.Forms.ComboBox cboMaUse;
+        protected System.Windows.Forms.NumericUpDown nudSort;
+        protected System.Windows.Forms.ComboBox cboMinUse;
     }
 }
