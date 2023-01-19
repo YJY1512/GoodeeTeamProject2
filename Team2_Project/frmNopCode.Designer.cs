@@ -39,9 +39,6 @@ namespace Team2_Project
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtRemark = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dgvData = new System.Windows.Forms.DataGridView();
@@ -92,9 +89,6 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label10);
             this.pnlArea.Controls.Add(this.label8);
             this.pnlArea.Controls.Add(this.label9);
-            this.pnlArea.Controls.Add(this.label17);
-            this.pnlArea.Controls.Add(this.txtRemark);
-            this.pnlArea.Controls.Add(this.label18);
             this.pnlArea.Controls.Add(this.txtName);
             this.pnlArea.Controls.Add(this.txtCode);
             this.pnlArea.Controls.Add(this.label6);
@@ -197,35 +191,6 @@ namespace Team2_Project
             this.label7.TabIndex = 17;
             this.label7.Text = "비가동 대분류코드";
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(803, 24);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(17, 17);
-            this.label17.TabIndex = 58;
-            this.label17.Text = "*";
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemark.Location = new System.Drawing.Point(871, 18);
-            this.txtRemark.Multiline = true;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(364, 66);
-            this.txtRemark.TabIndex = 57;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(826, 24);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(36, 17);
-            this.label18.TabIndex = 56;
-            this.label18.Text = "비고";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -322,9 +287,6 @@ namespace Team2_Project
         protected System.Windows.Forms.TextBox txtCode;
         protected System.Windows.Forms.Label label6;
         protected System.Windows.Forms.Label label7;
-        protected System.Windows.Forms.Label label17;
-        protected System.Windows.Forms.TextBox txtRemark;
-        protected System.Windows.Forms.Label label18;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;

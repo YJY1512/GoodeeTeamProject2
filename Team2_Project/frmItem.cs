@@ -20,12 +20,11 @@ namespace Team2_Project
         List<ItemDTO> itemList = new List<ItemDTO>();
         string situation = "";
 
-        public object ExcelUtil { get; private set; }
-
         public frmItem()
         {
             InitializeComponent();
         }
+
 
         #region Main 버튼 클릭이벤트  /////////////////// 이거 복사해서 쓰세요 ///////////////////
         //public void OnSearch()  //검색 
@@ -113,7 +112,7 @@ namespace Team2_Project
             //1. 추가,수정버튼 클릭 -> 입력패널이 활성화
             //2. 저장버튼 클릭 시   -> 추가,수정 적용 
 
-            Deactivation(); // 로드 시 입력패널 비활성화
+            Deactivation(); //입력패널 비활성화
             OnSearch();
         }
 
@@ -138,15 +137,18 @@ namespace Team2_Project
             Activation();
             situation = "Add";
         }
+
         public void OnEdit()    //수정
         {
             Activation();
             situation = "Update";
         }
+
         public void OnDelete()  //삭제
         {
 
         }
+
         public void OnSave()    //저장
         {
             if (situation == "Add")
@@ -180,8 +182,6 @@ namespace Team2_Project
                     MessageBox.Show("등록이 완료되었습니다.", "등록완료");
                 else
                     MessageBox.Show("다시 시도하여주십시오.", "등록오류");
-
-                OnSearch();
             }
             else if (situation == "Update")
             {
@@ -214,16 +214,17 @@ namespace Team2_Project
                     MessageBox.Show("수정이 완료되었습니다.", "수정완료");
                 else
                     MessageBox.Show("다시 시도하여주십시오.", "수정오류");
-
-                OnSearch();
             }
+            OnReLoad();
         }
+
         public void OnCancel()  //취소
         {
             ResetBottom();  //입력패널 리셋
             Deactivation(); //입력패널 비활성화
             OnSearch();     //로드
         }
+
         public void OnReLoad()  //새로고침
         {
             //Deactivation();
@@ -232,7 +233,6 @@ namespace Team2_Project
             OnSearch();       //로드
         }
         #endregion
-
 
         private void cboType_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -263,7 +263,6 @@ namespace Team2_Project
                 cboUseYN.Text = dto.Use_YN;
                 txtRemark.Text = dto.Remark;
             }
-            txtCode.Enabled = false;
         }
 
         private void ResetTop() //검색조건 리셋

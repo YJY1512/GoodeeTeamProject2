@@ -18,8 +18,28 @@ namespace Team2_Project.Services
             return list;
         }
 
+        public bool NopMaCodeAdd(NopMaCodeDTO item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            bool result = db.NopMaCodeAdd(item);
+            db.Dispose();
+            return result;
+        }
 
+        public List<NopMaCodeDTO> GetCurItem(string item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            List<NopMaCodeDTO> list = db.GetCurItem(item);
+            db.Dispose();
+            return list;
+        }
 
-
+        public bool NopMaCodeUpdate(NopMaCodeDTO item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            bool result = db.NopMaCodeUpdate(item);
+            db.Dispose();
+            return result;
+        }
     }
 }
