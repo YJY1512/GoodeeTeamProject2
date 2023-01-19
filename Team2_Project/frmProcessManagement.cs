@@ -28,6 +28,9 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvProcess, "사용유무", "", 120);
         }
 
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
 
+        }
     }
 }
