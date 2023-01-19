@@ -9,6 +9,7 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using System.Linq;
+using Team2_Project_DTO;
 
 namespace Team2_Project
 {
@@ -17,8 +18,10 @@ namespace Team2_Project
         EmployeeService empSrv;
         DataTable dt;
         int pnlStat;
-        string[] use_YNList = { "전체", "재직", "퇴직" };
-
+        string[] use_YNList = { "재직", "퇴직" };
+        char[] use_YNCodeList = { 'Y', 'N' };
+        string[] AuthList = { "관리자", "일반" };
+        char[] AuthCodeList = { 'A', 'U' };
 
         public frmEmpManagement()
         {
@@ -90,13 +93,68 @@ namespace Team2_Project
                 return;
             }
 
-            
+            bool result = empSrv.Delete(dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString());
+            if (result)
+            {
+                MessageBox.Show("인사정보가 정상적으로 삭제되었습니다.");
+                dt = empSrv.GetEmployeeList();
+                dgvEmp.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("인사정보 삭제에 실패하였습니다. 다시 시도하여 주세요.");
+            }
         }
 
         private void Save()
         {
-            
-            
+            if (MessageBox.Show("입력한 정보를 저장하시겠습니까?", "저장확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                return;
+            }
+
+
+
+            EmployeeDTO data = new EmployeeDTO
+            {
+                User_ID = txtID.Text,
+                User_Name = txtName.Text,
+                //User_Type = ,
+                UserGroup_Code = ucSearchGroup._Code,
+                UserGroup_Name = ucSearchGroup._Name,
+                //Use_YN = 
+            };
+
+
+            if (pnlStat == 1)
+            {
+                //bool result = empSrv.Insert();
+                if (true)
+                {
+                    MessageBox.Show("인사정보가 정상적으로 추가되었습니다.");
+                    dt = empSrv.GetEmployeeList();
+                    dgvEmp.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("인사정보 추가에 실패하였습니다. 다시 시도하여 주세요.");
+                }
+            }
+            else if (pnlStat == 2)
+            {
+                bool result = empSrv.Update();
+                if (result)
+                {
+                    MessageBox.Show("인사정보가 정상적으로 수정되었습니다.");
+                    dt = empSrv.GetEmployeeList();
+                    dgvEmp.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("인사정보 수정에 실패하였습니다. 다시 시도하여 주세요.");
+                }
+            }
+
             pnlStat = 0;
         }
 
