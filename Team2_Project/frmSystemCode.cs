@@ -25,11 +25,11 @@ namespace Team2_Project
         {
             MessageBox.Show("테스트");
 
-            comboBox1.Items.Add("전체");
-            comboBox1.Items.Add("사용");
-            comboBox1.Items.Add("미사용");
-            comboBox1.SelectedIndex = 0;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSearchUse.Items.Add("전체");
+            cboSearchUse.Items.Add("사용");
+            cboSearchUse.Items.Add("미사용");
+            cboSearchUse.SelectedIndex = 0;
+            cboSearchUse.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //DataGridViewUtil.SetInitDataGridView(dgvSysMa);
             //DataGridViewUtil.AddGridTextBoxColumn(dgvSysMa, "시스템정의 대분류코드", "", 400, align: DataGridViewContentAlignment.MiddleCenter);
