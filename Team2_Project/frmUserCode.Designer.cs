@@ -29,6 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             this.pnlSub.SuspendLayout();
             this.pnlArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -81,8 +82,33 @@ namespace Team2_Project
             // 
             this.comboBox1.Size = new System.Drawing.Size(121, 25);
             // 
+            // cboMaUse
+            // 
+            this.cboMaUse.Size = new System.Drawing.Size(121, 25);
+            // 
+            // cboMinUse
+            // 
+            this.cboMinUse.Size = new System.Drawing.Size(121, 25);
+            // 
+            // pnlListL
+            // 
+            this.pnlListL.Size = new System.Drawing.Size(565, 418);
+            // 
+            // pnlListR
+            // 
+            this.pnlListR.Size = new System.Drawing.Size(830, 418);
+            // 
             // splitContainer2
             // 
+            this.splitContainer2.SplitterDistance = 565;
+            // 
+            // pnlListTitleL
+            // 
+            this.pnlListTitleL.Size = new System.Drawing.Size(565, 43);
+            // 
+            // pnlListTitleR
+            // 
+            this.pnlListTitleR.Size = new System.Drawing.Size(830, 43);
             // 
             // splitContainer1
             // 
@@ -92,6 +118,7 @@ namespace Team2_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.ClientSize = new System.Drawing.Size(1399, 728);
             this.Name = "frmUserCode";
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlArea.ResumeLayout(false);
