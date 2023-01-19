@@ -51,12 +51,11 @@ namespace Team2_Project
             cboDel.DataSource = new BindingSource(use_YNList, null);
             cboDel.DisplayMember = "Value";
             cboDel.ValueMember = "Key";
-            cboDel.Enabled = false;
 
             cboAuth.DataSource = new BindingSource(AuthList, null);
             cboAuth.DisplayMember = "Value";
             cboAuth.ValueMember = "Key";
-            cboAuth.Enabled = false;
+            CboEnable(false);
 
             pnlStat = 0;
         }
@@ -73,9 +72,12 @@ namespace Team2_Project
 
         private void ClearPnl()
         {
-            foreach (TextBox item in pnlArea.Controls)
+            foreach (Control item in pnlArea.Controls)
             {
-                item.Text = "";
+                if(item is TextBox)
+                {
+                    item.Text = "";
+                }
             }
 
             ucSearchGroup._Code = "";
@@ -91,7 +93,7 @@ namespace Team2_Project
             cboAuth.Enabled = val;
         }
 
-        private void Insert()
+        public void OnAdd()
         {
             pnlStat = 1;
             ClearPnl();
@@ -100,7 +102,7 @@ namespace Team2_Project
             //저장, 취소 빼고 다 비활성화
         }
 
-        private void _Update()
+        public void OnEdit()
         {
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
@@ -115,7 +117,7 @@ namespace Team2_Project
             //저장, 취소 빼고 다 비활성화
         }
 
-        private void Delete()
+        public void OnDelete() //다른 테이블에서 사용한다면 삭제 불가능
         {
             if (MessageBox.Show("선택한 인사정보를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
@@ -135,7 +137,7 @@ namespace Team2_Project
             }
         }
 
-        private void Save()
+        public void OnSave()
         {
             if (MessageBox.Show("입력한 정보를 저장하시겠습니까?", "저장확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
@@ -162,6 +164,7 @@ namespace Team2_Project
                     dgvEmp.DataSource = dt;
 
                     pnlStat = 0;
+
                     CboEnable(false);
                 }
                 else
@@ -179,6 +182,7 @@ namespace Team2_Project
                     dgvEmp.DataSource = dt;
 
                     pnlStat = 0;
+                    txtID.Enabled = true;
                     CboEnable(false);
                 }
                 else
@@ -188,7 +192,7 @@ namespace Team2_Project
             }
         }
 
-        private void Cancel()
+        public void OnCancel()
         {
             if(MessageBox.Show("취소하시겠습니까?", "취소확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
@@ -196,32 +200,32 @@ namespace Team2_Project
             }
 
             pnlStat = 0;
+            txtID.Enabled = true;
             CboEnable(false);
         }
 
-        private void Search()
+        public void OnReLoad()
+        {
+            txtSearchID.Text = txtSearchName.Text = "";
+            cboSearchDel.SelectedIndex = 0;
+
+            dt = empSrv.GetEmployeeList();
+            dgvEmp.DataSource = null;
+            dgvEmp.DataSource = dt;
+        }
+
+        public void OnSearch()
         {
             DataTable temp = dt;
             if (!string.IsNullOrWhiteSpace(txtSearchID.Text))
-            {
                 temp = Filtering(temp, "User_ID", txtSearchID.Text);
-            }
             if (temp != null && !string.IsNullOrWhiteSpace(txtSearchName.Text))
-            {
                 temp = Filtering(temp, "User_Name", txtSearchName.Text);
-            }
             if (temp != null && cboSearchDel.Text != "전체")
-            {
                 temp = Filtering(temp, "Use_YN", cboSearchDel.Text);
-            }
 
             dgvEmp.DataSource = null;
             dgvEmp.DataSource = temp;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Search();
         }
 
         private DataTable Filtering(DataTable dt, string col, string str)

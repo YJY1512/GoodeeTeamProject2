@@ -67,7 +67,7 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
                     cmd.Parameters.AddWithValue("@User_Name", data.User_Name);
                     cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
-                    cmd.Parameters.AddWithValue("@Use_YN", data.User_ID);
+                    cmd.Parameters.AddWithValue("@Use_YN", data.Use_YN);
                     cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
                     cmd.Transaction = trans;
 
@@ -122,7 +122,7 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
                     cmd.Parameters.AddWithValue("@User_Name", data.User_Name);
                     cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
-                    cmd.Parameters.AddWithValue("@Use_YN", data.User_ID);
+                    cmd.Parameters.AddWithValue("@Use_YN", data.Use_YN);
                     cmd.Parameters.AddWithValue("@Up_Emp", Ins_Emp);
                     cmd.Transaction = trans;
 
@@ -158,7 +158,6 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
         public bool Delete(string empID)
         {
             string sql = @"delete from User_Master where User_ID = @User_ID";
-            int iRowAffect = 0;
 
             try
             {
