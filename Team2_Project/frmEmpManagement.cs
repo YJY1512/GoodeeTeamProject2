@@ -100,7 +100,7 @@ namespace Team2_Project
             //저장, 취소 빼고 다 비활성화
         }
 
-        private void Update()
+        private void _Update()
         {
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
@@ -221,7 +221,7 @@ namespace Team2_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Update();
+            Search();
         }
 
         private DataTable Filtering(DataTable dt, string col, string str)
@@ -229,7 +229,7 @@ namespace Team2_Project
             IEnumerable<DataRow> SortTable = null;
 
             SortTable = from row in dt.AsEnumerable()
-                        where row.Field<string>(col) == str
+                        where row.Field<string>(col).Contains(str)
                         select row;
             if (SortTable.Count() < 1)
                 return null;
@@ -247,6 +247,7 @@ namespace Team2_Project
         {
             if (pnlStat != 0)
                 return;
+
             txtID.Text = dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString();
             txtName.Text = dgvEmp.SelectedRows[0].Cells["User_Name"].Value.ToString();
             ucSearchGroup._Code = dgvEmp.SelectedRows[0].Cells["UserGroup_Code"].Value.ToString();

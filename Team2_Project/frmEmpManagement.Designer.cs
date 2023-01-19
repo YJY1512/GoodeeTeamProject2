@@ -140,29 +140,29 @@ namespace Team2_Project
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 27);
+            this.label1.Location = new System.Drawing.Point(50, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 17);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ID";
+            this.label1.Text = "사용자 ID";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(63, 88);
+            this.label4.Location = new System.Drawing.Point(47, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 17);
+            this.label4.Size = new System.Drawing.Size(82, 17);
             this.label4.TabIndex = 1;
-            this.label4.Text = "이름";
+            this.label4.Text = "사용자 이름";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(415, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
+            this.label5.Size = new System.Drawing.Size(68, 17);
             this.label5.TabIndex = 2;
-            this.label5.Text = "사용자 그룹";
+            this.label5.Text = "권한 그룹";
             // 
             // txtID
             // 
@@ -290,7 +290,7 @@ namespace Team2_Project
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(43, 27);
+            this.label7.Location = new System.Drawing.Point(27, 27);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 17);
             this.label7.TabIndex = 17;
@@ -301,7 +301,7 @@ namespace Team2_Project
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(40, 88);
+            this.label12.Location = new System.Drawing.Point(24, 88);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);
             this.label12.TabIndex = 18;
