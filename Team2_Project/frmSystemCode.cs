@@ -23,13 +23,13 @@ namespace Team2_Project
 
         private void frmSystemCode_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("테스트");
+            //MessageBox.Show("테스트");
 
-            cboUserYNSC.Items.Add("전체");
-            cboUserYNSC.Items.Add("사용");
-            cboUserYNSC.Items.Add("미사용");
-            cboUserYNSC.SelectedIndex = 0;
-            cboUserYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cboUserYNSC.Items.Add("전체");
+            //cboUserYNSC.Items.Add("사용");
+            //cboUserYNSC.Items.Add("미사용");
+            //cboUserYNSC.SelectedIndex = 0;
+            //cboUserYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //DataGridViewUtil.SetInitDataGridView(dgvSysMa);
             //DataGridViewUtil.AddGridTextBoxColumn(dgvSysMa, "시스템정의 대분류코드", "", 400, align: DataGridViewContentAlignment.MiddleCenter);
@@ -53,13 +53,6 @@ namespace Team2_Project
             //cboMinUse.Items.Add("미사용");
             //cboMinUse.SelectedIndex = 0;
             //cboMinUse.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        private void Select()
-        {
-
-
-
         }
 
 
