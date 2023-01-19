@@ -39,11 +39,11 @@ namespace Team2_Project
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ucSearch1 = new Team2_Project.Controls.ucSearch();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvOrder = new System.Windows.Forms.DataGridView();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSub
@@ -67,7 +67,7 @@ namespace Team2_Project
             // 
             // pnlList
             // 
-            this.pnlList.Controls.Add(this.dataGridView1);
+            this.pnlList.Controls.Add(this.dgvOrder);
             this.pnlList.Location = new System.Drawing.Point(0, 143);
             this.pnlList.Size = new System.Drawing.Size(1834, 768);
             // 
@@ -184,16 +184,16 @@ namespace Team2_Project
             this.ucSearch1.Size = new System.Drawing.Size(292, 28);
             this.ucSearch1.TabIndex = 68;
             // 
-            // dataGridView1
+            // dgvOrder
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1834, 768);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvOrder.BackgroundColor = System.Drawing.Color.White;
+            this.dgvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrder.Location = new System.Drawing.Point(0, 0);
+            this.dgvOrder.Name = "dgvOrder";
+            this.dgvOrder.RowTemplate.Height = 23;
+            this.dgvOrder.Size = new System.Drawing.Size(1834, 768);
+            this.dgvOrder.TabIndex = 0;
             // 
             // frmOrder
             // 
@@ -209,7 +209,7 @@ namespace Team2_Project
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
             this.pnlList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -226,6 +226,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox4;
         protected System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvOrder;
     }
 }
