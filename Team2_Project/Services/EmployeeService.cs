@@ -20,19 +20,19 @@ namespace Team2_Project.Services
             return dt;
         }
 
-        public bool Insert(EmployeeDTO data)
+        public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Insert(data);
+            bool result = db.Insert(data, Ins_Emp);
             db.Dispose();
 
             return false;
         }
 
-        public bool Update(EmployeeDTO data)
+        public bool Update(EmployeeDTO data, string Ins_Emp)
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Update(data);
+            bool result = db.Update(data, Ins_Emp);
             db.Dispose();
 
             return result;
@@ -47,6 +47,5 @@ namespace Team2_Project.Services
             return result;
         }
 
-        
     }
 }
