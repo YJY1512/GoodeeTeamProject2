@@ -55,6 +55,10 @@ namespace Team2_Project
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cboAuth = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -63,6 +67,7 @@ namespace Team2_Project
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
@@ -97,19 +102,17 @@ namespace Team2_Project
             // 
             // pnlArea
             // 
+            this.pnlArea.Controls.Add(this.label18);
+            this.pnlArea.Controls.Add(this.cboAuth);
+            this.pnlArea.Controls.Add(this.label19);
+            this.pnlArea.Controls.Add(this.groupBox1);
             this.pnlArea.Controls.Add(this.label17);
             this.pnlArea.Controls.Add(this.label16);
-            this.pnlArea.Controls.Add(this.label15);
-            this.pnlArea.Controls.Add(this.label14);
-            this.pnlArea.Controls.Add(this.txtPwd);
-            this.pnlArea.Controls.Add(this.label13);
             this.pnlArea.Controls.Add(this.label12);
             this.pnlArea.Controls.Add(this.label7);
             this.pnlArea.Controls.Add(this.cboDel);
             this.pnlArea.Controls.Add(this.label8);
             this.pnlArea.Controls.Add(this.ucSearchGroup);
-            this.pnlArea.Controls.Add(this.label6);
-            this.pnlArea.Controls.Add(this.ucSearchDept);
             this.pnlArea.Controls.Add(this.txtName);
             this.pnlArea.Controls.Add(this.txtID);
             this.pnlArea.Controls.Add(this.label5);
@@ -183,23 +186,21 @@ namespace Team2_Project
             this.ucSearchDept._Name = "";
             this.ucSearchDept.BackColor = System.Drawing.Color.Transparent;
             this.ucSearchDept.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearchDept.Location = new System.Drawing.Point(978, 21);
+            this.ucSearchDept.Location = new System.Drawing.Point(130, 53);
             this.ucSearchDept.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearchDept.Name = "ucSearchDept";
             this.ucSearchDept.Size = new System.Drawing.Size(292, 33);
             this.ucSearchDept.TabIndex = 5;
-            this.ucSearchDept.Visible = false;
             this.ucSearchDept.BtnClick += new System.EventHandler(this.ucSearchDept_BtnClick);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(889, 27);
+            this.label6.Location = new System.Drawing.Point(41, 59);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 6;
             this.label6.Text = "부서";
-            this.label6.Visible = false;
             // 
             // ucSearchGroup
             // 
@@ -308,44 +309,40 @@ namespace Team2_Project
             // 
             // txtPwd
             // 
-            this.txtPwd.Location = new System.Drawing.Point(959, 85);
+            this.txtPwd.Location = new System.Drawing.Point(111, 117);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(158, 25);
             this.txtPwd.TabIndex = 20;
-            this.txtPwd.Visible = false;
             this.txtPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(889, 88);
+            this.label13.Location = new System.Drawing.Point(41, 120);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 17);
             this.label13.TabIndex = 19;
             this.label13.Text = "비밀번호";
-            this.label13.Visible = false;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(866, 88);
+            this.label14.Location = new System.Drawing.Point(18, 120);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 17);
             this.label14.TabIndex = 21;
             this.label14.Text = "*";
-            this.label14.Visible = false;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(866, 27);
+            this.label15.Location = new System.Drawing.Point(18, 59);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(17, 17);
             this.label15.TabIndex = 22;
             this.label15.Text = "*";
-            this.label15.Visible = false;
             // 
             // label16
             // 
@@ -377,6 +374,48 @@ namespace Team2_Project
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.ucSearchDept);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.txtPwd);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Location = new System.Drawing.Point(911, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(483, 172);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "NoShow";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Location = new System.Drawing.Point(24, 149);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(17, 17);
+            this.label18.TabIndex = 28;
+            this.label18.Text = "*";
+            // 
+            // cboAuth
+            // 
+            this.cboAuth.FormattingEnabled = true;
+            this.cboAuth.Location = new System.Drawing.Point(136, 146);
+            this.cboAuth.Name = "cboAuth";
+            this.cboAuth.Size = new System.Drawing.Size(100, 25);
+            this.cboAuth.TabIndex = 27;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(47, 149);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(82, 17);
+            this.label19.TabIndex = 26;
+            this.label19.Text = "사용자 권한";
+            // 
             // frmEmpManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -395,6 +434,8 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -427,5 +468,9 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
+        protected System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox cboAuth;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

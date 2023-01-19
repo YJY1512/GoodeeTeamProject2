@@ -26,5 +26,10 @@ namespace Team2_Project.BaseForms
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

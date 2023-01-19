@@ -29,6 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             this.pnlSub.SuspendLayout();
             this.pnlArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -43,12 +44,71 @@ namespace Team2_Project
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // txtSearchName
+            // 
+            this.txtSearchName.Location = new System.Drawing.Point(593, 19);
+            // 
+            // lblSearchName
+            // 
+            this.lblSearchName.Size = new System.Drawing.Size(138, 17);
+            this.lblSearchName.Text = "사용자정의 대분류명";
+            // 
+            // lblSearchCode
+            // 
+            this.lblSearchCode.Size = new System.Drawing.Size(152, 17);
+            this.lblSearchCode.Text = "사용자정의 대분류코드";
+            // 
+            // lblInfoCodeMa
+            // 
+            this.lblInfoCodeMa.Size = new System.Drawing.Size(152, 17);
+            this.lblInfoCodeMa.Text = "사용자정의 대분류코드";
+            // 
+            // lblInfoNameDe
+            // 
+            this.lblInfoNameDe.Size = new System.Drawing.Size(152, 17);
+            this.lblInfoNameDe.Text = "사용자정의 상세분류명";
+            // 
+            // lblInfoCodeDe
+            // 
+            this.lblInfoCodeDe.Size = new System.Drawing.Size(166, 17);
+            this.lblInfoCodeDe.Text = "사용자정의 상세분류코드";
+            // 
+            // lblInfoNameMa
+            // 
+            this.lblInfoNameMa.Size = new System.Drawing.Size(138, 17);
+            this.lblInfoNameMa.Text = "사용자정의 대분류명";
+            // 
             // comboBox1
             // 
             this.comboBox1.Size = new System.Drawing.Size(121, 25);
             // 
+            // cboMaUse
+            // 
+            this.cboMaUse.Size = new System.Drawing.Size(121, 25);
+            // 
+            // cboMinUse
+            // 
+            this.cboMinUse.Size = new System.Drawing.Size(121, 25);
+            // 
+            // pnlListL
+            // 
+            this.pnlListL.Size = new System.Drawing.Size(565, 418);
+            // 
+            // pnlListR
+            // 
+            this.pnlListR.Size = new System.Drawing.Size(830, 418);
+            // 
             // splitContainer2
             // 
+            this.splitContainer2.SplitterDistance = 565;
+            // 
+            // pnlListTitleL
+            // 
+            this.pnlListTitleL.Size = new System.Drawing.Size(565, 43);
+            // 
+            // pnlListTitleR
+            // 
+            this.pnlListTitleR.Size = new System.Drawing.Size(830, 43);
             // 
             // splitContainer1
             // 
@@ -58,6 +118,7 @@ namespace Team2_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.ClientSize = new System.Drawing.Size(1399, 728);
             this.Name = "frmUserCode";
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlArea.ResumeLayout(false);
