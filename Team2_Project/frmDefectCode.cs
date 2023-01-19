@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Team2_Project
 {
-    public partial class Form1 : Team2_Project.frmListUpAreaDown
+    public partial class frmDefectCode : frmListUpAreaDown
     {
-        public Form1()
+        public frmDefectCode()
         {
             InitializeComponent();
         }
