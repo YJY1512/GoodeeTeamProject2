@@ -29,7 +29,58 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.pnlSub.SuspendLayout();
+            this.pnlArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.pnlListTitleL.SuspendLayout();
+            this.pnlListTitleR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // label9
+            // 
+            this.label9.Size = new System.Drawing.Size(137, 17);
+            this.label9.Text = "상세분류 사용유무w";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            // 
+            // splitContainer2
+            // 
+            // 
+            // splitContainer1
+            // 
+            // 
+            // frmUserCode
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.ClientSize = new System.Drawing.Size(1399, 728);
+            this.Name = "frmUserCode";
+            this.pnlSub.ResumeLayout(false);
+            this.pnlSub.PerformLayout();
+            this.pnlArea.ResumeLayout(false);
+            this.pnlArea.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.pnlListTitleL.ResumeLayout(false);
+            this.pnlListTitleL.PerformLayout();
+            this.pnlListTitleR.ResumeLayout(false);
+            this.pnlListTitleR.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
