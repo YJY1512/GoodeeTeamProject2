@@ -274,6 +274,7 @@ namespace Team2_Project
             treeNode4});
             this.treeView4.Size = new System.Drawing.Size(216, 10);
             this.treeView4.TabIndex = 0;
+            this.treeView4.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView4_NodeMouseDoubleClick);
             // 
             // panel5
             // 
@@ -348,6 +349,7 @@ namespace Team2_Project
             treeNode12});
             this.treeView3.Size = new System.Drawing.Size(216, 10);
             this.treeView3.TabIndex = 0;
+            this.treeView3.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView3_NodeMouseDoubleClick);
             // 
             // pnlBig3
             // 
@@ -425,6 +427,7 @@ namespace Team2_Project
             treeNode21});
             this.treeView2.Size = new System.Drawing.Size(216, 10);
             this.treeView2.TabIndex = 0;
+            this.treeView2.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseDoubleClick);
             // 
             // pnlBig2
             // 
@@ -500,6 +503,7 @@ namespace Team2_Project
             treeNode27});
             this.treeView1.Size = new System.Drawing.Size(216, 10);
             this.treeView1.TabIndex = 0;
+            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // pnlBig1
             // 
