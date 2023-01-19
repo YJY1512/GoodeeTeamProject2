@@ -68,8 +68,6 @@ namespace Team2_Project
         private void frmMenu_Load(object sender, EventArgs e)
         {
             //((frmMain)this.MdiParent).BtnClick += Common_BtnClick;
-
-
             cboTypeSC.Items.Add("전체");
             cboTypeSC.Items.Add("완제품");
             cboTypeSC.Items.Add("반제품");
@@ -110,12 +108,13 @@ namespace Team2_Project
 
 
             //txtCode.Enabled = false;
-            //txtCode.Text = "코드 자동발행"; ////////////////////////////////////////////// 추후수정
+            //txtCode.Text = "코드 자동발행"; ////////////////////////////////////////////// 추후수정 =>안함
 
-            //////추가, 수정버튼 클릭 시 입력패널이 열리고 저장버튼 클릭 시 추가, 수정이 되게 해야 함 
+            //1. 추가,수정버튼 클릭 -> 입력패널이 활성화
+            //2. 저장버튼 클릭 시   -> 추가,수정 적용 
 
             Deactivation(); // 로드 시 입력패널 비활성화
-            OnSearch(); /////////////////////////////////////////////////////
+            OnSearch();
         }
 
         #region Main 버튼 클릭이벤트
@@ -135,7 +134,7 @@ namespace Team2_Project
 
         public void OnAdd()     //추가
         {
-            Reset();
+            ResetBottom();
             Activation();
             situation = "Add";
         }
@@ -182,7 +181,7 @@ namespace Team2_Project
                 else
                     MessageBox.Show("다시 시도하여주십시오.", "등록오류");
 
-                OnSearch(); ///////////////////////////////////////////////////// 
+                OnSearch();
             }
             else if (situation == "Update")
             {
@@ -216,25 +215,21 @@ namespace Team2_Project
                 else
                     MessageBox.Show("다시 시도하여주십시오.", "수정오류");
 
-                OnSearch(); ///////////////////////////////////////////////////// 
+                OnSearch();
             }
         }
         public void OnCancel()  //취소
         {
-            // 입력중이던 입력패널을 초기화하고 비활성화
-            Reset();
-            Deactivation();
-            OnSearch(); ///////////////////////////////////////////////////// 
+            ResetBottom();  //입력패널 리셋
+            Deactivation(); //입력패널 비활성화
+            OnSearch();     //로드
         }
         public void OnReLoad()  //새로고침
         {
-            Reset();
             //Deactivation();
-            OnSearch(); ///////////////////////////////////////////////////// 
-        }
-        public void OnPrint()   //프린트(액셀)
-        {
-
+            ResetTop();       //검색조건 리셋
+            ResetBottom();    //입력패널 리셋
+            OnSearch();       //로드
         }
         #endregion
 
@@ -271,26 +266,30 @@ namespace Team2_Project
             txtCode.Enabled = false;
         }
 
-        private void Reset()
+        private void ResetTop() //검색조건 리셋
+        {
+            txtCodeSC.Text = txtName.Text = txtNameSC.Text = "";
+            cboTypeSC.SelectedIndex = cboUseYNSC.SelectedIndex = 0;
+        }
+
+        private void ResetBottom() //입력패널 리셋
         {
             txtCode.Text = txtName.Text = txtRemark.Text = "";
             cboType.SelectedIndex = cboSpec.SelectedIndex = cboUseYN.SelectedIndex = 0;
         }
 
-        private void Deactivation()
+        private void Deactivation() //입력패널 비활성화
         {
             txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
         }
 
-        private void Activation()
+        private void Activation() //입력패널 활성화
         {
             txtCode.Enabled = true; /////////////////////////////////////////////////////// 추후수정
             txtName.Enabled = txtRemark.Enabled = true;
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
-
         }
-
     }
 }
 
