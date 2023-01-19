@@ -40,7 +40,7 @@ namespace Team2_Project
         {
             if (showPanelTreenode1)
             {
-                pnltreenode1.Height = 155;
+                pnltreenode1.Height = 188;
                 treeView1.ExpandAll();
             }
             else
@@ -50,7 +50,7 @@ namespace Team2_Project
 
             if (showPanelTreenode2)
             {
-                pnltreenode2.Height = 190;
+                pnltreenode2.Height = 276;
                 treeView2.ExpandAll();
             }
             else
@@ -274,6 +274,9 @@ namespace Team2_Project
                     tabControl1.SelectedTab = (TabPage)this.ActiveMdiChild.Tag;
                 }
 
+                //화면당 조회, 저장, 출력여부를 메뉴테이블을 참고해서 버튼 비활성화 여부 코딩
+
+
                 if (!tabControl1.Visible)
                 {
                     tabControl1.Visible = true;
@@ -340,8 +343,8 @@ namespace Team2_Project
             {
                 btn.Tag = btn.Name;
                 BtnClick(btn, e);
-            }
-        }
+            }    
+        }   
 
     }
     class TabTag
