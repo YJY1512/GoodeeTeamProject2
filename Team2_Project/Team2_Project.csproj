@@ -119,23 +119,29 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNopMiCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNopMiCode.Designer.cs">
+      <DependentUpon>frmNopMiCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDefectCode.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDefectCode.Designer.cs">
       <DependentUpon>frmDefectCode.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDown.cs">
+    <Compile Include="frmNop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDown.Designer.cs">
-      <DependentUpon>frmDown.cs</DependentUpon>
+    <Compile Include="frmNop.Designer.cs">
+      <DependentUpon>frmNop.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDownCode.cs">
+    <Compile Include="frmNopMaCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDownCode.Designer.cs">
-      <DependentUpon>frmDownCode.cs</DependentUpon>
+    <Compile Include="frmNopMaCode.Designer.cs">
+      <DependentUpon>frmNopMaCode.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEmpManagement.cs">
       <SubType>Form</SubType>
@@ -225,6 +231,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\NopCodeService.cs" />
     <Compile Include="Services\SysCodeService.cs" />
     <Compile Include="Utils\CommonCodeUtil.cs" />
     <Compile Include="Utils\DataGridViewUtil.cs" />
@@ -264,11 +271,11 @@
     <EmbeddedResource Include="frmDefectCode.resx">
       <DependentUpon>frmDefectCode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDown.resx">
-      <DependentUpon>frmDown.cs</DependentUpon>
+    <EmbeddedResource Include="frmNop.resx">
+      <DependentUpon>frmNop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDownCode.resx">
-      <DependentUpon>frmDownCode.cs</DependentUpon>
+    <EmbeddedResource Include="frmNopMaCode.resx">
+      <DependentUpon>frmNopMaCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpManagement.resx">
       <DependentUpon>frmEmpManagement.cs</DependentUpon>
@@ -284,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModule.resx">
       <DependentUpon>frmModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNopMiCode.resx">
+      <DependentUpon>frmNopMiCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOrder.resx">
       <DependentUpon>frmOrder.cs</DependentUpon>

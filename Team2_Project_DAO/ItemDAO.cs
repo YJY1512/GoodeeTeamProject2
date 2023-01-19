@@ -120,7 +120,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<ItemDTO> GetCurItem(string item) //품목수정
+        public List<ItemDTO> GetCurItem(string item) //품목 패널로드
         {
             try
             {               
@@ -152,7 +152,7 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"UPDATE Item_Master
-                                  SET Item_Name = @Item_Name, Item_Type = @Item_Type, Item_Spec = @Item_Spec, Remark = @Remark, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                                  SET Item_Name = @Item_Name, Item_Type = @Item_Type, Item_Spec = @Item_Spec, Remark = @Remark, Use_YN = @Use_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
                                 WHERE Item_Code = @Item_Code";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Item_Code", item.Item_Code);
