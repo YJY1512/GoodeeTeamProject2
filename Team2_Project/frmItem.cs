@@ -93,8 +93,41 @@ namespace Team2_Project
             Deactivation(); // 로드 시 입력패널 비활성화
             btnSelete.PerformClick(); ///////////////////////////////////////////////////// 추후수정
         }
+        #region Main 버튼 클릭이벤트
+        public void OnSearch()  //검색 
+        {
 
+        }
 
+        public void OnAdd()     //추가
+        {
+
+        }
+        public void OnEdit()    //수정
+        {
+
+        }
+        public void OnDelete()  //삭제
+        {
+
+        }
+        public void OnSave()    //저장
+        {
+
+        }
+        public void OnCancel()  //취소
+        {
+
+        }
+        public void OnReLoad()  //새로고침
+        {
+
+        }
+        public void OnPrint()   //프린트(액셀)
+        {
+
+        }
+        #endregion
         private void btnSelete_Click(object sender, EventArgs e)
         {
             ItemDTO item = new ItemDTO
