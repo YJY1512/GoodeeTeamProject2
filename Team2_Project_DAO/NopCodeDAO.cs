@@ -26,8 +26,7 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-
-        public List<NopMaCodeDTO> GetNopSearch(NopMaCodeDTO item) //비가동 대분류코드 조회
+        public List<NopMaCodeDTO> GetNopMaSearch(NopMaCodeDTO item) //비가동 대분류코드 조회
         {
             try
             {
@@ -109,7 +108,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<NopMaCodeDTO> GetCurItem(string item) //대분류 패널로드
+        public List<NopMaCodeDTO> GetMaCurItem(string item) //대분류 패널로드
         {
             try
             {
@@ -135,6 +134,7 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
         public bool NopMaCodeUpdate(NopMaCodeDTO item) //대분류 수정
         {
             try
@@ -162,5 +162,7 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
+
     }
 }

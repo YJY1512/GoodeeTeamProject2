@@ -10,10 +10,10 @@ namespace Team2_Project.Services
 {
     class NopCodeService
     {
-        public List<NopMaCodeDTO> GetNopSearch(NopMaCodeDTO item)
+        public List<NopMaCodeDTO> GetNopMaSearch(NopMaCodeDTO item)
         {
             NopCodeDAO db = new NopCodeDAO();
-            List<NopMaCodeDTO> list = db.GetNopSearch(item);
+            List<NopMaCodeDTO> list = db.GetNopMaSearch(item);
             db.Dispose();
             return list;
         }
@@ -26,10 +26,10 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public List<NopMaCodeDTO> GetCurItem(string item)
+        public List<NopMaCodeDTO> GetMaCurItem(string item)
         {
             NopCodeDAO db = new NopCodeDAO();
-            List<NopMaCodeDTO> list = db.GetCurItem(item);
+            List<NopMaCodeDTO> list = db.GetMaCurItem(item);
             db.Dispose();
             return list;
         }

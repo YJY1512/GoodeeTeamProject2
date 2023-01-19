@@ -57,7 +57,7 @@ namespace Team2_Project
                 Nop_Ma_Name = txtNameSC.Text,
                 Use_YN = cboUseYNSC.Text
             };
-            NopMaList = srv.GetNopSearch(item);
+            NopMaList = srv.GetNopMaSearch(item);
             dgvData.DataSource = null;
             dgvData.DataSource = NopMaList;
         }
@@ -148,7 +148,7 @@ namespace Team2_Project
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string curCode = dgvData[0, dgvData.CurrentRow.Index].Value.ToString();
-            NopMaList = srv.GetCurItem(curCode);
+            NopMaList = srv.GetMaCurItem(curCode);
 
             //입력정보에 바인딩
             NopMaCodeDTO dto = NopMaList.FirstOrDefault((p) => p.Nop_Ma_Code == curCode);
