@@ -17,6 +17,6 @@ namespace Team2_Project.BaseForms
             InitializeComponent();
         }
 
-        }
+        
     }
 }
