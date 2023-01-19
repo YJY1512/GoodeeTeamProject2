@@ -67,10 +67,22 @@ namespace Team2_Project
             this.lblInfoCodeMa.Size = new System.Drawing.Size(152, 17);
             this.lblInfoCodeMa.Text = "사용자정의 대분류코드";
             // 
+            // pnlSub
+            // 
+            this.pnlSub.Size = new System.Drawing.Size(1484, 65);
+            // 
+            // pnlListL
+            // 
+            this.pnlListL.Size = new System.Drawing.Size(493, 596);
+            // 
+            // pnlListR
+            // 
+            this.pnlListR.Size = new System.Drawing.Size(987, 596);
+            // 
             // frmUserCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1318, 704);
+            this.ClientSize = new System.Drawing.Size(1484, 704);
             this.Name = "frmUserCode";
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.pnlSub.ResumeLayout(false);
