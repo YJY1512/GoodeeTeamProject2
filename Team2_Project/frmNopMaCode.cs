@@ -14,13 +14,13 @@ using Team2_Project_DTO;
 
 namespace Team2_Project
 {
-    public partial class frmNopCode : frmListUpAreaDown
+    public partial class frmNopMaCode : frmListUpAreaDown
     {
         NopCodeService srv = new NopCodeService();
         List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         string situation = "";
 
-        public frmNopCode()
+        public frmNopMaCode()
         {
             InitializeComponent();
         }

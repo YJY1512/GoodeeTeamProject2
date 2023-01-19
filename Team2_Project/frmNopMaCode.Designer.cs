@@ -1,7 +1,7 @@
 ﻿
 namespace Team2_Project
 {
-    partial class frmNopCode
+    partial class frmNopMaCode
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.

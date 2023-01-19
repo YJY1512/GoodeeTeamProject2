@@ -119,6 +119,12 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNopMiCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNopMiCode.Designer.cs">
+      <DependentUpon>frmNopMiCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDefectCode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,11 +137,11 @@
     <Compile Include="frmNop.Designer.cs">
       <DependentUpon>frmNop.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNopCode.cs">
+    <Compile Include="frmNopMaCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNopCode.Designer.cs">
-      <DependentUpon>frmNopCode.cs</DependentUpon>
+    <Compile Include="frmNopMaCode.Designer.cs">
+      <DependentUpon>frmNopMaCode.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEmpManagement.cs">
       <SubType>Form</SubType>
@@ -265,8 +271,8 @@
     <EmbeddedResource Include="frmNop.resx">
       <DependentUpon>frmNop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNopCode.resx">
-      <DependentUpon>frmNopCode.cs</DependentUpon>
+    <EmbeddedResource Include="frmNopMaCode.resx">
+      <DependentUpon>frmNopMaCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpManagement.resx">
       <DependentUpon>frmEmpManagement.cs</DependentUpon>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModule.resx">
       <DependentUpon>frmModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNopMiCode.resx">
+      <DependentUpon>frmNopMiCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOrder.resx">
       <DependentUpon>frmOrder.cs</DependentUpon>
