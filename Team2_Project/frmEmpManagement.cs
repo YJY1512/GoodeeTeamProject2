@@ -154,10 +154,10 @@ namespace Team2_Project
 
             if (pnlStat == 1)
             {
-                bool result = empSrv.Insert(data);
+                bool result = empSrv.Insert(data, "1000");
                 if (result)
                 {
-                    MessageBox.Show("인사정보가 정상적으로 추가되었습니다.");
+                    MessageBox.Show("인사정보가 정상적으로 추가되었습니다.\n초기 비밀번호는 아이디와 동일합니다.");
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
 
@@ -171,7 +171,7 @@ namespace Team2_Project
             }
             else if (pnlStat == 2)
             {
-                bool result = empSrv.Update(data);
+                bool result = empSrv.Update(data, "1000");
                 if (result)
                 {
                     MessageBox.Show("인사정보가 정상적으로 수정되었습니다.");
