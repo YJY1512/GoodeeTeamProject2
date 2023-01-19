@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_Project.Controls;
+using System.Reflection;
 
 namespace Team2_Project
 {
@@ -33,8 +34,26 @@ namespace Team2_Project
         {
             tStripName.Text = "윤종윤님";
             tStripDept.Text = "관리자";
-            OpenGMMainPage<frmStartMain>();
+            OpenChildPage<frmStartMain>();
         }
+        private void OpenChildPage<T>() where T : Form, new()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(T))
+                {
+                    form.Activate();
+                    form.BringToFront();
+
+                    return;
+                }
+            }
+            T frm = new T();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
         #region 왼쪽버튼 수정 예정
         private void tooglepanels()
         {
@@ -60,7 +79,7 @@ namespace Team2_Project
 
             if (showPanelTreenode3)
             {
-                pnltreenode3.Height = 164;
+                pnltreenode3.Height = 247;
                 treeView3.ExpandAll();
             }
             else
@@ -70,7 +89,7 @@ namespace Team2_Project
 
             if (showPanelTreenode4)
             {
-                pnltreenode4.Height = 89;
+                pnltreenode4.Height = 100;
                 treeView4.ExpandAll();
             }
             else
@@ -79,6 +98,10 @@ namespace Team2_Project
             }
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnsystem_Click(object sender, EventArgs e)
         {
             showPanelTreenode1 = !showPanelTreenode1;
@@ -108,43 +131,25 @@ namespace Team2_Project
         }
         #endregion
 
-        private void OpenGMMainPage<T>() where T : Form, new()
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.GetType() == typeof(T))
-                {
-                    form.Activate();
-                    form.BringToFront();
-
-                    return;
-                }
-            }
-            T frm = new T();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-        }
-
         #region 왼쪽 treeview 수정예정
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             curP_MenuID = e.Node.Text.ToString();
             if (e.Node.Text == "사용자 관리")
             {
-                OpenGMMainPage<frmUserManagement>();
+                OpenChildPage<frmUserManagement>();
             }
             else if (e.Node.Text == "인사 관리")
             {
-                OpenGMMainPage<frmEmpManagement>();
+                OpenChildPage<frmEmpManagement>();
             }
             else if (e.Node.Text == "시스템 코드 관리")
             {
-                OpenGMMainPage<frmSystemCode>();
+                OpenChildPage<frmSystemCode>();
             }
             else if (e.Node.Text == "즐겨찾기및 화면관리")
             {
-                OpenGMMainPage<frmScreen>();
+                OpenChildPage<frmScreen>();
             }
             else
             {
@@ -157,27 +162,27 @@ namespace Team2_Project
             curP_MenuID = e.Node.Text.ToString();
             if (e.Node.Text == "공정정보")
             {
-                OpenGMMainPage<frmProcessManagement>();
+                OpenChildPage<frmProcessManagement>();
             }
             else if (e.Node.Text == "작업장정보")
             {
-                OpenGMMainPage<frmWorkShopInfo>();
+                OpenChildPage<frmWorkShopInfo>();
             }
             else if (e.Node.Text == "품목정보")
             {
-                OpenGMMainPage<frmItem>();
+                OpenChildPage<frmItem>();
             }
             else if (e.Node.Text == "사용자 정의 관리")
             {
-                OpenGMMainPage<frmUserCode>();
+                OpenChildPage<frmUserCode>();
             }
             else if (e.Node.Text == "불량현상 관리")
             {
-                OpenGMMainPage<frmDefectCode>();
+                OpenChildPage<frmDefectCode>();
             }
             else if (e.Node.Text == "비가동 관리")
             {
-                OpenGMMainPage<frmDownCode>();
+                OpenChildPage<frmDownCode>();
             }
             else
             {
@@ -205,7 +210,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "비가동 내역")
             {
-                OpenGMMainPage<frmDown>();
+                OpenChildPage<frmDown>();
             }
             else if (e.Node.Text == "일별 생산 현황")
             {
@@ -223,11 +228,11 @@ namespace Team2_Project
             curP_MenuID = e.Node.Text.ToString();
             if (e.Node.Text == "생산요청 관리")
             {
-                OpenGMMainPage<frmOrder>();
+                OpenChildPage<frmOrder>();
             }
             else if (e.Node.Text == "생산계획 관리")
             {
-                OpenGMMainPage<frmPlan>();
+                OpenChildPage<frmPlan>();
             }
             else if (e.Node.Text == "시유 작업지시 생성")
             {
@@ -333,19 +338,81 @@ namespace Team2_Project
             tStripTime.Text = DateTime.Now.ToShortTimeString();
         }
 
+        void Function_Invoke(string funcName)
+        {
+            try
+            {
+                Type frmType = this.ActiveMdiChild.GetType();
+
+                MethodInfo btnEventHandlerCall = frmType.GetMethod(funcName, BindingFlags.Instance | BindingFlags.Public);
+
+                if (btnEventHandlerCall != null)
+                {
+                    btnEventHandlerCall.Invoke(this.ActiveMdiChild, null);
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("자식폼 이벤트핸들러 미구현");
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Form d = this.ActiveMdiChild;
-            OpenGMMainPage<frmStartMain>();
+            OpenChildPage<frmStartMain>();
             Button btn = (Button)sender;
             if (this.BtnClick != null)
             {
                 btn.Tag = btn.Name;
                 BtnClick(btn, e);
             }    
-        }   
+        }
+        #region 버튼 클릭 이벤트
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnSearch");
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnAdd");
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnEdit");
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnDelete");
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnSave");
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnCancel");
+        }
+
+        private void btnReLoad_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnReLoad");
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Function_Invoke("OnPrint");
+        }
+        #endregion
     }
     class TabTag
     {

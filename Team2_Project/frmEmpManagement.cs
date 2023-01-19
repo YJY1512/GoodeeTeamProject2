@@ -100,7 +100,7 @@ namespace Team2_Project
             //저장, 취소 빼고 다 비활성화
         }
 
-        private void Update()
+        private void _Update()
         {
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
@@ -154,10 +154,10 @@ namespace Team2_Project
 
             if (pnlStat == 1)
             {
-                bool result = empSrv.Insert(data);
+                bool result = empSrv.Insert(data, "1000");
                 if (result)
                 {
-                    MessageBox.Show("인사정보가 정상적으로 추가되었습니다.");
+                    MessageBox.Show("인사정보가 정상적으로 추가되었습니다.\n초기 비밀번호는 아이디와 동일합니다.");
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
 
@@ -171,7 +171,7 @@ namespace Team2_Project
             }
             else if (pnlStat == 2)
             {
-                bool result = empSrv.Update(data);
+                bool result = empSrv.Update(data, "1000");
                 if (result)
                 {
                     MessageBox.Show("인사정보가 정상적으로 수정되었습니다.");
@@ -221,7 +221,7 @@ namespace Team2_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Update();
+            Search();
         }
 
         private DataTable Filtering(DataTable dt, string col, string str)
@@ -229,7 +229,7 @@ namespace Team2_Project
             IEnumerable<DataRow> SortTable = null;
 
             SortTable = from row in dt.AsEnumerable()
-                        where row.Field<string>(col) == str
+                        where row.Field<string>(col).Contains(str)
                         select row;
             if (SortTable.Count() < 1)
                 return null;
@@ -247,6 +247,7 @@ namespace Team2_Project
         {
             if (pnlStat != 0)
                 return;
+
             txtID.Text = dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString();
             txtName.Text = dgvEmp.SelectedRows[0].Cells["User_Name"].Value.ToString();
             ucSearchGroup._Code = dgvEmp.SelectedRows[0].Cells["UserGroup_Code"].Value.ToString();

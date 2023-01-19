@@ -30,6 +30,7 @@ namespace Team2_Project
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("생산요청 관리");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("생산계획 관리");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("시유 작업지시 생성");
@@ -75,11 +76,14 @@ namespace Team2_Project
             System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("시스템 운영관리", new System.Windows.Forms.TreeNode[] {
             treeNode25,
             treeNode26});
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsBtnSetting = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnFavorite = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnFavorite = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnltreenode4 = new System.Windows.Forms.Panel();
             this.treeView4 = new System.Windows.Forms.TreeView();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -96,28 +100,28 @@ namespace Team2_Project
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.pnlBig1 = new System.Windows.Forms.Panel();
             this.btnsystem = new System.Windows.Forms.Button();
+            this.btnMenu = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.imageList64 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.tStripTime = new System.Windows.Forms.ToolStripLabel();
             this.tStripDate = new System.Windows.Forms.ToolStripLabel();
+            this.tStripTime = new System.Windows.Forms.ToolStripLabel();
+            this.tsBtnLogOut = new System.Windows.Forms.ToolStripButton();
+            this.tStripName = new System.Windows.Forms.ToolStripLabel();
+            this.tStripDept = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnReLoad = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tabControl1 = new Team2_Project.Controls.ccTabControl();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.tStripName = new System.Windows.Forms.ToolStripLabel();
-            this.tStripDept = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnltreenode4.SuspendLayout();
@@ -159,19 +163,41 @@ namespace Team2_Project
             this.toolStrip1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.tStripName,
-            this.tStripDept});
+            this.tsBtnSetting,
+            this.tsBtnFavorite});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1335, 34);
+            this.toolStrip1.Size = new System.Drawing.Size(1335, 35);
             this.toolStrip1.TabIndex = 19;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsBtnSetting
+            // 
+            this.tsBtnSetting.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsBtnSetting.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnSetting.ForeColor = System.Drawing.Color.White;
+            this.tsBtnSetting.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnSetting.Image")));
+            this.tsBtnSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnSetting.Margin = new System.Windows.Forms.Padding(5);
+            this.tsBtnSetting.Name = "tsBtnSetting";
+            this.tsBtnSetting.Size = new System.Drawing.Size(55, 25);
+            this.tsBtnSetting.Text = "설정";
+            // 
+            // tsBtnFavorite
+            // 
+            this.tsBtnFavorite.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsBtnFavorite.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnFavorite.ForeColor = System.Drawing.Color.White;
+            this.tsBtnFavorite.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnFavorite.Image")));
+            this.tsBtnFavorite.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnFavorite.Name = "tsBtnFavorite";
+            this.tsBtnFavorite.Size = new System.Drawing.Size(79, 32);
+            this.tsBtnFavorite.Text = "즐겨찾기";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.panel2.Controls.Add(this.btnFavorite);
             this.panel2.Controls.Add(this.pnltreenode4);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.pnltreenode3);
@@ -180,66 +206,98 @@ namespace Team2_Project
             this.panel2.Controls.Add(this.pnlBig2);
             this.panel2.Controls.Add(this.pnltreenode1);
             this.panel2.Controls.Add(this.pnlBig1);
+            this.panel2.Controls.Add(this.btnMenu);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 34);
+            this.panel2.Location = new System.Drawing.Point(0, 35);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(216, 735);
+            this.panel2.Size = new System.Drawing.Size(216, 734);
             this.panel2.TabIndex = 24;
+            // 
+            // btnFavorite
+            // 
+            this.btnFavorite.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFavorite.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnFavorite.ForeColor = System.Drawing.Color.White;
+            this.btnFavorite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFavorite.ImageIndex = 5;
+            this.btnFavorite.ImageList = this.imageList1;
+            this.btnFavorite.Location = new System.Drawing.Point(0, 441);
+            this.btnFavorite.Name = "btnFavorite";
+            this.btnFavorite.Padding = new System.Windows.Forms.Padding(8);
+            this.btnFavorite.Size = new System.Drawing.Size(216, 65);
+            this.btnFavorite.TabIndex = 36;
+            this.btnFavorite.Text = "     즐겨 찾기";
+            this.btnFavorite.UseVisualStyleBackColor = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "- (1).png");
+            this.imageList1.Images.SetKeyName(1, "check.png");
+            this.imageList1.Images.SetKeyName(2, "- (4).png");
+            this.imageList1.Images.SetKeyName(3, "process.png");
+            this.imageList1.Images.SetKeyName(4, "png (12).png");
+            this.imageList1.Images.SetKeyName(5, "png (13).png");
             // 
             // pnltreenode4
             // 
             this.pnltreenode4.Controls.Add(this.treeView4);
             this.pnltreenode4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltreenode4.Location = new System.Drawing.Point(0, 523);
+            this.pnltreenode4.Location = new System.Drawing.Point(0, 431);
             this.pnltreenode4.Name = "pnltreenode4";
             this.pnltreenode4.Size = new System.Drawing.Size(216, 10);
-            this.pnltreenode4.TabIndex = 17;
+            this.pnltreenode4.TabIndex = 35;
             // 
             // treeView4
             // 
             this.treeView4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.treeView4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView4.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.treeView4.Location = new System.Drawing.Point(0, 0);
             this.treeView4.Name = "treeView4";
             treeNode1.Name = "노드1";
-            treeNode1.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode1.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode1.Text = "생산요청 관리";
             treeNode2.Name = "노드2";
-            treeNode2.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode2.Text = "생산계획 관리";
             treeNode3.Name = "노드3";
-            treeNode3.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold);
+            treeNode3.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode3.Text = "시유 작업지시 생성";
             treeNode4.Name = "노드0";
-            treeNode4.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode4.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode4.Text = "생산작업 관리";
             this.treeView4.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
             this.treeView4.Size = new System.Drawing.Size(216, 10);
             this.treeView4.TabIndex = 0;
-            this.treeView4.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView4_NodeMouseDoubleClick);
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.btnProduce);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 458);
+            this.panel5.Location = new System.Drawing.Point(0, 366);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(216, 65);
-            this.panel5.TabIndex = 16;
+            this.panel5.TabIndex = 34;
             // 
             // btnProduce
             // 
             this.btnProduce.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnProduce.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnProduce.ForeColor = System.Drawing.Color.White;
+            this.btnProduce.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProduce.ImageIndex = 4;
+            this.btnProduce.ImageList = this.imageList1;
             this.btnProduce.Location = new System.Drawing.Point(0, 0);
             this.btnProduce.Name = "btnProduce";
+            this.btnProduce.Padding = new System.Windows.Forms.Padding(8);
             this.btnProduce.Size = new System.Drawing.Size(216, 65);
             this.btnProduce.TabIndex = 0;
-            this.btnProduce.Text = "생산 관리";
+            this.btnProduce.Text = "     생산 관리";
             this.btnProduce.UseVisualStyleBackColor = false;
             this.btnProduce.Click += new System.EventHandler(this.btnProduce_Click);
             // 
@@ -247,10 +305,10 @@ namespace Team2_Project
             // 
             this.pnltreenode3.Controls.Add(this.treeView3);
             this.pnltreenode3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltreenode3.Location = new System.Drawing.Point(0, 291);
+            this.pnltreenode3.Location = new System.Drawing.Point(0, 356);
             this.pnltreenode3.Name = "pnltreenode3";
-            this.pnltreenode3.Size = new System.Drawing.Size(216, 167);
-            this.pnltreenode3.TabIndex = 15;
+            this.pnltreenode3.Size = new System.Drawing.Size(216, 10);
+            this.pnltreenode3.TabIndex = 33;
             // 
             // treeView3
             // 
@@ -261,25 +319,25 @@ namespace Team2_Project
             this.treeView3.Location = new System.Drawing.Point(0, 0);
             this.treeView3.Name = "treeView3";
             treeNode5.Name = "노드1";
-            treeNode5.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+            treeNode5.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode5.Text = "작업지시 생성 및 마감";
             treeNode6.Name = "노드7";
-            treeNode6.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+            treeNode6.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode6.Text = "시간대별 실적 조회";
             treeNode7.Name = "노드8";
-            treeNode7.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+            treeNode7.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode7.Text = "작업지시 현황";
             treeNode8.Name = "노드0";
             treeNode8.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode8.Text = "작업지시 관리";
             treeNode9.Name = "노드3";
-            treeNode9.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode9.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode9.Text = "비가동 내역";
             treeNode10.Name = "노드2";
             treeNode10.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold);
             treeNode10.Text = "실적 관리";
             treeNode11.Name = "노드6";
-            treeNode11.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode11.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode11.Text = "일별 생산 현황";
             treeNode12.Name = "노드5";
             treeNode12.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold);
@@ -288,29 +346,32 @@ namespace Team2_Project
             treeNode8,
             treeNode10,
             treeNode12});
-            this.treeView3.Size = new System.Drawing.Size(216, 167);
+            this.treeView3.Size = new System.Drawing.Size(216, 10);
             this.treeView3.TabIndex = 0;
-            this.treeView3.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView3_NodeMouseDoubleClick);
             // 
             // pnlBig3
             // 
             this.pnlBig3.Controls.Add(this.btnProcess);
             this.pnlBig3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBig3.Location = new System.Drawing.Point(0, 226);
+            this.pnlBig3.Location = new System.Drawing.Point(0, 291);
             this.pnlBig3.Name = "pnlBig3";
             this.pnlBig3.Size = new System.Drawing.Size(216, 65);
-            this.pnlBig3.TabIndex = 14;
+            this.pnlBig3.TabIndex = 32;
             // 
             // btnProcess
             // 
             this.btnProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnProcess.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnProcess.ForeColor = System.Drawing.Color.White;
+            this.btnProcess.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProcess.ImageIndex = 3;
+            this.btnProcess.ImageList = this.imageList1;
             this.btnProcess.Location = new System.Drawing.Point(0, 0);
             this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Padding = new System.Windows.Forms.Padding(8);
             this.btnProcess.Size = new System.Drawing.Size(216, 65);
             this.btnProcess.TabIndex = 0;
-            this.btnProcess.Text = "공정 관리";
+            this.btnProcess.Text = "      공정 관리";
             this.btnProcess.UseVisualStyleBackColor = false;
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
@@ -318,10 +379,10 @@ namespace Team2_Project
             // 
             this.pnltreenode2.Controls.Add(this.treeView2);
             this.pnltreenode2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltreenode2.Location = new System.Drawing.Point(0, 216);
+            this.pnltreenode2.Location = new System.Drawing.Point(0, 281);
             this.pnltreenode2.Name = "pnltreenode2";
             this.pnltreenode2.Size = new System.Drawing.Size(216, 10);
-            this.pnltreenode2.TabIndex = 13;
+            this.pnltreenode2.TabIndex = 31;
             // 
             // treeView2
             // 
@@ -364,27 +425,30 @@ namespace Team2_Project
             treeNode21});
             this.treeView2.Size = new System.Drawing.Size(216, 10);
             this.treeView2.TabIndex = 0;
-            this.treeView2.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseDoubleClick);
             // 
             // pnlBig2
             // 
             this.pnlBig2.Controls.Add(this.btnBasic);
             this.pnlBig2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBig2.Location = new System.Drawing.Point(0, 151);
+            this.pnlBig2.Location = new System.Drawing.Point(0, 216);
             this.pnlBig2.Name = "pnlBig2";
             this.pnlBig2.Size = new System.Drawing.Size(216, 65);
-            this.pnlBig2.TabIndex = 12;
+            this.pnlBig2.TabIndex = 30;
             // 
             // btnBasic
             // 
             this.btnBasic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBasic.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBasic.ForeColor = System.Drawing.Color.White;
+            this.btnBasic.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBasic.ImageKey = "- (4).png";
+            this.btnBasic.ImageList = this.imageList1;
             this.btnBasic.Location = new System.Drawing.Point(0, 0);
             this.btnBasic.Name = "btnBasic";
+            this.btnBasic.Padding = new System.Windows.Forms.Padding(8);
             this.btnBasic.Size = new System.Drawing.Size(216, 65);
             this.btnBasic.TabIndex = 0;
-            this.btnBasic.Text = "기준 정보";
+            this.btnBasic.Text = "      기준 정보";
             this.btnBasic.UseVisualStyleBackColor = false;
             this.btnBasic.Click += new System.EventHandler(this.btnBasic_Click);
             // 
@@ -392,10 +456,10 @@ namespace Team2_Project
             // 
             this.pnltreenode1.Controls.Add(this.treeView1);
             this.pnltreenode1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltreenode1.Location = new System.Drawing.Point(0, 141);
+            this.pnltreenode1.Location = new System.Drawing.Point(0, 206);
             this.pnltreenode1.Name = "pnltreenode1";
             this.pnltreenode1.Size = new System.Drawing.Size(216, 10);
-            this.pnltreenode1.TabIndex = 11;
+            this.pnltreenode1.TabIndex = 29;
             // 
             // treeView1
             // 
@@ -436,29 +500,50 @@ namespace Team2_Project
             treeNode27});
             this.treeView1.Size = new System.Drawing.Size(216, 10);
             this.treeView1.TabIndex = 0;
-            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // pnlBig1
             // 
             this.pnlBig1.Controls.Add(this.btnsystem);
             this.pnlBig1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBig1.Location = new System.Drawing.Point(0, 76);
+            this.pnlBig1.Location = new System.Drawing.Point(0, 141);
             this.pnlBig1.Name = "pnlBig1";
             this.pnlBig1.Size = new System.Drawing.Size(216, 65);
-            this.pnlBig1.TabIndex = 10;
+            this.pnlBig1.TabIndex = 28;
             // 
             // btnsystem
             // 
             this.btnsystem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnsystem.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnsystem.ForeColor = System.Drawing.Color.White;
+            this.btnsystem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnsystem.ImageIndex = 1;
+            this.btnsystem.ImageList = this.imageList1;
             this.btnsystem.Location = new System.Drawing.Point(0, 0);
             this.btnsystem.Name = "btnsystem";
+            this.btnsystem.Padding = new System.Windows.Forms.Padding(8);
             this.btnsystem.Size = new System.Drawing.Size(216, 65);
             this.btnsystem.TabIndex = 0;
-            this.btnsystem.Text = "시스템 관리";
+            this.btnsystem.Text = "      시스템 관리";
             this.btnsystem.UseVisualStyleBackColor = false;
             this.btnsystem.Click += new System.EventHandler(this.btnsystem_Click);
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.btnMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenu.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnMenu.ForeColor = System.Drawing.Color.White;
+            this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenu.ImageIndex = 0;
+            this.btnMenu.ImageList = this.imageList1;
+            this.btnMenu.Location = new System.Drawing.Point(0, 76);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Padding = new System.Windows.Forms.Padding(8);
+            this.btnMenu.Size = new System.Drawing.Size(216, 65);
+            this.btnMenu.TabIndex = 5;
+            this.btnMenu.Text = "     홈";
+            this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // panel4
             // 
@@ -474,7 +559,7 @@ namespace Team2_Project
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(60, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(58, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(92, 45);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -484,11 +569,11 @@ namespace Team2_Project
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(37, 46);
+            this.label1.Location = new System.Drawing.Point(30, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 29);
+            this.label1.Size = new System.Drawing.Size(153, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "SAMHYUN";
             // 
@@ -509,55 +594,92 @@ namespace Team2_Project
             // 
             // toolStrip3
             // 
+            this.toolStrip3.AutoSize = false;
             this.toolStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tStripDate,
             this.tStripTime,
-            this.tStripDate});
-            this.toolStrip3.Location = new System.Drawing.Point(216, 744);
+            this.tsBtnLogOut,
+            this.tStripName,
+            this.tStripDept});
+            this.toolStrip3.Location = new System.Drawing.Point(216, 734);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1119, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(1119, 35);
             this.toolStrip3.TabIndex = 33;
             this.toolStrip3.Text = "toolStrip3";
             // 
-            // tStripTime
-            // 
-            this.tStripTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripTime.ForeColor = System.Drawing.Color.White;
-            this.tStripTime.Name = "tStripTime";
-            this.tStripTime.Size = new System.Drawing.Size(105, 22);
-            this.tStripTime.Text = "toolStripLabel2";
-            // 
             // tStripDate
             // 
-            this.tStripDate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tStripDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tStripDate.ForeColor = System.Drawing.Color.White;
+            this.tStripDate.Margin = new System.Windows.Forms.Padding(5);
             this.tStripDate.Name = "tStripDate";
-            this.tStripDate.Size = new System.Drawing.Size(105, 22);
-            this.tStripDate.Text = "toolStripLabel1";
+            this.tStripDate.Size = new System.Drawing.Size(35, 25);
+            this.tStripDate.Text = "Date";
+            // 
+            // tStripTime
+            // 
+            this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
+            this.tStripTime.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripTime.ForeColor = System.Drawing.Color.White;
+            this.tStripTime.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripTime.Name = "tStripTime";
+            this.tStripTime.Size = new System.Drawing.Size(36, 25);
+            this.tStripTime.Text = "Time";
+            // 
+            // tsBtnLogOut
+            // 
+            this.tsBtnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsBtnLogOut.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnLogOut.ForeColor = System.Drawing.Color.White;
+            this.tsBtnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnLogOut.Image")));
+            this.tsBtnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnLogOut.Margin = new System.Windows.Forms.Padding(5);
+            this.tsBtnLogOut.Name = "tsBtnLogOut";
+            this.tsBtnLogOut.Size = new System.Drawing.Size(79, 25);
+            this.tsBtnLogOut.Text = "로그아웃";
+            // 
+            // tStripName
+            // 
+            this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tStripName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStripName.ForeColor = System.Drawing.Color.White;
+            this.tStripName.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripName.Name = "tStripName";
+            this.tStripName.Size = new System.Drawing.Size(31, 25);
+            this.tStripName.Text = "이름";
+            // 
+            // tStripDept
+            // 
+            this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tStripDept.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStripDept.ForeColor = System.Drawing.Color.White;
+            this.tStripDept.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripDept.Name = "tStripDept";
+            this.tStripDept.Size = new System.Drawing.Size(31, 25);
+            this.tStripDept.Text = "부서";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(216, 34);
+            this.panel1.Location = new System.Drawing.Point(216, 35);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1119, 76);
             this.panel1.TabIndex = 34;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.button7);
-            this.panel3.Controls.Add(this.button6);
-            this.panel3.Controls.Add(this.button5);
-            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.btnPrint);
+            this.panel3.Controls.Add(this.btnReLoad);
+            this.panel3.Controls.Add(this.btnCancel);
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Controls.Add(this.btnDelete);
             this.panel3.Controls.Add(this.btnEdit);
             this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Controls.Add(this.btnSearch);
@@ -567,65 +689,65 @@ namespace Team2_Project
             this.panel3.Size = new System.Drawing.Size(577, 76);
             this.panel3.TabIndex = 0;
             // 
-            // button8
+            // btnPrint
             // 
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.ImageKey = "Printer64.png";
-            this.button8.ImageList = this.imageList64;
-            this.button8.Location = new System.Drawing.Point(505, 5);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(65, 65);
-            this.button8.TabIndex = 7;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button1_Click);
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.ImageKey = "Printer64.png";
+            this.btnPrint.ImageList = this.imageList64;
+            this.btnPrint.Location = new System.Drawing.Point(505, 5);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(65, 65);
+            this.btnPrint.TabIndex = 7;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // button7
+            // btnReLoad
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.ImageKey = "ReUpdate(2).png";
-            this.button7.ImageList = this.imageList64;
-            this.button7.Location = new System.Drawing.Point(434, 5);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(65, 65);
-            this.button7.TabIndex = 6;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button1_Click);
+            this.btnReLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReLoad.ImageKey = "ReUpdate(2).png";
+            this.btnReLoad.ImageList = this.imageList64;
+            this.btnReLoad.Location = new System.Drawing.Point(434, 5);
+            this.btnReLoad.Name = "btnReLoad";
+            this.btnReLoad.Size = new System.Drawing.Size(65, 65);
+            this.btnReLoad.TabIndex = 6;
+            this.btnReLoad.UseVisualStyleBackColor = true;
+            this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
             // 
-            // button6
+            // btnCancel
             // 
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ImageKey = "Cancel64(2).png";
-            this.button6.ImageList = this.imageList64;
-            this.button6.Location = new System.Drawing.Point(363, 5);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(65, 65);
-            this.button6.TabIndex = 5;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button1_Click);
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ImageKey = "Cancel64(2).png";
+            this.btnCancel.ImageList = this.imageList64;
+            this.btnCancel.Location = new System.Drawing.Point(363, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(65, 65);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button5
+            // btnSave
             // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ImageKey = "Save64(2).png";
-            this.button5.ImageList = this.imageList64;
-            this.button5.Location = new System.Drawing.Point(292, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(65, 65);
-            this.button5.TabIndex = 4;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button1_Click);
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ImageKey = "Save64(2).png";
+            this.btnSave.ImageList = this.imageList64;
+            this.btnSave.Location = new System.Drawing.Point(292, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(65, 65);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // button4
+            // btnDelete
             // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ImageKey = "Delete64.png";
-            this.button4.ImageList = this.imageList64;
-            this.button4.Location = new System.Drawing.Point(221, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(65, 65);
-            this.button4.TabIndex = 3;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button1_Click);
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ImageKey = "Delete64.png";
+            this.btnDelete.ImageList = this.imageList64;
+            this.btnDelete.Location = new System.Drawing.Point(221, 5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(65, 65);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -637,7 +759,7 @@ namespace Team2_Project
             this.btnEdit.Size = new System.Drawing.Size(65, 65);
             this.btnEdit.TabIndex = 2;
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.button1_Click);
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -649,7 +771,7 @@ namespace Team2_Project
             this.btnAdd.Size = new System.Drawing.Size(65, 65);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.button1_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSearch
             // 
@@ -663,63 +785,20 @@ namespace Team2_Project
             this.btnSearch.Size = new System.Drawing.Size(65, 65);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tabControl1
             // 
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tabControl1.Location = new System.Drawing.Point(216, 110);
+            this.tabControl1.Location = new System.Drawing.Point(216, 111);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1119, 27);
             this.tabControl1.TabIndex = 35;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(5);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(76, 24);
-            this.toolStripButton1.Text = "LogOut";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(5);
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(55, 24);
-            this.toolStripButton2.Text = "설정";
-            // 
-            // tStripName
-            // 
-            this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStripName.ForeColor = System.Drawing.Color.White;
-            this.tStripName.Margin = new System.Windows.Forms.Padding(3);
-            this.tStripName.Name = "tStripName";
-            this.tStripName.Size = new System.Drawing.Size(31, 28);
-            this.tStripName.Text = "이름";
-            // 
-            // tStripDept
-            // 
-            this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripDept.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStripDept.ForeColor = System.Drawing.Color.White;
-            this.tStripDept.Name = "tStripDept";
-            this.tStripDept.Size = new System.Drawing.Size(31, 31);
-            this.tStripDept.Text = "부서";
             // 
             // frmMain
             // 
@@ -769,6 +848,30 @@ namespace Team2_Project
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ImageList imageList64;
+        private System.Windows.Forms.ToolStrip toolStrip3;
+        private System.Windows.Forms.ToolStripLabel tStripTime;
+        private System.Windows.Forms.ToolStripLabel tStripDate;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnReLoad;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSearch;
+        private Controls.ccTabControl tabControl1;
+        private System.Windows.Forms.ToolStripButton tsBtnSetting;
+        private System.Windows.Forms.ToolStripButton tsBtnFavorite;
+        private System.Windows.Forms.ToolStripButton tsBtnLogOut;
+        private System.Windows.Forms.ToolStripLabel tStripName;
+        private System.Windows.Forms.ToolStripLabel tStripDept;
+        private System.Windows.Forms.Button btnFavorite;
         private System.Windows.Forms.Panel pnltreenode4;
         private System.Windows.Forms.TreeView treeView4;
         private System.Windows.Forms.Panel panel5;
@@ -785,28 +888,8 @@ namespace Team2_Project
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel pnlBig1;
         private System.Windows.Forms.Button btnsystem;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ImageList imageList64;
-        private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripLabel tStripTime;
-        private System.Windows.Forms.ToolStripLabel tStripDate;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnSearch;
-        private Controls.ccTabControl tabControl1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripLabel tStripName;
-        private System.Windows.Forms.ToolStripLabel tStripDept;
+        private System.Windows.Forms.Button btnMenu;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
