@@ -182,7 +182,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "비가동 관리")
             {
-                OpenChildPage<frmDownCode>();
+                OpenChildPage<frmNopCode>();
             }
             else
             {
@@ -210,7 +210,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "비가동 내역")
             {
-                OpenChildPage<frmDown>();
+                OpenChildPage<frmNop>();
             }
             else if (e.Node.Text == "일별 생산 현황")
             {

@@ -120,7 +120,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<ItemDTO> GetCurItem(string item) //품목수정
+        public List<ItemDTO> GetCurItem(string item) //품목 패널로드
         {
             try
             {               

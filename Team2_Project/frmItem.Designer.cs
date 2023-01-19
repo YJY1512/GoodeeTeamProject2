@@ -58,13 +58,6 @@ namespace Team2_Project
             this.label17 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnSelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -77,13 +70,6 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.btnExcel);
-            this.pnlSub.Controls.Add(this.btnSave);
-            this.pnlSub.Controls.Add(this.btnReset);
-            this.pnlSub.Controls.Add(this.btnCancel);
-            this.pnlSub.Controls.Add(this.btnUpdate);
-            this.pnlSub.Controls.Add(this.btnAdd);
-            this.pnlSub.Controls.Add(this.btnSelete);
             this.pnlSub.Controls.Add(this.cboUseYNSC);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.cboTypeSC);
@@ -413,83 +399,6 @@ namespace Team2_Project
             this.label18.TabIndex = 53;
             this.label18.Text = "비고";
             // 
-            // btnSelete
-            // 
-            this.btnSelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelete.Location = new System.Drawing.Point(1068, 27);
-            this.btnSelete.Name = "btnSelete";
-            this.btnSelete.Size = new System.Drawing.Size(75, 45);
-            this.btnSelete.TabIndex = 11;
-            this.btnSelete.Text = "temp select";
-            this.btnSelete.UseVisualStyleBackColor = true;
-            this.btnSelete.Click += new System.EventHandler(this.btnSelete_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Location = new System.Drawing.Point(1161, 27);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 45);
-            this.btnAdd.TabIndex = 12;
-            this.btnAdd.Text = "temp Create";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Location = new System.Drawing.Point(1254, 27);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 45);
-            this.btnUpdate.TabIndex = 13;
-            this.btnUpdate.Text = "temp Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(1440, 27);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 45);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "temp Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Location = new System.Drawing.Point(1533, 27);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 45);
-            this.btnReset.TabIndex = 15;
-            this.btnReset.Text = "temp Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(1347, 27);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 45);
-            this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "temp Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.Location = new System.Drawing.Point(1626, 27);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 45);
-            this.btnExcel.TabIndex = 17;
-            this.btnExcel.Text = "temp Excel";
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
             // frmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -544,12 +453,5 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label17;
         protected System.Windows.Forms.TextBox txtRemark;
         protected System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button btnSelete;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnExcel;
     }
 }

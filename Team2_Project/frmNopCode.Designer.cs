@@ -1,7 +1,7 @@
 ﻿
 namespace Team2_Project
 {
-    partial class frmDownCode
+    partial class frmNopCode
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -45,6 +45,9 @@ namespace Team2_Project
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.cboUseYN = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -84,6 +87,9 @@ namespace Team2_Project
             // 
             // pnlArea
             // 
+            this.pnlArea.Controls.Add(this.label11);
+            this.pnlArea.Controls.Add(this.cboUseYN);
+            this.pnlArea.Controls.Add(this.label10);
             this.pnlArea.Controls.Add(this.label8);
             this.pnlArea.Controls.Add(this.label9);
             this.pnlArea.Controls.Add(this.label17);
@@ -195,7 +201,7 @@ namespace Team2_Project
             // 
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(491, 24);
+            this.label17.Location = new System.Drawing.Point(803, 24);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 17);
             this.label17.TabIndex = 58;
@@ -204,7 +210,7 @@ namespace Team2_Project
             // txtRemark
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemark.Location = new System.Drawing.Point(559, 20);
+            this.txtRemark.Location = new System.Drawing.Point(871, 18);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(364, 66);
@@ -214,7 +220,7 @@ namespace Team2_Project
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(514, 24);
+            this.label18.Location = new System.Drawing.Point(826, 24);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(36, 17);
             this.label18.TabIndex = 56;
@@ -252,13 +258,42 @@ namespace Team2_Project
             this.dgvData.RowTemplate.Height = 23;
             this.dgvData.Size = new System.Drawing.Size(1834, 648);
             this.dgvData.TabIndex = 1;
+            this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
-            // frmDownCode
+            // cboUseYN
+            // 
+            this.cboUseYN.FormattingEnabled = true;
+            this.cboUseYN.Location = new System.Drawing.Point(614, 20);
+            this.cboUseYN.Name = "cboUseYN";
+            this.cboUseYN.Size = new System.Drawing.Size(136, 25);
+            this.cboUseYN.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(535, 24);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 17);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "사용유무";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(506, 24);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 17);
+            this.label11.TabIndex = 61;
+            this.label11.Text = "*";
+            // 
+            // frmNopCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.ClientSize = new System.Drawing.Size(1834, 911);
             this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "frmDownCode";
+            this.Name = "frmNopCode";
             this.Text = "비가동 대분류코드";
             this.Load += new System.EventHandler(this.frmDownCode_Load);
             this.pnlSub.ResumeLayout(false);
@@ -293,5 +328,8 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
+        protected System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cboUseYN;
+        protected System.Windows.Forms.Label label10;
     }
 }

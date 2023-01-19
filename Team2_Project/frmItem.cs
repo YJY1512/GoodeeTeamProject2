@@ -27,23 +27,47 @@ namespace Team2_Project
             InitializeComponent();
         }
 
-        private void Common_BtnClick(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            switch(btn.Tag.ToString())
-            {
-                case "btnSearch":
-                    btnSelete_Click(sender, null); break;
-                case "btnAdd":
-                    btnAdd_Click(sender, null); break;
-                case "btnEdit":
-                    btnSelete_Click(sender, null); break;
-            }
-        }
+        #region Main 버튼 클릭이벤트  /////////////////// 이거 복사해서 쓰세요 ///////////////////
+        //public void OnSearch()  //검색 
+        //{
+
+        //}
+
+        //public void OnAdd()     //추가
+        //{
+
+
+        //}
+        //public void OnEdit()    //수정
+        //{
+
+        //}
+        //public void OnDelete()  //삭제
+        //{
+
+        //}
+        //public void OnSave()    //저장
+        //{
+
+        //}
+        //public void OnCancel()  //취소
+        //{
+
+        //}
+        //public void OnReLoad()  //새로고침
+        //{
+
+        //}
+        //public void OnPrint()   //프린트(액셀)
+        //{
+
+        //}
+        #endregion
+
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            ((frmMain)this.MdiParent).BtnClick += Common_BtnClick;
+            //((frmMain)this.MdiParent).BtnClick += Common_BtnClick;
 
 
             cboTypeSC.Items.Add("전체");
@@ -91,44 +115,11 @@ namespace Team2_Project
             //////추가, 수정버튼 클릭 시 입력패널이 열리고 저장버튼 클릭 시 추가, 수정이 되게 해야 함 
 
             Deactivation(); // 로드 시 입력패널 비활성화
-            btnSelete.PerformClick(); ///////////////////////////////////////////////////// 추후수정
+            OnSearch(); /////////////////////////////////////////////////////
         }
+
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
-        {
-
-        }
-
-        public void OnAdd()     //추가
-        {
-
-        }
-        public void OnEdit()    //수정
-        {
-
-        }
-        public void OnDelete()  //삭제
-        {
-
-        }
-        public void OnSave()    //저장
-        {
-
-        }
-        public void OnCancel()  //취소
-        {
-
-        }
-        public void OnReLoad()  //새로고침
-        {
-
-        }
-        public void OnPrint()   //프린트(액셀)
-        {
-
-        }
-        #endregion
-        private void btnSelete_Click(object sender, EventArgs e)
         {
             ItemDTO item = new ItemDTO
             {
@@ -142,12 +133,111 @@ namespace Team2_Project
             dgvData.DataSource = itemList;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public void OnAdd()     //추가
         {
             Reset();
             Activation();
             situation = "Add";
         }
+        public void OnEdit()    //수정
+        {
+            Activation();
+            situation = "Update";
+        }
+        public void OnDelete()  //삭제
+        {
+
+        }
+        public void OnSave()    //저장
+        {
+            if (situation == "Add")
+            {
+                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
+                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
+                    || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
+                {
+                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
+                    return;
+                }
+                else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
+                {
+                    MessageBox.Show("규격을 선택하여 주십시오.");
+                    return;
+                }
+
+                ItemDTO item = new ItemDTO
+                {
+                    Item_Code = txtCode.Text, ////////////////////////////////////////////// 추후 자동발행 =>아님
+                    Item_Name = txtName.Text,
+                    Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
+                    Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
+                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
+                    Remark = txtRemark.Text,
+                    Ins_Emp = "홍길동" ///////////////////////////////////////////////////// 추후수정
+                };
+
+                bool result = srv.GetItemAdd(item);
+                if (result)
+                    MessageBox.Show("등록이 완료되었습니다.", "등록완료");
+                else
+                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+
+                OnSearch(); ///////////////////////////////////////////////////// 
+            }
+            else if (situation == "Update")
+            {
+                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
+                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
+                    || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
+                {
+                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
+                    return;
+                }
+                else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
+                {
+                    MessageBox.Show("규격을 선택하여 주십시오.");
+                    return;
+                }
+
+                ItemDTO item = new ItemDTO
+                {
+                    Item_Code = txtCode.Text,
+                    Item_Name = txtName.Text,
+                    Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
+                    Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
+                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
+                    Remark = txtRemark.Text,
+                    Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
+                };
+
+                bool result = srv.GetItemUpdate(item);
+                if (result)
+                    MessageBox.Show("수정이 완료되었습니다.", "수정완료");
+                else
+                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+
+                OnSearch(); ///////////////////////////////////////////////////// 
+            }
+        }
+        public void OnCancel()  //취소
+        {
+            // 입력중이던 입력패널을 초기화하고 비활성화
+            Reset();
+            Deactivation();
+            OnSearch(); ///////////////////////////////////////////////////// 
+        }
+        public void OnReLoad()  //새로고침
+        {
+            Reset();
+            //Deactivation();
+            OnSearch(); ///////////////////////////////////////////////////// 
+        }
+        public void OnPrint()   //프린트(액셀)
+        {
+
+        }
+        #endregion
+
 
         private void cboType_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -181,20 +271,6 @@ namespace Team2_Project
             txtCode.Enabled = false;
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            Activation();
-            situation = "Update";
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            // 입력중이던 입력패널을 초기화하고 비활성화
-            Reset();
-            Deactivation();
-            btnSelete.PerformClick(); ///////////////////////////////////////////////////// 추후수정
-        }
-
         private void Reset()
         {
             txtCode.Text = txtName.Text = txtRemark.Text = "";
@@ -214,90 +290,7 @@ namespace Team2_Project
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
 
         }
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            Reset();
-            //Deactivation();
-            btnSelete.PerformClick(); ///////////////////////////////////////////////////// 추후수정
-        }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            
-            if (situation == "Add")
-            {
-                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
-                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
-                    || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
-                {
-                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
-                    return;
-                }
-                else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
-                {
-                    MessageBox.Show("규격을 선택하여 주십시오.");
-                    return;
-                }
-
-                ItemDTO item = new ItemDTO
-                {
-                    Item_Code = txtCode.Text, ////////////////////////////////////////////// 추후 자동발행
-                    Item_Name = txtName.Text,
-                    Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
-                    Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
-                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
-                    Remark = txtRemark.Text,
-                    Ins_Emp = "홍길동" ///////////////////////////////////////////////////// 추후수정
-                };
-
-                bool result = srv.GetItemAdd(item);
-                if (result)
-                    MessageBox.Show("등록이 완료되었습니다.","등록완료");
-                else
-                    MessageBox.Show("다시 시도하여주십시오.","등록오류");
-
-                btnSelete.PerformClick(); ///////////////////////////////////////////////////// 추후수정
-            }
-            else if (situation == "Update")
-            {
-                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
-                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
-                    || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
-                {
-                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
-                    return;
-                }
-                else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
-                {
-                    MessageBox.Show("규격을 선택하여 주십시오.");
-                    return;
-                }
-
-                ItemDTO item = new ItemDTO
-                {
-                    Item_Code = txtCode.Text,
-                    Item_Name = txtName.Text,
-                    Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
-                    Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
-                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
-                    Remark = txtRemark.Text,
-                    Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
-                };
-
-                bool result = srv.GetItemUpdate(item);
-                if (result)
-                    MessageBox.Show("수정이 완료되었습니다.","수정완료");
-                else
-                    MessageBox.Show("다시 시도하여주십시오.","수정오류");
-
-                btnSelete.PerformClick(); ///////////////////////////////////////////////////// 추후수정
-            }
-        }
-
-        private void btnExcel_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
 

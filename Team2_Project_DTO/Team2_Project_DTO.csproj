@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeDTO.cs" />
+    <Compile Include="NopCodeDTO.cs" />
     <Compile Include="EmployeeDTO.cs" />
     <Compile Include="ItemDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

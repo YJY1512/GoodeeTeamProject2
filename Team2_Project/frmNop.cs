@@ -12,9 +12,9 @@ using Team2_Project.Utils;
 
 namespace Team2_Project
 {
-    public partial class frmDown : frmList
+    public partial class frmNop : frmList
     {
-        public frmDown()
+        public frmNop()
         {
             InitializeComponent();
         }

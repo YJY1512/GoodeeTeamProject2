@@ -1,7 +1,7 @@
 ﻿
 namespace Team2_Project
 {
-    partial class frmDown
+    partial class frmNop
     {
         /// <summary>
         /// Required designer variable.
