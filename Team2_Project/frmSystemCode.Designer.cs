@@ -37,6 +37,10 @@ namespace Team2_Project
             this.splitContainer2.SuspendLayout();
             this.pnlListTitleL.SuspendLayout();
             this.pnlListTitleR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSearchName
@@ -60,11 +64,11 @@ namespace Team2_Project
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(702, 90);
+            this.txtRemark.Location = new System.Drawing.Point(1008, 49);
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(544, 93);
+            this.label8.Location = new System.Drawing.Point(1028, 29);
             // 
             // label7
             // 
@@ -91,31 +95,54 @@ namespace Team2_Project
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(521, 93);
+            this.label13.Location = new System.Drawing.Point(1005, 29);
             // 
             // label12
             // 
             this.label12.Location = new System.Drawing.Point(521, 41);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.Text = "";
+            // 
+            // btnAddDetail
+            // 
+            this.btnAddDetail.Location = new System.Drawing.Point(1706, 13);
+            // 
+            // pnlSub
+            // 
+            this.pnlSub.Size = new System.Drawing.Size(1834, 65);
+            // 
             // pnlListL
             // 
-            this.pnlListL.Size = new System.Drawing.Size(600, 505);
+            this.pnlListL.Size = new System.Drawing.Size(786, 601);
             // 
             // pnlListR
             // 
-            this.pnlListR.Size = new System.Drawing.Size(1230, 505);
+            this.pnlListR.Size = new System.Drawing.Size(1044, 601);
+            // 
+            // pnlArea
+            // 
+            this.pnlArea.Size = new System.Drawing.Size(1834, 155);
             // 
             // splitContainer2
             // 
-            this.splitContainer2.SplitterDistance = 600;
+            this.splitContainer2.Size = new System.Drawing.Size(1834, 644);
+            this.splitContainer2.SplitterDistance = 786;
             // 
             // pnlListTitleL
             // 
-            this.pnlListTitleL.Size = new System.Drawing.Size(600, 43);
+            this.pnlListTitleL.Size = new System.Drawing.Size(786, 43);
             // 
             // pnlListTitleR
             // 
-            this.pnlListTitleR.Size = new System.Drawing.Size(1230, 43);
+            this.pnlListTitleR.Size = new System.Drawing.Size(1044, 43);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Size = new System.Drawing.Size(1834, 846);
+            this.splitContainer1.SplitterDistance = 644;
             // 
             // frmSystemCode
             // 
@@ -137,6 +164,10 @@ namespace Team2_Project
             this.pnlListTitleL.PerformLayout();
             this.pnlListTitleR.ResumeLayout(false);
             this.pnlListTitleR.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
