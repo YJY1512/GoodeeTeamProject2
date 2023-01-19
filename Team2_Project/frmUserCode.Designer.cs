@@ -43,11 +43,6 @@ namespace Team2_Project
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label9
-            // 
-            this.label9.Size = new System.Drawing.Size(137, 17);
-            this.label9.Text = "상세분류 사용유무w";
-            // 
             // comboBox1
             // 
             this.comboBox1.Size = new System.Drawing.Size(121, 25);

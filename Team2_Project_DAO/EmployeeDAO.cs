@@ -57,30 +57,14 @@ namespace Team2_Project_DAO
             //}
         }
 
-        public bool Update()
+        public void Update()
         {
-            return true;
+
         }
 
-        public bool Delete(string empID)
+        public void Delete()
         {
-            string sql = @"delete from User_Master where User_ID = @User_ID";
-            int iRowAffect = 0;
 
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@User_ID", empID);
-                    iRowAffect = cmd.ExecuteNonQuery();
-                }
-
-                return (iRowAffect > 0);
-            }
-            catch
-            {
-                return false;
-            }
         }
     }
 }

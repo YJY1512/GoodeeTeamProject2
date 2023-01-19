@@ -20,31 +20,31 @@ namespace Team2_Project.Services
             return dt;
         }
 
-        public bool Insert()
+        public void Insert()
         {
             EmployeeDAO db = new EmployeeDAO();
             db.Insert();
             db.Dispose();
 
-            return false;
+            return;
         }
 
-        public bool Update()
+        public void Update()
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Update();
+            db.Update();
             db.Dispose();
 
-            return result;
+            return;
         }
 
-        public bool Delete(string empID)
+        public void Delete()
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Delete(empID);
+            db.Delete();
             db.Dispose();
 
-            return result;
+            return;
         }
 
         
