@@ -36,6 +36,7 @@ namespace Team2_Project
             tStripName.Text = "윤종윤님";
             tStripDept.Text = "관리자";
             OpenChildPage<frmStartMain>();
+            
         }
 
         private void chkHide_CheckedChanged(object sender, EventArgs e)
@@ -89,7 +90,7 @@ namespace Team2_Project
 
             if (showPanelTreenode2)
             {
-                pnltreenode2.Height = 276;
+                pnltreenode2.Height = 336;
                 treeView2.ExpandAll();
             }
             else
@@ -403,6 +404,53 @@ namespace Team2_Project
         //}
 
         #region 버튼 클릭 이벤트
+        private void AddClickEvent()
+        {
+            btnAdd.BackColor = Color.White;
+            btnSearch.Enabled = false;
+            btnEdit.Enabled = false;
+            btnDelete.Enabled = false;
+            btnReLoad.Enabled = false;
+            btnSearch.BackColor = Color.DarkGray;
+            btnEdit.BackColor = Color.DarkGray;
+            btnDelete.BackColor = Color.DarkGray;
+            btnReLoad.BackColor = Color.DarkGray;
+        }
+        private void EditClickEvent()
+        {
+            btnEdit.BackColor = Color.White;
+            btnSearch.Enabled = false;
+            btnAdd.Enabled = false;
+            btnDelete.Enabled = false;
+            btnReLoad.Enabled = false;
+            btnSearch.BackColor = Color.DarkGray;
+            btnAdd.BackColor = Color.DarkGray;
+            btnDelete.BackColor = Color.DarkGray;
+            btnReLoad.BackColor = Color.DarkGray;
+        }
+        void SaveOrDeleteClickEvent()   //질문 
+        {
+            if (!btnSearch.Enabled &&
+                !btnAdd.Enabled &&
+                !btnDelete.Enabled &&
+                !btnReLoad.Enabled &&
+                btnAdd.BackColor == Color.White &&
+                btnEdit.BackColor == Color.White
+                )
+            {
+                btnSearch.Enabled = true;
+                btnAdd.Enabled = true;
+                btnDelete.Enabled = true;
+                btnReLoad.Enabled = true;
+                btnAdd.BackColor = Color.FromArgb(211, 226, 223);
+                btnEdit.BackColor = Color.FromArgb(211, 226, 223);
+                btnSearch.BackColor = Color.FromArgb(211, 226, 223);
+                btnAdd.BackColor = Color.FromArgb(211, 226, 223);
+                btnDelete.BackColor = Color.FromArgb(211, 226, 223);
+                btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
+            }
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Function_Invoke("OnSearch");
@@ -410,11 +458,13 @@ namespace Team2_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //AddClickEvent();
             Function_Invoke("OnAdd");
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            //EditClickEvent();
             Function_Invoke("OnEdit");
         }
 
@@ -425,12 +475,16 @@ namespace Team2_Project
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
             Function_Invoke("OnSave");
+            //SaveOrDeleteClickEvent();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            
             Function_Invoke("OnCancel");
+            SaveOrDeleteClickEvent();
         }
 
         private void btnReLoad_Click(object sender, EventArgs e)

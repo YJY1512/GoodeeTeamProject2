@@ -351,6 +351,7 @@ namespace Team2_Project
             // 
             this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.btnEdit.FlatAppearance.BorderSize = 4;
+            this.btnEdit.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.ImageKey = "Edit64.png";
             this.btnEdit.ImageList = this.imageList64;
@@ -366,6 +367,7 @@ namespace Team2_Project
             // 
             this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.btnAdd.FlatAppearance.BorderSize = 4;
+            this.btnAdd.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ImageKey = "Add.png";
             this.btnAdd.ImageList = this.imageList64;
@@ -379,6 +381,7 @@ namespace Team2_Project
             // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.btnSearch.FlatAppearance.BorderSize = 4;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -389,7 +392,7 @@ namespace Team2_Project
             this.btnSearch.Size = new System.Drawing.Size(65, 65);
             this.btnSearch.TabIndex = 0;
             this.toolTip1.SetToolTip(this.btnSearch, "조회");
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel2
@@ -401,7 +404,7 @@ namespace Team2_Project
             this.panel2.Location = new System.Drawing.Point(0, 111);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(212, 764);
+            this.panel2.Size = new System.Drawing.Size(212, 792);
             this.panel2.TabIndex = 37;
             // 
             // pnlMenu
@@ -419,7 +422,7 @@ namespace Team2_Project
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(212, 729);
+            this.pnlMenu.Size = new System.Drawing.Size(212, 757);
             this.pnlMenu.TabIndex = 48;
             // 
             // btnFavorite
@@ -756,7 +759,7 @@ namespace Team2_Project
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel6.Controls.Add(this.chkHide);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 729);
+            this.panel6.Location = new System.Drawing.Point(0, 757);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(212, 35);
             this.panel6.TabIndex = 47;
@@ -794,7 +797,7 @@ namespace Team2_Project
             this.tsBtnLogOut,
             this.tStripName,
             this.tStripDept});
-            this.toolStrip3.Location = new System.Drawing.Point(212, 840);
+            this.toolStrip3.Location = new System.Drawing.Point(212, 868);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(1123, 35);
             this.toolStrip3.TabIndex = 39;
@@ -868,7 +871,7 @@ namespace Team2_Project
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1335, 875);
+            this.ClientSize = new System.Drawing.Size(1335, 903);
             this.Controls.Add(this.toolStrip3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel2);
