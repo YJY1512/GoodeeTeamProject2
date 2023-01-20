@@ -215,6 +215,12 @@
     <Compile Include="frmUserCode.Designer.cs">
       <DependentUpon>frmUserCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUserGroupCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserGroupCode.Designer.cs">
+      <DependentUpon>frmUserGroupCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUserManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,6 +240,7 @@
     <Compile Include="Services\NopCodeService.cs" />
     <Compile Include="Services\SysCodeService.cs" />
     <Compile Include="Services\UserCodeService.cs" />
+    <Compile Include="Services\UserGroupAuthorityService.cs" />
     <Compile Include="Utils\CommonCodeUtil.cs" />
     <Compile Include="Utils\DataGridViewUtil.cs" />
     <EmbeddedResource Include="BaseForms\frmCodeControlBase.resx">
@@ -313,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserCode.resx">
       <DependentUpon>frmUserCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserGroupCode.resx">
+      <DependentUpon>frmUserGroupCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserManagement.resx">
       <DependentUpon>frmUserManagement.cs</DependentUpon>
