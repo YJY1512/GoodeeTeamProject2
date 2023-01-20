@@ -42,8 +42,6 @@ namespace Team2_Project
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -64,8 +62,6 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label12);
             this.pnlSub.Controls.Add(this.comboBox3);
             this.pnlSub.Controls.Add(this.comboBox4);
-            this.pnlSub.Controls.Add(this.textBox4);
-            this.pnlSub.Controls.Add(this.textBox5);
             this.pnlSub.Controls.Add(this.label8);
             this.pnlSub.Controls.Add(this.label9);
             this.pnlSub.Size = new System.Drawing.Size(1289, 60);
@@ -87,8 +83,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvProcess);
-            this.pnlList.Location = new System.Drawing.Point(0, 33);
-            this.pnlList.Size = new System.Drawing.Size(1289, 406);
+            this.pnlList.Size = new System.Drawing.Size(1289, 396);
             // 
             // pnlArea
             // 
@@ -103,8 +98,7 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label5);
             this.pnlArea.Controls.Add(this.label4);
             this.pnlArea.Controls.Add(this.label1);
-            this.pnlArea.Location = new System.Drawing.Point(0, 33);
-            this.pnlArea.Size = new System.Drawing.Size(1289, 130);
+            this.pnlArea.Size = new System.Drawing.Size(1289, 120);
             // 
             // splitContainer1
             // 
@@ -121,7 +115,7 @@ namespace Team2_Project
             this.dgvProcess.Name = "dgvProcess";
             this.dgvProcess.RowHeadersWidth = 51;
             this.dgvProcess.RowTemplate.Height = 23;
-            this.dgvProcess.Size = new System.Drawing.Size(1289, 406);
+            this.dgvProcess.Size = new System.Drawing.Size(1289, 396);
             this.dgvProcess.TabIndex = 0;
             // 
             // label1
@@ -224,20 +218,6 @@ namespace Team2_Project
             this.comboBox4.Size = new System.Drawing.Size(130, 26);
             this.comboBox4.TabIndex = 16;
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(260, 15);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(170, 24);
-            this.textBox4.TabIndex = 15;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(120, 15);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(130, 24);
-            this.textBox5.TabIndex = 14;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -305,8 +285,7 @@ namespace Team2_Project
 
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvProcess;
