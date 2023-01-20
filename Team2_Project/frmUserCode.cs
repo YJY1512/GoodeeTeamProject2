@@ -52,14 +52,8 @@ namespace Team2_Project
             codeList = srv.GetUserCode();
             if (codeList != null && codeList.Count > 0)
             {
-                var group = codeList.GroupBy((g) => g.Userdefine_Ma_Code);
-
                 List<UserCodeDTO> maList = new List<UserCodeDTO>();
-                foreach (var g in group)
-                {
-                    maList.Add(g.FirstOrDefault());
-                }
-
+                codeList.GroupBy((g) => g.Userdefine_Ma_Code).ToList().ForEach((g) => maList.Add(g.FirstOrDefault()));
                 dgvMa.DataSource = maList;
             }
         }
@@ -86,7 +80,24 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
+            string code = ucSearchCode._Code;
+            string useYN = (cboSearchUse.SelectedItem.ToString() == "전체")? "" : cboSearchUse.SelectedItem.ToString();
 
+            if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
+            {
+                dgvMi.DataSource = null;
+                LoadData();
+                return;
+            }
+            
+            var list = (from c in codeList
+                        where c.Userdefine_Ma_Code == code && c.Use_YN.Contains(useYN)
+                        select c).ToList();
+            dgvMi.DataSource = list;
+
+            List<UserCodeDTO> maList = new List<UserCodeDTO>();
+            list.GroupBy((g) => g.Userdefine_Ma_Code).ToList().ForEach((g) => maList.Add(g.FirstOrDefault()));
+            dgvMa.DataSource = maList;
         }
 
         public void OnAdd()     //추가
@@ -125,10 +136,12 @@ namespace Team2_Project
         {
 
         }
+
         public void OnSave()    //저장
         {
 
         }
+
         public void OnCancel()  //취소
         {            
             SetInitEditPnl();
@@ -136,11 +149,13 @@ namespace Team2_Project
             dgvMa.Enabled = dgvMi.Enabled = true;
             dgvMi.ClearSelection();
         }
+
         public void OnReLoad()  //새로고침
         {
             ucSearch1._Code = ucSearch1._Name = "";
             cboSearchUse.SelectedIndex = 0;
 
+            dgvMi.DataSource = null;
             LoadData();
         }
         #endregion
