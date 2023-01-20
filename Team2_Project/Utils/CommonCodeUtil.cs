@@ -57,5 +57,15 @@ namespace Team2_Project.Utils
             ImageConverter ic = new ImageConverter();
             return (byte[])ic.ConvertTo(img, typeof(byte[]));
         }
+
+        public static void UseYNComboBinding(ComboBox cbo, bool blankItem = true, string blankText = "전체")
+        {
+            if (blankItem)
+            {
+                cbo.Items.Add("전체");                
+            }
+            cbo.Items.Add("예");
+            cbo.Items.Add("아니오");
+        }
     }
 }

@@ -130,6 +130,8 @@ namespace Team2_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.ClientSize = new System.Drawing.Size(1834, 911);
             this.Name = "frmNopMiCode";
+            this.Text = "비가동 상세분류코드";
+            this.Load += new System.EventHandler(this.frmNopMiCode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
