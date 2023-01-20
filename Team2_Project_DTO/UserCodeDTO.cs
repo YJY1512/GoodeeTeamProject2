@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Team2_Project_DTO
 {
-    class UserCodeDTO
+    public class UserCodeDTO
     {
 		public string Userdefine_Mi_Code { get; set; }   //
 		public string Userdefine_Ma_Code { get; set; }   //
