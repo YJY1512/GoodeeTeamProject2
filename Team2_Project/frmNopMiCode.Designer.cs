@@ -45,7 +45,46 @@ namespace Team2_Project
             // 
             // cboSearchUse
             // 
-            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
+            //this.cboUserYNSC.Size = new System.Drawing.Size(121, 24);
+            //this.cboUserYNSC.Text = "";
+            // 
+            // txtSearchName
+            // 
+            this.txtSearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // lblSearchName
+            // 
+            this.lblSearchName.Size = new System.Drawing.Size(124, 17);
+            this.lblSearchName.Text = "비가동 상세분류명";
+            // 
+            // txtSearchCode
+            // 
+            this.txtSearchCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // lblSearchCode
+            // 
+            this.lblSearchCode.Size = new System.Drawing.Size(138, 17);
+            this.lblSearchCode.Text = "비가동 상세분류코드";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // txtInfoNameMa
+            // 
+            //this.txtInfoNameMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // txtInfoNameMi
+            // 
+            this.txtInfoNameMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // txtInfoCodeMi
+            // 
+            this.txtInfoCodeMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // txtInfoCodeMa
+            // 
+            //this.txtInfoCodeMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // splitContainer2
             // 
@@ -55,10 +94,6 @@ namespace Team2_Project
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
             this.splitContainer2.Size = new System.Drawing.Size(1220, 803);
             this.splitContainer2.SplitterDistance = 570;
-            // 
-            // cboUseYN
-            // 
-            this.cboUseYN.Size = new System.Drawing.Size(121, 24);
             // 
             // pnlSub
             // 
@@ -75,20 +110,24 @@ namespace Team2_Project
             // 
             // dgvMaData
             // 
+            this.dgvMaData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMaData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaData.Location = new System.Drawing.Point(152, 111);
+            this.dgvMaData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMaData.Location = new System.Drawing.Point(0, 0);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(240, 150);
+            this.dgvMaData.Size = new System.Drawing.Size(610, 803);
             this.dgvMaData.TabIndex = 0;
             // 
             // dgvMiData
             // 
+            this.dgvMiData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMiData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMiData.Location = new System.Drawing.Point(305, 96);
+            this.dgvMiData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(240, 150);
+            this.dgvMiData.Size = new System.Drawing.Size(1220, 570);
             this.dgvMiData.TabIndex = 1;
             // 
             // frmNopMiCode

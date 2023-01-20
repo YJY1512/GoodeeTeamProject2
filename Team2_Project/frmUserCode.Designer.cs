@@ -121,6 +121,7 @@ namespace Team2_Project
             this.ClientSize = new System.Drawing.Size(1484, 704);
             this.Name = "frmUserCode";
             this.Text = "사용자정의 관리";
+            this.Load += new System.EventHandler(this.frmUserCode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
