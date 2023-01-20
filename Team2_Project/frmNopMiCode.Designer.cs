@@ -72,7 +72,7 @@ namespace Team2_Project
             // 
             // txtInfoNameMa
             // 
-            this.txtInfoNameMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            //this.txtInfoNameMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // txtInfoNameMi
             // 
@@ -84,7 +84,7 @@ namespace Team2_Project
             // 
             // txtInfoCodeMa
             // 
-            this.txtInfoCodeMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            //this.txtInfoCodeMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // splitContainer2
             // 
