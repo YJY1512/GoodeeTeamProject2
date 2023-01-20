@@ -25,10 +25,10 @@ namespace Team2_Project_DAO
            
         }
 
-        public List<UserCodeDTO> GetUserCode()
-        {
+        //public List<UserCodeDTO> GetUserCode()
+        //{
             
-        }
+        //}
         
     }
 }
