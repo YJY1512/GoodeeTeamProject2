@@ -359,7 +359,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close-grey.png" />
+    <None Include="Resources\close_grey.png" />
     <Content Include="Resources\close-red.png" />
   </ItemGroup>
   <ItemGroup />
