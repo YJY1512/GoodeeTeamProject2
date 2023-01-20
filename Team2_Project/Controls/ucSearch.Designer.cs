@@ -37,7 +37,7 @@ namespace Team2_Project.Controls
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1, 1);
+            this.textBox1.Location = new System.Drawing.Point(0, 1);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(120, 24);
@@ -73,7 +73,7 @@ namespace Team2_Project.Controls
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSearch";
-            this.Size = new System.Drawing.Size(292, 28);
+            this.Size = new System.Drawing.Size(314, 28);
             this.ResumeLayout(false);
             this.PerformLayout();
 
