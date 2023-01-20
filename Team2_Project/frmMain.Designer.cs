@@ -84,6 +84,9 @@ namespace Team2_Project
             this.imageListLeftSideBar = new System.Windows.Forms.ImageList(this.components);
             this.imageList64 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnReLoad = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -94,17 +97,6 @@ namespace Team2_Project
             this.btnSearch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.tStripDate = new System.Windows.Forms.ToolStripLabel();
-            this.tStripTime = new System.Windows.Forms.ToolStripLabel();
-            this.tsBtnLogOut = new System.Windows.Forms.ToolStripButton();
-            this.tStripName = new System.Windows.Forms.ToolStripLabel();
-            this.tStripDept = new System.Windows.Forms.ToolStripLabel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.chkHide = new System.Windows.Forms.CheckBox();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnFavorite = new System.Windows.Forms.Button();
             this.pnltreenode4 = new System.Windows.Forms.Panel();
@@ -124,14 +116,20 @@ namespace Team2_Project
             this.pnlBig1 = new System.Windows.Forms.Panel();
             this.btnsystem = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.chkHide = new System.Windows.Forms.CheckBox();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.tStripDate = new System.Windows.Forms.ToolStripLabel();
+            this.tStripTime = new System.Windows.Forms.ToolStripLabel();
+            this.tsBtnLogOut = new System.Windows.Forms.ToolStripButton();
+            this.tStripName = new System.Windows.Forms.ToolStripLabel();
+            this.tStripDept = new System.Windows.Forms.ToolStripLabel();
             this.tabControl1 = new Team2_Project.Controls.ccTabControl();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnltreenode4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -141,6 +139,8 @@ namespace Team2_Project
             this.pnlBig2.SuspendLayout();
             this.pnltreenode1.SuspendLayout();
             this.pnlBig1.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -234,6 +234,39 @@ namespace Team2_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1335, 76);
             this.panel1.TabIndex = 34;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(216, 76);
+            this.panel4.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(140, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 31);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "TILE";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 31);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "GOODEE";
             // 
             // panel3
             // 
@@ -355,6 +388,11 @@ namespace Team2_Project
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             this.btnSearch.MouseHover += new System.EventHandler(this.btnSearch_MouseHover_1);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.toolTip1.ForeColor = System.Drawing.Color.White;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
@@ -366,140 +404,6 @@ namespace Team2_Project
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(212, 764);
             this.panel2.TabIndex = 37;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(216, 76);
-            this.panel4.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(140, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 31);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "TILE";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 31);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "GOODEE";
-            // 
-            // toolStrip3
-            // 
-            this.toolStrip3.AutoSize = false;
-            this.toolStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tStripDate,
-            this.tStripTime,
-            this.tsBtnLogOut,
-            this.tStripName,
-            this.tStripDept});
-            this.toolStrip3.Location = new System.Drawing.Point(212, 840);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1123, 35);
-            this.toolStrip3.TabIndex = 39;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
-            // tStripDate
-            // 
-            this.tStripDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripDate.ForeColor = System.Drawing.Color.White;
-            this.tStripDate.Margin = new System.Windows.Forms.Padding(5);
-            this.tStripDate.Name = "tStripDate";
-            this.tStripDate.Size = new System.Drawing.Size(35, 25);
-            this.tStripDate.Text = "Date";
-            // 
-            // tStripTime
-            // 
-            this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripTime.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tStripTime.ForeColor = System.Drawing.Color.White;
-            this.tStripTime.Margin = new System.Windows.Forms.Padding(5);
-            this.tStripTime.Name = "tStripTime";
-            this.tStripTime.Size = new System.Drawing.Size(36, 25);
-            this.tStripTime.Text = "Time";
-            // 
-            // tsBtnLogOut
-            // 
-            this.tsBtnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsBtnLogOut.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tsBtnLogOut.ForeColor = System.Drawing.Color.White;
-            this.tsBtnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnLogOut.Image")));
-            this.tsBtnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnLogOut.Margin = new System.Windows.Forms.Padding(5);
-            this.tsBtnLogOut.Name = "tsBtnLogOut";
-            this.tsBtnLogOut.Size = new System.Drawing.Size(79, 25);
-            this.tsBtnLogOut.Text = "로그아웃";
-            // 
-            // tStripName
-            // 
-            this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStripName.ForeColor = System.Drawing.Color.White;
-            this.tStripName.Margin = new System.Windows.Forms.Padding(5);
-            this.tStripName.Name = "tStripName";
-            this.tStripName.Size = new System.Drawing.Size(31, 25);
-            this.tStripName.Text = "이름";
-            // 
-            // tStripDept
-            // 
-            this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripDept.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStripDept.ForeColor = System.Drawing.Color.White;
-            this.tStripDept.Margin = new System.Windows.Forms.Padding(5);
-            this.tStripDept.Name = "tStripDept";
-            this.tStripDept.Size = new System.Drawing.Size(31, 25);
-            this.tStripDept.Text = "부서";
-            // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.chkHide);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 729);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(212, 35);
-            this.panel6.TabIndex = 47;
-            // 
-            // chkHide
-            // 
-            this.chkHide.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkHide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.chkHide.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkHide.FlatAppearance.BorderSize = 0;
-            this.chkHide.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.chkHide.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.chkHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkHide.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkHide.ForeColor = System.Drawing.Color.Black;
-            this.chkHide.Location = new System.Drawing.Point(0, 0);
-            this.chkHide.Name = "chkHide";
-            this.chkHide.Size = new System.Drawing.Size(208, 31);
-            this.chkHide.TabIndex = 26;
-            this.chkHide.Text = "<";
-            this.chkHide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkHide.UseVisualStyleBackColor = false;
-            this.chkHide.CheckedChanged += new System.EventHandler(this.chkHide_CheckedChanged);
             // 
             // pnlMenu
             // 
@@ -567,6 +471,7 @@ namespace Team2_Project
             treeNode4});
             this.treeView4.Size = new System.Drawing.Size(212, 10);
             this.treeView4.TabIndex = 0;
+            this.treeView4.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView4_NodeMouseDoubleClick);
             // 
             // panel7
             // 
@@ -641,6 +546,7 @@ namespace Team2_Project
             treeNode12});
             this.treeView3.Size = new System.Drawing.Size(212, 10);
             this.treeView3.TabIndex = 0;
+            this.treeView3.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView3_NodeMouseDoubleClick);
             // 
             // pnlBig3
             // 
@@ -718,6 +624,7 @@ namespace Team2_Project
             treeNode21});
             this.treeView2.Size = new System.Drawing.Size(212, 10);
             this.treeView2.TabIndex = 0;
+            this.treeView2.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseDoubleClick);
             // 
             // pnlBig2
             // 
@@ -793,6 +700,7 @@ namespace Team2_Project
             treeNode27});
             this.treeView1.Size = new System.Drawing.Size(212, 10);
             this.treeView1.TabIndex = 0;
+            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // pnlBig1
             // 
@@ -838,6 +746,107 @@ namespace Team2_Project
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel6.Controls.Add(this.chkHide);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 729);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(212, 35);
+            this.panel6.TabIndex = 47;
+            // 
+            // chkHide
+            // 
+            this.chkHide.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkHide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.chkHide.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkHide.FlatAppearance.BorderSize = 0;
+            this.chkHide.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.chkHide.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.chkHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkHide.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkHide.ForeColor = System.Drawing.Color.Black;
+            this.chkHide.Location = new System.Drawing.Point(0, 0);
+            this.chkHide.Name = "chkHide";
+            this.chkHide.Size = new System.Drawing.Size(208, 31);
+            this.chkHide.TabIndex = 26;
+            this.chkHide.Text = "<";
+            this.chkHide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkHide.UseVisualStyleBackColor = false;
+            this.chkHide.CheckedChanged += new System.EventHandler(this.chkHide_CheckedChanged);
+            // 
+            // toolStrip3
+            // 
+            this.toolStrip3.AutoSize = false;
+            this.toolStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tStripDate,
+            this.tStripTime,
+            this.tsBtnLogOut,
+            this.tStripName,
+            this.tStripDept});
+            this.toolStrip3.Location = new System.Drawing.Point(212, 840);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(1123, 35);
+            this.toolStrip3.TabIndex = 39;
+            this.toolStrip3.Text = "toolStrip3";
+            // 
+            // tStripDate
+            // 
+            this.tStripDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
+            this.tStripDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripDate.ForeColor = System.Drawing.Color.White;
+            this.tStripDate.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripDate.Name = "tStripDate";
+            this.tStripDate.Size = new System.Drawing.Size(35, 25);
+            this.tStripDate.Text = "Date";
+            // 
+            // tStripTime
+            // 
+            this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
+            this.tStripTime.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripTime.ForeColor = System.Drawing.Color.White;
+            this.tStripTime.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripTime.Name = "tStripTime";
+            this.tStripTime.Size = new System.Drawing.Size(36, 25);
+            this.tStripTime.Text = "Time";
+            // 
+            // tsBtnLogOut
+            // 
+            this.tsBtnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsBtnLogOut.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnLogOut.ForeColor = System.Drawing.Color.White;
+            this.tsBtnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnLogOut.Image")));
+            this.tsBtnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnLogOut.Margin = new System.Windows.Forms.Padding(5);
+            this.tsBtnLogOut.Name = "tsBtnLogOut";
+            this.tsBtnLogOut.Size = new System.Drawing.Size(79, 25);
+            this.tsBtnLogOut.Text = "로그아웃";
+            // 
+            // tStripName
+            // 
+            this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tStripName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStripName.ForeColor = System.Drawing.Color.White;
+            this.tStripName.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripName.Name = "tStripName";
+            this.tStripName.Size = new System.Drawing.Size(31, 25);
+            this.tStripName.Text = "이름";
+            // 
+            // tStripDept
+            // 
+            this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tStripDept.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStripDept.ForeColor = System.Drawing.Color.White;
+            this.tStripDept.Margin = new System.Windows.Forms.Padding(5);
+            this.tStripDept.Name = "tStripDept";
+            this.tStripDept.Size = new System.Drawing.Size(31, 25);
+            this.tStripDept.Text = "부서";
+            // 
             // tabControl1
             // 
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -846,7 +855,7 @@ namespace Team2_Project
             this.tabControl1.Location = new System.Drawing.Point(212, 111);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1123, 27);
+            this.tabControl1.Size = new System.Drawing.Size(1123, 31);
             this.tabControl1.TabIndex = 38;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
@@ -873,13 +882,10 @@ namespace Team2_Project
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
-            this.panel6.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.pnlMenu.ResumeLayout(false);
             this.pnltreenode4.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -889,6 +895,9 @@ namespace Team2_Project
             this.pnlBig2.ResumeLayout(false);
             this.pnltreenode1.ResumeLayout(false);
             this.pnlBig1.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
