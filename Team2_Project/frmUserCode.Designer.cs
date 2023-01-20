@@ -45,7 +45,7 @@ namespace Team2_Project
             // 
             // cboSearchUse
             // 
-            //this.cboUserYNSC.Size = new System.Drawing.Size(121, 24);
+            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
             // 
             // lblSearchName
             // 
@@ -67,15 +67,10 @@ namespace Team2_Project
             this.lblInfoNameMa.Size = new System.Drawing.Size(166, 17);
             this.lblInfoNameMa.Text = "사용자정의 상세분류코드";
             // 
-            // label11
-            // 
-            this.label11.Size = new System.Drawing.Size(138, 17);
-            this.label11.Text = "사용자정의 대분류명";
-            // 
             // lblInfoCodeMa
             // 
-            this.lblInfoCodeMa.Size = new System.Drawing.Size(152, 17);
-            this.lblInfoCodeMa.Text = "사용자정의 대분류코드";
+            this.lblInfoCodeMa.Size = new System.Drawing.Size(124, 17);
+            this.lblInfoCodeMa.Text = "사용자정의 대분류";
             // 
             // splitContainer2
             // 

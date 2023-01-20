@@ -86,14 +86,14 @@ namespace Team2_Project
             this.lblTitleU.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitleU.Location = new System.Drawing.Point(45, 10);
             this.lblTitleU.Size = new System.Drawing.Size(60, 18);
-            this.lblTitleU.Text = "인사관리";
+            this.lblTitleU.Text = "조회내역";
             // 
             // lblTitleD
             // 
             this.lblTitleD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitleD.Location = new System.Drawing.Point(45, 10);
             this.lblTitleD.Size = new System.Drawing.Size(60, 18);
-            this.lblTitleD.Text = "인사정보";
+            this.lblTitleD.Text = "입력정보";
             // 
             // pnlList
             // 

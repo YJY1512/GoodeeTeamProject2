@@ -21,7 +21,9 @@ namespace Team2_Project
 
         private void frmUserCode_Load(object sender, EventArgs e)
         {
+            DataGridViewUtil.SetInitDataGridView(dgvMa);
 
+            DataGridViewUtil.SetInitDataGridView(dgvMi);
         }
     }
 }

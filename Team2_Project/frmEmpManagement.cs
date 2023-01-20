@@ -13,17 +13,17 @@ using Team2_Project_DTO;
 
 namespace Team2_Project
 {
+    //Uc 적용
+
     public partial class frmEmpManagement : frmListUpAreaDown
     {
         EmployeeService empSrv;
         DataTable dt;
         int pnlStat;
         string[] use_YNSearchList = { "전체", "재직", "퇴직" };
-        //char[] use_YNCodeList = { 'Y', 'N' };
         Dictionary<char, string> use_YNList = new Dictionary<char, string>(){{ 'Y', "재직" }, { 'N', "퇴직" }};
-        //string[] AuthList = { "관리자", "일반" };
-        //char[] AuthCodeList = { 'A', 'U' };
         Dictionary<char, string> AuthList = new Dictionary<char, string>() { { 'A', "관리자" }, { 'U', "일반" } };
+        int idx = -1;
 
         public frmEmpManagement()
         {
@@ -109,8 +109,10 @@ namespace Team2_Project
                 MessageBox.Show("수정할 인사정보를 선택해 주세요.");
                 return;
             }
-               
+              
+
             pnlStat = 2;
+            idx = dgvEmp.CurrentCell.RowIndex;
             txtID.Enabled = false;
             CboEnable(true);
 
@@ -182,6 +184,7 @@ namespace Team2_Project
                     dgvEmp.DataSource = dt;
 
                     pnlStat = 0;
+                    idx = -1;
                     txtID.Enabled = true;
                     CboEnable(false);
                 }
@@ -200,6 +203,7 @@ namespace Team2_Project
             }
 
             pnlStat = 0;
+            idx = -1;
             txtID.Enabled = true;
             CboEnable(false);
         }
@@ -250,7 +254,14 @@ namespace Team2_Project
         private void dgvEmp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (pnlStat != 0)
+            {
+                dgvEmp.ClearSelection();
+                if(pnlStat == 2)
+                {
+                    dgvEmp.Rows[idx].Selected = true;
+                }
                 return;
+            }
 
             txtID.Text = dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString();
             txtName.Text = dgvEmp.SelectedRows[0].Cells["User_Name"].Value.ToString();
