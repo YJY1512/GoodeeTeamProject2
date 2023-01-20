@@ -16,7 +16,7 @@ namespace Team2_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmNopMiCode());
+            Application.Run(new frmMain());
         }
     }
 }

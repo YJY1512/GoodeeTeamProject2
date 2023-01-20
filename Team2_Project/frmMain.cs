@@ -196,13 +196,22 @@ namespace Team2_Project
             {
                 OpenChildPage<frmUserCode>();
             }
-            else if (e.Node.Text == "불량현상 관리")
+            else if (e.Node.Text == "불량현상 대분류코드")
             {
                 OpenChildPage<frmDefectCode>();
             }
-            else if (e.Node.Text == "비가동 관리")
+            else if (e.Node.Text == "불량현상 상세분류코드")
+            {
+                //OpenChildPage<frmDefectCode>();
+                MessageBox.Show("빈 생성 화면입니다.");
+            }
+            else if (e.Node.Text == "비가동 대분류코드")
             {
                 OpenChildPage<frmNopMaCode>();
+            }
+            else if (e.Node.Text == "비가동 상세분류코드")
+            {
+                OpenChildPage<frmNopMiCode>();
             }
             else
             {

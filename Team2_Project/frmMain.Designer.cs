@@ -60,22 +60,26 @@ namespace Team2_Project
             System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("품목 관리", new System.Windows.Forms.TreeNode[] {
             treeNode16});
             System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("사용자 정의 관리");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("불량현상 관리");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("비가동 관리");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("표준 관리", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("불량현상 대분류코드");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("불량현상 상세분류코드");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("비가동 대분류코드");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("비가동 상세분류코드");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("표준 관리", new System.Windows.Forms.TreeNode[] {
             treeNode18,
             treeNode19,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("사용자 관리");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("인사 관리");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("시스템 설정관리", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23});
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("시스템 코드 관리");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("즐겨찾기및 화면관리");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("시스템 운영관리", new System.Windows.Forms.TreeNode[] {
-            treeNode25,
-            treeNode26});
+            treeNode20,
+            treeNode21,
+            treeNode22});
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("사용자 관리");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("인사 관리");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("시스템 설정관리", new System.Windows.Forms.TreeNode[] {
+            treeNode24,
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("시스템 코드 관리");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("즐겨찾기및 화면관리");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("시스템 운영관리", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode28});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -294,6 +298,7 @@ namespace Team2_Project
             this.btnReLoad.Name = "btnReLoad";
             this.btnReLoad.Size = new System.Drawing.Size(65, 65);
             this.btnReLoad.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.btnReLoad, "새로고침");
             this.btnReLoad.UseVisualStyleBackColor = true;
             this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
             // 
@@ -308,6 +313,7 @@ namespace Team2_Project
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(65, 65);
             this.btnCancel.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.btnCancel, "취소");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -322,6 +328,7 @@ namespace Team2_Project
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(65, 65);
             this.btnSave.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.btnSave, "저장");
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -336,6 +343,7 @@ namespace Team2_Project
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(65, 65);
             this.btnDelete.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.btnDelete, "삭제");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -350,6 +358,7 @@ namespace Team2_Project
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(65, 65);
             this.btnEdit.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnEdit, "수정");
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -601,17 +610,23 @@ namespace Team2_Project
             treeNode18.Text = "사용자 정의 관리";
             treeNode19.Name = "노드9";
             treeNode19.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            treeNode19.Text = "불량현상 관리";
-            treeNode20.Name = "노드10";
+            treeNode19.Text = "불량현상 대분류코드";
+            treeNode20.Name = "노드3";
             treeNode20.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            treeNode20.Text = "비가동 관리";
-            treeNode21.Name = "노드7";
-            treeNode21.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode21.Text = "표준 관리";
+            treeNode20.Text = "불량현상 상세분류코드";
+            treeNode21.Name = "노드10";
+            treeNode21.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            treeNode21.Text = "비가동 대분류코드";
+            treeNode22.Name = "노드0";
+            treeNode22.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            treeNode22.Text = "비가동 상세분류코드";
+            treeNode23.Name = "노드7";
+            treeNode23.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode23.Text = "표준 관리";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode15,
             treeNode17,
-            treeNode21});
+            treeNode23});
             this.treeView2.Size = new System.Drawing.Size(212, 10);
             this.treeView2.TabIndex = 0;
             this.treeView2.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseDoubleClick);
@@ -659,35 +674,35 @@ namespace Team2_Project
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode22.Name = "node1";
-            treeNode22.NodeFont = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode22.Tag = "0";
-            treeNode22.Text = "사용자 관리";
-            treeNode23.Name = "노드2";
-            treeNode23.NodeFont = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode23.Tag = "1";
-            treeNode23.Text = "인사 관리";
-            treeNode24.Checked = true;
-            treeNode24.Name = "노드0";
-            treeNode24.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode24.Text = "시스템 설정관리";
-            treeNode25.Name = "노드4";
-            treeNode25.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode25.Tag = "2";
-            treeNode25.Text = "시스템 코드 관리";
-            treeNode26.Name = "노드5";
-            treeNode26.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode26.Tag = "3";
-            treeNode26.Text = "즐겨찾기및 화면관리";
-            treeNode27.Checked = true;
-            treeNode27.ForeColor = System.Drawing.Color.Black;
-            treeNode27.Name = "노드3";
-            treeNode27.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            treeNode27.SelectedImageIndex = -2;
-            treeNode27.Text = "시스템 운영관리";
+            treeNode24.Name = "node1";
+            treeNode24.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            treeNode24.Tag = "0";
+            treeNode24.Text = "사용자 관리";
+            treeNode25.Name = "노드2";
+            treeNode25.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            treeNode25.Tag = "1";
+            treeNode25.Text = "인사 관리";
+            treeNode26.Checked = true;
+            treeNode26.Name = "노드0";
+            treeNode26.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode26.Text = "시스템 설정관리";
+            treeNode27.Name = "노드4";
+            treeNode27.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode27.Tag = "2";
+            treeNode27.Text = "시스템 코드 관리";
+            treeNode28.Name = "노드5";
+            treeNode28.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode28.Tag = "3";
+            treeNode28.Text = "즐겨찾기및 화면관리";
+            treeNode29.Checked = true;
+            treeNode29.ForeColor = System.Drawing.Color.Black;
+            treeNode29.Name = "노드3";
+            treeNode29.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            treeNode29.SelectedImageIndex = -2;
+            treeNode29.Text = "시스템 운영관리";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode24,
-            treeNode27});
+            treeNode26,
+            treeNode29});
             this.treeView1.Size = new System.Drawing.Size(212, 10);
             this.treeView1.TabIndex = 0;
             this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
