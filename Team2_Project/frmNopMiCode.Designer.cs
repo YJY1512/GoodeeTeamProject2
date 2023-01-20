@@ -45,8 +45,7 @@ namespace Team2_Project
             // 
             // cboSearchUse
             // 
-            //this.cboUserYNSC.Size = new System.Drawing.Size(121, 24);
-            //this.cboUserYNSC.Text = "";
+            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
             // 
             // txtSearchName
             // 
@@ -70,10 +69,6 @@ namespace Team2_Project
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
-            // txtInfoNameMa
-            // 
-
-            // 
             // txtInfoNameMi
             // 
             this.txtInfoNameMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -81,10 +76,6 @@ namespace Team2_Project
             // txtInfoCodeMi
             // 
             this.txtInfoCodeMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            // 
-            // txtInfoCodeMa
-            // 
-
             // 
             // splitContainer2
             // 
@@ -114,20 +105,24 @@ namespace Team2_Project
             // 
             // dgvMaData
             // 
+            this.dgvMaData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMaData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaData.Location = new System.Drawing.Point(152, 111);
+            this.dgvMaData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMaData.Location = new System.Drawing.Point(0, 0);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(240, 150);
+            this.dgvMaData.Size = new System.Drawing.Size(610, 803);
             this.dgvMaData.TabIndex = 0;
             // 
             // dgvMiData
             // 
+            this.dgvMiData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMiData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMiData.Location = new System.Drawing.Point(305, 96);
+            this.dgvMiData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(240, 150);
+            this.dgvMiData.Size = new System.Drawing.Size(1220, 570);
             this.dgvMiData.TabIndex = 1;
             // 
             // frmNopMiCode
