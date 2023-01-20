@@ -157,12 +157,13 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
         public bool Delete(string empID)
         {
-            string sql = @"delete from User_Master where User_ID = @User_ID";
-
             try
             {
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlCommand cmd = new SqlCommand())
                 {
+                    cmd.CommandText = "SP_UserDelete";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@User_ID", empID);
                     if (cmd.ExecuteNonQuery() < 1)
                     {
