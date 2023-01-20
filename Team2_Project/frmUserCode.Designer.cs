@@ -29,24 +29,23 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.dgvMa = new System.Windows.Forms.DataGridView();
+            this.dgvMi = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
-            this.pnlSub.SuspendLayout();
-            this.pnlArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.pnlListTitleL.SuspendLayout();
-            this.pnlListTitleR.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.pnlSub.SuspendLayout();
+            this.pnlListL.SuspendLayout();
+            this.pnlListR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMi)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtSearchName
+            // cboSearchUse
             // 
-            this.txtSearchName.Location = new System.Drawing.Point(593, 19);
+            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
             // 
             // lblSearchName
             // 
@@ -58,87 +57,89 @@ namespace Team2_Project
             this.lblSearchCode.Size = new System.Drawing.Size(152, 17);
             this.lblSearchCode.Text = "사용자정의 대분류코드";
             // 
-            // lblInfoCodeMa
+            // label4
             // 
-            this.lblInfoCodeMa.Size = new System.Drawing.Size(152, 17);
-            this.lblInfoCodeMa.Text = "사용자정의 대분류코드";
-            // 
-            // lblInfoNameDe
-            // 
-            this.lblInfoNameDe.Size = new System.Drawing.Size(152, 17);
-            this.lblInfoNameDe.Text = "사용자정의 상세분류명";
-            // 
-            // lblInfoCodeDe
-            // 
-            this.lblInfoCodeDe.Size = new System.Drawing.Size(166, 17);
-            this.lblInfoCodeDe.Text = "사용자정의 상세분류코드";
+            this.label4.Size = new System.Drawing.Size(152, 17);
+            this.label4.Text = "사용자정의 상세분류명";
             // 
             // lblInfoNameMa
             // 
-            this.lblInfoNameMa.Size = new System.Drawing.Size(138, 17);
-            this.lblInfoNameMa.Text = "사용자정의 대분류명";
+            this.lblInfoNameMa.Size = new System.Drawing.Size(166, 17);
+            this.lblInfoNameMa.Text = "사용자정의 상세분류코드";
             // 
-            // comboBox1
+            // lblInfoCodeMa
             // 
-            this.comboBox1.Size = new System.Drawing.Size(121, 25);
-            // 
-            // cboMaUse
-            // 
-            this.cboMaUse.Size = new System.Drawing.Size(121, 25);
-            // 
-            // cboMinUse
-            // 
-            this.cboMinUse.Size = new System.Drawing.Size(121, 25);
-            // 
-            // pnlListL
-            // 
-            this.pnlListL.Size = new System.Drawing.Size(565, 418);
-            // 
-            // pnlListR
-            // 
-            this.pnlListR.Size = new System.Drawing.Size(830, 418);
+            this.lblInfoCodeMa.Size = new System.Drawing.Size(124, 17);
+            this.lblInfoCodeMa.Text = "사용자정의 대분류";
             // 
             // splitContainer2
             // 
-            this.splitContainer2.SplitterDistance = 565;
             // 
-            // pnlListTitleL
+            // splitContainer2.Panel1
             // 
-            this.pnlListTitleL.Size = new System.Drawing.Size(565, 43);
+            this.splitContainer2.Panel1.Controls.Add(this.dgvMi);
+            this.splitContainer2.Size = new System.Drawing.Size(987, 596);
             // 
-            // pnlListTitleR
+            // pnlSub
             // 
-            this.pnlListTitleR.Size = new System.Drawing.Size(830, 43);
+            this.pnlSub.Size = new System.Drawing.Size(1484, 65);
             // 
-            // splitContainer1
+            // pnlListL
             // 
+            this.pnlListL.Controls.Add(this.dgvMa);
+            this.pnlListL.Size = new System.Drawing.Size(493, 596);
+            // 
+            // pnlListR
+            // 
+            this.pnlListR.Size = new System.Drawing.Size(987, 596);
+            // 
+            // dgvMa
+            // 
+            this.dgvMa.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMa.Location = new System.Drawing.Point(0, 0);
+            this.dgvMa.Name = "dgvMa";
+            this.dgvMa.RowTemplate.Height = 23;
+            this.dgvMa.Size = new System.Drawing.Size(493, 596);
+            this.dgvMa.TabIndex = 0;
+            // 
+            // dgvMi
+            // 
+            this.dgvMi.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMi.Location = new System.Drawing.Point(0, 0);
+            this.dgvMi.Name = "dgvMi";
+            this.dgvMi.RowTemplate.Height = 23;
+            this.dgvMi.Size = new System.Drawing.Size(987, 363);
+            this.dgvMi.TabIndex = 0;
             // 
             // frmUserCode
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
-            this.ClientSize = new System.Drawing.Size(1399, 728);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.ClientSize = new System.Drawing.Size(1484, 704);
             this.Name = "frmUserCode";
+            this.Text = "사용자정의 관리";
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
-            this.pnlSub.ResumeLayout(false);
-            this.pnlSub.PerformLayout();
-            this.pnlArea.ResumeLayout(false);
-            this.pnlArea.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.pnlListTitleL.ResumeLayout(false);
-            this.pnlListTitleL.PerformLayout();
-            this.pnlListTitleR.ResumeLayout(false);
-            this.pnlListTitleR.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.pnlSub.ResumeLayout(false);
+            this.pnlSub.PerformLayout();
+            this.pnlListL.ResumeLayout(false);
+            this.pnlListR.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMi)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dgvMi;
+        private System.Windows.Forms.DataGridView dgvMa;
     }
 }
