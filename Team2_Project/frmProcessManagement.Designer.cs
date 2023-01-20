@@ -46,6 +46,7 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -59,6 +60,7 @@ namespace Team2_Project
             // pnlSub
             // 
             this.pnlSub.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSub.Controls.Add(this.ucSearch1);
             this.pnlSub.Controls.Add(this.label12);
             this.pnlSub.Controls.Add(this.comboBox3);
             this.pnlSub.Controls.Add(this.comboBox4);
@@ -205,7 +207,7 @@ namespace Team2_Project
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(875, 15);
+            this.comboBox3.Location = new System.Drawing.Point(850, 15);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(130, 26);
             this.comboBox3.TabIndex = 17;
@@ -222,7 +224,7 @@ namespace Team2_Project
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(785, 18);
+            this.label8.Location = new System.Drawing.Point(775, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 18);
             this.label8.TabIndex = 13;
@@ -232,7 +234,7 @@ namespace Team2_Project
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(500, 18);
+            this.label9.Location = new System.Drawing.Point(510, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 18);
             this.label9.TabIndex = 12;
@@ -258,6 +260,18 @@ namespace Team2_Project
             this.label10.Size = new System.Drawing.Size(14, 18);
             this.label10.TabIndex = 38;
             this.label10.Text = "*";
+            // 
+            // ucSearch1
+            // 
+            this.ucSearch1._Code = "";
+            this.ucSearch1._Name = "";
+            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
+            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSearch1.Location = new System.Drawing.Point(110, 15);
+            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSearch1.Name = "ucSearch1";
+            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
+            this.ucSearch1.TabIndex = 19;
             // 
             // frmProcessManagement
             // 
@@ -301,5 +315,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Label label10;
+        private Controls.ucSearch ucSearch1;
     }
 }

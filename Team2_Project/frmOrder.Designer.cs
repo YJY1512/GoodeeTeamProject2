@@ -29,17 +29,17 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.dgvOrder = new System.Windows.Forms.DataGridView();
+            this.dtpSearchOrd1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpSearchOrd2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpSearchDue1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpSearchDue2 = new System.Windows.Forms.DateTimePicker();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -48,15 +48,15 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.dtpSearchDue2);
+            this.pnlSub.Controls.Add(this.dtpSearchDue1);
+            this.pnlSub.Controls.Add(this.dtpSearchOrd2);
+            this.pnlSub.Controls.Add(this.dtpSearchOrd1);
             this.pnlSub.Controls.Add(this.ucSearch1);
             this.pnlSub.Controls.Add(this.label6);
-            this.pnlSub.Controls.Add(this.comboBox3);
             this.pnlSub.Controls.Add(this.label3);
-            this.pnlSub.Controls.Add(this.comboBox4);
             this.pnlSub.Controls.Add(this.label4);
-            this.pnlSub.Controls.Add(this.comboBox1);
             this.pnlSub.Controls.Add(this.label1);
-            this.pnlSub.Controls.Add(this.comboBox2);
             this.pnlSub.Controls.Add(this.label9);
             this.pnlSub.Size = new System.Drawing.Size(1834, 100);
             // 
@@ -75,17 +75,7 @@ namespace Team2_Project
             // 
             this.lblTitle.Location = new System.Drawing.Point(44, 10);
             this.lblTitle.Size = new System.Drawing.Size(60, 18);
-            this.lblTitle.Text = "생산요청";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(129, 16);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(120, 25);
-            this.comboBox2.TabIndex = 58;
-            this.comboBox2.Text = "2022.01.02";
+            this.lblTitle.Text = "조회내역";
             // 
             // label9
             // 
@@ -109,26 +99,6 @@ namespace Team2_Project
             this.label1.TabIndex = 59;
             this.label1.Text = "~";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(279, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(120, 25);
-            this.comboBox1.TabIndex = 60;
-            this.comboBox1.Text = "2022.01.16";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(279, 57);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(120, 25);
-            this.comboBox3.TabIndex = 64;
-            this.comboBox3.Text = "2022.01.16";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -139,16 +109,6 @@ namespace Team2_Project
             this.label3.Size = new System.Drawing.Size(18, 17);
             this.label3.TabIndex = 63;
             this.label3.Text = "~";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(129, 57);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(120, 25);
-            this.comboBox4.TabIndex = 62;
-            this.comboBox4.Text = "2022.01.02";
             // 
             // label4
             // 
@@ -166,7 +126,7 @@ namespace Team2_Project
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(489, 19);
+            this.label6.Location = new System.Drawing.Point(448, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 66;
@@ -178,7 +138,7 @@ namespace Team2_Project
             this.ucSearch1._Name = "";
             this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
             this.ucSearch1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(532, 13);
+            this.ucSearch1.Location = new System.Drawing.Point(491, 16);
             this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearch1.Name = "ucSearch1";
             this.ucSearch1.Size = new System.Drawing.Size(292, 28);
@@ -194,6 +154,42 @@ namespace Team2_Project
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.Size = new System.Drawing.Size(1834, 768);
             this.dgvOrder.TabIndex = 0;
+            // 
+            // dtpSearchOrd1
+            // 
+            this.dtpSearchOrd1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpSearchOrd1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpSearchOrd1.Location = new System.Drawing.Point(129, 16);
+            this.dtpSearchOrd1.Name = "dtpSearchOrd1";
+            this.dtpSearchOrd1.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchOrd1.TabIndex = 69;
+            // 
+            // dtpSearchOrd2
+            // 
+            this.dtpSearchOrd2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpSearchOrd2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpSearchOrd2.Location = new System.Drawing.Point(294, 16);
+            this.dtpSearchOrd2.Name = "dtpSearchOrd2";
+            this.dtpSearchOrd2.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchOrd2.TabIndex = 70;
+            // 
+            // dtpSearchDue1
+            // 
+            this.dtpSearchDue1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpSearchDue1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpSearchDue1.Location = new System.Drawing.Point(129, 60);
+            this.dtpSearchDue1.Name = "dtpSearchDue1";
+            this.dtpSearchDue1.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchDue1.TabIndex = 71;
+            // 
+            // dtpSearchDue2
+            // 
+            this.dtpSearchDue2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpSearchDue2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpSearchDue2.Location = new System.Drawing.Point(294, 60);
+            this.dtpSearchDue2.Name = "dtpSearchDue2";
+            this.dtpSearchDue2.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchDue2.TabIndex = 72;
             // 
             // frmOrder
             // 
@@ -215,17 +211,16 @@ namespace Team2_Project
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox comboBox2;
         protected System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
         protected System.Windows.Forms.Label label1;
         private Controls.ucSearch ucSearch1;
         protected System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox3;
         protected System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox4;
         protected System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvOrder;
+        private System.Windows.Forms.DateTimePicker dtpSearchDue2;
+        private System.Windows.Forms.DateTimePicker dtpSearchDue1;
+        private System.Windows.Forms.DateTimePicker dtpSearchOrd2;
+        private System.Windows.Forms.DateTimePicker dtpSearchOrd1;
     }
 }
