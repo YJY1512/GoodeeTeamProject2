@@ -74,23 +74,29 @@ namespace Team2_Project.BaseForms
             this.pnlSub.Controls.Add(this.lblSearchName);
             this.pnlSub.Controls.Add(this.txtSearchCode);
             this.pnlSub.Controls.Add(this.lblSearchCode);
-            this.pnlSub.Size = new System.Drawing.Size(1478, 65);
+            this.pnlSub.Size = new System.Drawing.Size(1738, 64);
             // 
             // pnlListL
             // 
-            this.pnlListL.Size = new System.Drawing.Size(491, 596);
+            this.pnlListL.Location = new System.Drawing.Point(0, 45);
+            this.pnlListL.Size = new System.Drawing.Size(578, 639);
             // 
             // lblTitleL
             // 
+            this.lblTitleL.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitleL.Location = new System.Drawing.Point(44, 10);
             this.lblTitleL.Text = "대분류";
             // 
             // pnlListR
             // 
             this.pnlListR.Controls.Add(this.splitContainer2);
-            this.pnlListR.Size = new System.Drawing.Size(983, 596);
+            this.pnlListR.Location = new System.Drawing.Point(0, 45);
+            this.pnlListR.Size = new System.Drawing.Size(1156, 639);
             // 
             // lblTitleR
             // 
+            this.lblTitleR.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitleR.Location = new System.Drawing.Point(44, 10);
             this.lblTitleR.Size = new System.Drawing.Size(64, 17);
             this.lblTitleR.Text = "상세분류";
             // 
@@ -124,8 +130,8 @@ namespace Team2_Project.BaseForms
             this.splitContainer2.Panel2.Controls.Add(this.txtInfoCodeMi);
             this.splitContainer2.Panel2.Controls.Add(this.lblInfoCodeMa);
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
-            this.splitContainer2.Size = new System.Drawing.Size(983, 596);
-            this.splitContainer2.SplitterDistance = 363;
+            this.splitContainer2.Size = new System.Drawing.Size(1156, 639);
+            this.splitContainer2.SplitterDistance = 343;
             this.splitContainer2.TabIndex = 0;
             // 
             // ucSearch1
@@ -134,18 +140,18 @@ namespace Team2_Project.BaseForms
             this.ucSearch1._Name = "";
             this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
             this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(231, 60);
+            this.ucSearch1.Location = new System.Drawing.Point(260, 59);
             this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
+            this.ucSearch1.Size = new System.Drawing.Size(382, 30);
             this.ucSearch1.TabIndex = 34;
             // 
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(760, 141);
+            this.cboUseYN.Location = new System.Drawing.Point(805, 182);
             this.cboUseYN.Name = "cboUseYN";
-            this.cboUseYN.Size = new System.Drawing.Size(121, 24);
+            this.cboUseYN.Size = new System.Drawing.Size(136, 25);
             this.cboUseYN.TabIndex = 33;
             // 
             // label14
@@ -153,7 +159,7 @@ namespace Team2_Project.BaseForms
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(608, 145);
+            this.label14.Location = new System.Drawing.Point(700, 186);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 17);
             this.label14.TabIndex = 32;
@@ -163,7 +169,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(631, 145);
+            this.label10.Location = new System.Drawing.Point(726, 186);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 31;
@@ -171,16 +177,16 @@ namespace Team2_Project.BaseForms
             // 
             // nudSort
             // 
-            this.nudSort.Location = new System.Drawing.Point(231, 182);
+            this.nudSort.Location = new System.Drawing.Point(260, 242);
             this.nudSort.Name = "nudSort";
-            this.nudSort.Size = new System.Drawing.Size(99, 24);
+            this.nudSort.Size = new System.Drawing.Size(111, 25);
             this.nudSort.TabIndex = 30;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(608, 65);
+            this.label13.Location = new System.Drawing.Point(700, 64);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 17);
             this.label13.TabIndex = 29;
@@ -191,7 +197,7 @@ namespace Team2_Project.BaseForms
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(30, 184);
+            this.label12.Location = new System.Drawing.Point(20, 246);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);
             this.label12.TabIndex = 28;
@@ -199,17 +205,17 @@ namespace Team2_Project.BaseForms
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(760, 61);
+            this.txtRemark.Location = new System.Drawing.Point(805, 63);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(200, 64);
+            this.txtRemark.Size = new System.Drawing.Size(300, 84);
             this.txtRemark.TabIndex = 27;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(631, 65);
+            this.label8.Location = new System.Drawing.Point(726, 64);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 17);
             this.label8.TabIndex = 26;
@@ -219,7 +225,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(53, 184);
+            this.label9.Location = new System.Drawing.Point(60, 246);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 17);
             this.label9.TabIndex = 25;
@@ -230,7 +236,7 @@ namespace Team2_Project.BaseForms
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(30, 147);
+            this.label5.Location = new System.Drawing.Point(20, 186);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(17, 17);
             this.label5.TabIndex = 23;
@@ -241,7 +247,7 @@ namespace Team2_Project.BaseForms
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(30, 67);
+            this.label7.Location = new System.Drawing.Point(20, 66);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 17);
             this.label7.TabIndex = 23;
@@ -252,7 +258,7 @@ namespace Team2_Project.BaseForms
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(30, 107);
+            this.label6.Location = new System.Drawing.Point(20, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(17, 17);
             this.label6.TabIndex = 23;
@@ -262,7 +268,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(53, 147);
+            this.label4.Location = new System.Drawing.Point(60, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 17);
             this.label4.TabIndex = 20;
@@ -272,7 +278,7 @@ namespace Team2_Project.BaseForms
             // 
             this.lblInfoNameMa.AutoSize = true;
             this.lblInfoNameMa.BackColor = System.Drawing.Color.Transparent;
-            this.lblInfoNameMa.Location = new System.Drawing.Point(53, 107);
+            this.lblInfoNameMa.Location = new System.Drawing.Point(60, 126);
             this.lblInfoNameMa.Name = "lblInfoNameMa";
             this.lblInfoNameMa.Size = new System.Drawing.Size(92, 17);
             this.lblInfoNameMa.TabIndex = 20;
@@ -280,23 +286,23 @@ namespace Team2_Project.BaseForms
             // 
             // txtInfoNameMi
             // 
-            this.txtInfoNameMi.Location = new System.Drawing.Point(231, 141);
+            this.txtInfoNameMi.Location = new System.Drawing.Point(260, 182);
             this.txtInfoNameMi.Name = "txtInfoNameMi";
-            this.txtInfoNameMi.Size = new System.Drawing.Size(190, 24);
+            this.txtInfoNameMi.Size = new System.Drawing.Size(213, 25);
             this.txtInfoNameMi.TabIndex = 19;
             // 
             // txtInfoCodeMi
             // 
-            this.txtInfoCodeMi.Location = new System.Drawing.Point(231, 101);
+            this.txtInfoCodeMi.Location = new System.Drawing.Point(260, 122);
             this.txtInfoCodeMi.Name = "txtInfoCodeMi";
-            this.txtInfoCodeMi.Size = new System.Drawing.Size(190, 24);
+            this.txtInfoCodeMi.Size = new System.Drawing.Size(213, 25);
             this.txtInfoCodeMi.TabIndex = 19;
             // 
             // lblInfoCodeMa
             // 
             this.lblInfoCodeMa.AutoSize = true;
             this.lblInfoCodeMa.BackColor = System.Drawing.Color.Transparent;
-            this.lblInfoCodeMa.Location = new System.Drawing.Point(53, 67);
+            this.lblInfoCodeMa.Location = new System.Drawing.Point(60, 66);
             this.lblInfoCodeMa.Name = "lblInfoCodeMa";
             this.lblInfoCodeMa.Size = new System.Drawing.Size(50, 17);
             this.lblInfoCodeMa.TabIndex = 18;
@@ -311,7 +317,7 @@ namespace Team2_Project.BaseForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(983, 43);
+            this.panel1.Size = new System.Drawing.Size(1156, 45);
             this.panel1.TabIndex = 3;
             // 
             // label1
@@ -319,7 +325,7 @@ namespace Team2_Project.BaseForms
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("나눔고딕OTF ExtraBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Location = new System.Drawing.Point(11, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 17);
             this.label1.TabIndex = 1;
@@ -328,9 +334,9 @@ namespace Team2_Project.BaseForms
             // lblListTitleR
             // 
             this.lblListTitleR.AutoSize = true;
-            this.lblListTitleR.Font = new System.Drawing.Font("나눔고딕OTF ExtraBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblListTitleR.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblListTitleR.ForeColor = System.Drawing.Color.White;
-            this.lblListTitleR.Location = new System.Drawing.Point(40, 10);
+            this.lblListTitleR.Location = new System.Drawing.Point(44, 10);
             this.lblListTitleR.Name = "lblListTitleR";
             this.lblListTitleR.Size = new System.Drawing.Size(64, 17);
             this.lblListTitleR.TabIndex = 0;
@@ -340,7 +346,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(875, 22);
+            this.label16.Location = new System.Drawing.Point(662, 23);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(64, 17);
             this.label16.TabIndex = 13;
@@ -349,24 +355,23 @@ namespace Team2_Project.BaseForms
             // cboSearchUse
             // 
             this.cboSearchUse.FormattingEnabled = true;
-            this.cboSearchUse.Location = new System.Drawing.Point(973, 18);
+            this.cboSearchUse.Location = new System.Drawing.Point(741, 19);
             this.cboSearchUse.Name = "cboSearchUse";
-            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
+            this.cboSearchUse.Size = new System.Drawing.Size(130, 25);
             this.cboSearchUse.TabIndex = 12;
-            this.cboSearchUse.Text = "전체";
             // 
             // txtSearchName
             // 
-            this.txtSearchName.Location = new System.Drawing.Point(590, 18);
+            this.txtSearchName.Location = new System.Drawing.Point(432, 19);
             this.txtSearchName.Name = "txtSearchName";
-            this.txtSearchName.Size = new System.Drawing.Size(200, 24);
+            this.txtSearchName.Size = new System.Drawing.Size(170, 25);
             this.txtSearchName.TabIndex = 11;
             // 
             // lblSearchName
             // 
             this.lblSearchName.AutoSize = true;
             this.lblSearchName.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearchName.Location = new System.Drawing.Point(432, 22);
+            this.lblSearchName.Location = new System.Drawing.Point(353, 23);
             this.lblSearchName.Name = "lblSearchName";
             this.lblSearchName.Size = new System.Drawing.Size(64, 17);
             this.lblSearchName.TabIndex = 10;
@@ -374,16 +379,16 @@ namespace Team2_Project.BaseForms
             // 
             // txtSearchCode
             // 
-            this.txtSearchCode.Location = new System.Drawing.Point(187, 18);
+            this.txtSearchCode.Location = new System.Drawing.Point(123, 20);
             this.txtSearchCode.Name = "txtSearchCode";
-            this.txtSearchCode.Size = new System.Drawing.Size(180, 24);
+            this.txtSearchCode.Size = new System.Drawing.Size(170, 25);
             this.txtSearchCode.TabIndex = 9;
             // 
             // lblSearchCode
             // 
             this.lblSearchCode.AutoSize = true;
             this.lblSearchCode.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearchCode.Location = new System.Drawing.Point(29, 22);
+            this.lblSearchCode.Location = new System.Drawing.Point(30, 23);
             this.lblSearchCode.Name = "lblSearchCode";
             this.lblSearchCode.Size = new System.Drawing.Size(78, 17);
             this.lblSearchCode.TabIndex = 8;
@@ -391,8 +396,9 @@ namespace Team2_Project.BaseForms
             // 
             // frmCodeControlBase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1478, 704);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.ClientSize = new System.Drawing.Size(1738, 748);
+            this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "frmCodeControlBase";
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
