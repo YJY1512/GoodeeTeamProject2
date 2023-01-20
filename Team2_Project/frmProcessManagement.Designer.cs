@@ -42,12 +42,11 @@ namespace Team2_Project
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -61,11 +60,10 @@ namespace Team2_Project
             // pnlSub
             // 
             this.pnlSub.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSub.Controls.Add(this.ucSearch1);
             this.pnlSub.Controls.Add(this.label12);
             this.pnlSub.Controls.Add(this.comboBox3);
             this.pnlSub.Controls.Add(this.comboBox4);
-            this.pnlSub.Controls.Add(this.textBox4);
-            this.pnlSub.Controls.Add(this.textBox5);
             this.pnlSub.Controls.Add(this.label8);
             this.pnlSub.Controls.Add(this.label9);
             this.pnlSub.Size = new System.Drawing.Size(1289, 60);
@@ -224,20 +222,6 @@ namespace Team2_Project
             this.comboBox4.Size = new System.Drawing.Size(130, 26);
             this.comboBox4.TabIndex = 16;
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(260, 15);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(170, 24);
-            this.textBox4.TabIndex = 15;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(120, 15);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(130, 24);
-            this.textBox5.TabIndex = 14;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -279,6 +263,8 @@ namespace Team2_Project
             this.label10.TabIndex = 38;
             this.label10.Text = "*";
             // 
+            
+            // 
             // frmProcessManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -305,8 +291,6 @@ namespace Team2_Project
 
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvProcess;
@@ -322,5 +306,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Label label10;
+        private Controls.ucSearch ucSearch1;
     }
 }
