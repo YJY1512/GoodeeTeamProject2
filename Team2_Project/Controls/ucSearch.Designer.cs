@@ -40,22 +40,22 @@ namespace Team2_Project.Controls
             this.textBox1.Location = new System.Drawing.Point(1, 1);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(127, 25);
+            this.textBox1.Size = new System.Drawing.Size(120, 24);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(163, 1);
+            this.textBox2.Location = new System.Drawing.Point(157, 1);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(127, 25);
+            this.textBox2.Size = new System.Drawing.Size(150, 24);
             this.textBox2.TabIndex = 1;
             // 
             // btn
             // 
             this.btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn.BackgroundImage")));
             this.btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn.Location = new System.Drawing.Point(132, 0);
+            this.btn.Location = new System.Drawing.Point(125, 0);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(27, 27);
             this.btn.TabIndex = 2;
@@ -64,13 +64,13 @@ namespace Team2_Project.Controls
             // 
             // ucSearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.btn);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSearch";
             this.Size = new System.Drawing.Size(292, 28);
