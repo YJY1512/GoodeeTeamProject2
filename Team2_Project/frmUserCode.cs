@@ -36,13 +36,71 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "사용유무", "Use_YN");
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "Remark", "Remark", visible:false);
 
+            CommonCodeUtil.UseYNComboBinding(cboSearchUse);
+            CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
+            cboSearchUse.SelectedIndex = 0;
+
             List<UserCodeDTO> list = srv.GetUserCode();            
-            if (list != null)
+            if (list != null && list.Count > 0)
             {
                 List<UserCodeDTO> maList = list.GroupBy((c) => c.Userdefine_Ma_Code).FirstOrDefault().ToList();
                 dgvMa.DataSource = maList;
                 dgvMi.DataSource = list;
             }
+
+            SetInitEditPnl();
         }
+
+        private void SetInitEditPnl()
+        {
+            foreach(Control ctrl in splitContainer2.Panel2.Controls)
+            {
+                if (ctrl is Label || ctrl is Panel)
+                    continue;
+
+                if (ctrl is TextBox)
+                    ctrl.Text = "";
+
+                ctrl.Enabled = false;                
+            }
+
+            ucSearch1._Code = "";
+            ucSearch1._Name = "";
+            nudSort.Value = 0;
+        }
+
+
+        #region Main 버튼 클릭이벤트
+        public void OnSearch()  //검색 
+        {
+
+        }
+
+        public void OnAdd()     //추가
+        {
+
+
+        }
+        public void OnEdit()    //수정
+        {
+
+        }
+        public void OnDelete()  //삭제
+        {
+
+        }
+        public void OnSave()    //저장
+        {
+
+        }
+        public void OnCancel()  //취소
+        {
+
+        }
+        public void OnReLoad()  //새로고침
+        {
+
+        }
+        #endregion
     }
 }

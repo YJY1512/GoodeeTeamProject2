@@ -25,32 +25,32 @@ namespace Team2_Project
 
         private void frmNopMiCode_Load(object sender, EventArgs e)
         {
-            //cboUseYNSC.Items.Add("전체");
-            //cboUseYNSC.Items.Add("사용");
-            //cboUseYNSC.Items.Add("미사용");
-            //cboUseYNSC.SelectedIndex = 0;
-            //cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSearchUse.Items.Add("전체");
+            cboSearchUse.Items.Add("사용");
+            cboSearchUse.Items.Add("미사용");
+            cboSearchUse.SelectedIndex = 0;
+            cboSearchUse.DropDownStyle = ComboBoxStyle.DropDownList;
 
             DataGridViewUtil.SetInitDataGridView(dgvMaData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 500);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류명", "Nop_Ma_Name", 500);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "Use_YN", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 250);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류명", "Nop_Ma_Name", 250);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataGridViewUtil.SetInitDataGridView(dgvMiData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Ma_Code", 500);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Ma_Name", 500);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "정렬순서", "", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비고", "", 500, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Mi_Code", 300);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Mi_Name", 300);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 구분", "Regular_Type", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 유형", "Nop_type", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
 
-            //cboUseYN.Items.Add("-선택-");
-            //cboUseYN.Items.Add("사용");
-            //cboUseYN.Items.Add("미사용");
-            //cboUseYN.SelectedIndex = 0;
-            //cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboUseYN.Items.Add("-선택-");
+            cboUseYN.Items.Add("사용");
+            cboUseYN.Items.Add("미사용");
+            cboUseYN.SelectedIndex = 0;
+            cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            //Deactivation(); //입력패널 비활성화
-            //OnSearch();
+            Deactivation(); //입력패널 비활성화
+            OnSearch();
         }
 
         #region Main 버튼 클릭이벤트

@@ -14,14 +14,15 @@ namespace Team2_Project
 {
     public partial class frmMain : Form
     {
-        public event EventHandler BtnClick;
+        //public event EventHandler BtnClick;
 
         private Boolean showPanelTreenode1 = false;
         private Boolean showPanelTreenode2 = false;
         private Boolean showPanelTreenode3 = false;
         private Boolean showPanelTreenode4 = false;
-        private string toolDate;
-        private string toolTime;
+        const int MaxWidth = 212;
+        const int MinWidth = 56;
+        Panel pnlChildMenu = new Panel();
         public string curP_MenuID { get; set; }
         public frmMain()
         {
@@ -36,6 +37,25 @@ namespace Team2_Project
             tStripDept.Text = "관리자";
             OpenChildPage<frmStartMain>();
         }
+
+        private void chkHide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHide.Checked)
+            {
+                panel2.Width = MinWidth;
+                pnlMenu.Width = MinWidth;
+                pnlChildMenu.Visible = false;
+                chkHide.Text = ">";
+            }
+            else
+            {
+                panel2.Width = MaxWidth;
+                pnlMenu.Width = MaxWidth;
+                pnlChildMenu.Visible = false;
+                chkHide.Text = "<";
+            }
+        }
+
         private void OpenChildPage<T>() where T : Form, new()
         {
             foreach (Form form in Application.OpenForms)
@@ -52,7 +72,7 @@ namespace Team2_Project
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-        }
+        } //자식폼 Open 이벤트 
 
         #region 왼쪽버튼 수정 예정
         private void tooglepanels()
@@ -361,17 +381,18 @@ namespace Team2_Project
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form d = this.ActiveMdiChild;
-            OpenChildPage<frmStartMain>();
-            Button btn = (Button)sender;
-            if (this.BtnClick != null)
-            {
-                btn.Tag = btn.Name;
-                BtnClick(btn, e);
-            }    
-        }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    Form d = this.ActiveMdiChild;
+        //    OpenChildPage<frmStartMain>();
+        //    Button btn = (Button)sender;
+        //    if (this.BtnClick != null)
+        //    {
+        //        btn.Tag = btn.Name;
+        //        BtnClick(btn, e);
+        //    }    
+        //}
+
         #region 버튼 클릭 이벤트
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -407,12 +428,11 @@ namespace Team2_Project
         {
             Function_Invoke("OnReLoad");
         }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            Function_Invoke("OnPrint");
-        }
         #endregion
+
+        
+
+        
     }
     class TabTag
     {
