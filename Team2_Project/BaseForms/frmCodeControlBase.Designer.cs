@@ -30,6 +30,7 @@ namespace Team2_Project.BaseForms
         private void InitializeComponent()
         {
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.cboUseYN = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@ namespace Team2_Project.BaseForms
             this.lblSearchName = new System.Windows.Forms.Label();
             this.txtSearchCode = new System.Windows.Forms.TextBox();
             this.lblSearchCode = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlListR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -127,6 +127,18 @@ namespace Team2_Project.BaseForms
             this.splitContainer2.Size = new System.Drawing.Size(983, 596);
             this.splitContainer2.SplitterDistance = 363;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // ucSearch1
+            // 
+            this.ucSearch1._Code = "";
+            this.ucSearch1._Name = "";
+            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
+            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSearch1.Location = new System.Drawing.Point(231, 60);
+            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSearch1.Name = "ucSearch1";
+            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
+            this.ucSearch1.TabIndex = 34;
             // 
             // cboUseYN
             // 
@@ -377,18 +389,6 @@ namespace Team2_Project.BaseForms
             this.lblSearchCode.TabIndex = 8;
             this.lblSearchCode.Text = "대분류코드";
             // 
-            // ucSearch1
-            // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(231, 60);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch1.TabIndex = 34;
-            // 
             // frmCodeControlBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -436,6 +436,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label lblInfoCodeMa;
         protected System.Windows.Forms.NumericUpDown nudSort;
         protected System.Windows.Forms.SplitContainer splitContainer2;
-        private Controls.ucSearch ucSearch1;
+        protected Controls.ucSearch ucSearch1;
     }
 }
