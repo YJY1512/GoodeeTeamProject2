@@ -43,20 +43,54 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvMi)).BeginInit();
             this.SuspendLayout();
             // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(810, 18);
+            // 
             // cboSearchUse
             // 
-            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
-            this.cboSearchUse.Text = "";
+            this.cboSearchUse.Location = new System.Drawing.Point(889, 14);
+            this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
+            // 
+            // txtSearchName
+            // 
+            this.txtSearchName.Location = new System.Drawing.Point(580, 14);
             // 
             // lblSearchName
             // 
+            this.lblSearchName.Location = new System.Drawing.Point(427, 18);
             this.lblSearchName.Size = new System.Drawing.Size(138, 17);
             this.lblSearchName.Text = "사용자정의 대분류명";
             // 
+            // txtSearchCode
+            // 
+            this.txtSearchCode.Location = new System.Drawing.Point(197, 14);
+            // 
             // lblSearchCode
             // 
+            this.lblSearchCode.Location = new System.Drawing.Point(30, 18);
             this.lblSearchCode.Size = new System.Drawing.Size(152, 17);
             this.lblSearchCode.Text = "사용자정의 대분류코드";
+            // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(624, 186);
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(647, 186);
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(624, 64);
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(726, 63);
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(647, 64);
             // 
             // label4
             // 
@@ -68,10 +102,22 @@ namespace Team2_Project
             this.lblInfoNameMa.Size = new System.Drawing.Size(166, 17);
             this.lblInfoNameMa.Text = "사용자정의 상세분류코드";
             // 
+            // txtInfoNameMi
+            // 
+            this.txtInfoNameMi.Location = new System.Drawing.Point(224, 182);
+            // 
+            // txtInfoCodeMi
+            // 
+            this.txtInfoCodeMi.Location = new System.Drawing.Point(224, 122);
+            // 
             // lblInfoCodeMa
             // 
             this.lblInfoCodeMa.Size = new System.Drawing.Size(124, 17);
             this.lblInfoCodeMa.Text = "사용자정의 대분류";
+            // 
+            // nudSort
+            // 
+            this.nudSort.Location = new System.Drawing.Point(224, 242);
             // 
             // splitContainer2
             // 
@@ -79,20 +125,30 @@ namespace Team2_Project
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMi);
-            this.splitContainer2.Size = new System.Drawing.Size(987, 596);
+            this.splitContainer2.Size = new System.Drawing.Size(1111, 645);
+            this.splitContainer2.SplitterDistance = 349;
+            // 
+            // ucSearch1
+            // 
+            this.ucSearch1.Location = new System.Drawing.Point(224, 59);
+            this.ucSearch1.Size = new System.Drawing.Size(340, 30);
+            // 
+            // cboUseYN
+            // 
+            this.cboUseYN.Location = new System.Drawing.Point(726, 182);
             // 
             // pnlSub
             // 
-            this.pnlSub.Size = new System.Drawing.Size(1484, 65);
+            this.pnlSub.Size = new System.Drawing.Size(1670, 60);
             // 
             // pnlListL
             // 
             this.pnlListL.Controls.Add(this.dgvMa);
-            this.pnlListL.Size = new System.Drawing.Size(493, 596);
+            this.pnlListL.Size = new System.Drawing.Size(555, 645);
             // 
             // pnlListR
             // 
-            this.pnlListR.Size = new System.Drawing.Size(987, 596);
+            this.pnlListR.Size = new System.Drawing.Size(1111, 645);
             // 
             // dgvMa
             // 
@@ -102,7 +158,7 @@ namespace Team2_Project
             this.dgvMa.Location = new System.Drawing.Point(0, 0);
             this.dgvMa.Name = "dgvMa";
             this.dgvMa.RowTemplate.Height = 23;
-            this.dgvMa.Size = new System.Drawing.Size(493, 596);
+            this.dgvMa.Size = new System.Drawing.Size(555, 645);
             this.dgvMa.TabIndex = 0;
             // 
             // dgvMi
@@ -113,13 +169,13 @@ namespace Team2_Project
             this.dgvMi.Location = new System.Drawing.Point(0, 0);
             this.dgvMi.Name = "dgvMi";
             this.dgvMi.RowTemplate.Height = 23;
-            this.dgvMi.Size = new System.Drawing.Size(987, 363);
+            this.dgvMi.Size = new System.Drawing.Size(1111, 349);
             this.dgvMi.TabIndex = 0;
             // 
             // frmUserCode
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1484, 704);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.ClientSize = new System.Drawing.Size(1670, 748);
             this.Name = "frmUserCode";
             this.Text = "사용자정의 관리";
             this.Load += new System.EventHandler(this.frmUserCode_Load);

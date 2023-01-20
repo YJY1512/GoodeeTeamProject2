@@ -78,8 +78,7 @@ namespace Team2_Project.BaseForms
             // 
             // pnlListL
             // 
-            this.pnlListL.Location = new System.Drawing.Point(0, 45);
-            this.pnlListL.Size = new System.Drawing.Size(578, 639);
+            this.pnlListL.Size = new System.Drawing.Size(578, 641);
             // 
             // lblTitleL
             // 
@@ -90,8 +89,7 @@ namespace Team2_Project.BaseForms
             // pnlListR
             // 
             this.pnlListR.Controls.Add(this.splitContainer2);
-            this.pnlListR.Location = new System.Drawing.Point(0, 45);
-            this.pnlListR.Size = new System.Drawing.Size(1156, 639);
+            this.pnlListR.Size = new System.Drawing.Size(1156, 641);
             // 
             // lblTitleR
             // 
@@ -130,8 +128,8 @@ namespace Team2_Project.BaseForms
             this.splitContainer2.Panel2.Controls.Add(this.txtInfoCodeMi);
             this.splitContainer2.Panel2.Controls.Add(this.lblInfoCodeMa);
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
-            this.splitContainer2.Size = new System.Drawing.Size(1156, 639);
-            this.splitContainer2.SplitterDistance = 343;
+            this.splitContainer2.Size = new System.Drawing.Size(1156, 641);
+            this.splitContainer2.SplitterDistance = 345;
             this.splitContainer2.TabIndex = 0;
             // 
             // ucSearch1
@@ -149,9 +147,9 @@ namespace Team2_Project.BaseForms
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(805, 182);
+            this.cboUseYN.Location = new System.Drawing.Point(802, 182);
             this.cboUseYN.Name = "cboUseYN";
-            this.cboUseYN.Size = new System.Drawing.Size(136, 25);
+            this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 33;
             // 
             // label14
@@ -169,7 +167,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(726, 186);
+            this.label10.Location = new System.Drawing.Point(723, 186);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 31;
@@ -179,7 +177,7 @@ namespace Team2_Project.BaseForms
             // 
             this.nudSort.Location = new System.Drawing.Point(260, 242);
             this.nudSort.Name = "nudSort";
-            this.nudSort.Size = new System.Drawing.Size(111, 25);
+            this.nudSort.Size = new System.Drawing.Size(130, 25);
             this.nudSort.TabIndex = 30;
             // 
             // label13
@@ -205,7 +203,7 @@ namespace Team2_Project.BaseForms
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(805, 63);
+            this.txtRemark.Location = new System.Drawing.Point(802, 63);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(300, 84);
@@ -215,7 +213,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(726, 64);
+            this.label8.Location = new System.Drawing.Point(723, 64);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 17);
             this.label8.TabIndex = 26;
@@ -225,7 +223,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(60, 246);
+            this.label9.Location = new System.Drawing.Point(43, 246);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 17);
             this.label9.TabIndex = 25;
@@ -268,7 +266,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(60, 186);
+            this.label4.Location = new System.Drawing.Point(43, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 17);
             this.label4.TabIndex = 20;
@@ -278,7 +276,7 @@ namespace Team2_Project.BaseForms
             // 
             this.lblInfoNameMa.AutoSize = true;
             this.lblInfoNameMa.BackColor = System.Drawing.Color.Transparent;
-            this.lblInfoNameMa.Location = new System.Drawing.Point(60, 126);
+            this.lblInfoNameMa.Location = new System.Drawing.Point(43, 126);
             this.lblInfoNameMa.Name = "lblInfoNameMa";
             this.lblInfoNameMa.Size = new System.Drawing.Size(92, 17);
             this.lblInfoNameMa.TabIndex = 20;
@@ -288,21 +286,21 @@ namespace Team2_Project.BaseForms
             // 
             this.txtInfoNameMi.Location = new System.Drawing.Point(260, 182);
             this.txtInfoNameMi.Name = "txtInfoNameMi";
-            this.txtInfoNameMi.Size = new System.Drawing.Size(213, 25);
+            this.txtInfoNameMi.Size = new System.Drawing.Size(170, 25);
             this.txtInfoNameMi.TabIndex = 19;
             // 
             // txtInfoCodeMi
             // 
             this.txtInfoCodeMi.Location = new System.Drawing.Point(260, 122);
             this.txtInfoCodeMi.Name = "txtInfoCodeMi";
-            this.txtInfoCodeMi.Size = new System.Drawing.Size(213, 25);
+            this.txtInfoCodeMi.Size = new System.Drawing.Size(170, 25);
             this.txtInfoCodeMi.TabIndex = 19;
             // 
             // lblInfoCodeMa
             // 
             this.lblInfoCodeMa.AutoSize = true;
             this.lblInfoCodeMa.BackColor = System.Drawing.Color.Transparent;
-            this.lblInfoCodeMa.Location = new System.Drawing.Point(60, 66);
+            this.lblInfoCodeMa.Location = new System.Drawing.Point(43, 66);
             this.lblInfoCodeMa.Name = "lblInfoCodeMa";
             this.lblInfoCodeMa.Size = new System.Drawing.Size(50, 17);
             this.lblInfoCodeMa.TabIndex = 18;
