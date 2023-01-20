@@ -45,7 +45,7 @@ namespace Team2_Project
             // 
             // cboSearchUse
             // 
-            this.cboUserYNSC.Size = new System.Drawing.Size(121, 24);
+            //this.cboUserYNSC.Size = new System.Drawing.Size(121, 24);
             // 
             // lblSearchName
             // 
