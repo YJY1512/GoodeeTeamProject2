@@ -45,8 +45,7 @@ namespace Team2_Project
             // 
             // cboSearchUse
             // 
-            //this.cboUserYNSC.Size = new System.Drawing.Size(121, 24);
-            //this.cboUserYNSC.Text = "";
+            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
             // 
             // txtSearchName
             // 
@@ -70,10 +69,6 @@ namespace Team2_Project
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
-            // txtInfoNameMa
-            // 
-            //this.txtInfoNameMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            // 
             // txtInfoNameMi
             // 
             this.txtInfoNameMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -81,10 +76,6 @@ namespace Team2_Project
             // txtInfoCodeMi
             // 
             this.txtInfoCodeMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            // 
-            // txtInfoCodeMa
-            // 
-            //this.txtInfoCodeMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // splitContainer2
             // 
@@ -94,6 +85,10 @@ namespace Team2_Project
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
             this.splitContainer2.Size = new System.Drawing.Size(1220, 803);
             this.splitContainer2.SplitterDistance = 570;
+            // 
+            // cboUseYN
+            // 
+            this.cboUseYN.Size = new System.Drawing.Size(121, 24);
             // 
             // pnlSub
             // 
