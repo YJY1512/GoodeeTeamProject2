@@ -37,7 +37,25 @@ namespace Team2_Project
             tStripDept.Text = "관리자";
             OpenChildPage<frmStartMain>();
         }
-        
+
+        private void chkHide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHide.Checked)
+            {
+                panel2.Width = MinWidth;
+                pnlMenu.Width = MinWidth;
+                pnlChildMenu.Visible = false;
+                chkHide.Text = ">";
+            }
+            else
+            {
+                panel2.Width = MaxWidth;
+                pnlMenu.Width = MaxWidth;
+                pnlChildMenu.Visible = false;
+                chkHide.Text = "<";
+            }
+        }
+
         private void OpenChildPage<T>() where T : Form, new()
         {
             foreach (Form form in Application.OpenForms)
@@ -416,13 +434,13 @@ namespace Team2_Project
         private void btnSearch_MouseHover_1(object sender, EventArgs e)
         {
             this.toolTip1.ToolTipTitle = "조회";
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnSearch, "조회를 실행하는 버튼입니다");
+            this.toolTip1.IsBalloon = true;                                      
+            this.toolTip1.SetToolTip(this.btnSearch, null);
         }
-        private void btnAdd_MouseHover(object sender, EventArgs e)
+        private void btnAdd_MouseHover(object sender, EventArgs e)   
         {
             this.toolTip1.ToolTipTitle = "추가";
-            this.toolTip1.IsBalloon = true;
+            //this.toolTip1.IsBalloon = true;
             this.toolTip1.SetToolTip(this.btnAdd, "데이터 추가를 하는 버튼입니다");
         }
         private void btnEdit_MouseHover(object sender, EventArgs e)
@@ -458,23 +476,7 @@ namespace Team2_Project
 
         #endregion
 
-        private void chkHide_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkHide.Checked)
-            {
-                panel2.Width = MinWidth;
-                pnlMenu.Width = MinWidth;
-                pnlChildMenu.Visible = false;
-                chkHide.Text = ">";
-            }
-            else
-            {
-                panel2.Width = MaxWidth;
-                pnlMenu.Width = MaxWidth;
-                pnlChildMenu.Visible = false;
-                chkHide.Text = "<";
-            }
-        }
+        
     }
     class TabTag
     {
