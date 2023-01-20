@@ -73,7 +73,7 @@ namespace Team2_Project.Controls
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSearch";
-            this.Size = new System.Drawing.Size(314, 28);
+            this.Size = new System.Drawing.Size(310, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 
