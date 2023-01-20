@@ -25,11 +25,11 @@ namespace Team2_Project
 
         private void frmNopMiCode_Load(object sender, EventArgs e)
         {
-            //cboUseYNSC.Items.Add("전체");
-            //cboUseYNSC.Items.Add("사용");
-            //cboUseYNSC.Items.Add("미사용");
-            //cboUseYNSC.SelectedIndex = 0;
-            //cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSearchUse.Items.Add("전체");
+            cboSearchUse.Items.Add("사용");
+            cboSearchUse.Items.Add("미사용");
+            cboSearchUse.SelectedIndex = 0;
+            cboSearchUse.DropDownStyle = ComboBoxStyle.DropDownList;
 
             DataGridViewUtil.SetInitDataGridView(dgvMaData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 500);
@@ -43,14 +43,15 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비고", "", 500, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 200, align: DataGridViewContentAlignment.MiddleCenter);
 
-            //cboUseYN.Items.Add("-선택-");
-            //cboUseYN.Items.Add("사용");
-            //cboUseYN.Items.Add("미사용");
-            //cboUseYN.SelectedIndex = 0;
-            //cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            //Deactivation(); //입력패널 비활성화
-            //OnSearch();
+            cboUseYN.Items.Add("-선택-");
+            cboUseYN.Items.Add("사용");
+            cboUseYN.Items.Add("미사용");
+            cboUseYN.SelectedIndex = 0;
+            cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            Deactivation(); //입력패널 비활성화
+            OnSearch();
         }
 
         #region Main 버튼 클릭이벤트
