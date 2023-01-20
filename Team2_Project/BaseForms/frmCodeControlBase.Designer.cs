@@ -418,7 +418,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label lblSearchName;
         protected System.Windows.Forms.TextBox txtSearchCode;
         protected System.Windows.Forms.Label lblSearchCode;
-        private System.Windows.Forms.ComboBox cboUseYN;
         protected System.Windows.Forms.Label label14;
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.Label label13;
@@ -437,5 +436,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.NumericUpDown nudSort;
         protected System.Windows.Forms.SplitContainer splitContainer2;
         protected Controls.ucSearch ucSearch1;
+        protected System.Windows.Forms.ComboBox cboUseYN;
     }
 }
