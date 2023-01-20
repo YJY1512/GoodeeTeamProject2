@@ -49,16 +49,16 @@ namespace Team2_Project
             // 
             // txtSearchName
             // 
-            this.txtSearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            //this.txtSearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // lblSearchName
             // 
-            this.lblSearchName.Size = new System.Drawing.Size(124, 17);
-            this.lblSearchName.Text = "비가동 상세분류명";
+            //this.lblSearchName.Size = new System.Drawing.Size(124, 17);
+            //this.lblSearchName.Text = "비가동 상세분류명";
             // 
             // txtSearchCode
             // 
-            this.txtSearchCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            //this.txtSearchCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // lblSearchCode
             // 

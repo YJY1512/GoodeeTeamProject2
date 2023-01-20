@@ -52,20 +52,6 @@ namespace Team2_Project
             this.cboSearchUse.Location = new System.Drawing.Point(889, 14);
             this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
             // 
-            // txtSearchName
-            // 
-            this.txtSearchName.Location = new System.Drawing.Point(580, 14);
-            // 
-            // lblSearchName
-            // 
-            this.lblSearchName.Location = new System.Drawing.Point(427, 18);
-            this.lblSearchName.Size = new System.Drawing.Size(138, 17);
-            this.lblSearchName.Text = "사용자정의 대분류명";
-            // 
-            // txtSearchCode
-            // 
-            this.txtSearchCode.Location = new System.Drawing.Point(197, 14);
-            // 
             // lblSearchCode
             // 
             this.lblSearchCode.Location = new System.Drawing.Point(30, 18);
@@ -137,6 +123,10 @@ namespace Team2_Project
             // 
             this.cboUseYN.Location = new System.Drawing.Point(726, 182);
             // 
+            // ucSearchCode
+            // 
+            this.ucSearchCode.Location = new System.Drawing.Point(197, 12);
+            // 
             // pnlSub
             // 
             this.pnlSub.Size = new System.Drawing.Size(1670, 60);
@@ -156,10 +146,12 @@ namespace Team2_Project
             this.dgvMa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMa.Location = new System.Drawing.Point(0, 0);
+            this.dgvMa.MultiSelect = false;
             this.dgvMa.Name = "dgvMa";
             this.dgvMa.RowTemplate.Height = 23;
             this.dgvMa.Size = new System.Drawing.Size(555, 645);
             this.dgvMa.TabIndex = 0;
+            this.dgvMa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMa_CellClick);
             // 
             // dgvMi
             // 
@@ -167,10 +159,12 @@ namespace Team2_Project
             this.dgvMi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMi.Location = new System.Drawing.Point(0, 0);
+            this.dgvMi.MultiSelect = false;
             this.dgvMi.Name = "dgvMi";
             this.dgvMi.RowTemplate.Height = 23;
             this.dgvMi.Size = new System.Drawing.Size(1111, 349);
             this.dgvMi.TabIndex = 0;
+            this.dgvMi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMi_CellClick);
             // 
             // frmUserCode
             // 

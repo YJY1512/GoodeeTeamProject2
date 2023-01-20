@@ -14,7 +14,7 @@ namespace Team2_Project_DTO
 		public string Userdefine_Ma_Name { get; set; }   //
 		public int Sort_Index { get; set; }  //
 		public string Remark { get; set; }   //
-		public char Use_YN { get; set; }     //
+		public string Use_YN { get; set; }     //
 		public DateTime Ins_Date { get; set; }   //
 		public string Ins_Emp { get; set; }  //
 		public DateTime Up_Date { get; set; }    //

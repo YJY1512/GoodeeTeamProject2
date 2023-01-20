@@ -30,9 +30,11 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"select Userdefine_Mi_Code, mi.Userdefine_Ma_Code, Userdefine_Mi_Name, Userdefine_Ma_Name, 
-                                    Sort_Index, mi.Remark, mi.Use_YN
-                            from Userdefine_Mi_Master mi inner join Userdefine_Ma_Master ma 
+                string sql = @"select ma.Userdefine_Ma_Code, Userdefine_Ma_Name, Userdefine_Mi_Code, Userdefine_Mi_Name,  
+                                    Sort_Index, mi.Remark,
+                                    case when mi.Use_YN = 'Y' then '예'
+										when mi.Use_YN = 'N' then '아니오' end as Use_YN
+                            from Userdefine_Mi_Master mi right outer join Userdefine_Ma_Master ma 
                                                         on mi.Userdefine_Ma_Code = ma.Userdefine_Ma_Code and ma.Use_YN = 'Y'";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))

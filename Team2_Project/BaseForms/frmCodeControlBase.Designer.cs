@@ -53,10 +53,8 @@ namespace Team2_Project.BaseForms
             this.lblListTitleR = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.cboSearchUse = new System.Windows.Forms.ComboBox();
-            this.txtSearchName = new System.Windows.Forms.TextBox();
-            this.lblSearchName = new System.Windows.Forms.Label();
-            this.txtSearchCode = new System.Windows.Forms.TextBox();
             this.lblSearchCode = new System.Windows.Forms.Label();
+            this.ucSearchCode = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlListR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -68,11 +66,9 @@ namespace Team2_Project.BaseForms
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.ucSearchCode);
             this.pnlSub.Controls.Add(this.label16);
             this.pnlSub.Controls.Add(this.cboSearchUse);
-            this.pnlSub.Controls.Add(this.txtSearchName);
-            this.pnlSub.Controls.Add(this.lblSearchName);
-            this.pnlSub.Controls.Add(this.txtSearchCode);
             this.pnlSub.Controls.Add(this.lblSearchCode);
             this.pnlSub.Size = new System.Drawing.Size(1738, 64);
             // 
@@ -358,30 +354,6 @@ namespace Team2_Project.BaseForms
             this.cboSearchUse.Size = new System.Drawing.Size(130, 25);
             this.cboSearchUse.TabIndex = 12;
             // 
-            // txtSearchName
-            // 
-            this.txtSearchName.Location = new System.Drawing.Point(432, 19);
-            this.txtSearchName.Name = "txtSearchName";
-            this.txtSearchName.Size = new System.Drawing.Size(170, 25);
-            this.txtSearchName.TabIndex = 11;
-            // 
-            // lblSearchName
-            // 
-            this.lblSearchName.AutoSize = true;
-            this.lblSearchName.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearchName.Location = new System.Drawing.Point(353, 23);
-            this.lblSearchName.Name = "lblSearchName";
-            this.lblSearchName.Size = new System.Drawing.Size(64, 17);
-            this.lblSearchName.TabIndex = 10;
-            this.lblSearchName.Text = "대분류명";
-            // 
-            // txtSearchCode
-            // 
-            this.txtSearchCode.Location = new System.Drawing.Point(123, 20);
-            this.txtSearchCode.Name = "txtSearchCode";
-            this.txtSearchCode.Size = new System.Drawing.Size(170, 25);
-            this.txtSearchCode.TabIndex = 9;
-            // 
             // lblSearchCode
             // 
             this.lblSearchCode.AutoSize = true;
@@ -391,6 +363,18 @@ namespace Team2_Project.BaseForms
             this.lblSearchCode.Size = new System.Drawing.Size(78, 17);
             this.lblSearchCode.TabIndex = 8;
             this.lblSearchCode.Text = "대분류코드";
+            // 
+            // ucSearchCode
+            // 
+            this.ucSearchCode._Code = "";
+            this.ucSearchCode._Name = "";
+            this.ucSearchCode.BackColor = System.Drawing.Color.Transparent;
+            this.ucSearchCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSearchCode.Location = new System.Drawing.Point(123, 17);
+            this.ucSearchCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSearchCode.Name = "ucSearchCode";
+            this.ucSearchCode.Size = new System.Drawing.Size(340, 28);
+            this.ucSearchCode.TabIndex = 14;
             // 
             // frmCodeControlBase
             // 
@@ -418,9 +402,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label lblListTitleR;
         protected System.Windows.Forms.Label label16;
         protected System.Windows.Forms.ComboBox cboSearchUse;
-        protected System.Windows.Forms.TextBox txtSearchName;
-        protected System.Windows.Forms.Label lblSearchName;
-        protected System.Windows.Forms.TextBox txtSearchCode;
         protected System.Windows.Forms.Label lblSearchCode;
         protected System.Windows.Forms.Label label14;
         protected System.Windows.Forms.Label label10;
@@ -441,5 +422,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.SplitContainer splitContainer2;
         protected Controls.ucSearch ucSearch1;
         protected System.Windows.Forms.ComboBox cboUseYN;
+        protected Controls.ucSearch ucSearchCode;
     }
 }
