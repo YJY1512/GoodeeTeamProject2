@@ -72,7 +72,7 @@ namespace Team2_Project
             // 
             // txtInfoNameMa
             // 
-            //this.txtInfoNameMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+
             // 
             // txtInfoNameMi
             // 
@@ -84,7 +84,7 @@ namespace Team2_Project
             // 
             // txtInfoCodeMa
             // 
-            //this.txtInfoCodeMa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+
             // 
             // splitContainer2
             // 
@@ -94,6 +94,10 @@ namespace Team2_Project
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
             this.splitContainer2.Size = new System.Drawing.Size(1220, 803);
             this.splitContainer2.SplitterDistance = 570;
+            // 
+            // cboUseYN
+            // 
+            this.cboUseYN.Size = new System.Drawing.Size(121, 24);
             // 
             // pnlSub
             // 
@@ -110,24 +114,20 @@ namespace Team2_Project
             // 
             // dgvMaData
             // 
-            this.dgvMaData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMaData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMaData.Location = new System.Drawing.Point(0, 0);
+            this.dgvMaData.Location = new System.Drawing.Point(152, 111);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(610, 803);
+            this.dgvMaData.Size = new System.Drawing.Size(240, 150);
             this.dgvMaData.TabIndex = 0;
             // 
             // dgvMiData
             // 
-            this.dgvMiData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMiData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMiData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMiData.Location = new System.Drawing.Point(0, 0);
+            this.dgvMiData.Location = new System.Drawing.Point(305, 96);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(1220, 570);
+            this.dgvMiData.Size = new System.Drawing.Size(240, 150);
             this.dgvMiData.TabIndex = 1;
             // 
             // frmNopMiCode
