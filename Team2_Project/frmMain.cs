@@ -430,51 +430,7 @@ namespace Team2_Project
         }
         #endregion
 
-        #region 버튼 마우스 포인트 올려놨을 떄 문구표시 이벤트
-        private void btnSearch_MouseHover_1(object sender, EventArgs e)
-        {
-            this.toolTip1.ToolTipTitle = "조회";
-            this.toolTip1.IsBalloon = true;                                      
-            this.toolTip1.SetToolTip(this.btnSearch, null);
-        }
-        private void btnAdd_MouseHover(object sender, EventArgs e)   
-        {
-            this.toolTip1.ToolTipTitle = "추가";
-            //this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnAdd, "데이터 추가를 하는 버튼입니다");
-        }
-        private void btnEdit_MouseHover(object sender, EventArgs e)
-        {
-            this.toolTip1.ToolTipTitle = "수정";
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnEdit, "데이터 수정을 하는 버튼입니다");
-        }
-        private void btnDelete_MouseHover(object sender, EventArgs e)
-        {
-            this.toolTip1.ToolTipTitle = "삭제";
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnDelete, "데이터 삭제를 하는 버튼입니다");
-        }
-        private void btnSave_MouseHover(object sender, EventArgs e)
-        {
-            this.toolTip1.ToolTipTitle = "저장";
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnSave, "데이터 저장을 하는 버튼입니다");
-        }
-        private void btnCancel_MouseHover(object sender, EventArgs e)
-        {
-            this.toolTip1.ToolTipTitle = "취소";
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnDelete, "입력한 데이터 값을 취소 하는 버튼입니다");
-        }
-        private void btnReLoad_MouseHover(object sender, EventArgs e)
-        {
-            this.toolTip1.ToolTipTitle = "새로고침";
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.SetToolTip(this.btnReLoad, "데이터를 새로고침 하는 버튼입니다");
-        }
-
-        #endregion
+        
 
         
     }

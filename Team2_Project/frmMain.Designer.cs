@@ -95,7 +95,6 @@ namespace Team2_Project
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnFavorite = new System.Windows.Forms.Button();
@@ -124,6 +123,7 @@ namespace Team2_Project
             this.tsBtnLogOut = new System.Windows.Forms.ToolStripButton();
             this.tStripName = new System.Windows.Forms.ToolStripLabel();
             this.tStripDept = new System.Windows.Forms.ToolStripLabel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new Team2_Project.Controls.ccTabControl();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -296,7 +296,6 @@ namespace Team2_Project
             this.btnReLoad.TabIndex = 6;
             this.btnReLoad.UseVisualStyleBackColor = true;
             this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
-            this.btnReLoad.MouseHover += new System.EventHandler(this.btnReLoad_MouseHover);
             // 
             // btnCancel
             // 
@@ -311,7 +310,6 @@ namespace Team2_Project
             this.btnCancel.TabIndex = 5;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
             // 
             // btnSave
             // 
@@ -326,7 +324,6 @@ namespace Team2_Project
             this.btnSave.TabIndex = 4;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.MouseHover += new System.EventHandler(this.btnSave_MouseHover);
             // 
             // btnDelete
             // 
@@ -341,7 +338,6 @@ namespace Team2_Project
             this.btnDelete.TabIndex = 3;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            this.btnDelete.MouseHover += new System.EventHandler(this.btnDelete_MouseHover);
             // 
             // btnEdit
             // 
@@ -356,7 +352,6 @@ namespace Team2_Project
             this.btnEdit.TabIndex = 2;
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            this.btnEdit.MouseHover += new System.EventHandler(this.btnEdit_MouseHover);
             // 
             // btnAdd
             // 
@@ -369,9 +364,9 @@ namespace Team2_Project
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(65, 65);
             this.btnAdd.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnAdd, "추가");
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.btnAdd.MouseHover += new System.EventHandler(this.btnAdd_MouseHover);
             // 
             // btnSearch
             // 
@@ -384,14 +379,9 @@ namespace Team2_Project
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(65, 65);
             this.btnSearch.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.btnSearch, "조회");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            this.btnSearch.MouseHover += new System.EventHandler(this.btnSearch_MouseHover_1);
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.toolTip1.ForeColor = System.Drawing.Color.White;
             // 
             // panel2
             // 
@@ -855,7 +845,7 @@ namespace Team2_Project
             this.tabControl1.Location = new System.Drawing.Point(212, 111);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1123, 31);
+            this.tabControl1.Size = new System.Drawing.Size(1123, 33);
             this.tabControl1.TabIndex = 38;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
@@ -921,7 +911,6 @@ namespace Team2_Project
         private System.Windows.Forms.ToolStripButton tsBtnSetting;
         private System.Windows.Forms.ToolStripButton tsBtnFavorite;
         private System.Windows.Forms.ImageList imageListLeftSideBar;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -954,6 +943,7 @@ namespace Team2_Project
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.CheckBox chkHide;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
