@@ -17,5 +17,21 @@ namespace Team2_Project.Services
 
             return list;
         }
+
+        public bool InsertUserCode(UserCodeDTO code)
+        {
+            UserCodeDAO db = new UserCodeDAO();
+            bool result = db.InsertUserCode(code);
+
+            return result;
+        }
+
+        public bool UpdateUserCode(UserCodeDTO code)
+        {
+            UserCodeDAO db = new UserCodeDAO();
+            bool result = db.UpdateUserCode(code);
+
+            return result;
+        }
     }
 }

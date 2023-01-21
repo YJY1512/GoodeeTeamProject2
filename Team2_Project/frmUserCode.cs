@@ -74,6 +74,7 @@ namespace Team2_Project
             ucSearch1._Code = "";
             ucSearch1._Name = "";
             nudSort.Value = 0;
+            cboUseYN.SelectedIndex = -1;
         }
 
 
@@ -113,6 +114,7 @@ namespace Team2_Project
             dgvMa.Enabled = dgvMi.Enabled = false;
             dgvMi.ClearSelection();
             txtInfoCodeMi.Enabled = txtInfoNameMi.Enabled = txtRemark.Enabled = cboUseYN.Enabled = nudSort.Enabled = true;
+            cboUseYN.SelectedIndex = 0;
 
             int idx = dgvMa.CurrentRow.Index;
             ucSearch1._Code = dgvMa["Userdefine_Ma_Code", idx].Value.ToString();
@@ -139,7 +141,76 @@ namespace Team2_Project
 
         public void OnSave()    //저장
         {
+            if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text))
+            {
+                MessageBox.Show("필수항목을 입력해주세요.");
+                return;
+            }
 
+            if (txtInfoCodeMi.Enabled) //신규 저장
+            {
+                int fidx = codeList.FindIndex((c) => c.Userdefine_Ma_Code == ucSearch1._Code && c.Userdefine_Mi_Code == txtInfoCodeMi.Text);
+                if (fidx != -1)
+                {
+                    MessageBox.Show("상세분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    return;
+                }
+
+                UserCodeDTO code = new UserCodeDTO
+                {
+                    Userdefine_Ma_Code = ucSearch1._Code,
+                    Userdefine_Mi_Code = txtInfoCodeMi.Text,
+                    Userdefine_Mi_Name = txtInfoNameMi.Text,
+                    Sort_Index = (int)nudSort.Value,
+                    Remark = txtRemark.Text,
+                    Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
+                    Ins_Emp = "" //수정필요
+                };
+
+                bool result = srv.InsertUserCode(code);
+                if (result)
+                {
+                    MessageBox.Show("등록이 완료되었습니다.");
+                    dgvMa.Enabled = dgvMi.Enabled = true;
+                    dgvMi.DataSource = null;
+
+                    SetInitEditPnl();
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("등록 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
+
+            }
+            else //수정 저장
+            {
+                UserCodeDTO code = new UserCodeDTO
+                {
+                    Userdefine_Ma_Code = ucSearch1._Code,
+                    Userdefine_Mi_Code = txtInfoCodeMi.Text,
+                    Userdefine_Mi_Name = txtInfoNameMi.Text,
+                    Sort_Index = (int)nudSort.Value,
+                    Remark = txtRemark.Text,
+                    Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
+                    Up_Emp = "" //수정필요
+                };
+
+                bool result = srv.UpdateUserCode(code);
+                if (result)
+                {
+                    MessageBox.Show("수정이 완료되었습니다.");
+                    dgvMa.Enabled = dgvMi.Enabled = true;
+                    dgvMi.DataSource = null;
+
+                    SetInitEditPnl();
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
+            }
         }
 
         public void OnCancel()  //취소

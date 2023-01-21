@@ -143,7 +143,7 @@ namespace Team2_Project.BaseForms
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(802, 182);
+            this.cboUseYN.Location = new System.Drawing.Point(802, 62);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 33;
@@ -153,7 +153,7 @@ namespace Team2_Project.BaseForms
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(700, 186);
+            this.label14.Location = new System.Drawing.Point(700, 66);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 17);
             this.label14.TabIndex = 32;
@@ -163,7 +163,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(723, 186);
+            this.label10.Location = new System.Drawing.Point(723, 66);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 31;
@@ -180,7 +180,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(700, 64);
+            this.label13.Location = new System.Drawing.Point(700, 126);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 17);
             this.label13.TabIndex = 29;
@@ -190,7 +190,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(20, 246);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);
@@ -199,7 +199,7 @@ namespace Team2_Project.BaseForms
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(802, 63);
+            this.txtRemark.Location = new System.Drawing.Point(802, 124);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(300, 84);
@@ -209,7 +209,7 @@ namespace Team2_Project.BaseForms
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(723, 64);
+            this.label8.Location = new System.Drawing.Point(723, 126);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 17);
             this.label8.TabIndex = 26;
@@ -406,7 +406,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label label14;
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.Label label13;
-        protected System.Windows.Forms.Label label12;
         protected System.Windows.Forms.TextBox txtRemark;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label9;
@@ -423,5 +422,6 @@ namespace Team2_Project.BaseForms
         protected Controls.ucSearch ucSearch1;
         protected System.Windows.Forms.ComboBox cboUseYN;
         protected Controls.ucSearch ucSearchCode;
+        protected System.Windows.Forms.Label label12;
     }
 }

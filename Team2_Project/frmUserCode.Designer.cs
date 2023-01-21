@@ -60,23 +60,23 @@ namespace Team2_Project
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(624, 186);
+            this.label14.Location = new System.Drawing.Point(624, 66);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(647, 186);
+            this.label10.Location = new System.Drawing.Point(647, 66);
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(624, 64);
+            this.label13.Location = new System.Drawing.Point(624, 126);
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(726, 63);
+            this.txtRemark.Location = new System.Drawing.Point(726, 124);
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(647, 64);
+            this.label8.Location = new System.Drawing.Point(647, 126);
             // 
             // label4
             // 
@@ -121,7 +121,7 @@ namespace Team2_Project
             // 
             // cboUseYN
             // 
-            this.cboUseYN.Location = new System.Drawing.Point(726, 182);
+            this.cboUseYN.Location = new System.Drawing.Point(726, 62);
             // 
             // ucSearchCode
             // 

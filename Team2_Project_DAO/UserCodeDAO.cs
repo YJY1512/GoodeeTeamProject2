@@ -41,6 +41,7 @@ namespace Team2_Project_DAO
                 {
                     conn.Open();
                     List<UserCodeDTO> list = Helper.DataReaderMapToList<UserCodeDTO>(cmd.ExecuteReader());
+                    conn.Close();
 
                     return list;
                 }
@@ -52,5 +53,74 @@ namespace Team2_Project_DAO
             }
         }
 
+        public bool InsertUserCode(UserCodeDTO code)
+        {
+            try
+            {
+                string sql = @"insert into Userdefine_Mi_Master(Userdefine_Mi_Code, Userdefine_Ma_Code, Userdefine_Mi_Name, 
+                                            Sort_Index, Remark, Use_YN, Ins_Emp)
+                                    values (@Userdefine_Mi_Code, @Userdefine_Ma_Code, @Userdefine_Mi_Name, 
+                                            @Sort_Index, @Remark, @Use_YN, @Ins_Emp)";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Userdefine_Mi_Code", code.Userdefine_Mi_Code);
+                    cmd.Parameters.AddWithValue("@Userdefine_Ma_Code", code.Userdefine_Ma_Code);
+                    cmd.Parameters.AddWithValue("@Userdefine_Mi_Name", code.Userdefine_Mi_Name);
+                    cmd.Parameters.AddWithValue("@Sort_Index", code.Sort_Index);
+                    cmd.Parameters.AddWithValue("@Remark", code.Remark);
+                    cmd.Parameters.AddWithValue("@Use_YN", code.Use_YN);
+                    cmd.Parameters.AddWithValue("@Ins_Emp", code.Ins_Emp);
+
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public bool UpdateUserCode(UserCodeDTO code)
+        {
+            try
+            {
+                string sql = @"update Userdefine_Mi_Master
+                                set Userdefine_Mi_Name = @Userdefine_Mi_Name, 
+	                                Sort_Index = @Sort_Index, 
+	                                Remark = @Remark, 
+	                                Use_YN = @Use_YN, 
+	                                Up_Date = GETDATE(),
+	                                Up_Emp = @Up_Emp
+                                where Userdefine_Ma_Code = @Userdefine_Ma_Code and Userdefine_Mi_Code = @Userdefine_Mi_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {                    
+                    cmd.Parameters.AddWithValue("@Userdefine_Mi_Name", code.Userdefine_Mi_Name);
+                    cmd.Parameters.AddWithValue("@Sort_Index", code.Sort_Index);
+                    cmd.Parameters.AddWithValue("@Remark", code.Remark);
+                    cmd.Parameters.AddWithValue("@Use_YN", code.Use_YN);
+                    cmd.Parameters.AddWithValue("@Up_Emp", code.Up_Emp);
+                    cmd.Parameters.AddWithValue("@Userdefine_Ma_Code", code.Userdefine_Ma_Code);
+                    cmd.Parameters.AddWithValue("@Userdefine_Mi_Code", code.Userdefine_Mi_Code);
+                    
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
     }
 }
