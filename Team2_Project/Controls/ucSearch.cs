@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_Project.BaseForms;
+using Team2_Project_DTO;
 
 namespace Team2_Project.Controls
 {
@@ -18,6 +20,7 @@ namespace Team2_Project.Controls
             get { return textBox1.Text; }
             set { textBox1.Text = value; }
         }
+
         public string _Name {
             get { return textBox2.Text; }
             set { textBox2.Text = value; }
@@ -27,13 +30,25 @@ namespace Team2_Project.Controls
         {
             InitializeComponent();
         }
-
+        
         private void btn_Click(object sender, EventArgs e)
         {
             if (BtnClick != null)
-            {
                 BtnClick(this, e);
+        }
+
+        public void OpenPop<T>(CommonPop<T> popInfo) where T : class, new()
+        {
+            frmPop pop = new frmPop();
+            pop.PopLoadData<T>(popInfo);
+
+            if (pop.ShowDialog(this) == DialogResult.OK)
+            {
+                textBox1.Text = pop.SelCode;
+                textBox2.Text = pop.SelName;
             }
         }
+
     }
+
 }

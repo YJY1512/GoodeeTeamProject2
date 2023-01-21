@@ -17,9 +17,7 @@ namespace Team2_Project.Utils
             dgv.RowHeadersWidth = 25;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgv.ColumnHeadersHeight = 40;
-            dgv.RowTemplate.Height = 30;
-            
-            
+            dgv.RowTemplate.Height = 30;                        
         }
 
         public static void AddGridTextBoxColumn(
@@ -48,6 +46,25 @@ namespace Team2_Project.Utils
             col.Frozen = frosen;
 
             dgv.Columns.Add(col);
+        }
+
+        public static DataGridViewTextBoxColumn ReturnNewDgvColumn(
+            string headerText,
+            string propertyName,
+            int colWidth = 100,
+            DataGridViewContentAlignment align = DataGridViewContentAlignment.MiddleLeft)
+        {
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+
+            col.Name = propertyName;
+            col.HeaderText = headerText;
+            col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col.DataPropertyName = propertyName;
+            col.DefaultCellStyle.Alignment = align;
+            col.Width = colWidth;
+            col.ReadOnly = true;
+
+            return col;
         }
     }
 }

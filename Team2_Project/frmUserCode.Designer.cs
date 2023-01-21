@@ -126,6 +126,7 @@ namespace Team2_Project
             // ucSearchCode
             // 
             this.ucSearchCode.Location = new System.Drawing.Point(197, 12);
+            this.ucSearchCode.BtnClick += new System.EventHandler(this.ucSearchCode_BtnClick);
             // 
             // pnlSub
             // 

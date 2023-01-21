@@ -52,9 +52,8 @@ namespace Team2_Project
             codeList = srv.GetUserCode();
             if (codeList != null && codeList.Count > 0)
             {
-                List<UserCodeDTO> maList = new List<UserCodeDTO>();
-                codeList.GroupBy((g) => g.Userdefine_Ma_Code).ToList().ForEach((g) => maList.Add(g.FirstOrDefault()));
-                dgvMa.DataSource = maList;
+                var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                dgvMa.DataSource = list;
             }
         }
 
@@ -96,8 +95,7 @@ namespace Team2_Project
                         select c).ToList();
             dgvMi.DataSource = list;
 
-            List<UserCodeDTO> maList = new List<UserCodeDTO>();
-            list.GroupBy((g) => g.Userdefine_Ma_Code).ToList().ForEach((g) => maList.Add(g.FirstOrDefault()));
+            var maList = list.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
             dgvMa.DataSource = maList;
         }
 
@@ -223,13 +221,30 @@ namespace Team2_Project
 
         public void OnReLoad()  //새로고침
         {
-            ucSearch1._Code = ucSearch1._Name = "";
+            ucSearchCode._Code = ucSearchCode._Name = "";
             cboSearchUse.SelectedIndex = 0;
 
             dgvMi.DataSource = null;
+            SetInitEditPnl();
             LoadData();
         }
         #endregion
+
+        private void ucSearchCode_BtnClick(object sender, EventArgs e)
+        {
+            var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류코드", "Userdefine_Ma_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류명", "Userdefine_Ma_Name", 200));
+
+            CommonPop<UserCodeDTO> popInfo = new CommonPop<UserCodeDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "대분류코드 검색";
+
+            ucSearchCode.OpenPop(popInfo);
+        }
 
         private void dgvMa_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -256,5 +271,7 @@ namespace Team2_Project
             txtRemark.Text = dgvMi["Remark", e.RowIndex].Value.ToString();
             cboUseYN.SelectedItem = dgvMi["Use_YN", e.RowIndex].Value.ToString();
         }
+
+
     }
 }
