@@ -17,9 +17,9 @@ namespace Team2_Project_DTO
 
     public class CommonPop<T>
     {
-        public List<T> DgvDatasource { get; set; }
-        public List<DataGridViewTextBoxColumn> DgvCols { get; set; }
-        public string PopName { get; set; }
+        public List<T> DgvDatasource { get; set; } //pop dgv의 datasource
+        public List<DataGridViewTextBoxColumn> DgvCols { get; set; } //pop dgv 컬럼 => datagridview util로 col 생성하면됨
+        public string PopName { get; set; } //pop창 이름 (예. 대분류코드 검색)
 
     }
 

@@ -37,6 +37,12 @@ namespace Team2_Project.Controls
                 BtnClick(this, e);
         }
 
+        /// <summary>
+        /// 돋보기 아이콘 클릭 시 사용하는 메서드 (pop 창 열기)
+        /// BtnClick 이벤트핸들러 구현 부분에 호출해서 사용할 것
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="popInfo"></param> => CodeDTO의 CommonPop Class 주석 참고
         public void OpenPop<T>(CommonPop<T> popInfo) where T : class, new()
         {
             frmPop pop = new frmPop();
@@ -48,6 +54,30 @@ namespace Team2_Project.Controls
                 textBox2.Text = pop.SelName;
             }
         }
+
+
+        #region OpenPop() 메서드 사용 예시
+        /*
+        private void ucSearch_BtnClick(object sender, EventArgs e)
+        {
+            //pop dgv에 binding할 datasource
+            var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+
+            //pop dgv 컬럼
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류코드", "Userdefine_Ma_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류명", "Userdefine_Ma_Name", 200));
+
+            //Commonpop class로 전달
+            CommonPop<UserCodeDTO> popInfo = new CommonPop<UserCodeDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "대분류코드 검색";
+
+            ucSearchCode.OpenPop(popInfo);
+        }
+        */
+        #endregion
 
     }
 
