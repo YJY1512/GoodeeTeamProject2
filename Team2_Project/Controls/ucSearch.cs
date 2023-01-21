@@ -63,10 +63,11 @@ namespace Team2_Project.Controls
             //pop dgv에 binding할 datasource
             var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
 
-            //pop dgv 컬럼
+            //pop dgv 컬럼 생성 (생성 시 주의사항 *** 컬럼 순서는 (1) 코드 => (2) 이름 순으로 할 것)
+            //코드, 이름 외 추가 필요한 컬럼은 이름 뒤로 추가 가능
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류코드", "Userdefine_Ma_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류명", "Userdefine_Ma_Name", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류코드", "Userdefine_Ma_Code", 200));   //(1) 첫번째 컬럼 => 코드
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류명", "Userdefine_Ma_Name", 200));    //(2) 두번째 컬럼 => 이름
 
             //Commonpop class로 전달
             CommonPop<UserCodeDTO> popInfo = new CommonPop<UserCodeDTO>();
