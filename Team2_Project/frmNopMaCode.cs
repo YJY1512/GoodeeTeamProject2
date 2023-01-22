@@ -128,6 +128,8 @@ namespace Team2_Project
             }
 
             OnReLoad();
+            ResetBottom();  //입력패널 리셋
+            Deactivation(); //입력패널 비활성화
         }
 
         public void OnCancel()  //취소

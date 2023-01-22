@@ -15,6 +15,7 @@ namespace Team2_Project
     public partial class frmNopMiCode : frmCodeControlBase
     {
         NopCodeService srv = new NopCodeService();
+        List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         List<NopMiCodeDTO> NopMiList = new List<NopMiCodeDTO>();
         string situation = "";
 
@@ -56,15 +57,15 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            //NopMaCodeDTO item = new NopMaCodeDTO
-            //{
-            //    Nop_Ma_Code = txtCodeSC.Text,
-            //    Nop_Ma_Name = txtNameSC.Text,
-            //    Use_YN = cboUseYNSC.Text
-            //};
-            //NopMaList = srv.GetNopSearch(item);
-            //dgvData.DataSource = null;
-            //dgvData.DataSource = NopMaList;
+            NopMaCodeDTO item = new NopMaCodeDTO
+            {
+                Nop_Ma_Code = ucSearchCode._Code,
+                Nop_Ma_Name = ucSearchCode._Name,
+                Use_YN = cboSearchUse.Text
+            };
+            NopMaList = srv.GetNopMaSearch(item);
+            dgvMaData.DataSource = null;
+            dgvMaData.DataSource = NopMaList;
         }
         public void OnAdd()     //추가
         {

@@ -43,31 +43,25 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiData)).BeginInit();
             this.SuspendLayout();
             // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(662, 17);
+            // 
             // cboSearchUse
             // 
-            this.cboSearchUse.Size = new System.Drawing.Size(121, 24);
-            // 
-            // txtSearchName
-            // 
-            //this.txtSearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            // 
-            // lblSearchName
-            // 
-            //this.lblSearchName.Size = new System.Drawing.Size(124, 17);
-            //this.lblSearchName.Text = "비가동 상세분류명";
-            // 
-            // txtSearchCode
-            // 
-            //this.txtSearchCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cboSearchUse.Location = new System.Drawing.Point(741, 13);
+            this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
             // 
             // lblSearchCode
             // 
-            this.lblSearchCode.Size = new System.Drawing.Size(138, 17);
-            this.lblSearchCode.Text = "비가동 상세분류코드";
+            this.lblSearchCode.Location = new System.Drawing.Point(33, 17);
+            this.lblSearchCode.Size = new System.Drawing.Size(124, 17);
+            this.lblSearchCode.Text = "비가동 대분류코드";
             // 
             // txtRemark
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemark.Size = new System.Drawing.Size(300, 89);
             // 
             // txtInfoNameMi
             // 
@@ -83,25 +77,29 @@ namespace Team2_Project
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
-            this.splitContainer2.Size = new System.Drawing.Size(1220, 803);
-            this.splitContainer2.SplitterDistance = 570;
+            this.splitContainer2.Size = new System.Drawing.Size(1373, 875);
+            this.splitContainer2.SplitterDistance = 642;
             // 
             // cboUseYN
             // 
-            this.cboUseYN.Size = new System.Drawing.Size(121, 24);
+            this.cboUseYN.Size = new System.Drawing.Size(136, 25);
+            // 
+            // ucSearchCode
+            // 
+            this.ucSearchCode.Location = new System.Drawing.Point(178, 11);
             // 
             // pnlSub
             // 
-            this.pnlSub.Size = new System.Drawing.Size(1834, 65);
+            this.pnlSub.Size = new System.Drawing.Size(2063, 50);
             // 
             // pnlListL
             // 
             this.pnlListL.Controls.Add(this.dgvMaData);
-            this.pnlListL.Size = new System.Drawing.Size(610, 803);
+            this.pnlListL.Size = new System.Drawing.Size(686, 875);
             // 
             // pnlListR
             // 
-            this.pnlListR.Size = new System.Drawing.Size(1220, 803);
+            this.pnlListR.Size = new System.Drawing.Size(1373, 875);
             // 
             // dgvMaData
             // 
@@ -111,7 +109,7 @@ namespace Team2_Project
             this.dgvMaData.Location = new System.Drawing.Point(0, 0);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(610, 803);
+            this.dgvMaData.Size = new System.Drawing.Size(686, 875);
             this.dgvMaData.TabIndex = 0;
             // 
             // dgvMiData
@@ -122,13 +120,13 @@ namespace Team2_Project
             this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(1220, 570);
+            this.dgvMiData.Size = new System.Drawing.Size(1373, 642);
             this.dgvMiData.TabIndex = 1;
             // 
             // frmNopMiCode
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1834, 911);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.ClientSize = new System.Drawing.Size(2063, 968);
             this.Name = "frmNopMiCode";
             this.Text = "비가동 상세분류코드";
             this.Load += new System.EventHandler(this.frmNopMiCode_Load);
