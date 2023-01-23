@@ -47,5 +47,13 @@ namespace Team2_Project.Services
             return result;
         }
 
+        public List<CodeDTO> GetUserGroupCode()
+        {
+            UserGroupDAO db = new UserGroupDAO();
+            List<CodeDTO> list = db.GetUserGroupCode();
+            db.Dispose();
+
+            return list;
+        }
     }
 }

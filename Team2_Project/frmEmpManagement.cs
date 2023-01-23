@@ -24,6 +24,7 @@ namespace Team2_Project
         Dictionary<char, string> use_YNList = new Dictionary<char, string>(){{ 'Y', "재직" }, { 'N', "퇴직" }};
         Dictionary<char, string> AuthList = new Dictionary<char, string>() { { 'A', "관리자" }, { 'U', "일반" } };
         int idx = -1;
+        List<CodeDTO> userGroupCodeList;
 
         public frmEmpManagement()
         {
@@ -60,14 +61,37 @@ namespace Team2_Project
             pnlStat = 0;
         }
 
-        private void ucSearchDept_BtnClick(object sender, EventArgs e)
-        {
+        //private void ucSearchDept_BtnClick(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void ucSearchGroup_BtnClick(object sender, EventArgs e)
         {
+            //int empid = ((frmMain)this.MdiParent).LoginEmpInfo.emp_id;
+            if (userGroupCodeList == null || userGroupCodeList.Count() < 1)
+            {
+                userGroupCodeList = empSrv.GetUserGroupCode();
+            }
 
+            //frmUcSearchPopup pop = new frmUcSearchPopup(userGroupCodeList);
+            //if (pop.ShowDialog() == DialogResult.OK)
+            //{
+            //    CodeDTO group = pop.Info;
+            //    ucSearchGroup._Code = group.Code;
+            //    ucSearchGroup._Name = group.Name;
+            //}
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹코드", "Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹명", "Name", 200));
+
+            CommonPop<CodeDTO> popInfo = new CommonPop<CodeDTO>();
+            popInfo.DgvDatasource = userGroupCodeList;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "그룹코드 검색";
+
+            ucSearchGroup.OpenPop(popInfo);
         }
 
         private void ClearPnl()
