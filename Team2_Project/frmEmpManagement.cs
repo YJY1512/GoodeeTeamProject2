@@ -13,7 +13,8 @@ using Team2_Project_DTO;
 
 namespace Team2_Project
 {
-    //Uc 적용
+    //생산요청에서 사용된 적 있는 직원은 삭제 불가능 추가
+    //코드 정리
 
     public partial class frmEmpManagement : frmListUpAreaDown
     {

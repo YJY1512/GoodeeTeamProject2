@@ -54,7 +54,6 @@ namespace Team2_Project
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.cboAuth = new System.Windows.Forms.ComboBox();
@@ -72,7 +71,6 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.button1);
             this.pnlSub.Controls.Add(this.cboSearchDel);
             this.pnlSub.Controls.Add(this.txtSearchName);
             this.pnlSub.Controls.Add(this.txtSearchID);
@@ -98,8 +96,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvEmp);
-            this.pnlList.Location = new System.Drawing.Point(0, 45);
-            this.pnlList.Size = new System.Drawing.Size(1834, 555);
+            this.pnlList.Size = new System.Drawing.Size(1834, 557);
             // 
             // pnlArea
             // 
@@ -119,8 +116,7 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label5);
             this.pnlArea.Controls.Add(this.label4);
             this.pnlArea.Controls.Add(this.label1);
-            this.pnlArea.Location = new System.Drawing.Point(0, 45);
-            this.pnlArea.Size = new System.Drawing.Size(1834, 197);
+            this.pnlArea.Size = new System.Drawing.Size(1834, 199);
             // 
             // splitContainer1
             // 
@@ -135,7 +131,7 @@ namespace Team2_Project
             this.dgvEmp.Location = new System.Drawing.Point(0, 0);
             this.dgvEmp.Name = "dgvEmp";
             this.dgvEmp.RowTemplate.Height = 23;
-            this.dgvEmp.Size = new System.Drawing.Size(1834, 555);
+            this.dgvEmp.Size = new System.Drawing.Size(1834, 557);
             this.dgvEmp.TabIndex = 0;
             this.dgvEmp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmp_CellClick);
             // 
@@ -171,7 +167,7 @@ namespace Team2_Project
             this.txtID.Location = new System.Drawing.Point(136, 24);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(158, 24);
-            this.txtID.TabIndex = 3;
+            this.txtID.TabIndex = 0;
             this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // txtName
@@ -179,7 +175,7 @@ namespace Team2_Project
             this.txtName.Location = new System.Drawing.Point(136, 85);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(158, 24);
-            this.txtName.TabIndex = 4;
+            this.txtName.TabIndex = 1;
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // ucSearchDept
@@ -213,7 +209,7 @@ namespace Team2_Project
             this.ucSearchGroup.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearchGroup.Name = "ucSearchGroup";
             this.ucSearchGroup.Size = new System.Drawing.Size(340, 28);
-            this.ucSearchGroup.TabIndex = 7;
+            this.ucSearchGroup.TabIndex = 3;
             this.ucSearchGroup.BtnClick += new System.EventHandler(this.ucSearchGroup_BtnClick);
             // 
             // label8
@@ -231,7 +227,7 @@ namespace Team2_Project
             this.cboDel.Location = new System.Drawing.Point(504, 85);
             this.cboDel.Name = "cboDel";
             this.cboDel.Size = new System.Drawing.Size(100, 26);
-            this.cboDel.TabIndex = 11;
+            this.cboDel.TabIndex = 4;
             this.cboDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // label9
@@ -365,15 +361,6 @@ namespace Team2_Project
             this.label17.TabIndex = 24;
             this.label17.Text = "*";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(942, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label6);
@@ -405,7 +392,7 @@ namespace Team2_Project
             this.cboAuth.Location = new System.Drawing.Point(136, 146);
             this.cboAuth.Name = "cboAuth";
             this.cboAuth.Size = new System.Drawing.Size(100, 26);
-            this.cboAuth.TabIndex = 27;
+            this.cboAuth.TabIndex = 2;
             // 
             // label19
             // 
@@ -467,7 +454,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label13;
         protected System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
         protected System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox cboAuth;
         private System.Windows.Forms.Label label19;

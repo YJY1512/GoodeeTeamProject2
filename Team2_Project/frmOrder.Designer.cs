@@ -34,12 +34,12 @@ namespace Team2_Project
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.dgvOrder = new System.Windows.Forms.DataGridView();
             this.dtpSearchOrd1 = new System.Windows.Forms.DateTimePicker();
             this.dtpSearchOrd2 = new System.Windows.Forms.DateTimePicker();
             this.dtpSearchDue1 = new System.Windows.Forms.DateTimePicker();
             this.dtpSearchDue2 = new System.Windows.Forms.DateTimePicker();
+            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -48,11 +48,11 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.ucSearch1);
             this.pnlSub.Controls.Add(this.dtpSearchDue2);
             this.pnlSub.Controls.Add(this.dtpSearchDue1);
             this.pnlSub.Controls.Add(this.dtpSearchOrd2);
             this.pnlSub.Controls.Add(this.dtpSearchOrd1);
-            this.pnlSub.Controls.Add(this.ucSearch1);
             this.pnlSub.Controls.Add(this.label6);
             this.pnlSub.Controls.Add(this.label3);
             this.pnlSub.Controls.Add(this.label4);
@@ -132,18 +132,6 @@ namespace Team2_Project
             this.label6.TabIndex = 66;
             this.label6.Text = "품목";
             // 
-            // ucSearch1
-            // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(491, 16);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(292, 28);
-            this.ucSearch1.TabIndex = 68;
-            // 
             // dgvOrder
             // 
             this.dgvOrder.BackgroundColor = System.Drawing.Color.White;
@@ -191,6 +179,19 @@ namespace Team2_Project
             this.dtpSearchDue2.Size = new System.Drawing.Size(107, 25);
             this.dtpSearchDue2.TabIndex = 72;
             // 
+            // ucSearch1
+            // 
+            this.ucSearch1._Code = "";
+            this.ucSearch1._Name = "";
+            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
+            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSearch1.Location = new System.Drawing.Point(491, 14);
+            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSearch1.Name = "ucSearch1";
+            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
+            this.ucSearch1.TabIndex = 73;
+            this.ucSearch1.BtnClick += new System.EventHandler(this.ucSearch1_BtnClick);
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 17F);
@@ -213,7 +214,6 @@ namespace Team2_Project
         #endregion
         protected System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label label1;
-        private Controls.ucSearch ucSearch1;
         protected System.Windows.Forms.Label label6;
         protected System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label label4;
@@ -222,5 +222,6 @@ namespace Team2_Project
         private System.Windows.Forms.DateTimePicker dtpSearchDue1;
         private System.Windows.Forms.DateTimePicker dtpSearchOrd2;
         private System.Windows.Forms.DateTimePicker dtpSearchOrd1;
+        private Controls.ucSearch ucSearch1;
     }
 }
