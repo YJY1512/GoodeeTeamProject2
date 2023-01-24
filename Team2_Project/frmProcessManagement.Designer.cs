@@ -318,7 +318,7 @@ namespace Team2_Project
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(625, 21);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(14, 18);
