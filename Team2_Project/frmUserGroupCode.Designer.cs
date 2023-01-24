@@ -143,7 +143,7 @@ namespace Team2_Project
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(606, 16);
+            this.comboBox1.Location = new System.Drawing.Point(605, 16);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(130, 25);
             this.comboBox1.TabIndex = 3;
