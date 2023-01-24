@@ -10,10 +10,25 @@ namespace Team2_Project.Services
 {
     public class UserGroupAuthorityService
     {
+        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh()
+        {
+            UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
+            List<UserGroupAuthorityDTO> list = db.GetUserGroupCodeSearh();
+
+            return list;
+        }
         public bool InsertUserGroup(UserGroupAuthorityDTO uga)
         {
             UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
             bool list = db.InsertUserGroup(uga);
+
+            return list;
+        }
+
+        public bool UpdateUserGroup(UserGroupAuthorityDTO uga)
+        {
+            UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
+            bool list = db.UpdateUserGroup(uga);
 
             return list;
         }
