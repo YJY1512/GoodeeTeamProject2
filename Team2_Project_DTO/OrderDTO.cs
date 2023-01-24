@@ -12,6 +12,7 @@ namespace Team2_Project_DTO
         public string Req_Date { get; set; }
         public string Req_Seq { get; set; }
         public string Item_Code { get; set; }
+        public string Item_Name { get; set; }
         public int Req_Qty { get; set; }
         public string Prj_No { get; set; }
         public string Delivery_Date { get; set; }

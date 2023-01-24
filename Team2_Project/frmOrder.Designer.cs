@@ -39,7 +39,9 @@ namespace Team2_Project
             this.dtpSearchOrd2 = new System.Windows.Forms.DateTimePicker();
             this.dtpSearchDue1 = new System.Windows.Forms.DateTimePicker();
             this.dtpSearchDue2 = new System.Windows.Forms.DateTimePicker();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
+            this.ucSearchItem = new Team2_Project.Controls.ucSearch();
+            this.ucSearchProject = new Team2_Project.Controls.ucSearch();
+            this.label5 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -48,7 +50,9 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.ucSearch1);
+            this.pnlSub.Controls.Add(this.ucSearchProject);
+            this.pnlSub.Controls.Add(this.label5);
+            this.pnlSub.Controls.Add(this.ucSearchItem);
             this.pnlSub.Controls.Add(this.dtpSearchDue2);
             this.pnlSub.Controls.Add(this.dtpSearchDue1);
             this.pnlSub.Controls.Add(this.dtpSearchOrd2);
@@ -84,9 +88,9 @@ namespace Team2_Project
             this.label9.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label9.Location = new System.Drawing.Point(45, 19);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 17);
+            this.label9.Size = new System.Drawing.Size(64, 17);
             this.label9.TabIndex = 57;
-            this.label9.Text = "생산요청일";
+            this.label9.Text = "요청일자";
             // 
             // label1
             // 
@@ -117,20 +121,20 @@ namespace Team2_Project
             this.label4.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.Location = new System.Drawing.Point(45, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 17);
+            this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 61;
-            this.label4.Text = "납기일";
+            this.label4.Text = "납기일자";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(448, 22);
+            this.label6.Location = new System.Drawing.Point(445, 19);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 17);
+            this.label6.Size = new System.Drawing.Size(64, 17);
             this.label6.TabIndex = 66;
-            this.label6.Text = "품목";
+            this.label6.Text = "품목코드";
             // 
             // dgvOrder
             // 
@@ -179,18 +183,42 @@ namespace Team2_Project
             this.dtpSearchDue2.Size = new System.Drawing.Size(107, 25);
             this.dtpSearchDue2.TabIndex = 72;
             // 
-            // ucSearch1
+            // ucSearchItem
             // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(491, 14);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch1.TabIndex = 73;
-            this.ucSearch1.BtnClick += new System.EventHandler(this.ucSearch1_BtnClick);
+            this.ucSearchItem._Code = "";
+            this.ucSearchItem._Name = "";
+            this.ucSearchItem.BackColor = System.Drawing.Color.Transparent;
+            this.ucSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSearchItem.Location = new System.Drawing.Point(540, 15);
+            this.ucSearchItem.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSearchItem.Name = "ucSearchItem";
+            this.ucSearchItem.Size = new System.Drawing.Size(340, 28);
+            this.ucSearchItem.TabIndex = 73;
+            this.ucSearchItem.BtnClick += new System.EventHandler(this.ucSearchItem_BtnClick);
+            // 
+            // ucSearchProject
+            // 
+            this.ucSearchProject._Code = "";
+            this.ucSearchProject._Name = "";
+            this.ucSearchProject.BackColor = System.Drawing.Color.Transparent;
+            this.ucSearchProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSearchProject.Location = new System.Drawing.Point(540, 61);
+            this.ucSearchProject.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSearchProject.Name = "ucSearchProject";
+            this.ucSearchProject.Size = new System.Drawing.Size(340, 28);
+            this.ucSearchProject.TabIndex = 75;
+            this.ucSearchProject.BtnClick += new System.EventHandler(this.ucSearchProject_BtnClick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(445, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.TabIndex = 74;
+            this.label5.Text = "프로젝트코드";
             // 
             // frmOrder
             // 
@@ -222,6 +250,8 @@ namespace Team2_Project
         private System.Windows.Forms.DateTimePicker dtpSearchDue1;
         private System.Windows.Forms.DateTimePicker dtpSearchOrd2;
         private System.Windows.Forms.DateTimePicker dtpSearchOrd1;
-        private Controls.ucSearch ucSearch1;
+        private Controls.ucSearch ucSearchItem;
+        private Controls.ucSearch ucSearchProject;
+        protected System.Windows.Forms.Label label5;
     }
 }

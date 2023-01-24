@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using Team2_Project_DTO;
+using System.Diagnostics;
 
 namespace Team2_Project_DAO
 {
@@ -93,9 +94,10 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
                 return true;
             }
-            catch
+            catch(Exception err)
             {
                 trans.Rollback();
+                Debug.WriteLine(err.Message);
                 return false;
             }
         }
@@ -148,9 +150,10 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
                 return true;
             }
-            catch
+            catch(Exception err)
             {
                 trans.Rollback();
+                Debug.WriteLine(err.Message);
                 return false;
             }
         }
@@ -173,8 +176,9 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
                 return true;
             }
-            catch
+            catch(Exception err)
             {
+                Debug.WriteLine(err.Message);
                 return false;
             }
         }
