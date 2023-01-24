@@ -49,6 +49,7 @@
     <Compile Include="EmployeeDTO.cs" />
     <Compile Include="ItemDTO.cs" />
     <Compile Include="OrderDTO.cs" />
+    <Compile Include="ProjectDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysCodeDTO.cs" />
     <Compile Include="UserCodeDTO.cs" />
