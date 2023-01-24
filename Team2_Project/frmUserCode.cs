@@ -53,8 +53,11 @@ namespace Team2_Project
             if (codeList != null && codeList.Count > 0)
             {
                 var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                dgvMa.DataSource = null;
                 dgvMa.DataSource = list;
             }
+
+            dgvMi.DataSource = null;
         }
 
         private void SetInitEditPnl()
@@ -85,7 +88,6 @@ namespace Team2_Project
 
             if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
             {
-                dgvMi.DataSource = null;
                 LoadData();
                 return;
             }
@@ -147,8 +149,8 @@ namespace Team2_Project
 
             if (txtInfoCodeMi.Enabled) //신규 저장
             {
-                int fidx = codeList.FindIndex((c) => c.Userdefine_Ma_Code == ucSearch1._Code && c.Userdefine_Mi_Code == txtInfoCodeMi.Text);
-                if (fidx != -1)
+                bool result = srv.CheckPK(ucSearch1._Code, txtInfoCodeMi.Text);
+                if (!result)
                 {
                     MessageBox.Show("상세분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
                     return;
@@ -165,12 +167,11 @@ namespace Team2_Project
                     Ins_Emp = "" //수정필요
                 };
 
-                bool result = srv.InsertUserCode(code);
+                result = srv.InsertUserCode(code);
                 if (result)
                 {
                     MessageBox.Show("등록이 완료되었습니다.");
                     dgvMa.Enabled = dgvMi.Enabled = true;
-                    dgvMi.DataSource = null;
 
                     SetInitEditPnl();
                     LoadData();
@@ -199,7 +200,6 @@ namespace Team2_Project
                 {
                     MessageBox.Show("수정이 완료되었습니다.");
                     dgvMa.Enabled = dgvMi.Enabled = true;
-                    dgvMi.DataSource = null;
 
                     SetInitEditPnl();
                     LoadData();
@@ -223,8 +223,7 @@ namespace Team2_Project
         {
             ucSearchCode._Code = ucSearchCode._Name = "";
             cboSearchUse.SelectedIndex = 0;
-
-            dgvMi.DataSource = null;
+            
             SetInitEditPnl();
             LoadData();
         }
