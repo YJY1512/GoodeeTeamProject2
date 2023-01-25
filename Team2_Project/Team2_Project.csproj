@@ -143,6 +143,12 @@
     <Compile Include="frmDefectCodeDetail.Designer.cs">
       <DependentUpon>frmDefectCodeDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNopMiCode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDefectCodeDetail.resx">
       <DependentUpon>frmDefectCodeDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNop.resx">
       <DependentUpon>frmNop.cs</DependentUpon>

@@ -116,8 +116,8 @@ namespace Team2_Project
             // 
             // ucSearch1
             // 
-            this.ucSearch1.Location = new System.Drawing.Point(224, 62);
-            this.ucSearch1.Size = new System.Drawing.Size(340, 30);
+            this.ucMaCode.Location = new System.Drawing.Point(224, 62);
+            this.ucMaCode.Size = new System.Drawing.Size(340, 30);
             // 
             // cboUseYN
             // 
@@ -125,10 +125,10 @@ namespace Team2_Project
             // 
             // ucSearchCode
             // 
-            this.ucSearchCode.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucSearchCode.Location = new System.Drawing.Point(169, 15);
-            this.ucSearchCode.Size = new System.Drawing.Size(340, 26);
-            this.ucSearchCode.BtnClick += new System.EventHandler(this.ucSearchCode_BtnClick);
+            this.ucMaCodeSC.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucMaCodeSC.Location = new System.Drawing.Point(169, 15);
+            this.ucMaCodeSC.Size = new System.Drawing.Size(340, 26);
+            this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucSearchCode_BtnClick);
             // 
             // pnlSub
             // 

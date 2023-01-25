@@ -35,6 +35,7 @@ namespace Team2_Project_DAO
                 //sb.Append("SP_OrderList");
                 sb.Append(@"SELECT Item_Code , Item_Name
                                  , CASE WHEN Item_Type = 'PR' THEN '완제품' ELSE '반제품' END AS Item_Type
+                                 , CASE WHEN Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN
                                  , Item_Spec , Remark , Use_YN 
 	                             , CONVERT(VARCHAR(10), Ins_Date, 23) Ins_Date	                               
                              FROM Item_Master
@@ -164,6 +165,7 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Up_Emp", item.Up_Emp);
 
                 conn.Open();
+                Debug.WriteLine(cmd.CommandText);
                 int iRowAffect = cmd.ExecuteNonQuery();
                 return (iRowAffect > 0);
             }
@@ -175,6 +177,32 @@ namespace Team2_Project_DAO
             finally
             {
                 conn.Close();
+            }
+        }
+
+        public bool CheckPK(string ItemCode) //PK체크
+        {
+            try
+            {
+                string sql = @"select count(*) cnt
+                                from Item_Master
+                                where Item_Code = @Item_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Item_Code", ItemCode);
+
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return (cnt < 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
             }
         }
 

@@ -86,7 +86,7 @@ namespace Team2_Project
             // 
             // ucSearchCode
             // 
-            this.ucSearchCode.Location = new System.Drawing.Point(178, 11);
+            this.ucMaCodeSC.Location = new System.Drawing.Point(178, 11);
             // 
             // pnlSub
             // 

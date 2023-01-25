@@ -25,7 +25,6 @@ namespace Team2_Project
             InitializeComponent();
         }
 
-
         #region Main 버튼 클릭이벤트  /////////////////// 이거 복사해서 쓰세요 ///////////////////
         //public void OnSearch()  //검색 
         //{
@@ -66,18 +65,20 @@ namespace Team2_Project
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            //((frmMain)this.MdiParent).BtnClick += Common_BtnClick;
+            //1. 추가,수정버튼 클릭 -> 입력패널이 활성화
+            //2. 저장버튼 클릭 시   -> 추가,수정 적용 
+
+            LoadData();     //로드            
+            OnSearch();     //조회
+        }
+
+        private void LoadData()
+        {
             cboTypeSC.Items.Add("전체");
             cboTypeSC.Items.Add("완제품");
             cboTypeSC.Items.Add("반제품");
             cboTypeSC.SelectedIndex = 0;
             cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            cboUseYNSC.Items.Add("전체");
-            cboUseYNSC.Items.Add("사용");
-            cboUseYNSC.Items.Add("미사용");
-            cboUseYNSC.SelectedIndex = 0;
-            cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 400, align: DataGridViewContentAlignment.MiddleCenter);
@@ -86,6 +87,13 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "규격", "Item_Spec", 300, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비고", "Remark", 500);
+            dgvData.MultiSelect = false;
+
+            CommonCodeUtil.UseYNComboBinding(cboUseYNSC);
+            CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
+            cboUseYNSC.SelectedIndex = 0;
+            cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cboType.Items.Add("-선택-");
             cboType.Items.Add("완제품");
@@ -98,22 +106,6 @@ namespace Team2_Project
             cboSpec.Items.Add("200x500");
             cboSpec.SelectedIndex = 0;
             cboSpec.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            cboUseYN.Items.Add("-선택-");
-            cboUseYN.Items.Add("사용");
-            cboUseYN.Items.Add("미사용");
-            cboUseYN.SelectedIndex = 0;
-            cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-            //txtCode.Enabled = false;
-            //txtCode.Text = "코드 자동발행"; ////////////////////////////////////////////// 추후수정 =>안함
-
-            //1. 추가,수정버튼 클릭 -> 입력패널이 활성화
-            //2. 저장버튼 클릭 시   -> 추가,수정 적용 
-
-            Deactivation(); //입력패널 비활성화
-            OnSearch();
         }
 
         #region Main 버튼 클릭이벤트
@@ -121,107 +113,102 @@ namespace Team2_Project
         {
             ItemDTO item = new ItemDTO
             {
-                Item_Code = txtCodeSC.Text,
-                Item_Name = txtNameSC.Text,
+                Item_Code = ucCodeSearch._Code,
+                Item_Name = ucCodeSearch._Name,
                 Item_Type = cboTypeSC.Text,
                 Use_YN = cboUseYNSC.Text
             };
             itemList = srv.GetItemSearch(item);
             dgvData.DataSource = null;
             dgvData.DataSource = itemList;
+            dgvData.ClearSelection();
+            ResetBottom();  //입력패널 리셋
+            DeactivationBottom(); //입력패널 비활성화
         }
 
         public void OnAdd()     //추가
         {
-            ResetBottom();
-            Activation();
             situation = "Add";
+            dgvData.Enabled = false;
+            dgvData.ClearSelection();            
+            DeactivationTop();      //검색조건 비활성화
+            ResetBottom();          //입력패널 리셋
+            Activation(situation);  //입력패널 활성화
         }
 
         public void OnEdit()    //수정
         {
-            Activation();
+            if (dgvData.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                return;
+            }
             situation = "Update";
+            dgvData.Enabled = false;
+            dgvData.ClearSelection();            
+            DeactivationTop();      //검색조건 비활성화
+            Activation(situation);  //입력패널 활성화
         }
 
         public void OnDelete()  //삭제
         {
-
         }
 
         public void OnSave()    //저장
         {
+            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
+            {
+                MessageBox.Show("필수항목을 입력하여 주십시오.");
+                return;
+            }
+            else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
+            {
+                MessageBox.Show("규격을 선택하여 주십시오.");
+                return;
+            }
+
+            ItemDTO item = new ItemDTO
+            {
+                Item_Code = txtCode.Text,
+                Item_Name = txtName.Text,
+                Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
+                Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
+                Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
+                Remark = txtRemark.Text,
+                Ins_Emp = "홍길동" ///////////////////////////////////////////////////// 추후수정
+            };
+
             if (situation == "Add")
             {
-                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
-                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
-                    || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
+                bool pkresult = srv.CheckPK(txtCode.Text);
+                if (!pkresult)
                 {
-                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
+                    MessageBox.Show("품목코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    txtCode.Clear();
+                    txtCode.Focus();
                     return;
                 }
-                else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
-                {
-                    MessageBox.Show("규격을 선택하여 주십시오.");
-                    return;
-                }
-
-                ItemDTO item = new ItemDTO
-                {
-                    Item_Code = txtCode.Text, ////////////////////////////////////////////// 추후 자동발행 =>아님
-                    Item_Name = txtName.Text,
-                    Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
-                    Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
-                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
-                    Remark = txtRemark.Text,
-                    Ins_Emp = "홍길동" ///////////////////////////////////////////////////// 추후수정
-                };
 
                 bool result = srv.GetItemAdd(item);
-                if (result)
-                    MessageBox.Show("등록이 완료되었습니다.", "등록완료");
-                else
-                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
+                else MessageBox.Show("다시 시도하여주십시오.", "등록오류");
             }
             else if (situation == "Update")
             {
-                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
-                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
-                    || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
-                {
-                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
-                    return;
-                }
-                else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
-                {
-                    MessageBox.Show("규격을 선택하여 주십시오.");
-                    return;
-                }
-
-                ItemDTO item = new ItemDTO
-                {
-                    Item_Code = txtCode.Text,
-                    Item_Name = txtName.Text,
-                    Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
-                    Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
-                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
-                    Remark = txtRemark.Text,
-                    Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
-                };
-
                 bool result = srv.GetItemUpdate(item);
-                if (result)
-                    MessageBox.Show("수정이 완료되었습니다.", "수정완료");
-                else
-                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
+                else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
             }
             OnReLoad();
+            situation = "";
+            dgvData.Enabled = true;
         }
 
         public void OnCancel()  //취소
         {
+            dgvData.Enabled = true;
             ResetBottom();  //입력패널 리셋
-            Deactivation(); //입력패널 비활성화
+            DeactivationBottom(); //입력패널 비활성화
             OnSearch();     //로드
         }
 
@@ -249,25 +236,19 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string curCode = dgvData[0, dgvData.CurrentRow.Index].Value.ToString();
-            itemList = srv.GetCurItem(curCode);
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            //입력정보에 바인딩
-            ItemDTO dto = itemList.FirstOrDefault((p) => p.Item_Code == curCode);
-            if (dto != null)
-            {
-                txtCode.Text = dto.Item_Code;
-                txtName.Text = dto.Item_Name;
-                cboType.Text = dto.Item_Type; //////////////////////
-                cboSpec.Text = dto.Item_Spec; ////////////////////// cbo에 바인딩
-                cboUseYN.Text = dto.Use_YN;
-                txtRemark.Text = dto.Remark;
-            }
+            txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
+            txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
+            cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
+            cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
+            txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }
 
         private void ResetTop() //검색조건 리셋
         {
-            txtCodeSC.Text = txtName.Text = txtNameSC.Text = "";
+            ucCodeSearch._Code = ucCodeSearch._Name = "";
             cboTypeSC.SelectedIndex = cboUseYNSC.SelectedIndex = 0;
         }
 
@@ -277,17 +258,40 @@ namespace Team2_Project
             cboType.SelectedIndex = cboSpec.SelectedIndex = cboUseYN.SelectedIndex = 0;
         }
 
-        private void Deactivation() //입력패널 비활성화
+        private void DeactivationTop() //검색조건 비활성화
+        {
+            ucCodeSearch.Enabled = cboTypeSC.Enabled = false;
+        }
+
+        private void DeactivationBottom() //입력패널 비활성화
         {
             txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
         }
 
-        private void Activation() //입력패널 활성화
+        private void Activation(string situation) //입력패널 활성화
         {
-            txtCode.Enabled = true; /////////////////////////////////////////////////////// 추후수정
+            if (situation.Equals("Add")) txtCode.Enabled = true;
+            else txtCode.Enabled = false;
             txtName.Enabled = txtRemark.Enabled = true;
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
+        }
+
+        private void ucCodeSearch_BtnClick(object sender, EventArgs e)
+        {
+            //itemList = srv.GetItemSearch(null);
+            var list = itemList.GroupBy((g) => g.Item_Code).Select((g) => g.FirstOrDefault()).ToList();
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
+
+            CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목코드 검색";
+
+            ucCodeSearch.OpenPop(popInfo);
         }
     }
 }

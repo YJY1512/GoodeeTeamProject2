@@ -14,5 +14,6 @@ namespace Team2_Project_DTO
         public string UserGroup_Code { get; set; } //권한그룹코드
         public string UserGroup_Name { get; set; } //권한그룹명
         public char Use_YN { get; set; } //퇴사여부
+        public string UserPW { get; set; } //비밀번호
     }
 }
