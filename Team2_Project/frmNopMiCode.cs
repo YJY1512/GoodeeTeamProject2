@@ -59,8 +59,8 @@ namespace Team2_Project
         {
             NopMaCodeDTO item = new NopMaCodeDTO
             {
-                Nop_Ma_Code = ucSearchCode._Code,
-                Nop_Ma_Name = ucSearchCode._Name,
+                Nop_Ma_Code = ucMaCodeSC._Code,
+                Nop_Ma_Name = ucMaCodeSC._Name,
                 Use_YN = cboSearchUse.Text
             };
             NopMaList = srv.GetNopMaSearch(item);
