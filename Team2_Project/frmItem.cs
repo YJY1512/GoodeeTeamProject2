@@ -130,10 +130,11 @@ namespace Team2_Project
         {
             situation = "Add";
             dgvData.Enabled = false;
-            dgvData.ClearSelection();            
+            dgvData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ResetBottom();          //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
+            txtCode.Focus();
         }
 
         public void OnEdit()    //수정
@@ -141,13 +142,15 @@ namespace Team2_Project
             if (dgvData.SelectedRows.Count < 1)
             {
                 MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             situation = "Update";
             dgvData.Enabled = false;
-            dgvData.ClearSelection();            
+            dgvData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
+            //txtName.Focus();
         }
 
         public void OnDelete()  //삭제
@@ -163,11 +166,9 @@ namespace Team2_Project
             if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 int result = srv.DeleteItemCode(txtCode.Text);
-
                 if (result == 0) MessageBox.Show("삭제가 완료되었습니다."); //성공
                 else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다."); //FK 충돌
                 else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
-
                 ResetBottom(); //입력패널 리셋
                 OnSearch();    //로드
             }
@@ -176,8 +177,7 @@ namespace Team2_Project
 
         public void OnSave()    //저장
         {
-            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) 
-                || cboType.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) || cboType.SelectedIndex == 0)
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.");
                 return;
@@ -263,7 +263,6 @@ namespace Team2_Project
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
             txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
             txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
             cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
@@ -291,7 +290,7 @@ namespace Team2_Project
         private void ResetBottom() //입력 리셋
         {
             txtCode.Text = txtName.Text = txtRemark.Text = "";
-            cboType.SelectedIndex = cboSpec.SelectedIndex = cboUseYN.SelectedIndex = 0;
+            cboType.SelectedIndex = cboSpec.SelectedIndex = 0;
             cboUseYN.SelectedItem = null;
         }
 
@@ -311,9 +310,7 @@ namespace Team2_Project
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
-            //itemList = srv.GetItemSearch(null);
             var list = itemList.GroupBy((g) => g.Item_Code).Select((g) => g.FirstOrDefault()).ToList();
-
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
@@ -322,7 +319,6 @@ namespace Team2_Project
             popInfo.DgvDatasource = list;
             popInfo.DgvCols = colList;
             popInfo.PopName = "품목코드 검색";
-
             ucCodeSearch.OpenPop(popInfo);
         }
     }

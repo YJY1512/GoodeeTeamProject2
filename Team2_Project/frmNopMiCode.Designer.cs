@@ -58,11 +58,6 @@ namespace Team2_Project
             this.lblSearchCode.Size = new System.Drawing.Size(124, 17);
             this.lblSearchCode.Text = "비가동 대분류코드";
             // 
-            // txtRemark
-            // 
-            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemark.Size = new System.Drawing.Size(300, 89);
-            // 
             // txtInfoNameMi
             // 
             this.txtInfoNameMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -77,29 +72,34 @@ namespace Team2_Project
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
-            this.splitContainer2.Size = new System.Drawing.Size(1373, 875);
-            this.splitContainer2.SplitterDistance = 642;
+            this.splitContainer2.Size = new System.Drawing.Size(1177, 680);
+            this.splitContainer2.SplitterDistance = 447;
             // 
             // cboUseYN
             // 
             this.cboUseYN.Size = new System.Drawing.Size(136, 25);
             // 
-            // ucSearchCode
+            // ucMaCodeSC
             // 
             this.ucMaCodeSC.Location = new System.Drawing.Point(178, 11);
             // 
+            // txtRemark
+            // 
+            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemark.Size = new System.Drawing.Size(300, 89);
+            // 
             // pnlSub
             // 
-            this.pnlSub.Size = new System.Drawing.Size(2063, 50);
+            this.pnlSub.Size = new System.Drawing.Size(1769, 50);
             // 
             // pnlListL
             // 
             this.pnlListL.Controls.Add(this.dgvMaData);
-            this.pnlListL.Size = new System.Drawing.Size(686, 875);
+            this.pnlListL.Size = new System.Drawing.Size(588, 680);
             // 
             // pnlListR
             // 
-            this.pnlListR.Size = new System.Drawing.Size(1373, 875);
+            this.pnlListR.Size = new System.Drawing.Size(1177, 680);
             // 
             // dgvMaData
             // 
@@ -109,8 +109,9 @@ namespace Team2_Project
             this.dgvMaData.Location = new System.Drawing.Point(0, 0);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(686, 875);
+            this.dgvMaData.Size = new System.Drawing.Size(588, 680);
             this.dgvMaData.TabIndex = 0;
+            this.dgvMaData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaData_CellClick);
             // 
             // dgvMiData
             // 
@@ -120,13 +121,14 @@ namespace Team2_Project
             this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(1373, 642);
+            this.dgvMiData.Size = new System.Drawing.Size(1177, 447);
             this.dgvMiData.TabIndex = 1;
+            this.dgvMiData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMiData_CellClick);
             // 
             // frmNopMiCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
-            this.ClientSize = new System.Drawing.Size(2063, 968);
+            this.ClientSize = new System.Drawing.Size(1769, 773);
             this.Name = "frmNopMiCode";
             this.Text = "비가동 상세분류코드";
             this.Load += new System.EventHandler(this.frmNopMiCode_Load);
