@@ -109,7 +109,10 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"update Def_Ma_Master
-                                set Def_Ma_Name = @Def_Ma_Name, Use_YN = @Use_YN, Up_Emp = @Up_Emp
+                                set Def_Ma_Name = @Def_Ma_Name, 
+                                    Use_YN = @Use_YN, 
+                                    Up_Emp = @Up_Emp, 
+                                    Up_Date = getdate()
                                 where Def_Ma_Code = @Def_Ma_Code";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
