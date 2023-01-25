@@ -168,7 +168,6 @@ namespace Team2_Project
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(158, 24);
             this.txtID.TabIndex = 0;
-            this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // txtName
             // 
@@ -176,7 +175,6 @@ namespace Team2_Project
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(158, 24);
             this.txtName.TabIndex = 1;
-            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // ucSearchDept
             // 
@@ -228,7 +226,6 @@ namespace Team2_Project
             this.cboDel.Name = "cboDel";
             this.cboDel.Size = new System.Drawing.Size(100, 26);
             this.cboDel.TabIndex = 4;
-            this.cboDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // label9
             // 
@@ -310,7 +307,6 @@ namespace Team2_Project
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(158, 24);
             this.txtPwd.TabIndex = 20;
-            this.txtPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // label13
             // 

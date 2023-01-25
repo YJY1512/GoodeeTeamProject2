@@ -10,6 +10,7 @@ using Team2_Project.Utils;
 using Team2_Project.Services;
 using System.Linq;
 using Team2_Project_DTO;
+using Team2_Project.Controls;
 
 namespace Team2_Project
 {
@@ -47,6 +48,7 @@ namespace Team2_Project
 
             dt = empSrv.GetEmployeeList();
             dgvEmp.DataSource = dt;
+            dgvEmp.ClearSelection();
 
             cboSearchDel.Items.AddRange(use_YNSearchList);
             cboSearchDel.SelectedIndex = 0;
@@ -57,15 +59,21 @@ namespace Team2_Project
             cboAuth.DataSource = new BindingSource(AuthList, null);
             cboAuth.DisplayMember = "Value";
             cboAuth.ValueMember = "Key";
-            CboEnable(false);
 
             pnlStat = 0;
+            SetPannel(pnlArea, false);
         }
 
-        //private void ucSearchDept_BtnClick(object sender, EventArgs e)
-        //{
-
-        //}
+        private void SetPannel(Panel pnl, bool val)
+        {
+            foreach (Control ctrl in pnl.Controls)
+            {
+                if (ctrl is TextBox || ctrl is ComboBox || ctrl is ucSearch)
+                {
+                    ctrl.Enabled = val;
+                }
+            }
+        }
 
         private void ucSearchGroup_BtnClick(object sender, EventArgs e)
         {
@@ -112,17 +120,21 @@ namespace Team2_Project
             cboAuth.SelectedIndex = 0;
         }
 
-        private void CboEnable(bool val)
-        {
-            cboDel.Enabled = val;
-            cboAuth.Enabled = val;
-        }
+        //private void CboEnable(bool val)
+        //{
+        //    cboDel.Enabled = val;
+        //    cboAuth.Enabled = val;
+        //}
 
         public void OnAdd()
         {
             pnlStat = 1;
             ClearPnl();
-            CboEnable(true);
+            //CboEnable(true);
+            SetPannel(pnlArea, true);
+            SetPannel(pnlSub, false);
+            dgvEmp.ClearSelection();
+            dgvEmp.Enabled = false;
 
             //저장, 취소 빼고 다 비활성화
         }
@@ -138,8 +150,11 @@ namespace Team2_Project
 
             pnlStat = 2;
             idx = dgvEmp.CurrentCell.RowIndex;
+            //CboEnable(true);
+            SetPannel(pnlArea, true);
             txtID.Enabled = false;
-            CboEnable(true);
+            SetPannel(pnlSub, false);
+            dgvEmp.Enabled = false;
 
             //저장, 취소 빼고 다 비활성화
         }
@@ -151,8 +166,8 @@ namespace Team2_Project
                 return;
             }
 
-            bool result = empSrv.Delete(dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString());
-            if (result)
+            string msg = empSrv.Delete(dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString());
+            if (string.IsNullOrWhiteSpace(msg))
             {
                 MessageBox.Show("인사정보가 정상적으로 삭제되었습니다.");
                 dt = empSrv.GetEmployeeList();
@@ -160,12 +175,38 @@ namespace Team2_Project
             }
             else
             {
-                MessageBox.Show("인사정보 삭제에 실패하였습니다. 다시 시도하여 주세요.");
+                MessageBox.Show(msg);
             }
         }
 
         public void OnSave()
         {
+            //유효성 검사
+            int i = 0;
+            if (string.IsNullOrWhiteSpace(txtID.Text))
+            {
+                MessageBox.Show("사용자 ID는 필수 입력 항목입니다.");
+                return;
+            }
+
+            else if (!int.TryParse(txtID.Text, out i))
+            {
+                MessageBox.Show("사용자 ID는 숫자만 사용할 수 있습니다.");
+                return;
+            }
+
+            if (empSrv.CheckUserID(txtID.Text))
+            {
+                MessageBox.Show("이미 존재하는 사용자 ID 입니다.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("사용자 이름은 필수 입력 항목입니다.");
+                return;
+            }
+
             if (MessageBox.Show("입력한 정보를 저장하시겠습니까?", "저장확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
                 return;
@@ -189,10 +230,6 @@ namespace Team2_Project
                     MessageBox.Show("인사정보가 정상적으로 추가되었습니다.\n초기 비밀번호는 아이디와 동일합니다.");
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
-
-                    pnlStat = 0;
-
-                    CboEnable(false);
                 }
                 else
                 {
@@ -207,16 +244,17 @@ namespace Team2_Project
                     MessageBox.Show("인사정보가 정상적으로 수정되었습니다.");
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
-
-                    pnlStat = 0;
                     idx = -1;
-                    txtID.Enabled = true;
-                    CboEnable(false);
                 }
                 else
                 {
                     MessageBox.Show("인사정보 수정에 실패하였습니다. 다시 시도하여 주세요.");
                 }
+
+                pnlStat = 0;
+                SetPannel(pnlArea, false);
+                SetPannel(pnlSub, true);
+                dgvEmp.Enabled = true;
             }
         }
 
@@ -229,8 +267,9 @@ namespace Team2_Project
 
             pnlStat = 0;
             idx = -1;
-            txtID.Enabled = true;
-            CboEnable(false);
+            SetPannel(pnlArea, false);
+            SetPannel(pnlSub, true);
+            dgvEmp.Enabled = true;
         }
 
         public void OnReLoad()
@@ -241,6 +280,8 @@ namespace Team2_Project
             dt = empSrv.GetEmployeeList();
             dgvEmp.DataSource = null;
             dgvEmp.DataSource = dt;
+
+            ClearPnl();
         }
 
         public void OnSearch()
@@ -255,6 +296,8 @@ namespace Team2_Project
 
             dgvEmp.DataSource = null;
             dgvEmp.DataSource = temp;
+
+            ClearPnl();
         }
 
         private DataTable Filtering(DataTable dt, string col, string str)
@@ -270,30 +313,26 @@ namespace Team2_Project
             return SortTable.CopyToDataTable();
         }
 
-        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (pnlStat == 0)
-                e.Handled = true;
-        }
-
         private void dgvEmp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (pnlStat != 0)
-            {
-                dgvEmp.ClearSelection();
-                if(pnlStat == 2)
-                {
-                    dgvEmp.Rows[idx].Selected = true;
-                }
-                return;
-            }
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            txtID.Text = dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString();
-            txtName.Text = dgvEmp.SelectedRows[0].Cells["User_Name"].Value.ToString();
-            ucSearchGroup._Code = dgvEmp.SelectedRows[0].Cells["UserGroup_Code"].Value.ToString();
-            ucSearchGroup._Name = dgvEmp.SelectedRows[0].Cells["UserGroup_Name"].Value.ToString();
-            cboDel.Text = dgvEmp.SelectedRows[0].Cells["Use_YN"].Value.ToString();
-            cboAuth.Text = dgvEmp.SelectedRows[0].Cells["User_Type"].Value.ToString();
+            //if (pnlStat != 0)
+            //{
+            //    dgvEmp.ClearSelection();
+            //    if(pnlStat == 2)
+            //    {
+            //        dgvEmp.Rows[idx].Selected = true;
+            //    }
+            //    return;
+            //}
+
+            txtID.Text = dgvEmp["User_ID", e.RowIndex].Value.ToString();
+            txtName.Text = dgvEmp["User_Name", e.RowIndex].Value.ToString();
+            ucSearchGroup._Code = dgvEmp["UserGroup_Code", e.RowIndex].Value.ToString();
+            ucSearchGroup._Name = dgvEmp["UserGroup_Name", e.RowIndex].Value.ToString();
+            cboDel.Text = dgvEmp["Use_YN", e.RowIndex].Value.ToString();
+            cboAuth.Text = dgvEmp["User_Type", e.RowIndex].Value.ToString();
         }
     }
 }

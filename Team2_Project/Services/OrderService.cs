@@ -38,13 +38,13 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public bool Delete(string empID)
+        public string Delete(string empID)
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Delete(empID);
+            string msg = db.Delete(empID);
             db.Dispose();
 
-            return result;
+            return msg;
         }
 
         public List<ItemDTO> GetItemCodeName()

@@ -101,6 +101,12 @@
     <Compile Include="BaseForms\frmPop.Designer.cs">
       <DependentUpon>frmPop.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseForms\frmStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\frmStart.Designer.cs">
+      <DependentUpon>frmStart.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseForms\frmTheCross.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,12 @@
     </Compile>
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashBoard.Designer.cs">
+      <DependentUpon>frmDashBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDefectCodeDetail.cs">
       <SubType>Form</SubType>
@@ -285,6 +297,9 @@
     <EmbeddedResource Include="BaseForms\frmPop.resx">
       <DependentUpon>frmPop.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\frmStart.resx">
+      <DependentUpon>frmStart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaseForms\frmTheCross.resx">
       <DependentUpon>frmTheCross.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucSearch.resx">
       <DependentUpon>ucSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashBoard.resx">
+      <DependentUpon>frmDashBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDefectCode.resx">
       <DependentUpon>frmDefectCode.cs</DependentUpon>
