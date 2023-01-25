@@ -105,12 +105,12 @@ namespace Team2_Project_DAO
             
             SqlCommand cmd = new SqlCommand(sql, conn);
             conn.Open();
-            cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
+            cmd.Parameters.AddWithValue("@Ins_Emp", txtProcessCode);
             cmd.Transaction = trans;
 
             if (cmd.ExecuteNonQuery() < 1)
             {
-                return false;
+                return null;
             }
             cmd.ExecuteNonQuery();
 
