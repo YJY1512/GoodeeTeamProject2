@@ -41,5 +41,13 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public int DeleteDefCode(string maCode)
+        {
+            DefCodeDAO db = new DefCodeDAO();
+            int result = db.DeleteDefCode(maCode);
+
+            return result;
+        }
     }
 }

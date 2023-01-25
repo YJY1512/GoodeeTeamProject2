@@ -41,5 +41,13 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public int DeleteUserCode(string maCode, string miCode)
+        {
+            UserCodeDAO db = new UserCodeDAO();
+            int result = db.DeleteUserCode(maCode, miCode);
+
+            return result;
+        }
     }
 }

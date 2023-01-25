@@ -135,5 +135,31 @@ namespace Team2_Project_DAO
                 return false;
             }
         }
+
+        public int DeleteDefCode(string maCode)
+        {
+            try
+            {
+                string sql = @"delete from Def_Ma_Master
+                                where Def_Ma_Code = @Def_Ma_Code;
+                                select @@ERROR";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Def_Ma_Code", maCode);
+
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
     }
 }
