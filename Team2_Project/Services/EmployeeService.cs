@@ -20,6 +20,15 @@ namespace Team2_Project.Services
             return dt;
         }
 
+        public EmployeeDTO GetLoginEmp(string userID, string userPw)
+        {
+            EmployeeDAO db = new EmployeeDAO();
+            EmployeeDTO empInfo = db.GetLoginEmp(userID, userPw);
+            db.Dispose();
+
+            return empInfo;
+        }
+
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
             EmployeeDAO db = new EmployeeDAO();

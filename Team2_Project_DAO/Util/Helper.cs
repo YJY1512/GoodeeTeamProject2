@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Team2_Project_DAO
 {
@@ -43,7 +45,39 @@ namespace Team2_Project_DAO
                 return null;
             }
         }
+        public static T DataReaderMapToDTO<T>(IDataReader dr)
+        {
+            T obj = default(T);
 
+            try
+            {
+                while (dr.Read())
+                {
+                    obj = Activator.CreateInstance<T>();
+                    foreach (PropertyInfo prop in obj.GetType().GetProperties())
+                    {
+                        //프로퍼티는 존재하는데, reader안에 조회된 컬럼이 없는 경우
+                        //reader에 조회된 컬럼은 있는데, 프로퍼티는 정의되지 않은 경우
+                        if (ContainsColumn(dr, prop.Name))
+                        {
+                            if (!object.Equals(dr[prop.Name], DBNull.Value))
+                            {
+                                //DataReader의 해당컬럼타입과 property의 타입이 일치해야한다.
+                                prop.SetValue(obj, dr[prop.Name], null);
+                            }
+                        }
+                    }
+                }
+                return obj;
+            }
+            catch (Exception err)
+            {
+                string msg = err.Message;
+                Debug.WriteLine(msg);
+                MessageBox.Show(msg);
+                return obj;
+            }
+        }
         private static bool ContainsColumn(IDataReader reader, string columnName)
         {
             foreach (DataRow row in reader.GetSchemaTable().Rows)

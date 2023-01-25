@@ -29,6 +29,30 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
+        public EmployeeDTO GetLoginEmp(string userID, string userPw)
+        {
+            try
+            {
+                string sql = @"select User_ID, User_Name, User_PW, Customer_Code, User_Type, Use_YN
+                               from User_Master
+                               where User_ID = @User_ID and User_PW = @User_PW and Use_YN = 'Y'";
+                using (SqlCommand cmd = new SqlCommand(sql,conn))
+                {
+                    cmd.Parameters.AddWithValue("@User_ID", userID);
+                    cmd.Parameters.AddWithValue("@User_PW", userPw);
+                    EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return empInfo;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public DataTable GetEmployeeList()
         {
             string sql = @"select u.User_ID, User_Name, 
