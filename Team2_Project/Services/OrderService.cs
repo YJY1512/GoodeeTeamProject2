@@ -11,10 +11,10 @@ namespace Team2_Project.Services
 {
     class OrderService
     {
-        public DataTable GetOrderList()
+        public DataTable GetOrderList(string[] list)
         {
-            EmployeeDAO db = new EmployeeDAO();
-            DataTable dt = null; //db.GetOrderList();
+            OrderDAO db = new OrderDAO();
+            DataTable dt = db.GetOrderList(list);
             db.Dispose();
 
             return dt;
@@ -38,19 +38,28 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public bool Delete(string empID)
+        public string Delete(string empID)
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Delete(empID);
+            string msg = db.Delete(empID);
             db.Dispose();
 
-            return result;
+            return msg;
         }
 
-        public List<CodeDTO> GetUserGroupCode()
+        public List<ItemDTO> GetItemCodeName()
         {
-            UserGroupDAO db = new UserGroupDAO();
-            List<CodeDTO> list = db.GetUserGroupCode();
+            ItemDAO db = new ItemDAO();
+            List<ItemDTO> list = db.GetItemCodeName();
+            db.Dispose();
+
+            return list;
+        }
+
+        public List<ProjectDTO> GetProjectList()
+        {
+            ProjectDAO db = new ProjectDAO();
+            List<ProjectDTO> list = db.GetProjectList();
             db.Dispose();
 
             return list;

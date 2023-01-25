@@ -213,8 +213,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "불량현상 상세분류코드")
             {
-                //OpenChildPage<frmDefectCode>();
-                MessageBox.Show("빈 생성 화면입니다.");
+                OpenChildPage<frmDefectCodeDetail>();
             }
             else if (e.Node.Text == "비가동 대분류코드")
             {

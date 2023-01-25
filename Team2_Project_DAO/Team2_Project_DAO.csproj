@@ -42,9 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefCodeDAO.cs" />
     <Compile Include="EmployeeDAO.cs" />
     <Compile Include="ItemDAO.cs" />
     <Compile Include="NopCodeDAO.cs" />
+    <Compile Include="ProcessMasterDAO.cs" />
+    <Compile Include="OrderDAO.cs" />
+    <Compile Include="ProjectDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysCodeDAO.cs" />
     <Compile Include="UserCodeDAO.cs" />

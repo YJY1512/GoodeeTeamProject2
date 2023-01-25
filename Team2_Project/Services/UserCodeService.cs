@@ -18,6 +18,14 @@ namespace Team2_Project.Services
             return list;
         }
 
+        public bool CheckPK(string maCode, string miCode)
+        {
+            UserCodeDAO db = new UserCodeDAO();
+            bool result = db.CheckPK(maCode, miCode);
+
+            return result;
+        }
+
         public bool InsertUserCode(UserCodeDTO code)
         {
             UserCodeDAO db = new UserCodeDAO();
@@ -30,6 +38,14 @@ namespace Team2_Project.Services
         {
             UserCodeDAO db = new UserCodeDAO();
             bool result = db.UpdateUserCode(code);
+
+            return result;
+        }
+
+        public int DeleteUserCode(string maCode, string miCode)
+        {
+            UserCodeDAO db = new UserCodeDAO();
+            int result = db.DeleteUserCode(maCode, miCode);
 
             return result;
         }

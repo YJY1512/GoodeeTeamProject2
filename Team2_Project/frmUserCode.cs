@@ -44,7 +44,7 @@ namespace Team2_Project
             cboSearchUse.SelectedIndex = 0;
 
             SetInitEditPnl();
-            LoadData();            
+            LoadData();
         }
 
         private void LoadData()
@@ -53,8 +53,13 @@ namespace Team2_Project
             if (codeList != null && codeList.Count > 0)
             {
                 var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                dgvMa.DataSource = null;
                 dgvMa.DataSource = list;
             }
+            dgvMi.DataSource = null;
+
+            dgvMa.ClearSelection();
+            dgvMi.ClearSelection();
         }
 
         private void SetInitEditPnl()
@@ -83,9 +88,10 @@ namespace Team2_Project
             string code = ucSearchCode._Code;
             string useYN = (cboSearchUse.SelectedItem.ToString() == "전체")? "" : cboSearchUse.SelectedItem.ToString();
 
+            SetInitEditPnl();
+
             if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
             {
-                dgvMi.DataSource = null;
                 LoadData();
                 return;
             }
@@ -96,14 +102,14 @@ namespace Team2_Project
             dgvMi.DataSource = list;
 
             var maList = list.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            dgvMa.DataSource = maList;
+            dgvMa.DataSource = maList;            
         }
 
         public void OnAdd()     //추가
         {
             if (dgvMa.SelectedRows.Count < 1)
             {
-                MessageBox.Show("대분류 항목을 선택하여 주십시오.");
+                MessageBox.Show("추가할 항목을 선택하여 주십시오.");
                 return;
             }
 
@@ -124,7 +130,7 @@ namespace Team2_Project
         {
             if (dgvMi.SelectedRows.Count < 1)
             {
-                MessageBox.Show("세부분류 항목을 선택하여 주십시오.");
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.");
                 return;
             }
 
@@ -134,7 +140,36 @@ namespace Team2_Project
 
         public void OnDelete()  //삭제
         {
+            if (dgvMi.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                return;
+            }
 
+            dgvMa.Enabled = dgvMi.Enabled = false;
+
+            if (MessageBox.Show($"{txtInfoNameMi.Text}를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                int result = srv.DeleteUserCode(ucSearch1._Code, txtInfoCodeMi.Text);
+
+                if (result == 0) //성공
+                {
+                    MessageBox.Show("삭제가 완료되었습니다.");
+                }
+                else if (result == 3726) //FK 충돌
+                {
+                    MessageBox.Show("데이터를 삭제할 수 없습니다.");
+                }
+                else
+                {
+                    MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
+
+                SetInitEditPnl();
+                LoadData();
+            }
+
+            dgvMa.Enabled = dgvMi.Enabled = true;
         }
 
         public void OnSave()    //저장
@@ -147,10 +182,10 @@ namespace Team2_Project
 
             if (txtInfoCodeMi.Enabled) //신규 저장
             {
-                int fidx = codeList.FindIndex((c) => c.Userdefine_Ma_Code == ucSearch1._Code && c.Userdefine_Mi_Code == txtInfoCodeMi.Text);
-                if (fidx != -1)
+                bool result = srv.CheckPK(ucSearch1._Code, txtInfoCodeMi.Text);
+                if (!result)
                 {
-                    MessageBox.Show("상세분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.");
                     return;
                 }
 
@@ -165,15 +200,10 @@ namespace Team2_Project
                     Ins_Emp = "" //수정필요
                 };
 
-                bool result = srv.InsertUserCode(code);
+                result = srv.InsertUserCode(code);
                 if (result)
                 {
-                    MessageBox.Show("등록이 완료되었습니다.");
-                    dgvMa.Enabled = dgvMi.Enabled = true;
-                    dgvMi.DataSource = null;
-
-                    SetInitEditPnl();
-                    LoadData();
+                    MessageBox.Show("등록이 완료되었습니다.");              
                 }
                 else
                 {
@@ -198,17 +228,16 @@ namespace Team2_Project
                 if (result)
                 {
                     MessageBox.Show("수정이 완료되었습니다.");
-                    dgvMa.Enabled = dgvMi.Enabled = true;
-                    dgvMi.DataSource = null;
-
-                    SetInitEditPnl();
-                    LoadData();
                 }
                 else
                 {
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
             }
+
+            dgvMa.Enabled = dgvMi.Enabled = true;
+            SetInitEditPnl();
+            LoadData();
         }
 
         public void OnCancel()  //취소
@@ -223,8 +252,7 @@ namespace Team2_Project
         {
             ucSearchCode._Code = ucSearchCode._Name = "";
             cboSearchUse.SelectedIndex = 0;
-
-            dgvMi.DataSource = null;
+            
             SetInitEditPnl();
             LoadData();
         }

@@ -177,5 +177,21 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
+        // 완제품 코드랑 이름만 가져오는 코드 - 0124 이승원
+        public List<ItemDTO> GetItemCodeName()
+        {
+            string sql = @"select SELECT Item_Code , Item_Name FROM Item_Master
+                            WHERE Use_YN = 'Y'";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                conn.Open();
+                List<ItemDTO> list = Helper.DataReaderMapToList<ItemDTO>(cmd.ExecuteReader());
+                conn.Close();
+
+                return list;
+            }
+        }
     }
 }

@@ -16,68 +16,67 @@ namespace Team2_Project
 {
     public partial class frmOrder : frmList
     {
-        List<ItemDTO> ItemCodeList;
+        OrderService ordSrv;
+        DataTable dt;
+        List<ItemDTO> itemCodeList;
+        List<ProjectDTO> projectCodeList;
+        int pnlStat;
+        int idx = -1;
+        List<CodeDTO> userGroupCodeList;
 
         public frmOrder()
         {
             InitializeComponent();
+            ordSrv = new OrderService();
         }
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
             DataGridViewUtil.SetInitDataGridView(dgvOrder);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "", 200);
-
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 200);
+
+            ResetDtp();
+
+            dt = ordSrv.GetOrderList(GetSearchValues());
+            dgvOrder.DataSource = dt;
         }
 
-        private void ucSearch1_BtnClick(object sender, EventArgs e)
+        private void ResetDtp()
         {
-            //if (ItemCodeList == null || ItemCodeList.Count() < 1)
-            //{
-            //    ItemCodeList = empSrv.GetUserGroupCode();
-            //}
-
-            ////frmUcSearchPopup pop = new frmUcSearchPopup(userGroupCodeList);
-            ////if (pop.ShowDialog() == DialogResult.OK)
-            ////{
-            ////    CodeDTO group = pop.Info;
-            ////    ucSearchGroup._Code = group.Code;
-            ////    ucSearchGroup._Name = group.Name;
-            ////}
-
-            //List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            //colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹코드", "Code", 200));
-            //colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹명", "Name", 200));
-
-            //CommonPop<CodeDTO> popInfo = new CommonPop<CodeDTO>();
-            //popInfo.DgvDatasource = userGroupCodeList;
-            //popInfo.DgvCols = colList;
-            //popInfo.PopName = "그룹코드 검색";
-
-            //ucSearchGroup.OpenPop(popInfo);
+            dtpSearchOrd1.Value = DateTime.Today.AddDays(-7);
+            dtpSearchOrd2.Value = DateTime.Today;
+            dtpSearchDue1.Value = DateTime.Today.AddMonths(-1);
+            dtpSearchDue2.Value = DateTime.Today.AddMonths(1);
         }
 
-        //public void OnSearch()
-        //{
-        //    DataTable temp = dt;
-        //    if (!string.IsNullOrWhiteSpace(txtSearchID.Text))
-        //        temp = Filtering(temp, "User_ID", txtSearchID.Text);
-        //    if (temp != null && !string.IsNullOrWhiteSpace(txtSearchName.Text))
-        //        temp = Filtering(temp, "User_Name", txtSearchName.Text);
-        //    if (temp != null && cboSearchDel.Text != "전체")
-        //        temp = Filtering(temp, "Use_YN", cboSearchDel.Text);
+        private string[] GetSearchValues()
+        {
+            return new string[] { dtpSearchOrd1.Value.ToString("yyyy-MM-dd"), dtpSearchOrd1.Value.ToString("yyyy-MM-dd"), 
+                    dtpSearchDue1.Value.ToString("yyyy-MM-dd"), dtpSearchDue1.Value.ToString("yyyy-MM-dd"),
+                    ucSearchItem._Code, ucSearchItem._Code};
+        }
 
-        //    dgvEmp.DataSource = null;
-        //    dgvEmp.DataSource = temp;
-        //}
+        public void OnSearch()
+        {
+            //DataTable temp = dt;
+            //if (!string.IsNullOrWhiteSpace(ucSearchItem._Name))
+            //    temp = Filtering(temp, "Item_Code", ucSearchItem._Code);
+            //if (temp != null && !string.IsNullOrWhiteSpace(ucSearchItem.Text))
+            //    temp = Filtering(temp, "Prj_No", ucSearchProject._Code);
+
+            //dgvOrder.DataSource = null;
+            //dgvOrder.DataSource = temp;
+        }
 
         //public void OnAdd()
         //{
@@ -206,19 +205,55 @@ namespace Team2_Project
         //    dgvEmp.DataSource = dt;
         //}
 
+        private DataTable Filtering(DataTable dt, string col, string str)
+        {
+            IEnumerable<DataRow> SortTable = null;
 
+            SortTable = from row in dt.AsEnumerable()
+                        where row.Field<string>(col).Contains(str)
+                        select row;
+            if (SortTable.Count() < 1)
+                return null;
 
-        //private DataTable Filtering(DataTable dt, string col, string str)
-        //{
-        //    IEnumerable<DataRow> SortTable = null;
+            return SortTable.CopyToDataTable();
+        }
 
-        //    SortTable = from row in dt.AsEnumerable()
-        //                where row.Field<string>(col).Contains(str)
-        //                select row;
-        //    if (SortTable.Count() < 1)
-        //        return null;
+        private void ucSearchItem_BtnClick(object sender, EventArgs e)
+        {
+            if (itemCodeList == null || itemCodeList.Count() < 1)
+            {
+                itemCodeList = ordSrv.GetItemCodeName();
+            }
 
-        //    return SortTable.CopyToDataTable();
-        //}
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
+
+            CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
+            popInfo.DgvDatasource = itemCodeList;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목 검색";
+
+            ucSearchItem.OpenPop(popInfo);
+        }
+
+        private void ucSearchProject_BtnClick(object sender, EventArgs e)
+        {
+            if (projectCodeList == null || projectCodeList.Count() < 1)
+            {
+                projectCodeList = ordSrv.GetProjectList();
+            }
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트코드", "Item_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트명", "Item_Name", 200));
+
+            CommonPop<ProjectDTO> popInfo = new CommonPop<ProjectDTO>();
+            popInfo.DgvDatasource = projectCodeList;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "프로젝트 검색";
+
+            ucSearchItem.OpenPop(popInfo);
+        }
     }
 }

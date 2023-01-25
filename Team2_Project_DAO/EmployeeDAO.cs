@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using Team2_Project_DTO;
+using System.Diagnostics;
 
 namespace Team2_Project_DAO
 {
@@ -93,9 +94,10 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
                 return true;
             }
-            catch
+            catch(Exception err)
             {
                 trans.Rollback();
+                Debug.WriteLine(err.Message);
                 return false;
             }
         }
@@ -148,34 +150,53 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
                 return true;
             }
-            catch
+            catch(Exception err)
             {
                 trans.Rollback();
+                Debug.WriteLine(err.Message);
                 return false;
             }
         }
 
-        public bool Delete(string empID)
+        public string Delete(string empID)
         {
             try
             {
+                string msg = null;
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.CommandText = "SP_UserDelete";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@User_ID", empID);
-                    if (cmd.ExecuteNonQuery() < 1)
+                    cmd.Parameters.Add(new SqlParameter("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output);
+                    cmd.ExecuteNonQuery();
+                    
+                    int PO_CD = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+                    switch (PO_CD)
                     {
-                        return false;
+                        case 0: break;
+                        case 1: msg = "이 인사정보가 사용된 데이터가 있어 삭제할 수 없습니다."; break;
+                        case 2: msg = "인사정보 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.";  break;
                     }
                 }
 
-                return true;
+                return msg;
             }
-            catch
+            catch(Exception err)
             {
-                return false;
+                Debug.WriteLine(err.Message);
+                return "인사정보 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.";
+            }
+        }
+
+        public bool CheckUserID(string id)
+        {
+            string sql = "select count(*) from User_Master where User_ID = @User_ID";
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@User_ID", id);
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
             }
         }
     }
