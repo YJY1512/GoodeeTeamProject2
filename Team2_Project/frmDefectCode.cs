@@ -81,13 +81,48 @@ namespace Team2_Project
 
         public void OnEdit()    //수정
         {
+            if (dgvMa.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                return;
+            }
+
             txtName.Enabled = cboUseYN.Enabled = true;
             dgvMa.Enabled = false;
         }
 
         public void OnDelete()  //삭제
         {
+            if (dgvMa.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                return;
+            }
 
+            dgvMa.Enabled = false;
+
+            if (MessageBox.Show($"{txtName.Text}를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                int result = srv.DeleteDefCode(txtCode.Text);
+
+                if (result == 0) //성공
+                {
+                    MessageBox.Show("삭제가 완료되었습니다.");
+                }
+                else if (result == 3726) //FK 충돌
+                {
+                    MessageBox.Show("데이터를 삭제할 수 없습니다.");
+                }
+                else
+                {
+                    MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
+
+                SetInitPnl();
+                LoadData();
+            }
+
+            dgvMa.Enabled = true;
         }
 
         public void OnSave()    //저장
