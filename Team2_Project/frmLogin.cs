@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_Project.Services;
+using Team2_Project_DTO;
 
 namespace Team2_Project
 {
@@ -33,7 +35,21 @@ namespace Team2_Project
                     MessageBox.Show("ID와 비밀번호를 입력해주세요.");
                     return;
                 }
-                
+                string userID = txtID.Text.Trim();
+                string userPW = txtPwd.Text.Trim();
+                EmployeeService srv = new EmployeeService();
+                EmployeeDTO empInfo = srv.GetLoginEmp(userID, userPW);
+
+                if (empInfo == null)
+                {
+                    MessageBox.Show("정보가 올바르지 않습니다. 다시 시도하여 주세요.");
+                }
+                else
+                {
+                    ((frmMain)this.Owner).LoginEmp = empInfo;
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
 
             }
             catch (Exception err)

@@ -31,26 +31,22 @@ namespace Team2_Project_DAO
 
         public EmployeeDTO GetLoginEmp(string userID, string userPw)
         {
-            try
-            {
-                string sql = @"select User_ID, User_Name, User_PW, Customer_Code, User_Type, Use_YN
-                               from User_Master
-                               where User_ID = @User_ID and User_PW = @User_PW and Use_YN = 'Y'";
-                using (SqlCommand cmd = new SqlCommand(sql,conn))
-                {
-                    cmd.Parameters.AddWithValue("@User_ID", userID);
-                    cmd.Parameters.AddWithValue("@User_PW", userPw);
-                    EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
-                    conn.Close();
+            string sql = @"select u.User_ID, User_Name, User_PW, Customer_Code, 
+                                    case when User_Type = 'A' then '관리자'
+                                    else '일반' end User_Type, 
+                                   umas.UserGroup_Code, umas.UserGroup_Name, 
+                                    case when u.Use_YN = 'Y' then '재직'
+                                    else '퇴직' end Use_YN
+                           from UserGroup_Mapping umap inner join User_Master u on umap.User_ID = u.User_ID
+                           inner join UserGroup_Master umas on umap.UserGroup_Code = umas.UserGroup_Code
+                           where u.User_ID = @User_ID and User_PW = @User_PW and u.Use_YN = 'Y'";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@User_ID", userID);
+            cmd.Parameters.AddWithValue("@User_PW", userPw);
+            EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
+            conn.Close();
 
-                    return empInfo;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            return empInfo;
         }
 
         public DataTable GetEmployeeList()
