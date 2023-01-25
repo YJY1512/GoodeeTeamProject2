@@ -133,7 +133,7 @@ namespace Team2_Project
             dgvData.ClearSelection();            
             DeactivationTop();      //검색조건 비활성화
             ResetBottom();          //입력패널 리셋
-            Activation(situation);  //입력패널 활성화
+            ActivationBottom(situation);  //입력패널 활성화
         }
 
         public void OnEdit()    //수정
@@ -147,7 +147,7 @@ namespace Team2_Project
             dgvData.Enabled = false;
             dgvData.ClearSelection();            
             DeactivationTop();      //검색조건 비활성화
-            Activation(situation);  //입력패널 활성화
+            ActivationBottom(situation);  //입력패널 활성화
         }
 
         public void OnDelete()  //삭제
@@ -222,6 +222,7 @@ namespace Team2_Project
                 else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
             }
             OnReLoad();
+            ActivationTop();    //검색 활성화
             situation = "";
             dgvData.Enabled = true;
         }
@@ -229,16 +230,17 @@ namespace Team2_Project
         public void OnCancel()  //취소
         {
             dgvData.Enabled = true;
-            ResetBottom();  //입력패널 리셋
-            DeactivationBottom(); //입력패널 비활성화
-            OnSearch();     //로드
+            ResetBottom();          //입력 리셋
+            DeactivationBottom();   //입력 비활성화
+            OnSearch();             //로드
+            ActivationTop();        //검색 활성화
         }
 
         public void OnReLoad()  //새로고침
         {
             //Deactivation();
-            ResetTop();       //검색조건 리셋
-            ResetBottom();    //입력패널 리셋
+            ResetTop();       //검색 리셋
+            ResetBottom();    //입력 리셋
             OnSearch();       //로드
         }
         #endregion
@@ -270,36 +272,41 @@ namespace Team2_Project
             txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }
 
-        private void ResetTop() //검색조건 리셋
+        private void ResetTop() //검색 리셋
         {
             ucCodeSearch._Code = ucCodeSearch._Name = "";
             cboTypeSC.SelectedIndex = cboUseYNSC.SelectedIndex = 0;
         }
 
-        private void ResetBottom() //입력패널 리셋
+        private void ActivationTop() //검색 활성화
+        {
+            ucCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = true;
+        }
+
+        private void DeactivationTop() //검색 비활성화
+        {
+            ucCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = false;
+        }
+
+        private void ResetBottom() //입력 리셋
         {
             txtCode.Text = txtName.Text = txtRemark.Text = "";
             cboType.SelectedIndex = cboSpec.SelectedIndex = cboUseYN.SelectedIndex = 0;
             cboUseYN.SelectedItem = null;
         }
 
-        private void DeactivationTop() //검색조건 비활성화
+        private void ActivationBottom(string situation) //입력 활성화
         {
-            ucCodeSearch.Enabled = cboTypeSC.Enabled = false;
-        }
-
-        private void DeactivationBottom() //입력패널 비활성화
-        {
-            txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
-            cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
-        }
-
-        private void Activation(string situation) //입력패널 활성화
-        {
-            if (situation.Equals("Add")) txtCode.Enabled = true;
+            if (situation.Equals("Add")) txtCode.Enabled = true; //PK유지
             else txtCode.Enabled = false;
             txtName.Enabled = txtRemark.Enabled = true;
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
+        }
+
+        private void DeactivationBottom() //입력 비활성화
+        {
+            txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
+            cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
         }
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
