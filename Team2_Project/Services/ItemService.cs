@@ -26,14 +26,6 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public List<ItemDTO> GetCurItem(string item)
-        {
-             ItemDAO db = new ItemDAO();
-            List<ItemDTO> list = db.GetCurItem(item);
-            db.Dispose();
-            return list;
-        }
-
         public bool GetItemUpdate(ItemDTO item)
         {
             ItemDAO db = new ItemDAO();
@@ -49,5 +41,24 @@ namespace Team2_Project.Services
             db.Dispose();
             return result;
         }
+
+        public int DeleteItemCode(string Code)
+        {
+            ItemDAO db = new ItemDAO();
+            int result = db.DeleteItemCode(Code);
+            db.Dispose();
+            return result;
+        }
+
+
+        #region 미사용
+        public List<ItemDTO> GetCurItem(string item)
+        {
+            ItemDAO db = new ItemDAO();
+            List<ItemDTO> list = db.GetCurItem(item);
+            db.Dispose();
+            return list;
+        }
+        #endregion
     }
 }

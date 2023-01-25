@@ -121,7 +121,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<ItemDTO> GetCurItem(string item) //품목 패널로드
+        public List<ItemDTO> GetCurItem(string item) //품목 패널로드 //미사용
         {
             try
             {               
@@ -153,7 +153,13 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"UPDATE Item_Master
-                                  SET Item_Name = @Item_Name, Item_Type = @Item_Type, Item_Spec = @Item_Spec, Remark = @Remark, Use_YN = @Use_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                                  SET Item_Name = @Item_Name
+                                    , Item_Type = @Item_Type
+                                    , Item_Spec = @Item_Spec
+                                    , Remark = @Remark
+                                    , Use_YN = @Use_YN
+                                    , Up_Date = GETDATE()
+                                    , Up_Emp = @Up_Emp
                                 WHERE Item_Code = @Item_Code";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Item_Code", item.Item_Code);
@@ -184,9 +190,9 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"select count(*) cnt
-                                from Item_Master
-                                where Item_Code = @Item_Code";
+                string sql = @"SELECT count(*) cnt
+                                FROM Item_Master
+                                WHERE Item_Code = @Item_Code";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -206,10 +212,35 @@ namespace Team2_Project_DAO
             }
         }
 
+        public int DeleteItemCode(string Code)
+        {
+            try
+            {
+                string sql = @"DELETE FROM Item_Master
+                                WHERE Item_Code = @Item_Code;
+                                SELECT @@ERROR";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Item_Code", Code);
+
+                    Debug.WriteLine(cmd.CommandText);                    
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+
         // 완제품 코드랑 이름만 가져오는 코드 - 0124 이승원
         public List<ItemDTO> GetItemCodeName()
         {
-            string sql = @"select SELECT Item_Code , Item_Name FROM Item_Master
+            string sql = @"select Item_Code, Item_Name FROM Item_Master
                             WHERE Use_YN = 'Y'";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))

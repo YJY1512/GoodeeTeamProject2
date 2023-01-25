@@ -360,6 +360,7 @@ namespace Team2_Project
             this.txtRemark.Location = new System.Drawing.Point(1074, 18);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.txtRemark.Size = new System.Drawing.Size(394, 64);
             this.txtRemark.TabIndex = 54;
             // 

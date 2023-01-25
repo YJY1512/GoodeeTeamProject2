@@ -35,9 +35,9 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvOrder);
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 200, frosen:true); //0
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 200, frosen: true); //1
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "", 200); //2
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 200); //3
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 200); //4
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 200); //2
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 200); //3
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "Company_Name", 200); //4
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 200); //5
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 200); //6
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 200); //7
@@ -90,7 +90,7 @@ namespace Team2_Project
             idx = dt.Rows.Count - 1;
             dgvOrder.Rows[idx].Cells[9].ReadOnly = false;
             dgvOrder.Rows[idx].Cells[10].ReadOnly = false;
-            stat = 0;
+            stat = 1;
             //저장, 취소 빼고 다 비활성화
         }
 
@@ -227,6 +227,81 @@ namespace Team2_Project
 
         private void ucSearchItem_BtnClick(object sender, EventArgs e)
         {
+            ucSearchItem.OpenPop(GetPopInfo_Item());
+        }
+
+        private void ucSearchProject_BtnClick(object sender, EventArgs e)
+        {
+            ucSearchItem.OpenPop(GetPopInfo_Project());
+        }
+
+        private void dgvOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(stat != 0)
+            {
+                if (e.RowIndex != idx) return;
+                switch(e.ColumnIndex){
+                    case 2: OpenPop(GetPopInfo_Project()); break;
+                    //case 6: asdasd(); break;
+                    case 7: OpenPop(GetPopInfo_Item());  break;
+                    default: break;
+                }
+            }
+        }
+
+        private void asdasd(DataGridViewCell cell)
+        {
+            DateTimePicker dtp = new DateTimePicker();
+            dtp.Format = DateTimePickerFormat.Short;
+            dtp.Visible = true;
+            if (cell.Value != null)
+                dtp.Value = DateTime.Parse(cell.Value.ToString());
+            else
+            {
+                dtp.Value = DateTime.Now;
+            }
+
+            var rect = dgvOrder.GetCellDisplayRectangle(cell.RowIndex, cell.ColumnIndex, true);
+            dtp.Size = new Size(rect.Width, rect.Height);
+            dtp.Location = new Point(rect.X, rect.Y);
+            dgvOrder.Controls.Add(dtp);
+
+            dtp.CloseUp += Dtp_CloseUp;
+            dtp.TextChanged += Dtp_TextChanged;
+        }
+
+        private void Dtp_TextChanged(object sender, EventArgs e)
+        {
+            //dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = ((DateTimePicker)sender).Text.ToString("yyyy-MM-dd");
+        }
+
+        private void Dtp_CloseUp(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private CommonPop<ProjectDTO> GetPopInfo_Project()
+        {
+            if (projectCodeList == null || projectCodeList.Count() < 1)
+            {
+                projectCodeList = ordSrv.GetProjectList();
+            }
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트코드", "Prj_No", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트명", "Prj_Name", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("거래처명", "Company_Name", 200));
+
+            CommonPop<ProjectDTO> popInfo = new CommonPop<ProjectDTO>();
+            popInfo.DgvDatasource = projectCodeList;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "프로젝트 검색";
+
+            return popInfo;
+        }
+
+        private CommonPop<ItemDTO> GetPopInfo_Item()
+        {
             if (itemCodeList == null || itemCodeList.Count() < 1)
             {
                 itemCodeList = ordSrv.GetItemCodeName();
@@ -241,38 +316,30 @@ namespace Team2_Project
             popInfo.DgvCols = colList;
             popInfo.PopName = "품목 검색";
 
-            ucSearchItem.OpenPop(popInfo);
+            return popInfo;
         }
 
-        private void ucSearchProject_BtnClick(object sender, EventArgs e)
+        private void OpenPop<T>(CommonPop<T> popInfo) where T : class, new()
         {
-            if (projectCodeList == null || projectCodeList.Count() < 1)
+            frmPop pop = new frmPop();
+            pop.PopLoadData<T>(popInfo);
+
+            if (pop.ShowDialog(this) == DialogResult.OK)
             {
-                projectCodeList = ordSrv.GetProjectList();
+                dgvOrder[popInfo.DgvCols[0].DataPropertyName, idx].Value = pop.SelCode;
+                dgvOrder[popInfo.DgvCols[1].DataPropertyName, idx].Value = pop.SelName;
+                if(popInfo.DgvCols.Count > 2)
+                    dgvOrder[popInfo.DgvCols[2].DataPropertyName, idx].Value = pop.SelEtc;
             }
-
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트코드", "Item_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트명", "Item_Name", 200));
-
-            CommonPop<ProjectDTO> popInfo = new CommonPop<ProjectDTO>();
-            popInfo.DgvDatasource = projectCodeList;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "프로젝트 검색";
-
-            ucSearchItem.OpenPop(popInfo);
         }
 
-        private void dgvOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void GetItemInfo()
         {
-            if(stat != 0)
-            {
-                //switch (e.ColumnIndex)
-                //{
-                //    case 2
-                //}
-                    
-            }
+
+        }
+        private void GetDate()
+        {
+
         }
     }
 }

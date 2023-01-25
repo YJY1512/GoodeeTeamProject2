@@ -133,7 +133,7 @@ namespace Team2_Project
             dgvData.ClearSelection();            
             DeactivationTop();      //검색조건 비활성화
             ResetBottom();          //입력패널 리셋
-            Activation(situation);  //입력패널 활성화
+            ActivationBottom(situation);  //입력패널 활성화
         }
 
         public void OnEdit()    //수정
@@ -147,16 +147,37 @@ namespace Team2_Project
             dgvData.Enabled = false;
             dgvData.ClearSelection();            
             DeactivationTop();      //검색조건 비활성화
-            Activation(situation);  //입력패널 활성화
+            ActivationBottom(situation);  //입력패널 활성화
         }
 
         public void OnDelete()  //삭제
         {
+            if (dgvData.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                return;
+            }
+
+            dgvData.Enabled = false;
+
+            if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                int result = srv.DeleteItemCode(txtCode.Text);
+
+                if (result == 0) MessageBox.Show("삭제가 완료되었습니다."); //성공
+                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다."); //FK 충돌
+                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+
+                ResetBottom(); //입력패널 리셋
+                OnSearch();    //로드
+            }
+            dgvData.Enabled = true;
         }
 
         public void OnSave()    //저장
         {
-            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) || cboType.SelectedIndex == 0 || cboUseYN.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) 
+                || cboType.SelectedIndex == 0)
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.");
                 return;
@@ -173,9 +194,10 @@ namespace Team2_Project
                 Item_Name = txtName.Text,
                 Item_Type = cboType.Text.Equals("완제품") ? "PR" : "SA",
                 Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
-                Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
+                Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
                 Remark = txtRemark.Text,
-                Ins_Emp = "홍길동" ///////////////////////////////////////////////////// 추후수정
+                Ins_Emp = "홍길동", ///////////////////////////////////////////////////// 추후수정
+                Up_Emp = "홍길동"   ///////////////////////////////////////////////////// 추후수정
             };
 
             if (situation == "Add")
@@ -200,6 +222,7 @@ namespace Team2_Project
                 else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
             }
             OnReLoad();
+            ActivationTop();    //검색 활성화
             situation = "";
             dgvData.Enabled = true;
         }
@@ -207,16 +230,17 @@ namespace Team2_Project
         public void OnCancel()  //취소
         {
             dgvData.Enabled = true;
-            ResetBottom();  //입력패널 리셋
-            DeactivationBottom(); //입력패널 비활성화
-            OnSearch();     //로드
+            ResetBottom();          //입력 리셋
+            DeactivationBottom();   //입력 비활성화
+            OnSearch();             //로드
+            ActivationTop();        //검색 활성화
         }
 
         public void OnReLoad()  //새로고침
         {
             //Deactivation();
-            ResetTop();       //검색조건 리셋
-            ResetBottom();    //입력패널 리셋
+            ResetTop();       //검색 리셋
+            ResetBottom();    //입력 리셋
             OnSearch();       //로드
         }
         #endregion
@@ -224,14 +248,16 @@ namespace Team2_Project
         private void cboType_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cboType == null) return; // || cboType.SelectedIndex < 1
-
-            if (cboType.Text == "반제품")
+            if (cboType.Enabled == true)
             {
-                cboSpec.SelectedIndex = 0;
-                cboSpec.Enabled = false;
+                if (cboType.Text == "반제품")
+                {
+                    cboSpec.SelectedIndex = 0;
+                    cboSpec.Enabled = false;
+                }
+                else
+                    cboSpec.Enabled = true;
             }
-            else
-                cboSpec.Enabled = true;
         }
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -246,35 +272,41 @@ namespace Team2_Project
             txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }
 
-        private void ResetTop() //검색조건 리셋
+        private void ResetTop() //검색 리셋
         {
             ucCodeSearch._Code = ucCodeSearch._Name = "";
             cboTypeSC.SelectedIndex = cboUseYNSC.SelectedIndex = 0;
         }
 
-        private void ResetBottom() //입력패널 리셋
+        private void ActivationTop() //검색 활성화
+        {
+            ucCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = true;
+        }
+
+        private void DeactivationTop() //검색 비활성화
+        {
+            ucCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = false;
+        }
+
+        private void ResetBottom() //입력 리셋
         {
             txtCode.Text = txtName.Text = txtRemark.Text = "";
             cboType.SelectedIndex = cboSpec.SelectedIndex = cboUseYN.SelectedIndex = 0;
+            cboUseYN.SelectedItem = null;
         }
 
-        private void DeactivationTop() //검색조건 비활성화
+        private void ActivationBottom(string situation) //입력 활성화
         {
-            ucCodeSearch.Enabled = cboTypeSC.Enabled = false;
-        }
-
-        private void DeactivationBottom() //입력패널 비활성화
-        {
-            txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
-            cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
-        }
-
-        private void Activation(string situation) //입력패널 활성화
-        {
-            if (situation.Equals("Add")) txtCode.Enabled = true;
+            if (situation.Equals("Add")) txtCode.Enabled = true; //PK유지
             else txtCode.Enabled = false;
             txtName.Enabled = txtRemark.Enabled = true;
             cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
+        }
+
+        private void DeactivationBottom() //입력 비활성화
+        {
+            txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
+            cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
         }
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
