@@ -40,29 +40,29 @@ namespace Team2_Project
 
         private void ucSearch1_BtnClick(object sender, EventArgs e)
         {
-            if (ItemCodeList == null || ItemCodeList.Count() < 1)
-            {
-                ItemCodeList = empSrv.GetUserGroupCode();
-            }
-
-            //frmUcSearchPopup pop = new frmUcSearchPopup(userGroupCodeList);
-            //if (pop.ShowDialog() == DialogResult.OK)
+            //if (ItemCodeList == null || ItemCodeList.Count() < 1)
             //{
-            //    CodeDTO group = pop.Info;
-            //    ucSearchGroup._Code = group.Code;
-            //    ucSearchGroup._Name = group.Name;
+            //    ItemCodeList = empSrv.GetUserGroupCode();
             //}
 
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹코드", "Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹명", "Name", 200));
+            ////frmUcSearchPopup pop = new frmUcSearchPopup(userGroupCodeList);
+            ////if (pop.ShowDialog() == DialogResult.OK)
+            ////{
+            ////    CodeDTO group = pop.Info;
+            ////    ucSearchGroup._Code = group.Code;
+            ////    ucSearchGroup._Name = group.Name;
+            ////}
 
-            CommonPop<CodeDTO> popInfo = new CommonPop<CodeDTO>();
-            popInfo.DgvDatasource = userGroupCodeList;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "그룹코드 검색";
+            //List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            //colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹코드", "Code", 200));
+            //colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹명", "Name", 200));
 
-            ucSearchGroup.OpenPop(popInfo);
+            //CommonPop<CodeDTO> popInfo = new CommonPop<CodeDTO>();
+            //popInfo.DgvDatasource = userGroupCodeList;
+            //popInfo.DgvCols = colList;
+            //popInfo.PopName = "그룹코드 검색";
+
+            //ucSearchGroup.OpenPop(popInfo);
         }
 
         //public void OnSearch()

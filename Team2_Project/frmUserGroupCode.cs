@@ -89,6 +89,7 @@ namespace Team2_Project
             if (dgvGroup.SelectedRows.Count < 1)
             {
                 MessageBox.Show("수정할 항목을 선택하여 주세요.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             dgvGroup.Enabled = false;

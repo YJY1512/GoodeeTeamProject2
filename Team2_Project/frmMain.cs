@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_Project.Controls;
 using System.Reflection;
+using Team2_Project_DTO;
+using Team2_Project.Utils;
+using Team2_Project.Services;
 
 namespace Team2_Project
 {
     public partial class frmMain : Form
     {
+        public EmployeeDTO LoginEmp { get; set; }
+        
         //public event EventHandler BtnClick;
 
         private Boolean showPanelTreenode1 = false;
@@ -33,6 +38,7 @@ namespace Team2_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             tStripName.Text = "윤종윤님";
             tStripDept.Text = "관리자";
             OpenChildPage<frmStartMain>();
@@ -382,6 +388,18 @@ namespace Team2_Project
 
                 if (btnEventHandlerCall != null)
                 {
+                    if (funcName == "OnAdd")
+                    {
+                        AddClickEvent();
+                    }
+                    else if (funcName == "OnEdit")
+                    {
+                        EditClickEvent();
+                    }
+                    else if (funcName == "OnSave" || funcName == "OnCancel")
+                    {
+                        SaveOrCancelClickEvent();
+                    }
                     btnEventHandlerCall.Invoke(this.ActiveMdiChild, null);
                 }
                 else
@@ -408,51 +426,38 @@ namespace Team2_Project
         //}
 
         #region 버튼 클릭 이벤트
-        private void AddClickEvent()
+        private void AddClickEvent() //추가 버튼 클릭시
         {
-            btnAdd.BackColor = Color.White;
-            btnSearch.Enabled = false;
-            btnEdit.Enabled = false;
-            btnDelete.Enabled = false;
-            btnReLoad.Enabled = false;
-            btnSearch.BackColor = Color.DarkGray;
-            btnEdit.BackColor = Color.DarkGray;
-            btnDelete.BackColor = Color.DarkGray;
-            btnReLoad.BackColor = Color.DarkGray;
+            btnAdd.BackColor = Color.White;            
+            btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
+            btnSearch.BackColor = btnEdit.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
         }
-        private void EditClickEvent()
+        private void EditClickEvent() // 수정 버튼 클릭시 
         {
             btnEdit.BackColor = Color.White;
-            btnSearch.Enabled = false;
-            btnAdd.Enabled = false;
-            btnDelete.Enabled = false;
-            btnReLoad.Enabled = false;
-            btnSearch.BackColor = Color.DarkGray;
-            btnAdd.BackColor = Color.DarkGray;
-            btnDelete.BackColor = Color.DarkGray;
-            btnReLoad.BackColor = Color.DarkGray;
+            btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
+            btnSearch.BackColor = btnAdd.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
         }
-        void SaveOrDeleteClickEvent()   //질문 
+        void SaveOrCancelClickEvent()   //저장 or 취소 버튼 클릭시  
         {
-            if (!btnSearch.Enabled &&
-                !btnAdd.Enabled &&
-                !btnDelete.Enabled &&
-                !btnReLoad.Enabled &&
-                btnAdd.BackColor == Color.White &&
+            if (btnSearch.Enabled == false &&
+                btnAdd.Enabled == false &&
+                btnEdit.Enabled == false &&
+                btnDelete.Enabled == false &&
+                btnReLoad.Enabled == false &&
+                btnAdd.BackColor == Color.White ||
                 btnEdit.BackColor == Color.White
                 )
             {
-                btnSearch.Enabled = true;
-                btnAdd.Enabled = true;
-                btnDelete.Enabled = true;
-                btnReLoad.Enabled = true;
-                btnAdd.BackColor = Color.FromArgb(211, 226, 223);
-                btnEdit.BackColor = Color.FromArgb(211, 226, 223);
-                btnSearch.BackColor = Color.FromArgb(211, 226, 223);
-                btnAdd.BackColor = Color.FromArgb(211, 226, 223);
-                btnDelete.BackColor = Color.FromArgb(211, 226, 223);
-                btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
+                btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = true;
+                btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor =  btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
             }
+        }
+
+        public void BtnEditReturn(bool bactive) //셀 선택없이 수정버튼 클릭시 값 초기화 이벤트
+        {
+            btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = bactive;
+            btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -462,14 +467,12 @@ namespace Team2_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //AddClickEvent();
-            Function_Invoke("OnAdd");
+            Function_Invoke("OnAdd");         
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //EditClickEvent();
-            Function_Invoke("OnEdit");
+            Function_Invoke("OnEdit");          
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -479,27 +482,19 @@ namespace Team2_Project
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            Function_Invoke("OnSave");
-            //SaveOrDeleteClickEvent();
+            Function_Invoke("OnSave");           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            
-            Function_Invoke("OnCancel");
-            SaveOrDeleteClickEvent();
+            Function_Invoke("OnCancel");            
         }
 
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             Function_Invoke("OnReLoad");
         }
-        #endregion
-
-        
-
-        
+        #endregion       
     }
     class TabTag
     {
