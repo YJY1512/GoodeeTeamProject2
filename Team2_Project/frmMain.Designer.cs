@@ -170,7 +170,7 @@ namespace Team2_Project
             // 
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.toolStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStrip1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnSetting,
@@ -184,24 +184,24 @@ namespace Team2_Project
             // tsBtnSetting
             // 
             this.tsBtnSetting.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsBtnSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnSetting.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsBtnSetting.ForeColor = System.Drawing.Color.White;
             this.tsBtnSetting.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnSetting.Image")));
             this.tsBtnSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnSetting.Margin = new System.Windows.Forms.Padding(5);
             this.tsBtnSetting.Name = "tsBtnSetting";
-            this.tsBtnSetting.Size = new System.Drawing.Size(54, 25);
+            this.tsBtnSetting.Size = new System.Drawing.Size(55, 25);
             this.tsBtnSetting.Text = "설정";
             // 
             // tsBtnFavorite
             // 
             this.tsBtnFavorite.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsBtnFavorite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnFavorite.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsBtnFavorite.ForeColor = System.Drawing.Color.White;
             this.tsBtnFavorite.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnFavorite.Image")));
             this.tsBtnFavorite.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnFavorite.Name = "tsBtnFavorite";
-            this.tsBtnFavorite.Size = new System.Drawing.Size(76, 32);
+            this.tsBtnFavorite.Size = new System.Drawing.Size(79, 32);
             this.tsBtnFavorite.Text = "즐겨찾기";
             // 
             // imageListLeftSideBar
@@ -794,7 +794,7 @@ namespace Team2_Project
             this.toolStrip3.AutoSize = false;
             this.toolStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStrip3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tStripDate,
@@ -811,53 +811,53 @@ namespace Team2_Project
             // tStripDate
             // 
             this.tStripDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tStripDate.ForeColor = System.Drawing.Color.White;
             this.tStripDate.Margin = new System.Windows.Forms.Padding(5);
             this.tStripDate.Name = "tStripDate";
-            this.tStripDate.Size = new System.Drawing.Size(41, 25);
+            this.tStripDate.Size = new System.Drawing.Size(35, 25);
             this.tStripDate.Text = "Date";
             // 
             // tStripTime
             // 
             this.tStripTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(219)))), ((int)(((byte)(231)))));
-            this.tStripTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tStripTime.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tStripTime.ForeColor = System.Drawing.Color.White;
             this.tStripTime.Margin = new System.Windows.Forms.Padding(5);
             this.tStripTime.Name = "tStripTime";
-            this.tStripTime.Size = new System.Drawing.Size(43, 25);
+            this.tStripTime.Size = new System.Drawing.Size(36, 25);
             this.tStripTime.Text = "Time";
             // 
             // tsBtnLogOut
             // 
             this.tsBtnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsBtnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tsBtnLogOut.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsBtnLogOut.ForeColor = System.Drawing.Color.White;
             this.tsBtnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnLogOut.Image")));
             this.tsBtnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnLogOut.Margin = new System.Windows.Forms.Padding(5);
             this.tsBtnLogOut.Name = "tsBtnLogOut";
-            this.tsBtnLogOut.Size = new System.Drawing.Size(76, 25);
+            this.tsBtnLogOut.Size = new System.Drawing.Size(79, 25);
             this.tsBtnLogOut.Text = "로그아웃";
             // 
             // tStripName
             // 
             this.tStripName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStripName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tStripName.ForeColor = System.Drawing.Color.White;
             this.tStripName.Margin = new System.Windows.Forms.Padding(5);
             this.tStripName.Name = "tStripName";
-            this.tStripName.Size = new System.Drawing.Size(30, 25);
+            this.tStripName.Size = new System.Drawing.Size(31, 25);
             this.tStripName.Text = "이름";
             // 
             // tStripDept
             // 
             this.tStripDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tStripDept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStripDept.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tStripDept.ForeColor = System.Drawing.Color.White;
             this.tStripDept.Margin = new System.Windows.Forms.Padding(5);
             this.tStripDept.Name = "tStripDept";
-            this.tStripDept.Size = new System.Drawing.Size(30, 25);
+            this.tStripDept.Size = new System.Drawing.Size(31, 25);
             this.tStripDept.Text = "부서";
             // 
             // tabControl1
