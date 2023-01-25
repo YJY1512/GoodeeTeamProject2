@@ -242,26 +242,26 @@ namespace Team2_Project
                 if (e.RowIndex != idx) return;
                 switch(e.ColumnIndex){
                     case 2: OpenPop(GetPopInfo_Project()); break;
-                    //case 6: asdasd(); break;
+                    case 6: SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); break;
                     case 7: OpenPop(GetPopInfo_Item());  break;
                     default: break;
                 }
             }
         }
 
-        private void asdasd(DataGridViewCell cell)
+        private void SetDtpCell(DataGridViewCell cell)
         {
             DateTimePicker dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Short;
             dtp.Visible = true;
-            if (cell.Value != null)
+            if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
                 dtp.Value = DateTime.Parse(cell.Value.ToString());
             else
             {
                 dtp.Value = DateTime.Now;
             }
 
-            var rect = dgvOrder.GetCellDisplayRectangle(cell.RowIndex, cell.ColumnIndex, true);
+            var rect = dgvOrder.GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
             dtp.Size = new Size(rect.Width, rect.Height);
             dtp.Location = new Point(rect.X, rect.Y);
             dgvOrder.Controls.Add(dtp);
@@ -272,12 +272,13 @@ namespace Team2_Project
 
         private void Dtp_TextChanged(object sender, EventArgs e)
         {
-            //dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = ((DateTimePicker)sender).Text.ToString("yyyy-MM-dd");
+            dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = ((DateTimePicker)sender).Value.ToString("yyyy-MM-dd");
         }
 
         private void Dtp_CloseUp(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ((DateTimePicker)sender).Visible = false;
+            dgvOrder.Controls.Remove((DateTimePicker)sender);
         }
 
         private CommonPop<ProjectDTO> GetPopInfo_Project()
