@@ -100,10 +100,6 @@ namespace Team2_Project
             this.lblInfoCodeMa.Size = new System.Drawing.Size(110, 17);
             this.lblInfoCodeMa.Text = "불량현상 대분류";
             // 
-            // nudSort
-            // 
-            this.nudSort.Location = new System.Drawing.Point(210, 242);
-            // 
             // splitContainer2
             // 
             // 
@@ -111,7 +107,7 @@ namespace Team2_Project
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMi);
             this.splitContainer2.Size = new System.Drawing.Size(1156, 645);
-            this.splitContainer2.SplitterDistance = 349;
+            this.splitContainer2.SplitterDistance = 403;
             // 
             // ucSearch1
             // 
@@ -159,7 +155,7 @@ namespace Team2_Project
             this.dgvMi.Location = new System.Drawing.Point(0, 0);
             this.dgvMi.Name = "dgvMi";
             this.dgvMi.RowTemplate.Height = 23;
-            this.dgvMi.Size = new System.Drawing.Size(1156, 349);
+            this.dgvMi.Size = new System.Drawing.Size(1156, 403);
             this.dgvMi.TabIndex = 0;
             // 
             // frmDefectCodeDetail
@@ -167,6 +163,7 @@ namespace Team2_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.ClientSize = new System.Drawing.Size(1738, 748);
             this.Name = "frmDefectCodeDetail";
+            this.Load += new System.EventHandler(this.frmDefectCodeDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);

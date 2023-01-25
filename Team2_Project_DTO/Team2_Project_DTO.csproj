@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeDTO.cs" />
+    <Compile Include="DefCodeDetailDTO.cs" />
     <Compile Include="DefCodeDTO.cs" />
     <Compile Include="NopCodeDTO.cs" />
     <Compile Include="EmployeeDTO.cs" />
