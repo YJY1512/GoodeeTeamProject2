@@ -131,6 +131,12 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashBoard.Designer.cs">
+      <DependentUpon>frmDashBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDefectCodeDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucSearch.resx">
       <DependentUpon>ucSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashBoard.resx">
+      <DependentUpon>frmDashBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDefectCode.resx">
       <DependentUpon>frmDefectCode.cs</DependentUpon>
