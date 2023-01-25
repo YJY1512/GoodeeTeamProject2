@@ -156,11 +156,15 @@ namespace Team2_Project
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             curP_MenuID = e.Node.Text.ToString();
-            if (e.Node.Text == "사용자 관리")
+            if (e.Node.Text == "사용자 그룹코드")
             {
-                OpenChildPage<frmUserManagement>();
+                OpenChildPage<frmUserGroupCode>();
             }
-            else if (e.Node.Text == "인사 관리")
+            else if (e.Node.Text == "사용자 권한설정")
+            {
+                MessageBox.Show("빈 생성 화면입니다.");
+            }
+            else if (e.Node.Text == "사용자 관리")
             {
                 OpenChildPage<frmEmpManagement>();
             }

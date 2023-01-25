@@ -53,6 +53,33 @@ namespace Team2_Project_DAO
             }
         }
 
+        public bool CheckPK(string maCode, string miCode)
+        {
+            try
+            {
+                string sql = @"select count(*) cnt
+                                from Userdefine_Mi_Master
+                                where Userdefine_Ma_Code = @Userdefine_Ma_Code and Userdefine_Mi_Code = @Userdefine_Mi_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Userdefine_Mi_Code", miCode);
+                    cmd.Parameters.AddWithValue("@Userdefine_Ma_Code", maCode);
+
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return (cnt < 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
         public bool InsertUserCode(UserCodeDTO code)
         {
             try

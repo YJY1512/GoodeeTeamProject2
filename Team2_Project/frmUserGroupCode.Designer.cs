@@ -30,19 +30,22 @@ namespace Team2_Project
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboUseYN1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtGroupCode2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboAdUseYN2 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dgvEmp = new System.Windows.Forms.DataGridView();
+            this.txtGroupNM2 = new System.Windows.Forms.TextBox();
+            this.dgvGroup = new System.Windows.Forms.DataGridView();
+            this.cboUseYN2 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtGroupNM1 = new System.Windows.Forms.TextBox();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -50,17 +53,17 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.comboBox1);
+            this.pnlSub.Controls.Add(this.txtGroupNM1);
+            this.pnlSub.Controls.Add(this.cboUseYN1);
             this.pnlSub.Controls.Add(this.label4);
-            this.pnlSub.Controls.Add(this.ucSearch1);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlSub.Size = new System.Drawing.Size(1100, 60);
+            this.pnlSub.Size = new System.Drawing.Size(1326, 60);
             // 
             // lblTitleU
             // 
@@ -78,28 +81,31 @@ namespace Team2_Project
             // 
             // pnlList
             // 
-            this.pnlList.Controls.Add(this.dgvEmp);
-            this.pnlList.Size = new System.Drawing.Size(1100, 397);
+            this.pnlList.Controls.Add(this.dgvGroup);
+            this.pnlList.Size = new System.Drawing.Size(1326, 397);
             // 
             // pnlArea
             // 
             this.pnlArea.AutoSize = true;
-            this.pnlArea.Controls.Add(this.textBox2);
-            this.pnlArea.Controls.Add(this.comboBox3);
+            this.pnlArea.Controls.Add(this.cboUseYN2);
+            this.pnlArea.Controls.Add(this.label11);
+            this.pnlArea.Controls.Add(this.label12);
+            this.pnlArea.Controls.Add(this.txtGroupNM2);
+            this.pnlArea.Controls.Add(this.cboAdUseYN2);
             this.pnlArea.Controls.Add(this.label9);
             this.pnlArea.Controls.Add(this.label10);
             this.pnlArea.Controls.Add(this.label8);
             this.pnlArea.Controls.Add(this.label6);
-            this.pnlArea.Controls.Add(this.textBox1);
+            this.pnlArea.Controls.Add(this.txtGroupCode2);
             this.pnlArea.Controls.Add(this.label5);
             this.pnlArea.Controls.Add(this.label7);
-            this.pnlArea.Size = new System.Drawing.Size(1100, 60);
+            this.pnlArea.Size = new System.Drawing.Size(1326, 60);
             // 
             // splitContainer1
             // 
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 60);
-            this.splitContainer1.Size = new System.Drawing.Size(1100, 547);
+            this.splitContainer1.Size = new System.Drawing.Size(1326, 547);
             this.splitContainer1.SplitterDistance = 440;
             // 
             // label1
@@ -110,23 +116,9 @@ namespace Team2_Project
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(30, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.Size = new System.Drawing.Size(96, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "사용자 그룹";
-            // 
-            // ucSearch1
-            // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucSearch1.Location = new System.Drawing.Point(127, 15);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 26);
-            this.ucSearch1.TabIndex = 1;
+            this.label1.Text = "사용자 그룹명";
             // 
             // label4
             // 
@@ -134,19 +126,19 @@ namespace Team2_Project
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(527, 20);
+            this.label4.Location = new System.Drawing.Point(383, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 2;
             this.label4.Text = "사용유무";
             // 
-            // comboBox1
+            // cboUseYN1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(606, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(130, 25);
-            this.comboBox1.TabIndex = 3;
+            this.cboUseYN1.FormattingEnabled = true;
+            this.cboUseYN1.Location = new System.Drawing.Point(457, 16);
+            this.cboUseYN1.Name = "cboUseYN1";
+            this.cboUseYN1.Size = new System.Drawing.Size(130, 25);
+            this.cboUseYN1.TabIndex = 3;
             // 
             // label7
             // 
@@ -171,12 +163,12 @@ namespace Team2_Project
             this.label5.TabIndex = 19;
             this.label5.Text = "사용자 그룹 코드";
             // 
-            // textBox1
+            // txtGroupCode2
             // 
-            this.textBox1.Location = new System.Drawing.Point(160, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 25);
-            this.textBox1.TabIndex = 20;
+            this.txtGroupCode2.Location = new System.Drawing.Point(160, 15);
+            this.txtGroupCode2.Name = "txtGroupCode2";
+            this.txtGroupCode2.Size = new System.Drawing.Size(170, 25);
+            this.txtGroupCode2.TabIndex = 20;
             // 
             // label6
             // 
@@ -201,13 +193,13 @@ namespace Team2_Project
             this.label8.TabIndex = 22;
             this.label8.Text = "사용자 그룹명";
             // 
-            // comboBox3
+            // cboAdUseYN2
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(850, 15);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(130, 25);
-            this.comboBox3.TabIndex = 26;
+            this.cboAdUseYN2.FormattingEnabled = true;
+            this.cboAdUseYN2.Location = new System.Drawing.Point(838, 15);
+            this.cboAdUseYN2.Name = "cboAdUseYN2";
+            this.cboAdUseYN2.Size = new System.Drawing.Size(130, 25);
+            this.cboAdUseYN2.TabIndex = 26;
             // 
             // label9
             // 
@@ -215,48 +207,88 @@ namespace Team2_Project
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(780, 18);
+            this.label9.Location = new System.Drawing.Point(777, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 17);
+            this.label9.Size = new System.Drawing.Size(55, 17);
             this.label9.TabIndex = 25;
-            this.label9.Text = "사용유무";
+            this.label9.Text = "Admin";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(757, 21);
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(754, 21);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 17);
             this.label10.TabIndex = 24;
             this.label10.Text = "*";
             // 
-            // textBox2
+            // txtGroupNM2
             // 
-            this.textBox2.Location = new System.Drawing.Point(517, 15);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(170, 25);
-            this.textBox2.TabIndex = 27;
+            this.txtGroupNM2.Location = new System.Drawing.Point(517, 15);
+            this.txtGroupNM2.Name = "txtGroupNM2";
+            this.txtGroupNM2.Size = new System.Drawing.Size(170, 25);
+            this.txtGroupNM2.TabIndex = 27;
             // 
-            // dgvEmp
+            // dgvGroup
             // 
-            this.dgvEmp.BackgroundColor = System.Drawing.Color.White;
-            this.dgvEmp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEmp.Location = new System.Drawing.Point(0, 0);
-            this.dgvEmp.Name = "dgvEmp";
-            this.dgvEmp.RowTemplate.Height = 23;
-            this.dgvEmp.Size = new System.Drawing.Size(1100, 397);
-            this.dgvEmp.TabIndex = 1;
+            this.dgvGroup.BackgroundColor = System.Drawing.Color.White;
+            this.dgvGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvGroup.Location = new System.Drawing.Point(0, 0);
+            this.dgvGroup.Name = "dgvGroup";
+            this.dgvGroup.RowTemplate.Height = 23;
+            this.dgvGroup.Size = new System.Drawing.Size(1326, 397);
+            this.dgvGroup.TabIndex = 1;
+            this.dgvGroup.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroup_CellClick);
+            // 
+            // cboUseYN2
+            // 
+            this.cboUseYN2.FormattingEnabled = true;
+            this.cboUseYN2.Location = new System.Drawing.Point(1132, 15);
+            this.cboUseYN2.Name = "cboUseYN2";
+            this.cboUseYN2.Size = new System.Drawing.Size(130, 25);
+            this.cboUseYN2.TabIndex = 30;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(1062, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 17);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "사용유무";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(1039, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(17, 17);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "*";
+            // 
+            // txtGroupNM1
+            // 
+            this.txtGroupNM1.Location = new System.Drawing.Point(135, 16);
+            this.txtGroupNM1.Name = "txtGroupNM1";
+            this.txtGroupNM1.Size = new System.Drawing.Size(170, 25);
+            this.txtGroupNM1.TabIndex = 28;
             // 
             // frmUserGroupCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
-            this.ClientSize = new System.Drawing.Size(1100, 607);
+            this.ClientSize = new System.Drawing.Size(1326, 607);
             this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmUserGroupCode";
             this.Text = "사용자 그룹관리";
+            this.Load += new System.EventHandler(this.frmUserGroupCode_Load);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlList.ResumeLayout(false);
@@ -267,26 +299,28 @@ namespace Team2_Project
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGroup)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Controls.ucSearch ucSearch1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboUseYN1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox txtGroupNM2;
+        private System.Windows.Forms.ComboBox cboAdUseYN2;
         private System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtGroupCode2;
         private System.Windows.Forms.Label label5;
         protected System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dgvEmp;
+        private System.Windows.Forms.DataGridView dgvGroup;
+        private System.Windows.Forms.TextBox txtGroupNM1;
+        private System.Windows.Forms.ComboBox cboUseYN2;
+        private System.Windows.Forms.Label label11;
+        protected System.Windows.Forms.Label label12;
     }
 }

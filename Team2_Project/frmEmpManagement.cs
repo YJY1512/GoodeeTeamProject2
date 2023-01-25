@@ -90,7 +90,7 @@ namespace Team2_Project
             CommonPop<CodeDTO> popInfo = new CommonPop<CodeDTO>();
             popInfo.DgvDatasource = userGroupCodeList;
             popInfo.DgvCols = colList;
-            popInfo.PopName = "그룹코드 검색";
+            popInfo.PopName = "그룹 검색";
 
             ucSearchGroup.OpenPop(popInfo);
         }
