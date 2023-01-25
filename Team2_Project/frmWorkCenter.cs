@@ -10,9 +10,9 @@ using Team2_Project.Utils;
 
 namespace Team2_Project
 {
-    public partial class frmWorkShopInfo : Team2_Project.frmListUpAreaDown
+    public partial class frmWorkCenter : Team2_Project.frmListUpAreaDown
     {
-        public frmWorkShopInfo()
+        public frmWorkCenter()
         {
             InitializeComponent();
         }

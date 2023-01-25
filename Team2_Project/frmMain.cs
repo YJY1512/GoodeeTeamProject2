@@ -206,7 +206,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "작업장정보")
             {
-                OpenChildPage<frmWorkShopInfo>();
+                OpenChildPage<frmWorkCenter>();
             }
             else if (e.Node.Text == "품목정보")
             {

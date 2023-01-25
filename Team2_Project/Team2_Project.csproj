@@ -257,11 +257,11 @@
     <Compile Include="frmUserManagement.Designer.cs">
       <DependentUpon>frmUserManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmWorkShopInfo.cs">
+    <Compile Include="frmWorkCenter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmWorkShopInfo.Designer.cs">
-      <DependentUpon>frmWorkShopInfo.cs</DependentUpon>
+    <Compile Include="frmWorkCenter.Designer.cs">
+      <DependentUpon>frmWorkCenter.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -274,6 +274,7 @@
     <Compile Include="Services\SysCodeService.cs" />
     <Compile Include="Services\UserCodeService.cs" />
     <Compile Include="Services\UserGroupAuthorityService.cs" />
+    <Compile Include="Services\WorkCenterService.cs" />
     <Compile Include="Utils\CommonCodeUtil.cs" />
     <Compile Include="Utils\DataGridViewUtil.cs" />
     <EmbeddedResource Include="BaseForms\frmCodeControlBase.resx">
@@ -375,8 +376,8 @@
     <EmbeddedResource Include="frmUserManagement.resx">
       <DependentUpon>frmUserManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmWorkShopInfo.resx">
-      <DependentUpon>frmWorkShopInfo.cs</DependentUpon>
+    <EmbeddedResource Include="frmWorkCenter.resx">
+      <DependentUpon>frmWorkCenter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
