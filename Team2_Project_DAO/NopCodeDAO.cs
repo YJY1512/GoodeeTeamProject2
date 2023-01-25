@@ -190,7 +190,7 @@ namespace Team2_Project_DAO
         }
 
 
-        public int DeleteItemCode(string Code)
+        public int DeleteMaCode(string Code)
         {
             try
             {
@@ -215,6 +215,85 @@ namespace Team2_Project_DAO
             }
         }
 
+        public int DeleteMiCode(string Code)
+        {
+            try
+            {
+                string sql = @"DELETE FROM Nop_Mi_Master
+                                WHERE Nop_Mi_Code = @Nop_Mi_Code;
+                                SELECT @@ERROR";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Nop_Mi_Code", Code);
 
+                    Debug.WriteLine(cmd.CommandText);
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+
+        //
+        public bool NopMiCodeAdd(NopMiCodeDTO item) //상세분류 추가
+        {
+            try
+            {
+                string sql = @"INSERT INTO Nop_Ma_Master(Nop_Mi_Code , Nop_Mi_Name, Ins_Emp, Ins_Date) 
+                                               VALUES (@Nop_Mi_Code , @Nop_Mi_Name , @Ins_Emp, GETDATE())";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Nop_Mi_Code", item.Nop_Mi_Code);
+                cmd.Parameters.AddWithValue("@Nop_Mi_Name", item.Nop_Mi_Name);
+                cmd.Parameters.AddWithValue("@Use_YN", item.Use_YN);
+                cmd.Parameters.AddWithValue("@Ins_Emp", item.Ins_Emp);
+
+                conn.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                return (iRowAffect > 0);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool NopMiCodeUpdate(NopMiCodeDTO item) //상세분류 수정
+        {
+            try
+            {
+                string sql = @"UPDATE Nop_Mi_Master
+                                  SET Nop_Mi_Name = @Nop_Mi_Name, Use_YN = @Use_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                                WHERE Nop_Mi_Code = @Nop_Mi_Code";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Nop_Mi_Code", item.Nop_Mi_Code);
+                cmd.Parameters.AddWithValue("@Nop_Mi_Name", item.Nop_Mi_Name);
+                cmd.Parameters.AddWithValue("@Use_YN", item.Use_YN);
+                cmd.Parameters.AddWithValue("@Up_Emp", item.Up_Emp);
+
+                conn.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                return (iRowAffect > 0);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

@@ -234,6 +234,7 @@ namespace Team2_Project
             this.ucCodeSearch.Name = "ucCodeSearch";
             this.ucCodeSearch.Size = new System.Drawing.Size(340, 28);
             this.ucCodeSearch.TabIndex = 17;
+            this.ucCodeSearch.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
             // 
             // frmNopMaCode
             // 

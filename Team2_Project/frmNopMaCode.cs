@@ -99,7 +99,7 @@ namespace Team2_Project
 
             if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                int result = srv.DeleteItemCode(txtCode.Text);
+                int result = srv.DeleteMaCode(txtCode.Text);
                 if (result == 0) MessageBox.Show("삭제가 완료되었습니다."); //성공
                 else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다."); //FK 충돌
                 else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
@@ -202,8 +202,8 @@ namespace Team2_Project
 
         private void ActivationBottom(string situation) //입력 활성화
         {
-            if (situation.Equals("Add")) txtCode.Enabled = true; //PK유지
-            else txtCode.Enabled = false;
+            if (situation.Equals("Add")) txtCode.Enabled = true; 
+            else txtCode.Enabled = false; //Update : PK유지
             txtName.Enabled = true;
             cboUseYN.Enabled = true;
         }

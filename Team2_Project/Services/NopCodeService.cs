@@ -27,7 +27,6 @@ namespace Team2_Project.Services
         }
 
 
-
         public bool NopMaCodeUpdate(NopMaCodeDTO item)
         {
             NopCodeDAO db = new NopCodeDAO();
@@ -44,14 +43,38 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public int DeleteItemCode(string Code)
+        public int DeleteMaCode(string Code)
         {
             NopCodeDAO db = new NopCodeDAO();
-            int result = db.DeleteItemCode(Code);
+            int result = db.DeleteMaCode(Code);
             db.Dispose();
             return result;
         }
 
+        public int DeleteMiCode(string Code)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            int result = db.DeleteMiCode(Code);
+            db.Dispose();
+            return result;
+        }
+
+        public bool NopMiCodeAdd(NopMiCodeDTO item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            bool result = db.NopMiCodeAdd(item);
+            db.Dispose();
+            return result;
+        }
+
+
+        public bool NopMiCodeUpdate(NopMiCodeDTO item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            bool result = db.NopMiCodeUpdate(item);
+            db.Dispose();
+            return result;
+        }
 
         #region 미사용
         public List<NopMaCodeDTO> GetMaCurItem(string item)
