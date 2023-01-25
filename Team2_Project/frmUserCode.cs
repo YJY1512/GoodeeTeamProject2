@@ -43,7 +43,7 @@ namespace Team2_Project
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             cboSearchUse.SelectedIndex = 0;
 
-            SetInitEditPnl();
+            SetInitPnl();
             LoadData();
         }
 
@@ -62,7 +62,7 @@ namespace Team2_Project
             dgvMi.ClearSelection();
         }
 
-        private void SetInitEditPnl()
+        private void SetInitPnl()
         {
             foreach(Control ctrl in splitContainer2.Panel2.Controls)
             {
@@ -75,8 +75,8 @@ namespace Team2_Project
                 ctrl.Enabled = false;                
             }
 
-            ucSearch1._Code = "";
-            ucSearch1._Name = "";
+            ucMaCode._Code = "";
+            ucMaCode._Name = "";
             nudSort.Value = 0;
             cboUseYN.SelectedIndex = -1;
         }
@@ -85,10 +85,10 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            string code = ucSearchCode._Code;
+            string code = ucMaCodeSC._Code;
             string useYN = (cboSearchUse.SelectedItem.ToString() == "전체")? "" : cboSearchUse.SelectedItem.ToString();
 
-            SetInitEditPnl();
+            SetInitPnl();
 
             if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
             {
@@ -113,7 +113,7 @@ namespace Team2_Project
                 return;
             }
 
-            SetInitEditPnl();
+            SetInitPnl();
 
             dgvMa.Enabled = dgvMi.Enabled = false;
             dgvMi.ClearSelection();
@@ -121,8 +121,8 @@ namespace Team2_Project
             cboUseYN.SelectedIndex = 0;
 
             int idx = dgvMa.CurrentRow.Index;
-            ucSearch1._Code = dgvMa["Userdefine_Ma_Code", idx].Value.ToString();
-            ucSearch1._Name = dgvMa["Userdefine_Ma_Name", idx].Value.ToString();
+            ucMaCode._Code = dgvMa["Userdefine_Ma_Code", idx].Value.ToString();
+            ucMaCode._Name = dgvMa["Userdefine_Ma_Name", idx].Value.ToString();
 
         }
 
@@ -150,7 +150,7 @@ namespace Team2_Project
 
             if (MessageBox.Show($"{txtInfoNameMi.Text}를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                int result = srv.DeleteUserCode(ucSearch1._Code, txtInfoCodeMi.Text);
+                int result = srv.DeleteUserCode(ucMaCode._Code, txtInfoCodeMi.Text);
 
                 if (result == 0) //성공
                 {
@@ -165,7 +165,7 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                SetInitEditPnl();
+                SetInitPnl();
                 LoadData();
             }
 
@@ -182,7 +182,7 @@ namespace Team2_Project
 
             if (txtInfoCodeMi.Enabled) //신규 저장
             {
-                bool result = srv.CheckPK(ucSearch1._Code, txtInfoCodeMi.Text);
+                bool result = srv.CheckPK(ucMaCode._Code, txtInfoCodeMi.Text);
                 if (!result)
                 {
                     MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.");
@@ -191,7 +191,7 @@ namespace Team2_Project
 
                 UserCodeDTO code = new UserCodeDTO
                 {
-                    Userdefine_Ma_Code = ucSearch1._Code,
+                    Userdefine_Ma_Code = ucMaCode._Code,
                     Userdefine_Mi_Code = txtInfoCodeMi.Text,
                     Userdefine_Mi_Name = txtInfoNameMi.Text,
                     Sort_Index = (int)nudSort.Value,
@@ -215,7 +215,7 @@ namespace Team2_Project
             {
                 UserCodeDTO code = new UserCodeDTO
                 {
-                    Userdefine_Ma_Code = ucSearch1._Code,
+                    Userdefine_Ma_Code = ucMaCode._Code,
                     Userdefine_Mi_Code = txtInfoCodeMi.Text,
                     Userdefine_Mi_Name = txtInfoNameMi.Text,
                     Sort_Index = (int)nudSort.Value,
@@ -236,13 +236,13 @@ namespace Team2_Project
             }
 
             dgvMa.Enabled = dgvMi.Enabled = true;
-            SetInitEditPnl();
+            SetInitPnl();
             LoadData();
         }
 
         public void OnCancel()  //취소
         {            
-            SetInitEditPnl();
+            SetInitPnl();
 
             dgvMa.Enabled = dgvMi.Enabled = true;
             dgvMi.ClearSelection();
@@ -250,10 +250,10 @@ namespace Team2_Project
 
         public void OnReLoad()  //새로고침
         {
-            ucSearchCode._Code = ucSearchCode._Name = "";
+            ucMaCodeSC._Code = ucMaCodeSC._Name = "";
             cboSearchUse.SelectedIndex = 0;
             
-            SetInitEditPnl();
+            SetInitPnl();
             LoadData();
         }
         #endregion
@@ -271,7 +271,7 @@ namespace Team2_Project
             popInfo.DgvCols = colList;
             popInfo.PopName = "대분류코드 검색";
 
-            ucSearchCode.OpenPop(popInfo);
+            ucMaCodeSC.OpenPop(popInfo);
         }
 
         private void dgvMa_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -291,8 +291,8 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            ucSearch1._Code = dgvMi["Userdefine_Ma_Code", e.RowIndex].Value.ToString();
-            ucSearch1._Name = dgvMi["Userdefine_Ma_Name", e.RowIndex].Value.ToString();
+            ucMaCode._Code = dgvMi["Userdefine_Ma_Code", e.RowIndex].Value.ToString();
+            ucMaCode._Name = dgvMi["Userdefine_Ma_Name", e.RowIndex].Value.ToString();
             txtInfoCodeMi.Text = dgvMi["Userdefine_Mi_Code", e.RowIndex].Value.ToString();
             txtInfoNameMi.Text = dgvMi["Userdefine_Mi_Name", e.RowIndex].Value.ToString();
             nudSort.Value = Convert.ToInt32(dgvMi["Sort_Index", e.RowIndex].Value);

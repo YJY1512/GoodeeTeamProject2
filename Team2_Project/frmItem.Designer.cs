@@ -29,10 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtCodeSC = new System.Windows.Forms.TextBox();
             this.lblSearchCode = new System.Windows.Forms.Label();
-            this.txtNameSC = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboTypeSC = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,6 +55,7 @@ namespace Team2_Project
             this.label17 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.ucCodeSearch = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -70,13 +68,11 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.ucCodeSearch);
             this.pnlSub.Controls.Add(this.cboUseYNSC);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.cboTypeSC);
             this.pnlSub.Controls.Add(this.label5);
-            this.pnlSub.Controls.Add(this.txtNameSC);
-            this.pnlSub.Controls.Add(this.label1);
-            this.pnlSub.Controls.Add(this.txtCodeSC);
             this.pnlSub.Controls.Add(this.lblSearchCode);
             this.pnlSub.Size = new System.Drawing.Size(1834, 59);
             // 
@@ -127,14 +123,6 @@ namespace Team2_Project
             this.splitContainer1.Size = new System.Drawing.Size(1834, 852);
             this.splitContainer1.SplitterDistance = 693;
             // 
-            // txtCodeSC
-            // 
-            this.txtCodeSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCodeSC.Location = new System.Drawing.Point(115, 16);
-            this.txtCodeSC.Name = "txtCodeSC";
-            this.txtCodeSC.Size = new System.Drawing.Size(180, 25);
-            this.txtCodeSC.TabIndex = 3;
-            // 
             // lblSearchCode
             // 
             this.lblSearchCode.AutoSize = true;
@@ -144,24 +132,6 @@ namespace Team2_Project
             this.lblSearchCode.Size = new System.Drawing.Size(64, 17);
             this.lblSearchCode.TabIndex = 2;
             this.lblSearchCode.Text = "품목코드";
-            // 
-            // txtNameSC
-            // 
-            this.txtNameSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameSC.Location = new System.Drawing.Point(408, 16);
-            this.txtNameSC.Name = "txtNameSC";
-            this.txtNameSC.Size = new System.Drawing.Size(180, 25);
-            this.txtNameSC.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(352, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "품목명";
             // 
             // label5
             // 
@@ -185,6 +155,7 @@ namespace Team2_Project
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.ForeColor = System.Drawing.Color.Red;
             this.label12.Location = new System.Drawing.Point(440, 22);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);
@@ -339,6 +310,7 @@ namespace Team2_Project
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.ForeColor = System.Drawing.Color.Red;
             this.label14.Location = new System.Drawing.Point(723, 22);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 17);
@@ -401,6 +373,19 @@ namespace Team2_Project
             this.label18.TabIndex = 53;
             this.label18.Text = "비고";
             // 
+            // ucCodeSearch
+            // 
+            this.ucCodeSearch._Code = "";
+            this.ucCodeSearch._Name = "";
+            this.ucCodeSearch.BackColor = System.Drawing.Color.Transparent;
+            this.ucCodeSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucCodeSearch.Location = new System.Drawing.Point(115, 16);
+            this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.ucCodeSearch.Name = "ucCodeSearch";
+            this.ucCodeSearch.Size = new System.Drawing.Size(340, 28);
+            this.ucCodeSearch.TabIndex = 11;
+            this.ucCodeSearch.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
+            // 
             // frmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -425,11 +410,7 @@ namespace Team2_Project
         }
 
         #endregion
-
-        protected System.Windows.Forms.TextBox txtCodeSC;
         protected System.Windows.Forms.Label lblSearchCode;
-        protected System.Windows.Forms.TextBox txtNameSC;
-        protected System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboTypeSC;
         protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.Label label12;
@@ -455,5 +436,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label17;
         protected System.Windows.Forms.TextBox txtRemark;
         protected System.Windows.Forms.Label label18;
+        private Controls.ucSearch ucCodeSearch;
     }
 }

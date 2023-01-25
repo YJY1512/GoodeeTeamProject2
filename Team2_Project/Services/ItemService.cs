@@ -41,5 +41,13 @@ namespace Team2_Project.Services
             db.Dispose();
             return result;
         }
+
+        public bool CheckPK(string ItemCode)
+        {
+            ItemDAO db = new ItemDAO();
+            bool result = db.CheckPK(ItemCode);
+            db.Dispose();
+            return result;
+        }
     }
 }
