@@ -26,13 +26,7 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public List<NopMaCodeDTO> GetMaCurItem(string item)
-        {
-            NopCodeDAO db = new NopCodeDAO();
-            List<NopMaCodeDTO> list = db.GetMaCurItem(item);
-            db.Dispose();
-            return list;
-        }
+
 
         public bool NopMaCodeUpdate(NopMaCodeDTO item)
         {
@@ -41,5 +35,32 @@ namespace Team2_Project.Services
             db.Dispose();
             return result;
         }
+
+        public bool CheckPK(string ItemCode)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            bool result = db.CheckPK(ItemCode);
+            db.Dispose();
+            return result;
+        }
+
+        public int DeleteItemCode(string Code)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            int result = db.DeleteItemCode(Code);
+            db.Dispose();
+            return result;
+        }
+
+
+        #region 미사용
+        public List<NopMaCodeDTO> GetMaCurItem(string item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            List<NopMaCodeDTO> list = db.GetMaCurItem(item);
+            db.Dispose();
+            return list;
+        }
+        #endregion
     }
 }

@@ -27,161 +27,204 @@ namespace Team2_Project
 
         private void frmDownCode_Load(object sender, EventArgs e)
         {
-            cboUseYNSC.Items.Add("전체");
-            cboUseYNSC.Items.Add("사용");
-            cboUseYNSC.Items.Add("미사용");
-            cboUseYNSC.SelectedIndex = 0;
-            cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
+            LoadData();     //로드            
+            OnSearch();     //조회
+        }
 
+        private void LoadData()
+        {
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류코드", "Nop_Ma_Code", 500);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류명", "Nop_Ma_Name", 500);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 200, align: DataGridViewContentAlignment.MiddleCenter);
 
-            cboUseYN.Items.Add("-선택-");
-            cboUseYN.Items.Add("사용");
-            cboUseYN.Items.Add("미사용");
-            cboUseYN.SelectedIndex = 0;
+            CommonCodeUtil.UseYNComboBinding(cboUseYNSC);
+            CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
+            cboUseYNSC.SelectedIndex = 0;
+            cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            Deactivation(); //입력패널 비활성화
-            OnSearch();
         }
+
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
             NopMaCodeDTO item = new NopMaCodeDTO
             {
-                Nop_Ma_Code = txtCodeSC.Text,
-                Nop_Ma_Name = txtNameSC.Text,
+                Nop_Ma_Code = ucCodeSearch._Code,
+                Nop_Ma_Name = ucCodeSearch._Name,
                 Use_YN = cboUseYNSC.Text
             };
             NopMaList = srv.GetNopMaSearch(item);
             dgvData.DataSource = null;
             dgvData.DataSource = NopMaList;
+            dgvData.ClearSelection();
+            ResetBottom();  //입력패널 리셋
+            DeactivationBottom(); //입력패널 비활성화
         }
         public void OnAdd()     //추가
         {
-            ResetBottom();
-            Activation();
             situation = "Add";
+            dgvData.Enabled = false;
+            dgvData.ClearSelection();
+            DeactivationTop();      //검색조건 비활성화
+            ResetBottom();          //입력패널 리셋
+            ActivationBottom(situation);  //입력패널 활성화
+            txtCode.Focus();
         }
         public void OnEdit()    //수정
         {
-            Activation();
+            if (dgvData.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+                return;
+            }
             situation = "Update";
+            dgvData.Enabled = false;
+            dgvData.ClearSelection();
+            DeactivationTop();      //검색조건 비활성화
+            ActivationBottom(situation);  //입력패널 활성화
+            //txtName.Focus();
         }
         public void OnDelete()  //삭제
         {
+            if (dgvData.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                return;
+            }
 
+            dgvData.Enabled = false;
+
+            if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                int result = srv.DeleteItemCode(txtCode.Text);
+                if (result == 0) MessageBox.Show("삭제가 완료되었습니다."); //성공
+                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다."); //FK 충돌
+                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                ResetBottom(); //입력패널 리셋
+                OnSearch();    //로드
+            }
+            dgvData.Enabled = true;
         }
         public void OnSave()    //저장
         {
+            //필수입력항목: 코드, 명, 사용유무
+            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) || cboUseYN.SelectedIndex == 0)
+            {
+                MessageBox.Show("필수항목을 입력하여 주십시오.");
+                return;
+            }
+
+            NopMaCodeDTO item = new NopMaCodeDTO
+            {
+                Nop_Ma_Code = txtCode.Text,
+                Nop_Ma_Name = txtName.Text,
+                Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
+                Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
+            };
+
             if (situation == "Add")
             {
-                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
-                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
-                    || cboUseYN.SelectedIndex == 0)
+                bool pkresult = srv.CheckPK(txtCode.Text);
+                if (!pkresult)
                 {
-                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
+                    MessageBox.Show("대분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    txtCode.Clear();
+                    txtCode.Focus();
                     return;
                 }
 
-                NopMaCodeDTO item = new NopMaCodeDTO
-                {
-                    Nop_Ma_Code = txtCode.Text,
-                    Nop_Ma_Name = txtName.Text,
-                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
-                    Ins_Emp = "홍길동" ///////////////////////////////////////////////////// 추후수정
-                };
-
                 bool result = srv.NopMaCodeAdd(item);
-                if (result)
-                    MessageBox.Show("등록이 완료되었습니다.", "등록완료");
-                else
-                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
+                else MessageBox.Show("다시 시도하여주십시오.", "등록오류");
             }
             else if (situation == "Update")
             {
-                //필수입력항목: 품목코드. 품목명, 품목유형, 사용유무
-                if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)
-                    || cboUseYN.SelectedIndex == 0)
-                {
-                    MessageBox.Show("입력정보를 정확하게 입력하여 주십시오.");
-                    return;
-                }
-
-                NopMaCodeDTO item = new NopMaCodeDTO
-                {
-                    Nop_Ma_Code = txtCode.Text,
-                    Nop_Ma_Name = txtName.Text,
-                    Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
-                    Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
-                };
-
                 bool result = srv.NopMaCodeUpdate(item);
-                if (result)
-                    MessageBox.Show("수정이 완료되었습니다.", "수정완료");
-                else
-                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
+                else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
             }
 
             OnReLoad();
-            ResetBottom();  //입력패널 리셋
-            Deactivation(); //입력패널 비활성화
+            ActivationTop();    //검색 활성화
+            situation = "";
+            dgvData.Enabled = true;
         }
 
         public void OnCancel()  //취소
         {
-            ResetBottom();  //입력패널 리셋
-            Deactivation(); //입력패널 비활성화
-            OnSearch();     //로드
+            dgvData.Enabled = true;
+            ResetBottom();          //입력 리셋
+            DeactivationBottom();   //입력 비활성화
+            OnSearch();             //로드
+            ActivationTop();        //검색 활성화
         }
         public void OnReLoad()  //새로고침
         {
             //Deactivation();
-            ResetTop();       //검색조건 리셋
-            ResetBottom();    //입력패널 리셋
+            ResetTop();       //검색 리셋
+            ResetBottom();    //입력 리셋
             OnSearch();       //로드
         }
         #endregion
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string curCode = dgvData[0, dgvData.CurrentRow.Index].Value.ToString();
-            NopMaList = srv.GetMaCurItem(curCode);
-
-            //입력정보에 바인딩
-            NopMaCodeDTO dto = NopMaList.FirstOrDefault((p) => p.Nop_Ma_Code == curCode);
-            if (dto != null)
-            {
-                txtCode.Text = dto.Nop_Ma_Code;
-                txtName.Text = dto.Nop_Ma_Name;
-                cboUseYN.Text = dto.Use_YN;
-            }
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            txtCode.Text = dgvData["Nop_Ma_Code", e.RowIndex].Value.ToString();
+            txtName.Text = dgvData["Nop_Ma_Name", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
         }
 
-        private void ResetTop() //검색조건 리셋
+        private void ResetTop() //검색 리셋
         {
-            txtCodeSC.Text = txtName.Text = txtNameSC.Text = "";
+            ucCodeSearch._Code = ucCodeSearch._Name = "";
             cboUseYNSC.SelectedIndex = 0;
         }
 
-        private void ResetBottom() //입력패널 리셋
+        private void ActivationTop() //검색 활성화
         {
-            txtCode.Text = txtName.Text = "";
-            cboUseYN.SelectedIndex = 0;
+            ucCodeSearch.Enabled = cboUseYNSC.Enabled = true;
         }
 
-        private void Deactivation() //입력패널 비활성화
+        private void DeactivationTop() //검색 비활성화
+        {
+            ucCodeSearch.Enabled = cboUseYNSC.Enabled = false;
+        }
+
+        private void ResetBottom() //입력 리셋
+        {
+            txtCode.Text = txtName.Text = "";
+            cboUseYN.SelectedItem = null;
+        }
+
+        private void ActivationBottom(string situation) //입력 활성화
+        {
+            if (situation.Equals("Add")) txtCode.Enabled = true; //PK유지
+            else txtCode.Enabled = false;
+            txtName.Enabled = true;
+            cboUseYN.Enabled = true;
+        }
+
+        private void DeactivationBottom() //입력 비활성화
         {
             txtCode.Enabled = txtName.Enabled = cboUseYN.Enabled = false;
         }
 
-        private void Activation() //입력패널 활성화
+        private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
-            txtName.Enabled = txtCode.Enabled = cboUseYN.Enabled = true;
+            var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+
+            CommonPop<NopMaCodeDTO> popInfo = new CommonPop<NopMaCodeDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목코드 검색";
+            ucCodeSearch.OpenPop(popInfo);
         }
     }
 }

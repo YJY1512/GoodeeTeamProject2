@@ -163,6 +163,58 @@ namespace Team2_Project_DAO
             }
         }
 
+        public bool CheckPK(string Code) //PK체크
+        {
+            try
+            {
+                string sql = @"SELECT count(*) cnt
+                                FROM Nop_Ma_Master
+                                WHERE Nop_Ma_Code = @Nop_Ma_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Nop_Ma_Code", Code);
+
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return (cnt < 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+
+        public int DeleteItemCode(string Code)
+        {
+            try
+            {
+                string sql = @"DELETE FROM Nop_Ma_Master
+                                WHERE Nop_Ma_Code = @Nop_Ma_Code;
+                                SELECT @@ERROR";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Nop_Ma_Code", Code);
+
+                    Debug.WriteLine(cmd.CommandText);
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+
 
     }
 }
