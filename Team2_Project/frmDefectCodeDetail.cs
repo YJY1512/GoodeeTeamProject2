@@ -131,7 +131,7 @@ namespace Team2_Project
             }
 
             dgvMa.Enabled = dgvMi.Enabled = false;
-            txtInfoNameMi.Enabled = txtRemark.Enabled = cboUseYN.Enabled = nudSort.Enabled = true;
+            txtInfoNameMi.Enabled = txtRemark.Enabled = cboUseYN.Enabled = true;
         }
 
         public void OnDelete()  //삭제
