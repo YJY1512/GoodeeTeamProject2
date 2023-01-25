@@ -31,10 +31,7 @@ namespace Team2_Project
         {
             this.cboUseYNSC = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCodeSC = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNameSC = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
@@ -59,10 +56,7 @@ namespace Team2_Project
             // pnlSub
             // 
             this.pnlSub.Controls.Add(this.ucCodeSearch);
-            this.pnlSub.Controls.Add(this.txtNameSC);
-            this.pnlSub.Controls.Add(this.label5);
             this.pnlSub.Controls.Add(this.cboUseYNSC);
-            this.pnlSub.Controls.Add(this.txtCodeSC);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Size = new System.Drawing.Size(1834, 59);
@@ -121,14 +115,6 @@ namespace Team2_Project
             this.label4.TabIndex = 13;
             this.label4.Text = "사용유무";
             // 
-            // txtCodeSC
-            // 
-            this.txtCodeSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCodeSC.Location = new System.Drawing.Point(1084, 20);
-            this.txtCodeSC.Name = "txtCodeSC";
-            this.txtCodeSC.Size = new System.Drawing.Size(131, 25);
-            this.txtCodeSC.TabIndex = 12;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -138,24 +124,6 @@ namespace Team2_Project
             this.label1.Size = new System.Drawing.Size(124, 17);
             this.label1.TabIndex = 11;
             this.label1.Text = "비가동 대분류코드";
-            // 
-            // txtNameSC
-            // 
-            this.txtNameSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameSC.Location = new System.Drawing.Point(1342, 20);
-            this.txtNameSC.Name = "txtNameSC";
-            this.txtNameSC.Size = new System.Drawing.Size(131, 25);
-            this.txtNameSC.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(1212, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "비가동 대분류명";
             // 
             // txtName
             // 
@@ -292,11 +260,8 @@ namespace Team2_Project
         #endregion
 
         private System.Windows.Forms.ComboBox cboUseYNSC;
-        protected System.Windows.Forms.TextBox txtCodeSC;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.TextBox txtNameSC;
-        protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.TextBox txtName;
         protected System.Windows.Forms.TextBox txtCode;
         protected System.Windows.Forms.Label label6;
