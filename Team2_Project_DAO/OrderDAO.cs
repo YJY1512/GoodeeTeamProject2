@@ -31,17 +31,17 @@ namespace Team2_Project_DAO
 
         public DataTable GetOrderList(string[] list)
         {
-            string sql = @"select Prd_Req_No, convert(nvarchar(10), Req_Date, 23) Req_Date, Req_Seq, pr.Item_Code, Item_Name, Req_Qty, pr.Prj_No, Prj_Name, Company_Name, convert(nvarchar(10), Delivery_Date, 23) Delivery_Date, Remark
+            string sql = @"select Prd_Req_No, convert(nvarchar(10), Req_Date, 23) Req_Date, Req_Seq, pr.Item_Code, Item_Name, Req_Qty, pr.Prj_No, Prj_Name, Company_Name, convert(nvarchar(10), Delivery_Date, 23) Delivery_Date, pr.Remark
                             from Production_Req pr inner join Project p on pr.Prj_No = p.Prj_No
                                                     inner join Item_Master i on pr.Item_Code = i.Item_Code
-                            where Req_Date between @fromReqDate and @toReqDate
-                            and Delivery_Date between @fromDueDate and @toDueDate";
+                            where Req_Date between @fromReqDate and dateadd(day, 1, @toReqDate)
+                            and Delivery_Date between @fromDueDate and dateadd(day, 1, @toDueDate)";
 
             if (!string.IsNullOrWhiteSpace(list[4]))
             {
-                sql += " and pr.Item_Code = @Item_Code";
+                sql += " and pr.Item_Code = @Item_Code and";
             }
-            if (!string.IsNullOrWhiteSpace(list[4]))
+            if (!string.IsNullOrWhiteSpace(list[5]))
             {
                 sql += " and pr.Prj_No = @Prj_No";
             }
