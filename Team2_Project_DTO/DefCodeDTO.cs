@@ -15,5 +15,8 @@ namespace Team2_Project_DTO
 		public string Ins_Emp { get; set; } //
 		public DateTime Up_Date { get; set; }   //
 		public string Up_Emp { get; set; }  //
+
+		public string Def_Mi_Code { get; set; } //
+		public string Def_Mi_Name { get; set; } //
 	}
 }

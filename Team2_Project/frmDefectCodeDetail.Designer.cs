@@ -107,7 +107,7 @@ namespace Team2_Project
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMi);
             this.splitContainer2.Size = new System.Drawing.Size(1156, 645);
-            this.splitContainer2.SplitterDistance = 403;
+            this.splitContainer2.SplitterDistance = 408;
             // 
             // ucSearch1
             // 
@@ -155,7 +155,7 @@ namespace Team2_Project
             this.dgvMi.Location = new System.Drawing.Point(0, 0);
             this.dgvMi.Name = "dgvMi";
             this.dgvMi.RowTemplate.Height = 23;
-            this.dgvMi.Size = new System.Drawing.Size(1156, 403);
+            this.dgvMi.Size = new System.Drawing.Size(1156, 408);
             this.dgvMi.TabIndex = 0;
             // 
             // frmDefectCodeDetail
