@@ -38,13 +38,13 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public bool Delete(string empID)
+        public string Delete(string empID)
         {
             EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Delete(empID);
+            string msg = db.Delete(empID);
             db.Dispose();
 
-            return result;
+            return msg;
         }
 
         public List<CodeDTO> GetUserGroupCode()
@@ -54,6 +54,15 @@ namespace Team2_Project.Services
             db.Dispose();
 
             return list;
+        }
+
+        public bool CheckUserID(string id)
+        {
+            EmployeeDAO db = new EmployeeDAO();
+            bool result = db.CheckUserID(id);
+            db.Dispose();
+
+            return result;
         }
     }
 }

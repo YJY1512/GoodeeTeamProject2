@@ -146,6 +146,7 @@ namespace Team2_Project
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.Size = new System.Drawing.Size(1834, 768);
             this.dgvOrder.TabIndex = 0;
+            this.dgvOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellDoubleClick);
             // 
             // dtpSearchOrd1
             // 

@@ -25,7 +25,8 @@ namespace Team2_Project_DAO
             if (conn.State == ConnectionState.Open)
                 conn.Close();
         }
-    
+
+        #region Def Master    
         public List<DefCodeDTO> GetDefCode()
         {
             try
@@ -135,5 +136,61 @@ namespace Team2_Project_DAO
                 return false;
             }
         }
+
+        public int DeleteDefCode(string maCode)
+        {
+            try
+            {
+                string sql = @"delete from Def_Ma_Master
+                                where Def_Ma_Code = @Def_Ma_Code;
+                                select @@ERROR";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Def_Ma_Code", maCode);
+
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+        #endregion
+
+        #region Def Detail
+        public List<DefCodeDTO> GetDefMiCode()
+        {
+            try
+            {
+                string sql = @"select Def_Mi_Code, Def_Mi_Name, 
+                            		case when mi.Use_YN = 'Y' then '예'
+                            			when mi.Use_YN = 'N' then '아니오' end as Use_YN,
+                            		ma.Def_Ma_Code, ma.Def_Ma_Name
+                            from Def_Mi_Master mi right outer join Def_Ma_Master ma on mi.Def_Ma_Code = ma.Def_Ma_Code and ma.Use_YN = 'Y'";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    List<DefCodeDTO> list = Helper.DataReaderMapToList<DefCodeDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch(Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        #endregion
     }
 }

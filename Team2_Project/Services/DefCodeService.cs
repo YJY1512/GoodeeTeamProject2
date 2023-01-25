@@ -8,8 +8,10 @@ using Team2_Project_DTO;
 
 namespace Team2_Project.Services
 {
+    
     public class DefCodeService
     {
+        #region Def Master
         public List<DefCodeDTO> GetDefCode()
         {
             DefCodeDAO db = new DefCodeDAO();
@@ -41,5 +43,26 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public int DeleteDefCode(string maCode)
+        {
+            DefCodeDAO db = new DefCodeDAO();
+            int result = db.DeleteDefCode(maCode);
+
+            return result;
+        }
+        #endregion
+
+
+        #region Def Detail
+        public List<DefCodeDTO> GetDefMiCode()
+        {
+            DefCodeDAO db = new DefCodeDAO();
+            List<DefCodeDTO> list = db.GetDefMiCode();
+
+            return list;
+        }
+
+        #endregion
     }
 }

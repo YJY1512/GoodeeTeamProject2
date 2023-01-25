@@ -45,18 +45,18 @@ namespace Team2_Project
             // 
             // label16
             // 
-            this.label16.Location = new System.Drawing.Point(810, 18);
+            this.label16.Location = new System.Drawing.Point(569, 20);
             // 
             // cboSearchUse
             // 
-            this.cboSearchUse.Location = new System.Drawing.Point(889, 14);
+            this.cboSearchUse.Location = new System.Drawing.Point(648, 16);
             this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
             // 
             // lblSearchCode
             // 
-            this.lblSearchCode.Location = new System.Drawing.Point(30, 18);
-            this.lblSearchCode.Size = new System.Drawing.Size(152, 17);
-            this.lblSearchCode.Text = "사용자정의 대분류코드";
+            this.lblSearchCode.Location = new System.Drawing.Point(30, 20);
+            this.lblSearchCode.Size = new System.Drawing.Size(124, 17);
+            this.lblSearchCode.Text = "사용자정의 대분류";
             // 
             // label14
             // 
@@ -116,8 +116,8 @@ namespace Team2_Project
             // 
             // ucSearch1
             // 
-            this.ucSearch1.Location = new System.Drawing.Point(224, 59);
-            this.ucSearch1.Size = new System.Drawing.Size(340, 30);
+            this.ucMaCode.Location = new System.Drawing.Point(224, 62);
+            this.ucMaCode.Size = new System.Drawing.Size(340, 30);
             // 
             // cboUseYN
             // 
@@ -125,8 +125,10 @@ namespace Team2_Project
             // 
             // ucSearchCode
             // 
-            this.ucSearchCode.Location = new System.Drawing.Point(197, 12);
-            this.ucSearchCode.BtnClick += new System.EventHandler(this.ucSearchCode_BtnClick);
+            this.ucMaCodeSC.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucMaCodeSC.Location = new System.Drawing.Point(169, 15);
+            this.ucMaCodeSC.Size = new System.Drawing.Size(340, 26);
+            this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucSearchCode_BtnClick);
             // 
             // pnlSub
             // 
