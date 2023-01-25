@@ -38,10 +38,19 @@ namespace Team2_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            tStripName.Text = "윤종윤님";
-            tStripDept.Text = "관리자";
-            OpenChildPage<frmStartMain>();
+            this.Visible = false;
+
+            frmLogin login = new frmLogin();
+            if (login.ShowDialog(this) != DialogResult.OK)
+            {
+                this.Close();
+                return;
+            }
+            this.Visible = true;
+
+            tStripName.Text = LoginEmp.User_Name;
+            tStripDept.Text = LoginEmp.UserGroup_Name;
+            OpenChildPage<frmDashBoard>();
             
         }
 

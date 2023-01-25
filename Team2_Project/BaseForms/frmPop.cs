@@ -20,6 +20,7 @@ namespace Team2_Project.BaseForms
 
         public string SelCode { get; private set; }
         public string SelName { get; private set; }
+        public string SelEtc { get; private set; }
 
         public frmPop()
         {
@@ -35,6 +36,12 @@ namespace Team2_Project.BaseForms
             {
                 dgvpop.Columns.Add(col);
             }
+
+            if(popInfo.DgvCols.Count == 3)
+            {
+                this.Size = new Size(620, 570);
+            }
+
             dgvpop.DataSource = popInfo.DgvDatasource;
             this.Text = popInfo.PopName;
 
@@ -80,6 +87,9 @@ namespace Team2_Project.BaseForms
 
             SelCode = dgvpop[0, e.RowIndex].Value.ToString();
             SelName = dgvpop[1, e.RowIndex].Value.ToString();
+            if(dgvpop.Columns.Count == 3)
+                SelEtc = dgvpop[2, e.RowIndex].Value.ToString();
+            
 
             this.DialogResult = DialogResult.OK;
             this.Close();
