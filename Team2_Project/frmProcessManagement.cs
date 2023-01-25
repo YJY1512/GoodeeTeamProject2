@@ -289,6 +289,11 @@ namespace Team2_Project
             // uc 새로고침
         }
 
+        private void ucSearch1_BtnClick(object sender, EventArgs e)
+        {
+
+        }
+
         public void CodeSetting()
         {
             code = new List<CodeDTO>();

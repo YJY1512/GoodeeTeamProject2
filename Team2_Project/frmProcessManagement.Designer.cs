@@ -281,6 +281,7 @@ namespace Team2_Project
             this.ucSearch1.Name = "ucSearch1";
             this.ucSearch1.Size = new System.Drawing.Size(340, 28);
             this.ucSearch1.TabIndex = 19;
+            this.ucSearch1.BtnClick += new System.EventHandler(this.ucSearch1_BtnClick);
             // 
             // label11
             // 

@@ -99,15 +99,13 @@ namespace Team2_Project_DAO
         }
         public List<ProcessMasterDTO> DelProcess(string txtProcessCode)
         {
-            SqlTransaction trans = conn.BeginTransaction();
             
             string sql = "Delete from Process_Master where Process_Code = @Process_Code";
             
             SqlCommand cmd = new SqlCommand(sql, conn);
             conn.Open();
-            cmd.Parameters.AddWithValue("@Ins_Emp", txtProcessCode);
-            cmd.Transaction = trans;
-
+            cmd.Parameters.AddWithValue("@Process_Code", txtProcessCode);
+            
             if (cmd.ExecuteNonQuery() < 1)
             {
                 return null;
