@@ -315,6 +315,9 @@
     <EmbeddedResource Include="frmDefectCode.resx">
       <DependentUpon>frmDefectCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDefectCodeDetail.resx">
+      <DependentUpon>frmDefectCodeDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNop.resx">
       <DependentUpon>frmNop.cs</DependentUpon>
     </EmbeddedResource>

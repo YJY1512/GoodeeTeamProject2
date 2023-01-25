@@ -44,7 +44,9 @@ namespace Team2_Project
             {
                 dgvMa.DataSource = null;
                 dgvMa.DataSource = defList;
-            }            
+            }
+
+            dgvMa.ClearSelection();
         }
 
         private void SetInitPnl()

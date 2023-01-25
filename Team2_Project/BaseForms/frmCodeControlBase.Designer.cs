@@ -134,7 +134,7 @@ namespace Team2_Project.BaseForms
             this.ucSearch1._Name = "";
             this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
             this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(260, 59);
+            this.ucSearch1.Location = new System.Drawing.Point(260, 62);
             this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearch1.Name = "ucSearch1";
             this.ucSearch1.Size = new System.Drawing.Size(382, 30);
