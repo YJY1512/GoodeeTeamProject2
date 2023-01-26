@@ -110,6 +110,7 @@ namespace Team2_Project
             if (dgvMa.SelectedRows.Count < 1)
             {
                 MessageBox.Show("추가할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
 
@@ -131,6 +132,7 @@ namespace Team2_Project
             if (dgvMi.SelectedRows.Count < 1)
             {
                 MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
 
