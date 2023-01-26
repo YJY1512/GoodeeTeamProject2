@@ -39,44 +39,33 @@ namespace Team2_Project_DAO
                                  , Item_Spec , Remark , Use_YN 
 	                             , CONVERT(VARCHAR(10), Ins_Date, 23) Ins_Date	                               
                              FROM Item_Master
-                            WHERE 1 = 1");   // , Ins_Emp , CONVERT(VARCHAR(10), Up_Date, 23) Up_Date , Up_Emp
-
-                cmd.Parameters.AddWithValue("@Item_Code", item.Item_Code);
-                cmd.Parameters.AddWithValue("@Item_Name", item.Item_Name);
-                cmd.Parameters.AddWithValue("@Item_Type", item.Item_Type);
-                cmd.Parameters.AddWithValue("@Use_YN", item.Use_YN);
+                            WHERE 1 = 1");
 
                 if (!string.IsNullOrWhiteSpace(item.Item_Code))
                 {
                     sb.Append(" AND Item_Code LIKE @Item_Code");
-                    cmd.Parameters.AddWithValue("@Item_Code", "%" + item.Item_Code + "%");
+                    cmd.Parameters.AddWithValue("@Item_Code", $"%{item.Item_Code}%");
                 }
                 if (!string.IsNullOrWhiteSpace(item.Item_Name))
                 {
                     sb.Append(" AND Item_Name LIKE @Item_Name");
-                    cmd.Parameters.AddWithValue("@Item_Name", "%" + item.Item_Name + "%");
+                    cmd.Parameters.AddWithValue("@Item_Name", $"%{item.Item_Name}%");
                 }
 
-                if (item.Item_Type == "완제품")
-                    sb.Append(" AND Item_Type = 'PR'");
-                else if (item.Item_Type.ToString() == "반제품")
-                    sb.Append(" AND Item_Type = 'SA'");
+                if (item.Item_Type == "완제품") sb.Append(" AND Item_Type = 'PR'");
+                else if (item.Item_Type.ToString() == "반제품") sb.Append(" AND Item_Type = 'SA'");
 
-
-                if (item.Use_YN == "사용")
-                    sb.Append(" AND Use_YN = 'Y'");
-                else if (item.Use_YN == "미사용")
-                    sb.Append(" AND Use_YN = 'N'");
+                if (item.Use_YN == "예") sb.Append(" AND Use_YN = 'Y'");
+                else if (item.Use_YN == "아니오") sb.Append(" AND Use_YN = 'N'");
 
                 sb.Append(" ORDER BY Item_Code");
-
                 cmd.Connection = conn;
                 cmd.CommandText = sb.ToString();
 
                 conn.Open();
-                Debug.WriteLine(cmd.CommandText);
-                List<ItemDTO> list = Helper.DataReaderMapToList<ItemDTO>(cmd.ExecuteReader());
-
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<ItemDTO> list = Helper.DataReaderMapToList<ItemDTO>(reader);
+                reader.Close(); 
                 return list;
             }
             catch(Exception err)
