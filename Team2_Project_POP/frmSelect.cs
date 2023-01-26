@@ -19,7 +19,9 @@ namespace Team2_Project_POP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblClear.Location = new Point(panel1.Width / 2 - 120, panel1.Height / 2 - 30);
+            //lblTitle.Location.x = (panel1.Width / 2) - 120;
+            //    lblTitle.Location.y = 30;
+                
         }
     }
 }
