@@ -39,7 +39,7 @@ namespace Team2_Project
 
         private void LoadData()
         {
-            defList = srv.GetDefCode();
+            defList = srv.GetDefCode(true);
             if (defList != null)
             {
                 dgvMa.DataSource = null;
@@ -105,7 +105,7 @@ namespace Team2_Project
 
             if (MessageBox.Show($"{txtName.Text}를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                int result = srv.DeleteDefCode(txtCode.Text);
+                int result = srv.DeleteDefCode(true, txtCode.Text);
 
                 if (result == 0) //성공
                 {
@@ -137,7 +137,7 @@ namespace Team2_Project
 
             if (txtCode.Enabled) //신규 저장
             {
-                bool result = srv.CheckPK(txtCode.Text);
+                bool result = srv.CheckPK(true, txtCode.Text);
                 if (!result)
                 {
                     MessageBox.Show("불량현상 대분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
@@ -152,7 +152,7 @@ namespace Team2_Project
                     Ins_Emp = "" //수정필요
                 };
 
-                result = srv.InsertDefCode(code);
+                result = srv.InsertDefCode(true, code);
                 if(result)
                 {
                     MessageBox.Show("등록이 완료되었습니다.");
@@ -177,7 +177,7 @@ namespace Team2_Project
                     Up_Emp = "" //수정필요
                 };
 
-                bool result = srv.UpdateDefCode(code);
+                bool result = srv.UpdateDefCode(true, code);
                 if (result)
                 {
                     MessageBox.Show("수정이 완료되었습니다.");
