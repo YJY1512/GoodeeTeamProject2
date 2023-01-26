@@ -48,11 +48,6 @@ namespace Team2_Project
             }
             this.Visible = true;
 
-            if (LoginEmp.UserGroup_Code == "A")
-            {
-                LoginEmp.UserGroup_Name = "관리자";
-            }
-            LoginEmp.UserGroup_Name = "사용자";
             tStripName.Text = LoginEmp.User_Name;
             tStripDept.Text = LoginEmp.UserGroup_Name;
             OpenChildPage<frmDashBoard>();
