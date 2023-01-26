@@ -57,7 +57,7 @@ namespace Team2_Project_POP
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1253, 125);
+            this.panel1.Size = new System.Drawing.Size(1253, 120);
             this.panel1.TabIndex = 0;
             // 
             // lblClear
@@ -117,9 +117,9 @@ namespace Team2_Project_POP
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.panel3.Controls.Add(this.button1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(953, 125);
+            this.panel3.Location = new System.Drawing.Point(953, 120);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(300, 449);
+            this.panel3.Size = new System.Drawing.Size(300, 454);
             this.panel3.TabIndex = 2;
             // 
             // button1
@@ -130,7 +130,7 @@ namespace Team2_Project_POP
             this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button1.Location = new System.Drawing.Point(35, 19);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(240, 416);
+            this.button1.Size = new System.Drawing.Size(240, 421);
             this.button1.TabIndex = 0;
             this.button1.Text = "  작업장    이동";
             this.button1.UseVisualStyleBackColor = false;
@@ -141,9 +141,9 @@ namespace Team2_Project_POP
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 125);
+            this.panel4.Location = new System.Drawing.Point(0, 120);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(953, 449);
+            this.panel4.Size = new System.Drawing.Size(953, 454);
             this.panel4.TabIndex = 3;
             // 
             // panel5
@@ -205,7 +205,7 @@ namespace Team2_Project_POP
             // 
             // frmSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(24F, 54F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 680);
             this.Controls.Add(this.panel4);
