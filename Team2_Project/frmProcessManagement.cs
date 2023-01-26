@@ -52,8 +52,8 @@ namespace Team2_Project
 
             //데이터 불러오기
             processList = service.SetData();
-            //BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
-            //dgvProcess.DataSource = bs;
+            BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
+            dgvProcess.DataSource = bs;
             // 기본설정
             //아래 패널 크기 120 으로 고정
             splitContainer1.SplitterDistance = 467;
@@ -88,8 +88,8 @@ namespace Team2_Project
             var list = (from c in processList
                         where c.Process_Code.Contains(processCode) && c.Process_Group.Contains(processGroup) && c.Use_YN.Contains(useYN)
                         select c).ToList();
-
-            BindingSource bs = new BindingSource(list, null);
+            
+            BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(list), null);
             dgvProcess.DataSource = bs;
             dgvProcess.ClearSelection();
         }
@@ -148,7 +148,7 @@ namespace Team2_Project
             }
             finally
             {
-                BindingSource bs = new BindingSource(processList, null);
+                BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
                 dgvProcess.DataSource = bs;
 
                 //후처리
@@ -225,7 +225,7 @@ namespace Team2_Project
                 else
                     processList = empt;
                 }
-            BindingSource bs = new BindingSource(processList, null);
+            BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
             dgvProcess.DataSource = bs;
 
             // 후처리
@@ -258,12 +258,12 @@ namespace Team2_Project
 
         private void dgvProcess_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex <= 0) return;
+            if (e.RowIndex < 0) return;
             txtProcessCode.Text = dgvProcess["Process_Code", e.RowIndex].Value.ToString();
             txtProcessCodeName.Text = dgvProcess["Process_Name", e.RowIndex].Value.ToString();
             cboProcessGroupArea.SelectedValue = dgvProcess["Process_Group", e.RowIndex].Value.ToString();
-            cboUseArea.SelectedValue = dgvProcess["Use_YN", e.RowIndex].Value.ToString();
-            txtRemark.Text = dgvProcess["", e.RowIndex].Value.ToString();
+            cboUseArea.SelectedValue = (dgvProcess["Use_YN", e.RowIndex].Value.ToString() == "예") ? "Y" : "N";
+            txtRemark.Text = dgvProcess["Remark", e.RowIndex].Value.ToString();
         }
 
         //새로고침

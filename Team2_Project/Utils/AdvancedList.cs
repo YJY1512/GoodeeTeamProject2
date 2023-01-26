@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataGridViewSortSample
+namespace Team2_Project.Utils
 {
     public class AdvancedList<T> : BindingList<T>
     {
