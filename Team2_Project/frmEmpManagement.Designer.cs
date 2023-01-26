@@ -168,6 +168,7 @@ namespace Team2_Project
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(158, 24);
             this.txtID.TabIndex = 0;
+            this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // txtName
             // 
