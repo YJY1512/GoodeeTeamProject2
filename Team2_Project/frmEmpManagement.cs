@@ -202,10 +202,10 @@ namespace Team2_Project
             {
                 User_ID = txtID.Text,
                 User_Name = txtName.Text,
-                User_Type = Convert.ToChar(cboAuth.SelectedValue),
+                User_Type = cboAuth.SelectedValue.ToString(),
                 UserGroup_Code = ucSearchGroup._Code,
                 UserGroup_Name = ucSearchGroup._Name,
-                Use_YN = Convert.ToChar(cboDel.SelectedValue)
+                Use_YN = cboDel.SelectedValue.ToString(),
             };
 
             if (pnlStat == 1)
