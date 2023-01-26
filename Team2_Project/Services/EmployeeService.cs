@@ -35,7 +35,7 @@ namespace Team2_Project.Services
             bool result = db.Insert(data, Ins_Emp);
             db.Dispose();
 
-            return false;
+            return result;
         }
 
         public bool Update(EmployeeDTO data, string Ins_Emp)

@@ -31,12 +31,7 @@ namespace Team2_Project_DAO
 
         public EmployeeDTO GetLoginEmp(string userID, string userPw)
         {
-            string sql = @"select u.User_ID, User_Name, User_PW, Customer_Code, 
-                                    case when User_Type = 'A' then '관리자'
-                                    else '일반' end User_Type, 
-                                   umas.UserGroup_Code, umas.UserGroup_Name, 
-                                    case when u.Use_YN = 'Y' then '재직'
-                                    else '퇴직' end Use_YN
+            string sql = @"select u.User_ID, User_Name, User_PW, Customer_Code, User_Type, umas.UserGroup_Code, umas.UserGroup_Name, u.Use_YN
                            from UserGroup_Mapping umap inner join User_Master u on umap.User_ID = u.User_ID
                            inner join UserGroup_Master umas on umap.UserGroup_Code = umas.UserGroup_Code
                            where u.User_ID = @User_ID and User_PW = @User_PW and u.Use_YN = 'Y'";
@@ -70,8 +65,6 @@ namespace Team2_Project_DAO
 
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
-            Ins_Emp = "1000"; //나중에 수정!!!
-
             string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, User_Type, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
 values (@User_ID, @User_Name, @User_ID, @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
@@ -124,8 +117,6 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
         public bool Update(EmployeeDTO data, string Ins_Emp)
         {
-            Ins_Emp = "1000"; //나중에 수정!!!
-
             string sql1 = @"update User_Master
                             set User_Name = @User_Name, User_Type = @User_Type, Use_YN = @Use_YN, Up_Date = getdate(), Up_Emp = @Up_Emp
                             where User_ID = @User_ID";
@@ -210,12 +201,12 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
             }
         }
 
-        public bool CheckUserID(string id)
+        public bool CheckUserID(string userId)
         {
             string sql = "select count(*) from User_Master where User_ID = @User_ID";
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@User_ID", id);
+                cmd.Parameters.AddWithValue("@User_ID", userId);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
             }
         }

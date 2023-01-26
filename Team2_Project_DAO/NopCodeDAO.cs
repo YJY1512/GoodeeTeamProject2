@@ -175,10 +175,32 @@ namespace Team2_Project_DAO
                 {
                     conn.Open();
                     cmd.Parameters.AddWithValue("@Nop_Ma_Code", Code);
-
                     int cnt = Convert.ToInt32(cmd.ExecuteScalar());
                     conn.Close();
+                    return (cnt < 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
 
+        public bool CheckMiPK(string Code) //PK체크
+        {
+            try
+            {
+                string sql = @"SELECT count(*) cnt
+                                FROM Nop_Mi_Master
+                                WHERE Nop_Mi_Code = @Nop_Mi_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Nop_Mi_Code", Code);
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
                     return (cnt < 1);
                 }
             }

@@ -66,6 +66,7 @@ namespace Team2_Project
         {
             situation = "Add";
             dgvData.Enabled = false;
+            cboUseYN.SelectedIndex = 0;
             dgvData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ResetBottom();          //입력패널 리셋
@@ -111,7 +112,7 @@ namespace Team2_Project
         public void OnSave()    //저장
         {
             //필수입력항목: 코드, 명, 사용유무
-            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) || cboUseYN.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)) //|| cboUseYN.SelectedIndex == 0
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.");
                 return;
@@ -197,15 +198,14 @@ namespace Team2_Project
         private void ResetBottom() //입력 리셋
         {
             txtCode.Text = txtName.Text = "";
-            cboUseYN.SelectedItem = null;
+            cboUseYN.SelectedIndex = -1;
         }
 
         private void ActivationBottom(string situation) //입력 활성화
         {
             if (situation.Equals("Add")) txtCode.Enabled = true; 
             else txtCode.Enabled = false; //Update : PK유지
-            txtName.Enabled = true;
-            cboUseYN.Enabled = true;
+            txtName.Enabled = cboUseYN.Enabled = true;            
         }
 
         private void DeactivationBottom() //입력 비활성화
