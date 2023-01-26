@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Team2_Project_WEB", "Team2_Project_WEB\Team2_Project_WEB.csproj", "{74EA54F7-BE39-4A4E-B3F3-D2FE2F413CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{4366B757-E181-427E-9F4A-5E6AE4301955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4366B757-E181-427E-9F4A-5E6AE4301955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4366B757-E181-427E-9F4A-5E6AE4301955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EA54F7-BE39-4A4E-B3F3-D2FE2F413CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EA54F7-BE39-4A4E-B3F3-D2FE2F413CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EA54F7-BE39-4A4E-B3F3-D2FE2F413CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EA54F7-BE39-4A4E-B3F3-D2FE2F413CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

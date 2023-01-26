@@ -9,13 +9,15 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
+using System.Linq;
+using System.Diagnostics;
 
 namespace Team2_Project
 {
     public partial class frmNopMiCode : frmCodeControlBase
     {
         NopCodeService srv = new NopCodeService();
-        List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
+        //List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         List<NopMiCodeDTO> NopMiList = new List<NopMiCodeDTO>();
         string situation = "";
 
@@ -58,17 +60,33 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            NopMaCodeDTO item = new NopMaCodeDTO
+            NopMiCodeDTO item = new NopMiCodeDTO
             {
                 Nop_Ma_Code = ucMaCodeSC._Code,
                 Nop_Ma_Name = ucMaCodeSC._Name,
                 Use_YN = cboSearchUse.Text
             };
-            NopMaList = srv.GetNopMaSearch(item);
-            dgvMaData.DataSource = null;
-            dgvMaData.DataSource = NopMaList;
-            dgvMaData.ClearSelection();
-            dgvMiData.ClearSelection();
+            NopMiList = srv.GetNopMiSearch(item);
+
+             if (NopMiList != null && NopMiList.Count > 0)
+            {
+                var list = from n in NopMiList
+                           group n by new
+                           {
+                               n.Nop_Ma_Code,
+                               n.Nop_Ma_Name,
+                               n.Use_YN
+                           }.ToString();
+
+                Debug.WriteLine(list);
+                //var list = NopMiList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                dgvMaData.DataSource = null;
+                dgvMaData.DataSource = list;//.GroupBy((g) => g.Key).Select((g) => g.FirstOrDefault()).ToList(); ;
+            }
+
+            dgvMiData.DataSource = null;
+            dgvMiData.DataSource = NopMiList;
+
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
         }
@@ -223,6 +241,7 @@ namespace Team2_Project
                 txtInfoCodeMi.Enabled = false;
             }
             dgvMaData.Enabled = dgvMiData.Enabled = false;
+            dgvMaData.ClearSelection();
             dgvMiData.ClearSelection();
         }
 
@@ -234,21 +253,27 @@ namespace Team2_Project
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
-            //var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+            var list = NopMiList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
 
-            CommonPop<NopMaCodeDTO> popInfo = new CommonPop<NopMaCodeDTO>();
-            //.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "품목코드 검색";
-            ucMaCodeSC.OpenPop(popInfo);
+            CommonPop<NopMiCodeDTO> dto = new CommonPop<NopMiCodeDTO>();
+            dto.DgvDatasource = list;
+            dto.DgvCols = col;
+            dto.PopName = "비가동 대분류코드 검색";
+            ucMaCodeSC.OpenPop(dto);
         }
 
         private void dgvMaData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            //if (!string.IsNullOrWhiteSpace(NopMiList[0].Nop_Ma_Code))
+            //{
+            //    string code = dgvMaData["Nop_Ma_Code", e.RowIndex].Value.ToString();
+            //    List<NopMiCodeDTO> list = NopMiList.FindAll((c) => c.Nop_Ma_Code == code);
+            //    dgvMiData.DataSource = list;
+            //}
         }
 
         private void dgvMiData_CellClick(object sender, DataGridViewCellEventArgs e)

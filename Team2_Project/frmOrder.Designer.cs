@@ -62,23 +62,24 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.label9);
-            this.pnlSub.Size = new System.Drawing.Size(1834, 100);
+            this.pnlSub.Size = new System.Drawing.Size(1834, 120);
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(0, 100);
+            this.pnlTitle.Location = new System.Drawing.Point(0, 120);
             this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
             // 
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvOrder);
-            this.pnlList.Location = new System.Drawing.Point(0, 143);
-            this.pnlList.Size = new System.Drawing.Size(1834, 768);
+            this.pnlList.Location = new System.Drawing.Point(0, 163);
+            this.pnlList.Size = new System.Drawing.Size(1834, 748);
             // 
             // lblTitle
             // 
-            this.lblTitle.Location = new System.Drawing.Point(44, 10);
-            this.lblTitle.Size = new System.Drawing.Size(60, 18);
+            this.lblTitle.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Location = new System.Drawing.Point(39, 8);
+            this.lblTitle.Size = new System.Drawing.Size(64, 17);
             this.lblTitle.Text = "조회내역";
             // 
             // label9
@@ -86,7 +87,7 @@ namespace Team2_Project
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(45, 19);
+            this.label9.Location = new System.Drawing.Point(30, 21);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 17);
             this.label9.TabIndex = 57;
@@ -97,7 +98,7 @@ namespace Team2_Project
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(255, 19);
+            this.label1.Location = new System.Drawing.Point(249, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 17);
             this.label1.TabIndex = 59;
@@ -108,7 +109,7 @@ namespace Team2_Project
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(255, 60);
+            this.label3.Location = new System.Drawing.Point(249, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 17);
             this.label3.TabIndex = 63;
@@ -119,7 +120,7 @@ namespace Team2_Project
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(45, 60);
+            this.label4.Location = new System.Drawing.Point(30, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 61;
@@ -130,7 +131,7 @@ namespace Team2_Project
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(445, 19);
+            this.label6.Location = new System.Drawing.Point(472, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 17);
             this.label6.TabIndex = 66;
@@ -144,44 +145,46 @@ namespace Team2_Project
             this.dgvOrder.Location = new System.Drawing.Point(0, 0);
             this.dgvOrder.Name = "dgvOrder";
             this.dgvOrder.RowTemplate.Height = 23;
-            this.dgvOrder.Size = new System.Drawing.Size(1834, 768);
+            this.dgvOrder.Size = new System.Drawing.Size(1834, 748);
             this.dgvOrder.TabIndex = 0;
+            this.dgvOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellClick);
             this.dgvOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellDoubleClick);
+            this.dgvOrder.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvOrder_EditingControlShowing);
             // 
             // dtpSearchOrd1
             // 
             this.dtpSearchOrd1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpSearchOrd1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSearchOrd1.Location = new System.Drawing.Point(129, 16);
+            this.dtpSearchOrd1.Location = new System.Drawing.Point(104, 18);
             this.dtpSearchOrd1.Name = "dtpSearchOrd1";
-            this.dtpSearchOrd1.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchOrd1.Size = new System.Drawing.Size(130, 25);
             this.dtpSearchOrd1.TabIndex = 69;
             // 
             // dtpSearchOrd2
             // 
             this.dtpSearchOrd2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpSearchOrd2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSearchOrd2.Location = new System.Drawing.Point(294, 16);
+            this.dtpSearchOrd2.Location = new System.Drawing.Point(282, 18);
             this.dtpSearchOrd2.Name = "dtpSearchOrd2";
-            this.dtpSearchOrd2.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchOrd2.Size = new System.Drawing.Size(130, 25);
             this.dtpSearchOrd2.TabIndex = 70;
             // 
             // dtpSearchDue1
             // 
             this.dtpSearchDue1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpSearchDue1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSearchDue1.Location = new System.Drawing.Point(129, 60);
+            this.dtpSearchDue1.Location = new System.Drawing.Point(104, 78);
             this.dtpSearchDue1.Name = "dtpSearchDue1";
-            this.dtpSearchDue1.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchDue1.Size = new System.Drawing.Size(130, 25);
             this.dtpSearchDue1.TabIndex = 71;
             // 
             // dtpSearchDue2
             // 
             this.dtpSearchDue2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpSearchDue2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSearchDue2.Location = new System.Drawing.Point(294, 60);
+            this.dtpSearchDue2.Location = new System.Drawing.Point(282, 78);
             this.dtpSearchDue2.Name = "dtpSearchDue2";
-            this.dtpSearchDue2.Size = new System.Drawing.Size(107, 25);
+            this.dtpSearchDue2.Size = new System.Drawing.Size(130, 25);
             this.dtpSearchDue2.TabIndex = 72;
             // 
             // ucSearchItem
@@ -190,7 +193,7 @@ namespace Team2_Project
             this.ucSearchItem._Name = "";
             this.ucSearchItem.BackColor = System.Drawing.Color.Transparent;
             this.ucSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearchItem.Location = new System.Drawing.Point(540, 15);
+            this.ucSearchItem.Location = new System.Drawing.Point(579, 18);
             this.ucSearchItem.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearchItem.Name = "ucSearchItem";
             this.ucSearchItem.Size = new System.Drawing.Size(340, 28);
@@ -203,7 +206,7 @@ namespace Team2_Project
             this.ucSearchProject._Name = "";
             this.ucSearchProject.BackColor = System.Drawing.Color.Transparent;
             this.ucSearchProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearchProject.Location = new System.Drawing.Point(540, 61);
+            this.ucSearchProject.Location = new System.Drawing.Point(579, 78);
             this.ucSearchProject.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearchProject.Name = "ucSearchProject";
             this.ucSearchProject.Size = new System.Drawing.Size(340, 28);
@@ -215,7 +218,7 @@ namespace Team2_Project
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(445, 65);
+            this.label5.Location = new System.Drawing.Point(472, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 17);
             this.label5.TabIndex = 74;
