@@ -110,6 +110,7 @@ namespace Team2_Project
             // ucMaCodeSC
             // 
             this.ucMaCodeSC.Location = new System.Drawing.Point(183, 17);
+            this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucMaCodeSC_BtnClick);
             // 
             // label13
             // 

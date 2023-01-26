@@ -118,13 +118,19 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);
-                    cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+
+                    cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);                    
                     cmd.Parameters.AddWithValue("@Use_YN", code.Use_YN);
                     cmd.Parameters.AddWithValue("@Ins_Emp", code.Ins_Emp);
 
+                    if (isMaCode)
+                        cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+                        cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
+                    }
+                    
                     int iRowAffect = cmd.ExecuteNonQuery();
                     conn.Close();
 
@@ -165,12 +171,20 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);
-                    cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+
                     cmd.Parameters.AddWithValue("@Use_YN", code.Use_YN);
                     cmd.Parameters.AddWithValue("@Up_Emp", code.Up_Emp);
+
+                    if (isMaCode)
+                    {
+                        cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
+                        cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);
+                    }                        
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+                        cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
+                    }
 
                     int iRowAffect = cmd.ExecuteNonQuery();
                     conn.Close();
