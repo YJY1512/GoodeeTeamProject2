@@ -33,7 +33,7 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"select Process_Code, Process_Name, Process_Group, case when Use_YN = 'Y' then '예'
-                                    when Use_YN = 'N' then '아니오' end as Use_YN, Remark from Process_Master";
+                                    when Use_YN = 'N' then '아니요' end as Use_YN, Remark from Process_Master";
 
                 SqlCommand cmd = new SqlCommand(sql,conn);
                 conn.Open();
@@ -50,16 +50,17 @@ namespace Team2_Project_DAO
 
         public List<ProcessMasterDTO> InputProcess(ProcessMasterDTO newProcess)
         {
-            string sql = @"INSERT INTO dbo.Process_Master (Process_Code, Process_Name, Process_Group, Use_YN, Remark, Ins_Emp, Ins_Date, Up_Emp, Up_Date) 
+            string sql = @"INSERT INTO Process_Master (Process_Code, Process_Name, Process_Group, Use_YN, Remark, Ins_Emp, Ins_Date, Up_Emp, Up_Date) 
                                             VALUES(@Process_Code, @Process_Name, @Process_Group, @Use_YN, @Remark, @Ins_Emp, @Ins_Date, @Up_Emp, @Up_Date)";
             string sql2 = @"select Process_Code, Process_Name, Process_Group, case when Use_YN = 'Y' then '예'
-                                    when Use_YN = 'N' then '아니오' end as Use_YN, Remark from Process_Master";
-
+                                    when Use_YN = 'N' then '아니요' end as Use_YN, Remark from Process_Master";
+            conn.Open();
             SqlTransaction trans = conn.BeginTransaction();
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
                 cmd.Parameters.AddWithValue("@Process_Code",newProcess.Process_Code);
                 cmd.Parameters.AddWithValue("@Process_Name",newProcess.Process_Name);
                 cmd.Parameters.AddWithValue("@Process_Group",newProcess.Process_Group);
@@ -69,16 +70,17 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Ins_Date", newProcess.Up_Date);
                 cmd.Parameters.AddWithValue("@Up_Emp", newProcess.Up_Emp);
                 cmd.Parameters.AddWithValue("@Up_Date", newProcess.Up_Date);
-
+                trans.Commit();
                 if (cmd.ExecuteNonQuery() < 0)
                     return null;
                 
                 cmd.Parameters.Clear();
+                cmd.Connection = conn;
                 cmd.CommandText = sql2;
                 List<ProcessMasterDTO> list = Helper.DataReaderMapToList<ProcessMasterDTO>(cmd.ExecuteReader());
-
+                
                 conn.Close();
-                trans.Commit();
+                trans.Dispose();
 
                 return list;
             }
@@ -96,13 +98,13 @@ namespace Team2_Project_DAO
                                 SET Process_Name = @Process_Name, Process_Group = @Process_Group, Remark = @Remark, Use_YN = @Use_YN, Up_Emp = @Up_Emp, Up_Date = @Up_Date
                                 WHERE Process_Code = @Process_Code";
             string sql2 = @"select Process_Code, Process_Name, Process_Group, case when Use_YN = 'Y' then '예'
-                                    when Use_YN = 'N' then '아니오' end as Use_YN, Remark from Process_Master";
-
+                                    when Use_YN = 'N' then '아니요' end as Use_YN, Remark from Process_Master";
+            conn.Open();
             SqlTransaction trans = conn.BeginTransaction();
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
+                
                 cmd.Parameters.AddWithValue("@Process_Code", editProcess.Process_Code);
                 cmd.Parameters.AddWithValue("@Process_Name", editProcess.Process_Name);
                 cmd.Parameters.AddWithValue("@Process_Group", editProcess.Process_Group);
@@ -110,7 +112,7 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Remark", editProcess.Remark);
                 cmd.Parameters.AddWithValue("@Up_Emp", editProcess.Up_Emp);
                 cmd.Parameters.AddWithValue("@Up_Date", editProcess.Up_Date);
-
+                trans.Commit();
                 if (cmd.ExecuteNonQuery() < 0)
                     return null;
 
@@ -119,7 +121,7 @@ namespace Team2_Project_DAO
                 List<ProcessMasterDTO> list = Helper.DataReaderMapToList<ProcessMasterDTO>(cmd.ExecuteReader());
 
                 conn.Close();
-                trans.Commit();
+                trans.Dispose();
 
                 return list;
             }
@@ -134,15 +136,15 @@ namespace Team2_Project_DAO
         {
             string sql = "Delete from Process_Master where Process_Code = @Process_Code";
             string sql2 = @"select Process_Code, Process_Name, Process_Group, case when Use_YN = 'Y' then '예'
-                                    when Use_YN = 'N' then '아니오' end as Use_YN, Remark from Process_Master";
-
+                                    when Use_YN = 'N' then '아니요' end as Use_YN, Remark from Process_Master";
+            conn.Open();
             SqlTransaction trans = conn.BeginTransaction();
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
+                
                 cmd.Parameters.AddWithValue("@Process_Code", txtProcessCode);
-
+                trans.Commit();
                 if (cmd.ExecuteNonQuery() < 0)
                     return null;
 
@@ -151,7 +153,7 @@ namespace Team2_Project_DAO
                 List<ProcessMasterDTO> list = Helper.DataReaderMapToList<ProcessMasterDTO>(cmd.ExecuteReader());
 
                 conn.Close();
-                trans.Commit();
+                trans.Dispose();
 
                 return list;
             }

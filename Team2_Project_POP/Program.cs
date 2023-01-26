@@ -16,7 +16,7 @@ namespace Team2_Project_POP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmPopParent());
+            Application.Run(new frmParent());
         }
     }
 }

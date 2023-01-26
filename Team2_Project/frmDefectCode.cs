@@ -35,6 +35,7 @@ namespace Team2_Project
 
             LoadData();
             SetInitPnl();
+
         }
 
         private void LoadData()
@@ -42,11 +43,18 @@ namespace Team2_Project
             defList = srv.GetDefCode(true);
             if (defList != null)
             {
-                dgvMa.DataSource = null;
-                dgvMa.DataSource = defList;
+                AdvancedListBind(defList, dgvMa);
             }
 
             dgvMa.ClearSelection();
+        }
+
+        private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<DefCodeDTO>(datasource), null);
+
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
         }
 
         private void SetInitPnl()
@@ -69,7 +77,7 @@ namespace Team2_Project
                         where c.Def_Ma_Code.Contains(defCode) && c.Def_Ma_Name.Contains(defName) && c.Use_YN.Contains(useYN)
                         select c).ToList();
 
-            dgvMa.DataSource = list;
+            AdvancedListBind(list, dgvMa);
         }
 
         public void OnAdd()     //추가
@@ -120,11 +128,10 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                SetInitPnl();
-                LoadData();
+                OnReLoad();
             }
 
-            dgvMa.Enabled = true;
+            dgvMa.Enabled = true;            
         }
 
         public void OnSave()    //저장
@@ -156,10 +163,6 @@ namespace Team2_Project
                 if(result)
                 {
                     MessageBox.Show("등록이 완료되었습니다.");
-                    dgvMa.Enabled = true;
-
-                    SetInitPnl();
-                    LoadData();
                 }
                 else
                 {
@@ -180,17 +183,17 @@ namespace Team2_Project
                 bool result = srv.UpdateDefCode(true, code);
                 if (result)
                 {
-                    MessageBox.Show("수정이 완료되었습니다.");
-                    dgvMa.Enabled = true;
-
-                    SetInitPnl();
-                    LoadData();
+                    MessageBox.Show("수정이 완료되었습니다.");                    
                 }
                 else
                 {
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
             }
+
+            dgvMa.Enabled = true;
+            OnReLoad();
+
         }
 
         public void OnCancel()  //취소

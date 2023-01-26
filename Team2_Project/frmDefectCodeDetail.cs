@@ -32,7 +32,6 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "불량현상 상세분류코드", "Def_Mi_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "불량현상 상세분류명", "Def_Mi_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "사용유무", "Use_YN");
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "Remark", "Remark", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "Def_Ma_Code", "Def_Ma_Code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "Def_Ma_Name", "Def_Ma_Name", visible: false);
 
@@ -42,6 +41,8 @@ namespace Team2_Project
 
             SetInitPnl();
             LoadData();
+
+            label8.Visible = label13.Visible = txtRemark.Visible = false;
         }
 
         private void LoadData()
@@ -50,13 +51,20 @@ namespace Team2_Project
             if (defList != null && defList.Count > 0)
             {
                 var list = defList.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-                dgvMa.DataSource = null;
-                dgvMa.DataSource = list;
+                AdvancedListBind(list, dgvMa);
             }
             dgvMi.DataSource = null;
 
             dgvMa.ClearSelection();
             dgvMi.ClearSelection();
+        }
+
+        private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<DefCodeDTO>(datasource), null);
+
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
         }
 
         private void SetInitPnl()
@@ -86,19 +94,17 @@ namespace Team2_Project
 
             SetInitPnl();
 
-            if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
-            {
-                LoadData();
-                return;
-            }
-
             var list = (from c in defList
-                        where c.Def_Ma_Code == code && c.Use_YN.Contains(useYN)
+                        where c.Def_Ma_Code == (string.IsNullOrWhiteSpace(code)? c.Def_Ma_Code : code) && c.Use_YN.Contains(useYN)
                         select c).ToList();
-            dgvMi.DataSource = list;
+
+            if (string.IsNullOrWhiteSpace(code))
+                dgvMi.DataSource = null;
+            else
+                AdvancedListBind(list, dgvMi);
 
             var maList = list.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            dgvMa.DataSource = maList;
+            AdvancedListBind(maList, dgvMa);
         }
 
         public void OnAdd()     //추가
@@ -164,8 +170,7 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                SetInitPnl();
-                LoadData();
+                OnReLoad();
             }
 
             dgvMa.Enabled = dgvMi.Enabled = true;
@@ -192,7 +197,7 @@ namespace Team2_Project
                 {
                     Def_Ma_Code = ucMaCode._Code,
                     Def_Mi_Code = txtInfoCodeMi.Text,
-                    Def_Ma_Name = txtInfoNameMi.Text,
+                    Def_Mi_Name = txtInfoNameMi.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Ins_Emp = "" //수정필요
                 };
@@ -213,7 +218,7 @@ namespace Team2_Project
                 DefCodeDTO code = new DefCodeDTO
                 {
                     Def_Mi_Code = txtInfoCodeMi.Text,
-                    Def_Ma_Name = txtInfoNameMi.Text,
+                    Def_Mi_Name = txtInfoNameMi.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Up_Emp = "" //수정필요
                 };
@@ -230,8 +235,7 @@ namespace Team2_Project
             }
 
             dgvMa.Enabled = dgvMi.Enabled = true;
-            SetInitPnl();
-            LoadData();
+            OnReLoad();
         }
 
         public void OnCancel()  //취소
@@ -256,13 +260,19 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            if (!string.IsNullOrWhiteSpace(defList[0].Def_Mi_Code))
-            {
-                string code = dgvMa["Def_Ma_Code", e.RowIndex].Value.ToString();
-                List<DefCodeDTO> list = defList.FindAll((c) => c.Def_Ma_Code == code);
-                dgvMi.DataSource = list;
-                dgvMi.ClearSelection();
-            }
+            string useYN = (cboSearchUse.SelectedItem.ToString() == "전체") ? "" : cboSearchUse.SelectedItem.ToString();
+            string code = dgvMa["Def_Ma_Code", e.RowIndex].Value.ToString();
+
+            var list = (from c in defList
+                        where c.Def_Ma_Code == code && c.Use_YN.Contains(useYN)
+                        select c).ToList();
+
+            if (list.Count > 0 && list.FindIndex((c)=>c.Use_YN == "") == -1)
+                AdvancedListBind(list, dgvMi);
+            else
+                dgvMi.DataSource = null;
+
+            dgvMi.ClearSelection();
         }
 
         private void dgvMi_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -273,8 +283,23 @@ namespace Team2_Project
             ucMaCode._Name = dgvMi["Def_Ma_Name", e.RowIndex].Value.ToString();
             txtInfoCodeMi.Text = dgvMi["Def_Mi_Code", e.RowIndex].Value.ToString();
             txtInfoNameMi.Text = dgvMi["Def_Mi_Name", e.RowIndex].Value.ToString();
-            txtRemark.Text = dgvMi["Remark", e.RowIndex].Value.ToString();
             cboUseYN.SelectedItem = dgvMi["Use_YN", e.RowIndex].Value.ToString();
+        }
+
+        private void ucMaCodeSC_BtnClick(object sender, EventArgs e)
+        {
+            var list = defList.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류코드", "Def_Ma_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("대분류명", "Def_Ma_Name", 200));
+
+            CommonPop<DefCodeDTO> popInfo = new CommonPop<DefCodeDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "대분류코드 검색";
+
+            ucMaCodeSC.OpenPop(popInfo);
         }
     }
 }

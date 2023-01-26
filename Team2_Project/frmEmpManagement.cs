@@ -147,6 +147,12 @@ namespace Team2_Project
 
         public void OnDelete()
         {
+            if (string.IsNullOrWhiteSpace(txtID.Text))
+            {
+                MessageBox.Show("삭제할 인사정보를 선택해 주세요.");
+                return;
+            }
+
             if (MessageBox.Show("선택한 인사정보를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
                 return;
@@ -216,6 +222,11 @@ namespace Team2_Project
                     MessageBox.Show("인사정보가 정상적으로 추가되었습니다.\n초기 비밀번호는 아이디와 동일합니다.");
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
+
+                    pnlStat = 0;
+                    SetPannel(pnlArea, false);
+                    SetPannel(pnlSub, true);
+                    dgvEmp.Enabled = true;
                 }
                 else
                 {
@@ -231,16 +242,16 @@ namespace Team2_Project
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
                     idx = -1;
+
+                    pnlStat = 0;
+                    SetPannel(pnlArea, false);
+                    SetPannel(pnlSub, true);
+                    dgvEmp.Enabled = true;
                 }
                 else
                 {
                     MessageBox.Show("인사정보 수정에 실패하였습니다. 다시 시도하여 주세요.");
                 }
-
-                pnlStat = 0;
-                SetPannel(pnlArea, false);
-                SetPannel(pnlSub, true);
-                dgvEmp.Enabled = true;
             }
         }
 

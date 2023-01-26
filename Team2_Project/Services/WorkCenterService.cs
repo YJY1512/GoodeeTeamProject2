@@ -18,19 +18,29 @@ namespace Team2_Project.Services
 
             return list;
         }
-        public bool InsertWorkCenter(WorkCenterDTO wc, string empID)
+
+        public bool FindSamePK(string wcCode)
         {
             WorkCenterDAO db = new WorkCenterDAO();
-            bool result = db.InsertWorkCenter(wc, empID);
+            bool result = db.FindSamePK(wcCode);
             db.Dispose();
 
             return result;
         }
 
-        public bool UpdateWorkCenter(WorkCenterDTO wc, string empID)
+        public bool InsertWorkCenter(WorkCenterDTO wc)
         {
             WorkCenterDAO db = new WorkCenterDAO();
-            bool result = db.UpdateWorkCenter(wc, empID);
+            bool result = db.InsertWorkCenter(wc);
+            db.Dispose();
+
+            return result;
+        }
+
+        public bool UpdateWorkCenter(WorkCenterDTO wc)
+        {
+            WorkCenterDAO db = new WorkCenterDAO();
+            bool result = db.UpdateWorkCenter(wc);
             db.Dispose();
 
             return result;

@@ -40,9 +40,9 @@ namespace Team2_Project_DAO
                 }
                 else
                 {
-                    sql = @"select Def_Mi_Code, Def_Mi_Name, 
-                            		case when mi.Use_YN = 'Y' then '예'
-                            			when mi.Use_YN = 'N' then '아니오' end as Use_YN,
+                    sql = @"select isnull(Def_Mi_Code, '') Def_Mi_Code, isnull(Def_Mi_Name, '') Def_Mi_Name,
+                            		isnull((case when mi.Use_YN = 'Y' then '예'
+                            			when mi.Use_YN = 'N' then '아니오' end), '') as Use_YN,
                             		ma.Def_Ma_Code, ma.Def_Ma_Name
                             from Def_Mi_Master mi right outer join Def_Ma_Master ma on mi.Def_Ma_Code = ma.Def_Ma_Code and ma.Use_YN = 'Y'";
                 }
@@ -118,13 +118,19 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);
-                    cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+
+                    cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);                    
                     cmd.Parameters.AddWithValue("@Use_YN", code.Use_YN);
                     cmd.Parameters.AddWithValue("@Ins_Emp", code.Ins_Emp);
 
+                    if (isMaCode)
+                        cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+                        cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
+                    }
+                    
                     int iRowAffect = cmd.ExecuteNonQuery();
                     conn.Close();
 
@@ -165,12 +171,20 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);
-                    cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
-                    cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+
                     cmd.Parameters.AddWithValue("@Use_YN", code.Use_YN);
                     cmd.Parameters.AddWithValue("@Up_Emp", code.Up_Emp);
+
+                    if (isMaCode)
+                    {
+                        cmd.Parameters.AddWithValue("@Def_Ma_Name", code.Def_Ma_Name);
+                        cmd.Parameters.AddWithValue("@Def_Ma_Code", code.Def_Ma_Code);
+                    }                        
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Def_Mi_Name", code.Def_Mi_Name);
+                        cmd.Parameters.AddWithValue("@Def_Mi_Code", code.Def_Mi_Code);
+                    }
 
                     int iRowAffect = cmd.ExecuteNonQuery();
                     conn.Close();
