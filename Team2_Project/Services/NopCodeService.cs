@@ -43,6 +43,14 @@ namespace Team2_Project.Services
             return result;
         }
 
+        public bool CheckMiPK(string ItemCode)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            bool result = db.CheckMiPK(ItemCode);
+            db.Dispose();
+            return result;
+        }
+
         public int DeleteMaCode(string Code)
         {
             NopCodeDAO db = new NopCodeDAO();
