@@ -11,6 +11,7 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
+using Team2_Project.Controls;
 
 namespace Team2_Project
 {
@@ -51,6 +52,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 200); //8
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 200); //9
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 200); //10
+            dgvOrder.MultiSelect = false;
 
             foreach (int idx in orangeCols)
             {
@@ -98,8 +100,19 @@ namespace Team2_Project
             dgvOrder.DataSource = dt;
         }
 
+        private void SetPannel(bool val)
+        {
+            foreach (Control ctrl in pnlSub.Controls)
+            {
+                if (ctrl is DateTimePicker || ctrl is ucSearch)
+                    ctrl.Enabled = val;
+            }
+        }
+
         public void OnAdd()
         {
+            SetPannel(false);
+
             dt.Rows.Add();
             idx = dt.Rows.Count - 1;
             dgvOrder["Req_Qty", idx].ReadOnly = false;
@@ -118,6 +131,8 @@ namespace Team2_Project
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
+
+            SetPannel(false);
 
             dgvOrder.Rows[idx].Cells["Req_Qty"].ReadOnly = false;
             dgvOrder.Rows[idx].Cells["Remark"].ReadOnly = false;
@@ -212,6 +227,7 @@ namespace Team2_Project
                     idx = -1;
                     ResetDtpNSearch();
                     stat = 0;
+                    SetPannel(true);
                 }
                 else
                 {
@@ -228,6 +244,7 @@ namespace Team2_Project
                     idx = -1;
                     ResetDtpNSearch();
                     stat = 0;
+                    SetPannel(true);
                 }
                 else
                 {
@@ -245,6 +262,8 @@ namespace Team2_Project
 
             idx = -1;
             ResetDtpNSearch();
+            dgvOrder.ClearSelection();
+            SetPannel(true);
 
             stat = 0;
         }

@@ -47,6 +47,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹코드", "UserGroup_Code", 115);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹 명", "UserGroup_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "재직여부", "Use_YN", 150);
+            dgvEmp.MultiSelect = false;
 
             dt = empSrv.GetEmployeeList();
             dgvEmp.DataSource = dt;
@@ -267,6 +268,11 @@ namespace Team2_Project
             SetPannel(pnlArea, false);
             SetPannel(pnlSub, true);
             dgvEmp.Enabled = true;
+            dgvEmp.ClearSelection();
+
+            txtSearchID.Text = txtSearchName.Text = "";
+            cboSearchDel.SelectedIndex = 0;
+            ClearPnl();
         }
 
         public void OnReLoad()
