@@ -20,19 +20,19 @@ namespace Team2_Project.Services
             return list;
         }
 
-        public bool InputProcess(ProcessMasterDTO newProcess, string user)
+        public List<ProcessMasterDTO> InputProcess(ProcessMasterDTO newProcess)
         {
             ProcessMasterDAO db = new ProcessMasterDAO();
-            bool result = db.InputProcess(newProcess, user);
+            List<ProcessMasterDTO> result = db.InputProcess(newProcess);
             db.Dispose();
 
             return result;
         }
 
-        public bool EditProcess(ProcessMasterDTO editProcess, string user)
+        public List<ProcessMasterDTO> EditProcess(ProcessMasterDTO editProcess)
         {
             ProcessMasterDAO db = new ProcessMasterDAO();
-            bool result = db.EditProcess(editProcess, user);
+            List<ProcessMasterDTO> result = db.EditProcess(editProcess);
             db.Dispose();
 
             return result;

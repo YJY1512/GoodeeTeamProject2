@@ -275,6 +275,7 @@
     <Compile Include="Services\UserCodeService.cs" />
     <Compile Include="Services\UserGroupAuthorityService.cs" />
     <Compile Include="Services\WorkCenterService.cs" />
+    <Compile Include="Utils\AdvancedList.cs" />
     <Compile Include="Utils\CommonCodeUtil.cs" />
     <Compile Include="Utils\DataGridViewUtil.cs" />
     <EmbeddedResource Include="BaseForms\frmCodeControlBase.resx">

@@ -52,8 +52,7 @@ namespace Team2_Project
 
             DeactivationBottom(); //입력패널 비활성화
             OnSearch();
-
-            label13.Visible = label8.Visible = txtRemark.Visible = false;
+            label12.Visible = label9.Visible = nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
         }
 
         #region Main 버튼 클릭이벤트
@@ -82,8 +81,7 @@ namespace Team2_Project
             }
 
             situation = "Add";
-            dgvMaData.Enabled = dgvMiData.Enabled = false;
-            dgvMiData.ClearSelection();
+            cboUseYN.SelectedIndex = 0;
             DeactivationTop();            //검색조건 비활성화
             ResetBottom();                //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
@@ -101,8 +99,6 @@ namespace Team2_Project
                 return;
             }
             situation = "Update";
-            dgvMaData.Enabled = dgvMiData.Enabled = false;
-            dgvMiData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
         }
@@ -130,7 +126,7 @@ namespace Team2_Project
         public void OnSave()    //저장
         {
             //필수입력항목: 코드, 명, 사용유무
-            if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text) || cboUseYN.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text)) //|| cboUseYN.SelectedIndex == 0
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.");
                 return;
@@ -214,29 +210,26 @@ namespace Team2_Project
                 if (ctrl is TextBox) ctrl.Text = "";
             }
             ucMaCode._Code = ucMaCode._Name = "";
-            nudSort.Value = 0;
             cboUseYN.SelectedIndex = -1;
         }
 
         private void ActivationBottom(string situation) //입력 활성화
         {
             foreach (Control ctrl in splitContainer2.Panel2.Controls)
-            {
                 ctrl.Enabled = true;
-            }
             if (situation.Equals("Update"))
             {
                 ucMaCode.Enabled = false;
                 txtInfoCodeMi.Enabled = false;
-            }            
+            }
+            dgvMaData.Enabled = dgvMiData.Enabled = false;
+            dgvMiData.ClearSelection();
         }
 
         private void DeactivationBottom() //입력 비활성화
         {
             foreach (Control ctrl in splitContainer2.Panel2.Controls)
-            {
                 ctrl.Enabled = false;
-            }
         }
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)

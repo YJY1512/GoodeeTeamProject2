@@ -29,6 +29,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "사용자 그룹명", "UserGroup_Name",250);
             DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "Admin 여부", "Admin",150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "사용 여부", "Use_YN",150);
+            dgvGroup.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboUseYN1);
             CommonCodeUtil.UseAdminComboBinding(cboAdUseYN2, false);
@@ -70,10 +71,8 @@ namespace Team2_Project
             }
 
             var list = (from grp in codeList
-                        where grp.UserGroup_Name.Contains(grpNM) && grp.Use_YN.Contains(useYN)
+                        where grp.UserGroup_Name == grpNM && grp.Use_YN.Contains(useYN)
                         select grp).ToList();
-
-            dgvGroup.DataSource = null;
             dgvGroup.DataSource = codeList;
         }
         public void OnAdd()     //추가

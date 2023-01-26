@@ -9,6 +9,7 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
+using System.Linq;
 
 namespace Team2_Project
 {
@@ -18,8 +19,9 @@ namespace Team2_Project
         string loginedUser = "";
         bool isAdd, isEdit = false;
         ProcessMasterService service;
+
         // 리스트
-        List<ProcessMasterDTO> processList;
+        List<ProcessMasterDTO> processList = null;
         List<CodeDTO> code;
 
         public frmProcessManagement()
@@ -30,6 +32,7 @@ namespace Team2_Project
         private void frmProcessManagement_Load(object sender, EventArgs e)
         {
             //loginedUser = this.MdiParent. //로그인 유저
+            
             service = new ProcessMasterService();
             CodeSetting();
             // DGV 설정
@@ -40,30 +43,27 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvProcess, "비고", "Remark", 900);
             DataGridViewUtil.AddGridTextBoxColumn(dgvProcess, "사용유무", "Use_YN", 120);
             dgvProcess.MultiSelect = false;
-
+            
             //CBO 설정
-            CommonCodeUtil.ComboBinding(cboProcessGroupArea, code, "process");
-            CommonCodeUtil.ComboBinding(cboProcessGroupSub, code, "process");
+            CommonCodeUtil.ComboBinding(cboProcessGroupArea, code, "PROC_GROUP");
+            CommonCodeUtil.ComboBinding(cboProcessGroupSub, code, "PROC_GROUP");
             CommonCodeUtil.ComboBinding(cboUseArea, code, "use");
             CommonCodeUtil.ComboBinding(cboUseSub, code, "use");
 
             //데이터 불러오기
             processList = service.SetData();
-            BindingSource bs = new BindingSource(processList, null);
+            BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
             dgvProcess.DataSource = bs;
             // 기본설정
             //아래 패널 크기 120 으로 고정
             splitContainer1.SplitterDistance = 467;
 
             // 콤보박스 초기화
-            cboProcessGroupSub.SelectedIndex = 0;
-            cboUseSub.SelectedIndex = 0;
-            cboProcessGroupArea.SelectedIndex = 0;
-            cboUseArea.SelectedIndex = 0;
+            cboProcessGroupSub.SelectedIndex = cboUseSub.SelectedIndex = cboProcessGroupArea.SelectedIndex = cboUseArea.SelectedIndex = 0;
 
             // Enable 처리
-            pnlArea.Enabled = false;
-
+            txtProcessCode.Enabled = txtProcessCodeName.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = false;
+            dgvProcess.ClearSelection();
         }
 
 
@@ -75,76 +75,65 @@ namespace Team2_Project
         //검색
         public void OnSearch()
         {
-            if (isAdd || isEdit) 
-            {
-                MessageBox.Show("편집 진행 중 입니다.");
-                return;
-            }
             // 검색
+            string processCode = ucSearch1._Code;
+            string processGroup = (cboProcessGroupSub.SelectedValue.ToString() == "선택") ? "" : cboProcessGroupSub.SelectedValue.ToString();
+            string useYN;
+            if (cboUseSub.SelectedValue.ToString() == "")
+                useYN = "";
+            else if (cboUseSub.SelectedValue.ToString() == "Y")
+                useYN = "예";
+            else useYN = "아니요";
             
-
-            MessageBox.Show("yjy의 조회버튼 코딩");
-           
+            var list = (from c in processList
+                        where c.Process_Code.Contains(processCode) && c.Process_Group.Contains(processGroup) && c.Use_YN.Contains(useYN)
+                        select c).ToList();
             
+            BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(list), null);
+            dgvProcess.DataSource = bs;
+            dgvProcess.Enabled = true;
+            dgvProcess.ClearSelection();
         }
         //추가
         public void OnAdd()
         {
-            if (isAdd)
-            {
-                MessageBox.Show("이미 진행 중 입니다.");
-                return;
-            }
-            if (isEdit)
-            {
-                MessageBox.Show("수정 진행 중 이니다.");
-                return;
-            }
+            if (isAdd) return;
+            if (isEdit) return;
             //추가
-            isAdd = pnlArea.Enabled = true;
+            isAdd = true;
+            txtProcessCode.Enabled = txtProcessCodeName.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = true;
             
             // 중복 업무 처리 금지
             dgvProcess.Enabled = false;
-            pnlSub.Enabled = false;
-
+            ucSearch1.Enabled = cboProcessGroupSub.Enabled = cboUseSub.Enabled = false;
         }
         //수정
         public void OnEdit()
         {
-            if (isAdd)
-            {
-                MessageBox.Show("추가 진행 중 입니다.");
-                return;
-            }
-            if (isEdit)
-            {
-                MessageBox.Show("이미 진행 중 입니다.");
-                return;
-            }
+            if (isAdd) return;
+            if (isEdit) return;
             if (string.IsNullOrWhiteSpace(txtProcessCodeName.Text))
             {
                 MessageBox.Show("선택된 정보가 없습니다.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             //수정
             isEdit = true;
+            txtProcessCodeName.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = true;
 
             // 중복 업무 처리 금지
-            dgvProcess.Enabled = false;
-            pnlSub.Enabled = false;
+            dgvProcess.Enabled = ucSearch1.Enabled = cboProcessGroupSub.Enabled = cboUseSub.Enabled = false;
         }
         //삭제
         public void OnDelete()
         {
-            MessageBox.Show("yjy의 추가버튼 코딩");
-            if (isAdd || isEdit)
-            {
-                MessageBox.Show("편집 진행 중 입니다.");
-                return;
-            }
+            if (isAdd || isEdit) return;
+            
             if (string.IsNullOrWhiteSpace(txtProcessCodeName.Text))
             {
                 MessageBox.Show("선택된 정보가 없습니다.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             //삭제
@@ -159,99 +148,104 @@ namespace Team2_Project
             }
             finally
             {
-                BindingSource bs = new BindingSource(processList, null);
+                BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
                 dgvProcess.DataSource = bs;
 
                 //후처리
-                pnlArea.Enabled = false;
-                cboProcessGroupSub.SelectedIndex = 0;
-                cboUseSub.SelectedIndex = 0;
-                cboProcessGroupArea.SelectedIndex = 0;
-                cboUseArea.SelectedIndex = 0;
+                txtProcessCode.Clear();
+                txtProcessCodeName.Clear();
+                txtRemark.Clear();
+                cboProcessGroupSub.SelectedIndex = cboUseSub.SelectedIndex = cboProcessGroupArea.SelectedIndex = cboUseArea.SelectedIndex = 0;
+                dgvProcess.Enabled = true;
+                dgvProcess.ClearSelection();
             }
         }
         //저장
         public void OnSave()
         {
             if (!isAdd && !isEdit) return;
-            //저장
-            //중복 처리
-            if (processList.Find((l) => l.Process_Code == txtProcessCode.Text.Trim()) != null)
-            {
-                MessageBox.Show("이미 있는 코드 입니다.");
-                txtProcessCode.Focus();
-                return;
-            }
+            
             if (string.IsNullOrWhiteSpace(txtProcessCode.Text)) 
             {
                 txtProcessCode.Focus();
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtProcessCodeName.Text))
             {
                 txtProcessCodeName.Focus();
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             if (cboProcessGroupArea.SelectedIndex == 0)
             {
                 cboProcessGroupArea.Focus();
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
             if (cboUseArea.SelectedIndex == 0)
             {
                 cboUseArea.Focus();
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
+
+            ProcessMasterDTO Process = new ProcessMasterDTO
+            {
+                Process_Code = txtProcessCode.Text,
+                Process_Name = txtProcessCodeName.Text,
+                Process_Group = cboProcessGroupArea.SelectedValue.ToString(),
+                Use_YN = cboUseArea.SelectedValue.ToString(),
+                Remark = txtRemark.Text,
+                Up_Date = DateTime.Now,
+                Up_Emp = "1000" //loginedUser
+            };
+
+            List<ProcessMasterDTO> empt = new List<ProcessMasterDTO>();
+
+            // 중복
             if (isAdd)
             {
-                ProcessMasterDTO newProcess = new ProcessMasterDTO
+                //중복 처리
+                if (processList.Find((l) => l.Process_Code == txtProcessCode.Text.Trim()) != null)
                 {
-                    Process_Code = txtProcessCode.Text,
-                    Process_Name = txtProcessCodeName.Text,
-                    Process_Group = cboProcessGroupArea.SelectedValue.ToString(),
-                    Use_YN = Convert.ToChar(cboUseArea.SelectedValue),
-                    Remark = txtRemark.Text
-                };
-
-                bool result = service.InputProcess(newProcess, loginedUser);
-
-                if (result)
-                {
-                    MessageBox.Show("저장 되었습니다.");
+                    MessageBox.Show("이미 있는 코드 입니다.");
+                    txtProcessCode.Focus();
+                    return;
                 }
-                else 
-                {
-                    MessageBox.Show("저장 실패했습니다.");
-                }
+                empt = service.InputProcess(Process);
+                if (empt == null)
+                    MessageBox.Show("추가 실패 했습니다.");
+                else
+                    processList = empt;
             }   
             if (isEdit)
             {
-                ProcessMasterDTO editProcess = new ProcessMasterDTO
-                {
-                    Process_Code = txtProcessCode.Text,
-                    Process_Name = txtProcessCodeName.Text,
-                    Process_Group = cboProcessGroupArea.SelectedValue.ToString(),
-                    Use_YN = Convert.ToChar(cboUseArea.SelectedValue),
-                    Remark = txtRemark.Text
-                };
-
-                bool result = service.EditProcess(editProcess, loginedUser);
-
-                if (result)
-                {
-                    MessageBox.Show("저장 되었습니다.");
-                }
+                empt = service.EditProcess(Process);
+                if (empt == null)
+                    MessageBox.Show("수정 실패 했습니다.");
                 else
-                {
-                    MessageBox.Show("저장 실패했습니다.");
+                    processList = empt;
                 }
-            }
-            
+            BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(processList), null);
+            dgvProcess.DataSource = bs;
+
             // 후처리
-            pnlArea.Enabled = isAdd = isEdit = false;
-            pnlSub.Enabled = true;
-            cboProcessGroupArea.SelectedIndex = 0;
-            cboUseArea.SelectedIndex = 0;
+            OnCancel();
+            txtProcessCode.Clear();
+            txtProcessCodeName.Clear();
+            txtRemark.Clear();
+            cboProcessGroupSub.SelectedIndex = cboUseSub.SelectedIndex = 0;
+            ucSearch1._Code = ucSearch1._Name = "";
+            dgvProcess.Enabled = true;
+            dgvProcess.ClearSelection();
+            //txtProcessCode.Enabled = txtProcessCodeName.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = isAdd = isEdit = false;
+            //ucSearch1.Enabled = cboProcessGroupSub.Enabled = cboUseSub.Enabled = true;
+            //txtProcessCode.Clear();
+            //txtProcessCodeName.Clear();
+            //txtRemark.Clear();
+            //cboProcessGroupArea.SelectedIndex = 0;
+            //cboUseArea.SelectedIndex = 0;
         }
         //취소
         public void OnCancel()
@@ -260,52 +254,73 @@ namespace Team2_Project
             //취소
             txtProcessCode.Clear();
             txtProcessCodeName.Clear();
-            cboProcessGroupArea.SelectedIndex = 0;
-            cboUseArea.SelectedIndex = 0;
+            cboProcessGroupArea.SelectedIndex = cboUseArea.SelectedIndex = 0;
             txtRemark.Clear();
-
+            dgvProcess.Enabled = true;
+            dgvProcess.ClearSelection();
             // 후처리
-            pnlArea.Enabled = isAdd = isEdit = false;
-            pnlSub.Enabled = true;
+            txtProcessCode.Enabled = txtProcessCodeName.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = isAdd = isEdit = false;
+            ucSearch1.Enabled = cboProcessGroupSub.Enabled = cboUseSub.Enabled = true;
         }
 
         private void dgvProcess_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex <= 0) return;
+            if (e.RowIndex < 0) return;
             txtProcessCode.Text = dgvProcess["Process_Code", e.RowIndex].Value.ToString();
             txtProcessCodeName.Text = dgvProcess["Process_Name", e.RowIndex].Value.ToString();
             cboProcessGroupArea.SelectedValue = dgvProcess["Process_Group", e.RowIndex].Value.ToString();
-            cboUseArea.SelectedValue = dgvProcess["Use_YN", e.RowIndex].Value.ToString();
-            txtRemark.Text = dgvProcess["", e.RowIndex].Value.ToString();
+            cboUseArea.SelectedValue = (dgvProcess["Use_YN", e.RowIndex].Value.ToString() == "예") ? "Y" : "N";
+            txtRemark.Text = dgvProcess["Remark", e.RowIndex].Value.ToString();
         }
 
         //새로고침
         public void OnReLoad()
         {
-            if (!isAdd && !isEdit) return;
+            OnCancel();
             // 새로 고침
-            cboProcessGroupSub.SelectedIndex = 0;
-            cboUseSub.SelectedIndex = 0;
-            // uc 새로고침
+            cboProcessGroupSub.SelectedIndex = cboUseSub.SelectedIndex = 0;
+            ucSearch1._Code = ucSearch1._Name = "";
+            
+            //ReLoad
+            processList = service.SetData();
+            
+            BindingSource bs = new BindingSource(processList, null);
+            dgvProcess.DataSource = bs;
+            dgvProcess.Enabled = true;
+            dgvProcess.ClearSelection();
         }
 
         private void ucSearch1_BtnClick(object sender, EventArgs e)
         {
+            string codes = ucSearch1._Code;
+            string names = ucSearch1._Name;
+            var list = (from c in processList
+                        where c.Process_Name.Contains(names) && c.Process_Code.Contains(codes)
+                        select c).ToList();
 
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공종코드명", "Process_Name", 200));
+
+            CommonPop<ProcessMasterDTO> popInfo = new CommonPop<ProcessMasterDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목코드 검색";
+            ucSearch1.OpenPop(popInfo);
         }
 
         public void CodeSetting()
         {
             code = new List<CodeDTO>();
             CodeDTO item = new CodeDTO();
-            item.Code = "glazing";
-            item.Category = "process";
+            item.Code = "PG050";
+            item.Category = "PROC_GROUP";
             item.Name = "시유";
             item.Pcode = "";
             code.Add(item);
             CodeDTO item2 = new CodeDTO();
-            item2.Code = "packaging";
-            item2.Category = "process";
+            item2.Code = "PG070";
+            item2.Category = "PROC_GROUP";
             item2.Name = "포장";
             item2.Pcode = "";
             code.Add(item2);
@@ -322,7 +337,5 @@ namespace Team2_Project
             item4.Pcode = "";
             code.Add(item4);
         }
-
-
     }
 }

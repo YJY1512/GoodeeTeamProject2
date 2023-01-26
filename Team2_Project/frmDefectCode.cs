@@ -35,18 +35,26 @@ namespace Team2_Project
 
             LoadData();
             SetInitPnl();
+
         }
 
         private void LoadData()
         {
-            defList = srv.GetDefCode();
+            defList = srv.GetDefCode(true);
             if (defList != null)
             {
-                dgvMa.DataSource = null;
-                dgvMa.DataSource = defList;
+                AdvancedListBind(defList, dgvMa);
             }
 
             dgvMa.ClearSelection();
+        }
+
+        private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<DefCodeDTO>(datasource), null);
+
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
         }
 
         private void SetInitPnl()
@@ -69,7 +77,7 @@ namespace Team2_Project
                         where c.Def_Ma_Code.Contains(defCode) && c.Def_Ma_Name.Contains(defName) && c.Use_YN.Contains(useYN)
                         select c).ToList();
 
-            dgvMa.DataSource = list;
+            AdvancedListBind(list, dgvMa);
         }
 
         public void OnAdd()     //추가
@@ -105,7 +113,7 @@ namespace Team2_Project
 
             if (MessageBox.Show($"{txtName.Text}를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                int result = srv.DeleteDefCode(txtCode.Text);
+                int result = srv.DeleteDefCode(true, txtCode.Text);
 
                 if (result == 0) //성공
                 {
@@ -120,11 +128,10 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                SetInitPnl();
-                LoadData();
+                OnReLoad();
             }
 
-            dgvMa.Enabled = true;
+            dgvMa.Enabled = true;            
         }
 
         public void OnSave()    //저장
@@ -137,7 +144,7 @@ namespace Team2_Project
 
             if (txtCode.Enabled) //신규 저장
             {
-                bool result = srv.CheckPK(txtCode.Text);
+                bool result = srv.CheckPK(true, txtCode.Text);
                 if (!result)
                 {
                     MessageBox.Show("불량현상 대분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
@@ -152,14 +159,10 @@ namespace Team2_Project
                     Ins_Emp = "" //수정필요
                 };
 
-                result = srv.InsertDefCode(code);
+                result = srv.InsertDefCode(true, code);
                 if(result)
                 {
                     MessageBox.Show("등록이 완료되었습니다.");
-                    dgvMa.Enabled = true;
-
-                    SetInitPnl();
-                    LoadData();
                 }
                 else
                 {
@@ -177,20 +180,20 @@ namespace Team2_Project
                     Up_Emp = "" //수정필요
                 };
 
-                bool result = srv.UpdateDefCode(code);
+                bool result = srv.UpdateDefCode(true, code);
                 if (result)
                 {
-                    MessageBox.Show("수정이 완료되었습니다.");
-                    dgvMa.Enabled = true;
-
-                    SetInitPnl();
-                    LoadData();
+                    MessageBox.Show("수정이 완료되었습니다.");                    
                 }
                 else
                 {
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
             }
+
+            dgvMa.Enabled = true;
+            OnReLoad();
+
         }
 
         public void OnCancel()  //취소

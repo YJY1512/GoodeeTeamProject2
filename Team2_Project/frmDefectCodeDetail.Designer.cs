@@ -65,18 +65,6 @@ namespace Team2_Project
             // 
             this.label10.Location = new System.Drawing.Point(642, 66);
             // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(610, 126);
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.Location = new System.Drawing.Point(721, 124);
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(642, 126);
-            // 
             // label4
             // 
             this.label4.Size = new System.Drawing.Size(138, 17);
@@ -109,7 +97,7 @@ namespace Team2_Project
             this.splitContainer2.Size = new System.Drawing.Size(1156, 645);
             this.splitContainer2.SplitterDistance = 408;
             // 
-            // ucSearch1
+            // ucMaCode
             // 
             this.ucMaCode.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucMaCode.Location = new System.Drawing.Point(210, 62);
@@ -119,9 +107,22 @@ namespace Team2_Project
             // 
             this.cboUseYN.Location = new System.Drawing.Point(721, 62);
             // 
-            // ucSearchCode
+            // ucMaCodeSC
             // 
             this.ucMaCodeSC.Location = new System.Drawing.Point(183, 17);
+            this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucMaCodeSC_BtnClick);
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(610, 126);
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(721, 124);
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(642, 126);
             // 
             // pnlSub
             // 
@@ -146,6 +147,7 @@ namespace Team2_Project
             this.dgvMa.RowTemplate.Height = 23;
             this.dgvMa.Size = new System.Drawing.Size(578, 645);
             this.dgvMa.TabIndex = 0;
+            this.dgvMa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMa_CellClick);
             // 
             // dgvMi
             // 
@@ -157,6 +159,7 @@ namespace Team2_Project
             this.dgvMi.RowTemplate.Height = 23;
             this.dgvMi.Size = new System.Drawing.Size(1156, 408);
             this.dgvMi.TabIndex = 0;
+            this.dgvMi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMi_CellClick);
             // 
             // frmDefectCodeDetail
             // 
