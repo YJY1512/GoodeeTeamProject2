@@ -83,6 +83,7 @@ namespace Team2_Project
             // ucMaCodeSC
             // 
             this.ucMaCodeSC.Location = new System.Drawing.Point(178, 11);
+            this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
             // 
             // txtRemark
             // 

@@ -50,10 +50,8 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Nop_Ma_Name", "%" + item.Nop_Ma_Name + "%");
                 }
 
-                if (item.Use_YN == "예")
-                    sb.Append(" AND Use_YN = 'Y'");
-                else if (item.Use_YN == "아니오")
-                    sb.Append(" AND Use_YN = 'N'");
+                if (item.Use_YN == "예") sb.Append(" AND Use_YN = 'Y'");
+                else if (item.Use_YN == "아니오") sb.Append(" AND Use_YN = 'N'");
 
                 sb.Append(" ORDER BY Nop_Ma_Code");
 
@@ -258,7 +256,40 @@ namespace Team2_Project_DAO
             }
         }
 
-        //
+
+        //----------------
+        //--  상세분류  --
+        //----------------
+
+        public List<NopMiCodeDTO> GetNopMiSearch(NopMiCodeDTO item) //비가동 상세분류코드 조회
+        {
+            try
+            {
+                string sql = @"SELECT MA.Nop_Ma_Code, MA.Nop_Ma_Name, MI.Nop_Mi_Code, MI.Nop_Mi_Name, MI.Nop_type, 
+	                                CASE WHEN MI.Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN, MI.Ins_Emp
+	                                , CONVERT(VARCHAR(10), MI.Ins_Date, 23) Ins_Date 
+	                                , CONVERT(VARCHAR(10), MI.Up_Date, 23) Ins_Date	, MI.Up_Emp
+                                FROM Nop_Ma_Master MA LEFT OUTER JOIN Nop_Mi_Master MI ON MA.Nop_Ma_Code = MI.Nop_Ma_Code
+                                WHERE 1 = 1";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    Debug.WriteLine(cmd.CommandText);
+                    List<NopMiCodeDTO> list = Helper.DataReaderMapToList<NopMiCodeDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public bool NopMiCodeAdd(NopMiCodeDTO item) //상세분류 추가
         {
             try

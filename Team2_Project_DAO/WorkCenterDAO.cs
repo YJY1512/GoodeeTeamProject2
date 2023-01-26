@@ -55,8 +55,34 @@ namespace Team2_Project_DAO
                 return null;
             }
         }
+
+        public bool FindSamePK(string wcCode)
+        {
+            try
+            {
+                string sql = @"select count(*) cnt
+                               from WorkCenter_Master
+                               where Wc_Code = @Wc_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Wc_Code", wcCode);
+
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return (cnt < 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
         
-        public bool InsertWorkCenter(WorkCenterDTO wc, string empID)
+        public bool InsertWorkCenter(WorkCenterDTO wc)
         {
             try
             {
@@ -70,7 +96,7 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Remark", wc.Remark);
                 cmd.Parameters.AddWithValue("@Use_YN", wc.Use_YN);
                 cmd.Parameters.AddWithValue("@Pallet_YN", wc.Pallet_YN);
-                cmd.Parameters.AddWithValue("@Ins_Emp", empID);
+                cmd.Parameters.AddWithValue("@Ins_Emp", wc.Ins_Emp);
 
                 conn.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -87,7 +113,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public bool UpdateWorkCenter(WorkCenterDTO wc, string empID)
+        public bool UpdateWorkCenter(WorkCenterDTO wc)
         {
             try
             {
@@ -104,7 +130,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Remark", wc.Remark);
                     cmd.Parameters.AddWithValue("@Use_YN", wc.Use_YN);
                     cmd.Parameters.AddWithValue("@Pallet_YN", wc.Pallet_YN);
-                    cmd.Parameters.AddWithValue("@Up_Emp", empID);
+                    cmd.Parameters.AddWithValue("@Up_Emp", wc.Up_Emp);
                     cmd.Parameters.AddWithValue("@Wc_Code", wc.Wc_Code);
 
                     conn.Open();
