@@ -129,6 +129,7 @@ namespace Team2_Project
         public void OnAdd()     //추가
         {
             situation = "Add";
+            cboUseYN.SelectedIndex = 0;
             dgvData.Enabled = false;
             dgvData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
@@ -266,7 +267,7 @@ namespace Team2_Project
             txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
             txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
             cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
-            cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+            cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString(); //빈칸이면 입력패널에 변경
             cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
             txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }
@@ -291,21 +292,19 @@ namespace Team2_Project
         {
             txtCode.Text = txtName.Text = txtRemark.Text = "";
             cboType.SelectedIndex = cboSpec.SelectedIndex = 0;
-            cboUseYN.SelectedItem = null;
+            cboUseYN.SelectedIndex = -1;
         }
 
         private void ActivationBottom(string situation) //입력 활성화
         {
-            if (situation.Equals("Add")) txtCode.Enabled = true; //PK유지
-            else txtCode.Enabled = false;
-            txtName.Enabled = txtRemark.Enabled = true;
-            cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
+            if (situation.Equals("Add")) txtCode.Enabled = true;
+            else txtCode.Enabled = false; //PK유지
+            txtName.Enabled = txtRemark.Enabled =  cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
         }
 
         private void DeactivationBottom() //입력 비활성화
         {
-            txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = false;
-            cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
+            txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
         }
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)

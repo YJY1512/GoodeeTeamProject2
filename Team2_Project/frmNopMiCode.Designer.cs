@@ -72,11 +72,12 @@ namespace Team2_Project
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
-            this.splitContainer2.Size = new System.Drawing.Size(1177, 680);
-            this.splitContainer2.SplitterDistance = 447;
+            this.splitContainer2.Size = new System.Drawing.Size(1177, 702);
+            this.splitContainer2.SplitterDistance = 423;
             // 
             // cboUseYN
             // 
+            this.cboUseYN.Location = new System.Drawing.Point(793, 62);
             this.cboUseYN.Size = new System.Drawing.Size(136, 25);
             // 
             // ucMaCodeSC
@@ -95,11 +96,11 @@ namespace Team2_Project
             // pnlListL
             // 
             this.pnlListL.Controls.Add(this.dgvMaData);
-            this.pnlListL.Size = new System.Drawing.Size(588, 680);
+            this.pnlListL.Size = new System.Drawing.Size(588, 702);
             // 
             // pnlListR
             // 
-            this.pnlListR.Size = new System.Drawing.Size(1177, 680);
+            this.pnlListR.Size = new System.Drawing.Size(1177, 702);
             // 
             // dgvMaData
             // 
@@ -109,7 +110,7 @@ namespace Team2_Project
             this.dgvMaData.Location = new System.Drawing.Point(0, 0);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(588, 680);
+            this.dgvMaData.Size = new System.Drawing.Size(588, 702);
             this.dgvMaData.TabIndex = 0;
             this.dgvMaData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaData_CellClick);
             // 
@@ -121,14 +122,14 @@ namespace Team2_Project
             this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(1177, 447);
+            this.dgvMiData.Size = new System.Drawing.Size(1177, 423);
             this.dgvMiData.TabIndex = 1;
             this.dgvMiData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMiData_CellClick);
             // 
             // frmNopMiCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
-            this.ClientSize = new System.Drawing.Size(1769, 773);
+            this.ClientSize = new System.Drawing.Size(1769, 795);
             this.Name = "frmNopMiCode";
             this.Text = "비가동 상세분류코드";
             this.Load += new System.EventHandler(this.frmNopMiCode_Load);
