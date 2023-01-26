@@ -142,6 +142,8 @@ namespace Team2_Project
             this.dgvWorkShop.RowTemplate.Height = 23;
             this.dgvWorkShop.Size = new System.Drawing.Size(1351, 495);
             this.dgvWorkShop.TabIndex = 0;
+            this.dgvWorkShop.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkShop_CellClick);
+            this.dgvWorkShop.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkShop_CellFormatting);
             // 
             // label1
             // 
@@ -271,9 +273,9 @@ namespace Team2_Project
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Location = new System.Drawing.Point(367, 26);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 17);
+            this.label13.Size = new System.Drawing.Size(64, 17);
             this.label13.TabIndex = 14;
-            this.label13.Text = "공정";
+            this.label13.Text = "공정코드";
             // 
             // cboSearchUseYN
             // 
@@ -337,6 +339,7 @@ namespace Team2_Project
             this.ucProcCode.Name = "ucProcCode";
             this.ucProcCode.Size = new System.Drawing.Size(340, 28);
             this.ucProcCode.TabIndex = 22;
+            this.ucProcCode.BtnClick += new System.EventHandler(this.ucProcCode_BtnClick);
             // 
             // ucCenterGrpCode
             // 
@@ -349,6 +352,7 @@ namespace Team2_Project
             this.ucCenterGrpCode.Name = "ucCenterGrpCode";
             this.ucCenterGrpCode.Size = new System.Drawing.Size(340, 28);
             this.ucCenterGrpCode.TabIndex = 23;
+            this.ucCenterGrpCode.BtnClick += new System.EventHandler(this.ucCenterGrpCode_BtnClick);
             // 
             // label6
             // 
@@ -419,6 +423,7 @@ namespace Team2_Project
             this.ucSrchProcCode.Name = "ucSrchProcCode";
             this.ucSrchProcCode.Size = new System.Drawing.Size(340, 28);
             this.ucSrchProcCode.TabIndex = 18;
+            this.ucSrchProcCode.BtnClick += new System.EventHandler(this.ucSrchProcCode_BtnClick);
             // 
             // frmWorkCenter
             // 
