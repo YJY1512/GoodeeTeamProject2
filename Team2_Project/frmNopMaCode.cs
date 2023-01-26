@@ -65,12 +65,10 @@ namespace Team2_Project
         public void OnAdd()     //추가
         {
             situation = "Add";
-            dgvData.Enabled = false;
-            cboUseYN.SelectedIndex = 0;
-            dgvData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ResetBottom();          //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
+            cboUseYN.SelectedIndex = 0;
             txtCode.Focus();
         }
         public void OnEdit()    //수정
@@ -82,8 +80,6 @@ namespace Team2_Project
                 return;
             }
             situation = "Update";
-            dgvData.Enabled = false;
-            dgvData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
             //txtName.Focus();
@@ -205,7 +201,9 @@ namespace Team2_Project
         {
             if (situation.Equals("Add")) txtCode.Enabled = true; 
             else txtCode.Enabled = false; //Update : PK유지
-            txtName.Enabled = cboUseYN.Enabled = true;            
+            txtName.Enabled = cboUseYN.Enabled = true;
+            dgvData.Enabled = false;
+            dgvData.ClearSelection();
         }
 
         private void DeactivationBottom() //입력 비활성화

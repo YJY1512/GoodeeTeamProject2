@@ -82,8 +82,6 @@ namespace Team2_Project
 
             situation = "Add";
             cboUseYN.SelectedIndex = 0;
-            dgvMaData.Enabled = dgvMiData.Enabled = false;
-            dgvMiData.ClearSelection();
             DeactivationTop();            //검색조건 비활성화
             ResetBottom();                //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
@@ -101,8 +99,6 @@ namespace Team2_Project
                 return;
             }
             situation = "Update";
-            dgvMaData.Enabled = dgvMiData.Enabled = false;
-            dgvMiData.ClearSelection();
             DeactivationTop();      //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
         }
@@ -225,7 +221,9 @@ namespace Team2_Project
             {
                 ucMaCode.Enabled = false;
                 txtInfoCodeMi.Enabled = false;
-            }            
+            }
+            dgvMaData.Enabled = dgvMiData.Enabled = false;
+            dgvMiData.ClearSelection();
         }
 
         private void DeactivationBottom() //입력 비활성화
