@@ -87,22 +87,20 @@ namespace Team2_Project
         {
             string code = ucMaCodeSC._Code;
             string useYN = (cboSearchUse.SelectedItem.ToString() == "전체")? "" : cboSearchUse.SelectedItem.ToString();
-
-            SetInitPnl();
-
-            if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
-            {
-                LoadData();
-                return;
-            }
-            
+           
             var list = (from c in codeList
-                        where c.Userdefine_Ma_Code == code && c.Use_YN.Contains(useYN)
+                        where c.Userdefine_Ma_Code == (string.IsNullOrWhiteSpace(code)? c.Userdefine_Ma_Code : code) && c.Use_YN.Contains(useYN)
                         select c).ToList();
-            dgvMi.DataSource = list;
+
+            if (string.IsNullOrWhiteSpace(code))
+                dgvMi.DataSource = null;
+            else
+                dgvMi.DataSource = list;
 
             var maList = list.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            dgvMa.DataSource = maList;            
+            dgvMa.DataSource = maList;
+
+            SetInitPnl();
         }
 
         public void OnAdd()     //추가
@@ -167,8 +165,7 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                SetInitPnl();
-                LoadData();
+                OnReLoad();
             }
 
             dgvMa.Enabled = dgvMi.Enabled = true;
@@ -238,8 +235,7 @@ namespace Team2_Project
             }
 
             dgvMa.Enabled = dgvMi.Enabled = true;
-            SetInitPnl();
-            LoadData();
+            OnReLoad();
         }
 
         public void OnCancel()  //취소
@@ -280,13 +276,19 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            if (!string.IsNullOrWhiteSpace(codeList[0].Userdefine_Mi_Code))
-            {
-                string code = dgvMa["Userdefine_Ma_Code", e.RowIndex].Value.ToString();
-                List<UserCodeDTO> list = codeList.FindAll((c) => c.Userdefine_Ma_Code == code);
+            string useYN = (cboSearchUse.SelectedItem.ToString() == "전체") ? "" : cboSearchUse.SelectedItem.ToString();
+            string code = dgvMa["Userdefine_Ma_Code", e.RowIndex].Value.ToString();
+
+            var list = (from c in codeList
+                        where c.Userdefine_Ma_Code == code && c.Use_YN.Contains(useYN)
+                        select c).ToList();
+
+            if (list.Count > 0 || list[0].Userdefine_Mi_Code != null)
                 dgvMi.DataSource = list;
-                dgvMi.ClearSelection();
-            }                
+            else
+                dgvMi.DataSource = null;
+   
+            dgvMi.ClearSelection();
         }
 
         private void dgvMi_CellClick(object sender, DataGridViewCellEventArgs e)

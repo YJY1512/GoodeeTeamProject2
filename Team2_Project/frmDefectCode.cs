@@ -35,6 +35,7 @@ namespace Team2_Project
 
             LoadData();
             SetInitPnl();
+
         }
 
         private void LoadData()
