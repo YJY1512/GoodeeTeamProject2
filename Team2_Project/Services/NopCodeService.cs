@@ -67,6 +67,14 @@ namespace Team2_Project.Services
             return result;
         }
 
+        public List<NopMiCodeDTO> GetNopMiSearch(NopMiCodeDTO item)
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            List<NopMiCodeDTO> list = db.GetNopMiSearch(item);
+            db.Dispose();
+            return list;
+        }
+
         public bool NopMiCodeAdd(NopMiCodeDTO item)
         {
             NopCodeDAO db = new NopCodeDAO();

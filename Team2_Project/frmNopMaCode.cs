@@ -214,15 +214,15 @@ namespace Team2_Project
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
             var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
 
-            CommonPop<NopMaCodeDTO> popInfo = new CommonPop<NopMaCodeDTO>();
-            popInfo.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "품목코드 검색";
-            ucCodeSearch.OpenPop(popInfo);
+            CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
+            dto.DgvDatasource = list;
+            dto.DgvCols = col;
+            dto.PopName = "비가동 대분류코드 검색";
+            ucCodeSearch.OpenPop(dto);
         }
     }
 }
