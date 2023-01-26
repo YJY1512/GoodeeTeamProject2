@@ -14,17 +14,17 @@ using Team2_Project.Controls;
 
 namespace Team2_Project
 {
-    //생산요청에서 사용된 적 있는 직원은 삭제 불가능 추가
-    //코드 정리
+    //메인폼에서 사용자 id 가져오기
 
     public partial class frmEmpManagement : frmListUpAreaDown
     {
         EmployeeService empSrv;
+        string empId;
         DataTable dt;
-        int pnlStat;
         string[] use_YNSearchList = { "전체", "재직", "퇴직" };
         Dictionary<char, string> use_YNList = new Dictionary<char, string>(){{ 'Y', "재직" }, { 'N', "퇴직" }};
         Dictionary<char, string> AuthList = new Dictionary<char, string>() { { 'A', "관리자" }, { 'U', "일반" } };
+        int pnlStat;
         int idx = -1;
         List<CodeDTO> userGroupCodeList;
 
@@ -32,6 +32,8 @@ namespace Team2_Project
         {
             InitializeComponent();
             empSrv = new EmployeeService();
+            //int empid = ((frmMain)this.MdiParent).LoginEmpInfo.emp_id;
+            empId = "1000";
         }
 
         private void frmEmpManagement_Load(object sender, EventArgs e)
@@ -77,19 +79,10 @@ namespace Team2_Project
 
         private void ucSearchGroup_BtnClick(object sender, EventArgs e)
         {
-            //int empid = ((frmMain)this.MdiParent).LoginEmpInfo.emp_id;
             if (userGroupCodeList == null || userGroupCodeList.Count() < 1)
             {
                 userGroupCodeList = empSrv.GetUserGroupCode();
             }
-
-            //frmUcSearchPopup pop = new frmUcSearchPopup(userGroupCodeList);
-            //if (pop.ShowDialog() == DialogResult.OK)
-            //{
-            //    CodeDTO group = pop.Info;
-            //    ucSearchGroup._Code = group.Code;
-            //    ucSearchGroup._Name = group.Name;
-            //}
 
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹코드", "Code", 200));
@@ -107,7 +100,7 @@ namespace Team2_Project
         {
             foreach (Control item in pnlArea.Controls)
             {
-                if(item is TextBox)
+                if (item is TextBox)
                 {
                     item.Text = "";
                 }
@@ -120,17 +113,10 @@ namespace Team2_Project
             cboAuth.SelectedIndex = 0;
         }
 
-        //private void CboEnable(bool val)
-        //{
-        //    cboDel.Enabled = val;
-        //    cboAuth.Enabled = val;
-        //}
-
         public void OnAdd()
         {
             pnlStat = 1;
             ClearPnl();
-            //CboEnable(true);
             SetPannel(pnlArea, true);
             SetPannel(pnlSub, false);
             dgvEmp.ClearSelection();
@@ -144,13 +130,13 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 MessageBox.Show("수정할 인사정보를 선택해 주세요.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
-              
 
             pnlStat = 2;
+
             idx = dgvEmp.CurrentCell.RowIndex;
-            //CboEnable(true);
             SetPannel(pnlArea, true);
             txtID.Enabled = false;
             SetPannel(pnlSub, false);
@@ -159,7 +145,7 @@ namespace Team2_Project
             //저장, 취소 빼고 다 비활성화
         }
 
-        public void OnDelete() //다른 테이블에서 사용한다면 삭제 불가능
+        public void OnDelete()
         {
             if (MessageBox.Show("선택한 인사정보를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
@@ -181,8 +167,8 @@ namespace Team2_Project
 
         public void OnSave()
         {
-            //유효성 검사
-            int i = 0;
+            int i = 0; //유효성 체크용
+
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 MessageBox.Show("사용자 ID는 필수 입력 항목입니다.");
@@ -224,7 +210,7 @@ namespace Team2_Project
 
             if (pnlStat == 1)
             {
-                bool result = empSrv.Insert(data, "1000");
+                bool result = empSrv.Insert(data, empId);
                 if (result)
                 {
                     MessageBox.Show("인사정보가 정상적으로 추가되었습니다.\n초기 비밀번호는 아이디와 동일합니다.");
@@ -238,7 +224,7 @@ namespace Team2_Project
             }
             else if (pnlStat == 2)
             {
-                bool result = empSrv.Update(data, "1000");
+                bool result = empSrv.Update(data, empId);
                 if (result)
                 {
                     MessageBox.Show("인사정보가 정상적으로 수정되었습니다.");
@@ -317,22 +303,21 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            //if (pnlStat != 0)
-            //{
-            //    dgvEmp.ClearSelection();
-            //    if(pnlStat == 2)
-            //    {
-            //        dgvEmp.Rows[idx].Selected = true;
-            //    }
-            //    return;
-            //}
-
             txtID.Text = dgvEmp["User_ID", e.RowIndex].Value.ToString();
             txtName.Text = dgvEmp["User_Name", e.RowIndex].Value.ToString();
             ucSearchGroup._Code = dgvEmp["UserGroup_Code", e.RowIndex].Value.ToString();
             ucSearchGroup._Name = dgvEmp["UserGroup_Name", e.RowIndex].Value.ToString();
             cboDel.Text = dgvEmp["Use_YN", e.RowIndex].Value.ToString();
             cboAuth.Text = dgvEmp["User_Type", e.RowIndex].Value.ToString();
+        }
+
+        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                MessageBox.Show("사용자 ID는 숫자만 사용할 수 있습니다.");
+                e.Handled = true;
+            }
         }
     }
 }

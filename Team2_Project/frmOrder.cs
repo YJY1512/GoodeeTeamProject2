@@ -44,6 +44,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 200); //8
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 200); //9
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 200); //10
+
             foreach (int idx in orangeCols)
             {
                 dgvOrder.Columns[idx].DefaultCellStyle.BackColor = Color.Orange;
@@ -52,12 +53,6 @@ namespace Team2_Project
             ResetDtp();
             dt = ordSrv.GetOrderList(GetSearchValues());
             dgvOrder.DataSource = dt;
-
-            dgvOrder.ClearSelection();
-            //for (int i = 0; i < dgvOrder.Rows.Count; i++)
-            //{
-            //    dgvOrder.Rows[i].ReadOnly = true;
-            //}
 
             stat = 0;
         }
@@ -88,8 +83,9 @@ namespace Team2_Project
         {
             dt.Rows.Add();
             idx = dt.Rows.Count - 1;
-            dgvOrder.Rows[idx].Cells[9].ReadOnly = false;
-            dgvOrder.Rows[idx].Cells[10].ReadOnly = false;
+            dgvOrder.Rows[idx].Cells["Req_Qty"].ReadOnly = false;
+            dgvOrder.Rows[idx].Cells["Remark"].ReadOnly = false;
+
             stat = 1;
             //저장, 취소 빼고 다 비활성화
         }

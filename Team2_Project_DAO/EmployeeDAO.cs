@@ -70,8 +70,6 @@ namespace Team2_Project_DAO
 
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
-            Ins_Emp = "1000"; //나중에 수정!!!
-
             string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, User_Type, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
 values (@User_ID, @User_Name, @User_ID, @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
@@ -124,8 +122,6 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
         public bool Update(EmployeeDTO data, string Ins_Emp)
         {
-            Ins_Emp = "1000"; //나중에 수정!!!
-
             string sql1 = @"update User_Master
                             set User_Name = @User_Name, User_Type = @User_Type, Use_YN = @Use_YN, Up_Date = getdate(), Up_Emp = @Up_Emp
                             where User_ID = @User_ID";
@@ -210,12 +206,12 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
             }
         }
 
-        public bool CheckUserID(string id)
+        public bool CheckUserID(string userId)
         {
             string sql = "select count(*) from User_Master where User_ID = @User_ID";
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@User_ID", id);
+                cmd.Parameters.AddWithValue("@User_ID", userId);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
             }
         }
