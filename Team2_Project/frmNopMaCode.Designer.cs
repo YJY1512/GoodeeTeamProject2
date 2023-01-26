@@ -31,10 +31,7 @@ namespace Team2_Project
         {
             this.cboUseYNSC = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCodeSC = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNameSC = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
@@ -45,6 +42,7 @@ namespace Team2_Project
             this.cboUseYN = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.ucCodeSearch = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -57,10 +55,8 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.txtNameSC);
-            this.pnlSub.Controls.Add(this.label5);
+            this.pnlSub.Controls.Add(this.ucCodeSearch);
             this.pnlSub.Controls.Add(this.cboUseYNSC);
-            this.pnlSub.Controls.Add(this.txtCodeSC);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Size = new System.Drawing.Size(1834, 59);
@@ -104,7 +100,7 @@ namespace Team2_Project
             // cboUseYNSC
             // 
             this.cboUseYNSC.FormattingEnabled = true;
-            this.cboUseYNSC.Location = new System.Drawing.Point(939, 16);
+            this.cboUseYNSC.Location = new System.Drawing.Point(729, 18);
             this.cboUseYNSC.Name = "cboUseYNSC";
             this.cboUseYNSC.Size = new System.Drawing.Size(136, 25);
             this.cboUseYNSC.TabIndex = 14;
@@ -113,47 +109,21 @@ namespace Team2_Project
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(860, 20);
+            this.label4.Location = new System.Drawing.Point(650, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "사용유무";
             // 
-            // txtCodeSC
-            // 
-            this.txtCodeSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCodeSC.Location = new System.Drawing.Point(184, 16);
-            this.txtCodeSC.Name = "txtCodeSC";
-            this.txtCodeSC.Size = new System.Drawing.Size(202, 25);
-            this.txtCodeSC.TabIndex = 12;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(36, 20);
+            this.label1.Location = new System.Drawing.Point(36, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 17);
             this.label1.TabIndex = 11;
             this.label1.Text = "비가동 대분류코드";
-            // 
-            // txtNameSC
-            // 
-            this.txtNameSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameSC.Location = new System.Drawing.Point(584, 16);
-            this.txtNameSC.Name = "txtNameSC";
-            this.txtNameSC.Size = new System.Drawing.Size(202, 25);
-            this.txtNameSC.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(454, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "비가동 대분류명";
             // 
             // txtName
             // 
@@ -253,6 +223,19 @@ namespace Team2_Project
             this.label11.TabIndex = 61;
             this.label11.Text = "*";
             // 
+            // ucCodeSearch
+            // 
+            this.ucCodeSearch._Code = "";
+            this.ucCodeSearch._Name = "";
+            this.ucCodeSearch.BackColor = System.Drawing.Color.Transparent;
+            this.ucCodeSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucCodeSearch.Location = new System.Drawing.Point(171, 16);
+            this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.ucCodeSearch.Name = "ucCodeSearch";
+            this.ucCodeSearch.Size = new System.Drawing.Size(340, 28);
+            this.ucCodeSearch.TabIndex = 17;
+            this.ucCodeSearch.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
+            // 
             // frmNopMaCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -278,11 +261,8 @@ namespace Team2_Project
         #endregion
 
         private System.Windows.Forms.ComboBox cboUseYNSC;
-        protected System.Windows.Forms.TextBox txtCodeSC;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.TextBox txtNameSC;
-        protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.TextBox txtName;
         protected System.Windows.Forms.TextBox txtCode;
         protected System.Windows.Forms.Label label6;
@@ -293,5 +273,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboUseYN;
         protected System.Windows.Forms.Label label10;
+        private Controls.ucSearch ucCodeSearch;
     }
 }

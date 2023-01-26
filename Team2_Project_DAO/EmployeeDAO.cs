@@ -90,7 +90,7 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
                     cmd.Transaction = trans;
 
-                    if (cmd.ExecuteNonQuery() < 1)
+                    if (cmd.ExecuteNonQuery() < 0)
                     {
                         return false;
                     }
@@ -102,7 +102,7 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
                     cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
 
-                    if (cmd.ExecuteNonQuery() < 1)
+                    if (cmd.ExecuteNonQuery() < 0)
                     {
                         return false;
                     }

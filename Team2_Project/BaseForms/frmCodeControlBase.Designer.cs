@@ -405,9 +405,6 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.Label lblSearchCode;
         protected System.Windows.Forms.Label label14;
         protected System.Windows.Forms.Label label10;
-        protected System.Windows.Forms.Label label13;
-        protected System.Windows.Forms.TextBox txtRemark;
-        protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.Label label7;
@@ -423,5 +420,8 @@ namespace Team2_Project.BaseForms
         protected System.Windows.Forms.ComboBox cboUseYN;
         protected Controls.ucSearch ucMaCodeSC;
         protected System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.TextBox txtRemark;
+        public System.Windows.Forms.Label label8;
     }
 }

@@ -14,6 +14,7 @@ namespace Team2_Project.Services
         {
             UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
             List<UserGroupAuthorityDTO> list = db.GetUserGroupCodeSearh();
+            db.Dispose();
 
             return list;
         }
@@ -21,6 +22,7 @@ namespace Team2_Project.Services
         {
             UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
             bool list = db.InsertUserGroup(uga);
+            db.Dispose();
 
             return list;
         }
@@ -29,6 +31,7 @@ namespace Team2_Project.Services
         {
             UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
             bool list = db.UpdateUserGroup(uga);
+            db.Dispose();
 
             return list;
         }
