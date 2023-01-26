@@ -44,6 +44,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 200); //8
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 200); //9
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 200); //10
+
             foreach (int idx in orangeCols)
             {
                 dgvOrder.Columns[idx].DefaultCellStyle.BackColor = Color.Orange;
@@ -52,12 +53,6 @@ namespace Team2_Project
             ResetDtp();
             dt = ordSrv.GetOrderList(GetSearchValues());
             dgvOrder.DataSource = dt;
-
-            dgvOrder.ClearSelection();
-            //for (int i = 0; i < dgvOrder.Rows.Count; i++)
-            //{
-            //    dgvOrder.Rows[i].ReadOnly = true;
-            //}
 
             stat = 0;
         }
@@ -88,8 +83,9 @@ namespace Team2_Project
         {
             dt.Rows.Add();
             idx = dt.Rows.Count - 1;
-            dgvOrder.Rows[idx].Cells[9].ReadOnly = false;
-            dgvOrder.Rows[idx].Cells[10].ReadOnly = false;
+            dgvOrder.Rows[idx].Cells["Req_Qty"].ReadOnly = false;
+            dgvOrder.Rows[idx].Cells["Remark"].ReadOnly = false;
+
             stat = 1;
             //저장, 취소 빼고 다 비활성화
         }
@@ -242,26 +238,26 @@ namespace Team2_Project
                 if (e.RowIndex != idx) return;
                 switch(e.ColumnIndex){
                     case 2: OpenPop(GetPopInfo_Project()); break;
-                    //case 6: asdasd(); break;
+                    case 6: SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); break;
                     case 7: OpenPop(GetPopInfo_Item());  break;
                     default: break;
                 }
             }
         }
 
-        private void asdasd(DataGridViewCell cell)
+        private void SetDtpCell(DataGridViewCell cell)
         {
             DateTimePicker dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Short;
             dtp.Visible = true;
-            if (cell.Value != null)
+            if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
                 dtp.Value = DateTime.Parse(cell.Value.ToString());
             else
             {
                 dtp.Value = DateTime.Now;
             }
 
-            var rect = dgvOrder.GetCellDisplayRectangle(cell.RowIndex, cell.ColumnIndex, true);
+            var rect = dgvOrder.GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
             dtp.Size = new Size(rect.Width, rect.Height);
             dtp.Location = new Point(rect.X, rect.Y);
             dgvOrder.Controls.Add(dtp);
@@ -272,12 +268,13 @@ namespace Team2_Project
 
         private void Dtp_TextChanged(object sender, EventArgs e)
         {
-            //dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = ((DateTimePicker)sender).Text.ToString("yyyy-MM-dd");
+            dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = ((DateTimePicker)sender).Value.ToString("yyyy-MM-dd");
         }
 
         private void Dtp_CloseUp(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ((DateTimePicker)sender).Visible = false;
+            dgvOrder.Controls.Remove((DateTimePicker)sender);
         }
 
         private CommonPop<ProjectDTO> GetPopInfo_Project()

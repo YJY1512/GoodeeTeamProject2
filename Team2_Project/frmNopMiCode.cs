@@ -147,7 +147,7 @@ namespace Team2_Project
 
             if (situation == "Add")
             {
-                bool pkresult = srv.CheckPK(txtInfoCodeMi.Text);
+                bool pkresult = srv.CheckMiPK(txtInfoCodeMi.Text);
                 if (!pkresult)
                 {
                     MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.");
