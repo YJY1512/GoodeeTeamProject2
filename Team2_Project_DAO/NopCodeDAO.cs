@@ -39,10 +39,6 @@ namespace Team2_Project_DAO
                              FROM Nop_Ma_Master
                             WHERE 1 = 1");   // , Ins_Emp , CONVERT(VARCHAR(10), Up_Date, 23) Up_Date , Up_Emp
 
-                cmd.Parameters.AddWithValue("@Nop_Ma_Code", item.Nop_Ma_Code);
-                cmd.Parameters.AddWithValue("@Nop_Ma_Name", item.Nop_Ma_Name);
-                cmd.Parameters.AddWithValue("@Use_YN", item.Use_YN);
-
                 if (!string.IsNullOrWhiteSpace(item.Nop_Ma_Code))
                 {
                     sb.Append(" AND Nop_Ma_Code LIKE @Nop_Ma_Code");
@@ -54,9 +50,9 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Nop_Ma_Name", "%" + item.Nop_Ma_Name + "%");
                 }
 
-                if (item.Use_YN == "사용")
+                if (item.Use_YN == "예")
                     sb.Append(" AND Use_YN = 'Y'");
-                else if (item.Use_YN == "미사용")
+                else if (item.Use_YN == "아니오")
                     sb.Append(" AND Use_YN = 'N'");
 
                 sb.Append(" ORDER BY Nop_Ma_Code");
