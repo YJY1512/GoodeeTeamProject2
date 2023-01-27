@@ -51,7 +51,6 @@ namespace Team2_Project
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.ucProcCode = new Team2_Project.Controls.ucSearch();
-            this.ucCenterGrpCode = new Team2_Project.Controls.ucSearch();
             this.label6 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -59,6 +58,7 @@ namespace Team2_Project
             this.txtSearchCode = new System.Windows.Forms.TextBox();
             this.txtSearchName = new System.Windows.Forms.TextBox();
             this.ucSrchProcCode = new Team2_Project.Controls.ucSearch();
+            this.cboWCGroup = new System.Windows.Forms.ComboBox();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -102,11 +102,11 @@ namespace Team2_Project
             // 
             // pnlArea
             // 
+            this.pnlArea.Controls.Add(this.cboWCGroup);
             this.pnlArea.Controls.Add(this.label20);
             this.pnlArea.Controls.Add(this.label19);
             this.pnlArea.Controls.Add(this.label18);
             this.pnlArea.Controls.Add(this.label6);
-            this.pnlArea.Controls.Add(this.ucCenterGrpCode);
             this.pnlArea.Controls.Add(this.ucProcCode);
             this.pnlArea.Controls.Add(this.label17);
             this.pnlArea.Controls.Add(this.label16);
@@ -166,11 +166,11 @@ namespace Team2_Project
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(404, 22);
+            this.label5.Location = new System.Drawing.Point(404, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
+            this.label5.Size = new System.Drawing.Size(68, 17);
             this.label5.TabIndex = 2;
-            this.label5.Text = "작업장 그룹";
+            this.label5.Text = "공정 그룹";
             // 
             // txtCenterCode
             // 
@@ -223,7 +223,7 @@ namespace Team2_Project
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(404, 79);
+            this.label9.Location = new System.Drawing.Point(404, 22);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 17);
             this.label9.TabIndex = 12;
@@ -322,7 +322,7 @@ namespace Team2_Project
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(381, 22);
+            this.label17.Location = new System.Drawing.Point(381, 79);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 17);
             this.label17.TabIndex = 21;
@@ -334,25 +334,12 @@ namespace Team2_Project
             this.ucProcCode._Name = "";
             this.ucProcCode.BackColor = System.Drawing.Color.Transparent;
             this.ucProcCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucProcCode.Location = new System.Drawing.Point(505, 73);
+            this.ucProcCode.Location = new System.Drawing.Point(505, 16);
             this.ucProcCode.Margin = new System.Windows.Forms.Padding(4);
             this.ucProcCode.Name = "ucProcCode";
             this.ucProcCode.Size = new System.Drawing.Size(340, 28);
             this.ucProcCode.TabIndex = 22;
             this.ucProcCode.BtnClick += new System.EventHandler(this.ucProcCode_BtnClick);
-            // 
-            // ucCenterGrpCode
-            // 
-            this.ucCenterGrpCode._Code = "";
-            this.ucCenterGrpCode._Name = "";
-            this.ucCenterGrpCode.BackColor = System.Drawing.Color.Transparent;
-            this.ucCenterGrpCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucCenterGrpCode.Location = new System.Drawing.Point(505, 16);
-            this.ucCenterGrpCode.Margin = new System.Windows.Forms.Padding(4);
-            this.ucCenterGrpCode.Name = "ucCenterGrpCode";
-            this.ucCenterGrpCode.Size = new System.Drawing.Size(340, 28);
-            this.ucCenterGrpCode.TabIndex = 23;
-            this.ucCenterGrpCode.BtnClick += new System.EventHandler(this.ucCenterGrpCode_BtnClick);
             // 
             // label6
             // 
@@ -370,7 +357,7 @@ namespace Team2_Project
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.ForeColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(381, 79);
+            this.label18.Location = new System.Drawing.Point(381, 22);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(17, 17);
             this.label18.TabIndex = 25;
@@ -425,6 +412,14 @@ namespace Team2_Project
             this.ucSrchProcCode.TabIndex = 18;
             this.ucSrchProcCode.BtnClick += new System.EventHandler(this.ucSrchProcCode_BtnClick);
             // 
+            // cboWCGroup
+            // 
+            this.cboWCGroup.FormattingEnabled = true;
+            this.cboWCGroup.Location = new System.Drawing.Point(505, 76);
+            this.cboWCGroup.Name = "cboWCGroup";
+            this.cboWCGroup.Size = new System.Drawing.Size(130, 25);
+            this.cboWCGroup.TabIndex = 28;
+            // 
             // frmWorkCenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -475,9 +470,9 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label19;
         protected System.Windows.Forms.Label label18;
         protected System.Windows.Forms.Label label6;
-        private Controls.ucSearch ucCenterGrpCode;
         private Controls.ucSearch ucSrchProcCode;
         private System.Windows.Forms.TextBox txtSearchName;
         private System.Windows.Forms.TextBox txtSearchCode;
+        private System.Windows.Forms.ComboBox cboWCGroup;
     }
 }
