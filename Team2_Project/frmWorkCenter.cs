@@ -16,7 +16,9 @@ namespace Team2_Project
     public partial class frmWorkCenter : frmListUpAreaDown
     {
         WorkCenterService srv = new WorkCenterService();
+        ProcessMasterService prosrv = new ProcessMasterService();
         List<WorkCenterDTO> wcList;
+        List<ProcessMasterDTO> processList = null;
         string empID;
 
         
@@ -58,9 +60,12 @@ namespace Team2_Project
         private void LoadData()
         {
             wcList = srv.GetWorkCenterInfo();
+            processList = prosrv.SetData();
+            dgvWorkShop.DataSource = null;
             dgvWorkShop.DataSource = wcList;
             dgvWorkShop.ClearSelection();
         }
+        #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
         {
             foreach (Control ctrl in pnlSub.Controls)
@@ -78,9 +83,9 @@ namespace Team2_Project
             ucSrchProcCode._Name = "";
             cboSearchUseYN.SelectedIndex = -1;
         }
-
-        private void OpenSearchPnl()    //검색 패널 잠금해제
+        private void OpenSearchPnl()    //검색 패널 Clear 및 잠금해제
         {
+            txtSearchCode.Text = txtSearchName.Text = ucSrchProcCode._Code = ucSrchProcCode._Name = "";
             txtSearchCode.Enabled = txtSearchName.Enabled = ucSrchProcCode.Enabled = cboSearchUseYN.Enabled = true;
             cboSearchUseYN.SelectedIndex = 0;
         }
@@ -102,11 +107,11 @@ namespace Team2_Project
             cboPalletYN.SelectedIndex = -1;
             cboSearchUseYN.SelectedIndex = -1;
         }
-
         private void OpenInitEditPnl()  //폼 하단 패널 잠금해제 
         {
-            if (clickState == "Add")    //클릭 상태가 추가일때 PK text 잠금해제      
+            if (clickState == "Add")    //클릭 상태가 추가일때 PK text 잠금해제 및 clear
             {
+                txtCenterCode.Text = txtCenterName.Text = txtRemark.Text = ucCenterGrpCode._Code =  ucProcCode._Code  = txtRemark.Text = "";
                 txtCenterCode.Enabled = txtCenterName.Enabled = txtRemark.Enabled = ucCenterGrpCode.Enabled
                 = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = true;
                 cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = 0;
@@ -117,6 +122,7 @@ namespace Team2_Project
                 cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = 0;
             }
         }
+        #endregion
 
         #region 버튼 이벤트
 
@@ -127,11 +133,10 @@ namespace Team2_Project
         public void OnAdd()     //추가
         {
             clickState = "Add";             //현재 클릭 상태
-            SetInitEditPnl();               //폼 하단 패널 clear
+            SetSearchPnl();                 //검색 패널 claer 및 잠금
             dgvWorkShop.Enabled = false;    //dgv 잠금
             dgvWorkShop.ClearSelection();   //셀 선택 초기화
-            SetSearchPnl();                 //검색 패널 잠금 및 값 초기화
-            OpenInitEditPnl();              //폼 하단 패널 잠금 해제 
+            OpenInitEditPnl();              //폼 하단 패널 잠금 해제 및 값 초기화
         }
         public void OnEdit()    //수정
         {
@@ -145,7 +150,7 @@ namespace Team2_Project
             dgvWorkShop.Enabled = false;                            //dgv 잠금
             dgvWorkShop.ClearSelection();                           //셀 선택 초기화
             SetSearchPnl();                                         //검색 패널 잠금 및 값 초기화
-            OpenInitEditPnl();                                      //폼 하단 패널 잠금 해제
+            OpenInitEditPnl();                                      //폼 하단 패널 잠금 해제 
         }
         public void OnDelete()  //삭제
         {
@@ -226,6 +231,11 @@ namespace Team2_Project
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
             }
+            clickState = "";    //클릭 상태 초기화
+            SetInitEditPnl();   //폼 하단 패널 clear 및 잠금 
+            OpenSearchPnl();    //검색 패널 잠금 해제
+            dgvWorkShop.Enabled = true; //dgv 잠금 해제
+            LoadData();         //초기 로드 화면
         }
         public void OnCancel()  //취소
         {
@@ -233,13 +243,84 @@ namespace Team2_Project
             SetInitEditPnl();   //폼 하단 패널 clear 및 잠금 
             OpenSearchPnl();    //검색 패널 잠금 해제
             dgvWorkShop.Enabled = true; //dgv 잠금 해제
-            dgvWorkShop.DataSource = null;
-            dgvWorkShop.DataSource = wcList;   // 데이터 재조회
+            LoadData();         //초기 로드 화면 
         }
         public void OnReLoad()  //새로고침
         {
-
+            OpenSearchPnl();    //검색 패널 clear
+            SetInitEditPnl();   //폼 하단 입력 패널 clear 및 잠금 
+            LoadData();         //초기 로드 화면
         }
         #endregion
+
+        private void dgvWorkShop_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            txtCenterCode.Text = dgvWorkShop["Wc_Code", e.RowIndex].Value.ToString();
+            txtCenterName.Text = dgvWorkShop["Wc_Name", e.RowIndex].Value.ToString();
+            ucCenterGrpCode._Code = dgvWorkShop["Wc_Group_Code", e.RowIndex].Value.ToString();
+            ucCenterGrpCode._Name = dgvWorkShop["Wc_Group_Name", e.RowIndex].Value.ToString();
+            ucProcCode._Code = dgvWorkShop["Process_Code", e.RowIndex].Value.ToString();
+            ucProcCode._Name = dgvWorkShop["Process_Name", e.RowIndex].Value.ToString();
+            cboPalletYN.SelectedItem = dgvWorkShop["Pallet_YN", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvWorkShop["Use_YN", e.RowIndex].Value.ToString();
+            txtRemark.Text = dgvWorkShop["Remark", e.RowIndex].Value.ToString();
+        }
+
+        private void ucSrchProcCode_BtnClick(object sender, EventArgs e)
+        {           
+            string codes = ucSrchProcCode._Code;
+            string names = ucSrchProcCode._Name;
+            var list = (from p in processList
+                        where p.Process_Code.Contains(codes) && p.Process_Name.Contains(names)
+                        select p).ToList();
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공종코드명", "Process_Name", 200));
+
+            CommonPop<ProcessMasterDTO> popInfo = new CommonPop<ProcessMasterDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목코드 검색";
+            ucSrchProcCode.OpenPop(popInfo);
+        }
+
+        private void ucCenterGrpCode_BtnClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucProcCode_BtnClick(object sender, EventArgs e)
+        {
+            string codes = ucSrchProcCode._Code;
+            string names = ucSrchProcCode._Name;
+            var list = (from p in processList
+                        where p.Process_Code.Contains(codes) && p.Process_Name.Contains(names)
+                        select p).ToList();
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공종코드명", "Process_Name", 200));
+
+            CommonPop<ProcessMasterDTO> popInfo = new CommonPop<ProcessMasterDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목코드 검색";
+            ucSrchProcCode.OpenPop(popInfo);
+        }
+
+        private void dgvWorkShop_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Run")
+            {
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Green;
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.White;
+            }
+            else if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Stop")
+            {
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Red;
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.White;
+            }
+        }
     }
 }

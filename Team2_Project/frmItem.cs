@@ -242,33 +242,6 @@ namespace Team2_Project
         }
         #endregion
 
-        private void cboType_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cboType == null) return; // || cboType.SelectedIndex < 1
-            if (cboType.Enabled == true)
-            {
-                if (cboType.Text == "반제품")
-                {
-                    cboSpec.SelectedIndex = 0;
-                    cboSpec.Enabled = false;
-                }
-                else
-                    cboSpec.Enabled = true;
-            }
-        }
-
-        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
-            txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
-            cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
-            if (dgvData["Item_Spec", e.RowIndex].Value.Equals("")) cboSpec.SelectedIndex = -1;
-            else cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString();
-            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
-            txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
-        }
-
         private void ResetTop() //검색 리셋
         {
             ucCodeSearch._Code = ucCodeSearch._Name = "";
@@ -318,6 +291,33 @@ namespace Team2_Project
             popInfo.DgvCols = colList;
             popInfo.PopName = "품목코드 검색";
             ucCodeSearch.OpenPop(popInfo);
+        }
+
+        private void cboType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cboType == null) return; // || cboType.SelectedIndex < 1
+            if (cboType.Enabled == true)
+            {
+                if (cboType.Text == "반제품")
+                {
+                    cboSpec.SelectedIndex = 0;
+                    cboSpec.Enabled = false;
+                }
+                else
+                    cboSpec.Enabled = true;
+            }
+        }
+
+        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
+            txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
+            cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
+            if (dgvData["Item_Spec", e.RowIndex].Value.Equals("")) cboSpec.SelectedIndex = -1;
+            else cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
+            txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }
     }
 }

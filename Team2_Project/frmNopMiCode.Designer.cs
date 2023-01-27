@@ -31,11 +31,11 @@ namespace Team2_Project
         {
             this.dgvMaData = new System.Windows.Forms.DataGridView();
             this.dgvMiData = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             this.pnlSub.SuspendLayout();
             this.pnlListL.SuspendLayout();
             this.pnlListR.SuspendLayout();
@@ -75,6 +75,10 @@ namespace Team2_Project
             this.splitContainer2.Size = new System.Drawing.Size(1177, 702);
             this.splitContainer2.SplitterDistance = 423;
             // 
+            // ucMaCode
+            // 
+            this.ucMaCode.BtnClick += new System.EventHandler(this.ucMaCode_BtnClick);
+            // 
             // cboUseYN
             // 
             this.cboUseYN.Location = new System.Drawing.Point(793, 62);
@@ -89,6 +93,10 @@ namespace Team2_Project
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRemark.Size = new System.Drawing.Size(300, 89);
+            // 
+            // nudSort
+            // 
+            this.nudSort.Location = new System.Drawing.Point(454, 228);
             // 
             // pnlSub
             // 
@@ -134,12 +142,12 @@ namespace Team2_Project
             this.Name = "frmNopMiCode";
             this.Text = "비가동 상세분류코드";
             this.Load += new System.EventHandler(this.frmNopMiCode_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlListL.ResumeLayout(false);
