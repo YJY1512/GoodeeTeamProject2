@@ -16,6 +16,7 @@ namespace Team2_Project_DTO
 		public string Prd_Plan_Status { get; set; }  //
 		public int Plan_Rest_Qty { get; set; }   //
 		public string Wc_Code { get; set; }  //
+		public string Wc_Name { get; set; }  //
 		public string Remark { get; set; }   //
 		public DateTime Ins_Date { get; set; }   //
 		public string Ins_Emp { get; set; }  //
