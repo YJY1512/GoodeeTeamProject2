@@ -41,17 +41,17 @@ namespace Team2_Project
         private void frmOrder_Load(object sender, EventArgs e)
         {
             DataGridViewUtil.SetInitDataGridView(dgvOrder);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 200, frosen:true); //0
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 200, frosen: true); //1
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 200); //2
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 200); //3
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "Company_Name", 200); //4
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 200); //5
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 200); //6
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 200); //7
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 200); //8
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 200); //9
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 200); //10
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 120, align:DataGridViewContentAlignment.MiddleCenter, frosen:true); //0
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 50, align: DataGridViewContentAlignment.MiddleCenter, frosen: true); //1
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 120); //2
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 140); //3
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "Company_Name", 140); //4
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 100, align: DataGridViewContentAlignment.MiddleCenter); //5
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 100, align: DataGridViewContentAlignment.MiddleCenter); //6
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 120); //7
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 140); //8
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 80, align: DataGridViewContentAlignment.MiddleRight); //9
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 565); //10
             dgvOrder.MultiSelect = false;
 
             foreach (int idx in orangeCols)
@@ -207,6 +207,12 @@ namespace Team2_Project
                 return;
             }
 
+            string remark = dgvOrder["Remark", idx].Value.ToString();
+            if (remark.Length > 200)
+            {
+                remark = remark.Substring(0, 200);
+            }
+
             OrderDTO data = new OrderDTO
             {
                 Prd_Req_No = dgvOrder["Prd_Req_No", idx].Value.ToString(),
@@ -214,7 +220,7 @@ namespace Team2_Project
                 Req_Qty = Convert.ToInt32(dgvOrder["Req_Qty", idx].Value),
                 Prj_No = dgvOrder["Prj_No", idx].Value.ToString(),
                 Delivery_Date = dgvOrder["Delivery_Date", idx].Value.ToString(),
-                Remark = dgvOrder["Remark", idx].Value.ToString(),
+                Remark = remark
             };
 
             if (stat == 1) //추가
@@ -411,6 +417,5 @@ namespace Team2_Project
             if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
-
     }
 }

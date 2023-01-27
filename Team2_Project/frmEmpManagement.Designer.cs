@@ -88,8 +88,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvEmp);
-            this.pnlList.Location = new System.Drawing.Point(0, 41);
-            this.pnlList.Size = new System.Drawing.Size(1834, 594);
+            this.pnlList.Size = new System.Drawing.Size(1834, 592);
             // 
             // pnlArea
             // 
@@ -108,8 +107,7 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label5);
             this.pnlArea.Controls.Add(this.label4);
             this.pnlArea.Controls.Add(this.label1);
-            this.pnlArea.Location = new System.Drawing.Point(0, 41);
-            this.pnlArea.Size = new System.Drawing.Size(1834, 120);
+            this.pnlArea.Size = new System.Drawing.Size(1834, 118);
             // 
             // splitContainer1
             // 
@@ -125,7 +123,7 @@ namespace Team2_Project
             this.dgvEmp.Location = new System.Drawing.Point(0, 0);
             this.dgvEmp.Name = "dgvEmp";
             this.dgvEmp.RowTemplate.Height = 23;
-            this.dgvEmp.Size = new System.Drawing.Size(1834, 594);
+            this.dgvEmp.Size = new System.Drawing.Size(1834, 592);
             this.dgvEmp.TabIndex = 0;
             this.dgvEmp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmp_CellClick);
             // 
@@ -159,6 +157,7 @@ namespace Team2_Project
             // txtID
             // 
             this.txtID.Location = new System.Drawing.Point(137, 18);
+            this.txtID.MaxLength = 20;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(170, 25);
             this.txtID.TabIndex = 0;
@@ -167,6 +166,7 @@ namespace Team2_Project
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(137, 78);
+            this.txtName.MaxLength = 100;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 25);
             this.txtName.TabIndex = 1;
@@ -234,6 +234,7 @@ namespace Team2_Project
             // txtSearchID
             // 
             this.txtSearchID.Location = new System.Drawing.Point(114, 16);
+            this.txtSearchID.MaxLength = 20;
             this.txtSearchID.Name = "txtSearchID";
             this.txtSearchID.Size = new System.Drawing.Size(130, 25);
             this.txtSearchID.TabIndex = 4;
@@ -241,6 +242,7 @@ namespace Team2_Project
             // txtSearchName
             // 
             this.txtSearchName.Location = new System.Drawing.Point(401, 16);
+            this.txtSearchName.MaxLength = 100;
             this.txtSearchName.Name = "txtSearchName";
             this.txtSearchName.Size = new System.Drawing.Size(130, 25);
             this.txtSearchName.TabIndex = 5;
