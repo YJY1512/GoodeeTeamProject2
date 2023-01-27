@@ -18,7 +18,10 @@ namespace Team2_Project
     public partial class frmPlan : Form
     {
         PlanService srv = new PlanService();
-        List<ItemDTO> itemList;
+
+        frmPop pop;
+        CommonPop<WorkCenterDTO> wcCodePop;
+        CommonPop<ItemDTO> itemCodePop;
 
         public frmPlan()
         {
@@ -38,13 +41,13 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "의뢰일", "Req_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "순번", "Req_Seq", 80);
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "납기일자", "Delivery_Date", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장코드", "Wc_Code", OrangebackColor:true); //입력값
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장코드", "Wc_Code", OrangebackColor: true); //입력값
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장명", "Wc_Name", 150, OrangebackColor: true); //입력값
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "품목", "Item_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "계획수량", "In_Plan_Qty", 120, OrangebackColor: true); //계획 수량(입력값)
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "계획반영수량", "Plan_Qty", 120); //계획 수량 합계
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "요청수량/잔량", "Plan_Rest_Qty", 120); //요청수량(Req) - 계획반영수량(Plan_Rest)
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "Plan_YN", "Plan_YN", visible:false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "Plan_YN", "Plan_YN", visible: false);
 
             CommonCodeUtil.UseYNComboBinding(cboReqStat);
             cboReqStat.SelectedIndex = 0;
@@ -99,24 +102,99 @@ namespace Team2_Project
 
         private void ucProd_BtnClick(object sender, EventArgs e)
         {
-            if (itemList == null)
+            if (itemCodePop == null)
             {
-                itemList = new List<ItemDTO>();
+                itemCodePop = new CommonPop<ItemDTO>();
                 ItemService srv = new ItemService();
-                itemList = srv.GetItemCodeName();
+
+                itemCodePop.DgvDatasource = srv.GetItemCodeName();
+                itemCodePop.PopName = "품목 검색";
             }
-            
+
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
 
-            CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
-            popInfo.DgvDatasource = itemList;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "품목코드 검색";
+            itemCodePop.DgvCols = colList;
+            ucProd.OpenPop(itemCodePop);
+        }
 
-            ucProd.OpenPop(popInfo);
+        private void dgvReq_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
 
+            int rIdx = e.RowIndex;
+
+            if (e.ColumnIndex == dgvReq.Columns["Wc_Code"].Index || e.ColumnIndex == dgvReq.Columns["Wc_Name"].Index)
+            {
+                if(wcCodePop == null)
+                {
+                    pop = new frmPop();
+                    wcCodePop = new CommonPop<WorkCenterDTO>();
+                    WorkCenterService srv = new WorkCenterService();
+
+                    wcCodePop.DgvDatasource = srv.GetWcCodeName();
+                    wcCodePop.PopName = "작업장 검색";
+                }
+
+                List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+                colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
+                colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
+
+                wcCodePop.DgvCols = colList;
+
+                pop.PopLoadData<WorkCenterDTO>(wcCodePop);
+
+                if (pop.ShowDialog() == DialogResult.OK)
+                {
+                    dgvReq[wcCodePop.DgvCols[0].DataPropertyName, rIdx].Value = pop.SelCode;
+                    dgvReq[wcCodePop.DgvCols[1].DataPropertyName, rIdx].Value = pop.SelName;
+                }
+            }
+
+            if (e.ColumnIndex == dgvReq.Columns["In_Plan_Qty"].Index)
+            {
+                dgvReq[e.ColumnIndex, rIdx].ReadOnly = false;
+            }
+
+        }
+
+        //데이터그리드뷰 숫자만 입력 가능하게
+        private void dgvReq_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            string colName = dgvReq.CurrentCell.OwningColumn.Name;
+
+            if (colName == "In_Plan_Qty")
+                e.Control.KeyPress += CheckIsNum;
+            else
+                e.Control.KeyPress -= CheckIsNum;
+        }
+
+        private void CheckIsNum(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void dgvReq_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvReq.Columns["In_Plan_Qty"].ReadOnly = true;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            List<PlanDTO> plan = new List<PlanDTO>();
+
+            foreach(DataGridViewRow row in dgvReq.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    plan.Add(new PlanDTO
+                    {
+
+                    });
+                }
+            }
         }
     }
 }

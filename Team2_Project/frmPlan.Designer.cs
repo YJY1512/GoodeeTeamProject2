@@ -139,6 +139,9 @@ namespace Team2_Project
             this.dgvReq.RowTemplate.Height = 23;
             this.dgvReq.Size = new System.Drawing.Size(971, 491);
             this.dgvReq.TabIndex = 4;
+            this.dgvReq.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReq_CellDoubleClick);
+            this.dgvReq.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReq_CellEndEdit);
+            this.dgvReq.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvReq_EditingControlShowing);
             // 
             // pnlTitleR
             // 
@@ -255,6 +258,7 @@ namespace Team2_Project
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "생산계획 생성";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cboReqStat
             // 
