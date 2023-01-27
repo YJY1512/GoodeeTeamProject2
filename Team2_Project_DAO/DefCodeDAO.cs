@@ -40,9 +40,9 @@ namespace Team2_Project_DAO
                 }
                 else
                 {
-                    sql = @"select Def_Mi_Code, Def_Mi_Name, 
-                            		case when mi.Use_YN = 'Y' then '예'
-                            			when mi.Use_YN = 'N' then '아니오' end as Use_YN,
+                    sql = @"select isnull(Def_Mi_Code, '') Def_Mi_Code, isnull(Def_Mi_Name, '') Def_Mi_Name,
+                            		isnull((case when mi.Use_YN = 'Y' then '예'
+                            			when mi.Use_YN = 'N' then '아니오' end), '') as Use_YN,
                             		ma.Def_Ma_Code, ma.Def_Ma_Name
                             from Def_Mi_Master mi right outer join Def_Ma_Master ma on mi.Def_Ma_Code = ma.Def_Ma_Code and ma.Use_YN = 'Y'";
                 }

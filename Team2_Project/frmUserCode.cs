@@ -53,14 +53,22 @@ namespace Team2_Project
             if (codeList != null && codeList.Count > 0)
             {
                 var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-                dgvMa.DataSource = null;
-                dgvMa.DataSource = list;
+                AdvancedListBind(list, dgvMa);
             }
             dgvMi.DataSource = null;
 
             dgvMa.ClearSelection();
             dgvMi.ClearSelection();
         }
+
+        private void AdvancedListBind(List<UserCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<UserCodeDTO>(datasource), null);
+
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+
 
         private void SetInitPnl()
         {
@@ -95,10 +103,10 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(code))
                 dgvMi.DataSource = null;
             else
-                dgvMi.DataSource = list;
-
+                AdvancedListBind(list, dgvMi);
+                
             var maList = list.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            dgvMa.DataSource = maList;
+            AdvancedListBind(maList, dgvMa);
 
             SetInitPnl();
         }
@@ -283,8 +291,8 @@ namespace Team2_Project
                         where c.Userdefine_Ma_Code == code && c.Use_YN.Contains(useYN)
                         select c).ToList();
 
-            if (list.Count > 0 || list[0].Userdefine_Mi_Code != null)
-                dgvMi.DataSource = list;
+            if (list.Count > 0 && list.FindIndex((c) => c.Use_YN == "") == -1)
+                AdvancedListBind(list, dgvMi);                           
             else
                 dgvMi.DataSource = null;
    

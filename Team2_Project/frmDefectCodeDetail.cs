@@ -51,13 +51,20 @@ namespace Team2_Project
             if (defList != null && defList.Count > 0)
             {
                 var list = defList.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-                dgvMa.DataSource = null;
-                dgvMa.DataSource = list;
+                AdvancedListBind(list, dgvMa);
             }
             dgvMi.DataSource = null;
 
             dgvMa.ClearSelection();
             dgvMi.ClearSelection();
+        }
+
+        private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<DefCodeDTO>(datasource), null);
+
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
         }
 
         private void SetInitPnl()
@@ -94,10 +101,10 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(code))
                 dgvMi.DataSource = null;
             else
-                dgvMi.DataSource = list;
+                AdvancedListBind(list, dgvMi);
 
             var maList = list.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            dgvMa.DataSource = maList;
+            AdvancedListBind(maList, dgvMa);
         }
 
         public void OnAdd()     //추가
@@ -260,8 +267,8 @@ namespace Team2_Project
                         where c.Def_Ma_Code == code && c.Use_YN.Contains(useYN)
                         select c).ToList();
 
-            if (list.Count > 0 && list[0].Def_Mi_Code != null)
-                dgvMi.DataSource = list;
+            if (list.Count > 0 && list.FindIndex((c)=>c.Use_YN == "") == -1)
+                AdvancedListBind(list, dgvMi);
             else
                 dgvMi.DataSource = null;
 

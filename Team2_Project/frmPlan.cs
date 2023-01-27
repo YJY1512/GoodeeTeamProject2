@@ -9,28 +9,37 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_Project.BaseForms;
 using Team2_Project.Utils;
+using Team2_Project.Services;
+using Team2_Project_DTO;
+
 
 namespace Team2_Project
 {
-    public partial class frmPlan : frmList
+    public partial class frmPlan : Form
     {
         public frmPlan()
         {
             InitializeComponent();
         }
 
-        private void frmOrder_Load(object sender, EventArgs e)
+        private void frmPlan_Load(object sender, EventArgs e)
         {
-            DataGridViewUtil.SetInitDataGridView(dataGridView1);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "생산계획코드", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "생산계획일정", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "상태", "", 200);
+            DataGridViewUtil.SetInitDataGridView(dgvReq);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "생산요청번호", "Prd_Req_No", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "의뢰일", "Req_Date");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "순번", "Req_Seq");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "납기일자", "Delivery_Date");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장코드", "");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장명", "");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "품목", "Item_Name");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "요청수량", "Req_Qty");
 
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "거래처명", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "납기일자", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "품목", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "품목코드", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "계획수량", "", 200);
+
+
+
+            DataGridViewUtil.SetInitDataGridView(dgvDetail);
+
+            DataGridViewUtil.SetInitDataGridView(dgvPlan);
         }
     }
 }

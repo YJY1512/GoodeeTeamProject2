@@ -20,28 +20,28 @@ namespace Team2_Project.Services
             return dt;
         }
 
-        public bool Insert(EmployeeDTO data, string Ins_Emp)
+        public bool Insert(OrderDTO data, string Ins_Emp)
         {
-            EmployeeDAO db = new EmployeeDAO();
+            OrderDAO db = new OrderDAO();
             bool result = db.Insert(data, Ins_Emp);
-            db.Dispose();
-
-            return false;
-        }
-
-        public bool Update(EmployeeDTO data, string Ins_Emp)
-        {
-            EmployeeDAO db = new EmployeeDAO();
-            bool result = db.Update(data, Ins_Emp);
             db.Dispose();
 
             return result;
         }
 
-        public string Delete(string empID)
+        public string Update(OrderDTO data, string Ins_Emp)
         {
-            EmployeeDAO db = new EmployeeDAO();
-            string msg = db.Delete(empID);
+            OrderDAO db = new OrderDAO();
+            string msg = db.Update(data, Ins_Emp);
+            db.Dispose();
+
+            return msg;
+        }
+
+        public string Delete(string ordId, string empId)
+        {
+            OrderDAO db = new OrderDAO();
+            string msg = db.Delete(ordId, empId);
             db.Dispose();
 
             return msg;

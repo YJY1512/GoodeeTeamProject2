@@ -50,15 +50,15 @@ namespace Team2_Project
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
-            this.ucSearch3 = new Team2_Project.Controls.ucSearch();
+            this.ucProcCode = new Team2_Project.Controls.ucSearch();
+            this.ucCenterGrpCode = new Team2_Project.Controls.ucSearch();
             this.label6 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txtSearchCode = new System.Windows.Forms.TextBox();
             this.txtSearchName = new System.Windows.Forms.TextBox();
-            this.ucSearch2 = new Team2_Project.Controls.ucSearch();
+            this.ucSrchProcCode = new Team2_Project.Controls.ucSearch();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -71,7 +71,7 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.ucSearch2);
+            this.pnlSub.Controls.Add(this.ucSrchProcCode);
             this.pnlSub.Controls.Add(this.cboSearchUseYN);
             this.pnlSub.Controls.Add(this.label14);
             this.pnlSub.Controls.Add(this.label13);
@@ -106,8 +106,8 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label19);
             this.pnlArea.Controls.Add(this.label18);
             this.pnlArea.Controls.Add(this.label6);
-            this.pnlArea.Controls.Add(this.ucSearch3);
-            this.pnlArea.Controls.Add(this.ucSearch1);
+            this.pnlArea.Controls.Add(this.ucCenterGrpCode);
+            this.pnlArea.Controls.Add(this.ucProcCode);
             this.pnlArea.Controls.Add(this.label17);
             this.pnlArea.Controls.Add(this.label16);
             this.pnlArea.Controls.Add(this.label15);
@@ -142,6 +142,8 @@ namespace Team2_Project
             this.dgvWorkShop.RowTemplate.Height = 23;
             this.dgvWorkShop.Size = new System.Drawing.Size(1351, 495);
             this.dgvWorkShop.TabIndex = 0;
+            this.dgvWorkShop.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkShop_CellClick);
+            this.dgvWorkShop.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkShop_CellFormatting);
             // 
             // label1
             // 
@@ -271,9 +273,9 @@ namespace Team2_Project
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Location = new System.Drawing.Point(367, 26);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 17);
+            this.label13.Size = new System.Drawing.Size(64, 17);
             this.label13.TabIndex = 14;
-            this.label13.Text = "공정";
+            this.label13.Text = "공정코드";
             // 
             // cboSearchUseYN
             // 
@@ -326,29 +328,31 @@ namespace Team2_Project
             this.label17.TabIndex = 21;
             this.label17.Text = "*";
             // 
-            // ucSearch1
+            // ucProcCode
             // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(505, 73);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch1.TabIndex = 22;
+            this.ucProcCode._Code = "";
+            this.ucProcCode._Name = "";
+            this.ucProcCode.BackColor = System.Drawing.Color.Transparent;
+            this.ucProcCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProcCode.Location = new System.Drawing.Point(505, 73);
+            this.ucProcCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProcCode.Name = "ucProcCode";
+            this.ucProcCode.Size = new System.Drawing.Size(340, 28);
+            this.ucProcCode.TabIndex = 22;
+            this.ucProcCode.BtnClick += new System.EventHandler(this.ucProcCode_BtnClick);
             // 
-            // ucSearch3
+            // ucCenterGrpCode
             // 
-            this.ucSearch3._Code = "";
-            this.ucSearch3._Name = "";
-            this.ucSearch3.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch3.Location = new System.Drawing.Point(505, 16);
-            this.ucSearch3.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch3.Name = "ucSearch3";
-            this.ucSearch3.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch3.TabIndex = 23;
+            this.ucCenterGrpCode._Code = "";
+            this.ucCenterGrpCode._Name = "";
+            this.ucCenterGrpCode.BackColor = System.Drawing.Color.Transparent;
+            this.ucCenterGrpCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucCenterGrpCode.Location = new System.Drawing.Point(505, 16);
+            this.ucCenterGrpCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ucCenterGrpCode.Name = "ucCenterGrpCode";
+            this.ucCenterGrpCode.Size = new System.Drawing.Size(340, 28);
+            this.ucCenterGrpCode.TabIndex = 23;
+            this.ucCenterGrpCode.BtnClick += new System.EventHandler(this.ucCenterGrpCode_BtnClick);
             // 
             // label6
             // 
@@ -408,17 +412,18 @@ namespace Team2_Project
             this.txtSearchName.Size = new System.Drawing.Size(170, 25);
             this.txtSearchName.TabIndex = 8;
             // 
-            // ucSearch2
+            // ucSrchProcCode
             // 
-            this.ucSearch2._Code = "";
-            this.ucSearch2._Name = "";
-            this.ucSearch2.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch2.Location = new System.Drawing.Point(452, 20);
-            this.ucSearch2.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch2.Name = "ucSearch2";
-            this.ucSearch2.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch2.TabIndex = 18;
+            this.ucSrchProcCode._Code = "";
+            this.ucSrchProcCode._Name = "";
+            this.ucSrchProcCode.BackColor = System.Drawing.Color.Transparent;
+            this.ucSrchProcCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucSrchProcCode.Location = new System.Drawing.Point(452, 20);
+            this.ucSrchProcCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ucSrchProcCode.Name = "ucSrchProcCode";
+            this.ucSrchProcCode.Size = new System.Drawing.Size(340, 28);
+            this.ucSrchProcCode.TabIndex = 18;
+            this.ucSrchProcCode.BtnClick += new System.EventHandler(this.ucSrchProcCode_BtnClick);
             // 
             // frmWorkCenter
             // 
@@ -462,7 +467,7 @@ namespace Team2_Project
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private Controls.ucSearch ucSearch1;
+        private Controls.ucSearch ucProcCode;
         protected System.Windows.Forms.Label label17;
         protected System.Windows.Forms.Label label16;
         protected System.Windows.Forms.Label label15;
@@ -470,8 +475,8 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label19;
         protected System.Windows.Forms.Label label18;
         protected System.Windows.Forms.Label label6;
-        private Controls.ucSearch ucSearch3;
-        private Controls.ucSearch ucSearch2;
+        private Controls.ucSearch ucCenterGrpCode;
+        private Controls.ucSearch ucSrchProcCode;
         private System.Windows.Forms.TextBox txtSearchName;
         private System.Windows.Forms.TextBox txtSearchCode;
     }

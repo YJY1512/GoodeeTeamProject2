@@ -9,13 +9,15 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
+using System.Linq;
+using System.Diagnostics;
 
 namespace Team2_Project
 {
     public partial class frmNopMiCode : frmCodeControlBase
     {
         NopCodeService srv = new NopCodeService();
-        List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
+        //List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         List<NopMiCodeDTO> NopMiList = new List<NopMiCodeDTO>();
         string situation = "";
 
@@ -36,13 +38,15 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 250);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류명", "Nop_Ma_Name", 250);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
-
+            
             DataGridViewUtil.SetInitDataGridView(dgvMiData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Mi_Code", 300);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Mi_Name", 300);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 구분", "Regular_Type", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            //DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 구분", "Regular_Type", 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 유형", "Nop_type", 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
+            dgvMaData.MultiSelect = false;
+            dgvMiData.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUse);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
@@ -55,23 +59,55 @@ namespace Team2_Project
             label12.Visible = label9.Visible = nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
         }
 
+        private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<NopMiCodeDTO>(datasource), null);
+
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            NopMaCodeDTO item = new NopMaCodeDTO
+            NopMiCodeDTO item = new NopMiCodeDTO
             {
                 Nop_Ma_Code = ucMaCodeSC._Code,
                 Nop_Ma_Name = ucMaCodeSC._Name,
                 Use_YN = cboSearchUse.Text
             };
-            NopMaList = srv.GetNopMaSearch(item);
-            dgvMaData.DataSource = null;
-            dgvMaData.DataSource = NopMaList;
-            dgvMaData.ClearSelection();
-            dgvMiData.ClearSelection();
-            ResetBottom();  //입력패널 리셋
-            DeactivationBottom(); //입력패널 비활성화
+            NopMiList = srv.GetNopMiSearch(item);
+
+            if (NopMiList != null && NopMiList.Count > 0)
+            {
+                var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                AdvancedListBind(list, dgvMaData);
+
+                //var list = from n in NopMiList
+                //           group new { Nop_Ma_Code = n.Nop_Ma_Code }
+                //           by n.Nop_Ma_Code;
+
+                //var list = (from n in NopMiList 
+                //            group n by n.Nop_Ma_Code).ToList();
+                //new
+                //{
+                //    n.Nop_Ma_Code,
+                //    n.Nop_Ma_Name,
+                //    n.Use_YN
+                //}).ToList();
+
+                //Debug.WriteLine(list);
+            }
+
+            if(situation == "")
+                dgvMiData.DataSource = null;
+            //dgvMiData.DataSource = NopMiList;
+
+            ResetBottom();        //입력 리셋
+            DeactivationBottom(); //입력 비활성화
         }
+
+
         public void OnAdd()     //추가
         {
             if (dgvMaData.SelectedRows.Count < 1)
@@ -81,14 +117,11 @@ namespace Team2_Project
             }
 
             situation = "Add";
-            cboUseYN.SelectedIndex = 0;
             DeactivationTop();            //검색조건 비활성화
             ResetBottom();                //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
+            cboUseYN.SelectedIndex = 0;
             txtInfoCodeMi.Focus();
-            int idx = dgvMaData.CurrentRow.Index;
-            ucMaCode._Code = dgvMaData["Nop_Ma_Code", idx].Value.ToString();
-            ucMaCode._Name = dgvMaData["Nop_Ma_Name", idx].Value.ToString();
         }
         public void OnEdit()    //수정
         {
@@ -137,7 +170,7 @@ namespace Team2_Project
                 Nop_Ma_Code = ucMaCode._Code,                
                 Nop_Mi_Code = txtInfoCodeMi.Text,
                 Nop_Mi_Name = txtInfoNameMi.Text,
-                Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",                
+                Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",                
                 Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
             };
 
@@ -163,7 +196,8 @@ namespace Team2_Project
                 else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
             }
 
-            OnReLoad();
+            //OnReLoad();
+            OnSearch();         //로드
             ActivationTop();    //검색 활성화
             situation = "";
             dgvMaData.Enabled = dgvMiData.Enabled = true;
@@ -223,6 +257,7 @@ namespace Team2_Project
                 txtInfoCodeMi.Enabled = false;
             }
             dgvMaData.Enabled = dgvMiData.Enabled = false;
+            dgvMaData.ClearSelection();
             dgvMiData.ClearSelection();
         }
 
@@ -234,26 +269,63 @@ namespace Team2_Project
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
-            //var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+            var list = NopMiList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
 
-            CommonPop<NopMaCodeDTO> popInfo = new CommonPop<NopMaCodeDTO>();
-            //.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "품목코드 검색";
-            ucMaCodeSC.OpenPop(popInfo);
+            CommonPop<NopMiCodeDTO> dto = new CommonPop<NopMiCodeDTO>();
+            dto.DgvDatasource = list;
+            dto.DgvCols = col;
+            dto.PopName = "비가동 대분류코드 검색";
+            ucMaCodeSC.OpenPop(dto);
+        }
+
+        private void ucMaCode_BtnClick(object sender, EventArgs e)
+        {
+            var list = NopMiList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+
+            CommonPop<NopMiCodeDTO> dto = new CommonPop<NopMiCodeDTO>();
+            dto.DgvDatasource = list;
+            dto.DgvCols = col;
+            dto.PopName = "비가동 대분류코드 검색";
+            ucMaCode.OpenPop(dto);
         }
 
         private void dgvMaData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (!string.IsNullOrWhiteSpace(NopMiList[0].Nop_Ma_Code))
+            {
+                string code = dgvMaData["Nop_Ma_Code", e.RowIndex].Value.ToString();
+                //List<NopMiCodeDTO> list = NopMiList.FindAll((c) => c.Nop_Ma_Code == code);
 
+                var list = (from n in NopMiList
+                            where n.Nop_Ma_Code.Equals(code)
+                            select n).ToList();
+
+                //var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                AdvancedListBind(list, dgvMiData);
+            }
+            dgvMiData.ClearSelection();
         }
 
         private void dgvMiData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            ucMaCode._Code = dgvMaData[0, dgvMaData.CurrentRow.Index].Value.ToString();
+            ucMaCode._Name = dgvMaData[1, dgvMaData.CurrentRow.Index].Value.ToString();
+            txtInfoCodeMi.Text = dgvMiData["Nop_Mi_Code", e.RowIndex].Value.ToString();
+            txtInfoNameMi.Text = dgvMiData["Nop_Mi_Name", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvMiData["Use_YN", e.RowIndex].Value.ToString();
 
+            //ucMaCode._Code = dgvMaData["Nop_Ma_Code", dgvMaData.CurrentRow.Index].Value.ToString();
+            //ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
         }
+
+
     }
 }

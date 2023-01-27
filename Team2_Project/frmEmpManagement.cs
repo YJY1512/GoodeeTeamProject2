@@ -38,15 +38,14 @@ namespace Team2_Project
 
         private void frmEmpManagement_Load(object sender, EventArgs e)
         {
-            groupBox1.Visible = false;
-
             DataGridViewUtil.SetInitDataGridView(dgvEmp);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 ID", "User_ID", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 ID", "User_ID", 180);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 이름", "User_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 권한", "User_Type", 115);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹코드", "UserGroup_Code", 115);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹 명", "UserGroup_Name", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "재직여부", "Use_YN", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 권한", "User_Type", 120, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹코드", "UserGroup_Code", 180);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹 명", "UserGroup_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "재직여부", "Use_YN", 120, align: DataGridViewContentAlignment.MiddleCenter);
+            dgvEmp.MultiSelect = false;
 
             dt = empSrv.GetEmployeeList();
             dgvEmp.DataSource = dt;
@@ -147,6 +146,12 @@ namespace Team2_Project
 
         public void OnDelete()
         {
+            if (string.IsNullOrWhiteSpace(txtID.Text))
+            {
+                MessageBox.Show("삭제할 인사정보를 선택해 주세요.");
+                return;
+            }
+
             if (MessageBox.Show("선택한 인사정보를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
                 return;
@@ -216,6 +221,11 @@ namespace Team2_Project
                     MessageBox.Show("인사정보가 정상적으로 추가되었습니다.\n초기 비밀번호는 아이디와 동일합니다.");
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
+
+                    pnlStat = 0;
+                    SetPannel(pnlArea, false);
+                    SetPannel(pnlSub, true);
+                    dgvEmp.Enabled = true;
                 }
                 else
                 {
@@ -231,16 +241,16 @@ namespace Team2_Project
                     dt = empSrv.GetEmployeeList();
                     dgvEmp.DataSource = dt;
                     idx = -1;
+
+                    pnlStat = 0;
+                    SetPannel(pnlArea, false);
+                    SetPannel(pnlSub, true);
+                    dgvEmp.Enabled = true;
                 }
                 else
                 {
                     MessageBox.Show("인사정보 수정에 실패하였습니다. 다시 시도하여 주세요.");
                 }
-
-                pnlStat = 0;
-                SetPannel(pnlArea, false);
-                SetPannel(pnlSub, true);
-                dgvEmp.Enabled = true;
             }
         }
 
@@ -256,6 +266,11 @@ namespace Team2_Project
             SetPannel(pnlArea, false);
             SetPannel(pnlSub, true);
             dgvEmp.Enabled = true;
+            dgvEmp.ClearSelection();
+
+            txtSearchID.Text = txtSearchName.Text = "";
+            cboSearchDel.SelectedIndex = 0;
+            ClearPnl();
         }
 
         public void OnReLoad()

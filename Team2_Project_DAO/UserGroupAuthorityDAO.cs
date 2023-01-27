@@ -31,7 +31,8 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"select UserGroup_Code, UserGroup_Name, Admin, 
+                string sql = @"select UserGroup_Code, UserGroup_Name, 
+                               case when Admin = 'Y' then '예' when Admin = 'N' then '아니오' end as Admin, 
                                case when Use_YN = 'Y' then '예' when Use_YN = 'N' then '아니오' end as Use_YN 
                                from UserGroup_Master";
 
