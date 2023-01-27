@@ -29,17 +29,15 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"select case when WC.Wo_Status = 'W02' then 'Run' else 'Stop' end  Wc_Status,
-                               		  Wc_Code, Wc_Name , UD.Userdefine_Mi_Code Wc_Group_Code, UD.Userdefine_Mi_Name Wc_Group_Name, P.Process_Code, P.Process_Name ,WC.Remark, 
-                               		  case when WC.Use_YN = 'Y' then '예' when WC.Use_YN = 'N' then '아니오' end as Use_YN , 
-                               		  case when Pallet_YN = 'Y' then '예' when Pallet_YN = 'N' then '아니오' end as Pallet_YN, WC.Wo_Status, SY.Sys_Mi_Name Wo_Status_Name	
-                               from WorkCenter_Master WC inner join (select Userdefine_Mi_Code, Userdefine_Ma_Code, Userdefine_Mi_Name, Use_YN
-                               									  from Userdefine_Mi_Master
-                               									  where Userdefine_Ma_Code = 'WC_GROUP' and Use_YN ='Y') UD on WC.Wc_Group = UD.Userdefine_Mi_Code
-                               						  inner join Process_Master P ON WC.Process_Code = P.Process_Code
-                               						  inner join (select Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name, Sort_Index, Remark, Use_YN
-                               									  from Sys_Mi_Master
-                               									  where Sys_Ma_Code = 'WO_STATUS' or Sys_Ma_Code ='WC_STATUS') SY on Wc.Wo_Status = SY.Sys_Mi_Code";
+                string sql = @"select case when WC.Wo_Status = 'W02' then 'Run' else 'Stop' end Wc_Status ,Wc_Code, Wc_Name, Wc_Group, UM.Userdefine_Mi_Name Wc_Group_Name, 
+                                      P.Process_Code, P.Process_Name , isnull(WC.Remark, '') Remark,  Wo_Status, SY.Sys_Mi_Name Wo_Status_Name,
+                               		  case when WC.Use_YN = 'Y' then '예' when WC.Use_YN = 'N' then '아니오' end as Use_YN, 
+                               		  case when Pallet_YN = 'Y' then '예' when Pallet_YN = 'N' then '아니오' end as Pallet_YN
+                               from WorkCenter_Master WC inner join Process_Master P on WC.Process_Code = P.Process_Code
+                               						     inner join Userdefine_Mi_Master UM on WC.Wc_Group = UM.Userdefine_Mi_Code
+                               						     inner join (select Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name, Sort_Index, Remark, Use_YN
+                                                              		  from Sys_Mi_Master
+                                                              		  where Sys_Ma_Code = 'WO_STATUS' or Sys_Ma_Code ='WC_STATUS') SY on WC.Wo_Status = SY.Sys_Mi_Code";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
@@ -86,12 +84,12 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"Insert Into WorkCenter_Master(Wc_Code, Wc_Name, Wc_Group, Process_Code, Remark, Use_YN, Pallet_YN, Ins_Emp)
-                               Values (@Wc_Code, @Wc_Name, @Wc_Group, @Process_Code, @Remark, @Use_YN, @Pallet_YN, @Ins_Emp)";
+                string sql = @"Insert Into WorkCenter_Master(Wc_Code, Wc_Name, Wc_Group, Wo_Status, Process_Code, Remark, Use_YN, Pallet_YN, Ins_Emp)
+				                        Values (@Wc_Code, @Wc_Name, @Wc_Group , 'W01' ,@Process_Code, @Remark, @Use_YN, @Pallet_YN, @Ins_Emp)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Wc_Code", wc.Wc_Code);
                 cmd.Parameters.AddWithValue("@Wc_Name", wc.Wc_Name);
-                cmd.Parameters.AddWithValue("@Wc_Group", wc.Wc_Group_Code);
+                cmd.Parameters.AddWithValue("@Wc_Group", wc.Wc_Group);
                 cmd.Parameters.AddWithValue("@Process_Code", wc.Process_Code);
                 cmd.Parameters.AddWithValue("@Remark", wc.Remark);
                 cmd.Parameters.AddWithValue("@Use_YN", wc.Use_YN);
@@ -125,7 +123,7 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Wc_Name", wc.Wc_Name);
-                    cmd.Parameters.AddWithValue("@Wc_Group", wc.Wc_Group_Code);
+                    cmd.Parameters.AddWithValue("@Wc_Group", wc.Wc_Group);
                     cmd.Parameters.AddWithValue("@Process_Code", wc.Process_Code);
                     cmd.Parameters.AddWithValue("@Remark", wc.Remark);
                     cmd.Parameters.AddWithValue("@Use_YN", wc.Use_YN);

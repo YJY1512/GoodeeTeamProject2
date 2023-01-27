@@ -18,10 +18,9 @@ namespace Team2_Project
         WorkCenterService srv = new WorkCenterService();
         ProcessMasterService prosrv = new ProcessMasterService();
         List<WorkCenterDTO> wcList;
+        List<CodeDTO> code;
         List<ProcessMasterDTO> processList = null;
-        string empID;
-
-        
+        string empID;       
         string clickState = "";
         public frmWorkCenter()
         {
@@ -31,28 +30,35 @@ namespace Team2_Project
         private void frmWorkShopInfo_Load(object sender, EventArgs e)
         {
             empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            ComboBoxCode();
 
             DataGridViewUtil.SetInitDataGridView(dgvWorkShop);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 상태", "Wc_Status", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 코드", "Wc_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 명", "Wc_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹 명", "Wc_Group_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 코드", "Wc_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 명", "Wc_Group_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹", "Wc_Group", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태", "Wo_Status_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "공정 코드", "Process_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "공정명", "Process_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "팔렛생성여부", "Pallet_YN", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "사용여부", "Use_YN", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "비고", "Remark", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹 코드", "Wc_Group_Code", visible :false);
+
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 코드", "Wc_Group",visible:false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태", "Wo_Status", visible: false);
             dgvWorkShop.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUseYN);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
+            CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
+            CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
+            CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
+            CommonCodeUtil.ComboBinding(cboPalletYN, code, "PalletYN");
+            CommonCodeUtil.ComboBinding(cboPalletYN, code, "PalletYN");
             cboSearchUseYN.SelectedIndex = 0;
-
-            cboPalletYN.Items.Add("선택");
-            cboPalletYN.Items.Add("예");
-            cboPalletYN.Items.Add("아니요");
             cboPalletYN.SelectedIndex = 0;
+            cboWCGroup.SelectedIndex = 0;
 
             SetInitEditPnl();
             LoadData();
@@ -102,8 +108,7 @@ namespace Team2_Project
                 ctrl.Enabled = false;
             }
 
-            ucCenterGrpCode._Code = "";
-            ucCenterGrpCode._Name = "";
+            cboWCGroup.SelectedIndex = -1;
             cboPalletYN.SelectedIndex = -1;
             cboSearchUseYN.SelectedIndex = -1;
         }
@@ -111,15 +116,15 @@ namespace Team2_Project
         {
             if (clickState == "Add")    //클릭 상태가 추가일때 PK text 잠금해제 및 clear
             {
-                txtCenterCode.Text = txtCenterName.Text = txtRemark.Text = ucCenterGrpCode._Code =  ucProcCode._Code  = txtRemark.Text = "";
-                txtCenterCode.Enabled = txtCenterName.Enabled = txtRemark.Enabled = ucCenterGrpCode.Enabled
+                txtCenterCode.Text = txtCenterName.Text = txtRemark.Text =  ucProcCode._Code = ucProcCode._Name = txtRemark.Text = "";
+                txtCenterCode.Enabled = txtCenterName.Enabled = txtRemark.Enabled 
                 = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = true;
-                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = 0;
+                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = 0;  cboWCGroup.SelectedIndex = 1;
             }
             else if (clickState == "Edit")
             {
-                txtCenterName.Enabled = txtRemark.Enabled = ucCenterGrpCode.Enabled = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = true;
-                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = 0;
+                txtCenterName.Enabled = txtRemark.Enabled = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = true;
+                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = 0;
             }
         }
         #endregion
@@ -185,8 +190,7 @@ namespace Team2_Project
                 {
                     Wc_Code = txtCenterCode.Text,
                     Wc_Name = txtCenterName.Text,
-                    Wc_Group_Code = ucCenterGrpCode._Code,
-                    Wc_Group_Name = ucCenterGrpCode._Name,
+                    Wc_Group = cboWCGroup.SelectedValue.ToString(),
                     Process_Code = ucProcCode._Code,
                     Process_Name = ucProcCode._Name,
                     Pallet_YN = (cboPalletYN.SelectedItem.ToString() == "예") ? "Y" : "N",
@@ -211,8 +215,7 @@ namespace Team2_Project
                 {
                     Wc_Code = txtCenterCode.Text,
                     Wc_Name = txtCenterName.Text,
-                    Wc_Group_Code = ucCenterGrpCode._Code,
-                    Wc_Group_Name = ucCenterGrpCode._Name,
+                    Wc_Group = cboWCGroup.SelectedValue.ToString(),
                     Process_Code = ucProcCode._Code,
                     Process_Name = ucProcCode._Name,
                     Pallet_YN = (cboPalletYN.SelectedItem.ToString() == "예") ? "Y" : "N",
@@ -253,19 +256,72 @@ namespace Team2_Project
         }
         #endregion
 
+        public void ComboBoxCode()
+        {
+            code = new List<CodeDTO>();
+
+            CodeDTO cd1 = new CodeDTO(); //시유 1
+            cd1.Code = "WC02";
+            cd1.Category = "WC_GROUP";
+            cd1.Name = "W1";
+            cd1.Pcode = "";
+            code.Add(cd1);
+
+            CodeDTO cd2 = new CodeDTO(); //시유 2
+            cd2.Code = "WC03";
+            cd2.Category = "WC_GROUP";
+            cd2.Name = "W2";
+            cd2.Pcode = "";
+            code.Add(cd2);
+
+            CodeDTO cd3 = new CodeDTO(); //포장
+            cd3.Code = "WC03";
+            cd3.Category = "WC_GROUP";
+            cd3.Name = "포장";
+            cd3.Pcode = "";
+            code.Add(cd3);
+
+            CodeDTO pl1 = new CodeDTO(); //팔렛생성여부 Y
+            pl1.Code = "Y";
+            pl1.Category = "PalletYN";
+            pl1.Name = "예";
+            pl1.Pcode = "";
+            code.Add(pl1);
+
+            CodeDTO pl2 = new CodeDTO(); //팔렛생성여부 N
+            pl2.Code = "N";
+            pl2.Category = "PalletYN";
+            pl2.Name = "아니요";
+            pl2.Pcode = "";
+            code.Add(pl2);
+
+        }
         private void dgvWorkShop_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (e.RowIndex < 0 ) return;
 
             txtCenterCode.Text = dgvWorkShop["Wc_Code", e.RowIndex].Value.ToString();
             txtCenterName.Text = dgvWorkShop["Wc_Name", e.RowIndex].Value.ToString();
-            ucCenterGrpCode._Code = dgvWorkShop["Wc_Group_Code", e.RowIndex].Value.ToString();
-            ucCenterGrpCode._Name = dgvWorkShop["Wc_Group_Name", e.RowIndex].Value.ToString();
+            cboWCGroup.SelectedValue = dgvWorkShop["Wc_Group", e.RowIndex].Value.ToString();
             ucProcCode._Code = dgvWorkShop["Process_Code", e.RowIndex].Value.ToString();
             ucProcCode._Name = dgvWorkShop["Process_Name", e.RowIndex].Value.ToString();
             cboPalletYN.SelectedItem = dgvWorkShop["Pallet_YN", e.RowIndex].Value.ToString();
             cboUseYN.SelectedItem = dgvWorkShop["Use_YN", e.RowIndex].Value.ToString();
             txtRemark.Text = dgvWorkShop["Remark", e.RowIndex].Value.ToString();
+        }
+
+        private void dgvWorkShop_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Run")
+            {
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.DarkGreen;
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.Black;
+            }
+            else if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Stop")
+            {
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Red;
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.White;
+            }
         }
 
         private void ucSrchProcCode_BtnClick(object sender, EventArgs e)
@@ -286,11 +342,6 @@ namespace Team2_Project
             ucSrchProcCode.OpenPop(popInfo);
         }
 
-        private void ucCenterGrpCode_BtnClick(object sender, EventArgs e)
-        {
-
-        }
-
         private void ucProcCode_BtnClick(object sender, EventArgs e)
         {
             string codes = ucSrchProcCode._Code;
@@ -309,18 +360,5 @@ namespace Team2_Project
             ucSrchProcCode.OpenPop(popInfo);
         }
 
-        private void dgvWorkShop_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Run")
-            {
-                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Green;
-                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.White;
-            }
-            else if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Stop")
-            {
-                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Red;
-                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.White;
-            }
-        }
     }
 }
