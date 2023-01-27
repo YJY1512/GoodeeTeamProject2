@@ -54,10 +54,13 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 565); //10
             dgvOrder.MultiSelect = false;
 
-            foreach (int idx in orangeCols)
+            foreach (int i in orangeCols)
             {
-                dgvOrder.Columns[idx].DefaultCellStyle.BackColor = Color.Orange;
+                dgvOrder.Columns[i].DefaultCellStyle.BackColor = Color.Orange;
             }
+
+            dtpSearchOrd1.MaxDate = dtpSearchDue1.MaxDate = DateTime.Today;
+            dtpSearchOrd2.MinDate = dtpSearchDue2.MinDate = DateTime.Today;
 
             ResetDtpNSearch();
 

@@ -24,17 +24,44 @@ namespace Team2_Project
         private void frmOrder_Load(object sender, EventArgs e)
         {
             DataGridViewUtil.SetInitDataGridView(dataGridView1);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동 등록 날짜", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동 발생 일시", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동 종료 일시", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동 시간", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동발생일자", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동발생일시", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동해제일시", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동시간", "", 200);
 
             DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "작업장코드", "", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "작업장명", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동코드", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동 사유", "", 300);
-            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비고", "", 400);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "작업장그룹", "", 200);
+
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정명", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정그룹(작업장)", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정그룹(비가동)", "", 200);
+
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동대분류코드", "", 200);
+
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동상세분류코드", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동대분류명", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동상세분류명", "", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "비가동유형", "", 200);
+
 
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
