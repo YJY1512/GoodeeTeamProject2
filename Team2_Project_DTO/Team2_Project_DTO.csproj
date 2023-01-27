@@ -48,7 +48,7 @@
     <Compile Include="NopCodeDTO.cs" />
     <Compile Include="EmployeeDTO.cs" />
     <Compile Include="ItemDTO.cs" />
-    <Compile Include="Nop_History.cs" />
+    <Compile Include="NopHistoryDTO.cs" />
     <Compile Include="OrderDTO.cs" />
     <Compile Include="PlanDTO.cs" />
     <Compile Include="ProcessMasterDTO.cs" />
