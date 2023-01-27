@@ -92,6 +92,15 @@ namespace Team2_Project.Services
             return result;
         }
 
+        //비가동이력조회
+        public List<NopHistoryDTO> GetNopMiSearch(NopHistoryDTO item)
+        {
+            NopHistoryDAO db = new NopHistoryDAO();
+            List<NopHistoryDTO> list = db.GetNopMiSearch(item);
+            db.Dispose();
+            return list;
+        }
+
         #region 미사용
         public List<NopMaCodeDTO> GetMaCurItem(string item)
         {

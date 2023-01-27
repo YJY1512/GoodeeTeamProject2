@@ -37,6 +37,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류코드", "Nop_Ma_Code", 500);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류명", "Nop_Ma_Name", 500);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            dgvData.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboUseYNSC);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
@@ -118,7 +119,7 @@ namespace Team2_Project
             {
                 Nop_Ma_Code = txtCode.Text,
                 Nop_Ma_Name = txtName.Text,
-                Use_YN = cboUseYN.Text.Equals("사용") ? "Y" : "N",
+                Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
                 Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
             };
 
@@ -167,14 +168,6 @@ namespace Team2_Project
         }
         #endregion
 
-        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            txtCode.Text = dgvData["Nop_Ma_Code", e.RowIndex].Value.ToString();
-            txtName.Text = dgvData["Nop_Ma_Name", e.RowIndex].Value.ToString();
-            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
-        }
-
         private void ResetTop() //검색 리셋
         {
             ucCodeSearch._Code = ucCodeSearch._Name = "";
@@ -210,7 +203,7 @@ namespace Team2_Project
         {
             txtCode.Enabled = txtName.Enabled = cboUseYN.Enabled = false;
         }
-
+        
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
             var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
@@ -223,6 +216,14 @@ namespace Team2_Project
             dto.DgvCols = col;
             dto.PopName = "비가동 대분류코드 검색";
             ucCodeSearch.OpenPop(dto);
+        }
+
+        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            txtCode.Text = dgvData["Nop_Ma_Code", e.RowIndex].Value.ToString();
+            txtName.Text = dgvData["Nop_Ma_Name", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
         }
     }
 }

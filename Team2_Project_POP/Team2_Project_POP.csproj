@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ucList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucList.Designer.cs">
+      <DependentUpon>ucList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCalcPop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ucList.resx">
+      <DependentUpon>ucList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCalcPop.resx">
       <DependentUpon>frmCalcPop.cs</DependentUpon>
     </EmbeddedResource>

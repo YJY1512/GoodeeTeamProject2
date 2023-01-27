@@ -294,11 +294,13 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"INSERT INTO Nop_Ma_Master(Nop_Mi_Code , Nop_Mi_Name, Ins_Emp, Ins_Date) 
-                                               VALUES (@Nop_Mi_Code , @Nop_Mi_Name , @Ins_Emp, GETDATE())";
+                string sql = @"INSERT INTO Nop_Ma_Master(Nop_Mi_Code , Nop_Mi_Name, Nop_Ma_Code, Nop_type, Use_YN,Ins_Emp, Ins_Date) 
+                                               VALUES (@Nop_Mi_Code , @Nop_Mi_Name, @Nop_Ma_Code, @Nop_type, @Use_YN, @Ins_Emp, GETDATE())";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Nop_Mi_Code", item.Nop_Mi_Code);
                 cmd.Parameters.AddWithValue("@Nop_Mi_Name", item.Nop_Mi_Name);
+                cmd.Parameters.AddWithValue("@Nop_Ma_Code", item.Nop_Ma_Code);
+                cmd.Parameters.AddWithValue("@Nop_type", item.Nop_type);
                 cmd.Parameters.AddWithValue("@Use_YN", item.Use_YN);
                 cmd.Parameters.AddWithValue("@Ins_Emp", item.Ins_Emp);
 
