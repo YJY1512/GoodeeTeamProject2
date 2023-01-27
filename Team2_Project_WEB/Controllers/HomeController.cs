@@ -13,5 +13,35 @@ namespace Team2_Project_WEB.Controllers
         {
             return View();
         }
+
+        public ActionResult Item()
+        {
+            return View();
+        }
+
+        public ActionResult ProdO()
+        {
+            return View();
+        }
+
+        public ActionResult ProdT()
+        {
+            return View();
+        }
+
+        public ActionResult Defect()
+        {
+            return View();
+        }
+
+        public ActionResult WPlace()
+        {
+            return View();
+        }
+
+        public ActionResult Schedule()
+        {
+            return View();
+        }
     }
 }
