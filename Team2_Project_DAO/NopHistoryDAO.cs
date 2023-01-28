@@ -44,7 +44,7 @@ namespace Team2_Project_DAO
 						                            INNER JOIN Nop_Ma_Master MA ON MI.Nop_Ma_Code = MA.Nop_Ma_Code
                              WHERE 1 = 1
                                AND MI.Nop_Ma_Code LIKE @Ma_Code
-                               AND MI.Nop_Ma_Name LIKE @Ma_Name
+                               AND MA.Nop_Ma_Name LIKE @Ma_Name
                                AND NH.Nop_Date BETWEEN @DateFrom AND @DateTo");
 
                 cmd.Parameters.AddWithValue("@DateFrom", item.DateFrom);

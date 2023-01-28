@@ -28,7 +28,7 @@ namespace Team2_Project
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadData();
-            onsearch();
+            OnSearch();
             ResetDtp();//초기dtp (1주전~today)
         }
 
@@ -60,7 +60,7 @@ namespace Team2_Project
         }
 
         #region main 버튼 클릭이벤트
-        public void onsearch()  //검색 
+        public void OnSearch()  //검색 
         {
             NopHistoryDTO item = new NopHistoryDTO
             {
@@ -95,10 +95,10 @@ namespace Team2_Project
         //{
 
         //}
-        public void onreload()  //새로고침
+        public void OnReload()  //새로고침
         {
             ResetTop();       //검색 리셋
-            onsearch();       //로드
+            OnSearch();       //로드
         }
         #endregion
 
