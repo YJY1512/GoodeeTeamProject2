@@ -17,7 +17,7 @@ namespace Team2_Project_DTO
         public string Prj_No { get; set; }
         public string Delivery_Date { get; set; }
         public int Plan_Qty { get; set; }
-        public char Plan_YN { get; set; }
+        public string Plan_YN { get; set; }
         public string Prd_Progress_Status { get; set; }
         public string Remark { get; set; }
     }

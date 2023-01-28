@@ -36,7 +36,7 @@ namespace Team2_Project
             this.pnlTitleR = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblListTitleR = new System.Windows.Forms.Label();
-            this.dgvDetail = new System.Windows.Forms.DataGridView();
+            this.dgvWcPlan = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -47,7 +47,6 @@ namespace Team2_Project
             this.dtpReqTo = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpReqFrom = new System.Windows.Forms.DateTimePicker();
-            this.ucProd = new Team2_Project.Controls.ucSearch();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,12 +60,13 @@ namespace Team2_Project
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSplit = new System.Windows.Forms.Button();
-            this.ucWC = new Team2_Project.Controls.ucSearch();
             this.label13 = new System.Windows.Forms.Label();
-            this.ucProd2 = new Team2_Project.Controls.ucSearch();
             this.label12 = new System.Windows.Forms.Label();
             this.dtpMonth = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
+            this.ucProd = new Team2_Project.Controls.ucSearch();
+            this.ucWC = new Team2_Project.Controls.ucSearch();
+            this.ucProd2 = new Team2_Project.Controls.ucSearch();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -75,7 +75,7 @@ namespace Team2_Project
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReq)).BeginInit();
             this.pnlTitleR.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvWcPlan)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnlSub.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -123,7 +123,7 @@ namespace Team2_Project
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgvDetail);
+            this.splitContainer1.Panel2.Controls.Add(this.dgvWcPlan);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(1298, 534);
             this.splitContainer1.SplitterDistance = 971;
@@ -139,6 +139,9 @@ namespace Team2_Project
             this.dgvReq.RowTemplate.Height = 23;
             this.dgvReq.Size = new System.Drawing.Size(971, 491);
             this.dgvReq.TabIndex = 4;
+            this.dgvReq.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReq_CellDoubleClick);
+            this.dgvReq.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReq_CellEndEdit);
+            this.dgvReq.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvReq_EditingControlShowing);
             // 
             // pnlTitleR
             // 
@@ -174,16 +177,16 @@ namespace Team2_Project
             this.lblListTitleR.TabIndex = 0;
             this.lblListTitleR.Text = "조회내역";
             // 
-            // dgvDetail
+            // dgvWcPlan
             // 
-            this.dgvDetail.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDetail.Location = new System.Drawing.Point(0, 43);
-            this.dgvDetail.Name = "dgvDetail";
-            this.dgvDetail.RowTemplate.Height = 23;
-            this.dgvDetail.Size = new System.Drawing.Size(323, 491);
-            this.dgvDetail.TabIndex = 5;
+            this.dgvWcPlan.BackgroundColor = System.Drawing.Color.White;
+            this.dgvWcPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvWcPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvWcPlan.Location = new System.Drawing.Point(0, 43);
+            this.dgvWcPlan.Name = "dgvWcPlan";
+            this.dgvWcPlan.RowTemplate.Height = 23;
+            this.dgvWcPlan.Size = new System.Drawing.Size(323, 491);
+            this.dgvWcPlan.TabIndex = 5;
             // 
             // panel1
             // 
@@ -255,6 +258,7 @@ namespace Team2_Project
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "생산계획 생성";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cboReqStat
             // 
@@ -297,18 +301,6 @@ namespace Team2_Project
             this.dtpReqFrom.Name = "dtpReqFrom";
             this.dtpReqFrom.Size = new System.Drawing.Size(125, 25);
             this.dtpReqFrom.TabIndex = 5;
-            // 
-            // ucProd
-            // 
-            this.ucProd._Code = "";
-            this.ucProd._Name = "";
-            this.ucProd.BackColor = System.Drawing.Color.Transparent;
-            this.ucProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucProd.Location = new System.Drawing.Point(542, 23);
-            this.ucProd.Margin = new System.Windows.Forms.Padding(4);
-            this.ucProd.Name = "ucProd";
-            this.ucProd.Size = new System.Drawing.Size(340, 28);
-            this.ucProd.TabIndex = 4;
             // 
             // label5
             // 
@@ -372,7 +364,7 @@ namespace Team2_Project
             this.dgvPlan.Location = new System.Drawing.Point(4, 167);
             this.dgvPlan.Name = "dgvPlan";
             this.dgvPlan.RowTemplate.Height = 23;
-            this.dgvPlan.Size = new System.Drawing.Size(1298, 491);
+            this.dgvPlan.Size = new System.Drawing.Size(1298, 495);
             this.dgvPlan.TabIndex = 5;
             // 
             // panel3
@@ -472,18 +464,6 @@ namespace Team2_Project
             this.btnSplit.Text = "생산계획 분할";
             this.btnSplit.UseVisualStyleBackColor = false;
             // 
-            // ucWC
-            // 
-            this.ucWC._Code = "";
-            this.ucWC._Name = "";
-            this.ucWC.BackColor = System.Drawing.Color.Transparent;
-            this.ucWC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucWC.Location = new System.Drawing.Point(588, 69);
-            this.ucWC.Margin = new System.Windows.Forms.Padding(4);
-            this.ucWC.Name = "ucWC";
-            this.ucWC.Size = new System.Drawing.Size(340, 28);
-            this.ucWC.TabIndex = 11;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -493,18 +473,6 @@ namespace Team2_Project
             this.label13.Size = new System.Drawing.Size(50, 17);
             this.label13.TabIndex = 10;
             this.label13.Text = "작업장";
-            // 
-            // ucProd2
-            // 
-            this.ucProd2._Code = "";
-            this.ucProd2._Name = "";
-            this.ucProd2.BackColor = System.Drawing.Color.Transparent;
-            this.ucProd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucProd2.Location = new System.Drawing.Point(123, 69);
-            this.ucProd2.Margin = new System.Windows.Forms.Padding(4);
-            this.ucProd2.Name = "ucProd2";
-            this.ucProd2.Size = new System.Drawing.Size(340, 28);
-            this.ucProd2.TabIndex = 9;
             // 
             // label12
             // 
@@ -535,6 +503,43 @@ namespace Team2_Project
             this.label11.TabIndex = 6;
             this.label11.Text = "생산계획월";
             // 
+            // ucProd
+            // 
+            this.ucProd._Code = "";
+            this.ucProd._Name = "";
+            this.ucProd.BackColor = System.Drawing.Color.Transparent;
+            this.ucProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProd.Location = new System.Drawing.Point(542, 23);
+            this.ucProd.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProd.Name = "ucProd";
+            this.ucProd.Size = new System.Drawing.Size(340, 28);
+            this.ucProd.TabIndex = 4;
+            this.ucProd.BtnClick += new System.EventHandler(this.ucProd_BtnClick);
+            // 
+            // ucWC
+            // 
+            this.ucWC._Code = "";
+            this.ucWC._Name = "";
+            this.ucWC.BackColor = System.Drawing.Color.Transparent;
+            this.ucWC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucWC.Location = new System.Drawing.Point(588, 69);
+            this.ucWC.Margin = new System.Windows.Forms.Padding(4);
+            this.ucWC.Name = "ucWC";
+            this.ucWC.Size = new System.Drawing.Size(340, 28);
+            this.ucWC.TabIndex = 11;
+            // 
+            // ucProd2
+            // 
+            this.ucProd2._Code = "";
+            this.ucProd2._Name = "";
+            this.ucProd2.BackColor = System.Drawing.Color.Transparent;
+            this.ucProd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProd2.Location = new System.Drawing.Point(123, 69);
+            this.ucProd2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProd2.Name = "ucProd2";
+            this.ucProd2.Size = new System.Drawing.Size(340, 28);
+            this.ucProd2.TabIndex = 9;
+            // 
             // frmPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -555,7 +560,7 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvReq)).EndInit();
             this.pnlTitleR.ResumeLayout(false);
             this.pnlTitleR.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvWcPlan)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlSub.ResumeLayout(false);
@@ -591,7 +596,7 @@ namespace Team2_Project
         private System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label lblListTitleR;
         private System.Windows.Forms.DataGridView dgvReq;
-        private System.Windows.Forms.DataGridView dgvDetail;
+        private System.Windows.Forms.DataGridView dgvWcPlan;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
         protected System.Windows.Forms.Label label8;

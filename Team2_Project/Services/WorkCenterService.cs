@@ -54,5 +54,14 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public List<WorkCenterDTO> GetWcCodeName()
+        {
+            WorkCenterDAO db = new WorkCenterDAO();
+            List<WorkCenterDTO> list = db.GetWcCodeName();
+            db.Dispose();
+
+            return list;
+        }
     }
 }

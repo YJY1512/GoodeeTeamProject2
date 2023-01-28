@@ -270,6 +270,7 @@
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\NopCodeService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PlanService.cs" />
     <Compile Include="Services\ProcessMasterService.cs" />
     <Compile Include="Services\SysCodeService.cs" />
     <Compile Include="Services\UserCodeService.cs" />
