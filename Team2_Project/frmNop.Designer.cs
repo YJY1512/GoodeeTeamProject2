@@ -29,13 +29,15 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dgvData = new System.Windows.Forms.DataGridView();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.ucCodeSearch = new Team2_Project.Controls.ucSearch();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -102,17 +104,6 @@ namespace Team2_Project
             this.label6.TabIndex = 66;
             this.label6.Text = "비가동코드";
             // 
-            // dgvData
-            // 
-            this.dgvData.BackgroundColor = System.Drawing.Color.White;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1651, 762);
-            this.dgvData.TabIndex = 3;
-            // 
             // dtpFrom
             // 
             this.dtpFrom.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -145,6 +136,33 @@ namespace Team2_Project
             this.dtpTo.TabIndex = 71;
             this.dtpTo.Value = new System.DateTime(2023, 1, 30, 0, 0, 0, 0);
             // 
+            // dgvData
+            // 
+            this.dgvData.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.RowTemplate.Height = 23;
+            this.dgvData.Size = new System.Drawing.Size(1651, 762);
+            this.dgvData.TabIndex = 1;
+            // 
             // frmNop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -168,9 +186,9 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.DateTimePicker dtpTo;
         private Controls.ucSearch ucCodeSearch;
+        private System.Windows.Forms.DataGridView dgvData;
     }
 }

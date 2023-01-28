@@ -16,7 +16,7 @@ namespace Team2_Project_DTO
 	  , Nop_Ma_Name
 		*/
 
-		public int Nop_Seq { get; set; }			 //비가동 순번
+		public Int64 Nop_Seq { get; set; }			 //비가동 순번
 		public string Nop_Date { get; set; }		 //비가동발생일자
 		public string Nop_HappenTime { get; set; }   //비가동발생일시
 		public string Nop_CancelTime { get; set; }   //비가동해제일시

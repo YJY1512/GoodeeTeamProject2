@@ -31,21 +31,23 @@ namespace Team2_Project_DAO
             try
             {
                 StringBuilder sb = new StringBuilder();
-                SqlCommand cmd = new SqlCommand();
-
-                sb.Append(@"SELECT NH.Nop_Seq, NH.Nop_Date, NH.Nop_HappenTime, NH.Nop_CancelTime, NH.Nop_Time, NH.Nop_Mi_Code, NH.Wc_Code 
-	                                , WM.Wc_Name, WM.Wc_Group, WM.Process_Code
-	                                , PM.Process_Name
-	                                , MI.Nop_Mi_Name, MI.Nop_Ma_Code, MI.Nop_type, MI.Use_YN
-	                                , MA.Nop_Ma_Name
-                             FROM Nop_History NH    INNER JOIN WorkCenter_Master WM ON NH.Wc_Code = WM.Wc_Code
-						                            INNER JOIN Process_Master PM ON WM.Process_Code = PM.Process_Code
-						                            INNER JOIN Nop_Mi_Master MI ON NH.Nop_Mi_Code = MI.Nop_Mi_Code
-						                            INNER JOIN Nop_Ma_Master MA ON MI.Nop_Ma_Code = MA.Nop_Ma_Code
-                             WHERE 1 = 1
-                               AND MI.Nop_Ma_Code LIKE @Ma_Code
-                               AND MA.Nop_Ma_Name LIKE @Ma_Name
-                               AND NH.Nop_Date BETWEEN @DateFrom AND @DateTo");
+                SqlCommand cmd = new SqlCommand(); 
+                sb.Append(@"SELECT NH.Nop_Seq
+                                 , CONVERT(VARCHAR(10), NH.Nop_Date, 23) Nop_Date
+	                             , CONVERT(VARCHAR(23), NH.Nop_HappenTime, 21) Nop_HappenTime
+	                             , CONVERT(VARCHAR(23), NH.Nop_CancelTime, 21) Nop_CancelTime, NH.Nop_Time, NH.Nop_Mi_Code, NH.Wc_Code 
+	                             , WM.Wc_Name, WM.Wc_Group, WM.Process_Code
+	                             , PM.Process_Name
+	                             , MI.Nop_Mi_Name, MI.Nop_Ma_Code, MI.Nop_type, MI.Use_YN
+	                             , MA.Nop_Ma_Name
+                             FROM Nop_History NH  INNER JOIN WorkCenter_Master WM ON NH.Wc_Code = WM.Wc_Code
+						                          INNER JOIN Process_Master PM ON WM.Process_Code = PM.Process_Code
+						                          INNER JOIN Nop_Mi_Master MI ON NH.Nop_Mi_Code = MI.Nop_Mi_Code
+						                          INNER JOIN Nop_Ma_Master MA ON MI.Nop_Ma_Code = MA.Nop_Ma_Code
+                            WHERE 1 = 1
+                              AND MI.Nop_Ma_Code LIKE @Ma_Code
+                              AND MA.Nop_Ma_Name LIKE @Ma_Name
+                              AND NH.Nop_Date >= @DateFrom AND NH.Nop_Date < @DateTo");
 
                 cmd.Parameters.AddWithValue("@DateFrom", item.DateFrom);
                 cmd.Parameters.AddWithValue("@DateTo", item.DateTo);
@@ -55,7 +57,6 @@ namespace Team2_Project_DAO
 
                 if (string.IsNullOrWhiteSpace(item.Nop_Ma_Name)) cmd.Parameters.AddWithValue("@Ma_Name", $"%%");
                 else cmd.Parameters.AddWithValue("@Ma_Name", $"%{item.Nop_Ma_Name}%");
-
 
                 sb.Append(" ORDER BY NH.Nop_Seq");
 
