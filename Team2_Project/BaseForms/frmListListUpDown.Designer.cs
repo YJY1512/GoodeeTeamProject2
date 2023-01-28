@@ -29,7 +29,6 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlSub = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlListUP = new System.Windows.Forms.Panel();
             this.pnlTitleU = new System.Windows.Forms.Panel();
@@ -39,27 +38,14 @@ namespace Team2_Project
             this.pnlTitleD = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTitleD = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pnlSub = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.pnlListUP.SuspendLayout();
             this.pnlTitleU.SuspendLayout();
             this.pnlTitleD.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlSub
-            // 
-            this.pnlSub.BackColor = System.Drawing.Color.White;
-            this.pnlSub.BackgroundImage = global::Team2_Project.Properties.Resources.pnl1;
-            this.pnlSub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSub.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSub.Location = new System.Drawing.Point(0, 0);
-            this.pnlSub.Name = "pnlSub";
-            this.pnlSub.Size = new System.Drawing.Size(1100, 65);
-            this.pnlSub.TabIndex = 2;
             // 
             // splitContainer1
             // 
@@ -83,7 +69,6 @@ namespace Team2_Project
             // 
             // pnlListUP
             // 
-            this.pnlListUP.Controls.Add(this.button1);
             this.pnlListUP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlListUP.Location = new System.Drawing.Point(0, 43);
             this.pnlListUP.Name = "pnlListUP";
@@ -109,7 +94,7 @@ namespace Team2_Project
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(10, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 22);
+            this.label2.Size = new System.Drawing.Size(22, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "▷";
             // 
@@ -120,7 +105,7 @@ namespace Team2_Project
             this.lblTitleU.ForeColor = System.Drawing.Color.White;
             this.lblTitleU.Location = new System.Drawing.Point(40, 10);
             this.lblTitleU.Name = "lblTitleU";
-            this.lblTitleU.Size = new System.Drawing.Size(88, 22);
+            this.lblTitleU.Size = new System.Drawing.Size(68, 17);
             this.lblTitleU.TabIndex = 0;
             this.lblTitleU.Text = "소제목22";
             // 
@@ -151,7 +136,7 @@ namespace Team2_Project
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(10, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 22);
+            this.label3.Size = new System.Drawing.Size(22, 17);
             this.label3.TabIndex = 1;
             this.label3.Text = "▷";
             // 
@@ -162,22 +147,25 @@ namespace Team2_Project
             this.lblTitleD.ForeColor = System.Drawing.Color.White;
             this.lblTitleD.Location = new System.Drawing.Point(40, 10);
             this.lblTitleD.Name = "lblTitleD";
-            this.lblTitleD.Size = new System.Drawing.Size(64, 22);
+            this.lblTitleD.Size = new System.Drawing.Size(50, 17);
             this.lblTitleD.TabIndex = 0;
             this.lblTitleD.Text = "소제목";
             // 
-            // button1
+            // pnlSub
             // 
-            this.button1.Location = new System.Drawing.Point(228, 91);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.pnlSub.BackColor = System.Drawing.Color.White;
+            this.pnlSub.BackgroundImage = global::Team2_Project.Properties.Resources.pnl1;
+            this.pnlSub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSub.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlSub.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSub.Location = new System.Drawing.Point(0, 0);
+            this.pnlSub.Name = "pnlSub";
+            this.pnlSub.Size = new System.Drawing.Size(1100, 65);
+            this.pnlSub.TabIndex = 2;
             // 
             // frmListListUpDown
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 630);
             this.Controls.Add(this.splitContainer1);
@@ -191,7 +179,6 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.pnlListUP.ResumeLayout(false);
             this.pnlTitleU.ResumeLayout(false);
             this.pnlTitleU.PerformLayout();
             this.pnlTitleD.ResumeLayout(false);
@@ -212,6 +199,5 @@ namespace Team2_Project
         private System.Windows.Forms.Panel pnlTitleD;
         private System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label lblTitleD;
-        private System.Windows.Forms.Button button1;
     }
 }

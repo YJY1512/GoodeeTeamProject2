@@ -55,6 +55,13 @@ namespace Team2_Project
             dgvData.MultiSelect = false;
         }
 
+        private void AdvancedListBind(List<NopHistoryDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<NopHistoryDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+
         #region main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -66,8 +73,7 @@ namespace Team2_Project
                 DateTo =dtpTo.Value.ToString("yyyy-MM-dd")
             };
             NopList = srv.GetNopMiSearch(item);
-            dgvData.DataSource = null;
-            dgvData.DataSource = NopList;
+            AdvancedListBind(NopList, dgvData);
             dgvData.ClearSelection();
         }
         //public void onadd()     //추가
@@ -97,7 +103,6 @@ namespace Team2_Project
             OnSearch();       //로드
         }
         #endregion
-
 
 
         private void ResetTop() //검색 리셋

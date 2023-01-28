@@ -108,6 +108,13 @@ namespace Team2_Project
             cboSpec.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
+        private void AdvancedListBind(List<ItemDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<ItemDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -119,8 +126,8 @@ namespace Team2_Project
                 Use_YN = cboUseYNSC.Text
             };
             itemList = srv.GetItemSearch(item);
-            dgvData.DataSource = null;
-            dgvData.DataSource = itemList;
+
+            AdvancedListBind(itemList, dgvData);
             dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화

@@ -45,7 +45,12 @@ namespace Team2_Project
             cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
+        private void AdvancedListBind(List<NopMaCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<NopMaCodeDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
@@ -57,8 +62,7 @@ namespace Team2_Project
                 Use_YN = cboUseYNSC.Text
             };
             NopMaList = srv.GetNopMaSearch(item);
-            dgvData.DataSource = null;
-            dgvData.DataSource = NopMaList;
+            AdvancedListBind(NopMaList, dgvData);
             dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화

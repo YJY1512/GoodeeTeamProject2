@@ -68,7 +68,6 @@ namespace Team2_Project
         private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
         {
             BindingSource bs = new BindingSource(new AdvancedList<NopMiCodeDTO>(datasource), null);
-
             dgv.DataSource = null;
             dgv.DataSource = bs;
         }

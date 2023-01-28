@@ -131,6 +131,12 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTimeProductionHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeProductionHistory.Designer.cs">
+      <DependentUpon>frmTimeProductionHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDashBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystemCode.resx">
       <DependentUpon>frmSystemCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeProductionHistory.resx">
+      <DependentUpon>frmTimeProductionHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserCode.resx">
       <DependentUpon>frmUserCode.cs</DependentUpon>
