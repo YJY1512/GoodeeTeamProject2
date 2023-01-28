@@ -76,7 +76,7 @@ namespace Team2_Project
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(530, 19);
+            this.label9.Location = new System.Drawing.Point(565, 19);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 17);
             this.label9.TabIndex = 57;
@@ -87,7 +87,7 @@ namespace Team2_Project
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(748, 19);
+            this.label1.Location = new System.Drawing.Point(783, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 17);
             this.label1.TabIndex = 59;
@@ -100,18 +100,18 @@ namespace Team2_Project
             this.label6.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.Location = new System.Drawing.Point(40, 19);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 17);
+            this.label6.Size = new System.Drawing.Size(124, 17);
             this.label6.TabIndex = 66;
-            this.label6.Text = "비가동코드";
+            this.label6.Text = "비가동 대분류코드";
             // 
             // dtpFrom
             // 
             this.dtpFrom.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(620, 15);
+            this.dtpFrom.Location = new System.Drawing.Point(655, 15);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(122, 25);
-            this.dtpFrom.TabIndex = 69;
+            this.dtpFrom.TabIndex = 2;
             this.dtpFrom.Value = new System.DateTime(2023, 1, 25, 0, 0, 0, 0);
             // 
             // ucCodeSearch
@@ -120,20 +120,20 @@ namespace Team2_Project
             this.ucCodeSearch._Name = "";
             this.ucCodeSearch.BackColor = System.Drawing.Color.Transparent;
             this.ucCodeSearch.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucCodeSearch.Location = new System.Drawing.Point(143, 14);
+            this.ucCodeSearch.Location = new System.Drawing.Point(178, 14);
             this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
             this.ucCodeSearch.Name = "ucCodeSearch";
             this.ucCodeSearch.Size = new System.Drawing.Size(340, 26);
-            this.ucCodeSearch.TabIndex = 70;
+            this.ucCodeSearch.TabIndex = 1;
             // 
             // dtpTo
             // 
             this.dtpTo.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(773, 15);
+            this.dtpTo.Location = new System.Drawing.Point(808, 15);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(122, 25);
-            this.dtpTo.TabIndex = 71;
+            this.dtpTo.TabIndex = 3;
             this.dtpTo.Value = new System.DateTime(2023, 1, 30, 0, 0, 0, 0);
             // 
             // dgvData
@@ -150,7 +150,7 @@ namespace Team2_Project
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

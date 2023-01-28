@@ -38,7 +38,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류명", "Nop_Ma_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
-            
+
             DataGridViewUtil.SetInitDataGridView(dgvMiData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Mi_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Mi_Name", 200);
@@ -48,6 +48,12 @@ namespace Team2_Project
             dgvMaData.MultiSelect = false;
             dgvMiData.MultiSelect = false;
 
+            cboNoptype.Items.Add("-선택-");
+            cboNoptype.Items.Add("시유");
+            cboNoptype.Items.Add("포장");
+            cboNoptype.SelectedIndex = 0;
+            cboNoptype.DropDownStyle = ComboBoxStyle.DropDownList;
+
             CommonCodeUtil.UseYNComboBinding(cboSearchUse);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             cboSearchUse.SelectedIndex = 0;
@@ -56,7 +62,7 @@ namespace Team2_Project
 
             DeactivationBottom(); //입력패널 비활성화
             OnSearch();
-            label12.Visible = label9.Visible = nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
+            nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
         }
 
         private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
@@ -99,7 +105,7 @@ namespace Team2_Project
                 //Debug.WriteLine(list);
             }
 
-            if(situation == "")
+            if (situation == "")
                 dgvMiData.DataSource = null;
             //dgvMiData.DataSource = NopMiList;
 
@@ -158,8 +164,8 @@ namespace Team2_Project
         }
         public void OnSave()    //저장
         {
-            //필수입력항목: 코드, 명, 사용유무
-            if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text)) //|| cboUseYN.SelectedIndex == 0
+            //필수입력항목: 코드, 명, 비가동유형, 사용유무
+            if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text) || cboNoptype.SelectedIndex == 0) //|| cboUseYN.SelectedIndex == 0
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.");
                 return;
@@ -167,10 +173,12 @@ namespace Team2_Project
 
             NopMiCodeDTO code = new NopMiCodeDTO
             {
-                Nop_Ma_Code = ucMaCode._Code,                
+                Nop_Ma_Code = ucMaCode._Code,
                 Nop_Mi_Code = txtInfoCodeMi.Text,
                 Nop_Mi_Name = txtInfoNameMi.Text,
-                Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",                
+                Nop_type = cboNoptype.Text.Equals("시유") ? "PG050" : "PG070",
+                Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
+                Ins_Emp = "홍길동", //////////////////////////
                 Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
             };
 
@@ -184,16 +192,23 @@ namespace Team2_Project
                     txtInfoCodeMi.Focus();
                     return;
                 }
-
                 bool result = srv.NopMiCodeAdd(code);
                 if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
-                else MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                else
+                {
+                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                    return;
+                }
             }
             else if (situation == "Update")
             {
                 bool result = srv.NopMiCodeUpdate(code);
                 if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
-                else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                else
+                {
+                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                    return;
+                }
             }
 
             //OnReLoad();
@@ -244,7 +259,7 @@ namespace Team2_Project
                 if (ctrl is TextBox) ctrl.Text = "";
             }
             ucMaCode._Code = ucMaCode._Name = "";
-            cboUseYN.SelectedIndex = -1;
+            cboNoptype.SelectedIndex = cboUseYN.SelectedIndex = -1;
         }
 
         private void ActivationBottom(string situation) //입력 활성화
@@ -304,10 +319,11 @@ namespace Team2_Project
                 //List<NopMiCodeDTO> list = NopMiList.FindAll((c) => c.Nop_Ma_Code == code);
 
                 var list = (from n in NopMiList
-                            where n.Nop_Ma_Code.Equals(code)
+                            where n.Nop_Ma_Code.Equals(code) && n.Nop_Mi_Code != null
                             select n).ToList();
 
                 //var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                if (NopMiList == null) return;
                 AdvancedListBind(list, dgvMiData);
             }
             dgvMiData.ClearSelection();

@@ -33,7 +33,7 @@ namespace Team2_Project_DAO
                 StringBuilder sb = new StringBuilder();
                 SqlCommand cmd = new SqlCommand();
                 //sb.Append("SP_OrderList");
-                sb.Append(@"SELECT Nop_Ma_Code , Nop_Ma_Name
+                sb.Append(@"SELECT Nop_Ma_Code, Nop_Ma_Name
                                  , CASE WHEN Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN
 	                             , CONVERT(VARCHAR(10), Ins_Date, 23) Ins_Date	                               
                              FROM Nop_Ma_Master
@@ -79,8 +79,8 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"INSERT INTO Nop_Ma_Master(Nop_Ma_Code , Nop_Ma_Name, Ins_Emp, Ins_Date) 
-                                               VALUES (@Nop_Ma_Code , @Nop_Ma_Name , @Ins_Emp, GETDATE())";
+                string sql = @"INSERT INTO Nop_Ma_Master(Nop_Ma_Code , Nop_Ma_Name, Use_YN, Ins_Emp, Ins_Date) 
+                                               VALUES (@Nop_Ma_Code , @Nop_Ma_Name, @Use_YN, @Ins_Emp, GETDATE())";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Nop_Ma_Code", item.Nop_Ma_Code);
                 cmd.Parameters.AddWithValue("@Nop_Ma_Name", item.Nop_Ma_Name);
@@ -88,6 +88,7 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Ins_Emp", item.Ins_Emp);
 
                 conn.Open();
+                Debug.WriteLine(item.Use_YN);
                 int iRowAffect = cmd.ExecuteNonQuery();
                 return (iRowAffect > 0);
             }
@@ -264,7 +265,7 @@ namespace Team2_Project_DAO
         public List<NopMiCodeDTO> GetNopMiSearch(NopMiCodeDTO item) //비가동 상세분류코드 조회
         {
             try
-            {
+            { //코드수정해야함 //Linq로 담을 때 //null값 처리 //MaCode와 MiCode구분
                 string sql = @"SELECT MA.Nop_Ma_Code, MA.Nop_Ma_Name, MI.Nop_Mi_Code, MI.Nop_Mi_Name, MI.Nop_type, 
 	                                CASE WHEN MI.Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN, MI.Ins_Emp
 	                                , CONVERT(VARCHAR(10), MI.Ins_Date, 23) Ins_Date 
@@ -294,7 +295,7 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"INSERT INTO Nop_Ma_Master(Nop_Mi_Code , Nop_Mi_Name, Nop_Ma_Code, Nop_type, Use_YN,Ins_Emp, Ins_Date) 
+                string sql = @"INSERT INTO Nop_Mi_Master(Nop_Mi_Code , Nop_Mi_Name, Nop_Ma_Code, Nop_type, Use_YN,Ins_Emp, Ins_Date) 
                                                VALUES (@Nop_Mi_Code , @Nop_Mi_Name, @Nop_Ma_Code, @Nop_type, @Use_YN, @Ins_Emp, GETDATE())";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Nop_Mi_Code", item.Nop_Mi_Code);
@@ -305,6 +306,7 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Ins_Emp", item.Ins_Emp);
 
                 conn.Open();
+                Debug.WriteLine(cmd.CommandText);
                 int iRowAffect = cmd.ExecuteNonQuery();
                 return (iRowAffect > 0);
             }
@@ -324,15 +326,17 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"UPDATE Nop_Mi_Master
-                                  SET Nop_Mi_Name = @Nop_Mi_Name, Use_YN = @Use_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                                  SET Nop_Mi_Name = @Nop_Mi_Name, Nop_type = @Nop_type, Use_YN = @Use_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
                                 WHERE Nop_Mi_Code = @Nop_Mi_Code";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Nop_Mi_Code", item.Nop_Mi_Code);
                 cmd.Parameters.AddWithValue("@Nop_Mi_Name", item.Nop_Mi_Name);
+                cmd.Parameters.AddWithValue("@Nop_type", item.Nop_type);
                 cmd.Parameters.AddWithValue("@Use_YN", item.Use_YN);
                 cmd.Parameters.AddWithValue("@Up_Emp", item.Up_Emp);
 
                 conn.Open();
+                Debug.WriteLine(cmd.CommandText);
                 int iRowAffect = cmd.ExecuteNonQuery();
                 return (iRowAffect > 0);
             }

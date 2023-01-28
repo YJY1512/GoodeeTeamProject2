@@ -31,11 +31,12 @@ namespace Team2_Project
         {
             this.dgvMaData = new System.Windows.Forms.DataGridView();
             this.dgvMiData = new System.Windows.Forms.DataGridView();
+            this.cboNoptype = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).BeginInit();
             this.pnlSub.SuspendLayout();
             this.pnlListL.SuspendLayout();
             this.pnlListR.SuspendLayout();
@@ -51,6 +52,7 @@ namespace Team2_Project
             // 
             this.cboSearchUse.Location = new System.Drawing.Point(741, 13);
             this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
+            this.cboSearchUse.TabIndex = 2;
             // 
             // lblSearchCode
             // 
@@ -58,13 +60,28 @@ namespace Team2_Project
             this.lblSearchCode.Size = new System.Drawing.Size(124, 17);
             this.lblSearchCode.Text = "비가동 대분류코드";
             // 
+            // label9
+            // 
+            this.label9.Size = new System.Drawing.Size(82, 17);
+            this.label9.Text = "비가동 유형";
+            // 
             // txtInfoNameMi
             // 
             this.txtInfoNameMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInfoNameMi.ImeMode = System.Windows.Forms.ImeMode.Hangul;
+            this.txtInfoNameMi.MaxLength = 20;
+            this.txtInfoNameMi.TabIndex = 5;
             // 
             // txtInfoCodeMi
             // 
             this.txtInfoCodeMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInfoCodeMi.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtInfoCodeMi.MaxLength = 20;
+            this.txtInfoCodeMi.TabIndex = 4;
+            // 
+            // nudSort
+            // 
+            this.nudSort.Location = new System.Drawing.Point(802, 219);
             // 
             // splitContainer2
             // 
@@ -72,31 +89,38 @@ namespace Team2_Project
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.dgvMiData);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.cboNoptype);
             this.splitContainer2.Size = new System.Drawing.Size(1177, 702);
             this.splitContainer2.SplitterDistance = 423;
             // 
             // ucMaCode
             // 
+            this.ucMaCode.TabIndex = 3;
             this.ucMaCode.BtnClick += new System.EventHandler(this.ucMaCode_BtnClick);
             // 
             // cboUseYN
             // 
+            this.cboUseYN.ItemHeight = 17;
             this.cboUseYN.Location = new System.Drawing.Point(793, 62);
             this.cboUseYN.Size = new System.Drawing.Size(136, 25);
             // 
             // ucMaCodeSC
             // 
             this.ucMaCodeSC.Location = new System.Drawing.Point(178, 11);
+            this.ucMaCodeSC.TabIndex = 1;
             this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
+            // 
+            // label12
+            // 
+            this.label12.ForeColor = System.Drawing.Color.Red;
             // 
             // txtRemark
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRemark.Size = new System.Drawing.Size(300, 89);
-            // 
-            // nudSort
-            // 
-            this.nudSort.Location = new System.Drawing.Point(454, 228);
             // 
             // pnlSub
             // 
@@ -135,6 +159,15 @@ namespace Team2_Project
             this.dgvMiData.TabIndex = 1;
             this.dgvMiData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMiData_CellClick);
             // 
+            // cboNoptype
+            // 
+            this.cboNoptype.FormattingEnabled = true;
+            this.cboNoptype.ItemHeight = 17;
+            this.cboNoptype.Location = new System.Drawing.Point(260, 232);
+            this.cboNoptype.Name = "cboNoptype";
+            this.cboNoptype.Size = new System.Drawing.Size(121, 25);
+            this.cboNoptype.TabIndex = 35;
+            // 
             // frmNopMiCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -142,12 +175,12 @@ namespace Team2_Project
             this.Name = "frmNopMiCode";
             this.Text = "비가동 상세분류코드";
             this.Load += new System.EventHandler(this.frmNopMiCode_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudSort)).EndInit();
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlListL.ResumeLayout(false);
@@ -162,5 +195,6 @@ namespace Team2_Project
 
         private System.Windows.Forms.DataGridView dgvMiData;
         private System.Windows.Forms.DataGridView dgvMaData;
+        private System.Windows.Forms.ComboBox cboNoptype;
     }
 }

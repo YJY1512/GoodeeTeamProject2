@@ -31,7 +31,7 @@ namespace Team2_Project_DAO
             try
             {
                 StringBuilder sb = new StringBuilder();
-                SqlCommand cmd = new SqlCommand(); 
+                SqlCommand cmd = new SqlCommand();
                 sb.Append(@"SELECT NH.Nop_Seq
                                  , CONVERT(VARCHAR(10), NH.Nop_Date, 23) Nop_Date
 	                             , CONVERT(VARCHAR(23), NH.Nop_HappenTime, 21) Nop_HappenTime
