@@ -217,7 +217,7 @@ namespace Team2_Project
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.ForeColor = System.Drawing.Color.Red;
             this.label10.Location = new System.Drawing.Point(754, 21);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 17);
@@ -267,7 +267,7 @@ namespace Team2_Project
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.ForeColor = System.Drawing.Color.Red;
             this.label12.Location = new System.Drawing.Point(1039, 21);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);

@@ -18,6 +18,15 @@ namespace Team2_Project.Services
 
             return list;
         }
+
+        public bool FindSamePK(string userGrpCode)
+        {
+            UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
+            bool result = db.FindSamePK(userGrpCode);
+            db.Dispose();
+
+            return result;
+        }
         public bool InsertUserGroup(UserGroupAuthorityDTO uga)
         {
             UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
@@ -34,6 +43,15 @@ namespace Team2_Project.Services
             db.Dispose();
 
             return list;
+        }
+
+        public int DeleteUserGroup(string userGrpCode)
+        {
+            UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
+            int result = db.DeleteUserGroup(userGrpCode);
+            db.Dispose();
+
+            return result;
         }
     }
 }
