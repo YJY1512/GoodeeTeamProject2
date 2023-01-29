@@ -147,21 +147,25 @@ namespace Team2_Project_DAO
             }
         }
 
-        public bool DeleteWorkCenter(string wcCode)
+        public int DeleteWorkCenter(string wcCode)
         {
             try
             {
                 string sql = "Delete From WorkCenter_Master where Wc_Code = @Wc_Code";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Wc_Code", wcCode);
-                conn.Open();
-                int iRowAffect = cmd.ExecuteNonQuery();
-                return (iRowAffect > 0);
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Wc_Code", wcCode);
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    return result;
+                }
+
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return false;
+                return -1;
             }
             finally
             {

@@ -168,9 +168,9 @@ namespace Team2_Project
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(404, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.Size = new System.Drawing.Size(82, 17);
             this.label5.TabIndex = 2;
-            this.label5.Text = "공정 그룹";
+            this.label5.Text = "작업장 그룹";
             // 
             // txtCenterCode
             // 
@@ -321,7 +321,7 @@ namespace Team2_Project
             // 
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.ForeColor = System.Drawing.Color.Red;
             this.label17.Location = new System.Drawing.Point(381, 79);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 17);
@@ -345,7 +345,7 @@ namespace Team2_Project
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ForeColor = System.Drawing.Color.Red;
             this.label6.Location = new System.Drawing.Point(20, 136);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(17, 17);
