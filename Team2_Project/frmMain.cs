@@ -47,7 +47,8 @@ namespace Team2_Project
                 return;
             }
             this.Visible = true;
-
+            tStripDate.Text = DateTime.Now.ToShortDateString();
+            tStripTime.Text = DateTime.Now.ToShortTimeString();
             tStripName.Text = LoginEmp.User_Name;
             tStripDept.Text = LoginEmp.UserGroup_Name;
             OpenChildPage<frmDashBoard>();
@@ -380,12 +381,6 @@ namespace Team2_Project
                 e.Item.Visible = false;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            tStripDate.Text = DateTime.Now.ToShortDateString();
-            tStripTime.Text = DateTime.Now.ToShortTimeString();
-        }
-
         void Function_Invoke(string funcName)
         {
             try
@@ -502,7 +497,13 @@ namespace Team2_Project
         {
             Function_Invoke("OnReLoad");
         }
-        #endregion       
+        #endregion
+
+        private void tsBtnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Restart();
+        }
     }
     class TabTag
     {

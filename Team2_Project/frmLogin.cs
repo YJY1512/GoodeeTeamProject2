@@ -24,6 +24,7 @@ namespace Team2_Project
             txtID.Text = "1000";
             txtPwd.Text = "1000";
             chkViewPW.ImageIndex = 0;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
