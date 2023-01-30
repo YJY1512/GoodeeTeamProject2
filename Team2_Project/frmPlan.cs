@@ -35,19 +35,21 @@ namespace Team2_Project
             DataGridViewCheckBoxColumn cbk = new DataGridViewCheckBoxColumn();
             cbk.Width = 30;
             cbk.DefaultCellStyle.BackColor = Color.PeachPuff;
+            cbk.Frozen = true;
             dgvReq.Columns.Add(cbk);
 
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "생산요청번호", "Prd_Req_No", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "의뢰일", "Req_Date", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "순번", "Req_Seq", 80);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "납기일자", "Delivery_Date", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "생산요청번호", "Prd_Req_No", 150, frosen:true);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "의뢰일", "Req_Date", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "순번", "Req_Seq", 60, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "납기일자", "Delivery_Date", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장코드", "Wc_Code", OrangebackColor: true); //입력값
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "작업장명", "Wc_Name", 150, OrangebackColor: true); //입력값
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "품목", "Item_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "계획수량", "In_Plan_Qty", 120, OrangebackColor: true); //계획 수량(입력값)
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "계획반영수량", "Plan_Qty", 120); //계획 수량 합계
-            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "요청수량/잔량", "Plan_Rest_Qty", 120); //요청수량(Req) - 계획반영수량(Plan_Rest)
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "계획수량", "In_Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight, OrangebackColor: true); //계획 수량(입력값)
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "계획반영수량", "Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight); //계획 수량 합계
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "요청수량/잔량", "Plan_Rest_Qty", 120, DataGridViewContentAlignment.MiddleRight); //요청수량(Req) - 계획반영수량(Plan_Qty)
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "Plan_YN", "Plan_YN", visible: false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "Item_Code", "Item_Code", visible: false);
 
             CommonCodeUtil.UseYNComboBinding(cboReqStat);
             cboReqStat.SelectedIndex = 0;
@@ -56,8 +58,8 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvWcPlan);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWcPlan, "작업장코드", "Wc_Code");
             DataGridViewUtil.AddGridTextBoxColumn(dgvWcPlan, "작업장명", "Wc_Name");
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWcPlan, "계획반영수량", "Plan_Qty"); //작업장별 합계
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWcPlan, "계획수량", "In_Plan_Qty"); //작업장별 합계
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWcPlan, "계획반영수량", "Plan_Qty", align: DataGridViewContentAlignment.MiddleRight); //작업장별 합계
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWcPlan, "계획수량", "In_Plan_Qty", align: DataGridViewContentAlignment.MiddleRight); //작업장별 합계
 
             //생산계획 tab
             DataGridViewUtil.SetInitDataGridView(dgvPlan);
@@ -90,14 +92,19 @@ namespace Team2_Project
                                  Wc_Code = row.Field<string>("Wc_Code"),
                                  Wc_Name = row.Field<string>("Wc_Name")
                              } into g
-                             select new PlanDTO
+                             where g.Key.Wc_Code != null
+                             select new
                              {
                                  Wc_Code = g.Key.Wc_Code,
                                  Wc_Name = g.Key.Wc_Name,
+                                 In_Plan_Qty = g.Sum((c) => c.Field<int>("In_Plan_Qty")),
                                  Plan_Qty = g.Sum((c) => c.Field<int>("Plan_Qty"))
                              }).ToList();
 
-            dgvWcPlan.DataSource = SortTable;
+            if (SortTable.Count > 0)
+            {
+                dgvWcPlan.DataSource = SortTable;
+            }
         }
 
         private void ucProd_BtnClick(object sender, EventArgs e)
@@ -135,15 +142,15 @@ namespace Team2_Project
 
                     wcCodePop.DgvDatasource = srv.GetWcCodeName();
                     wcCodePop.PopName = "작업장 검색";
+
+                    List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+                    colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
+                    colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
+
+                    wcCodePop.DgvCols = colList;
+
+                    pop.PopLoadData<WorkCenterDTO>(wcCodePop);
                 }
-
-                List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-                colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
-                colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
-
-                wcCodePop.DgvCols = colList;
-
-                pop.PopLoadData<WorkCenterDTO>(wcCodePop);
 
                 if (pop.ShowDialog() == DialogResult.OK)
                 {
@@ -179,6 +186,12 @@ namespace Team2_Project
         private void dgvReq_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             dgvReq.Columns["In_Plan_Qty"].ReadOnly = true;
+
+            if (e.ColumnIndex == dgvReq.Columns["In_Plan_Qty"].Index)
+            {
+                DataTable newDt = (DataTable)dgvReq.DataSource;
+                DgvWcPlanBinding(newDt);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -189,11 +202,45 @@ namespace Team2_Project
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
+                    if (row.Cells["Plan_Rest_Qty"].Value.ToString().Equals("0"))
+                    {
+                        MessageBox.Show("계획 잔량이 0입니다.");
+                        return;
+                    }
+
+                    if (row.Cells["In_Plan_Qty"].Value == null || Convert.ToInt32(row.Cells["In_Plan_Qty"].Value) == 0)
+                    {
+                        MessageBox.Show("계획 수량을 입력해주세요.");
+                        return;
+                    }
+
                     plan.Add(new PlanDTO
                     {
-
+                        Prd_Req_No = dgvReq["Prd_Req_No", row.Index].Value.ToString(),
+                        Item_Code = dgvReq["Item_Code", row.Index].Value.ToString(),
+                        Plan_Qty = Convert.ToInt32(dgvReq["In_Plan_Qty", row.Index].Value),
+                        Plan_Rest_Qty = Convert.ToInt32(dgvReq["Plan_Rest_Qty", row.Index].Value) - Convert.ToInt32(dgvReq["In_Plan_Qty", row.Index].Value),
+                        Wc_Code = dgvReq["Wc_Code", row.Index].Value.ToString(),
+                        Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                     });
                 }
+            }
+
+            if (plan.Count < 1)
+            {
+                MessageBox.Show("생산계획을 생성할 항목을 선택하여 주십시오.");
+                return;
+            }
+
+            bool result = srv.InsertPlan(plan);
+            if (result)
+            {
+                MessageBox.Show("계획생성이 완료되었습니다.");
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("계획생성 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
             }
         }
     }
