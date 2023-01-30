@@ -39,7 +39,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일자", "Nop_Date", 160, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일시", "Nop_HappenTime", 220, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동해제일시", "Nop_CancelTime", 220, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동시간", "Nop_Time", 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동시간(분)", "Nop_Time", 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장그룹", "Wc_Group", 150);
