@@ -32,12 +32,16 @@ namespace Team2_Project_POP
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.lblSelected = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.lblSelected);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
@@ -56,6 +60,7 @@ namespace Team2_Project_POP
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "종  료";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // menuStrip1
             // 
@@ -65,6 +70,27 @@ namespace Team2_Project_POP
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemAdded += new System.Windows.Forms.ToolStripItemEventHandler(this.menuStrip1_ItemAdded);
+            // 
+            // lblSelected
+            // 
+            this.lblSelected.BackColor = System.Drawing.Color.White;
+            this.lblSelected.ForeColor = System.Drawing.Color.Black;
+            this.lblSelected.Location = new System.Drawing.Point(212, 40);
+            this.lblSelected.Name = "lblSelected";
+            this.lblSelected.Size = new System.Drawing.Size(572, 60);
+            this.lblSelected.TabIndex = 4;
+            this.lblSelected.Text = "현재 위치";
+            this.lblSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(25, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(181, 60);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "현재 위치";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmParent
             // 
@@ -91,5 +117,7 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label lblSelected;
+        private System.Windows.Forms.Label label1;
     }
 }
