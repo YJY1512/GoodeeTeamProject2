@@ -28,7 +28,7 @@ namespace Team2_Project_POP
             lbl2.Location = new Point(400, 10);
             lbl3.Location = new Point(2 * screenWidh + screenWidh * 12, 10);
             lbl3.Size = new Size(720, 80);
-            cinkLabelLinkClickedEventArgs.
+            
         }
     }
 }
