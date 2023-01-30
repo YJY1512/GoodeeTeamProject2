@@ -31,11 +31,16 @@ namespace Team2_Project_POP
         {
             //MDI메뉴와 Child메뉴가 합쳐질때 발생하는 이벤트
             //최소화(&N) 이전 크기로(&R)  닫기(&C) ""
-            if (e.Item.Text == "" ||
-                e.Item.Text == "최소화(&N)" ||
-                e.Item.Text == "이전 크기로(&R)" ||
-                e.Item.Text == "닫기(&C)")
-                e.Item.Visible = false;
+            //if (e.Item.Text == "" ||
+            //    e.Item.Text == "최소화(&N)" ||
+            //    e.Item.Text == "이전 크기로(&R)" ||
+            //    e.Item.Text == "닫기(&C)")
+            //    e.Item.Visible = false;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

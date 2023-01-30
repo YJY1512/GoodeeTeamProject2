@@ -19,9 +19,16 @@ namespace Team2_Project_POP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //lblTitle.Location.x = (panel1.Width / 2) - 120;
-            //    lblTitle.Location.y = 30;
-                
+            int screenWidh = ((Screen.PrimaryScreen.Bounds.Width - 120) / 100);
+            lblTitle.Location = new Point(screenWidh * 50 / 2, 30);
+
+            lbl1.Location = new Point(20, 10);
+            lbl1.Size = new Size(360, 80);
+            //lbl2.Visible = lbl3.Visible = false;
+            lbl2.Location = new Point(400, 10);
+            lbl3.Location = new Point(2 * screenWidh + screenWidh * 12, 10);
+            lbl3.Size = new Size(720, 80);
+            cinkLabelLinkClickedEventArgs.
         }
     }
 }
