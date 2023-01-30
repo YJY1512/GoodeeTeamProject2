@@ -1,8 +1,8 @@
 ﻿<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
-    <li class="nav-item menu-open">
-        <a href="#" class="nav-link active">
+    <li class="nav-item menu-@(ViewBag.SelectedAM == null || ViewBag.SelectedAM == ViewBag.MenuList[0].MenuAM ? "close" : "open")">
+        <a href="#" class="nav-link @(ViewBag.SelectedAM == null || ViewBag.SelectedAM == ViewBag.MenuList[0].MenuAM ? "" : "active")">
             <i class="nav-icon fas fa-laptop"></i>
             <p>
                 데이터 분석
@@ -11,22 +11,22 @@
         </a>
 
         <ul class="nav nav-treeview">
-            @foreach (var menu in ViewBag.MenuList)
+            @for (int i = 1; i < ViewBag.MenuList.Count; i++)
             {
                 <li class="nav-item active">
-                    <a href="/Home/@menu.MenuAM?page=1" class="nav-link @(ViewBag.SelectedAM == menu.MenuAM ? "active" : "")">
+                    <a href="/Home/@ViewBag.MenuList[i].MenuAM?page=1" class="nav-link @(ViewBag.SelectedAM == ViewBag.MenuList[i].MenuAM ? "active" : "")">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>@menu.MenuName</p>
+                        <p>@ViewBag.MenuList[i].MenuName</p>
                     </a>
                 </li>
             }
         </ul>
     </li>
-    <li class="nav-item @(ViewBag.SelectedAM == "Schedule" ? "active" : "")">
+    <li class="nav-item @(ViewBag.SelectedAM == ViewBag.MenuList[0].MenuAM ? "active" : "")">
         <a href="/Home/Schedule?page=1" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
-                월별 스케쥴 조회
+                @ViewBag.MenuList[0].MenuName
             </p>
         </a>
     </li>
