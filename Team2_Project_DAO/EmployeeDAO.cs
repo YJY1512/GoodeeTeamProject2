@@ -35,13 +35,24 @@ namespace Team2_Project_DAO
                            from UserGroup_Mapping umap inner join User_Master u on umap.User_ID = u.User_ID
                            inner join UserGroup_Master umas on umap.UserGroup_Code = umas.UserGroup_Code
                            where u.User_ID = @User_ID and PWDCOMPARE(@User_PW,User_PW) = 1 and u.Use_YN = 'Y'";
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@User_ID", userID);
-            cmd.Parameters.AddWithValue("@User_PW", userPw);
-            EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
-            conn.Close();
-
-            return empInfo;
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@User_ID", userID);
+                cmd.Parameters.AddWithValue("@User_PW", userPw);
+                EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
+                
+                return empInfo;
+            }
+            catch(Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public DataTable GetEmployeeList()
