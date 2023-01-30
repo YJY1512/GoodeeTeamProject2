@@ -212,10 +212,6 @@ namespace Team2_Project
 
             if (MessageBox.Show("입력한 정보를 저장하시겠습니까?", "저장확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
-                return;
-            }
-            else
-            {
                 if (pnlStat == 1)
                 {
                     ((frmMain)this.MdiParent).AddClickEvent();
@@ -224,6 +220,7 @@ namespace Team2_Project
                 {
                     ((frmMain)this.MdiParent).EditClickEvent();
                 }
+                return;
             }
 
             EmployeeDTO data = new EmployeeDTO
