@@ -502,6 +502,12 @@ namespace Team2_Project
             this.Close();
             Application.Restart();
         }
+
+        private void tsBtnSetting_Click(object sender, EventArgs e)
+        {
+            frmSettings pop = new frmSettings();
+            pop.ShowDialog();
+        }
     }
     class TabTag
     {
