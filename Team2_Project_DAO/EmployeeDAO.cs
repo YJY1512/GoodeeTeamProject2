@@ -191,7 +191,10 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@User_ID", empID);
-                    cmd.Parameters.Add(new SqlParameter("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output);
+
+                    SqlParameter param = new SqlParameter("@PO_CD", SqlDbType.Int);
+                    param.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param);
                     cmd.ExecuteNonQuery();
                     
                     int PO_CD = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);

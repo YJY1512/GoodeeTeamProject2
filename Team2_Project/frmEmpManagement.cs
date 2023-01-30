@@ -146,6 +146,7 @@ namespace Team2_Project
 
         public void OnDelete()
         {
+            MessageBox.Show(dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString());
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 MessageBox.Show("삭제할 인사정보를 선택해 주세요.");
@@ -186,7 +187,7 @@ namespace Team2_Project
                 return;
             }
 
-            if (empSrv.CheckUserID(txtID.Text))
+            if (pnlStat == 1 && empSrv.CheckUserID(txtID.Text))
             {
                 MessageBox.Show("이미 존재하는 사용자 ID 입니다.");
                 return;
