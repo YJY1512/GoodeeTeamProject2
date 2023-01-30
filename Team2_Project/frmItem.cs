@@ -81,10 +81,10 @@ namespace Team2_Project
             cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 400, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 400);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 300, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "규격", "Item_Spec", 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "규격", "Item_Spec", 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비고", "Remark", 500);
             dgvData.MultiSelect = false;
@@ -108,6 +108,13 @@ namespace Team2_Project
             cboSpec.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
+        private void AdvancedListBind(List<ItemDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<ItemDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -119,8 +126,8 @@ namespace Team2_Project
                 Use_YN = cboUseYNSC.Text
             };
             itemList = srv.GetItemSearch(item);
-            dgvData.DataSource = null;
-            dgvData.DataSource = itemList;
+
+            AdvancedListBind(itemList, dgvData);
             dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
@@ -128,7 +135,7 @@ namespace Team2_Project
 
         public void OnAdd()     //추가
         {
-            situation = "Add";            
+            situation = "Add";
             DeactivationTop();      //검색조건 비활성화
             ResetBottom();          //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
@@ -210,13 +217,21 @@ namespace Team2_Project
 
                 bool result = srv.GetItemAdd(item);
                 if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
-                else MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                else
+                {
+                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                    return;
+                }
             }
             else if (situation == "Update")
             {
                 bool result = srv.GetItemUpdate(item);
                 if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
-                else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                else
+                {
+                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                    return;
+                }
             }
             OnReLoad();
             ActivationTop();    //검색 활성화
@@ -269,7 +284,7 @@ namespace Team2_Project
         {
             if (situation.Equals("Add")) txtCode.Enabled = true;
             else txtCode.Enabled = false; //PK유지
-            txtName.Enabled = txtRemark.Enabled =  cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
+            txtName.Enabled = txtRemark.Enabled = cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = true;
             dgvData.Enabled = false;
             dgvData.ClearSelection();
         }

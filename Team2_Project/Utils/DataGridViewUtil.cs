@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,13 +22,14 @@ namespace Team2_Project.Utils
         }
 
         public static void AddGridTextBoxColumn(
-            DataGridView dgv, 
+            DataGridView dgv,
             string headerText,
             string propertyName,
             int colWidth = 100,
             DataGridViewContentAlignment align = DataGridViewContentAlignment.MiddleLeft,
             bool visible = true,
-            bool frosen = false)
+            bool frosen = false,
+            bool OrangebackColor = false)
         {
             DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
             col.Name = propertyName;
@@ -45,8 +47,15 @@ namespace Team2_Project.Utils
             col.Visible = visible;
             col.Frozen = frosen;
 
+            if (OrangebackColor)
+            {
+                col.DefaultCellStyle.BackColor = Color.PeachPuff;
+            }
+
             dgv.Columns.Add(col);
         }
+
+
 
         public static DataGridViewTextBoxColumn ReturnNewDgvColumn(
             string headerText,

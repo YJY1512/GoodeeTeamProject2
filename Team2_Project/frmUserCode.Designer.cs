@@ -49,6 +49,7 @@ namespace Team2_Project
             // 
             // cboSearchUse
             // 
+            this.cboSearchUse.BackColor = System.Drawing.Color.White;
             this.cboSearchUse.Location = new System.Drawing.Point(648, 16);
             this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
             // 
@@ -65,18 +66,6 @@ namespace Team2_Project
             // label10
             // 
             this.label10.Location = new System.Drawing.Point(647, 66);
-            // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(624, 126);
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.Location = new System.Drawing.Point(726, 124);
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(647, 126);
             // 
             // label4
             // 
@@ -114,7 +103,7 @@ namespace Team2_Project
             this.splitContainer2.Size = new System.Drawing.Size(1111, 645);
             this.splitContainer2.SplitterDistance = 349;
             // 
-            // ucSearch1
+            // ucMaCode
             // 
             this.ucMaCode.Location = new System.Drawing.Point(224, 62);
             this.ucMaCode.Size = new System.Drawing.Size(340, 30);
@@ -123,12 +112,24 @@ namespace Team2_Project
             // 
             this.cboUseYN.Location = new System.Drawing.Point(726, 62);
             // 
-            // ucSearchCode
+            // ucMaCodeSC
             // 
             this.ucMaCodeSC.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucMaCodeSC.Location = new System.Drawing.Point(169, 15);
             this.ucMaCodeSC.Size = new System.Drawing.Size(340, 26);
             this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucSearchCode_BtnClick);
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(624, 126);
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(726, 124);
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(647, 126);
             // 
             // pnlSub
             // 

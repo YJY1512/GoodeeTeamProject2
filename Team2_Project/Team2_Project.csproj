@@ -131,6 +131,12 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTimeProductionHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeProductionHistory.Designer.cs">
+      <DependentUpon>frmTimeProductionHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDashBoard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,7 @@
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\NopCodeService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PlanService.cs" />
     <Compile Include="Services\ProcessMasterService.cs" />
     <Compile Include="Services\SysCodeService.cs" />
     <Compile Include="Services\UserCodeService.cs" />
@@ -368,6 +375,9 @@
     <EmbeddedResource Include="frmSystemCode.resx">
       <DependentUpon>frmSystemCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeProductionHistory.resx">
+      <DependentUpon>frmTimeProductionHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUserCode.resx">
       <DependentUpon>frmUserCode.cs</DependentUpon>
     </EmbeddedResource>
@@ -393,6 +403,7 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -402,9 +413,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\그림1.png" />

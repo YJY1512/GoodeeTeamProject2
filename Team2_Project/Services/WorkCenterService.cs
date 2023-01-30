@@ -46,13 +46,22 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public bool DeleteWorkCenter(string wcCode)
+        public int DeleteWorkCenter(string wcCode)
         {
             WorkCenterDAO db = new WorkCenterDAO();
-            bool result = db.DeleteWorkCenter(wcCode);
+            int result = db.DeleteWorkCenter(wcCode);
             db.Dispose();
 
             return result;
+        }
+
+        public List<WorkCenterDTO> GetWcCodeName()
+        {
+            WorkCenterDAO db = new WorkCenterDAO();
+            List<WorkCenterDTO> list = db.GetWcCodeName();
+            db.Dispose();
+
+            return list;
         }
     }
 }

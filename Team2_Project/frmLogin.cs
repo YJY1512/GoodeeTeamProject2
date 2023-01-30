@@ -23,6 +23,8 @@ namespace Team2_Project
         {
             txtID.Text = "1000";
             txtPwd.Text = "1000";
+            chkViewPW.ImageIndex = 0;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -56,6 +58,27 @@ namespace Team2_Project
             {
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void chkViewPW_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkViewPW.Checked)
+            {
+                chkViewPW.ImageIndex = 1;
+                txtPwd.PasswordChar = default;
+
+            }
+            else
+            {
+                chkViewPW.ImageIndex = 0;
+                txtPwd.PasswordChar = '*';
+            }
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            txtID.Text = "";
+            txtPwd.Text = "";
         }
     }
 }

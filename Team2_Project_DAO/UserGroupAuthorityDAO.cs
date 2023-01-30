@@ -52,6 +52,32 @@ namespace Team2_Project_DAO
             }
         }
 
+        public bool FindSamePK(string userGrpCode)
+        {
+            try
+            {
+                string sql = @"select count(*) cnt
+                               from UserGroup_Master
+                               where UserGroup_Code = @UserGroup_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@UserGroup_Code", userGrpCode);
+
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return (cnt < 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
 
         public bool InsertUserGroup(UserGroupAuthorityDTO uga) //추가
         {
@@ -137,22 +163,24 @@ namespace Team2_Project_DAO
             }
         }
 
-        public bool DeleteUserGroup(string userGrpCode) //삭제
+        public int DeleteUserGroup(string userGrpCode) //삭제
         {
             try
             {
                 string sql = @"delete from UserGroup_Master
                                where UserGroup_Code = @UserGroup_Code";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@UserGroup_Code", userGrpCode);
-                conn.Open();
-                int iRowAffect = cmd.ExecuteNonQuery();
-                return (iRowAffect > 0);
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@UserGroup_Code", userGrpCode);
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    return result;
+                }
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return false;
+                return -1;
             }
             finally
             {

@@ -103,7 +103,7 @@ namespace Team2_Project
             this.cboUseYNSC.Location = new System.Drawing.Point(729, 18);
             this.cboUseYNSC.Name = "cboUseYNSC";
             this.cboUseYNSC.Size = new System.Drawing.Size(136, 25);
-            this.cboUseYNSC.TabIndex = 14;
+            this.cboUseYNSC.TabIndex = 2;
             // 
             // label4
             // 
@@ -128,10 +128,12 @@ namespace Team2_Project
             // txtName
             // 
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hangul;
             this.txtName.Location = new System.Drawing.Point(665, 14);
+            this.txtName.MaxLength = 20;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(222, 25);
-            this.txtName.TabIndex = 20;
+            this.txtName.TabIndex = 4;
             // 
             // label6
             // 
@@ -147,9 +149,10 @@ namespace Team2_Project
             // 
             this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCode.Location = new System.Drawing.Point(192, 14);
+            this.txtCode.MaxLength = 20;
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(222, 25);
-            this.txtCode.TabIndex = 18;
+            this.txtCode.TabIndex = 3;
             // 
             // label7
             // 
@@ -201,7 +204,7 @@ namespace Team2_Project
             this.cboUseYN.Location = new System.Drawing.Point(1081, 14);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(136, 25);
-            this.cboUseYN.TabIndex = 18;
+            this.cboUseYN.TabIndex = 5;
             // 
             // label10
             // 
@@ -233,7 +236,7 @@ namespace Team2_Project
             this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
             this.ucCodeSearch.Name = "ucCodeSearch";
             this.ucCodeSearch.Size = new System.Drawing.Size(340, 28);
-            this.ucCodeSearch.TabIndex = 17;
+            this.ucCodeSearch.TabIndex = 1;
             this.ucCodeSearch.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
             // 
             // frmNopMaCode

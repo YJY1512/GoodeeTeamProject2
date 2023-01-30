@@ -34,9 +34,9 @@ namespace Team2_Project
         private void LoadData()
         {
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류코드", "Nop_Ma_Code", 500);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류명", "Nop_Ma_Name", 500);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류코드", "Nop_Ma_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류명", "Nop_Ma_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
             dgvData.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboUseYNSC);
@@ -45,7 +45,12 @@ namespace Team2_Project
             cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
+        private void AdvancedListBind(List<NopMaCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<NopMaCodeDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
@@ -57,8 +62,7 @@ namespace Team2_Project
                 Use_YN = cboUseYNSC.Text
             };
             NopMaList = srv.GetNopMaSearch(item);
-            dgvData.DataSource = null;
-            dgvData.DataSource = NopMaList;
+            AdvancedListBind(NopMaList, dgvData);
             dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
@@ -120,10 +124,11 @@ namespace Team2_Project
                 Nop_Ma_Code = txtCode.Text,
                 Nop_Ma_Name = txtName.Text,
                 Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
+                Ins_Emp = "홍길동", ///////////////////////////////////
                 Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
             };
 
-            if (situation == "Add")
+            if (situation == "Add") //cboUseYN "아니오"로 저장하면 "예"로 저장되는 오류찾기!!*****
             {
                 bool pkresult = srv.CheckPK(txtCode.Text);
                 if (!pkresult)
@@ -136,13 +141,21 @@ namespace Team2_Project
 
                 bool result = srv.NopMaCodeAdd(item);
                 if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
-                else MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                else
+                {
+                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                    return;
+                }
             }
             else if (situation == "Update")
             {
                 bool result = srv.NopMaCodeUpdate(item);
                 if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
-                else MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                else
+                {
+                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                    return;
+                }
             }
 
             OnReLoad();
@@ -192,7 +205,7 @@ namespace Team2_Project
 
         private void ActivationBottom(string situation) //입력 활성화
         {
-            if (situation.Equals("Add")) txtCode.Enabled = true; 
+            if (situation.Equals("Add")) txtCode.Enabled = true;
             else txtCode.Enabled = false; //Update : PK유지
             txtName.Enabled = cboUseYN.Enabled = true;
             dgvData.Enabled = false;
@@ -203,7 +216,7 @@ namespace Team2_Project
         {
             txtCode.Enabled = txtName.Enabled = cboUseYN.Enabled = false;
         }
-        
+
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
             var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();

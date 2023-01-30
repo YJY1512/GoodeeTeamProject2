@@ -29,6 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSearchCode = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboTypeSC = new System.Windows.Forms.ComboBox();
@@ -149,7 +150,7 @@ namespace Team2_Project
             this.cboTypeSC.Location = new System.Drawing.Point(740, 16);
             this.cboTypeSC.Name = "cboTypeSC";
             this.cboTypeSC.Size = new System.Drawing.Size(121, 25);
-            this.cboTypeSC.TabIndex = 8;
+            this.cboTypeSC.TabIndex = 2;
             // 
             // label12
             // 
@@ -217,9 +218,10 @@ namespace Team2_Project
             // 
             this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCode.Location = new System.Drawing.Point(140, 13);
+            this.txtCode.MaxLength = 20;
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(250, 25);
-            this.txtCode.TabIndex = 24;
+            this.txtCode.TabIndex = 4;
             // 
             // lblInfoCodeMa
             // 
@@ -237,13 +239,21 @@ namespace Team2_Project
             this.cboType.Location = new System.Drawing.Point(545, 13);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(128, 25);
-            this.cboType.TabIndex = 44;
+            this.cboType.TabIndex = 6;
             this.cboType.SelectedValueChanged += new System.EventHandler(this.cboType_SelectedValueChanged);
             // 
             // dgvData
             // 
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
@@ -258,7 +268,7 @@ namespace Team2_Project
             this.cboUseYNSC.Location = new System.Drawing.Point(995, 16);
             this.cboUseYNSC.Name = "cboUseYNSC";
             this.cboUseYNSC.Size = new System.Drawing.Size(121, 25);
-            this.cboUseYNSC.TabIndex = 10;
+            this.cboUseYNSC.TabIndex = 3;
             // 
             // label4
             // 
@@ -276,7 +286,7 @@ namespace Team2_Project
             this.cboSpec.Location = new System.Drawing.Point(545, 52);
             this.cboSpec.Name = "cboSpec";
             this.cboSpec.Size = new System.Drawing.Size(128, 25);
-            this.cboSpec.TabIndex = 47;
+            this.cboSpec.TabIndex = 7;
             // 
             // label11
             // 
@@ -304,7 +314,7 @@ namespace Team2_Project
             this.cboUseYN.Location = new System.Drawing.Point(828, 13);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(128, 25);
-            this.cboUseYN.TabIndex = 51;
+            this.cboUseYN.TabIndex = 8;
             // 
             // label14
             // 
@@ -340,9 +350,10 @@ namespace Team2_Project
             // 
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Location = new System.Drawing.Point(140, 52);
+            this.txtName.MaxLength = 30;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(250, 25);
-            this.txtName.TabIndex = 52;
+            this.txtName.TabIndex = 5;
             // 
             // label17
             // 
@@ -358,11 +369,12 @@ namespace Team2_Project
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRemark.Location = new System.Drawing.Point(1074, 13);
+            this.txtRemark.MaxLength = 200;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.txtRemark.Size = new System.Drawing.Size(394, 64);
-            this.txtRemark.TabIndex = 54;
+            this.txtRemark.TabIndex = 9;
             // 
             // label18
             // 
@@ -384,7 +396,7 @@ namespace Team2_Project
             this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
             this.ucCodeSearch.Name = "ucCodeSearch";
             this.ucCodeSearch.Size = new System.Drawing.Size(340, 28);
-            this.ucCodeSearch.TabIndex = 11;
+            this.ucCodeSearch.TabIndex = 1;
             this.ucCodeSearch.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
             // 
             // frmItem
