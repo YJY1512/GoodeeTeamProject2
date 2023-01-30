@@ -94,9 +94,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAO\CommonDAO.cs" />
+    <Compile Include="Models\DAO\Helper.cs" />
+    <Compile Include="Models\DAO\ItemDAO.cs" />
+    <Compile Include="Models\ItemVO.cs" />
+    <Compile Include="Models\MenuVO.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +113,8 @@
     <Content Include="Views\_LayoutPage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Menu\MenuList.cshtml" />
+    <Content Include="Views\Home\Item.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
