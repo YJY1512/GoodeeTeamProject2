@@ -8,16 +8,12 @@ using System.Windows.Forms;
 
 namespace Team2_Project
 {
-    public partial class frmTimeProductionHistory : Team2_Project.frmListListUpDown
+    public partial class frmTimeProductionHistory : Team2_Project.frmList
     {
         public frmTimeProductionHistory()
         {
             InitializeComponent();
         }
 
-        private void frmTimeProductionHistory_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
