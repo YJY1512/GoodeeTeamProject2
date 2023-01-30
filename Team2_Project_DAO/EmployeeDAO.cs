@@ -34,14 +34,25 @@ namespace Team2_Project_DAO
             string sql = @"select u.User_ID, User_Name, Customer_Code, User_Type, umas.UserGroup_Code, umas.UserGroup_Name, u.Use_YN
                            from UserGroup_Mapping umap inner join User_Master u on umap.User_ID = u.User_ID
                            inner join UserGroup_Master umas on umap.UserGroup_Code = umas.UserGroup_Code
-                           where u.User_ID = @User_ID and User_PW = @User_PW and u.Use_YN = 'Y'";
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@User_ID", userID);
-            cmd.Parameters.AddWithValue("@User_PW", userPw);
-            EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
-            conn.Close();
-
-            return empInfo;
+                           where u.User_ID = @User_ID and PWDCOMPARE(@User_PW,User_PW) = 1 and u.Use_YN = 'Y'";
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@User_ID", userID);
+                cmd.Parameters.AddWithValue("@User_PW", userPw);
+                EmployeeDTO empInfo = Helper.DataReaderMapToDTO<EmployeeDTO>(cmd.ExecuteReader());
+                
+                return empInfo;
+            }
+            catch(Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public DataTable GetEmployeeList()
@@ -66,7 +77,7 @@ namespace Team2_Project_DAO
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
             string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, User_Type, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
-values (@User_ID, @User_Name, @User_ID, @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
+values (@User_ID, @User_Name, pwdencrypt(@User_ID), @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
             string sql2 = @"insert into UserGroup_Mapping (UserGroup_Code, User_ID, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
 values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
@@ -180,7 +191,10 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@User_ID", empID);
-                    cmd.Parameters.Add(new SqlParameter("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output);
+
+                    SqlParameter param = new SqlParameter("@PO_CD", SqlDbType.Int);
+                    param.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param);
                     cmd.ExecuteNonQuery();
                     
                     int PO_CD = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);

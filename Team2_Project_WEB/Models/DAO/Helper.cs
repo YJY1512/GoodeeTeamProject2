@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShoppingMallMVC.Models.DAO
+namespace Team2_Project_WEB.Models.DAO
 {
     public static class Helper
     {
