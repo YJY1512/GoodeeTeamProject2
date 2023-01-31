@@ -134,7 +134,7 @@ namespace Team2_Project
         }
         public void OnEdit()    //수정
         {
-            if (dgvGroup.SelectedRows.Count < 1)
+            if (string.IsNullOrWhiteSpace(txtGroupCode2.Text))
             {
                 MessageBox.Show("수정할 항목을 선택하여 주세요.");
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
@@ -147,7 +147,7 @@ namespace Team2_Project
         }
         public void OnDelete()  //삭제
         {
-            if (dgvGroup.SelectedRows.Count < 1)
+            if (string.IsNullOrWhiteSpace(txtGroupCode2.Text))
             {
                 MessageBox.Show("삭제할 항목을 선택하여 주세요.");
                 return;
@@ -163,9 +163,9 @@ namespace Team2_Project
                 {
                     MessageBox.Show("삭제에 성공하였습니다.");
                 }
-                else if (result == 3726)
+                else if (result == -9)
                 {
-                    MessageBox.Show("데이터를 삭제할 수 없습니다.");
+                    MessageBox.Show("사용되고 있는 데이터는 삭제할 수 없습니다.");
                 }
                 else
                 {
@@ -177,9 +177,31 @@ namespace Team2_Project
         }
         public void OnSave()    //저장
         {
-            if (string.IsNullOrWhiteSpace(txtGroupCode2.Text) || string.IsNullOrWhiteSpace(txtGroupNM2.Text))
+            if (string.IsNullOrWhiteSpace(txtGroupCode2.Text))
             {
-                MessageBox.Show("필수 항목을 입력해주시기 바랍니다.");
+                MessageBox.Show($"{lblGroupCode.Text} 항목을 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtGroupNM2.Text))
+            {
+                MessageBox.Show($"{lblGroupName.Text} 항목을 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
@@ -189,6 +211,7 @@ namespace Team2_Project
                 if (!result)
                 {
                     MessageBox.Show("사용자그룹 코드가 중복되었습니다. 다시 시도하여 주세요.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
                     return;
                 }
                 UserGroupAuthorityDTO group = new UserGroupAuthorityDTO
@@ -208,6 +231,8 @@ namespace Team2_Project
                 else
                 {
                     MessageBox.Show("등록 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                    return;
                 }
             }
             else if (clickState == "Edit")
@@ -233,6 +258,8 @@ namespace Team2_Project
                 else
                 {
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                    return;
                 }
             }
             clickState = "";    //클릭상태 초기화

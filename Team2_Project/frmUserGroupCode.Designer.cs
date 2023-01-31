@@ -33,10 +33,10 @@ namespace Team2_Project
             this.label4 = new System.Windows.Forms.Label();
             this.cboUseYN1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblGroupCode = new System.Windows.Forms.Label();
             this.txtGroupCode2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblGroupName = new System.Windows.Forms.Label();
             this.cboAdUseYN2 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -94,10 +94,10 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.cboAdUseYN2);
             this.pnlArea.Controls.Add(this.label9);
             this.pnlArea.Controls.Add(this.label10);
-            this.pnlArea.Controls.Add(this.label8);
+            this.pnlArea.Controls.Add(this.lblGroupName);
             this.pnlArea.Controls.Add(this.label6);
             this.pnlArea.Controls.Add(this.txtGroupCode2);
-            this.pnlArea.Controls.Add(this.label5);
+            this.pnlArea.Controls.Add(this.lblGroupCode);
             this.pnlArea.Controls.Add(this.label7);
             this.pnlArea.Size = new System.Drawing.Size(1326, 60);
             // 
@@ -151,17 +151,17 @@ namespace Team2_Project
             this.label7.TabIndex = 18;
             this.label7.Text = "*";
             // 
-            // label5
+            // lblGroupCode
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblGroupCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(40, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 17);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "사용자 그룹 코드";
+            this.lblGroupCode.AutoSize = true;
+            this.lblGroupCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblGroupCode.Location = new System.Drawing.Point(40, 18);
+            this.lblGroupCode.Name = "lblGroupCode";
+            this.lblGroupCode.Size = new System.Drawing.Size(114, 17);
+            this.lblGroupCode.TabIndex = 19;
+            this.lblGroupCode.Text = "사용자 그룹 코드";
             // 
             // txtGroupCode2
             // 
@@ -181,17 +181,17 @@ namespace Team2_Project
             this.label6.TabIndex = 21;
             this.label6.Text = "*";
             // 
-            // label8
+            // lblGroupName
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblGroupName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(415, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 17);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "사용자 그룹명";
+            this.lblGroupName.AutoSize = true;
+            this.lblGroupName.BackColor = System.Drawing.Color.Transparent;
+            this.lblGroupName.Location = new System.Drawing.Point(415, 18);
+            this.lblGroupName.Name = "lblGroupName";
+            this.lblGroupName.Size = new System.Drawing.Size(96, 17);
+            this.lblGroupName.TabIndex = 22;
+            this.lblGroupName.Text = "사용자 그룹명";
             // 
             // cboAdUseYN2
             // 
@@ -312,10 +312,10 @@ namespace Team2_Project
         private System.Windows.Forms.ComboBox cboAdUseYN2;
         private System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblGroupName;
         protected System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtGroupCode2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblGroupCode;
         protected System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dgvGroup;
         private System.Windows.Forms.TextBox txtGroupNM1;

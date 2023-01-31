@@ -168,11 +168,13 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"delete from UserGroup_Master
-                               where UserGroup_Code = @UserGroup_Code";
+                               where UserGroup_Code = @UserGroup_Code
+                               select @@ERROR";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
                     cmd.Parameters.AddWithValue("@UserGroup_Code", userGrpCode);
+                    Debug.WriteLine(cmd.CommandText);
                     int result = Convert.ToInt32(cmd.ExecuteScalar());
                     return result;
                 }
@@ -180,7 +182,10 @@ namespace Team2_Project_DAO
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return -1;
+                if (err.Message.Contains("REFERENCE 제약 조건"))
+                    return -9;
+                else
+                    return -1;
             }
             finally
             {
