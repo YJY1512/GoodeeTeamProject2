@@ -29,12 +29,16 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChangePassword));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCheckPwd = new System.Windows.Forms.TextBox();
             this.txtNewPW = new System.Windows.Forms.TextBox();
             this.txtCheckNewPW = new System.Windows.Forms.TextBox();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -91,12 +95,33 @@ namespace Team2_Project
             this.txtCheckNewPW.Size = new System.Drawing.Size(331, 25);
             this.txtCheckNewPW.TabIndex = 5;
             // 
+            // btnCheck
+            // 
+            this.btnCheck.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCheck.ImageIndex = 0;
+            this.btnCheck.ImageList = this.imageList1;
+            this.btnCheck.Location = new System.Drawing.Point(530, 38);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(28, 25);
+            this.btnCheck.TabIndex = 6;
+            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "check (1).png");
+            this.imageList1.Images.SetKeyName(1, "check (2).png");
+            // 
             // frmChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(772, 421);
+            this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.txtCheckNewPW);
             this.Controls.Add(this.txtNewPW);
             this.Controls.Add(this.txtCheckPwd);
@@ -105,7 +130,7 @@ namespace Team2_Project
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmChangePassword";
             this.Text = "frmChangePassword";
             this.Load += new System.EventHandler(this.frmChangePassword_Load);
@@ -122,5 +147,7 @@ namespace Team2_Project
         private System.Windows.Forms.TextBox txtCheckPwd;
         private System.Windows.Forms.TextBox txtNewPW;
         private System.Windows.Forms.TextBox txtCheckNewPW;
+        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

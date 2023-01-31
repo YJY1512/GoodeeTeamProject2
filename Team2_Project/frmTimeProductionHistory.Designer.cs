@@ -38,6 +38,7 @@ namespace Team2_Project
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cboWoStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
@@ -48,7 +49,6 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ucProcessCode = new Team2_Project.Controls.ucSearch();
-            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -87,6 +87,11 @@ namespace Team2_Project
             this.pnlList.Location = new System.Drawing.Point(0, 164);
             this.pnlList.Size = new System.Drawing.Size(1834, 747);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.Size = new System.Drawing.Size(86, 18);
+            this.lblTitle.Text = "작업지시목록";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,6 +122,7 @@ namespace Team2_Project
             this.dgvData.RowTemplate.Height = 23;
             this.dgvData.Size = new System.Drawing.Size(1834, 276);
             this.dgvData.TabIndex = 1;
+            this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
             // panel2
             // 
@@ -148,9 +154,9 @@ namespace Team2_Project
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(40, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 18);
+            this.label3.Size = new System.Drawing.Size(91, 18);
             this.label3.TabIndex = 0;
-            this.label3.Text = "소제목";
+            this.label3.Text = "시간대별 실적";
             // 
             // panel1
             // 
@@ -160,6 +166,23 @@ namespace Team2_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1834, 467);
             this.panel1.TabIndex = 0;
+            // 
+            // chtData
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
+            this.chtData.Location = new System.Drawing.Point(152, 126);
+            this.chtData.Name = "chtData";
+            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chtData.Series.Add(series1);
+            this.chtData.Size = new System.Drawing.Size(1382, 256);
+            this.chtData.TabIndex = 0;
+            this.chtData.Text = "chart1";
             // 
             // cboWoStatus
             // 
@@ -200,6 +223,7 @@ namespace Team2_Project
             this.ucWcCode.Name = "ucWcCode";
             this.ucWcCode.Size = new System.Drawing.Size(340, 26);
             this.ucWcCode.TabIndex = 67;
+            this.ucWcCode.BtnClick += new System.EventHandler(this.ucWcCode_BtnClick);
             // 
             // dtpFrom
             // 
@@ -265,23 +289,7 @@ namespace Team2_Project
             this.ucProcessCode.Name = "ucProcessCode";
             this.ucProcessCode.Size = new System.Drawing.Size(340, 26);
             this.ucProcessCode.TabIndex = 75;
-            // 
-            // chtData
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chtData.Legends.Add(legend1);
-            this.chtData.Location = new System.Drawing.Point(162, 107);
-            this.chtData.Name = "chtData";
-            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chtData.Series.Add(series1);
-            this.chtData.Size = new System.Drawing.Size(1382, 256);
-            this.chtData.TabIndex = 0;
-            this.chtData.Text = "chart1";
+            this.ucProcessCode.BtnClick += new System.EventHandler(this.ucProcessCode_BtnClick);
             // 
             // frmTimeProductionHistory
             // 

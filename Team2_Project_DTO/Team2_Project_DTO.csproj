@@ -55,6 +55,7 @@
     <Compile Include="ProjectDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysCodeDTO.cs" />
+    <Compile Include="TimeProductionHistoryDTO.cs" />
     <Compile Include="UserCodeDTO.cs" />
     <Compile Include="UserGroupAuthorityDTO.cs" />
     <Compile Include="WorkCenterDTO.cs" />
