@@ -61,9 +61,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 150, visible:false);
             dgvData.MultiSelect = false;
 
-            OnSearch();
-
-            
+            OnSearch();            
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -84,30 +82,9 @@ namespace Team2_Project
                 AdvancedListBind(TPHistoryList, dgvData);
             }
 
-
             ChartData(); /////////// CHART TEST
         }
 
-        public void OnAdd()     //추가
-        {
-
-        }
-        public void OnEdit()    //수정
-        {
-
-        }
-        public void OnDelete()  //삭제
-        {
-
-        }
-        public void OnSave()    //저장
-        {
-
-        }
-        public void OnCancel()  //취소
-        {
-
-        }
         public void OnReLoad()  //새로고침
         {
             ResetTop();//검색리셋
@@ -168,7 +145,7 @@ namespace Team2_Project
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
-            //2. 작업지시 dgv를 선택하면 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
+            //2. 작업지시 dgv를 선택하면 작업지시번호 DB가져가서 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
 
 
 

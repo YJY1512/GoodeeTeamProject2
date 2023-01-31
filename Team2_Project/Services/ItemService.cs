@@ -59,6 +59,14 @@ namespace Team2_Project.Services
             return list;
         }
 
+        public List<CodeDTO> GetCode(string txt)
+        {
+            ItemDAO db = new ItemDAO();
+            List<CodeDTO> list = db.GetCode(txt);
+            db.Dispose();
+            return list;
+        }
+
         #region 미사용
         public List<ItemDTO> GetCurItem(string item)
         {

@@ -226,6 +226,31 @@ namespace Team2_Project_DAO
             }
         }
 
+        public List<CodeDTO> GetCode(string txt) //완제품/반제품 //값 안뜸
+        {
+            try
+            {
+                string sql = @"SELECT Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name
+                                FROM Sys_Mi_Master
+                                WHERE Sys_Ma_Code = @txt";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@txt", txt);
+                conn.Open();
+                List<CodeDTO> list = Helper.DataReaderMapToList<CodeDTO>(cmd.ExecuteReader());
+                conn.Close();
+                return list;
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+                return null;
+            }
+        }
+
+
+
+
         // 완제품 코드랑 이름만 가져오는 코드 - 0124 이승원
         public List<ItemDTO> GetItemCodeName()
         {
