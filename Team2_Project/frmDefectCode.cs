@@ -156,7 +156,7 @@ namespace Team2_Project
                     Def_Ma_Code = txtCode.Text,
                     Def_Ma_Name = txtName.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Ins_Emp = "" //수정필요
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
                 result = srv.InsertDefCode(true, code);
@@ -177,7 +177,7 @@ namespace Team2_Project
                     Def_Ma_Code = txtCode.Text,
                     Def_Ma_Name = txtName.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Up_Emp = "" //수정필요
+                    Up_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
                 bool result = srv.UpdateDefCode(true, code);

@@ -249,8 +249,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "시간대별 실적 조회")
             {
-                //OpenGMMainPage<>();
-                MessageBox.Show("빈 생성 화면입니다.");
+                OpenChildPage<frmTimeProductionHistory>();
             }
             else if (e.Node.Text == "작업지시 현황")
             {
@@ -502,6 +501,12 @@ namespace Team2_Project
         {
             this.Close();
             Application.Restart();
+        }
+
+        private void tsBtnSetting_Click(object sender, EventArgs e)
+        {
+            frmSettings pop = new frmSettings();
+            pop.ShowDialog(this);
         }
     }
     class TabTag

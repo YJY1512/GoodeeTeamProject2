@@ -73,5 +73,23 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public bool CheckUserpW(string id, string pw)
+        {
+            EmployeeDAO db = new EmployeeDAO();
+            bool result = db.CheckUserpW(id, pw);
+            db.Dispose();
+
+            return result;           
+        }
+
+        public bool UpdatePW(string id, string pw)
+        {
+            EmployeeDAO db = new EmployeeDAO();
+            bool result = db.UpdatePW(id, pw);
+            db.Dispose();
+
+            return result;
+        }
     }
 }
