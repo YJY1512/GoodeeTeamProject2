@@ -79,7 +79,9 @@ namespace Team2_Project
                 if (result)
                 {
                     MessageBox.Show("비밀번호 변경이 완료되었습니다.");
-                    SettingCancel();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                    //SettingCancel();
                 }
                 else
                 {
