@@ -52,6 +52,12 @@
     <Compile Include="Controls\ucList.Designer.cs">
       <DependentUpon>ucList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ucListSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucListSelect.Designer.cs">
+      <DependentUpon>ucListSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCalcPop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\ucList.resx">
       <DependentUpon>ucList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ucListSelect.resx">
+      <DependentUpon>ucListSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCalcPop.resx">
       <DependentUpon>frmCalcPop.cs</DependentUpon>
@@ -171,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

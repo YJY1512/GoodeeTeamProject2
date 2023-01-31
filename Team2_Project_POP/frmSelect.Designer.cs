@@ -35,13 +35,16 @@ namespace Team2_Project_POP
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lbl3 = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.ucListSelect1 = new Team2_Project_POP.Controls.ucListSelect();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +106,7 @@ namespace Team2_Project_POP
             // 
             this.panel4.AutoScroll = true;
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 120);
@@ -110,16 +114,25 @@ namespace Team2_Project_POP
             this.panel4.Size = new System.Drawing.Size(982, 560);
             this.panel4.TabIndex = 3;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.ucListSelect1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 120);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(982, 440);
+            this.panel2.TabIndex = 1;
+            // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.BackColor = System.Drawing.Color.Silver;
             this.panel5.Controls.Add(this.lbl3);
             this.panel5.Controls.Add(this.lbl2);
             this.panel5.Controls.Add(this.lbl1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(982, 93);
+            this.panel5.Size = new System.Drawing.Size(982, 120);
             this.panel5.TabIndex = 0;
             // 
             // lbl3
@@ -158,6 +171,15 @@ namespace Team2_Project_POP
             this.lbl1.Text = "상  태";
             this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ucListSelect1
+            // 
+            this.ucListSelect1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucListSelect1.Location = new System.Drawing.Point(-278, 84);
+            this.ucListSelect1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.ucListSelect1.Name = "ucListSelect1";
+            this.ucListSelect1.Size = new System.Drawing.Size(1800, 100);
+            this.ucListSelect1.TabIndex = 0;
+            // 
             // frmSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 45F);
@@ -174,6 +196,7 @@ namespace Team2_Project_POP
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -191,6 +214,8 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label lbl3;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Panel panel2;
+        private Controls.ucListSelect ucListSelect1;
     }
 }
 

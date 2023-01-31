@@ -19,16 +19,20 @@ namespace Team2_Project_POP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int screenWidh = ((Screen.PrimaryScreen.Bounds.Width - 120) / 100);
+            int screenWidh = ((Screen.PrimaryScreen.Bounds.Width - 120) / 50);
             lblTitle.Location = new Point(screenWidh * 50 / 2, 30);
 
-            lbl1.Location = new Point(20, 10);
-            lbl1.Size = new Size(360, 80);
-            //lbl2.Visible = lbl3.Visible = false;
-            lbl2.Location = new Point(400, 10);
-            lbl3.Location = new Point(2 * screenWidh + screenWidh * 12, 10);
-            lbl3.Size = new Size(720, 80);
+            lbl1.Location = new Point(20, 20);
+            lbl1.Size = new Size(screenWidh * 8, 80);
             
+            lbl2.Location = new Point(40 + lbl1.Size.Width, 20);
+            lbl2.Size = new Size(screenWidh * 26, 80);
+            
+            lbl3.Location = new Point(60 + lbl1.Size.Width + lbl2.Size.Width, 20);
+            lbl3.Size = new Size(screenWidh * 8, 80);
+
+            ucListSelect1.Location = new Point(0, 0);
+            ucListSelect1.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 120, 120);
         }
     }
 }
