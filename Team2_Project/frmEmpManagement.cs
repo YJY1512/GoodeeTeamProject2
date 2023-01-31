@@ -22,18 +22,19 @@ namespace Team2_Project
         string empId;
         DataTable dt;
         string[] use_YNSearchList = { "전체", "재직", "퇴직" };
+        //Dictionary를 Combobox에 바인딩
         Dictionary<char, string> use_YNList = new Dictionary<char, string>(){{ 'Y', "재직" }, { 'N', "퇴직" }};
         Dictionary<char, string> AuthList = new Dictionary<char, string>() { { 'A', "관리자" }, { 'U', "일반" } };
         int pnlStat;
-        int idx = -1;
+        int idx;
         List<CodeDTO> userGroupCodeList;
 
         public frmEmpManagement()
         {
             InitializeComponent();
             empSrv = new EmployeeService();
-            //int empid = ((frmMain)this.MdiParent).LoginEmpInfo.emp_id;
-            empId = "1000";
+            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            idx = -1;
         }
 
         private void frmEmpManagement_Load(object sender, EventArgs e)
@@ -65,6 +66,11 @@ namespace Team2_Project
             SetPannel(pnlArea, false);
         }
 
+        /// <summary>
+        /// 패널을 활성화/비활성화 한다
+        /// </summary>
+        /// <param name="pnl">활성화/비활성화 하고자 하는 패널</param>
+        /// <param name="val">활성화 시키려면 true, 비활성화 시키려면 false를 전달</param>
         private void SetPannel(Panel pnl, bool val)
         {
             foreach (Control ctrl in pnl.Controls)
@@ -95,6 +101,9 @@ namespace Team2_Project
             ucSearchGroup.OpenPop(popInfo);
         }
 
+        /// <summary>
+        /// 입력정보 패널을 초기화한다.
+        /// </summary>
         private void ClearPnl()
         {
             foreach (Control item in pnlArea.Controls)
@@ -120,8 +129,6 @@ namespace Team2_Project
             SetPannel(pnlSub, false);
             dgvEmp.ClearSelection();
             dgvEmp.Enabled = false;
-
-            //저장, 취소 빼고 다 비활성화
         }
 
         public void OnEdit()
@@ -140,8 +147,6 @@ namespace Team2_Project
             txtID.Enabled = false;
             SetPannel(pnlSub, false);
             dgvEmp.Enabled = false;
-
-            //저장, 취소 빼고 다 비활성화
         }
 
         public void OnDelete()
@@ -280,6 +285,11 @@ namespace Team2_Project
         {
             if(MessageBox.Show("취소하시겠습니까?", "취소확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
+                if (pnlStat == 1)
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                else
+                    ((frmMain)this.MdiParent).EditClickEvent();
+
                 return;
             }
 
@@ -307,6 +317,10 @@ namespace Team2_Project
             ClearPnl();
         }
 
+        /// <summary>
+        /// Filtering 메서드를 통해 전체 DataTable로부터 
+        /// 검색조건에 맞는 데이터만 가져온 새로운 DataTable을 DGV에 바인딩한다.
+        /// </summary>
         public void OnSearch()
         {
             DataTable temp = dt;
@@ -323,6 +337,14 @@ namespace Team2_Project
             ClearPnl();
         }
 
+        /// <summary>
+        /// Linq를 통해 DataTable에서 검색조건에 맞는 데이터만 추출한
+        /// 새로운 DataTable을 return한다.
+        /// </summary>
+        /// <param name="dt">원본 DataTable</param>
+        /// <param name="col">검색조건을 적용할 DataTable의 열</param>
+        /// <param name="str">검색조건</param>
+        /// <returns></returns>
         private DataTable Filtering(DataTable dt, string col, string str)
         {
             IEnumerable<DataRow> SortTable = null;
