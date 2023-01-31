@@ -67,6 +67,7 @@ namespace Team2_Project
             tStripTime.Text = DateTime.Now.ToShortTimeString();
             tStripName.Text = LoginEmp.User_Name;
             tStripDept.Text = LoginEmp.UserGroup_Name;
+            RoadClickEvent();
             OpenChildPage<frmDashBoard>();
             
         }
@@ -436,17 +437,26 @@ namespace Team2_Project
         //}
 
         #region 버튼 클릭 이벤트
+        public void RoadClickEvent()
+        {
+            btnSave.Enabled = btnCancel.Enabled = false;
+            btnSave.BackColor = btnCancel.BackColor = Color.DarkGray;
+        }
         public void AddClickEvent() //추가 버튼 클릭시
         {
             btnAdd.BackColor = Color.White;            
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
+            btnSave.Enabled = btnCancel.Enabled = true;
             btnSearch.BackColor = btnEdit.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
+            btnSave.BackColor = btnCancel.BackColor = Color.FromArgb(211, 226, 223);
         }
         public void EditClickEvent() // 수정 버튼 클릭시 
         {
             btnEdit.BackColor = Color.White;
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
+            btnSave.Enabled = btnCancel.Enabled = true;
             btnSearch.BackColor = btnAdd.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
+            btnSave.BackColor = btnCancel.BackColor = Color.FromArgb(211, 226, 223);
         }
         void SaveOrCancelClickEvent()   //저장 or 취소 버튼 클릭시  
         {
@@ -461,12 +471,14 @@ namespace Team2_Project
             {
                 btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = true;
                 btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor =  btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
+                RoadClickEvent();
             }
         }
         public void BtnEditReturn(bool bactive) //셀 선택없이 수정버튼 클릭시 값 초기화 이벤트
         {
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = bactive;
             btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
+            RoadClickEvent();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
