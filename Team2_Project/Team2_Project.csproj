@@ -138,6 +138,12 @@
     <Compile Include="frmChangePassword.Designer.cs">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFavorite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFavorite.Designer.cs">
+      <DependentUpon>frmFavorite.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,7 @@
     <Compile Include="Services\PlanService.cs" />
     <Compile Include="Services\ProcessMasterService.cs" />
     <Compile Include="Services\SysCodeService.cs" />
+    <Compile Include="Services\TimeProductionHistoryService.cs" />
     <Compile Include="Services\UserCodeService.cs" />
     <Compile Include="Services\UserGroupAuthorityService.cs" />
     <Compile Include="Services\WorkCenterService.cs" />
@@ -348,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDefectCodeDetail.resx">
       <DependentUpon>frmDefectCodeDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFavorite.resx">
+      <DependentUpon>frmFavorite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

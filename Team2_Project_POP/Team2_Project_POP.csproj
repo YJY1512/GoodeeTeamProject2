@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PoPService.cs" />
     <EmbeddedResource Include="Controls\ucList.resx">
       <DependentUpon>ucList.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,8 +182,16 @@
   <ItemGroup>
     <None Include="Resources\close_grey.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Team2_Project_DAO\Team2_Project_DAO.csproj">
+      <Project>{21001790-0411-401e-82f6-65024ccb14bb}</Project>
+      <Name>Team2_Project_DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Team2_Project_DTO\Team2_Project_DTO.csproj">
+      <Project>{4366b757-e181-427e-9f4a-5e6ae4301955}</Project>
+      <Name>Team2_Project_DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

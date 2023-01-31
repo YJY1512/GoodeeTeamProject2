@@ -23,6 +23,9 @@ namespace Team2_Project
         CommonPop<WorkCenterDTO> wcCodePop;
         CommonPop<ItemDTO> itemCodePop;
 
+        DataTable ReqDt;
+        DataTable planDt;
+
         public frmPlan()
         {
             InitializeComponent();
@@ -52,7 +55,6 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvReq, "Item_Code", "Item_Code", visible: false);
 
             CommonCodeUtil.UseYNComboBinding(cboReqStat);
-            cboReqStat.SelectedIndex = 0;
 
             //생산요청 tab
             DataGridViewUtil.SetInitDataGridView(dgvWcPlan);
@@ -64,24 +66,28 @@ namespace Team2_Project
             //생산계획 tab
             DataGridViewUtil.SetInitDataGridView(dgvPlan);
 
-            SetInit();
-            LoadData();
+            tab1SetInit();
+            tab1LoadData();
         }
 
-        private void LoadData()
+        #region tabPage1 (생산요청tab)
+        private void tab1LoadData()
         {
-            DataTable dt = srv.GetPlanReq(dtpReqFrom.Value.ToShortDateString(), dtpReqTo.Value.ToShortDateString());
-            dgvReq.DataSource = dt;
+            ReqDt = srv.GetPlanReq(dtpReqFrom.Value.ToShortDateString(), dtpReqTo.Value.ToShortDateString());
+            dgvReq.DataSource = ReqDt;
 
-            DgvWcPlanBinding(dt);
+            DgvWcPlanBinding(ReqDt);
         }
 
-        private void SetInit()
+        private void tab1SetInit()
         {
             dtpReqFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dtpReqTo.Value = dtpReqFrom.Value.AddMonths(1).AddDays(-1);
             dtpDue.Format = DateTimePickerFormat.Custom;
             dtpDue.CustomFormat = " ";
+
+            ucProd._Code = ucProd._Name = "";
+            cboReqStat.SelectedIndex = 0;
         }
 
         private void DgvWcPlanBinding(DataTable dt)
@@ -126,6 +132,7 @@ namespace Team2_Project
             ucProd.OpenPop(itemCodePop);
         }
 
+
         private void dgvReq_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
@@ -166,39 +173,11 @@ namespace Team2_Project
 
         }
 
-        //데이터그리드뷰 숫자만 입력 가능하게
-        private void dgvReq_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            string colName = dgvReq.CurrentCell.OwningColumn.Name;
-
-            if (colName == "In_Plan_Qty")
-                e.Control.KeyPress += CheckIsNum;
-            else
-                e.Control.KeyPress -= CheckIsNum;
-        }
-
-        private void CheckIsNum(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
-        }
-
-        private void dgvReq_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            dgvReq.Columns["In_Plan_Qty"].ReadOnly = true;
-
-            if (e.ColumnIndex == dgvReq.Columns["In_Plan_Qty"].Index)
-            {
-                DataTable newDt = (DataTable)dgvReq.DataSource;
-                DgvWcPlanBinding(newDt);
-            }
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             List<PlanDTO> plan = new List<PlanDTO>();
 
-            foreach(DataGridViewRow row in dgvReq.Rows)
+            foreach (DataGridViewRow row in dgvReq.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
@@ -236,11 +215,149 @@ namespace Team2_Project
             if (result)
             {
                 MessageBox.Show("계획생성이 완료되었습니다.");
-                LoadData();
+                tab1LoadData();
             }
             else
             {
                 MessageBox.Show("계획생성 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+        }
+
+
+        //데이터그리드뷰 숫자만 입력 가능하게
+        private void dgvReq_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            string colName = dgvReq.CurrentCell.OwningColumn.Name;
+
+            if (colName == "In_Plan_Qty")
+                e.Control.KeyPress += CheckIsNum;
+            else
+                e.Control.KeyPress -= CheckIsNum;
+        }
+
+        private void CheckIsNum(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void dgvReq_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvReq.Columns["In_Plan_Qty"].ReadOnly = true;
+
+            if (e.ColumnIndex == dgvReq.Columns["In_Plan_Qty"].Index)
+            {
+                DataTable newDt = (DataTable)dgvReq.DataSource;
+                DgvWcPlanBinding(newDt);
+            }
+        }
+
+        #endregion
+
+
+
+        #region Main 버튼 클릭이벤트
+        public void OnSearch()  //검색 
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                DateTime fromDt = dtpReqFrom.Value;
+                DateTime toDt = dtpReqTo.Value;
+
+                string dueDt = (dtpDue.Format == DateTimePickerFormat.Custom) ? null : dtpDue.Value.ToShortDateString();
+                string itemCode = ucProd._Code;
+                string planYN = (cboReqStat.SelectedItem.ToString() == "전체")? "" : cboReqStat.SelectedItem.ToString();
+
+
+                var filter = from row in ReqDt.AsEnumerable()
+                             where row.Field<DateTime>("Req_Date") >= fromDt
+                                  && row.Field<DateTime>("Req_Date") <= toDt
+                                  && row.Field<string>("Item_Code").Contains(itemCode)
+                                  && row.Field<string>("Plan_YN").Contains(planYN)
+                             select row;
+
+                if (filter.Count() > 0 && dueDt != null)
+                {
+                    filter = from row in filter
+                             where row.Field<DateTime>("Delivery_Date") == Convert.ToDateTime(dueDt)
+                             select row;                                            
+                }
+
+                if (filter.Count() < 1)
+                {
+                    dgvReq.DataSource = null;
+                    return;
+                }
+
+                dgvReq.DataSource = filter.CopyToDataTable();
+            }
+        }
+
+        public void OnAdd()     //추가
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+            }
+        }
+
+        public void OnEdit()    //수정
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+            }
+        }
+
+        public void OnDelete()  //삭제
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+            }
+        }
+
+        public void OnSave()    //저장
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+            }
+        }
+
+        public void OnCancel()  //취소
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+            }
+
+        }
+
+        public void OnReLoad()  //새로고침
+        {
+            if (tabControl1.TabIndex == 0)
+            {
+                tab1SetInit();
+                tab1LoadData();
+            }
+        }
+
+        #endregion
+
+        private void dtpDue_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpDue.Format == DateTimePickerFormat.Custom)
+            {
+                dtpDue.Format = DateTimePickerFormat.Short;
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1 && planDt == null)
+            {
+
             }
         }
     }
