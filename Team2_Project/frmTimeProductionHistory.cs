@@ -36,27 +36,29 @@ namespace Team2_Project
             cboWoStatus.Items.Add("생산중지");
             cboWoStatus.Items.Add("현장마감");
             cboWoStatus.Items.Add("작업지시마감"); //추후 DB에서 CODE 가져오기
+            cboWoStatus.SelectedIndex = 0;
+            cboWoStatus.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
             //작업지시목록 : 작업지시번호, 작업지시일자, 작업지시수량, 계획수량단위, 품목코드, 품목명, 작업장, 생산일자, 생산시작, 생산종료, 투입, 산출, 생산수량, 불량수량
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "Wo_Status", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "계획수량단위", "Plan_Unit", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일자", "Prd_Date", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산시작", "Prd_StartTime", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산종료", "Prd_EndTime", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입", "In_Qty_Main", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출", "Out_Qty_Main", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "Prd_Qty", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "Def_Qty", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 200, visible:false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "Wo_Status", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "계획수량단위", "Plan_Unit", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장", "", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일자", "Prd_Date", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산시작", "Prd_StartTime", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산종료", "Prd_EndTime", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "In_Qty_Main", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "Out_Qty_Main", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "Prd_Qty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "Def_Qty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 150, visible:false);
             dgvData.MultiSelect = false;
 
 
@@ -82,7 +84,6 @@ namespace Team2_Project
                 //var list = TPHistoryList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
                 AdvancedListBind(TPHistoryList, dgvData);
             }
-
         }
 
         public void OnAdd()     //추가
@@ -107,15 +108,32 @@ namespace Team2_Project
         }
         public void OnReLoad()  //새로고침
         {
-
+            ResetTop();//검색리셋
+            OnSearch();//로드
         }
         #endregion
 
+        private void ResetTop() //검색 리셋
+        {
+            ResetDtp();
+            cboWoStatus.SelectedIndex = 0;
+            ucProcessCode._Code = ucProcessCode._Name = "";
+            ucWcCode._Code = ucProcessCode._Name = "";            
+        }
+
+        private void ResetDtp() //날짜리셋
+        {
+            dtpFrom.Value = DateTime.Now.AddDays(-7);
+            dtpTo.Value = DateTime.Now;
+        }
+
         private void ucProcessCode_BtnClick(object sender, EventArgs e)
         {
-            //var list = (from g in TPHistoryList
-            //            group g by g.Process_Code ).ToList();
-            var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
+            if (TPHistoryList == null || TPHistoryList.Count() < 1) return;
+
+                //var list = (from g in TPHistoryList
+                //            group g by g.Process_Code ).ToList();
+                var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
 
             List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
             col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
@@ -130,6 +148,8 @@ namespace Team2_Project
 
         private void ucWcCode_BtnClick(object sender, EventArgs e)
         {
+            if (TPHistoryList == null || TPHistoryList.Count() < 1) return;
+
             var list = TPHistoryList.GroupBy((g) => g.Wc_Code).Select((g) => g.FirstOrDefault()).ToList();
             List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
             col.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
@@ -144,6 +164,9 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+
+
 
         }
     }

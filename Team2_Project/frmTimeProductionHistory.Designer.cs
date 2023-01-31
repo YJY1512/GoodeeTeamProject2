@@ -29,9 +29,9 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -86,6 +86,11 @@ namespace Team2_Project
             this.pnlList.Controls.Add(this.splitContainer1);
             this.pnlList.Location = new System.Drawing.Point(0, 164);
             this.pnlList.Size = new System.Drawing.Size(1834, 747);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Size = new System.Drawing.Size(86, 18);
+            this.lblTitle.Text = "작업지시목록";
             // 
             // splitContainer1
             // 
@@ -149,9 +154,9 @@ namespace Team2_Project
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(40, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 18);
+            this.label3.Size = new System.Drawing.Size(91, 18);
             this.label3.TabIndex = 0;
-            this.label3.Text = "소제목";
+            this.label3.Text = "시간대별 실적";
             // 
             // panel1
             // 
@@ -164,17 +169,17 @@ namespace Team2_Project
             // 
             // chtData
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chtData.Legends.Add(legend3);
-            this.chtData.Location = new System.Drawing.Point(162, 107);
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
+            this.chtData.Location = new System.Drawing.Point(152, 126);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chtData.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chtData.Series.Add(series1);
             this.chtData.Size = new System.Drawing.Size(1382, 256);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart1";
