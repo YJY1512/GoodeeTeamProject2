@@ -27,17 +27,19 @@ namespace Team2_Project_DAO
         }
 
         
-        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh()
+        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh(string name, string use )
         {
             try
             {
-                string sql = @"select UserGroup_Code, UserGroup_Name, 
-                               case when Admin = 'Y' then '예' when Admin = 'N' then '아니오' end as Admin, 
+                string sql = @"select UserGroup_Code, UserGroup_Name, case when Admin = 'Y' then '예' when Admin = 'N' then '아니오' end as Admin, 
                                case when Use_YN = 'Y' then '예' when Use_YN = 'N' then '아니오' end as Use_YN 
-                               from UserGroup_Master";
-
+                                from UserGroup_Master
+                                where UserGroup_Name like '%' + @UserGroup_Name + '%' and Use_YN = @Use_YN";
+                
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@UserGroup_Name", name);
+                    cmd.Parameters.AddWithValue("@Use_YN", use);
                     conn.Open();
                     List<UserGroupAuthorityDTO> list = Helper.DataReaderMapToList<UserGroupAuthorityDTO>(cmd.ExecuteReader());
                     conn.Close();

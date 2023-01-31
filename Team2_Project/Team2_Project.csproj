@@ -150,6 +150,12 @@
     <Compile Include="frmFavorite.Designer.cs">
       <DependentUpon>frmFavorite.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSettingDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettingDashboard.Designer.cs">
+      <DependentUpon>frmSettingDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -406,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmScreen.resx">
       <DependentUpon>frmScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettingDashboard.resx">
+      <DependentUpon>frmSettingDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>

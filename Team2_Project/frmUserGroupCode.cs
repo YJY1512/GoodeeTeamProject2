@@ -19,7 +19,8 @@ namespace Team2_Project
         List<UserGroupAuthorityDTO> codeList;
         string clickState = "";
         string empID;
-        public frmUserGroupCode()
+        Dictionary<string, string> useList = new Dictionary<string, string>(){{ "Y", "예" }, { "N", "아니요" }};
+    public frmUserGroupCode()
         {
             InitializeComponent();
         }
@@ -38,6 +39,9 @@ namespace Team2_Project
             CommonCodeUtil.UseYNComboBinding(cboUseYN1);
             cboUseYN1.SelectedIndex = 0;
             CommonCodeUtil.UseYNComboBinding(cboAdUseYN2, false);
+            cboUseYN1.DataSource = new BindingSource(useList, null);
+            cboUseYN1.DisplayMember = "Value";
+            cboUseYN1.ValueMember = "Key";
             CommonCodeUtil.UseYNComboBinding(cboUseYN2, false);
 
             SetInitEditPnl();
@@ -109,8 +113,9 @@ namespace Team2_Project
         public void OnSearch()  //검색
         {
             string grpNM = txtGroupNM1.Text;
-            string useYN = (cboUseYN1.SelectedItem.ToString() == "전체") ? "" : cboUseYN1.SelectedItem.ToString();
-            codeList = srv.GetUserGroupCodeSearh();
+            //string useYN = (cboUseYN1.SelectedItem.ToString() == "전체") ? "" : cboUseYN1.SelectedItem.ToString();
+            string useYN = cboUseYN1.SelectedValue.ToString(); 
+            codeList = srv.GetUserGroupCodeSearh(grpNM, useYN);
             if (string.IsNullOrWhiteSpace(txtGroupNM1.Text) && cboUseYN1.SelectedIndex == 0)   //공백일때
             {
                 LoadData();
