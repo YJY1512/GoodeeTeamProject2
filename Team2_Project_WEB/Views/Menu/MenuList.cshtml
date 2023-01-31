@@ -3,7 +3,7 @@
          with font-awesome or any other icon font library -->
     <li class="nav-item menu-@(ViewBag.SelectedAM == null || ViewBag.SelectedAM == ViewBag.MenuList[0].MenuAM ? "close" : "open")">
         <a href="#" class="nav-link @(ViewBag.SelectedAM == null || ViewBag.SelectedAM == ViewBag.MenuList[0].MenuAM ? "" : "active")">
-            <i class="nav-icon fas fa-laptop"></i>
+            <i class="nav-icon fas fa-chart-bar"></i>
             <p>
                 데이터 분석
                 <i class="right fas fa-angle-left"></i>
@@ -15,7 +15,7 @@
             {
                 <li class="nav-item active">
                     <a href="/Home/@ViewBag.MenuList[i].MenuAM?page=1" class="nav-link @(ViewBag.SelectedAM == ViewBag.MenuList[i].MenuAM ? "active" : "")">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fas fa-list nav-icon"></i>
                         <p>@ViewBag.MenuList[i].MenuName</p>
                     </a>
                 </li>
@@ -24,7 +24,7 @@
     </li>
     <li class="nav-item @(ViewBag.SelectedAM == ViewBag.MenuList[0].MenuAM ? "active" : "")">
         <a href="/Home/Schedule?page=1" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-calendar-alt"></i>
             <p>
                 @ViewBag.MenuList[0].MenuName
             </p>
