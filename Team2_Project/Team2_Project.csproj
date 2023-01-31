@@ -280,6 +280,7 @@
     <Compile Include="Services\PlanService.cs" />
     <Compile Include="Services\ProcessMasterService.cs" />
     <Compile Include="Services\SysCodeService.cs" />
+    <Compile Include="Services\TimeProductionHistoryService.cs" />
     <Compile Include="Services\UserCodeService.cs" />
     <Compile Include="Services\UserGroupAuthorityService.cs" />
     <Compile Include="Services\WorkCenterService.cs" />

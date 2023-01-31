@@ -29,15 +29,16 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cboWoStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
@@ -48,7 +49,6 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ucProcessCode = new Team2_Project.Controls.ucSearch();
-            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -117,6 +117,7 @@ namespace Team2_Project
             this.dgvData.RowTemplate.Height = 23;
             this.dgvData.Size = new System.Drawing.Size(1834, 276);
             this.dgvData.TabIndex = 1;
+            this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
             // panel2
             // 
@@ -161,6 +162,23 @@ namespace Team2_Project
             this.panel1.Size = new System.Drawing.Size(1834, 467);
             this.panel1.TabIndex = 0;
             // 
+            // chtData
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chtData.Legends.Add(legend3);
+            this.chtData.Location = new System.Drawing.Point(162, 107);
+            this.chtData.Name = "chtData";
+            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chtData.Series.Add(series3);
+            this.chtData.Size = new System.Drawing.Size(1382, 256);
+            this.chtData.TabIndex = 0;
+            this.chtData.Text = "chart1";
+            // 
             // cboWoStatus
             // 
             this.cboWoStatus.FormattingEnabled = true;
@@ -200,6 +218,7 @@ namespace Team2_Project
             this.ucWcCode.Name = "ucWcCode";
             this.ucWcCode.Size = new System.Drawing.Size(340, 26);
             this.ucWcCode.TabIndex = 67;
+            this.ucWcCode.BtnClick += new System.EventHandler(this.ucWcCode_BtnClick);
             // 
             // dtpFrom
             // 
@@ -265,23 +284,7 @@ namespace Team2_Project
             this.ucProcessCode.Name = "ucProcessCode";
             this.ucProcessCode.Size = new System.Drawing.Size(340, 26);
             this.ucProcessCode.TabIndex = 75;
-            // 
-            // chtData
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chtData.Legends.Add(legend1);
-            this.chtData.Location = new System.Drawing.Point(162, 107);
-            this.chtData.Name = "chtData";
-            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chtData.Series.Add(series1);
-            this.chtData.Size = new System.Drawing.Size(1382, 256);
-            this.chtData.TabIndex = 0;
-            this.chtData.Text = "chart1";
+            this.ucProcessCode.BtnClick += new System.EventHandler(this.ucProcessCode_BtnClick);
             // 
             // frmTimeProductionHistory
             // 
