@@ -20,6 +20,7 @@ namespace Team2_Project
         List<WorkCenterDTO> wcList;
         List<CodeDTO> code;
         List<ProcessMasterDTO> processList = null;
+        Dictionary<string, string> useList = new Dictionary<string, string>() { { "Y", "예" }, { "N", "아니요" } };
         string empID;       
         string clickState = "";
         public frmWorkCenter()
@@ -33,23 +34,26 @@ namespace Team2_Project
             ComboBoxCode();
 
             DataGridViewUtil.SetInitDataGridView(dgvWorkShop);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 상태", "Wc_Status", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 코드", "Wc_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 명", "Wc_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹 명", "Wc_Group_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태", "Wo_Status_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "공정 코드", "Process_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "공정명", "Process_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "팔렛생성여부", "Pallet_YN", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "사용여부", "Use_YN", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "비고", "Remark", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 상태", "Wc_Status", 200, align : DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 코드", "Wc_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 명", "Wc_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 그룹 명", "Wc_Group_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 공정 코드", "Process_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 공정명", "Process_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 팔렛생성여부", "Pallet_YN", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 사용여부", "Use_YN", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 150);
 
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹", "Wc_Group",visible:false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태", "Wo_Status_Name", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태코드", "Wo_Status", visible: false);
             dgvWorkShop.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUseYN);
             cboSearchUseYN.SelectedIndex = 0;
+            cboSearchUseYN.DataSource = new BindingSource(useList, null);
+            cboSearchUseYN.DisplayMember = "Value";
+            cboSearchUseYN.ValueMember = "Key";
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             CommonCodeUtil.UseYNComboBinding(cboPalletYN, false);
             CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
@@ -58,13 +62,14 @@ namespace Team2_Project
 
 
             SetInitEditPnl();
-            LoadData();
+            processList = prosrv.SetData();
+            dgvWorkShop.DataSource = null;
         }
         private void LoadData()
         {
-            wcList = srv.GetWorkCenterInfo();
+            
             BindingSource wc = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
-            processList = prosrv.SetData();
+            
             dgvWorkShop.ClearSelection();
             dgvWorkShop.DataSource = null;
             dgvWorkShop.DataSource = wc;
@@ -120,7 +125,6 @@ namespace Team2_Project
             else if (clickState == "Edit")
             {
                 txtCenterName.Enabled = txtRemark.Enabled = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled = true;
-                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = 0;
             }
         }
         #endregion
@@ -132,16 +136,26 @@ namespace Team2_Project
             string groupCode = txtSearchCode.Text;
             string groupName = txtSearchName.Text;
             string processCode = ucSrchProcCode._Code;
-            string useYN = (cboSearchUseYN.SelectedItem.ToString() == "전체")? "" : cboSearchUseYN.SelectedItem.ToString();
+            string processName = ucSrchProcCode._Name;
+            string useYN = cboSearchUseYN.SelectedValue.ToString();
 
-            var list = (from g in wcList
-                        where g.Wc_Group.Contains(groupCode) && g.Wc_Group_Name.Contains(groupName) && g.Process_Code.Contains(processCode) && g.Use_YN.Contains(useYN)
-                        select g).ToList();
+            wcList = srv.GetWorkCenterInfo(groupCode, groupName, processCode, useYN);
+            if (string.IsNullOrWhiteSpace(txtSearchCode.Text) &&
+                string.IsNullOrWhiteSpace(txtSearchName.Text) &&
+                string.IsNullOrWhiteSpace(ucSrchProcCode._Code) &&
+                cboSearchUseYN.SelectedIndex == 0)
+            {
+                LoadData();
+            }
+            else
+            {
+                var list = (from g in wcList
+                            where g.Wc_Group.Contains(groupCode) && g.Wc_Group_Name.Contains(groupName) && g.Process_Code.Contains(processCode) && g.Use_YN.Contains(useYN)
+                            select g).ToList();
 
-            BindingSource wc = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
-            dgvWorkShop.DataSource = wc;
-            dgvWorkShop.Enabled = true;
-            SetInitEditPnl();
+                BindingSource wc = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
+                dgvWorkShop.DataSource = wc;
+            }
         }
         public void OnAdd()     //추가
         {
@@ -167,7 +181,7 @@ namespace Team2_Project
         }
         public void OnDelete()  //삭제
         {
-            if (dgvWorkShop.SelectedRows.Count < 1)                 // 셀 선택 안했을 때
+            if (string.IsNullOrWhiteSpace(txtCenterCode.Text))                 // 셀 선택 안했을 때
             {
                 MessageBox.Show("삭제할 항목을 선택하여 주세요.");
                 return;
@@ -183,9 +197,9 @@ namespace Team2_Project
                 {
                     MessageBox.Show("삭제에 성공하였습니다.");
                 }
-                else if (result == 3726)
+                else if (result == -9)
                 {
-                    MessageBox.Show("데이터를 삭제할 수 없습니다.");
+                    MessageBox.Show("사용되고 있는 데이터는 삭제할 수 없습니다.");
                 }
                 else
                 {
@@ -197,14 +211,43 @@ namespace Team2_Project
         }
         public void OnSave()    //저장
         {
-            if (string.IsNullOrWhiteSpace(txtCenterCode.Text) || string.IsNullOrWhiteSpace(txtCenterName.Text) || string.IsNullOrWhiteSpace(ucProcCode._Code))
+            if (string.IsNullOrWhiteSpace(txtCenterCode.Text)) 
             {
-                MessageBox.Show("필수 항목을 입력해주시기 바랍니다.");
+                MessageBox.Show($"{lblCenCode.Text}를 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
-            else if (cboPalletYN.SelectedIndex == 0 || cboWCGroup.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtCenterName.Text))
             {
-                MessageBox.Show("필수 항목을 입력해주시기 바랍니다.");
+                MessageBox.Show($"{lblCenName.Text}을 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(ucProcCode._Code))
+            {
+                MessageBox.Show($"{lblProCode.Text}를 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
             if (clickState == "Add")    //신규 추가
@@ -213,6 +256,7 @@ namespace Team2_Project
                 if (!result)                                        //PK값 중복되었을 때
                 {
                     MessageBox.Show("작업장 코드가 중복되었습니다. 다시 시도하여 주세요.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
                     return;
                 }
 
@@ -237,6 +281,8 @@ namespace Team2_Project
                 else
                 {
                     MessageBox.Show("등록 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                    return;
                 }
             }
             else if (clickState == "Edit")  //기본값 수정
@@ -251,7 +297,7 @@ namespace Team2_Project
                     Pallet_YN = (cboPalletYN.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Remark = txtRemark.Text,
-                    Ins_Emp = empID
+                    Up_Emp = empID
                 };
 
                 bool result = srv.UpdateWorkCenter(dto);
@@ -262,13 +308,11 @@ namespace Team2_Project
                 else
                 {
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                    return;
                 }
             }
-            clickState = "";    //클릭 상태 초기화
-            SetInitEditPnl();   //폼 하단 패널 clear 및 잠금 
-            OpenSearchPnl();    //검색 패널 잠금 해제
-            dgvWorkShop.Enabled = true; //dgv 잠금 해제
-            LoadData();         //초기 로드 화면
+            OnCancel();
         }
         public void OnCancel()  //취소
         {

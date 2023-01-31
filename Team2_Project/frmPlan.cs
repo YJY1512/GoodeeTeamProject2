@@ -357,7 +357,7 @@ namespace Team2_Project
         {
             if (tabControl1.SelectedIndex == 1 && planDt == null)
             {
-                srv.
+                //srv.
             }
         }
     }

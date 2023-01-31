@@ -30,10 +30,10 @@ namespace Team2_Project
             empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
 
             DataGridViewUtil.SetInitDataGridView(dgvGroup);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용자 그룹 코드", "UserGroup_Code", 250, align:DataGridViewContentAlignment.TopLeft);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용자 그룹명", "UserGroup_Name", 250, align: DataGridViewContentAlignment.TopLeft);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " Admin 여부", "Admin", 150, align: DataGridViewContentAlignment.TopLeft);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용 여부", "Use_YN", 150, align: DataGridViewContentAlignment.TopLeft);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용자 그룹 코드", "UserGroup_Code", 250);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용자 그룹명", "UserGroup_Name", 250);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " Admin 여부", "Admin", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용 여부", "Use_YN", 150);
             dgvGroup.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboUseYN1);
@@ -258,10 +258,6 @@ namespace Team2_Project
                 if (result)
                 {
                     MessageBox.Show("수정이 완료되었습니다.");
-                    dgvGroup.Enabled = true;
-                    dgvGroup.DataSource = null;
-                    SetInitEditPnl();
-                    dgvGroup.DataSource = codeList;
                 }
                 else
                 {
@@ -270,11 +266,7 @@ namespace Team2_Project
                     return;
                 }
             }
-            clickState = "";    //클릭상태 초기화
-            SetInitEditPnl();   //하단 패널 clear및 잠금
-            OpenSearchPnl();    //검색 패널 clear및 잠금해제
-            dgvGroup.Enabled = true; //dgv 잠금해제
-            LoadData();             //데이터 로드
+            OnCancel();
         }
         public void OnCancel()  //취소
         {

@@ -25,7 +25,7 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public List<WorkCenterDTO> GetWorkCenterInfo()
+        public List<WorkCenterDTO> GetWorkCenterInfo(string cencode, string name, string proCode, string use)
         {
             try
             {
@@ -33,13 +33,18 @@ namespace Team2_Project_DAO
                                       P.Process_Code, P.Process_Name , isnull(WC.Remark, '') Remark,  Wo_Status, SY.Sys_Mi_Name Wo_Status_Name,
                                		  case when WC.Use_YN = 'Y' then '예' when WC.Use_YN = 'N' then '아니오' end as Use_YN, 
                                		  case when Pallet_YN = 'Y' then '예' when Pallet_YN = 'N' then '아니오' end as Pallet_YN
-                               from WorkCenter_Master WC inner join Process_Master P on WC.Process_Code = P.Process_Code
-                               						     inner join Userdefine_Mi_Master UM on WC.Wc_Group = UM.Userdefine_Mi_Code
-                               						     inner join (select Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name, Sort_Index, Remark, Use_YN
-                                                              		  from Sys_Mi_Master
-                                                              		  where Sys_Ma_Code = 'WO_STATUS' or Sys_Ma_Code ='WC_STATUS') SY on WC.Wo_Status = SY.Sys_Mi_Code";
+                                from WorkCenter_Master WC inner join Process_Master P on WC.Process_Code = P.Process_Code
+                                        				  inner join Userdefine_Mi_Master UM on WC.Wc_Group = UM.Userdefine_Mi_Code
+                                        				  inner join (select Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name, Sort_Index, Remark, Use_YN
+                                                                 		from Sys_Mi_Master
+                                                                 	   where Sys_Ma_Code = 'WO_STATUS' or Sys_Ma_Code ='WC_STATUS') SY on WC.Wo_Status = SY.Sys_Mi_Code
+                                where Wc_Code like @Wc_Code and Wc_Name like @Wc_Name and P.Process_Code = @Process_Code and WC.Use_YN = @Use_YN";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Wc_Code","%" + cencode + "%");
+                    cmd.Parameters.AddWithValue("@Wc_Name","%" + name + "%");
+                    cmd.Parameters.AddWithValue("@Process_Code", proCode);
+                    cmd.Parameters.AddWithValue("@Use_YN", use);
                     conn.Open();
                     List<WorkCenterDTO> list = Helper.DataReaderMapToList<WorkCenterDTO>(cmd.ExecuteReader());
                     conn.Close();
@@ -151,12 +156,15 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = "Delete From WorkCenter_Master where Wc_Code = @Wc_Code";
+                string sql = @"Delete From WorkCenter_Master 
+                               where Wc_Code = @Wc_Code
+                               Select @@ERROR";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
                     cmd.Parameters.AddWithValue("@Wc_Code", wcCode);
+                    Debug.WriteLine(cmd.CommandText);
                     int result = Convert.ToInt32(cmd.ExecuteScalar());
                     return result;
                 }
@@ -165,7 +173,10 @@ namespace Team2_Project_DAO
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return -1;
+                if (err.Message.Contains("REFERENCE 제약 조건"))
+                    return -9;
+                else
+                    return -1;
             }
             finally
             {
