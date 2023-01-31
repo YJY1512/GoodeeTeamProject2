@@ -134,6 +134,8 @@ namespace Team2_Project
             // 
             // cboUseYN1
             // 
+            this.cboUseYN1.BackColor = System.Drawing.Color.White;
+            this.cboUseYN1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseYN1.FormattingEnabled = true;
             this.cboUseYN1.Location = new System.Drawing.Point(457, 16);
             this.cboUseYN1.Name = "cboUseYN1";
@@ -195,6 +197,8 @@ namespace Team2_Project
             // 
             // cboAdUseYN2
             // 
+            this.cboAdUseYN2.BackColor = System.Drawing.Color.White;
+            this.cboAdUseYN2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAdUseYN2.FormattingEnabled = true;
             this.cboAdUseYN2.Location = new System.Drawing.Point(838, 15);
             this.cboAdUseYN2.Name = "cboAdUseYN2";
@@ -245,6 +249,8 @@ namespace Team2_Project
             // 
             // cboUseYN2
             // 
+            this.cboUseYN2.BackColor = System.Drawing.Color.White;
+            this.cboUseYN2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseYN2.FormattingEnabled = true;
             this.cboUseYN2.Location = new System.Drawing.Point(1132, 15);
             this.cboUseYN2.Name = "cboUseYN2";

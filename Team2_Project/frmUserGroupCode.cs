@@ -29,10 +29,10 @@ namespace Team2_Project
             empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
 
             DataGridViewUtil.SetInitDataGridView(dgvGroup);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "사용자 그룹 코드", "UserGroup_Code", 250);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "사용자 그룹명", "UserGroup_Name", 250);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "Admin 여부", "Admin", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, "사용 여부", "Use_YN", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용자 그룹 코드", "UserGroup_Code", 250, align:DataGridViewContentAlignment.TopLeft);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용자 그룹명", "UserGroup_Name", 250, align: DataGridViewContentAlignment.TopLeft);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " Admin 여부", "Admin", 150, align: DataGridViewContentAlignment.TopLeft);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvGroup, " 사용 여부", "Use_YN", 150, align: DataGridViewContentAlignment.TopLeft);
             dgvGroup.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboUseYN1);
@@ -41,16 +41,17 @@ namespace Team2_Project
             CommonCodeUtil.UseYNComboBinding(cboUseYN2, false);
 
             SetInitEditPnl();
-            LoadData();
+            dgvGroup.DataSource = null;
         }
 
         private void LoadData()
         {
-            codeList = srv.GetUserGroupCodeSearh();
+            
             BindingSource gc = new BindingSource(new AdvancedList<UserGroupAuthorityDTO>(codeList), null);
+            dgvGroup.ClearSelection();
             dgvGroup.DataSource = null;
             dgvGroup.DataSource = gc;
-            dgvGroup.ClearSelection();
+            
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
@@ -100,7 +101,6 @@ namespace Team2_Project
             else if (clickState == "Edit")
             {
                 txtGroupNM2.Enabled = cboAdUseYN2.Enabled = cboUseYN2.Enabled = true;
-                cboAdUseYN2.SelectedIndex = cboUseYN2.SelectedIndex = 0;
             }
         }
         #endregion
@@ -110,19 +110,19 @@ namespace Team2_Project
         {
             string grpNM = txtGroupNM1.Text;
             string useYN = (cboUseYN1.SelectedItem.ToString() == "전체") ? "" : cboUseYN1.SelectedItem.ToString();
-
-            if (string.IsNullOrWhiteSpace(grpNM) || string.IsNullOrWhiteSpace(useYN))   //공백일때
+            codeList = srv.GetUserGroupCodeSearh();
+            if (string.IsNullOrWhiteSpace(txtGroupNM1.Text) && cboUseYN1.SelectedIndex == 0)   //공백일때
             {
-                dgvGroup.DataSource = null;
-                dgvGroup.DataSource = codeList;
-                return;
+                LoadData();
             }
-
-            var list = (from grp in codeList
-                        where grp.UserGroup_Name.Contains(grpNM) && grp.Use_YN.Contains(useYN)
-                        select grp).ToList();
-            BindingSource gc = new BindingSource(new AdvancedList<UserGroupAuthorityDTO>(codeList), null);
-            dgvGroup.DataSource = gc;
+            else
+            {
+                var list = (from grp in codeList
+                            where grp.UserGroup_Name.Contains(grpNM) && grp.Use_YN.Contains(useYN)
+                            select grp).ToList();
+                BindingSource gc = new BindingSource(new AdvancedList<UserGroupAuthorityDTO>(codeList), null);
+                dgvGroup.DataSource = gc;
+            }
         }
         public void OnAdd()     //추가
         {
@@ -161,7 +161,10 @@ namespace Team2_Project
 
                 if (result == 0)
                 {
-                    MessageBox.Show("삭제에 성공하였습니다.");
+                    if (cboAdUseYN2.SelectedIndex == 1)
+                        MessageBox.Show("삭제에 성공하였습니다.");
+                    else
+                        MessageBox.Show($"{txtGroupNM2.Text}는 Admin이기 때문에 삭제할 수 없습니다.");
                 }
                 else if (result == -9)
                 {
@@ -243,7 +246,7 @@ namespace Team2_Project
                     UserGroup_Name = txtGroupNM2.Text,
                     Admin = (cboAdUseYN2.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Use_YN = (cboUseYN2.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Ins_Emp = empID
+                    Up_Emp = empID
                 };
 
                 bool result = srv.UpdateUserGroup(group);
