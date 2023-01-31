@@ -506,7 +506,7 @@ namespace Team2_Project
         private void tsBtnSetting_Click(object sender, EventArgs e)
         {
             frmSettings pop = new frmSettings();
-            pop.ShowDialog();
+            pop.ShowDialog(this);
         }
     }
     class TabTag

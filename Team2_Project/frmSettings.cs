@@ -14,6 +14,8 @@ namespace Team2_Project
 {
     public partial class frmSettings : Form
     {
+        public EmployeeDTO LoginEmp { get; set; }
+
         public frmSettings()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace Team2_Project
 
         private void frmSettings_Load(object sender, EventArgs e)
         {
-            
+            this.LoginEmp = ((frmMain)this.Owner).LoginEmp;
             btnDashboard.BackColor = Color.FromArgb(211, 226, 223);
             btnChanPwd.BackColor = Color.White;
             OpenSettingPage<frmChangePassword>();

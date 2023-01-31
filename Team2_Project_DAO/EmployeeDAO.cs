@@ -31,7 +31,7 @@ namespace Team2_Project_DAO
 
         public EmployeeDTO GetLoginEmp(string userID, string userPw)
         {
-            string sql = @"select u.User_ID, User_Name, Customer_Code, User_Type, umas.UserGroup_Code, umas.UserGroup_Name, u.Use_YN
+            string sql = @"select u.User_ID, User_Name, Customer_Code,User_PW, User_Type, umas.UserGroup_Code, umas.UserGroup_Name, u.Use_YN
                            from UserGroup_Mapping umap inner join User_Master u on umap.User_ID = u.User_ID
                            inner join UserGroup_Master umas on umap.UserGroup_Code = umas.UserGroup_Code
                            where u.User_ID = @User_ID and PWDCOMPARE(@User_PW,User_PW) = 1 and u.Use_YN = 'Y'";
@@ -222,6 +222,59 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
             {
                 cmd.Parameters.AddWithValue("@User_ID", userId);
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
+
+        public bool CheckUserpW(string id, string pw)
+        {
+            try
+            {
+                string sql = @"select COUNT(*)
+                           from User_Master
+                           where User_ID = @User_ID and PWDCOMPARE(@User_PW, User_PW) = 1";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@User_ID", id);
+                    cmd.Parameters.AddWithValue("@User_PW", pw);
+
+                    int cnt = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return (cnt > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public bool UpdatePW(string id, string pw)
+        {
+            try
+            {
+                string sql = @"update User_Master
+                               set User_PW = PWDENCRYPT(@User_PW)
+                               where User_ID = @User_ID";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@User_PW", pw);
+                    cmd.Parameters.AddWithValue("@User_ID", id);
+
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }
