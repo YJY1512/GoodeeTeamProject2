@@ -85,6 +85,7 @@ namespace Team2_Project_POP.Controls
             this.Name = "ucListSelect";
             this.Size = new System.Drawing.Size(1800, 100);
             this.Load += new System.EventHandler(this.ucListSelect_Load);
+            this.MouseEnter += new System.EventHandler(this.ListMouseEnter);
             this.ResumeLayout(false);
 
         }

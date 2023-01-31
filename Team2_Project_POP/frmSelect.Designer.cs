@@ -40,11 +40,9 @@ namespace Team2_Project_POP
             this.lbl3 = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.ucListSelect1 = new Team2_Project_POP.Controls.ucListSelect();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +114,6 @@ namespace Team2_Project_POP
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.ucListSelect1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 120);
             this.panel2.Name = "panel2";
@@ -171,15 +168,6 @@ namespace Team2_Project_POP
             this.lbl1.Text = "상  태";
             this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ucListSelect1
-            // 
-            this.ucListSelect1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucListSelect1.Location = new System.Drawing.Point(-278, 84);
-            this.ucListSelect1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ucListSelect1.Name = "ucListSelect1";
-            this.ucListSelect1.Size = new System.Drawing.Size(1800, 100);
-            this.ucListSelect1.TabIndex = 0;
-            // 
             // frmSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 45F);
@@ -196,7 +184,6 @@ namespace Team2_Project_POP
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -215,7 +202,6 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Panel panel2;
-        private Controls.ucListSelect ucListSelect1;
     }
 }
 
