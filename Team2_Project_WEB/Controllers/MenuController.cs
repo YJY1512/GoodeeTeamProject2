@@ -24,6 +24,7 @@ namespace Team2_Project_WEB.Controllers
 
             ViewBag.MenuList = list;
             ViewBag.SelectedAM = am;
+            ViewBag.FAKit = WebConfigurationManager.AppSettings["FAKit"];
 
             return PartialView();
         }

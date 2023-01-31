@@ -26,8 +26,8 @@ namespace Team2_Project
         int stat;   //0 = 일반, 1 = 추가, 2 = 수정 상태
         //bool cellEditStat = false;
         int[] orangeCols = new int[] { 2, 6, 7, 9, 10 };
-        int dtpMinDays = 7;
-        int dtpMaxMonths = 3;
+        int dtpMinDays = 1;
+        int dtpMaxMonths = 0;
 
         public frmOrder()
         {
@@ -346,7 +346,8 @@ namespace Team2_Project
             DateTimePicker dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Short;
             dtp.MinDate = DateTime.Now.AddDays(dtpMinDays);
-            dtp.MaxDate = DateTime.Now.AddMonths(dtpMaxMonths);
+            if(dtpMaxMonths > 0)
+                dtp.MaxDate = DateTime.Now.AddMonths(dtpMaxMonths);
             dtp.Visible = true;
             if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
                 dtp.Value = DateTime.Parse(cell.Value.ToString());
