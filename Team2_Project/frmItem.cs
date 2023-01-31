@@ -18,6 +18,7 @@ namespace Team2_Project
     {
         ItemService srv = new ItemService();
         List<ItemDTO> itemList = new List<ItemDTO>();
+        List<CodeDTO> CodeList = new List<CodeDTO>();
         string situation = "";
 
         public frmItem()
@@ -74,6 +75,21 @@ namespace Team2_Project
 
         private void LoadData()
         {
+            //CodeList = srv.GetCode("ITEM_TYPE");
+            ////CommonCodeUtil.ComboBinding(cboTypeSC, CodeList, "ITEM_TYPE");
+
+            //var cboList = (from li in CodeList
+            //                   where li.Name == cboTypeSC.Text
+            //                   select new CodeDTO
+            //                   {
+            //                       Code = li.Code,
+            //                       Name = li.Name,
+            //                       Category = "ITEM_TYPE"
+            //                   }).ToList();
+            //CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
+
+
+
             cboTypeSC.Items.Add("전체");
             cboTypeSC.Items.Add("완제품");
             cboTypeSC.Items.Add("반제품");
