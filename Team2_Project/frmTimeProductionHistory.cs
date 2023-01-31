@@ -10,12 +10,13 @@ using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
 using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Team2_Project
 {
     public partial class frmTimeProductionHistory : Team2_Project.frmList
     {
-        TimeProductionHistoryService srv = new TimeProductionHistoryService();
+        AnalysisService srv = new AnalysisService();
         List<TimeProductionHistoryDTO> TPHistoryList = new List<TimeProductionHistoryDTO>();
 
         public frmTimeProductionHistory()
@@ -39,12 +40,11 @@ namespace Team2_Project
             cboWoStatus.SelectedIndex = 0;
             cboWoStatus.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
             //작업지시목록 : 작업지시번호, 작업지시일자, 작업지시수량, 계획수량단위, 품목코드, 품목명, 작업장, 생산일자, 생산시작, 생산종료, 투입, 산출, 생산수량, 불량수량
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "Wo_Status", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "Wo_Status", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "계획수량단위", "Plan_Unit", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
@@ -61,9 +61,9 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 150, visible:false);
             dgvData.MultiSelect = false;
 
-
-
             OnSearch();
+
+            
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -76,14 +76,16 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-
-            TPHistoryList = srv.GetTimeProductionHistory(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd"));
+            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd"));
 
             if (TPHistoryList != null && TPHistoryList.Count > 0)
             {
                 //var list = TPHistoryList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
                 AdvancedListBind(TPHistoryList, dgvData);
             }
+
+
+            ChartData(); /////////// CHART TEST
         }
 
         public void OnAdd()     //추가
@@ -118,7 +120,8 @@ namespace Team2_Project
             ResetDtp();
             cboWoStatus.SelectedIndex = 0;
             ucProcessCode._Code = ucProcessCode._Name = "";
-            ucWcCode._Code = ucProcessCode._Name = "";            
+            ucWcCode._Code = ucProcessCode._Name = "";
+            chkDefQty.Checked = false;
         }
 
         private void ResetDtp() //날짜리셋
@@ -164,10 +167,61 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
+            //2. 작업지시 dgv를 선택하면 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
 
 
 
 
+
+        }
+
+
+        public void ChartData()
+        {
+            TPHistoryList = srv.GetTimeProductionHistory();
+
+            chtData.Series.Clear();
+            chtData.Series.Add("생산량");
+            chtData.Series["생산량"].Points.Clear();            
+            chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;          
+            chtData.Series["생산량"].Color = Color.FromArgb(211, 226, 223);
+            chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", null); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
+
+            if (!chkDefQty.Checked)
+            {
+                chtData.Series.Add("불량");
+                chtData.Series["불량"].Points.Clear();
+                chtData.Series["불량"].ChartType = SeriesChartType.StackedColumn;
+                chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
+                chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", null); // X축: Time, Y축: Score
+            }
+
+            #region test
+            //(방법2)//////////////////
+
+            //chtData.Series["Series1"].Points.AddXY(10, 100);
+            //chtData.Series["Series1"].Points.AddXY(20, 200);
+            //chtData.Series["Series1"].Points.AddXY(30, 300);
+            //chtData.Series["Series1"].Points.AddXY(40, 400);
+
+            //List<string> x = new List<string> { "철수", "영희", "길동", "재동", "민희" };
+            //List<double> y = new List<double> { 80, 90, 85, 70, 95 };
+            //chtData.Series[0].Points.DataBindXY(x, y);
+
+
+
+
+            //(방법3)//////////////////
+            //List<Student> students = new List<Student>();
+            //for (int i = 8; i <= 24; i++)
+            //{
+            //    students.Add(new Student($"{i}시", i * 100));
+            //}
+            //chtData.Series[0].Points.DataBind(students, "Time", "Score", null); // X축: Time, Y축: Score
+            //                                                                    // (참고) DataBindTable() 사용시. (X축: Time, Y축: 자동검색)
+            //                                                                    //chtData.DataBindTable(students, "Time");
+            #endregion
         }
     }
 }
