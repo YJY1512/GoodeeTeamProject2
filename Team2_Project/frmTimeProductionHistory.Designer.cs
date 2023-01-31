@@ -29,22 +29,26 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.dgvData = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboTypeSC = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cboWoStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
-            this.ucCodeSearch = new Team2_Project.Controls.ucSearch();
+            this.ucWcCode = new Team2_Project.Controls.ucSearch();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
-            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.ucProcessCode = new Team2_Project.Controls.ucSearch();
+            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -52,21 +56,23 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.ucSearch1);
+            this.pnlSub.Controls.Add(this.ucProcessCode);
             this.pnlSub.Controls.Add(this.label7);
             this.pnlSub.Controls.Add(this.dtpTo);
-            this.pnlSub.Controls.Add(this.ucCodeSearch);
+            this.pnlSub.Controls.Add(this.ucWcCode);
             this.pnlSub.Controls.Add(this.dtpFrom);
             this.pnlSub.Controls.Add(this.label6);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.label9);
-            this.pnlSub.Controls.Add(this.cboTypeSC);
+            this.pnlSub.Controls.Add(this.cboWoStatus);
             this.pnlSub.Controls.Add(this.label5);
             this.pnlSub.Size = new System.Drawing.Size(1834, 121);
             // 
@@ -101,13 +107,16 @@ namespace Team2_Project
             this.splitContainer1.SplitterDistance = 276;
             this.splitContainer1.TabIndex = 0;
             // 
-            // panel1
+            // dgvData
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1834, 467);
-            this.panel1.TabIndex = 0;
+            this.dgvData.BackgroundColor = System.Drawing.Color.White;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.RowTemplate.Height = 23;
+            this.dgvData.Size = new System.Drawing.Size(1834, 276);
+            this.dgvData.TabIndex = 1;
             // 
             // panel2
             // 
@@ -143,13 +152,22 @@ namespace Team2_Project
             this.label3.TabIndex = 0;
             this.label3.Text = "소제목";
             // 
-            // cboTypeSC
+            // panel1
             // 
-            this.cboTypeSC.FormattingEnabled = true;
-            this.cboTypeSC.Location = new System.Drawing.Point(591, 14);
-            this.cboTypeSC.Name = "cboTypeSC";
-            this.cboTypeSC.Size = new System.Drawing.Size(155, 25);
-            this.cboTypeSC.TabIndex = 8;
+            this.panel1.Controls.Add(this.chtData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1834, 467);
+            this.panel1.TabIndex = 0;
+            // 
+            // cboWoStatus
+            // 
+            this.cboWoStatus.FormattingEnabled = true;
+            this.cboWoStatus.Location = new System.Drawing.Point(591, 14);
+            this.cboWoStatus.Name = "cboWoStatus";
+            this.cboWoStatus.Size = new System.Drawing.Size(155, 25);
+            this.cboWoStatus.TabIndex = 8;
             // 
             // label5
             // 
@@ -171,17 +189,17 @@ namespace Team2_Project
             this.dtpTo.TabIndex = 69;
             this.dtpTo.Value = new System.DateTime(2023, 1, 30, 0, 0, 0, 0);
             // 
-            // ucCodeSearch
+            // ucWcCode
             // 
-            this.ucCodeSearch._Code = "";
-            this.ucCodeSearch._Name = "";
-            this.ucCodeSearch.BackColor = System.Drawing.Color.Transparent;
-            this.ucCodeSearch.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucCodeSearch.Location = new System.Drawing.Point(110, 77);
-            this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.ucCodeSearch.Name = "ucCodeSearch";
-            this.ucCodeSearch.Size = new System.Drawing.Size(340, 26);
-            this.ucCodeSearch.TabIndex = 67;
+            this.ucWcCode._Code = "";
+            this.ucWcCode._Name = "";
+            this.ucWcCode.BackColor = System.Drawing.Color.Transparent;
+            this.ucWcCode.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucWcCode.Location = new System.Drawing.Point(110, 77);
+            this.ucWcCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ucWcCode.Name = "ucWcCode";
+            this.ucWcCode.Size = new System.Drawing.Size(340, 26);
+            this.ucWcCode.TabIndex = 67;
             // 
             // dtpFrom
             // 
@@ -236,28 +254,34 @@ namespace Team2_Project
             this.label7.TabIndex = 74;
             this.label7.Text = "작업장";
             // 
-            // ucSearch1
+            // ucProcessCode
             // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucSearch1.Location = new System.Drawing.Point(110, 45);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 26);
-            this.ucSearch1.TabIndex = 75;
+            this.ucProcessCode._Code = "";
+            this.ucProcessCode._Name = "";
+            this.ucProcessCode.BackColor = System.Drawing.Color.Transparent;
+            this.ucProcessCode.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucProcessCode.Location = new System.Drawing.Point(110, 45);
+            this.ucProcessCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProcessCode.Name = "ucProcessCode";
+            this.ucProcessCode.Size = new System.Drawing.Size(340, 26);
+            this.ucProcessCode.TabIndex = 75;
             // 
-            // dgvData
+            // chtData
             // 
-            this.dgvData.BackgroundColor = System.Drawing.Color.White;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 276);
-            this.dgvData.TabIndex = 1;
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
+            this.chtData.Location = new System.Drawing.Point(162, 107);
+            this.chtData.Name = "chtData";
+            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chtData.Series.Add(series1);
+            this.chtData.Size = new System.Drawing.Size(1382, 256);
+            this.chtData.TabIndex = 0;
+            this.chtData.Text = "chart1";
             // 
             // frmTimeProductionHistory
             // 
@@ -266,6 +290,7 @@ namespace Team2_Project
             this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmTimeProductionHistory";
             this.Text = "시간대별 실적조회";
+            this.Load += new System.EventHandler(this.frmTimeProductionHistory_Load);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlTitle.ResumeLayout(false);
@@ -275,9 +300,11 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,16 +316,17 @@ namespace Team2_Project
         protected System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboTypeSC;
+        private System.Windows.Forms.ComboBox cboWoStatus;
         protected System.Windows.Forms.Label label5;
-        private Controls.ucSearch ucSearch1;
+        private Controls.ucSearch ucProcessCode;
         protected System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtpTo;
-        private Controls.ucSearch ucCodeSearch;
+        private Controls.ucSearch ucWcCode;
         private System.Windows.Forms.DateTimePicker dtpFrom;
         protected System.Windows.Forms.Label label6;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
     }
 }

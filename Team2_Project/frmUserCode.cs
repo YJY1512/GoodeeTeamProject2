@@ -204,7 +204,7 @@ namespace Team2_Project
                     Sort_Index = (int)nudSort.Value,
                     Remark = txtRemark.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Ins_Emp = "" //수정필요
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
                 result = srv.InsertUserCode(code);
@@ -228,7 +228,7 @@ namespace Team2_Project
                     Sort_Index = (int)nudSort.Value,
                     Remark = txtRemark.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Up_Emp = "" //수정필요
+                    Up_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
                 bool result = srv.UpdateUserCode(code);

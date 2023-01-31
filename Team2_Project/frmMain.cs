@@ -249,8 +249,7 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "시간대별 실적 조회")
             {
-                //OpenGMMainPage<>();
-                MessageBox.Show("빈 생성 화면입니다.");
+                OpenChildPage<frmTimeProductionHistory>();
             }
             else if (e.Node.Text == "작업지시 현황")
             {
@@ -429,13 +428,13 @@ namespace Team2_Project
         //}
 
         #region 버튼 클릭 이벤트
-        private void AddClickEvent() //추가 버튼 클릭시
+        public void AddClickEvent() //추가 버튼 클릭시
         {
             btnAdd.BackColor = Color.White;            
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
             btnSearch.BackColor = btnEdit.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
         }
-        private void EditClickEvent() // 수정 버튼 클릭시 
+        public void EditClickEvent() // 수정 버튼 클릭시 
         {
             btnEdit.BackColor = Color.White;
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
@@ -456,7 +455,6 @@ namespace Team2_Project
                 btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor =  btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
             }
         }
-
         public void BtnEditReturn(bool bactive) //셀 선택없이 수정버튼 클릭시 값 초기화 이벤트
         {
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = bactive;
@@ -503,6 +501,12 @@ namespace Team2_Project
         {
             this.Close();
             Application.Restart();
+        }
+
+        private void tsBtnSetting_Click(object sender, EventArgs e)
+        {
+            frmSettings pop = new frmSettings();
+            pop.ShowDialog();
         }
     }
     class TabTag

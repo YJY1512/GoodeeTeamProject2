@@ -146,6 +146,7 @@ namespace Team2_Project
 
         public void OnDelete()
         {
+            MessageBox.Show(dgvEmp.SelectedRows[0].Cells["User_ID"].Value.ToString());
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 MessageBox.Show("삭제할 인사정보를 선택해 주세요.");
@@ -174,32 +175,51 @@ namespace Team2_Project
         {
             int i = 0; //유효성 체크용
 
-            if (string.IsNullOrWhiteSpace(txtID.Text))
+            if (string.IsNullOrWhiteSpace(txtID.Text) || string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("사용자 ID는 필수 입력 항목입니다.");
+                MessageBox.Show("필수 입력 항목을 입력하여 주세요.");
+                if (pnlStat == 1)
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (pnlStat == 2)
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
             else if (!int.TryParse(txtID.Text, out i))
             {
                 MessageBox.Show("사용자 ID는 숫자만 사용할 수 있습니다.");
+                if (pnlStat == 1)
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (pnlStat == 2)
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
-            if (empSrv.CheckUserID(txtID.Text))
+            if (pnlStat == 1 && empSrv.CheckUserID(txtID.Text))
             {
                 MessageBox.Show("이미 존재하는 사용자 ID 입니다.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("사용자 이름은 필수 입력 항목입니다.");
+                ((frmMain)this.MdiParent).AddClickEvent();
                 return;
             }
 
             if (MessageBox.Show("입력한 정보를 저장하시겠습니까?", "저장확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
+                if (pnlStat == 1)
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (pnlStat == 2)
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
@@ -230,6 +250,7 @@ namespace Team2_Project
                 else
                 {
                     MessageBox.Show("인사정보 추가에 실패하였습니다. 다시 시도하여 주세요.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
                 }
             }
             else if (pnlStat == 2)
@@ -250,6 +271,7 @@ namespace Team2_Project
                 else
                 {
                     MessageBox.Show("인사정보 수정에 실패하였습니다. 다시 시도하여 주세요.");
+                    ((frmMain)this.MdiParent).EditClickEvent();
                 }
             }
         }

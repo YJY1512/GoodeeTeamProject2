@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
-namespace ShoppingMallMVC.Models.DAO
+namespace Team2_Project_WEB.Models.DAO
 {
     public class CommonDAO : IDisposable
     {
@@ -14,7 +14,7 @@ namespace ShoppingMallMVC.Models.DAO
 
         public CommonDAO()
         {
-            string connStr = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
             conn = new SqlConnection(connStr);
             conn.Open();
         }

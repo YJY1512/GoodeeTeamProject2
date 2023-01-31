@@ -199,7 +199,7 @@ namespace Team2_Project
                     Def_Mi_Code = txtInfoCodeMi.Text,
                     Def_Mi_Name = txtInfoNameMi.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Ins_Emp = "" //수정필요
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
                 result = srv.InsertDefCode(false, code);
@@ -220,7 +220,7 @@ namespace Team2_Project
                     Def_Mi_Code = txtInfoCodeMi.Text,
                     Def_Mi_Name = txtInfoNameMi.Text,
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
-                    Up_Emp = "" //수정필요
+                    Up_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
                 bool result = srv.UpdateDefCode(false, code);

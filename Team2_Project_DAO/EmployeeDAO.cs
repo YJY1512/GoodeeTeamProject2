@@ -77,7 +77,7 @@ namespace Team2_Project_DAO
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
             string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, User_Type, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
-values (@User_ID, @User_Name, @User_ID, @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
+values (@User_ID, @User_Name, pwdencrypt(@User_ID), @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
             string sql2 = @"insert into UserGroup_Mapping (UserGroup_Code, User_ID, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
 values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
@@ -191,7 +191,10 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@User_ID", empID);
-                    cmd.Parameters.Add(new SqlParameter("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output);
+
+                    SqlParameter param = new SqlParameter("@PO_CD", SqlDbType.Int);
+                    param.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param);
                     cmd.ExecuteNonQuery();
                     
                     int PO_CD = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);

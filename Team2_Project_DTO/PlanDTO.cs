@@ -23,5 +23,7 @@ namespace Team2_Project_DTO
 		public DateTime Up_Date { get; set; }    //
 		public string Up_Emp { get; set; }   //
 
+		public string Prd_Req_No { get; set; }
+
 	}
 }

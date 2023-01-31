@@ -177,10 +177,7 @@ namespace Team2_Project
         }
         public void OnSave()    //저장
         {
-            if (string.IsNullOrWhiteSpace(txtGroupCode2.Text) ||
-                string.IsNullOrWhiteSpace(txtGroupNM2.Text) ||
-                cboAdUseYN2.SelectedIndex == 0 ||
-                cboUseYN2.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtGroupCode2.Text) || string.IsNullOrWhiteSpace(txtGroupNM2.Text))
             {
                 MessageBox.Show("필수 항목을 입력해주시기 바랍니다.");
                 return;

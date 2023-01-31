@@ -18,5 +18,13 @@ namespace Team2_Project.Services
 
             return dt;
         }
+
+        public bool InsertPlan(List<PlanDTO> plans)
+        {
+            PlanDAO db = new PlanDAO();
+            bool result = db.InsertPlan(plans);
+
+            return result;
+        }
     }
 }
