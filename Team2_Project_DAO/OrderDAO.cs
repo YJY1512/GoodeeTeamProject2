@@ -33,36 +33,22 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"select Prd_Req_No, convert(nvarchar(10), Req_Date, 23) Req_Date, Req_Seq, pr.Item_Code, Item_Name, Req_Qty, pr.Prj_No, Prj_Name, Company_Name, convert(nvarchar(10), Delivery_Date, 23) Delivery_Date, pr.Remark
-                            from Production_Req pr inner join Project p on pr.Prj_No = p.Prj_No
-                                                    inner join Item_Master i on pr.Item_Code = i.Item_Code
-                            where Req_Date between @fromReqDate and @toReqDate
-                            and Delivery_Date between @fromDueDate and @toDueDate
-                            and Deleted = 0";
+                using (SqlDataAdapter da = new SqlDataAdapter("SP_PrdReq_Read", conn))
+                {
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.AddWithValue("@fromDate", list[0]);
+                    da.SelectCommand.Parameters.AddWithValue("@toDate", list[1]);
+                    da.SelectCommand.Parameters.AddWithValue("@category", list[4]);
 
-                if (!string.IsNullOrWhiteSpace(list[4]))
-                {
-                    sql += " and pr.Item_Code = @Item_Code ";
-                }
-                if (!string.IsNullOrWhiteSpace(list[5]))
-                {
-                    sql += " and pr.Prj_No = @Prj_No";
-                }
+                    if (string.IsNullOrWhiteSpace(list[2]))
+                        da.SelectCommand.Parameters.AddWithValue("@Item_Code", DBNull.Value);
+                    else
+                        da.SelectCommand.Parameters.AddWithValue("@Item_Code", list[2]);
 
-                using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
-                {
-                    da.SelectCommand.Parameters.AddWithValue("@fromReqDate", list[0]);
-                    da.SelectCommand.Parameters.AddWithValue("@toReqDate", list[1]);
-                    da.SelectCommand.Parameters.AddWithValue("@fromDueDate", list[2]);
-                    da.SelectCommand.Parameters.AddWithValue("@toDueDate", list[3]);
-                    if (!string.IsNullOrWhiteSpace(list[4]))
-                    {
-                        da.SelectCommand.Parameters.AddWithValue("@Item_Code", list[4]);
-                    }
-                    if (!string.IsNullOrWhiteSpace(list[5]))
-                    {
-                        da.SelectCommand.Parameters.AddWithValue("@Prj_No", list[5]);
-                    }
+                    if (string.IsNullOrWhiteSpace(list[3]))
+                        da.SelectCommand.Parameters.AddWithValue("@Prj_No", DBNull.Value);
+                    else
+                        da.SelectCommand.Parameters.AddWithValue("@Prj_No", list[3]);
 
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -86,6 +72,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Item_Code", data.Item_Code);
                     cmd.Parameters.AddWithValue("@Req_Qty", data.Req_Qty);
                     cmd.Parameters.AddWithValue("@Prj_No", data.Prj_No);
+                    cmd.Parameters.AddWithValue("@Req_Date", data.Req_Date);
                     cmd.Parameters.AddWithValue("@Delivery_Date", data.Delivery_Date);
                     cmd.Parameters.AddWithValue("@Remark", data.Remark);
                     cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);

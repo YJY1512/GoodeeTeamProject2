@@ -161,7 +161,7 @@ namespace Team2_Project
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(170, 25);
             this.txtID.TabIndex = 0;
-            this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
+            this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
             // 
             // txtName
             // 
@@ -170,6 +170,7 @@ namespace Team2_Project
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 25);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
             // 
             // ucSearchGroup
             // 
@@ -183,6 +184,7 @@ namespace Team2_Project
             this.ucSearchGroup.Size = new System.Drawing.Size(340, 26);
             this.ucSearchGroup.TabIndex = 3;
             this.ucSearchGroup.BtnClick += new System.EventHandler(this.ucSearchGroup_BtnClick);
+            this.ucSearchGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
             // 
             // label8
             // 
@@ -200,6 +202,7 @@ namespace Team2_Project
             this.cboDel.Name = "cboDel";
             this.cboDel.Size = new System.Drawing.Size(130, 25);
             this.cboDel.TabIndex = 4;
+            this.cboDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
             // 
             // label9
             // 
@@ -314,6 +317,7 @@ namespace Team2_Project
             this.cboAuth.Name = "cboAuth";
             this.cboAuth.Size = new System.Drawing.Size(130, 25);
             this.cboAuth.TabIndex = 2;
+            this.cboAuth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
             // 
             // label19
             // 

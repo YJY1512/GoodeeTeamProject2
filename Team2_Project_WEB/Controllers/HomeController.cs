@@ -21,6 +21,7 @@ namespace Team2_Project_WEB.Controllers
             List<ItemVO> list = new List<ItemVO>();
             list.Add(new ItemVO { Name = "제품1", Code = "Prod1", Ratio = 100, Order_p = 10, Customer_p = 2, Order_c = 20, Customer_c = 4 });
 
+            ViewBag.A = "안녕하세요";
             return View(list);
         }
 

@@ -355,10 +355,7 @@ namespace Team2_Project
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 1 && planDt == null)
-            {
-                srv.
-            }
+
         }
     }
 }

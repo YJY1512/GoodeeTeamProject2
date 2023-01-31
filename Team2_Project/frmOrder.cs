@@ -22,10 +22,11 @@ namespace Team2_Project
         DataTable dt;
         List<ItemDTO> itemCodeList;
         List<ProjectDTO> projectCodeList;
+        Dictionary<string, string> categoryList = new Dictionary<string, string>() { { "D", "납기일자" }, { "R", "요청일자" } };
         int idx;    //추가/수정하는 행의 index
         int stat;   //0 = 일반, 1 = 추가, 2 = 수정 상태
         //bool cellEditStat = false;
-        int[] orangeCols = new int[] { 2, 6, 7, 9, 10 };
+        int[] orangeCols = new int[] { 2, 5, 6, 7, 9, 10 };
         int dtpMinDays = 1;
         int dtpMaxMonths = 0;
 
@@ -33,38 +34,39 @@ namespace Team2_Project
         {
             InitializeComponent();
             ordSrv = new OrderService();
-            
-            idx = -1;
         }
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
-            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            stat = 0;
+
             DataGridViewUtil.SetInitDataGridView(dgvOrder);
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 120, align:DataGridViewContentAlignment.MiddleCenter, frosen:true); //0
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 50, align: DataGridViewContentAlignment.MiddleCenter, frosen: true); //1
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 120); //2
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 140); //3
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "Company_Name", 140); //4
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 100, align: DataGridViewContentAlignment.MiddleCenter); //5
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 130, align: DataGridViewContentAlignment.MiddleCenter); //6
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 120, align: DataGridViewContentAlignment.MiddleCenter); //5
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 120, align: DataGridViewContentAlignment.MiddleCenter); //6
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 120); //7
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 140); //8
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 80, align: DataGridViewContentAlignment.MiddleRight); //9
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 535); //10
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 525); //10
             dgvOrder.MultiSelect = false;
 
             foreach (int i in orangeCols)
             {
                 dgvOrder.Columns[i].DefaultCellStyle.BackColor = Color.Orange;
             }
-
-            dtpSearchOrd1.MaxDate = dtpSearchDue1.MaxDate = DateTime.Today;
-            dtpSearchOrd2.MinDate = dtpSearchDue2.MinDate = DateTime.Today;
+            
+            cbo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo.DataSource = new BindingSource(categoryList, null);
+            cbo.DisplayMember = "Value";
+            cbo.ValueMember = "Key";
 
             ResetDtpNSearch();
 
-            stat = 0;
+            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         /// <summary>
@@ -72,10 +74,8 @@ namespace Team2_Project
         /// </summary>
         private void ResetSearchCtrls()
         {
-            dtpSearchOrd1.Value = DateTime.Today.AddDays(-7);
-            dtpSearchOrd2.Value = DateTime.Today;
-            dtpSearchDue1.Value = DateTime.Today.AddMonths(-1);
-            dtpSearchDue2.Value = DateTime.Today.AddMonths(1);
+            dtpSearchFrom.Value = DateTime.Today;
+            dtpSearchTo.Value = DateTime.Today.AddMonths(1);
             ucSearchItem._Code = "";
             ucSearchItem._Name = "";
             ucSearchProject._Code = "";
@@ -84,9 +84,8 @@ namespace Team2_Project
 
         private string[] GetSearchValues()
         {
-            return new string[] { dtpSearchOrd1.Value.ToString("yyyy-MM-dd"), dtpSearchOrd2.Value.ToString("yyyy-MM-dd"), 
-                    dtpSearchDue1.Value.ToString("yyyy-MM-dd"), dtpSearchDue2.Value.ToString("yyyy-MM-dd"),
-                    ucSearchItem._Code, ucSearchProject._Code};
+            return new string[] { dtpSearchFrom.Value.ToString("yyyy-MM-dd"), dtpSearchTo.Value.ToString("yyyy-MM-dd"), 
+                    ucSearchItem._Code, ucSearchProject._Code, cbo.SelectedValue.ToString()};
         }
 
         /// <summary>
@@ -98,14 +97,18 @@ namespace Team2_Project
             dt = ordSrv.GetOrderList(GetSearchValues());
             dgvOrder.DataSource = null;
             dgvOrder.DataSource = dt;
+
+            dgvOrder_CellClick(dgvOrder, new DataGridViewCellEventArgs(0, 0));
         }
 
         public void OnSearch()
         {
-            idx = -1;
+            idx = 0;
             dt = ordSrv.GetOrderList(GetSearchValues());
             dgvOrder.DataSource = null;
             dgvOrder.DataSource = dt;
+
+            dgvOrder_CellClick(dgvOrder, new DataGridViewCellEventArgs(0, 0));
         }
 
         /// <summary>
@@ -171,14 +174,12 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(msg))
             {
                 MessageBox.Show("생산요청이 정상적으로 삭제되었습니다.");
-                ResetDtpNSearch();
 
                 stat = 0;
+                ResetDtpNSearch();
             }
             else
-            {
                 MessageBox.Show(msg);
-            }
         }
 
         public void OnSave()
@@ -188,41 +189,18 @@ namespace Team2_Project
             try
             {
                 if (dgvOrder["Prj_No", idx].Value == null || dgvOrder["Prj_No", idx].Value == DBNull.Value)
-                {
                     throw new Exception("프로젝트 정보는 필수 입력 항목입니다.");
-                    //MessageBox.Show("프로젝트 정보는 필수 입력 항목입니다.");
-                    //return;
-                }
                 if (dgvOrder["Delivery_Date", idx].Value == null || dgvOrder["Delivery_Date", idx].Value == DBNull.Value)
-                {
                     throw new Exception("납기일자는 필수 입력 항목입니다.");
-                    //MessageBox.Show("납기일자는 필수 입력 항목입니다.");
-                    //return;
-                }
                 if (dgvOrder["Item_Code", idx].Value == null || dgvOrder["Item_Code", idx].Value == DBNull.Value)
-                {
                     throw new Exception("품목정보는 필수 입력 항목입니다.");
-                    //MessageBox.Show("품목정보는 필수 입력 항목입니다.");
-                    //return;
-                }
                 if (dgvOrder["Req_Qty", idx].Value == null || dgvOrder["Req_Qty", idx].Value == DBNull.Value)
-                {
                     throw new Exception("수량은 필수 입력 항목입니다.");
-                    //MessageBox.Show("수량은 필수 입력 항목입니다.");
-                    //return;
-                }
                 if (!int.TryParse(dgvOrder["Req_Qty", idx].Value.ToString(), out i))
-                {
                     throw new Exception("수량은 숫자만 입력 가능합니다.");
-                    //MessageBox.Show("수량은 숫자만 입력 가능합니다.");
-                    //return;
-                }
 
                 if (MessageBox.Show("입력한 정보를 저장하시겠습니까?", "저장확인", MessageBoxButtons.OKCancel) != DialogResult.OK)
-                {
                     throw new Exception("");
-                    //return;
-                }
 
                 string remark = dgvOrder["Remark", idx].Value.ToString();
                 if (remark.Length > 200)
@@ -234,6 +212,7 @@ namespace Team2_Project
                 {
                     Prd_Req_No = dgvOrder["Prd_Req_No", idx].Value.ToString(),
                     Item_Code = dgvOrder["Item_Code", idx].Value.ToString(),
+                    Req_Date = dgvOrder["Req_Date", idx].Value.ToString(),
                     Req_Qty = Convert.ToInt32(dgvOrder["Req_Qty", idx].Value),
                     Prj_No = dgvOrder["Prj_No", idx].Value.ToString(),
                     Delivery_Date = dgvOrder["Delivery_Date", idx].Value.ToString(),
@@ -247,15 +226,13 @@ namespace Team2_Project
                     {
                         MessageBox.Show("생산요청이 정상적으로 추가되었습니다.");
 
-                        idx = -1;
-                        ResetDtpNSearch();
                         stat = 0;
+                        ResetDtpNSearch();
                         SetPannel(true);
                     }
                     else
                     {
                         throw new Exception("생산요청 추가에 실패하였습니다. 다시 시도하여 주세요.");
-                        //MessageBox.Show("생산요청 추가에 실패하였습니다. 다시 시도하여 주세요.");
                     }
                 }
                 else if (stat == 2) //수정
@@ -265,9 +242,8 @@ namespace Team2_Project
                     {
                         MessageBox.Show("생산요청이 정상적으로 수정되었습니다.");
 
-                        idx = -1;
-                        ResetDtpNSearch();
                         stat = 0;
+                        ResetDtpNSearch();
                         SetPannel(true);
                     }
                     else
@@ -300,17 +276,13 @@ namespace Team2_Project
                 return;
             }
 
-            idx = -1;
-            ResetDtpNSearch();
-            dgvOrder.ClearSelection();
-            SetPannel(true);
-
             stat = 0;
+            ResetDtpNSearch();
+            SetPannel(true);
         }
 
         public void OnReLoad()
         {
-            idx = -1;
             ResetDtpNSearch();
         }
 
@@ -333,6 +305,7 @@ namespace Team2_Project
                     switch (e.ColumnIndex)
                     {
                         case 2: OpenPop(GetPopInfo_Project()); break;
+                        case 5: SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); break;
                         case 6: SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); break;
                         case 7: OpenPop(GetPopInfo_Item()); break;
                         default: break;
@@ -346,15 +319,15 @@ namespace Team2_Project
             dgvOrder.ScrollBars = ScrollBars.None;
             DateTimePicker dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Short;
-            dtp.MinDate = DateTime.Now.AddDays(dtpMinDays);
-            if(dtpMaxMonths > 0)
-                dtp.MaxDate = DateTime.Now.AddMonths(dtpMaxMonths);
+            //dtp.MinDate = DateTime.Now.AddDays(dtpMinDays);
+            //if(dtpMaxMonths > 0)
+            //    dtp.MaxDate = DateTime.Now.AddMonths(dtpMaxMonths);
             dtp.Visible = true;
             if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
                 dtp.Value = DateTime.Parse(cell.Value.ToString());
             else
             {
-                dtp.Value = DateTime.Now.AddDays(dtpMinDays);
+                dtp.Value = DateTime.Now;
             }
 
             var rect = dgvOrder.GetCellDisplayRectangle(cell.ColumnIndex, cell.RowIndex, true);
@@ -363,10 +336,18 @@ namespace Team2_Project
             dgvOrder.Controls.Add(dtp);
 
             dtp.CloseUp += Dtp_CloseUp;
-            dtp.TextChanged += Dtp_TextChanged;
+             if(cell.ColumnIndex == 5)
+                dtp.TextChanged += Dtp_TextChanged_rd;
+            else
+                dtp.TextChanged += Dtp_TextChanged_dd;
         }
 
-        private void Dtp_TextChanged(object sender, EventArgs e)
+        private void Dtp_TextChanged_rd(object sender, EventArgs e)
+        {
+            dgvOrder.SelectedRows[0].Cells["Req_Date"].Value = ((DateTimePicker)sender).Value.ToString("yyyy-MM-dd");
+        }
+
+        private void Dtp_TextChanged_dd(object sender, EventArgs e)
         {
             dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = ((DateTimePicker)sender).Value.ToString("yyyy-MM-dd");
         }
@@ -452,5 +433,6 @@ namespace Team2_Project
             if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
+
     }
 }
