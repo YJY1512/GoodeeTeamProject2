@@ -81,11 +81,11 @@ namespace Team2_Project
             cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "규격", "Item_Spec", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "규격", "Item_Spec", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 100);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비고", "Remark", 500);
             dgvData.MultiSelect = false;
 
@@ -128,7 +128,8 @@ namespace Team2_Project
             itemList = srv.GetItemSearch(item);
 
             AdvancedListBind(itemList, dgvData);
-            dgvData.ClearSelection();
+
+            //dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
         }
@@ -325,6 +326,8 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            MessageBox.Show("Test");
+
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
             txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();

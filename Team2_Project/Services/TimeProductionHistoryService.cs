@@ -11,10 +11,18 @@ namespace Team2_Project.Services
     class TimeProductionHistoryService
     {
 
-        public List<TimeProductionHistoryDTO> GetTimeProductionHistory(string from, string to)
+        public List<TimeProductionHistoryDTO> GetWorkOrder(string from, string to)
         {
             TimeProductionHistoryDAO db = new TimeProductionHistoryDAO();
-            List<TimeProductionHistoryDTO> list = db.GetTimeProductionHistory(from, to);
+            List<TimeProductionHistoryDTO> list = db.GetWorkOrder(from, to);
+            db.Dispose();
+            return list;
+        }
+
+        public List<TimeProductionHistoryDTO> GetTimeProductionHistory()
+        {
+            TimeProductionHistoryDAO db = new TimeProductionHistoryDAO();
+            List<TimeProductionHistoryDTO> list = db.GetTimeProductionHistory();
             db.Dispose();
             return list;
         }

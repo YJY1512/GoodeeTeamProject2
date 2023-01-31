@@ -35,23 +35,23 @@ namespace Team2_Project
         private void LoadData()
         {
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "순번", "Nop_Seq", 60, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일자", "Nop_Date", 160, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일시", "Nop_HappenTime", 220, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동해제일시", "Nop_CancelTime", 220, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동시간(분)", "Nop_Time", 100, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "순번", "Nop_Seq", 60);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일자", "Nop_Date", 160);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일시", "Nop_HappenTime");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동해제일시", "Nop_CancelTime");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동시간(분)", "Nop_Time");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code");
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장그룹", "Wc_Group", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "공정명", "Process_Name", 100);
             //DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정그룹(작업장)", "", 200);
             //DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정그룹(비가동)", "", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류코드", "Nop_Ma_Code", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동상세분류코드", "Nop_Mi_Code", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동상세분류명", "Nop_Mi_Name", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류코드", "Nop_Ma_Code", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류명", "Nop_Ma_Name", 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동유형", "Nop_type", 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류코드", "Nop_Ma_Code", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동상세분류코드", "Nop_Mi_Code", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동상세분류명", "Nop_Mi_Name", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류코드", "Nop_Ma_Code", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류명", "Nop_Ma_Name", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동유형", "Nop_type", 150);
             dgvData.MultiSelect = false;
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
         }

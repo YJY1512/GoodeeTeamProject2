@@ -36,7 +36,7 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류코드", "Nop_Ma_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동 대분류명", "Nop_Ma_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN", 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "사용유무", "Use_YN");
             dgvData.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboUseYNSC);

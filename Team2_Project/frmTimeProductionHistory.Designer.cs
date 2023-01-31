@@ -49,6 +49,7 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ucProcessCode = new Team2_Project.Controls.ucSearch();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -64,6 +65,7 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.button1);
             this.pnlSub.Controls.Add(this.ucProcessCode);
             this.pnlSub.Controls.Add(this.label7);
             this.pnlSub.Controls.Add(this.dtpTo);
@@ -173,14 +175,14 @@ namespace Team2_Project
             this.chtData.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chtData.Legends.Add(legend1);
-            this.chtData.Location = new System.Drawing.Point(152, 126);
+            this.chtData.Location = new System.Drawing.Point(15, 126);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chtData.Series.Add(series1);
-            this.chtData.Size = new System.Drawing.Size(1382, 256);
+            this.chtData.Size = new System.Drawing.Size(1792, 256);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart1";
             // 
@@ -291,6 +293,15 @@ namespace Team2_Project
             this.ucProcessCode.TabIndex = 75;
             this.ucProcessCode.BtnClick += new System.EventHandler(this.ucProcessCode_BtnClick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1696, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 27);
+            this.button1.TabIndex = 76;
+            this.button1.Text = "ChartTEST";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmTimeProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -336,5 +347,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
+        private System.Windows.Forms.Button button1;
     }
 }
