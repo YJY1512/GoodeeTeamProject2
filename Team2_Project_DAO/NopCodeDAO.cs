@@ -265,7 +265,7 @@ namespace Team2_Project_DAO
         public List<NopMiCodeDTO> GetNopMiSearch(NopMiCodeDTO item) //비가동 상세분류코드 조회
         {
             try
-            { //코드수정해야함 //Linq로 담을 때 //null값 처리 //MaCode와 MiCode구분
+            {
                 string sql = @"SELECT MA.Nop_Ma_Code, MA.Nop_Ma_Name, MI.Nop_Mi_Code, MI.Nop_Mi_Name, MI.Nop_type, 
 	                                CASE WHEN MI.Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN, MI.Ins_Emp
 	                                , CONVERT(VARCHAR(10), MI.Ins_Date, 23) Ins_Date 

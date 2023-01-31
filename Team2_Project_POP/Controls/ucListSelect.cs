@@ -17,6 +17,7 @@ namespace Team2_Project_POP.Controls
         public string Group { get; set; }
         public event EventHandler ListClick;
         public event EventHandler ListMouseEnter;
+        public event EventHandler ListMouseOut;
 
 
         public ucListSelect()
@@ -52,6 +53,22 @@ namespace Team2_Project_POP.Controls
             lbl3.Text = Group;
 
         }
-        
+        private void pnl_MouseEnter(object sender, EventArgs e)
+        {
+            if (ListMouseEnter != null)
+                ListMouseEnter(this, e);
+        }
+
+        private void ucListSelect_Click(object sender, EventArgs e)
+        {
+            if (ListClick != null)
+                ListClick(this, e);
+        }
+
+        private void ucListSelect_MouseLeave(object sender, EventArgs e)
+        {
+            if (ListClick != null)
+                ListClick(this, e);
+        }
     }
 }

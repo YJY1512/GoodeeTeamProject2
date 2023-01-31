@@ -80,9 +80,9 @@ namespace Team2_Project_DAO
         }
         private static bool ContainsColumn(IDataReader reader, string columnName)
         {
-            foreach (DataRow row in reader.GetSchemaTable().Rows)
+            foreach (DataRow row in  reader.GetSchemaTable().Rows)
             {
-                if (row["ColumnName"].ToString() == columnName)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         if (row["ColumnName"].ToString() == columnName)
                     return true;
             }
             return false;
