@@ -65,9 +65,9 @@ namespace Team2_Project
             wcList = srv.GetWorkCenterInfo();
             BindingSource wc = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
             processList = prosrv.SetData();
+            dgvWorkShop.ClearSelection();
             dgvWorkShop.DataSource = null;
             dgvWorkShop.DataSource = wc;
-            dgvWorkShop.ClearSelection();
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
