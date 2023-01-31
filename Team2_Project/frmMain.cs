@@ -184,14 +184,6 @@ namespace Team2_Project
             {
                 OpenChildPage<frmEmpManagement>();
             }
-            else if (e.Node.Text == "시스템 코드 관리")
-            {
-                OpenChildPage<frmSystemCode>();
-            }
-            else if (e.Node.Text == "즐겨찾기및 화면관리")
-            {
-                OpenChildPage<frmScreen>();
-            }
             else
             {
                 MessageBox.Show("빈 생성 화면입니다.");

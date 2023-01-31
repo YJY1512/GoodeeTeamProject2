@@ -33,12 +33,13 @@ namespace Team2_Project
         {
             InitializeComponent();
             ordSrv = new OrderService();
-            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            
             idx = -1;
         }
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
+            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
             DataGridViewUtil.SetInitDataGridView(dgvOrder);
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 120, align:DataGridViewContentAlignment.MiddleCenter, frosen:true); //0
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 50, align: DataGridViewContentAlignment.MiddleCenter, frosen: true); //1

@@ -33,12 +33,13 @@ namespace Team2_Project
         {
             InitializeComponent();
             empSrv = new EmployeeService();
-            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            
             idx = -1;
         }
 
         private void frmEmpManagement_Load(object sender, EventArgs e)
         {
+            empId = ((frmMain)this.MdiParent).LoginEmp.User_ID;
             DataGridViewUtil.SetInitDataGridView(dgvEmp);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 ID", "User_ID", 180);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 이름", "User_Name", 200);
