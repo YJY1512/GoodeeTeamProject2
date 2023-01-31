@@ -27,7 +27,7 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public DataTable GetPlanReq(string from, string to)
+        public DataTable GetPrdReq(string from, string to)
         {
             try
             {
@@ -50,11 +50,11 @@ namespace Team2_Project_DAO
             }
         }
 
-        public bool InsertPlan(List<PlanDTO> plans)
+        public bool InsertReqPlan(List<PlanDTO> plans)
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SP_InsertPlan", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_InsertReqPlan", conn))
                 {
                     conn.Open();
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -85,6 +85,79 @@ namespace Team2_Project_DAO
                         {
                             throw new Exception(pMsg);
                         }
+                    }
+
+                    conn.Close();
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public DataTable GetPlan(string planMonth)
+        {
+            try
+            {
+                string sql = @"with req_plan_alloc as
+                                (
+                                	select a.Prd_Req_No, Prd_Plan_No, pj.Company_Name, r.Delivery_Date
+                                	from Prd_Req_Plan_Allocation a inner join Production_Req r on a.Prd_Req_No = r.Prd_Req_No
+                                									inner join Project pj on r.Prj_No = pj.Prj_No
+                                ), planDetail as
+                                (
+                                	select d.Prd_Plan_No, Plan_Month, d.Item_Code, i.Item_Name, d.Plan_Qty, Plan_Rest_Qty, d.Wc_Code, w.Wc_Name, s.Sys_Mi_Name Prd_Plan_Status
+                                	from Production_Plan_Detail d inner join Item_Master i on d.Item_Code = i.Item_Code
+                                								inner join WorkCenter_Master w on d.Wc_Code = w.Wc_Code
+                                								inner join Sys_Mi_Master s on s.Sys_Mi_Code = d.Prd_Plan_Status and s.Sys_Ma_Code = 'PRD_PLAN_STATUS'
+                                	where Plan_Month = @Plan_Month
+                                ) select D.*, A.Company_Name, A.Delivery_Date
+                                from planDetail D left outer join req_plan_alloc A on D.Prd_Plan_No = A.Prd_Plan_No";
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@Plan_Month", planMonth);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                conn.Close();
+
+                return dt;
+
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public bool InsertPlan(PlanDTO plan)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_InsertPlan", conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Emp", plan.Ins_Emp);
+                    cmd.Parameters.AddWithValue("@Plan_Qty", plan.Plan_Qty);
+                    cmd.Parameters.AddWithValue("@Plan_Rest_Qty", plan.Plan_Rest_Qty);
+                    cmd.Parameters.AddWithValue("@Item_Code", plan.Item_Code);
+                    cmd.Parameters.AddWithValue("@Wc_Code", plan.Wc_Code);
+
+                    cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+
+                    if (pCode < 0)
+                    {
+                        throw new Exception(pMsg);
                     }
 
                     conn.Close();
