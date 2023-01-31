@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_Project_DTO;
 
 namespace Team2_Project_POP
 {
     public partial class frmParent : Form
     {
+        public WorkCenterDTO LoginedWorkCenter { get; set; }
         public frmParent()
         {
             InitializeComponent();
