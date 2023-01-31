@@ -16,7 +16,7 @@ namespace Team2_Project
 {
     public partial class frmTimeProductionHistory : Team2_Project.frmList
     {
-        TimeProductionHistoryService srv = new TimeProductionHistoryService();
+        AnalysisService srv = new AnalysisService();
         List<TimeProductionHistoryDTO> TPHistoryList = new List<TimeProductionHistoryDTO>();
 
         public frmTimeProductionHistory()
@@ -63,7 +63,7 @@ namespace Team2_Project
 
             OnSearch();
 
-            ChartData(); /////////// CHART TEST
+            
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -83,6 +83,9 @@ namespace Team2_Project
                 //var list = TPHistoryList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
                 AdvancedListBind(TPHistoryList, dgvData);
             }
+
+
+            ChartData(); /////////// CHART TEST
         }
 
         public void OnAdd()     //추가
@@ -117,7 +120,8 @@ namespace Team2_Project
             ResetDtp();
             cboWoStatus.SelectedIndex = 0;
             ucProcessCode._Code = ucProcessCode._Name = "";
-            ucWcCode._Code = ucProcessCode._Name = "";            
+            ucWcCode._Code = ucProcessCode._Name = "";
+            chkDefQty.Checked = false;
         }
 
         private void ResetDtp() //날짜리셋
@@ -175,17 +179,23 @@ namespace Team2_Project
 
         public void ChartData()
         {
+            TPHistoryList = srv.GetTimeProductionHistory();
+
             chtData.Series.Clear();
             chtData.Series.Add("생산량");
-            chtData.Series.Add("불량");
+            chtData.Series["생산량"].Points.Clear();            
+            chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;          
+            chtData.Series["생산량"].Color = Color.FromArgb(211, 226, 223);
+            chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", null); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
 
-            chtData.Series["생산량"].Points.Clear();
-            chtData.Series["불량"].Points.Clear();
-            chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;
-            chtData.Series["불량"].ChartType = SeriesChartType.StackedColumn;
-
-            chtData.Series["생산량"].Color = Color.FromArgb(178, 217, 244);
-            chtData.Series["불량"].Color = Color.FromArgb(250, 202, 172);
+            if (!chkDefQty.Checked)
+            {
+                chtData.Series.Add("불량");
+                chtData.Series["불량"].Points.Clear();
+                chtData.Series["불량"].ChartType = SeriesChartType.StackedColumn;
+                chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
+                chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", null); // X축: Time, Y축: Score
+            }
 
             #region test
             //(방법2)//////////////////
@@ -212,23 +222,6 @@ namespace Team2_Project
             //                                                                    // (참고) DataBindTable() 사용시. (X축: Time, Y축: 자동검색)
             //                                                                    //chtData.DataBindTable(students, "Time");
             #endregion
-
-            TPHistoryList = srv.GetTimeProductionHistory();
-
-            chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", null); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
-            chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", null); // X축: Time, Y축: Score
-        }
-
-        class Student
-        {
-            public string Time { get; set; }
-            public double Score { get; set; }
-
-            public Student(string time, double score)
-            {
-                this.Time = time;
-                this.Score = score;
-            }
         }
     }
 }

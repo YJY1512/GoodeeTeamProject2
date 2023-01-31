@@ -11,10 +11,10 @@ using Team2_Project_DTO;
 
 namespace Team2_Project_DAO
 {
-    public class TimeProductionHistoryDAO : IDisposable
+    public class AnalysisDAO : IDisposable
     {
         SqlConnection conn;
-        public TimeProductionHistoryDAO()
+        public AnalysisDAO()
         {
             string connstr = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
             conn = new SqlConnection(connstr);

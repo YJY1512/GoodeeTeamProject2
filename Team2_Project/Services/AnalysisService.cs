@@ -8,12 +8,12 @@ using Team2_Project_DTO;
 
 namespace Team2_Project.Services
 {
-    class TimeProductionHistoryService
+    class AnalysisService
     {
 
         public List<TimeProductionHistoryDTO> GetWorkOrder(string from, string to)
         {
-            TimeProductionHistoryDAO db = new TimeProductionHistoryDAO();
+            AnalysisDAO db = new AnalysisDAO();
             List<TimeProductionHistoryDTO> list = db.GetWorkOrder(from, to);
             db.Dispose();
             return list;
@@ -21,7 +21,7 @@ namespace Team2_Project.Services
 
         public List<TimeProductionHistoryDTO> GetTimeProductionHistory()
         {
-            TimeProductionHistoryDAO db = new TimeProductionHistoryDAO();
+            AnalysisDAO db = new AnalysisDAO();
             List<TimeProductionHistoryDTO> list = db.GetTimeProductionHistory();
             db.Dispose();
             return list;
