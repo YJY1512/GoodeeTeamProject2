@@ -15,6 +15,7 @@ namespace Team2_Project
     public partial class frmSettings : Form
     {
         public EmployeeDTO LoginEmp { get; set; }
+        frmChangePassword frmChPwd = null;
 
         public frmSettings()
         {
@@ -24,13 +25,12 @@ namespace Team2_Project
         private void frmSettings_Load(object sender, EventArgs e)
         {
             this.LoginEmp = ((frmMain)this.Owner).LoginEmp;
-            btnDashboard.BackColor = Color.FromArgb(211, 226, 223);
-            btnChanPwd.BackColor = Color.White;
-            OpenSettingPage<frmChangePassword>();
+            btnChanPwd.PerformClick();
         }
 
         private void OpenSettingPage<T>() where T : Form, new()
         {
+            //열려있는 폼을 닫고, 새로 연다.
             foreach (Form form in Application.OpenForms)
             {
                 if (form.GetType() == typeof(T))
@@ -50,9 +50,21 @@ namespace Team2_Project
 
         private void btnChanPwd_Click(object sender, EventArgs e)
         {
+            btnChanPwd.Enabled = false;
             btnChanPwd.BackColor = Color.White;
             btnDashboard.BackColor = Color.FromArgb(211, 226, 223);
             OpenSettingPage<frmChangePassword>();
+
+            //if (frmChPwd == null)
+            //{
+            //    frmChPwd = new frmChangePassword();
+            //    DialogResult result = frmChPwd.ShowDialog(this);
+            //    if (result == DialogResult.OK)
+            //    {
+            //        btnChanPwd.Enabled = true;
+            //        frmChPwd = null;
+            //    }
+            //}
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
