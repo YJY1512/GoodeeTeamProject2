@@ -69,7 +69,7 @@ namespace Team2_Project_POP
 
         private void List_ListClick(object sender, EventArgs e)
         {
-            ((Controls.ucListSelect)sender) ((frmParent)this.MdiParent).LoginedWorkCenter
+            //((Controls.ucListSelect)sender) ((frmParent)this.MdiParent).LoginedWorkCenter
         }
 
         private void button1_Click(object sender, EventArgs e)
