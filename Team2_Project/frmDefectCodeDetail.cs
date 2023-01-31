@@ -17,6 +17,9 @@ namespace Team2_Project
         List<DefCodeDTO> defList;
         DefCodeService srv = new DefCodeService();
 
+        enum ButtonClick { Add, Edit, None };
+        ButtonClick clickState;
+
         public frmDefectCodeDetail()
         {
             InitializeComponent();
@@ -43,6 +46,11 @@ namespace Team2_Project
             LoadData();
 
             label8.Visible = label13.Visible = txtRemark.Visible = false;
+
+            if (defList != null && defList.Count > 0)
+            {
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, 0));
+            }            
         }
 
         private void LoadData()
@@ -54,9 +62,6 @@ namespace Team2_Project
                 AdvancedListBind(list, dgvMa);
             }
             dgvMi.DataSource = null;
-
-            dgvMa.ClearSelection();
-            dgvMi.ClearSelection();
         }
 
         private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
@@ -89,10 +94,14 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
+            if (defList == null)
+            {
+                LoadData();
+                return;
+            }
+
             string code = ucMaCodeSC._Code;
             string useYN = (cboSearchUse.SelectedItem.ToString() == "전체") ? "" : cboSearchUse.SelectedItem.ToString();
-
-            SetInitPnl();
 
             var list = (from c in defList
                         where c.Def_Ma_Code == (string.IsNullOrWhiteSpace(code)? c.Def_Ma_Code : code) && c.Use_YN.Contains(useYN)
@@ -105,6 +114,11 @@ namespace Team2_Project
 
             var maList = list.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
             AdvancedListBind(maList, dgvMa);
+
+            if (maList != null && maList.Count > 0)
+            {
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
+            }
         }
 
         public void OnAdd()     //추가
@@ -127,6 +141,7 @@ namespace Team2_Project
             ucMaCode._Code = dgvMa["Def_Ma_Code", idx].Value.ToString();
             ucMaCode._Name = dgvMa["Def_Ma_Name", idx].Value.ToString();
 
+            clickState = ButtonClick.Add;
         }
 
         public void OnEdit()    //수정
@@ -140,6 +155,8 @@ namespace Team2_Project
 
             dgvMa.Enabled = dgvMi.Enabled = false;
             txtInfoNameMi.Enabled = txtRemark.Enabled = cboUseYN.Enabled = true;
+
+            clickState = ButtonClick.Edit;
         }
 
         public void OnDelete()  //삭제
@@ -181,6 +198,13 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text))
             {
                 MessageBox.Show("필수항목을 입력해주세요.");
+
+                if (clickState == ButtonClick.Add)
+                    ((frmMain)this.MdiParent).AddClickEvent();
+
+                else if (clickState == ButtonClick.Edit)
+                    ((frmMain)this.MdiParent).EditClickEvent();
+
                 return;
             }
 
@@ -192,7 +216,7 @@ namespace Team2_Project
                     MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.");
                     return;
                 }
-
+                
                 DefCodeDTO code = new DefCodeDTO
                 {
                     Def_Ma_Code = ucMaCode._Code,
@@ -234,6 +258,7 @@ namespace Team2_Project
                 }
             }
 
+            clickState = ButtonClick.None;
             dgvMa.Enabled = dgvMi.Enabled = true;
             OnReLoad();
         }
@@ -253,6 +278,11 @@ namespace Team2_Project
 
             SetInitPnl();
             LoadData();
+
+            if (dgvMa.CurrentRow != null)
+            {
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
+            }            
         }
         #endregion
 
@@ -268,11 +298,16 @@ namespace Team2_Project
                         select c).ToList();
 
             if (list.Count > 0 && list.FindIndex((c)=>c.Use_YN == "") == -1)
+            {
                 AdvancedListBind(list, dgvMi);
+                dgvMi_CellClick(dgvMi, new DataGridViewCellEventArgs(0, 0));
+            }
+                
             else
+            {
                 dgvMi.DataSource = null;
-
-            dgvMi.ClearSelection();
+                SetInitPnl();
+            }                
         }
 
         private void dgvMi_CellClick(object sender, DataGridViewCellEventArgs e)
