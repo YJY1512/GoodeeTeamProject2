@@ -25,7 +25,7 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public List<WorkCenterDTO> GetWorkCenterInfo(string cencode, string name, string proCode, string use)
+        public List<WorkCenterDTO> GetWorkCenterInfo()
         {
             try
             {
@@ -37,14 +37,14 @@ namespace Team2_Project_DAO
                                         				  inner join Userdefine_Mi_Master UM on WC.Wc_Group = UM.Userdefine_Mi_Code
                                         				  inner join (select Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name, Sort_Index, Remark, Use_YN
                                                                  		from Sys_Mi_Master
-                                                                 	   where Sys_Ma_Code = 'WO_STATUS' or Sys_Ma_Code ='WC_STATUS') SY on WC.Wo_Status = SY.Sys_Mi_Code
-                                where Wc_Code like @Wc_Code and Wc_Name like @Wc_Name and P.Process_Code = @Process_Code and WC.Use_YN = @Use_YN";
+                                                                 	   where Sys_Ma_Code = 'WO_STATUS' or Sys_Ma_Code ='WC_STATUS') SY on WC.Wo_Status = SY.Sys_Mi_Code";
+                                /*where Wc_Code like @Wc_Code and Wc_Name like @Wc_Name and P.Process_Code = @Process_Code and WC.Use_YN = @Use_YN*/
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Wc_Code","%" + cencode + "%");
-                    cmd.Parameters.AddWithValue("@Wc_Name","%" + name + "%");
-                    cmd.Parameters.AddWithValue("@Process_Code", proCode);
-                    cmd.Parameters.AddWithValue("@Use_YN", use);
+                    //cmd.Parameters.AddWithValue("@Wc_Code","%" + cencode + "%");
+                    //cmd.Parameters.AddWithValue("@Wc_Name","%" + name + "%");
+                    //cmd.Parameters.AddWithValue("@Process_Code", proCode);
+                    //cmd.Parameters.AddWithValue("@Use_YN", use);
                     conn.Open();
                     List<WorkCenterDTO> list = Helper.DataReaderMapToList<WorkCenterDTO>(cmd.ExecuteReader());
                     conn.Close();

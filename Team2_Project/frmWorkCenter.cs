@@ -139,7 +139,7 @@ namespace Team2_Project
             string processName = ucSrchProcCode._Name;
             string useYN = cboSearchUseYN.SelectedValue.ToString();
 
-            wcList = srv.GetWorkCenterInfo(groupCode, groupName, processCode, useYN);
+            wcList = srv.GetWorkCenterInfo();
             if (string.IsNullOrWhiteSpace(txtSearchCode.Text) &&
                 string.IsNullOrWhiteSpace(txtSearchName.Text) &&
                 string.IsNullOrWhiteSpace(ucSrchProcCode._Code) &&
@@ -374,7 +374,7 @@ namespace Team2_Project
         {
             if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Run")
             {
-                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.DarkGreen;
+                dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Lime;
                 dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.Black;
             }
             else if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Stop")
