@@ -31,7 +31,6 @@ namespace Team2_Project
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -50,6 +49,8 @@ namespace Team2_Project
             this.label7 = new System.Windows.Forms.Label();
             this.ucProcessCode = new Team2_Project.Controls.ucSearch();
             this.chkDefQty = new System.Windows.Forms.CheckBox();
+            this.cboTest = new System.Windows.Forms.ComboBox();
+            this.lbltest = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -68,6 +69,8 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.lbltest);
+            this.pnlSub.Controls.Add(this.cboTest);
             this.pnlSub.Controls.Add(this.chkDefQty);
             this.pnlSub.Controls.Add(this.ucProcessCode);
             this.pnlSub.Controls.Add(this.label7);
@@ -190,13 +193,9 @@ namespace Team2_Project
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chtData.Series.Add(series1);
             this.chtData.Size = new System.Drawing.Size(1834, 416);
             this.chtData.TabIndex = 0;
-            this.chtData.Text = "chart1";
+            this.chtData.Text = "chart";
             // 
             // cboWoStatus
             // 
@@ -316,6 +315,28 @@ namespace Team2_Project
             this.chkDefQty.Text = "불량제외";
             this.chkDefQty.UseVisualStyleBackColor = false;
             // 
+            // cboTest
+            // 
+            this.cboTest.FormattingEnabled = true;
+            this.cboTest.Items.AddRange(new object[] {
+            "WorkOrder_001",
+            "WorkOrder_002",
+            "WorkOrder_003"});
+            this.cboTest.Location = new System.Drawing.Point(1486, 45);
+            this.cboTest.Name = "cboTest";
+            this.cboTest.Size = new System.Drawing.Size(229, 25);
+            this.cboTest.TabIndex = 79;
+            // 
+            // lbltest
+            // 
+            this.lbltest.AutoSize = true;
+            this.lbltest.BackColor = System.Drawing.Color.Transparent;
+            this.lbltest.Location = new System.Drawing.Point(1483, 22);
+            this.lbltest.Name = "lbltest";
+            this.lbltest.Size = new System.Drawing.Size(232, 17);
+            this.lbltest.TabIndex = 80;
+            this.lbltest.Text = "(차트동적생성테스트) 작업지시번호";
+            // 
             // frmTimeProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -365,5 +386,7 @@ namespace Team2_Project
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.CheckBox chkDefQty;
+        private System.Windows.Forms.ComboBox cboTest;
+        private System.Windows.Forms.Label lbltest;
     }
 }
