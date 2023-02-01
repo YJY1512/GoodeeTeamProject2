@@ -10,9 +10,7 @@ namespace Team2_Project_WEB.Models
         public string Name { get; set; }
         public string Code { get; set; }
         public decimal Ratio { get; set; }
-        public int Order_p { get; set; }
-        public int Customer_p { get; set; }
-        public int Order_c { get; set; }
-        public int Customer_c { get; set; }
+        public int OrderSum { get; set; }
+        public int CustomerSum { get; set; }
     }
 }

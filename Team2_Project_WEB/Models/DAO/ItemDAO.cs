@@ -26,31 +26,37 @@ namespace Team2_Project_WEB.Models.DAO
                 conn.Close();
         }
 
-        public void GetItemList()
+        public List<ItemVO> GetItemList(string from, string to)
         {
-            //string sql = @"select user_id, user_pwd, user_name, auth_name
-            //                from Userinfo u inner join Authority a on u.auth_id = a.auth_id
-            //                where user_id = @uid and user_pwd = @pwd";
+            string sql = @"with OrderData as
+                            (
+	                            select Item_Code, sum(Req_Qty) OrderSum, Count(distinct Prj_No) ProjCnt
+	                            from Production_Req 
+	                            where Req_Date between @fromDate and @toDate
+	                            group by Item_Code
+                            )
+                            , ResultWithoutRatio as
+                            (
+	                            select im.Item_Code, Item_Name, isnull(OrderSum, 0) OrderSum, isnull(ProjCnt, 0) ProjCnt, round(convert(decimal, isnull(OrderSum, 0)) / (select sum(OrderSum) from OrderData), 2) * 100 ratio
+	                            from Item_Master im left outer join OrderData od on im.Item_Code = od.Item_Code
+	                            where Item_Type = 'PR'
+                            )
 
-            //using (SqlCommand cmd = new SqlCommand(sql, conn))
-            //{
-            //    cmd.Parameters.AddWithValue("@uid", uid);
-            //    cmd.Parameters.AddWithValue("@pwd", pwd);
+                            select Item_Code Code, Item_Name Name, OrderSum, ProjCnt CustomerSum, ratio Ratio
+                            from ResultWithoutRatio
+                            order by OrderSum DESC, ProjCnt DESC, Item_Code";
 
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    if (reader.Read())
-            //    {
-            //        return new UserVO
-            //        {
-            //            UserId = reader["user_id"].ToString(),
-            //            UserPwd = reader["user_pwd"].ToString(),
-            //            UserName = reader["user_name"].ToString(),
-            //            AuthName = reader["auth_name"].ToString()
-            //        };
-            //    }
-            //    else
-            //        return null;
-            //}
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@fromDate", from);
+                cmd.Parameters.AddWithValue("@toDate", to);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(reader);
+                reader.Close();
+
+                return list;
+            }
         }
     }
 }
