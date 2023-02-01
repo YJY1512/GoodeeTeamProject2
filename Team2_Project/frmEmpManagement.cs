@@ -24,7 +24,7 @@ namespace Team2_Project
         string[] use_YNSearchList = { "전체", "재직", "퇴직" };
         //Dictionary를 Combobox에 바인딩
         Dictionary<char, string> use_YNList = new Dictionary<char, string>(){{ 'Y', "재직" }, { 'N', "퇴직" }};
-        Dictionary<char, string> AuthList = new Dictionary<char, string>() { { 'A', "관리자" }, { 'U', "일반" } };
+        //Dictionary<char, string> AuthList = new Dictionary<char, string>() { { 'A', "관리자" }, { 'U', "일반" } };
         int pnlStat;
         int idx;
         List<CodeDTO> userGroupCodeList;
@@ -41,7 +41,7 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvEmp);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 ID", "User_ID", 180);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 이름", "User_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 권한", "User_Type", 120, align: DataGridViewContentAlignment.MiddleCenter);
+            //DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 권한", "User_Type", 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹코드", "UserGroup_Code", 180);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹 명", "UserGroup_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "재직여부", "Use_YN", 120, align: DataGridViewContentAlignment.MiddleCenter);
@@ -59,10 +59,10 @@ namespace Team2_Project
             cboDel.DisplayMember = "Value";
             cboDel.ValueMember = "Key";
 
-            cboAuth.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboAuth.DataSource = new BindingSource(AuthList, null);
-            cboAuth.DisplayMember = "Value";
-            cboAuth.ValueMember = "Key";
+            //cboAuth.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cboAuth.DataSource = new BindingSource(AuthList, null);
+            //cboAuth.DisplayMember = "Value";
+            //cboAuth.ValueMember = "Key";
 
             txtID.KeyPress += txtID_KeyPress;
 
@@ -123,7 +123,7 @@ namespace Team2_Project
             ucSearchGroup._Name = "";
 
             cboDel.SelectedIndex = 0;
-            cboAuth.SelectedIndex = 0;
+            //cboAuth.SelectedIndex = 0;
         }
 
         public void OnAdd()
@@ -190,10 +190,12 @@ namespace Team2_Project
             {
                 if (string.IsNullOrWhiteSpace(txtID.Text))
                     throw new Exception("사용자 ID는 필수 입력 항목입니다.");
-                if(string.IsNullOrWhiteSpace(txtName.Text))
-                    throw new Exception("사용자 이름은 필수 입력 항목입니다.");
-                if(!int.TryParse(txtID.Text, out i))
+                if (!int.TryParse(txtID.Text, out i))
                     throw new Exception("사용자 ID는 숫자만 사용할 수 있습니다.");
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                    throw new Exception("사용자 이름은 필수 입력 항목입니다.");
+                if(string.IsNullOrWhiteSpace(ucSearchGroup._Code))
+                    throw new Exception("권한 그룹은 필수 입력 항목입니다.");
                 if (pnlStat == 1 && empSrv.CheckUserID(txtID.Text))
                     throw new Exception("이미 존재하는 사용자 ID 입니다.");
 
@@ -206,7 +208,7 @@ namespace Team2_Project
                 {
                     User_ID = txtID.Text,
                     User_Name = txtName.Text,
-                    User_Type = cboAuth.SelectedValue.ToString(),
+                    //User_Type = cboAuth.SelectedValue.ToString(),
                     UserGroup_Code = ucSearchGroup._Code,
                     UserGroup_Name = ucSearchGroup._Name,
                     Use_YN = cboDel.SelectedValue.ToString(),
@@ -258,8 +260,6 @@ namespace Team2_Project
                 else if (pnlStat == 2)
                     ((frmMain)this.MdiParent).EditClickEvent();
             }
-
-            
         }
 
         public void OnCancel()
@@ -279,7 +279,6 @@ namespace Team2_Project
             SetPannel(pnlArea, false);
             SetPannel(pnlSub, true);
             dgvEmp.Enabled = true;
-            dgvEmp.ClearSelection();
 
             txtSearchID.Text = txtSearchName.Text = "";
             cboSearchDel.SelectedIndex = 0;
@@ -343,12 +342,19 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            txtID.Text = dgvEmp["User_ID", e.RowIndex].Value.ToString();
-            txtName.Text = dgvEmp["User_Name", e.RowIndex].Value.ToString();
-            ucSearchGroup._Code = dgvEmp["UserGroup_Code", e.RowIndex].Value.ToString();
-            ucSearchGroup._Name = dgvEmp["UserGroup_Name", e.RowIndex].Value.ToString();
-            cboDel.Text = dgvEmp["Use_YN", e.RowIndex].Value.ToString();
-            cboAuth.Text = dgvEmp["User_Type", e.RowIndex].Value.ToString();
+            try
+            {
+                txtID.Text = dgvEmp["User_ID", e.RowIndex].Value.ToString();
+                txtName.Text = dgvEmp["User_Name", e.RowIndex].Value.ToString();
+                ucSearchGroup._Code = dgvEmp["UserGroup_Code", e.RowIndex].Value.ToString();
+                ucSearchGroup._Name = dgvEmp["UserGroup_Name", e.RowIndex].Value.ToString();
+                cboDel.Text = dgvEmp["Use_YN", e.RowIndex].Value.ToString();
+                //cboAuth.Text = dgvEmp["User_Type", e.RowIndex].Value.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void txtID_KeyPress(object sender, KeyPressEventArgs e)
@@ -364,6 +370,18 @@ namespace Team2_Project
         {
             if(e.KeyChar == 13)
                 SendKeys.Send("{TAB}");
+        }
+
+        private void cboSearchDel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                OnSearch();
+        }
+
+        private void cboDel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                OnSave();
         }
     }
 }

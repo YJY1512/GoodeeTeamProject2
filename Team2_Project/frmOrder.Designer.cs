@@ -121,6 +121,7 @@ namespace Team2_Project
             this.dtpSearchFrom.Name = "dtpSearchFrom";
             this.dtpSearchFrom.Size = new System.Drawing.Size(130, 25);
             this.dtpSearchFrom.TabIndex = 71;
+            this.dtpSearchFrom.ValueChanged += new System.EventHandler(this.dtpSearchFrom_ValueChanged);
             // 
             // dtpSearchTo
             // 

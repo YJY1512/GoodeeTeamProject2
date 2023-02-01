@@ -306,7 +306,14 @@ namespace Team2_Project
                     {
                         case 2: OpenPop(GetPopInfo_Project()); break;
                         case 5: SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); break;
-                        case 6: SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); break;
+                        case 6: 
+                            if(dgvOrder[5, e.RowIndex].Value == DBNull.Value)
+                            {
+                                MessageBox.Show("요청일자를 먼저 입력해 주세요.");
+                            }
+                            else
+                                SetDtpCell(dgvOrder[e.ColumnIndex, e.RowIndex]); 
+                            break;
                         case 7: OpenPop(GetPopInfo_Item()); break;
                         default: break;
                     }
@@ -319,9 +326,6 @@ namespace Team2_Project
             dgvOrder.ScrollBars = ScrollBars.None;
             DateTimePicker dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Short;
-            //dtp.MinDate = DateTime.Now.AddDays(dtpMinDays);
-            //if(dtpMaxMonths > 0)
-            //    dtp.MaxDate = DateTime.Now.AddMonths(dtpMaxMonths);
             dtp.Visible = true;
             if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
                 dtp.Value = DateTime.Parse(cell.Value.ToString());
@@ -336,15 +340,22 @@ namespace Team2_Project
             dgvOrder.Controls.Add(dtp);
 
             dtp.CloseUp += Dtp_CloseUp;
-             if(cell.ColumnIndex == 5)
+            if (cell.ColumnIndex == 5)
                 dtp.TextChanged += Dtp_TextChanged_rd;
             else
+            {
+                dtp.Value = Convert.ToDateTime(dgvOrder[5, cell.RowIndex].Value).Date;
+                dtp.MinDate = dtp.Value;
                 dtp.TextChanged += Dtp_TextChanged_dd;
+            } 
         }
 
         private void Dtp_TextChanged_rd(object sender, EventArgs e)
         {
             dgvOrder.SelectedRows[0].Cells["Req_Date"].Value = ((DateTimePicker)sender).Value.ToString("yyyy-MM-dd");
+            if (dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value != DBNull.Value
+                && Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value) < Convert.ToDateTime(dgvOrder.SelectedRows[0].Cells["Req_Date"].Value))
+                dgvOrder.SelectedRows[0].Cells["Delivery_Date"].Value = DBNull.Value;
         }
 
         private void Dtp_TextChanged_dd(object sender, EventArgs e)
@@ -434,5 +445,12 @@ namespace Team2_Project
                 e.Handled = true;
         }
 
+        private void dtpSearchFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpSearchTo.Value < dtpSearchFrom.Value)
+                dtpSearchTo.Value = dtpSearchFrom.Value;
+
+            dtpSearchTo.MinDate = dtpSearchFrom.Value;
+        }
     }
 }
