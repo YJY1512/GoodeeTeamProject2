@@ -76,8 +76,8 @@ namespace Team2_Project_DAO
 
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
-            string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, User_Type, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
-values (@User_ID, @User_Name, pwdencrypt(@User_ID), @User_Type, 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
+            string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp, User_Type)
+values (@User_ID, @User_Name, pwdencrypt(@User_ID), 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp, 'U')";
 
             string sql2 = @"insert into UserGroup_Mapping (UserGroup_Code, User_ID, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
 values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
@@ -91,7 +91,6 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Connection = conn;
                     cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
                     cmd.Parameters.AddWithValue("@User_Name", data.User_Name);
-                    cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
                     cmd.Parameters.AddWithValue("@Use_YN", data.Use_YN);
                     cmd.Parameters.AddWithValue("@Ins_Emp", Ins_Emp);
                     cmd.Transaction = trans;
@@ -129,7 +128,7 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
         public bool Update(EmployeeDTO data, string Ins_Emp)
         {
             string sql1 = @"update User_Master
-                            set User_Name = @User_Name, User_Type = @User_Type, Use_YN = @Use_YN, Up_Date = getdate(), Up_Emp = @Up_Emp
+                            set User_Name = @User_Name, Use_YN = @Use_YN, Up_Date = getdate(), Up_Emp = @Up_Emp
                             where User_ID = @User_ID";
 
             string sql2 = @"update UserGroup_Mapping
@@ -145,7 +144,7 @@ values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
                     cmd.Connection = conn;
                     cmd.Parameters.AddWithValue("@User_ID", data.User_ID);
                     cmd.Parameters.AddWithValue("@User_Name", data.User_Name);
-                    cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
+                    //cmd.Parameters.AddWithValue("@User_Type", data.User_Type);
                     cmd.Parameters.AddWithValue("@Use_YN", data.Use_YN);
                     cmd.Parameters.AddWithValue("@Up_Emp", Ins_Emp);
                     cmd.Transaction = trans;

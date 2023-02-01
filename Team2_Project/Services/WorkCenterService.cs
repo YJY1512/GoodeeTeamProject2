@@ -11,10 +11,10 @@ namespace Team2_Project.Services
 {
     public class WorkCenterService
     {
-        public DataTable GetWorkCenterInfo()
+        public List<WorkCenterDTO> GetWorkCenterInfo()
         {
             WorkCenterDAO db = new WorkCenterDAO();
-            DataTable list = db.GetWorkCenterInfo();
+            List<WorkCenterDTO> list = db.GetWorkCenterInfo();
             db.Dispose();
 
             return list;

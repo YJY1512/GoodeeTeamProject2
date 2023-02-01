@@ -29,6 +29,7 @@ namespace Team2_Project.Controls
         public ucSearch()
         {
             InitializeComponent();
+            textBox1.Enabled = textBox2.Enabled = false;
         }
         
         private void btn_Click(object sender, EventArgs e)
