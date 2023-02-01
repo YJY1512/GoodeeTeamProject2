@@ -32,7 +32,7 @@ namespace Team2_Project
             this.dgvWorkShop = new System.Windows.Forms.DataGridView();
             this.lblCenCode = new System.Windows.Forms.Label();
             this.lblCenName = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCenGroup = new System.Windows.Forms.Label();
             this.txtCenterCode = new System.Windows.Forms.TextBox();
             this.txtCenterName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label7);
             this.pnlArea.Controls.Add(this.txtCenterName);
             this.pnlArea.Controls.Add(this.txtCenterCode);
-            this.pnlArea.Controls.Add(this.label5);
+            this.pnlArea.Controls.Add(this.lblCenGroup);
             this.pnlArea.Controls.Add(this.lblCenName);
             this.pnlArea.Controls.Add(this.lblCenCode);
             this.pnlArea.Size = new System.Drawing.Size(1351, 180);
@@ -163,14 +163,14 @@ namespace Team2_Project
             this.lblCenName.TabIndex = 1;
             this.lblCenName.Text = "작업장 명";
             // 
-            // label5
+            // lblCenGroup
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(404, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "작업장 그룹";
+            this.lblCenGroup.AutoSize = true;
+            this.lblCenGroup.Location = new System.Drawing.Point(404, 79);
+            this.lblCenGroup.Name = "lblCenGroup";
+            this.lblCenGroup.Size = new System.Drawing.Size(82, 17);
+            this.lblCenGroup.TabIndex = 2;
+            this.lblCenGroup.Text = "작업장 그룹";
             // 
             // txtCenterCode
             // 
@@ -207,7 +207,6 @@ namespace Team2_Project
             // cboPalletYN
             // 
             this.cboPalletYN.BackColor = System.Drawing.Color.White;
-            this.cboPalletYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPalletYN.FormattingEnabled = true;
             this.cboPalletYN.Location = new System.Drawing.Point(155, 133);
             this.cboPalletYN.Name = "cboPalletYN";
@@ -427,6 +426,7 @@ namespace Team2_Project
             this.cboWCGroup.Name = "cboWCGroup";
             this.cboWCGroup.Size = new System.Drawing.Size(130, 25);
             this.cboWCGroup.TabIndex = 28;
+            this.cboWCGroup.SelectedIndexChanged += new System.EventHandler(this.cboWCGroup_SelectedIndexChanged);
             // 
             // frmWorkCenter
             // 
@@ -467,7 +467,7 @@ namespace Team2_Project
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtCenterName;
         private System.Windows.Forms.TextBox txtCenterCode;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCenGroup;
         private System.Windows.Forms.Label lblCenName;
         private System.Windows.Forms.Label lblCenCode;
         private Controls.ucSearch ucProcCode;
