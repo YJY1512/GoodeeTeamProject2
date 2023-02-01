@@ -19,10 +19,10 @@ namespace Team2_Project.Services
             return list;
         }
 
-        public List<TimeProductionHistoryDTO> GetTimeProductionHistory()
+        public List<TimeProductionHistoryDTO> GetTimeProductionHistory(string WorkOrderNo)
         {
             AnalysisDAO db = new AnalysisDAO();
-            List<TimeProductionHistoryDTO> list = db.GetTimeProductionHistory();
+            List<TimeProductionHistoryDTO> list = db.GetTimeProductionHistory(WorkOrderNo);
             db.Dispose();
             return list;
         }

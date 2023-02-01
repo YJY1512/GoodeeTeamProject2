@@ -29,22 +29,36 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
+            this.ucItemSearch = new Team2_Project.Controls.ucSearch();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
+            this.pnlList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
             this.pnlSub.Controls.Add(this.label3);
             this.pnlSub.Controls.Add(this.label1);
-            this.pnlSub.Controls.Add(this.ucSearch1);
+            this.pnlSub.Controls.Add(this.ucItemSearch);
             this.pnlSub.Controls.Add(this.label6);
-            this.pnlSub.Controls.Add(this.dtpFrom);
+            this.pnlSub.Controls.Add(this.dtpDate);
             this.pnlSub.Size = new System.Drawing.Size(1834, 65);
             // 
             // pnlTitle
@@ -53,6 +67,7 @@ namespace Team2_Project
             // 
             // pnlList
             // 
+            this.pnlList.Controls.Add(this.splitContainer1);
             this.pnlList.Size = new System.Drawing.Size(1834, 803);
             // 
             // lblTitle
@@ -60,16 +75,16 @@ namespace Team2_Project
             this.lblTitle.Size = new System.Drawing.Size(60, 18);
             this.lblTitle.Text = "조회내역";
             // 
-            // dtpFrom
+            // dtpDate
             // 
-            this.dtpFrom.CustomFormat = "yyyy-mm";
-            this.dtpFrom.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(110, 18);
-            this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(106, 25);
-            this.dtpFrom.TabIndex = 73;
-            this.dtpFrom.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
+            this.dtpDate.CustomFormat = "yyyy-mm";
+            this.dtpDate.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(110, 18);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(106, 25);
+            this.dtpDate.TabIndex = 73;
+            this.dtpDate.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             // 
             // label6
             // 
@@ -82,17 +97,17 @@ namespace Team2_Project
             this.label6.TabIndex = 76;
             this.label6.Text = "조회년월";
             // 
-            // ucSearch1
+            // ucItemSearch
             // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(331, 18);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch1.TabIndex = 77;
+            this.ucItemSearch._Code = "";
+            this.ucItemSearch._Name = "";
+            this.ucItemSearch.BackColor = System.Drawing.Color.Transparent;
+            this.ucItemSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucItemSearch.Location = new System.Drawing.Point(331, 18);
+            this.ucItemSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.ucItemSearch.Name = "ucItemSearch";
+            this.ucItemSearch.Size = new System.Drawing.Size(340, 28);
+            this.ucItemSearch.TabIndex = 77;
             // 
             // label1
             // 
@@ -113,6 +128,66 @@ namespace Team2_Project
             this.label3.TabIndex = 79;
             this.label3.Text = "(분석소재)\r\n- 월별 제품 생산 비율\r\n- 월별 불량 사유 비율\r\n";
             // 
+            // chtData
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
+            this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
+            this.chtData.Location = new System.Drawing.Point(0, 0);
+            this.chtData.Name = "chtData";
+            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.chtData.Size = new System.Drawing.Size(1834, 545);
+            this.chtData.TabIndex = 3;
+            this.chtData.Text = "chart1";
+            // 
+            // dgvData
+            // 
+            this.dgvData.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.RowTemplate.Height = 23;
+            this.dgvData.Size = new System.Drawing.Size(1834, 254);
+            this.dgvData.TabIndex = 4;
+            this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvData);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.chtData);
+            this.splitContainer1.Size = new System.Drawing.Size(1834, 803);
+            this.splitContainer1.SplitterDistance = 254;
+            this.splitContainer1.TabIndex = 5;
+            // 
             // frmMonthProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -125,6 +200,13 @@ namespace Team2_Project
             this.pnlSub.PerformLayout();
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
+            this.pnlList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -132,9 +214,12 @@ namespace Team2_Project
         #endregion
 
         protected System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtpFrom;
+        private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label1;
-        private Controls.ucSearch ucSearch1;
+        private Controls.ucSearch ucItemSearch;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

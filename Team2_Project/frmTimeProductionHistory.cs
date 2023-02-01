@@ -61,7 +61,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 150, visible: false);
             dgvData.MultiSelect = false;
 
-            OnSearch();
+            
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -82,7 +82,7 @@ namespace Team2_Project
                 AdvancedListBind(TPHistoryList, dgvData);
             }
 
-            ChartData(); /////////// CHART TEST
+            ChartData(); //// CHART TEST (셀선택시)
         }
 
         public void OnReLoad()  //새로고침
@@ -156,14 +156,19 @@ namespace Team2_Project
 
         public void ChartData()
         {
-            TPHistoryList = srv.GetTimeProductionHistory();
+            //---test----
+            string curInfo = cboTest.Text;
+            //------------
+
+            //string curInfo = (dgvData[0, dgvData.CurrentRow.Index].Value.ToString()) ?? "333";
+            TPHistoryList = srv.GetTimeProductionHistory(curInfo);
 
             chtData.Series.Clear();
             chtData.Series.Add("생산량");
             chtData.Series["생산량"].Points.Clear();
             chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;
             chtData.Series["생산량"].Color = Color.FromArgb(211, 226, 223);
-            chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", null); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
+            chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", "Label=Prd_Qty"); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
 
             if (!chkDefQty.Checked)
             {
@@ -171,8 +176,10 @@ namespace Team2_Project
                 chtData.Series["불량"].Points.Clear();
                 chtData.Series["불량"].ChartType = SeriesChartType.StackedColumn;
                 chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
-                chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", null); // X축: Time, Y축: Score
+                chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", "Label=Def_Qty"); // X축: Time, Y축: Score
             }
+
+            
 
             #region test
             //(방법2)//////////////////
