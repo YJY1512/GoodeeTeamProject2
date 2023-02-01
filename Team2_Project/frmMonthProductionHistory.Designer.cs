@@ -120,6 +120,7 @@ namespace Team2_Project
             this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMonthProductionHistory";
             this.Text = "월별 생산현황";
+            this.Load += new System.EventHandler(this.frmMonthProductionHistory_Load);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlTitle.ResumeLayout(false);

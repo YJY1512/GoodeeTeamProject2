@@ -116,7 +116,7 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Label lblSelected;
+        public System.Windows.Forms.Label lblSelected;
         private System.Windows.Forms.Label label1;
     }
 }

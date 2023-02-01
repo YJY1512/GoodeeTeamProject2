@@ -14,5 +14,11 @@ namespace Team2_Project
         {
             InitializeComponent();
         }
+
+        private void frmMonthProductionHistory_Load(object sender, EventArgs e)
+        {
+            //월별 제품 생산비율 폼
+
+        }
     }
 }

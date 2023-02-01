@@ -36,9 +36,6 @@ namespace Team2_Project_POP
             lbl3.Location = new Point(60 + lbl1.Size.Width + lbl2.Size.Width, 20);
             lbl3.Size = new Size(screenWidh * 8, 80);
 
-            //ucListSelect1.Location = new Point(0, 0);
-            //ucListSelect1.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 120, 120);
-
             workCenterList = ser.GetWorkCenterInfo();
 
             for(int i = 0; i < workCenterList.Count;i++)
@@ -50,9 +47,10 @@ namespace Team2_Project_POP
                 list.Status = workCenterList[i].Wc_Status;
                 list.Space = workCenterList[i].Wc_Name;
                 list.Group = workCenterList[i].Wc_Group_Name;
+                list.Tag = workCenterList[i].Wc_Code;
                 list.ListClick += List_ListClick;
-                list.MouseEnter += List_MouseEnter;
-                list.MouseLeave += List_MouseLeave;
+                list.ListMouseEnter += List_MouseEnter;
+                list.ListMouseOut += List_MouseLeave;
                 panel2.Controls.Add(list);
             }
         }
@@ -69,7 +67,8 @@ namespace Team2_Project_POP
 
         private void List_ListClick(object sender, EventArgs e)
         {
-            //((Controls.ucListSelect)sender) ((frmParent)this.MdiParent).LoginedWorkCenter
+            ((frmParent)this.MdiParent).LoginedWorkCenter = workCenterList.Find((work) => work.Wc_Code == ((Controls.ucListSelect)sender).Tag.ToString());
+            ((frmParent)this.MdiParent).lblSelected.Text = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Name;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -79,6 +78,11 @@ namespace Team2_Project_POP
                 MessageBox.Show("선택해주세요");
                 return;
             }
+            frmProductionList frm = new frmProductionList();
+            frm.MdiParent = this.MdiParent;
+            frm.WindowState = FormWindowState.Maximized;
+            this.Close();
+            frm.Show();
         }
     }
 }

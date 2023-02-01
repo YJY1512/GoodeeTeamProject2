@@ -53,22 +53,23 @@ namespace Team2_Project_POP.Controls
             lbl3.Text = Group;
 
         }
-        private void pnl_MouseEnter(object sender, EventArgs e)
+       
+        private void lbl1_Click(object sender, EventArgs e)
+        {
+            if (ListClick != null)
+                ListClick(this, e);
+        }
+
+        private void lbl1_MouseEnter(object sender, EventArgs e)
         {
             if (ListMouseEnter != null)
                 ListMouseEnter(this, e);
         }
 
-        private void ucListSelect_Click(object sender, EventArgs e)
+        private void lbl1_MouseLeave(object sender, EventArgs e)
         {
-            if (ListClick != null)
-                ListClick(this, e);
-        }
-
-        private void ucListSelect_MouseLeave(object sender, EventArgs e)
-        {
-            if (ListClick != null)
-                ListClick(this, e);
+            if (ListMouseOut != null)
+                ListMouseOut(this, e);
         }
     }
 }
