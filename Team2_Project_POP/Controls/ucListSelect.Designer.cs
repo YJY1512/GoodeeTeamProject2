@@ -46,6 +46,9 @@ namespace Team2_Project_POP.Controls
             this.lbl3.TabIndex = 5;
             this.lbl3.Text = "그   룹";
             this.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl3.Click += new System.EventHandler(this.lbl1_Click);
+            this.lbl3.MouseEnter += new System.EventHandler(this.lbl1_MouseEnter);
+            this.lbl3.MouseLeave += new System.EventHandler(this.lbl1_MouseLeave);
             // 
             // lbl2
             // 
@@ -59,6 +62,9 @@ namespace Team2_Project_POP.Controls
             this.lbl2.TabIndex = 4;
             this.lbl2.Text = "작 업 장";
             this.lbl2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl2.Click += new System.EventHandler(this.lbl1_Click);
+            this.lbl2.MouseEnter += new System.EventHandler(this.lbl1_MouseEnter);
+            this.lbl2.MouseLeave += new System.EventHandler(this.lbl1_MouseLeave);
             // 
             // lbl1
             // 
@@ -72,6 +78,9 @@ namespace Team2_Project_POP.Controls
             this.lbl1.TabIndex = 3;
             this.lbl1.Text = "상  태";
             this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl1.Click += new System.EventHandler(this.lbl1_Click);
+            this.lbl1.MouseEnter += new System.EventHandler(this.lbl1_MouseEnter);
+            this.lbl1.MouseLeave += new System.EventHandler(this.lbl1_MouseLeave);
             // 
             // ucListSelect
             // 
@@ -85,9 +94,9 @@ namespace Team2_Project_POP.Controls
             this.Name = "ucListSelect";
             this.Size = new System.Drawing.Size(1800, 100);
             this.Load += new System.EventHandler(this.ucListSelect_Load);
-            this.Click += new System.EventHandler(this.ucListSelect_Click);
-            this.MouseEnter += new System.EventHandler(this.pnl_MouseEnter);
-            this.MouseLeave += new System.EventHandler(this.ucListSelect_MouseLeave);
+            this.Click += new System.EventHandler(this.lbl1_Click);
+            this.MouseEnter += new System.EventHandler(this.lbl1_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.lbl1_MouseLeave);
             this.ResumeLayout(false);
 
         }

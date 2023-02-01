@@ -19,7 +19,7 @@ namespace Team2_Project_POP
 
         private void frmProductionList_Load(object sender, EventArgs e)
         {
-            lblProductionLine.Location = new Point(panel1.Width / 2 - 120, panel1.Height / 2 - 30);
+            
         }
     }
 }
