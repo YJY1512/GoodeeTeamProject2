@@ -39,6 +39,7 @@ namespace Team2_Project
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPlan = new System.Windows.Forms.DataGridView();
             this.dgvWorkOrder = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlListUP.SuspendLayout();
             this.pnlListDown.SuspendLayout();
@@ -48,6 +49,7 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.btnAdd);
             this.pnlSub.Controls.Add(this.ucWcGrp);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.ucWc);
@@ -57,12 +59,13 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.dtpMonth);
             this.pnlSub.Controls.Add(this.label11);
             this.pnlSub.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pnlSub.Size = new System.Drawing.Size(1100, 120);
+            this.pnlSub.Size = new System.Drawing.Size(1249, 120);
             // 
             // pnlListUP
             // 
             this.pnlListUP.Controls.Add(this.dgvPlan);
-            this.pnlListUP.Size = new System.Drawing.Size(1100, 214);
+            this.pnlListUP.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pnlListUP.Size = new System.Drawing.Size(1249, 233);
             // 
             // lblTitleU
             // 
@@ -73,7 +76,8 @@ namespace Team2_Project
             // pnlListDown
             // 
             this.pnlListDown.Controls.Add(this.dgvWorkOrder);
-            this.pnlListDown.Size = new System.Drawing.Size(1100, 206);
+            this.pnlListDown.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pnlListDown.Size = new System.Drawing.Size(1249, 226);
             // 
             // lblTitleD
             // 
@@ -174,7 +178,7 @@ namespace Team2_Project
             this.dgvPlan.Location = new System.Drawing.Point(0, 0);
             this.dgvPlan.Name = "dgvPlan";
             this.dgvPlan.RowTemplate.Height = 23;
-            this.dgvPlan.Size = new System.Drawing.Size(1100, 214);
+            this.dgvPlan.Size = new System.Drawing.Size(1249, 233);
             this.dgvPlan.TabIndex = 0;
             // 
             // dgvWorkOrder
@@ -185,13 +189,27 @@ namespace Team2_Project
             this.dgvWorkOrder.Location = new System.Drawing.Point(0, 0);
             this.dgvWorkOrder.Name = "dgvWorkOrder";
             this.dgvWorkOrder.RowTemplate.Height = 23;
-            this.dgvWorkOrder.Size = new System.Drawing.Size(1100, 206);
+            this.dgvWorkOrder.Size = new System.Drawing.Size(1249, 226);
             this.dgvWorkOrder.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.ForeColor = System.Drawing.Color.Black;
+            this.btnAdd.Location = new System.Drawing.Point(1064, 23);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(156, 71);
+            this.btnAdd.TabIndex = 33;
+            this.btnAdd.Text = "작업지시 생성";
+            this.btnAdd.UseVisualStyleBackColor = false;
             // 
             // frmSiyuWorkOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1100, 630);
+            this.ClientSize = new System.Drawing.Size(1249, 669);
             this.Name = "frmSiyuWorkOrder";
             this.Text = "시유작업지시생성";
             this.Load += new System.EventHandler(this.frmSiyuWorkOrder_Load);
@@ -217,5 +235,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvPlan;
         private System.Windows.Forms.DataGridView dgvWorkOrder;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

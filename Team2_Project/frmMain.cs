@@ -293,8 +293,8 @@ namespace Team2_Project
             }
             else if (e.Node.Text == "시유 작업지시 생성")
             {
-                //OpenGMMainPage<>();
-                MessageBox.Show("빈 생성 화면입니다.");
+                OpenChildPage<frmSiyuWorkOrder>();
+                //MessageBox.Show("빈 생성 화면입니다.");
             }
             else
             {

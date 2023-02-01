@@ -62,7 +62,7 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.ucProd);
             this.pnlSub.Controls.Add(this.label12);
             this.pnlSub.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlSub.Size = new System.Drawing.Size(1100, 120);
+            this.pnlSub.Size = new System.Drawing.Size(1232, 120);
             // 
             // lblTitleU
             // 
@@ -79,16 +79,16 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvWorkOrder);
-            this.pnlList.Size = new System.Drawing.Size(1100, 223);
+            this.pnlList.Size = new System.Drawing.Size(1232, 223);
             // 
             // pnlArea
             // 
-            this.pnlArea.Size = new System.Drawing.Size(1100, 197);
+            this.pnlArea.Size = new System.Drawing.Size(1232, 197);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Location = new System.Drawing.Point(0, 120);
-            this.splitContainer1.Size = new System.Drawing.Size(1100, 510);
+            this.splitContainer1.Size = new System.Drawing.Size(1232, 510);
             this.splitContainer1.SplitterDistance = 266;
             // 
             // ucWcGrp
@@ -201,13 +201,13 @@ namespace Team2_Project
             this.dgvWorkOrder.Location = new System.Drawing.Point(0, 0);
             this.dgvWorkOrder.Name = "dgvWorkOrder";
             this.dgvWorkOrder.RowTemplate.Height = 23;
-            this.dgvWorkOrder.Size = new System.Drawing.Size(1100, 223);
+            this.dgvWorkOrder.Size = new System.Drawing.Size(1232, 223);
             this.dgvWorkOrder.TabIndex = 0;
             // 
             // frmWorkOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
-            this.ClientSize = new System.Drawing.Size(1100, 630);
+            this.ClientSize = new System.Drawing.Size(1232, 630);
             this.Name = "frmWorkOrder";
             this.Text = "작업지시 생성 및 마감";
             this.pnlSub.ResumeLayout(false);
