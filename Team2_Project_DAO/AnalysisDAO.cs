@@ -11,10 +11,10 @@ using Team2_Project_DTO;
 
 namespace Team2_Project_DAO
 {
-    public class TimeProductionHistoryDAO : IDisposable
+    public class AnalysisDAO : IDisposable
     {
         SqlConnection conn;
-        public TimeProductionHistoryDAO()
+        public AnalysisDAO()
         {
             string connstr = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
             conn = new SqlConnection(connstr);
@@ -26,8 +26,8 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        //날짜기준으로 시간대별실적 (작업조회기준) 데이터 가져오기
-        public List<TimeProductionHistoryDTO> GetTimeProductionHistory(string from, string to)
+        
+        public List<TimeProductionHistoryDTO> GetWorkOrder(string from, string to) //날짜기준으로 시간대별실적 (작업조회기준) 데이터 가져오기
         {
             try
             {
@@ -59,5 +59,33 @@ namespace Team2_Project_DAO
         }
 
 
+        public List<TimeProductionHistoryDTO> GetTimeProductionHistory() //시간대별 데이터
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "SP_TIMETEST";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(reader);
+                    reader.Close();
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

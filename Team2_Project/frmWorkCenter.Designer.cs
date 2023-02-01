@@ -30,8 +30,8 @@ namespace Team2_Project
         private void InitializeComponent()
         {
             this.dgvWorkShop = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblCenCode = new System.Windows.Forms.Label();
+            this.lblCenName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCenterCode = new System.Windows.Forms.TextBox();
             this.txtCenterName = new System.Windows.Forms.TextBox();
@@ -39,7 +39,7 @@ namespace Team2_Project
             this.label8 = new System.Windows.Forms.Label();
             this.cboPalletYN = new System.Windows.Forms.ComboBox();
             this.cboUseYN = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblProCode = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -113,7 +113,7 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.label15);
             this.pnlArea.Controls.Add(this.txtRemark);
             this.pnlArea.Controls.Add(this.label10);
-            this.pnlArea.Controls.Add(this.label9);
+            this.pnlArea.Controls.Add(this.lblProCode);
             this.pnlArea.Controls.Add(this.cboUseYN);
             this.pnlArea.Controls.Add(this.cboPalletYN);
             this.pnlArea.Controls.Add(this.label8);
@@ -121,8 +121,8 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.txtCenterName);
             this.pnlArea.Controls.Add(this.txtCenterCode);
             this.pnlArea.Controls.Add(this.label5);
-            this.pnlArea.Controls.Add(this.label4);
-            this.pnlArea.Controls.Add(this.label1);
+            this.pnlArea.Controls.Add(this.lblCenName);
+            this.pnlArea.Controls.Add(this.lblCenCode);
             this.pnlArea.Size = new System.Drawing.Size(1351, 180);
             // 
             // splitContainer1
@@ -145,23 +145,23 @@ namespace Team2_Project
             this.dgvWorkShop.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkShop_CellClick);
             this.dgvWorkShop.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkShop_CellFormatting);
             // 
-            // label1
+            // lblCenCode
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "작업장 코드";
+            this.lblCenCode.AutoSize = true;
+            this.lblCenCode.Location = new System.Drawing.Point(43, 22);
+            this.lblCenCode.Name = "lblCenCode";
+            this.lblCenCode.Size = new System.Drawing.Size(82, 17);
+            this.lblCenCode.TabIndex = 0;
+            this.lblCenCode.Text = "작업장 코드";
             // 
-            // label4
+            // lblCenName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 79);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 17);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "작업장 명";
+            this.lblCenName.AutoSize = true;
+            this.lblCenName.Location = new System.Drawing.Point(43, 79);
+            this.lblCenName.Name = "lblCenName";
+            this.lblCenName.Size = new System.Drawing.Size(68, 17);
+            this.lblCenName.TabIndex = 1;
+            this.lblCenName.Text = "작업장 명";
             // 
             // label5
             // 
@@ -202,10 +202,12 @@ namespace Team2_Project
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 17);
             this.label8.TabIndex = 8;
-            this.label8.Text = "사용유무";
+            this.label8.Text = "사용여부";
             // 
             // cboPalletYN
             // 
+            this.cboPalletYN.BackColor = System.Drawing.Color.White;
+            this.cboPalletYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPalletYN.FormattingEnabled = true;
             this.cboPalletYN.Location = new System.Drawing.Point(155, 133);
             this.cboPalletYN.Name = "cboPalletYN";
@@ -214,20 +216,22 @@ namespace Team2_Project
             // 
             // cboUseYN
             // 
+            this.cboUseYN.BackColor = System.Drawing.Color.White;
+            this.cboUseYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseYN.FormattingEnabled = true;
             this.cboUseYN.Location = new System.Drawing.Point(505, 133);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 11;
             // 
-            // label9
+            // lblProCode
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(404, 22);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 17);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "공정 코드";
+            this.lblProCode.AutoSize = true;
+            this.lblProCode.Location = new System.Drawing.Point(404, 22);
+            this.lblProCode.Name = "lblProCode";
+            this.lblProCode.Size = new System.Drawing.Size(68, 17);
+            this.lblProCode.TabIndex = 12;
+            this.lblProCode.Text = "공정 코드";
             // 
             // label10
             // 
@@ -273,12 +277,14 @@ namespace Team2_Project
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Location = new System.Drawing.Point(367, 26);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 17);
+            this.label13.Size = new System.Drawing.Size(68, 17);
             this.label13.TabIndex = 14;
-            this.label13.Text = "공정코드";
+            this.label13.Text = "공정 코드";
             // 
             // cboSearchUseYN
             // 
+            this.cboSearchUseYN.BackColor = System.Drawing.Color.White;
+            this.cboSearchUseYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSearchUseYN.FormattingEnabled = true;
             this.cboSearchUseYN.Location = new System.Drawing.Point(452, 67);
             this.cboSearchUseYN.Name = "cboSearchUseYN";
@@ -414,6 +420,8 @@ namespace Team2_Project
             // 
             // cboWCGroup
             // 
+            this.cboWCGroup.BackColor = System.Drawing.Color.White;
+            this.cboWCGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWCGroup.FormattingEnabled = true;
             this.cboWCGroup.Location = new System.Drawing.Point(505, 76);
             this.cboWCGroup.Name = "cboWCGroup";
@@ -452,7 +460,7 @@ namespace Team2_Project
         private System.Windows.Forms.DataGridView dgvWorkShop;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblProCode;
         private System.Windows.Forms.ComboBox cboUseYN;
         private System.Windows.Forms.ComboBox cboPalletYN;
         private System.Windows.Forms.Label label8;
@@ -460,8 +468,8 @@ namespace Team2_Project
         private System.Windows.Forms.TextBox txtCenterName;
         private System.Windows.Forms.TextBox txtCenterCode;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCenName;
+        private System.Windows.Forms.Label lblCenCode;
         private Controls.ucSearch ucProcCode;
         protected System.Windows.Forms.Label label17;
         protected System.Windows.Forms.Label label16;

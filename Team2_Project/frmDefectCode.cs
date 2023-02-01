@@ -16,7 +16,10 @@ namespace Team2_Project
     {
         DefCodeService srv = new DefCodeService();
         List<DefCodeDTO> defList;
-        
+
+        enum ButtonClick { Add, Edit, None };
+        ButtonClick clickState;
+
         public frmDefectCode()
         {
             InitializeComponent();
@@ -36,6 +39,10 @@ namespace Team2_Project
             LoadData();
             SetInitPnl();
 
+            if (defList != null && defList.Count > 0)
+            {
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, 0));
+            }            
         }
 
         private void LoadData()
@@ -44,9 +51,7 @@ namespace Team2_Project
             if (defList != null)
             {
                 AdvancedListBind(defList, dgvMa);
-            }
-
-            dgvMa.ClearSelection();
+            }            
         }
 
         private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
@@ -69,6 +74,12 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
+            if (defList == null)
+            {
+                LoadData();
+                return;
+            }
+
             string defName = txtNameSC.Text;
             string defCode = txtCodeSC.Text;
             string useYN = (cboUseSC.SelectedItem.ToString() == "전체") ? "" : cboUseSC.SelectedItem.ToString();
@@ -78,6 +89,11 @@ namespace Team2_Project
                         select c).ToList();
 
             AdvancedListBind(list, dgvMa);
+
+            if (list != null && list.Count > 0)
+            {
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
+            }            
         }
 
         public void OnAdd()     //추가
@@ -87,6 +103,8 @@ namespace Team2_Project
             dgvMa.Enabled = false;
             txtName.Enabled = txtCode.Enabled = cboUseYN.Enabled = true;            
             cboUseYN.SelectedIndex = 0;
+
+            clickState = ButtonClick.Add;
         }
 
         public void OnEdit()    //수정
@@ -99,6 +117,8 @@ namespace Team2_Project
 
             txtName.Enabled = cboUseYN.Enabled = true;
             dgvMa.Enabled = false;
+
+            clickState = ButtonClick.Edit;
         }
 
         public void OnDelete()  //삭제
@@ -139,10 +159,17 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("필수항목을 입력해주세요.");
+
+                if (clickState == ButtonClick.Add)
+                    ((frmMain)this.MdiParent).AddClickEvent();
+
+                else if (clickState == ButtonClick.Edit)
+                    ((frmMain)this.MdiParent).EditClickEvent();
+
                 return;
             }
 
-            if (txtCode.Enabled) //신규 저장
+            if (clickState == ButtonClick.Add) //신규 저장
             {
                 bool result = srv.CheckPK(true, txtCode.Text);
                 if (!result)
@@ -170,7 +197,7 @@ namespace Team2_Project
                 }
 
             }
-            else //수정 저장
+            else if (clickState == ButtonClick.Edit) //수정 저장
             {
                 DefCodeDTO code = new DefCodeDTO
                 {
@@ -191,9 +218,9 @@ namespace Team2_Project
                 }
             }
 
+            clickState = ButtonClick.None;
             dgvMa.Enabled = true;
             OnReLoad();
-
         }
 
         public void OnCancel()  //취소
@@ -211,6 +238,11 @@ namespace Team2_Project
             
             SetInitPnl();
             LoadData();
+
+            if (dgvMa.CurrentRow != null)
+            {
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
+            }            
         }
         #endregion
 

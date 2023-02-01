@@ -75,6 +75,8 @@ namespace Team2_Project.Utils
             }
             cbo.Items.Add("예");
             cbo.Items.Add("아니오");
+
+            cbo.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }

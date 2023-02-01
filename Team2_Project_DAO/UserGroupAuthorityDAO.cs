@@ -27,17 +27,19 @@ namespace Team2_Project_DAO
         }
 
         
-        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh()
+        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh(string name, string use )
         {
             try
             {
-                string sql = @"select UserGroup_Code, UserGroup_Name, 
-                               case when Admin = 'Y' then '예' when Admin = 'N' then '아니오' end as Admin, 
+                string sql = @"select UserGroup_Code, UserGroup_Name, case when Admin = 'Y' then '예' when Admin = 'N' then '아니오' end as Admin, 
                                case when Use_YN = 'Y' then '예' when Use_YN = 'N' then '아니오' end as Use_YN 
-                               from UserGroup_Master";
-
+                                from UserGroup_Master
+                                where UserGroup_Name like @UserGroup_Name and Use_YN = @Use_YN";
+                
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@UserGroup_Name","%" + name + "%");
+                    cmd.Parameters.AddWithValue("@Use_YN", use);
                     conn.Open();
                     List<UserGroupAuthorityDTO> list = Helper.DataReaderMapToList<UserGroupAuthorityDTO>(cmd.ExecuteReader());
                     conn.Close();
@@ -109,52 +111,25 @@ namespace Team2_Project_DAO
 
         public bool UpdateUserGroup(UserGroupAuthorityDTO uga) //수정
         {
-            string sql1 = @"update UserGroup_Master
-                           set UserGroup_Name = @UserGroup_Name, Admin = @Admin, Use_YN = @Use_YN, Up_Date = GetDate(), Up_Emp=@Up_Emp
-                           where UserGroup_Code = @UserGroup_Code";
-            string sql2 = @"update UserGroup_Mapping
-                           set User_ID = @User_ID, Up_Date = GetDate(), Up_Date = GetDate(), Up_Emp = @Up_Emp
-                           where UserGroup_Code = @UserGroup_Code";
-
-            conn.Open();
-            SqlTransaction trans = conn.BeginTransaction();
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = sql1;
-                    cmd.Connection = conn;
-                    cmd.Parameters.AddWithValue("@UserGroup_Name", uga.UserGroup_Name);
-                    cmd.Parameters.AddWithValue("@Admin", uga.Admin);
-                    cmd.Parameters.AddWithValue("@Use_YN", uga.Use_YN);
-                    cmd.Parameters.AddWithValue("@Up_Emp", uga.Up_Emp);
-                    cmd.Parameters.AddWithValue("@UserGroup_Code", uga.UserGroup_Code);
-                    cmd.Transaction = trans;
+                string sql = @"update UserGroup_Master
+                           set UserGroup_Name = @UserGroup_Name, Admin = @Admin, Use_YN = @Use_YN, Up_Date = GetDate(), Up_Emp=@Up_Emp
+                           where UserGroup_Code = @UserGroup_Code";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@UserGroup_Code", uga.UserGroup_Code);
+                cmd.Parameters.AddWithValue("@UserGroup_Name", uga.UserGroup_Name);
+                cmd.Parameters.AddWithValue("@Admin", uga.Admin);
+                cmd.Parameters.AddWithValue("@Use_YN", uga.Use_YN);
+                cmd.Parameters.AddWithValue("@Up_Emp", uga.Up_Emp);
 
-                    if (cmd.ExecuteNonQuery() < 1)
-                    {
-                        return false;
-                    }
-
-                    cmd.Parameters.Clear();
-
-                    cmd.CommandText = sql2;
-                    cmd.Parameters.AddWithValue("@User_ID", uga.User_ID);
-                    cmd.Parameters.AddWithValue("@Up_Emp", uga.Up_Emp);
-                    cmd.Parameters.AddWithValue("@UserGroup_Code", uga.UserGroup_Code);
-
-                    if (cmd.ExecuteNonQuery() < 1)
-                    {
-                        return false;
-                    }
-
-                    trans.Commit();
-                }
-                return true;
+                conn.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                return (iRowAffect > 0);
             }
-            catch 
+            catch (Exception err)
             {
-                trans.Rollback();
+                Debug.WriteLine(err.Message);
                 return false;
             }
             finally
@@ -168,11 +143,13 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"delete from UserGroup_Master
-                               where UserGroup_Code = @UserGroup_Code";
+                               where UserGroup_Code = @UserGroup_Code and Admin = 'N' 
+                               select @@ERROR";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
                     cmd.Parameters.AddWithValue("@UserGroup_Code", userGrpCode);
+                    Debug.WriteLine(cmd.CommandText);
                     int result = Convert.ToInt32(cmd.ExecuteScalar());
                     return result;
                 }
@@ -180,7 +157,10 @@ namespace Team2_Project_DAO
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return -1;
+                if (err.Message.Contains("REFERENCE 제약 조건"))
+                    return -9;
+                else
+                    return -1;
             }
             finally
             {

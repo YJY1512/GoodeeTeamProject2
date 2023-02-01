@@ -10,10 +10,10 @@ namespace Team2_Project.Services
 {
     public class UserGroupAuthorityService
     {
-        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh()
+        public List<UserGroupAuthorityDTO> GetUserGroupCodeSearh(string empID, string useYN)
         {
             UserGroupAuthorityDAO db = new UserGroupAuthorityDAO();
-            List<UserGroupAuthorityDTO> list = db.GetUserGroupCodeSearh();
+            List<UserGroupAuthorityDTO> list = db.GetUserGroupCodeSearh(empID, useYN);
             db.Dispose();
 
             return list;

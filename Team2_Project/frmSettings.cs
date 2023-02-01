@@ -51,6 +51,7 @@ namespace Team2_Project
         private void btnChanPwd_Click(object sender, EventArgs e)
         {
             btnChanPwd.Enabled = false;
+            btnDashboard.Enabled = true;
             btnChanPwd.BackColor = Color.White;
             btnDashboard.BackColor = Color.FromArgb(211, 226, 223);
             OpenSettingPage<frmChangePassword>();
@@ -68,10 +69,12 @@ namespace Team2_Project
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
-        {           
+        {
+            btnChanPwd.Enabled = true;
+            btnDashboard.Enabled = false;
             btnDashboard.BackColor = Color.White;
             btnChanPwd.BackColor = Color.FromArgb(211, 226, 223);
-            //OpenSettingPage<>();  대쉬보드 폼 생성시 <> 안에 폼이름 넣기 
+            OpenSettingPage<frmSettingDashboard>();  
         }
         
 

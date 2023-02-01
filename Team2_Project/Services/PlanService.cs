@@ -11,18 +11,34 @@ namespace Team2_Project.Services
 {
     public class PlanService
     {
-        public DataTable GetPlanReq(string from, string to)
+        public DataTable GetPrdReq(string from, string to)
         {
             PlanDAO db = new PlanDAO();
-            DataTable dt = db.GetPlanReq(from, to);
+            DataTable dt = db.GetPrdReq(from, to);
 
             return dt;
         }
 
-        public bool InsertPlan(List<PlanDTO> plans)
+        public bool InsertReqPlan(List<PlanDTO> plans)
         {
             PlanDAO db = new PlanDAO();
-            bool result = db.InsertPlan(plans);
+            bool result = db.InsertReqPlan(plans);
+
+            return result;
+        }
+
+        public DataTable GetPlan(string planMonth)
+        {
+            PlanDAO db = new PlanDAO();
+            DataTable dt = db.GetPlan(planMonth);
+
+            return dt;
+        }
+
+        public bool InsertPlan(PlanDTO plan)
+        {
+            PlanDAO db = new PlanDAO();
+            bool result = db.InsertPlan(plan);
 
             return result;
         }

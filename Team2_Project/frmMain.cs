@@ -17,6 +17,22 @@ namespace Team2_Project
 {
     public partial class frmMain : Form
     {
+        #region 유효성체크 실패 시 넣어줘야하는 버튼 이벤트 (!!!!!!!!필수!!!!!!!!)
+        // 유효성 체크 후 return 값 주기 전에 이벤트 넣어주시면 됩니다. 
+        // OnSave() 버튼 이벤트에서만 사용
+        // 예시)
+        // MessageBox.Show($"{lblGroupCode.Text} 항목을 입력해주시기 바랍니다.");
+        //            if (clickState == "각 폼에서 clickstate를 '추가'로 정의해준 문자열 혹은 숫자 적어주시면됩니다")
+        //            {
+        //                ((frmMain)this.MdiParent).AddClickEvent();
+        //            }
+        //            else if (clickState == "각 폼에서 clickstate를 '수정'으로 정의해준 문자열 혹은 숫자 적어주시면됩니다")
+        //            {
+        //                ((frmMain)this.MdiParent).EditClickEvent();
+        //            }
+        //  return;
+        #endregion
+
         public EmployeeDTO LoginEmp { get; set; }
         
         //public event EventHandler BtnClick;
@@ -51,6 +67,7 @@ namespace Team2_Project
             tStripTime.Text = DateTime.Now.ToShortTimeString();
             tStripName.Text = LoginEmp.User_Name;
             tStripDept.Text = LoginEmp.UserGroup_Name;
+            RoadClickEvent();
             OpenChildPage<frmDashBoard>();
             
         }
@@ -420,17 +437,26 @@ namespace Team2_Project
         //}
 
         #region 버튼 클릭 이벤트
+        public void RoadClickEvent()
+        {
+            btnSave.Enabled = btnCancel.Enabled = false;
+            btnSave.BackColor = btnCancel.BackColor = Color.DarkGray;
+        }
         public void AddClickEvent() //추가 버튼 클릭시
         {
             btnAdd.BackColor = Color.White;            
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
+            btnSave.Enabled = btnCancel.Enabled = true;
             btnSearch.BackColor = btnEdit.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
+            btnSave.BackColor = btnCancel.BackColor = Color.FromArgb(211, 226, 223);
         }
         public void EditClickEvent() // 수정 버튼 클릭시 
         {
             btnEdit.BackColor = Color.White;
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = false;
+            btnSave.Enabled = btnCancel.Enabled = true;
             btnSearch.BackColor = btnAdd.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.DarkGray;
+            btnSave.BackColor = btnCancel.BackColor = Color.FromArgb(211, 226, 223);
         }
         void SaveOrCancelClickEvent()   //저장 or 취소 버튼 클릭시  
         {
@@ -445,12 +471,14 @@ namespace Team2_Project
             {
                 btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = true;
                 btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor =  btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
+                RoadClickEvent();
             }
         }
         public void BtnEditReturn(bool bactive) //셀 선택없이 수정버튼 클릭시 값 초기화 이벤트
         {
             btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = bactive;
             btnAdd.BackColor = btnEdit.BackColor = btnSearch.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
+            RoadClickEvent();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

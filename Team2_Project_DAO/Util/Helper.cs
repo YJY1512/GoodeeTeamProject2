@@ -42,6 +42,7 @@ namespace Team2_Project_DAO
             catch (Exception err)
             {
                 string msg = err.Message;
+                Debug.WriteLine(err.Message);
                 return null;
             }
         }

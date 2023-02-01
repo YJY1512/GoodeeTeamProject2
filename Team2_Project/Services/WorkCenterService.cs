@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,10 @@ namespace Team2_Project.Services
 {
     public class WorkCenterService
     {
-        public List<WorkCenterDTO> GetWorkCenterInfo()
+        public DataTable GetWorkCenterInfo()
         {
             WorkCenterDAO db = new WorkCenterDAO();
-            List<WorkCenterDTO> list = db.GetWorkCenterInfo();
+            DataTable list = db.GetWorkCenterInfo();
             db.Dispose();
 
             return list;
