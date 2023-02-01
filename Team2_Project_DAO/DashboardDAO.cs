@@ -37,7 +37,7 @@ namespace Team2_Project_DAO
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@", );
+                    //cmd.Parameters.AddWithValue("@", );
 
                     conn.Open();
                     int iRowAffect = cmd.ExecuteNonQuery();
