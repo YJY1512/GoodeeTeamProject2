@@ -28,8 +28,7 @@ namespace Team2_Project_POP
             btnFinish.Location = new Point((screenWidh / 6) * 4, 0);
             btnNonP.Location = new Point((screenWidh / 6) * 5, 0);
 
-            ucList1.ThisWitdh = panel4.Width;
-            ucList1.Update();
+           
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
