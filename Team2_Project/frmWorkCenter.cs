@@ -17,10 +17,9 @@ namespace Team2_Project
     {
         WorkCenterService srv = new WorkCenterService();
         ProcessMasterService prosrv = new ProcessMasterService();
-        List<WorkCenterDTO> wcList;
+        DataTable wcList;
         List<CodeDTO> code;
         List<ProcessMasterDTO> processList = null;
-        Dictionary<string, string> useList = new Dictionary<string, string>() { { "Y", "예" }, { "N", "아니요" } };
         string empID;       
         string clickState = "";
         public frmWorkCenter()
@@ -51,9 +50,6 @@ namespace Team2_Project
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUseYN);
             cboSearchUseYN.SelectedIndex = 0;
-            cboSearchUseYN.DataSource = new BindingSource(useList, null);
-            cboSearchUseYN.DisplayMember = "Value";
-            cboSearchUseYN.ValueMember = "Key";
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             CommonCodeUtil.UseYNComboBinding(cboPalletYN, false);
             CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
@@ -63,16 +59,27 @@ namespace Team2_Project
 
             SetInitEditPnl();
             processList = prosrv.SetData();
+            LoadData();
             dgvWorkShop.DataSource = null;
         }
         private void LoadData()
         {
-            
-            BindingSource wc = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
-            
-            dgvWorkShop.ClearSelection();
+            wcList = srv.GetWorkCenterInfo();
             dgvWorkShop.DataSource = null;
-            dgvWorkShop.DataSource = wc;
+            dgvWorkShop.DataSource = wcList;
+            dgvWorkShop.ClearSelection();
+        }
+        private DataTable Filtering(DataTable dt, string col, string str)
+        {
+            IEnumerable<DataRow> SortTable = null;
+
+            SortTable = from row in dt.AsEnumerable()
+                        where row.Field<string>(col).Contains(str)
+                        select row;
+            if (SortTable.Count() < 1)
+                return null;
+
+            return SortTable.CopyToDataTable();
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
@@ -133,13 +140,8 @@ namespace Team2_Project
 
         public void OnSearch()  //검색
         {
-            string groupCode = txtSearchCode.Text;
-            string groupName = txtSearchName.Text;
-            string processCode = ucSrchProcCode._Code;
-            string processName = ucSrchProcCode._Name;
-            string useYN = cboSearchUseYN.SelectedValue.ToString();
+            DataTable info = wcList;
 
-            wcList = srv.GetWorkCenterInfo();
             if (string.IsNullOrWhiteSpace(txtSearchCode.Text) &&
                 string.IsNullOrWhiteSpace(txtSearchName.Text) &&
                 string.IsNullOrWhiteSpace(ucSrchProcCode._Code) &&
@@ -149,13 +151,21 @@ namespace Team2_Project
             }
             else
             {
-                var list = (from g in wcList
-                            where g.Wc_Group.Contains(groupCode) && g.Wc_Group_Name.Contains(groupName) && g.Process_Code.Contains(processCode) && g.Use_YN.Contains(useYN)
-                            select g).ToList();
+                if (!string.IsNullOrWhiteSpace(txtSearchCode.Text))
+                    info = Filtering(info, "Wc_Code", txtSearchCode.Text);
+                if (info != null && !string.IsNullOrWhiteSpace(txtSearchName.Text))
+                    info = Filtering(info, "Wc_Name", txtSearchName.Text);
+                if (info != null && !string.IsNullOrWhiteSpace(ucSrchProcCode._Code))
+                    info = Filtering(info, "Process_Code", ucSrchProcCode._Code);
+                if (info != null && cboSearchUseYN.Text != "전체")
+                    info = Filtering(info, "Use_YN", cboSearchUseYN.Text);
 
-                BindingSource wc = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
-                dgvWorkShop.DataSource = wc;
+                dgvWorkShop.DataSource = null;
+                dgvWorkShop.DataSource = info;
             }
+
+            SetInitEditPnl();
+
         }
         public void OnAdd()     //추가
         {
