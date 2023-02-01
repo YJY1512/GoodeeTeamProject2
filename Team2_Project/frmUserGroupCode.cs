@@ -16,10 +16,9 @@ namespace Team2_Project
     public partial class frmUserGroupCode : frmListUpAreaDown
     {
         UserGroupAuthorityService srv = new UserGroupAuthorityService();
-        List<UserGroupAuthorityDTO> codeList;
+        List<UserGroupAuthorityDTO> codeList = null;
         string clickState = "";
         string empID;
-        Dictionary<string, string> useList = new Dictionary<string, string>(){{ "Y", "예" }, { "N", "아니요" }};
     public frmUserGroupCode()
         {
             InitializeComponent();
@@ -39,18 +38,16 @@ namespace Team2_Project
             CommonCodeUtil.UseYNComboBinding(cboUseYN1);
             cboUseYN1.SelectedIndex = 0;
             CommonCodeUtil.UseYNComboBinding(cboAdUseYN2, false);
-            cboUseYN1.DataSource = new BindingSource(useList, null);
-            cboUseYN1.DisplayMember = "Value";
-            cboUseYN1.ValueMember = "Key";
             CommonCodeUtil.UseYNComboBinding(cboUseYN2, false);
 
             SetInitEditPnl();
+            LoadData();
             dgvGroup.DataSource = null;
         }
 
         private void LoadData()
         {
-            
+            codeList = srv.GetUserGroupCodeSearh();
             BindingSource gc = new BindingSource(new AdvancedList<UserGroupAuthorityDTO>(codeList), null);
             dgvGroup.ClearSelection();
             dgvGroup.DataSource = null;
@@ -113,9 +110,8 @@ namespace Team2_Project
         public void OnSearch()  //검색
         {
             string grpNM = txtGroupNM1.Text;
-            //string useYN = (cboUseYN1.SelectedItem.ToString() == "전체") ? "" : cboUseYN1.SelectedItem.ToString();
-            string useYN = cboUseYN1.SelectedValue.ToString(); 
-            codeList = srv.GetUserGroupCodeSearh(grpNM, useYN);
+            string useYN = (cboUseYN1.SelectedItem.ToString() == "전체") ? "" : cboUseYN1.SelectedItem.ToString();
+ 
             if (string.IsNullOrWhiteSpace(txtGroupNM1.Text) && cboUseYN1.SelectedIndex == 0)   //공백일때
             {
                 LoadData();
@@ -125,7 +121,8 @@ namespace Team2_Project
                 var list = (from grp in codeList
                             where grp.UserGroup_Name.Contains(grpNM) && grp.Use_YN.Contains(useYN)
                             select grp).ToList();
-                BindingSource gc = new BindingSource(new AdvancedList<UserGroupAuthorityDTO>(codeList), null);
+                BindingSource gc = new BindingSource(new AdvancedList<UserGroupAuthorityDTO>(list), null);
+                dgvGroup.DataSource = null;
                 dgvGroup.DataSource = gc;
             }
         }

@@ -113,12 +113,22 @@ namespace Team2_Project
             {
                 txtCenterCode.Text = txtCenterName.Text = txtRemark.Text =  ucProcCode._Code = ucProcCode._Name = txtRemark.Text = "";
                 txtCenterCode.Enabled = txtCenterName.Enabled = txtRemark.Enabled 
-                = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled =true;
+                = ucProcCode.Enabled  = cboUseYN.Enabled = cboWCGroup.Enabled =true;
                 cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = 0;
             }
             else if (clickState == "Edit")
             {
-                txtCenterName.Enabled = txtRemark.Enabled = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled = true;
+                txtCenterName.Enabled = txtRemark.Enabled = ucProcCode.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled = true;
+                if (cboWCGroup.SelectedIndex == 1 || cboWCGroup.SelectedIndex == 2) // 작업장 그룹이 W1 혹은 W2일 때
+                {
+                    cboPalletYN.SelectedIndex = 1;      //팔렛 생성 여부는 N
+                    cboPalletYN.Enabled = false;
+                }
+                else if (cboWCGroup.SelectedIndex == 3)  //작업장 그룹이 포장일 때
+                {
+                    cboPalletYN.SelectedIndex = 0;      //팔렛 생성 여부는 Y
+                    cboPalletYN.Enabled = false;
+                }
             }
         }
         #endregion
@@ -144,7 +154,7 @@ namespace Team2_Project
             else
             {
                 var list = (from c in wcList
-                            where c.Wc_Code.ToUpper().Contains(cenCode) && c.Wc_Name.Contains(cenName) && c.Process_Code.Contains(proCode) && c.Use_YN.Contains(useYN)
+                            where c.Wc_Code.Contains(cenCode) && c.Wc_Name.Contains(cenName) && c.Process_Code.Contains(proCode) && c.Use_YN.Contains(useYN)
                             select c).ToList();
 
                 BindingSource bs = new BindingSource(new AdvancedList<WorkCenterDTO>(list), null);
@@ -238,6 +248,19 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(ucProcCode._Code))
             {
                 MessageBox.Show($"{lblProCode.Text}를 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
+                return;
+            }
+            if (cboWCGroup.SelectedIndex == 0)
+            {
+                MessageBox.Show($"{lblCenGroup.Text}를 선택해주세요.");
                 if (clickState == "Add")
                 {
                     ((frmMain)this.MdiParent).AddClickEvent();
@@ -419,5 +442,18 @@ namespace Team2_Project
             ucProcCode.OpenPop(popInfo);
         }
 
+        private void cboWCGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboWCGroup.SelectedIndex == 1 || cboWCGroup.SelectedIndex == 2) // 작업장 그룹이 W1 혹은 W2일 때
+            {
+                cboPalletYN.SelectedIndex = 1;      //팔렛 생성 여부는 N
+                cboPalletYN.Enabled = false;
+            }
+            else if (cboWCGroup.SelectedIndex == 3)  //작업장 그룹이 포장일 때
+            {
+                cboPalletYN.SelectedIndex = 0;      //팔렛 생성 여부는 Y
+                cboPalletYN.Enabled = false;
+            }
+        }
     }
 }

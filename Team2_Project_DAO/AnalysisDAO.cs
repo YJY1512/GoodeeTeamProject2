@@ -59,7 +59,7 @@ namespace Team2_Project_DAO
         }
 
 
-        public List<TimeProductionHistoryDTO> GetTimeProductionHistory() //시간대별 데이터
+        public List<TimeProductionHistoryDTO> GetTimeProductionHistory(string WorkOrderNo) //시간대별 데이터
         {
             try
             {
@@ -68,8 +68,9 @@ namespace Team2_Project_DAO
                     cmd.CommandText = "SP_TIMETEST";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
                     conn.Open();
+
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(reader);
                     reader.Close();
