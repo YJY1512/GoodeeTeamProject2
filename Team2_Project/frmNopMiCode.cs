@@ -20,6 +20,7 @@ namespace Team2_Project
         //List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         List<NopMiCodeDTO> NopMiList = new List<NopMiCodeDTO>();
         string situation = "";
+        string empID;
 
         public frmNopMiCode()
         {
@@ -30,6 +31,7 @@ namespace Team2_Project
         {
             LoadData();     //로드            
             OnSearch();     //조회
+            empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         private void LoadData()
@@ -163,7 +165,6 @@ namespace Team2_Project
         }
         public void OnSave()    //저장
         {
-            //필수입력항목: 코드, 명, 비가동유형, 사용유무
             if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text) || cboNoptype.SelectedIndex == 0) //|| cboUseYN.SelectedIndex == 0
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.");
@@ -177,8 +178,8 @@ namespace Team2_Project
                 Nop_Mi_Name = txtInfoNameMi.Text,
                 Nop_type = cboNoptype.Text.Equals("시유") ? "PG050" : "PG070",
                 Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
-                Ins_Emp = "홍길동", //////////////////////////
-                Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
+                Ins_Emp = empID,
+                Up_Emp = empID
             };
 
             if (situation == "Add")
@@ -227,7 +228,6 @@ namespace Team2_Project
         }
         public void OnReLoad()  //새로고침
         {
-            //Deactivation();
             ResetTop();       //검색 리셋
             ResetBottom();    //입력 리셋
             OnSearch();       //로드
@@ -340,7 +340,5 @@ namespace Team2_Project
             //ucMaCode._Code = dgvMaData["Nop_Ma_Code", dgvMaData.CurrentRow.Index].Value.ToString();
             //ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
         }
-
-
     }
 }

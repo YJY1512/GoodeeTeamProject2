@@ -10,6 +10,8 @@ namespace Team2_Project
 {
     public partial class frmDashBoard : Team2_Project.BaseForms.frmStart
     {
+        string empID;
+
         public frmDashBoard()
         {
             InitializeComponent();
@@ -18,6 +20,7 @@ namespace Team2_Project
         private void frmDashBoard_Load(object sender, EventArgs e)
         {
             LoadData();
+            empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         private void LoadData()

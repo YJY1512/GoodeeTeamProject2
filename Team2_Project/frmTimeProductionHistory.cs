@@ -58,10 +58,10 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "Prd_Qty", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "Def_Qty", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 150, visible:false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "시작시간대", "Start_Hour", 150, visible: false);
             dgvData.MultiSelect = false;
 
-            OnSearch();            
+            OnSearch();
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -111,9 +111,9 @@ namespace Team2_Project
         {
             if (TPHistoryList == null || TPHistoryList.Count() < 1) return;
 
-                //var list = (from g in TPHistoryList
-                //            group g by g.Process_Code ).ToList();
-                var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
+            //var list = (from g in TPHistoryList
+            //            group g by g.Process_Code ).ToList();
+            var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
 
             List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
             col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
@@ -160,8 +160,8 @@ namespace Team2_Project
 
             chtData.Series.Clear();
             chtData.Series.Add("생산량");
-            chtData.Series["생산량"].Points.Clear();            
-            chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;          
+            chtData.Series["생산량"].Points.Clear();
+            chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;
             chtData.Series["생산량"].Color = Color.FromArgb(211, 226, 223);
             chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", null); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
 

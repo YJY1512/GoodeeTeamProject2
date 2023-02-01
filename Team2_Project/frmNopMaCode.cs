@@ -19,6 +19,7 @@ namespace Team2_Project
         NopCodeService srv = new NopCodeService();
         List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         string situation = "";
+        string empID;
 
         public frmNopMaCode()
         {
@@ -29,6 +30,7 @@ namespace Team2_Project
         {
             LoadData();     //로드            
             OnSearch();     //조회
+            empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         private void LoadData()
@@ -124,8 +126,8 @@ namespace Team2_Project
                 Nop_Ma_Code = txtCode.Text,
                 Nop_Ma_Name = txtName.Text,
                 Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
-                Ins_Emp = "홍길동", ///////////////////////////////////
-                Up_Emp = "홍길동" //////////////////////////////////////////////////////// 추후수정
+                Ins_Emp = empID,
+                Up_Emp = empID
             };
 
             if (situation == "Add") //cboUseYN "아니오"로 저장하면 "예"로 저장되는 오류찾기!!*****
@@ -174,7 +176,6 @@ namespace Team2_Project
         }
         public void OnReLoad()  //새로고침
         {
-            //Deactivation();
             ResetTop();       //검색 리셋
             ResetBottom();    //입력 리셋
             OnSearch();       //로드

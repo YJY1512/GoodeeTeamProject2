@@ -20,6 +20,7 @@ namespace Team2_Project
         List<ItemDTO> itemList = new List<ItemDTO>();
         List<CodeDTO> CodeList = new List<CodeDTO>();
         string situation = "";
+        string empID;
 
         public frmItem()
         {
@@ -71,6 +72,7 @@ namespace Team2_Project
 
             LoadData();     //로드            
             OnSearch();     //조회
+            empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         private void LoadData()
@@ -87,8 +89,6 @@ namespace Team2_Project
             //                       Category = "ITEM_TYPE"
             //                   }).ToList();
             //CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
-
-
 
             cboTypeSC.Items.Add("전체");
             cboTypeSC.Items.Add("완제품");
@@ -142,9 +142,7 @@ namespace Team2_Project
                 Use_YN = cboUseYNSC.Text
             };
             itemList = srv.GetItemSearch(item);
-
             AdvancedListBind(itemList, dgvData);
-
             //dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
@@ -153,9 +151,9 @@ namespace Team2_Project
         public void OnAdd()     //추가
         {
             situation = "Add";
-            DeactivationTop();      //검색조건 비활성화
-            ResetBottom();          //입력패널 리셋
-            ActivationBottom(situation);  //입력패널 활성화
+            DeactivationTop();              //검색조건 비활성화
+            ResetBottom();                  //입력패널 리셋
+            ActivationBottom(situation);    //입력패널 활성화
             cboUseYN.SelectedIndex = 0;
             txtCode.Focus();
         }
@@ -169,9 +167,8 @@ namespace Team2_Project
                 return;
             }
             situation = "Update";
-            DeactivationTop();      //검색조건 비활성화
+            DeactivationTop();            //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
-            //txtName.Focus();
         }
 
         public void OnDelete()  //삭제
@@ -217,8 +214,8 @@ namespace Team2_Project
                 Item_Spec = cboSpec.Text.Equals("-선택-") ? "" : cboSpec.Text,
                 Use_YN = cboUseYN.Text.Equals("예") ? "Y" : "N",
                 Remark = txtRemark.Text,
-                Ins_Emp = "홍길동", ///////////////////////////////////////////////////// 추후수정
-                Up_Emp = "홍길동"   ///////////////////////////////////////////////////// 추후수정
+                Ins_Emp = empID,
+                Up_Emp = empID
             };
 
             if (situation == "Add")

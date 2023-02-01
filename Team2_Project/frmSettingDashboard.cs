@@ -17,6 +17,7 @@ namespace Team2_Project
     public partial class frmSettingDashboard : Form
     {
         DashboardService srv = new DashboardService();
+        string empID;
 
         public frmSettingDashboard()
         {
@@ -26,6 +27,7 @@ namespace Team2_Project
         private void frmSettingDashboard_Load(object sender, EventArgs e)
         {
             LoadData();
+            empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         public void LoadData()
@@ -63,7 +65,7 @@ namespace Team2_Project
             {
                 DashboardMappingDTO dto = new DashboardMappingDTO() //사용자 DB에 UPDATE //반복문 돌면서 lblTop과 lblBottom 대시보드코드와 위치를 (top/bottom) 업데이트
                 {
-                    User_ID = "1000",
+                    User_ID = empID,
                     DashboardItem = "",
                     Loc = "",
                     Use_YN = "Y"
