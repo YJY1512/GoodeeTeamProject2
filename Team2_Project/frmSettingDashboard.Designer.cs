@@ -82,6 +82,7 @@ namespace Team2_Project
             // 
             // lblTop
             // 
+            this.lblTop.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTop.Location = new System.Drawing.Point(25, 40);
             this.lblTop.Name = "lblTop";
             this.lblTop.Size = new System.Drawing.Size(248, 33);
@@ -103,6 +104,7 @@ namespace Team2_Project
             // 
             // lblBottom
             // 
+            this.lblBottom.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBottom.Location = new System.Drawing.Point(26, 37);
             this.lblBottom.Name = "lblBottom";
             this.lblBottom.Size = new System.Drawing.Size(246, 33);
