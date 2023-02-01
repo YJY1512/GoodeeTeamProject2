@@ -233,6 +233,44 @@ namespace Team2_Project_DAO
                 return -1;
             }
         }
+
+        public bool SplitPlan(PlanDTO plan)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SplitPlan", conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", plan.Prd_Plan_No);
+                    cmd.Parameters.AddWithValue("@Emp", plan.Ins_Emp);
+                    cmd.Parameters.AddWithValue("@Item_Code", plan.Item_Code);
+                    cmd.Parameters.AddWithValue("@SplitQty", plan.Plan_Qty);
+                    cmd.Parameters.AddWithValue("@Wc_Code", plan.Wc_Code);
+
+                    cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+
+                    if (pCode < 0)
+                    {
+                        throw new Exception(pMsg);
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
     
     }
 }

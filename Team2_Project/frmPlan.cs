@@ -323,6 +323,119 @@ namespace Team2_Project
         #endregion
 
 
+        #region tabPage2 (생산계획tab)
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1 && planDt == null)
+            {
+                tab2LoadData();
+                tab2SetInit();
+            }
+        }
+
+        private void tab2LoadData()
+        {
+            string planMonth = dtpMonth.Value.ToString("yyyy-MM");
+            planDt = srv.GetPlan(planMonth);
+
+            dgvPlan.DataSource = planDt;
+        }
+
+        private void tab2SetInit()
+        {
+            dtpMonth.Value = DateTime.Now;
+
+            ucProd2._Code = ucProd2._Name = "";
+            ucWc._Code = ucWc._Name = "";
+        }
+
+        private void ucProd2_BtnClick(object sender, EventArgs e)
+        {
+            ucProd2.OpenPop(GetItemPopInfo());
+        }
+
+        private void ucWc_BtnClick(object sender, EventArgs e)
+        {
+            ucWc.OpenPop(GetWcPopInfo());
+        }
+
+        private void btnSplit_Click(object sender, EventArgs e)
+        {
+            dgvPlan.Enabled = false;
+
+            int rIdx = dgvPlan.CurrentRow.Index;
+            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+            {
+                MessageBox.Show("대기중인 계획만 분할이 가능합니다.");
+                return;
+            }
+
+            frmPlanPop pop = new frmPlanPop();
+            pop.mode = frmPlanPop.OpenMode.Split;
+
+            pop.PlanID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+            pop.Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value);
+
+            if (pop.ShowDialog(this) == DialogResult.OK)
+            {
+                PlanDTO plan = new PlanDTO
+                {
+                    Prd_Plan_No = pop.PlanID,
+                    Item_Code = dgvPlan["Item_Code", rIdx].Value.ToString(),
+                    Wc_Code = dgvPlan["Wc_Code", rIdx].Value.ToString(),
+                    Plan_Qty = pop.Qty,
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
+                };
+
+                bool result = srv.SplitPlan(plan);
+                if (result)
+                {
+                    MessageBox.Show("계획 분할이 완료되었습니다.");
+                }
+                else
+                {
+                    MessageBox.Show("계획 분할 중 요류가 발생하였습니다.");
+                }
+
+                OnReLoad();
+            }
+
+            dgvPlan.Enabled = true;
+        }
+
+        private void dgvPlan_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+
+            if (clickState == ButtonClick.Add)
+            {
+                int rIdx = e.RowIndex;
+                if (e.ColumnIndex == dgvPlan.Columns["Wc_Code"].Index || e.ColumnIndex == dgvPlan.Columns["Wc_Name"].Index)
+                {
+                    OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvPlan, rIdx);
+                }
+
+                if (e.ColumnIndex == dgvPlan.Columns["Item_Code"].Index || e.ColumnIndex == dgvPlan.Columns["Item_Name"].Index)
+                {
+                    OpenPop<ItemDTO>(GetItemPopInfo(), dgvPlan, rIdx);
+                }
+            }
+        }
+
+        //Add일 때 cell 선택 불가하게
+        private void dgvPlan_SelectionChanged(object sender, EventArgs e)
+        {
+            if (clickState == ButtonClick.Add)
+            {
+                dgvPlan.CurrentCell.Selected = false;
+                dgvPlan.CurrentCell = dgvPlan.Rows[rIdx].Cells[0];
+            }
+        }
+
+        #endregion
+
+
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -606,6 +719,7 @@ namespace Team2_Project
             if (clickState == ButtonClick.Add)
             {
                 clickState = ButtonClick.None;
+            
                 planDt.Rows.RemoveAt(rIdx);
                 rIdx = -1;
             }            
@@ -628,99 +742,6 @@ namespace Team2_Project
         #endregion
 
 
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl1.SelectedIndex == 1 && planDt == null)
-            {
-                tab2LoadData();
-                tab2SetInit();
-            }
-        }
-
-        private void tab2LoadData()
-        {
-            string planMonth = dtpMonth.Value.ToString("yyyy-MM");
-            planDt = srv.GetPlan(planMonth);
-
-            dgvPlan.DataSource = planDt;
-        }
-
-        private void tab2SetInit()
-        {
-            dtpMonth.Value = DateTime.Now;
-
-            ucProd2._Code = ucProd2._Name = "";
-            ucWc._Code = ucWc._Name = "";
-        }
-
-        private void ucProd2_BtnClick(object sender, EventArgs e)
-        {
-            ucProd2.OpenPop(GetItemPopInfo());
-        }
-
-        private void ucWc_BtnClick(object sender, EventArgs e)
-        {
-            ucWc.OpenPop(GetWcPopInfo());
-        }      
-
-        private void dgvPlan_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-
-            if (clickState == ButtonClick.Add)
-            {
-                int rIdx = e.RowIndex;
-                if (e.ColumnIndex == dgvPlan.Columns["Wc_Code"].Index || e.ColumnIndex == dgvPlan.Columns["Wc_Name"].Index)
-                {
-                    OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvPlan, rIdx);
-                }
-
-                if (e.ColumnIndex == dgvPlan.Columns["Item_Code"].Index || e.ColumnIndex == dgvPlan.Columns["Item_Name"].Index)
-                {
-                    OpenPop<ItemDTO>(GetItemPopInfo(), dgvPlan, rIdx);
-                }
-            }            
-        }        
-
-
-        //편집 모드일 경우 cell 선택 불가하게
-        private void dgvPlan_SelectionChanged(object sender, EventArgs e)
-        {
-            if (clickState == ButtonClick.Add || clickState == ButtonClick.Edit)
-            {
-                dgvPlan.CurrentCell.Selected = false;
-                dgvPlan.CurrentCell = dgvPlan.Rows[rIdx].Cells[0];
-            }
-        }
-
-
-        private void btnSplit_Click(object sender, EventArgs e)
-        {
-            dgvPlan.Enabled = false;
-
-            int rIdx = dgvPlan.CurrentRow.Index;
-            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
-            {
-                MessageBox.Show("대기중인 계획만 분할이 가능합니다.");
-                return;
-            }
-
-            frmPlanPop pop = new frmPlanPop();
-            pop.mode = frmPlanPop.OpenMode.Split;
-
-            pop.PlanID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
-            pop.Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value);
-
-            if (pop.ShowDialog(this) == DialogResult.OK)
-            {
-                
-            }
-            else
-            {
-
-            }
-        }
 
     }
 }

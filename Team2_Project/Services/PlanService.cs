@@ -58,5 +58,13 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public bool SplitPlan(PlanDTO plan)
+        {
+            PlanDAO db = new PlanDAO();
+            bool result = db.SplitPlan(plan);
+
+            return result;
+        }
     }
 }

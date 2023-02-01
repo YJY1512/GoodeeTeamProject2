@@ -61,6 +61,7 @@
     <Compile Include="UserGroupDAO.cs" />
     <Compile Include="Util\Helper.cs" />
     <Compile Include="WorkCenterDAO.cs" />
+    <Compile Include="WorkOrderDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Team2_Project_DTO\Team2_Project_DTO.csproj">

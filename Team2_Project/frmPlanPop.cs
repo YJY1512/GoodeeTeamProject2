@@ -67,9 +67,9 @@ namespace Team2_Project
                 return;
             }
 
-            if (mode == OpenMode.Split && BeforeSplitPlanQty < Convert.ToInt32(txtQty.Text))
+            if (mode == OpenMode.Split && BeforeSplitPlanQty <= Convert.ToInt32(txtQty.Text))
             {
-                MessageBox.Show("분할 수량이 기존 계획 수량보다 많습니다. 다시 입력하여 주십시오.");
+                MessageBox.Show("분할 수량이 기존 계획 수량보다 많거나 같습니다. 다시 입력하여 주십시오.");
                 return;
             }
 
