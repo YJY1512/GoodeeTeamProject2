@@ -50,8 +50,8 @@ namespace Team2_Project
             string bottomtxt = string.Join(Environment.NewLine, (from top in mappingList
                                                                   where top.Loc.Equals("L")
                                                                   select top.DashboardItem).ToList());
- 
 
+            lblTestTop.Text = $"{empID}님의 상단화면: {toptxt} / 하단화면: {bottomtxt}";
         }
 
 
