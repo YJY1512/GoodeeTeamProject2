@@ -16,8 +16,6 @@ namespace Team2_Project_DTO
         public string Process_Name   { get; set; }   //공정 명
         public string Remark         { get; set; }   //비고
         public string Use_YN         { get; set; }   //사용유무
-        public string Wo_Status      { get; set; }   //작업지시 상태 코드 (공통코드)
-        public string Wo_Status_Name { get; set; }   //작업지시 상태 이름 (공통코드)
         public string Wc_Status      { get; set; }   //작업장 가동,비가동 여부 상태
         public string Pallet_YN      { get; set; }   //팔렛 생성 유무
         public string Ins_Date       { get; set; }   //최초등록날짜
