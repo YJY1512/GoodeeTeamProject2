@@ -29,9 +29,9 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -49,7 +49,6 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ucProcessCode = new Team2_Project.Controls.ucSearch();
-            this.button1 = new System.Windows.Forms.Button();
             this.chkDefQty = new System.Windows.Forms.CheckBox();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -70,7 +69,6 @@ namespace Team2_Project
             // pnlSub
             // 
             this.pnlSub.Controls.Add(this.chkDefQty);
-            this.pnlSub.Controls.Add(this.button1);
             this.pnlSub.Controls.Add(this.ucProcessCode);
             this.pnlSub.Controls.Add(this.label7);
             this.pnlSub.Controls.Add(this.dtpTo);
@@ -184,18 +182,18 @@ namespace Team2_Project
             // 
             // chtData
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
             this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chtData.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chtData.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chtData.Series.Add(series1);
             this.chtData.Size = new System.Drawing.Size(1834, 416);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart1";
@@ -307,15 +305,6 @@ namespace Team2_Project
             this.ucProcessCode.TabIndex = 75;
             this.ucProcessCode.BtnClick += new System.EventHandler(this.ucProcessCode_BtnClick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1696, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 27);
-            this.button1.TabIndex = 76;
-            this.button1.Text = "ChartTEST";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // chkDefQty
             // 
             this.chkDefQty.AutoSize = true;
@@ -374,7 +363,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.CheckBox chkDefQty;
     }

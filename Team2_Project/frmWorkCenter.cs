@@ -17,7 +17,7 @@ namespace Team2_Project
     {
         WorkCenterService srv = new WorkCenterService();
         ProcessMasterService prosrv = new ProcessMasterService();
-        DataTable wcList;
+        List<WorkCenterDTO> wcList = null;
         List<CodeDTO> code;
         List<ProcessMasterDTO> processList = null;
         string empID;       
@@ -44,8 +44,6 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 150);
 
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹", "Wc_Group",visible:false);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태", "Wo_Status_Name", visible: false);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업지시 상태코드", "Wo_Status", visible: false);
             dgvWorkShop.MultiSelect = false;
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUseYN);
@@ -65,21 +63,10 @@ namespace Team2_Project
         private void LoadData()
         {
             wcList = srv.GetWorkCenterInfo();
+            BindingSource bs = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
             dgvWorkShop.DataSource = null;
-            dgvWorkShop.DataSource = wcList;
+            dgvWorkShop.DataSource = bs;
             dgvWorkShop.ClearSelection();
-        }
-        private DataTable Filtering(DataTable dt, string col, string str)
-        {
-            IEnumerable<DataRow> SortTable = null;
-
-            SortTable = from row in dt.AsEnumerable()
-                        where row.Field<string>(col).Contains(str)
-                        select row;
-            if (SortTable.Count() < 1)
-                return null;
-
-            return SortTable.CopyToDataTable();
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
@@ -126,12 +113,22 @@ namespace Team2_Project
             {
                 txtCenterCode.Text = txtCenterName.Text = txtRemark.Text =  ucProcCode._Code = ucProcCode._Name = txtRemark.Text = "";
                 txtCenterCode.Enabled = txtCenterName.Enabled = txtRemark.Enabled 
-                = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled =true;
+                = ucProcCode.Enabled  = cboUseYN.Enabled = cboWCGroup.Enabled =true;
                 cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = 0;
             }
             else if (clickState == "Edit")
             {
-                txtCenterName.Enabled = txtRemark.Enabled = ucProcCode.Enabled = cboPalletYN.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled = true;
+                txtCenterName.Enabled = txtRemark.Enabled = ucProcCode.Enabled = cboUseYN.Enabled = cboWCGroup.Enabled = true;
+                if (cboWCGroup.SelectedIndex == 1 || cboWCGroup.SelectedIndex == 2) // 작업장 그룹이 W1 혹은 W2일 때
+                {
+                    cboPalletYN.SelectedIndex = 1;      //팔렛 생성 여부는 N
+                    cboPalletYN.Enabled = false;
+                }
+                else if (cboWCGroup.SelectedIndex == 3)  //작업장 그룹이 포장일 때
+                {
+                    cboPalletYN.SelectedIndex = 0;      //팔렛 생성 여부는 Y
+                    cboPalletYN.Enabled = false;
+                }
             }
         }
         #endregion
@@ -140,7 +137,11 @@ namespace Team2_Project
 
         public void OnSearch()  //검색
         {
-            DataTable info = wcList;
+            string cenCode = txtSearchCode.Text;
+            string cenName = txtSearchName.Text;
+            string proCode = ucSrchProcCode._Code;
+            string useYN = (cboSearchUseYN.SelectedItem.ToString() == "전체") ? "" : cboSearchUseYN.SelectedItem.ToString();
+            
 
             if (string.IsNullOrWhiteSpace(txtSearchCode.Text) &&
                 string.IsNullOrWhiteSpace(txtSearchName.Text) &&
@@ -149,19 +150,16 @@ namespace Team2_Project
             {
                 LoadData();
             }
+            
             else
             {
-                if (!string.IsNullOrWhiteSpace(txtSearchCode.Text))
-                    info = Filtering(info, "Wc_Code", txtSearchCode.Text);
-                if (info != null && !string.IsNullOrWhiteSpace(txtSearchName.Text))
-                    info = Filtering(info, "Wc_Name", txtSearchName.Text);
-                if (info != null && !string.IsNullOrWhiteSpace(ucSrchProcCode._Code))
-                    info = Filtering(info, "Process_Code", ucSrchProcCode._Code);
-                if (info != null && cboSearchUseYN.Text != "전체")
-                    info = Filtering(info, "Use_YN", cboSearchUseYN.Text);
+                var list = (from c in wcList
+                            where c.Wc_Code.Contains(cenCode) && c.Wc_Name.Contains(cenName) && c.Process_Code.Contains(proCode) && c.Use_YN.Contains(useYN)
+                            select c).ToList();
 
+                BindingSource bs = new BindingSource(new AdvancedList<WorkCenterDTO>(list), null);
                 dgvWorkShop.DataSource = null;
-                dgvWorkShop.DataSource = info;
+                dgvWorkShop.DataSource = bs;
             }
 
             SetInitEditPnl();
@@ -250,6 +248,19 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(ucProcCode._Code))
             {
                 MessageBox.Show($"{lblProCode.Text}를 입력해주시기 바랍니다.");
+                if (clickState == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (clickState == "Edit")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
+                return;
+            }
+            if (cboWCGroup.SelectedIndex == 0)
+            {
+                MessageBox.Show($"{lblCenGroup.Text}를 선택해주세요.");
                 if (clickState == "Add")
                 {
                     ((frmMain)this.MdiParent).AddClickEvent();
@@ -403,7 +414,7 @@ namespace Team2_Project
                         select p).ToList();
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공종코드명", "Process_Name", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드명", "Process_Name", 200));
 
             CommonPop<ProcessMasterDTO> popInfo = new CommonPop<ProcessMasterDTO>();
             popInfo.DgvDatasource = list;
@@ -422,7 +433,7 @@ namespace Team2_Project
                         select p).ToList();
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공종코드명", "Process_Name", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드명", "Process_Name", 200));
 
             CommonPop<ProcessMasterDTO> popInfo = new CommonPop<ProcessMasterDTO>();
             popInfo.DgvDatasource = list;
@@ -431,5 +442,18 @@ namespace Team2_Project
             ucProcCode.OpenPop(popInfo);
         }
 
+        private void cboWCGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboWCGroup.SelectedIndex == 1 || cboWCGroup.SelectedIndex == 2) // 작업장 그룹이 W1 혹은 W2일 때
+            {
+                cboPalletYN.SelectedIndex = 1;      //팔렛 생성 여부는 N
+                cboPalletYN.Enabled = false;
+            }
+            else if (cboWCGroup.SelectedIndex == 3)  //작업장 그룹이 포장일 때
+            {
+                cboPalletYN.SelectedIndex = 0;      //팔렛 생성 여부는 Y
+                cboPalletYN.Enabled = false;
+            }
+        }
     }
 }

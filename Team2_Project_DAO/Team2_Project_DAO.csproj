@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashboardDAO.cs" />
     <Compile Include="DefCodeDAO.cs" />
     <Compile Include="EmployeeDAO.cs" />
     <Compile Include="ItemDAO.cs" />

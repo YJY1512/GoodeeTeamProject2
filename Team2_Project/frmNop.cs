@@ -77,27 +77,7 @@ namespace Team2_Project
             AdvancedListBind(NopList, dgvData);
             dgvData.ClearSelection();
         }
-        //public void onadd()     //추가
-        //{
 
-
-        //}
-        //public void onedit()    //수정
-        //{
-
-        //}
-        //public void ondelete()  //삭제
-        //{
-
-        //}
-        //public void onsave()    //저장
-        //{
-
-        //}
-        //public void oncancel()  //취소
-        //{
-
-        //}
         public void OnReLoad()  //새로고침
         {
             ResetTop();       //검색 리셋
@@ -105,13 +85,11 @@ namespace Team2_Project
         }
         #endregion
 
-
         private void ResetTop() //검색 리셋
         {
             ucCodeSearch._Code = ucCodeSearch._Name = "";
             ResetDtp();
         }
-
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
