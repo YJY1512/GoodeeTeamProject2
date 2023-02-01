@@ -36,6 +36,8 @@ namespace Team2_Project
             this.lblTop = new System.Windows.Forms.Label();
             this.panBottom = new System.Windows.Forms.Panel();
             this.lblBottom = new System.Windows.Forms.Label();
+            this.lblTestBottom = new System.Windows.Forms.Label();
+            this.lblTestTop = new System.Windows.Forms.Label();
             this.panTop.SuspendLayout();
             this.panBottom.SuspendLayout();
             this.SuspendLayout();
@@ -112,12 +114,32 @@ namespace Team2_Project
             this.lblBottom.Text = "B";
             this.lblBottom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblTestBottom
+            // 
+            this.lblTestBottom.AutoSize = true;
+            this.lblTestBottom.Location = new System.Drawing.Point(749, 435);
+            this.lblTestBottom.Name = "lblTestBottom";
+            this.lblTestBottom.Size = new System.Drawing.Size(59, 17);
+            this.lblTestBottom.TabIndex = 5;
+            this.lblTestBottom.Text = "Bottom";
+            // 
+            // lblTestTop
+            // 
+            this.lblTestTop.AutoSize = true;
+            this.lblTestTop.Location = new System.Drawing.Point(774, 418);
+            this.lblTestTop.Name = "lblTestTop";
+            this.lblTestTop.Size = new System.Drawing.Size(34, 17);
+            this.lblTestTop.TabIndex = 6;
+            this.lblTestTop.Text = "Top";
+            // 
             // frmSettingDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(828, 470);
+            this.Controls.Add(this.lblTestTop);
+            this.Controls.Add(this.lblTestBottom);
             this.Controls.Add(this.panBottom);
             this.Controls.Add(this.panTop);
             this.Controls.Add(this.lbltxt);
@@ -145,5 +167,7 @@ namespace Team2_Project
         private System.Windows.Forms.Panel panBottom;
         private System.Windows.Forms.Label lblTop;
         private System.Windows.Forms.Label lblBottom;
+        private System.Windows.Forms.Label lblTestBottom;
+        private System.Windows.Forms.Label lblTestTop;
     }
 }

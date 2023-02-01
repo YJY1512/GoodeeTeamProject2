@@ -26,6 +26,36 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
+        public List<DashboardMappingDTO> GetData(string uid)
+        {
+            try
+            {
+                string sql = @"SELECT User_ID, DashboardItem, Loc 
+                                 FROM Dashboard_Mapping
+                                WHERE USER_ID = @USER_ID AND Use_YN = 'Y'
+                                ORDER BY Loc DESC";               
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@USER_ID", uid);
+
+                    conn.Open();
+                    Debug.WriteLine(cmd.CommandText);
+                    List<DashboardMappingDTO> list = Helper.DataReaderMapToList<DashboardMappingDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         
         public bool UpdateDashboardMapping() //사용자 대시보드 매핑 UPDATE
         {

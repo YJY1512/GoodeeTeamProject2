@@ -9,7 +9,16 @@ using Team2_Project_DTO;
 namespace Team2_Project.Services
 {
     class DashboardService
-    { 
+    {
+
+        public List<DashboardMappingDTO> GetData(string uid)
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<DashboardMappingDTO> list = db.GetData(uid);
+            db.Dispose();
+            return list;
+        }
+
         public bool UpdateDashboardMapping()
         {
             DashboardDAO db = new DashboardDAO();
