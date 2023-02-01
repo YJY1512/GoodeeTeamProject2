@@ -115,6 +115,7 @@ namespace Team2_Project_POP
             // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 120);
             this.panel2.Name = "panel2";
@@ -171,8 +172,8 @@ namespace Team2_Project_POP
             // 
             // frmSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 45F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1253, 680);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);

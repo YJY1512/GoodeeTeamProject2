@@ -29,171 +29,206 @@ namespace Team2_Project_POP.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblState = new System.Windows.Forms.Label();
-            this.lblPlanDate = new System.Windows.Forms.Label();
-            this.lblProductDate = new System.Windows.Forms.Label();
-            this.lblProduct = new System.Windows.Forms.Label();
-            this.lblWorkNum = new System.Windows.Forms.Label();
-            this.lblPerformanceCnt = new System.Windows.Forms.Label();
-            this.lblPlanCnt = new System.Windows.Forms.Label();
-            this.lblFinishTime = new System.Windows.Forms.Label();
-            this.lblStartTime = new System.Windows.Forms.Label();
-            this.lblRemark = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbld4 = new System.Windows.Forms.Label();
+            this.lblu4 = new System.Windows.Forms.Label();
+            this.lbld5 = new System.Windows.Forms.Label();
+            this.lblu5 = new System.Windows.Forms.Label();
+            this.lbld3 = new System.Windows.Forms.Label();
+            this.lblu3 = new System.Windows.Forms.Label();
+            this.lbld2 = new System.Windows.Forms.Label();
+            this.lblu2 = new System.Windows.Forms.Label();
+            this.lbl6 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblState
+            // panel1
             // 
-            this.lblState.BackColor = System.Drawing.Color.White;
-            this.lblState.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblState.Location = new System.Drawing.Point(22, 16);
-            this.lblState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(158, 176);
-            this.lblState.TabIndex = 0;
-            this.lblState.Text = "상태";
-            this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel1.Controls.Add(this.lbld4);
+            this.panel1.Controls.Add(this.lblu4);
+            this.panel1.Controls.Add(this.lbld5);
+            this.panel1.Controls.Add(this.lblu5);
+            this.panel1.Controls.Add(this.lbld3);
+            this.panel1.Controls.Add(this.lblu3);
+            this.panel1.Controls.Add(this.lbld2);
+            this.panel1.Controls.Add(this.lblu2);
+            this.panel1.Controls.Add(this.lbl6);
+            this.panel1.Controls.Add(this.lbl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1135, 125);
+            this.panel1.TabIndex = 0;
             // 
-            // lblPlanDate
+            // lbld4
             // 
-            this.lblPlanDate.BackColor = System.Drawing.Color.White;
-            this.lblPlanDate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPlanDate.Location = new System.Drawing.Point(186, 16);
-            this.lblPlanDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPlanDate.Name = "lblPlanDate";
-            this.lblPlanDate.Size = new System.Drawing.Size(158, 85);
-            this.lblPlanDate.TabIndex = 1;
-            this.lblPlanDate.Text = "계획일자";
-            this.lblPlanDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbld4.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbld4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbld4.ForeColor = System.Drawing.Color.White;
+            this.lbld4.Location = new System.Drawing.Point(570, 65);
+            this.lbld4.Margin = new System.Windows.Forms.Padding(0);
+            this.lbld4.Name = "lbld4";
+            this.lbld4.Size = new System.Drawing.Size(100, 55);
+            this.lbld4.TabIndex = 29;
+            this.lbld4.Tag = "2";
+            this.lbld4.Text = "실적 수량";
+            this.lbld4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblProductDate
+            // lblu4
             // 
-            this.lblProductDate.BackColor = System.Drawing.Color.White;
-            this.lblProductDate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblProductDate.Location = new System.Drawing.Point(186, 106);
-            this.lblProductDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblProductDate.Name = "lblProductDate";
-            this.lblProductDate.Size = new System.Drawing.Size(158, 85);
-            this.lblProductDate.TabIndex = 2;
-            this.lblProductDate.Text = "생산일자";
-            this.lblProductDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblu4.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblu4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblu4.ForeColor = System.Drawing.Color.White;
+            this.lblu4.Location = new System.Drawing.Point(570, 5);
+            this.lblu4.Margin = new System.Windows.Forms.Padding(0);
+            this.lblu4.Name = "lblu4";
+            this.lblu4.Size = new System.Drawing.Size(100, 55);
+            this.lblu4.TabIndex = 28;
+            this.lblu4.Tag = "2";
+            this.lblu4.Text = "계획 수량";
+            this.lblu4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblProduct
+            // lbld5
             // 
-            this.lblProduct.BackColor = System.Drawing.Color.White;
-            this.lblProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblProduct.Location = new System.Drawing.Point(351, 106);
-            this.lblProduct.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(158, 85);
-            this.lblProduct.TabIndex = 4;
-            this.lblProduct.Text = "품목명";
-            this.lblProduct.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbld5.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbld5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbld5.ForeColor = System.Drawing.Color.White;
+            this.lbld5.Location = new System.Drawing.Point(675, 65);
+            this.lbld5.Margin = new System.Windows.Forms.Padding(0);
+            this.lbld5.Name = "lbld5";
+            this.lbld5.Size = new System.Drawing.Size(200, 55);
+            this.lbld5.TabIndex = 27;
+            this.lbld5.Tag = "4";
+            this.lbld5.Text = "생산 종료 시간";
+            this.lbld5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblWorkNum
+            // lblu5
             // 
-            this.lblWorkNum.BackColor = System.Drawing.Color.White;
-            this.lblWorkNum.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblWorkNum.Location = new System.Drawing.Point(351, 16);
-            this.lblWorkNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblWorkNum.Name = "lblWorkNum";
-            this.lblWorkNum.Size = new System.Drawing.Size(158, 85);
-            this.lblWorkNum.TabIndex = 3;
-            this.lblWorkNum.Text = "작업지시번호";
-            this.lblWorkNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblu5.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblu5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblu5.ForeColor = System.Drawing.Color.White;
+            this.lblu5.Location = new System.Drawing.Point(675, 5);
+            this.lblu5.Margin = new System.Windows.Forms.Padding(0);
+            this.lblu5.Name = "lblu5";
+            this.lblu5.Size = new System.Drawing.Size(200, 55);
+            this.lblu5.TabIndex = 26;
+            this.lblu5.Tag = "4";
+            this.lblu5.Text = "생산 시작 시간";
+            this.lblu5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPerformanceCnt
+            // lbld3
             // 
-            this.lblPerformanceCnt.BackColor = System.Drawing.Color.White;
-            this.lblPerformanceCnt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPerformanceCnt.Location = new System.Drawing.Point(517, 106);
-            this.lblPerformanceCnt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPerformanceCnt.Name = "lblPerformanceCnt";
-            this.lblPerformanceCnt.Size = new System.Drawing.Size(158, 85);
-            this.lblPerformanceCnt.TabIndex = 6;
-            this.lblPerformanceCnt.Text = "실적 수량";
-            this.lblPerformanceCnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbld3.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbld3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbld3.ForeColor = System.Drawing.Color.White;
+            this.lbld3.Location = new System.Drawing.Point(365, 65);
+            this.lbld3.Margin = new System.Windows.Forms.Padding(0);
+            this.lbld3.Name = "lbld3";
+            this.lbld3.Size = new System.Drawing.Size(200, 55);
+            this.lbld3.TabIndex = 25;
+            this.lbld3.Tag = "4";
+            this.lbld3.Text = "품목명";
+            this.lbld3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPlanCnt
+            // lblu3
             // 
-            this.lblPlanCnt.BackColor = System.Drawing.Color.White;
-            this.lblPlanCnt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPlanCnt.Location = new System.Drawing.Point(517, 16);
-            this.lblPlanCnt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPlanCnt.Name = "lblPlanCnt";
-            this.lblPlanCnt.Size = new System.Drawing.Size(158, 85);
-            this.lblPlanCnt.TabIndex = 5;
-            this.lblPlanCnt.Text = "계획 수량";
-            this.lblPlanCnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblu3.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblu3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblu3.ForeColor = System.Drawing.Color.White;
+            this.lblu3.Location = new System.Drawing.Point(365, 5);
+            this.lblu3.Margin = new System.Windows.Forms.Padding(0);
+            this.lblu3.Name = "lblu3";
+            this.lblu3.Size = new System.Drawing.Size(200, 55);
+            this.lblu3.TabIndex = 24;
+            this.lblu3.Tag = "4";
+            this.lblu3.Text = "작업 지시 번호";
+            this.lblu3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblFinishTime
+            // lbld2
             // 
-            this.lblFinishTime.BackColor = System.Drawing.Color.White;
-            this.lblFinishTime.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblFinishTime.Location = new System.Drawing.Point(683, 106);
-            this.lblFinishTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFinishTime.Name = "lblFinishTime";
-            this.lblFinishTime.Size = new System.Drawing.Size(158, 85);
-            this.lblFinishTime.TabIndex = 8;
-            this.lblFinishTime.Text = "생산종료 시간";
-            this.lblFinishTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbld2.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbld2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbld2.ForeColor = System.Drawing.Color.White;
+            this.lbld2.Location = new System.Drawing.Point(160, 65);
+            this.lbld2.Margin = new System.Windows.Forms.Padding(0);
+            this.lbld2.Name = "lbld2";
+            this.lbld2.Size = new System.Drawing.Size(200, 55);
+            this.lbld2.TabIndex = 23;
+            this.lbld2.Tag = "4";
+            this.lbld2.Text = "생산 일자";
+            this.lbld2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblStartTime
+            // lblu2
             // 
-            this.lblStartTime.BackColor = System.Drawing.Color.White;
-            this.lblStartTime.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblStartTime.Location = new System.Drawing.Point(683, 16);
-            this.lblStartTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStartTime.Name = "lblStartTime";
-            this.lblStartTime.Size = new System.Drawing.Size(158, 85);
-            this.lblStartTime.TabIndex = 7;
-            this.lblStartTime.Text = "생산 시작 시간";
-            this.lblStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblu2.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblu2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblu2.ForeColor = System.Drawing.Color.White;
+            this.lblu2.Location = new System.Drawing.Point(160, 5);
+            this.lblu2.Margin = new System.Windows.Forms.Padding(0);
+            this.lblu2.Name = "lblu2";
+            this.lblu2.Size = new System.Drawing.Size(200, 55);
+            this.lblu2.TabIndex = 22;
+            this.lblu2.Tag = "4";
+            this.lblu2.Text = "계획 일자";
+            this.lblu2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblRemark
+            // lbl6
             // 
-            this.lblRemark.BackColor = System.Drawing.Color.White;
-            this.lblRemark.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblRemark.Location = new System.Drawing.Point(849, 16);
-            this.lblRemark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(419, 176);
-            this.lblRemark.TabIndex = 9;
-            this.lblRemark.Text = "label10";
-            this.lblRemark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl6.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbl6.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl6.ForeColor = System.Drawing.Color.White;
+            this.lbl6.Location = new System.Drawing.Point(880, 5);
+            this.lbl6.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl6.Name = "lbl6";
+            this.lbl6.Size = new System.Drawing.Size(250, 115);
+            this.lbl6.TabIndex = 21;
+            this.lbl6.Tag = "5";
+            this.lbl6.Text = " 전달  사항";
+            this.lbl6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl1
+            // 
+            this.lbl1.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbl1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.ForeColor = System.Drawing.Color.White;
+            this.lbl1.Location = new System.Drawing.Point(5, 5);
+            this.lbl1.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(150, 115);
+            this.lbl1.TabIndex = 20;
+            this.lbl1.Tag = "3";
+            this.lbl1.Text = "상 태";
+            this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblRemark);
-            this.Controls.Add(this.lblFinishTime);
-            this.Controls.Add(this.lblStartTime);
-            this.Controls.Add(this.lblPerformanceCnt);
-            this.Controls.Add(this.lblPlanCnt);
-            this.Controls.Add(this.lblProduct);
-            this.Controls.Add(this.lblWorkNum);
-            this.Controls.Add(this.lblProductDate);
-            this.Controls.Add(this.lblPlanDate);
-            this.Controls.Add(this.lblState);
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucList";
-            this.Size = new System.Drawing.Size(1335, 212);
+            this.Size = new System.Drawing.Size(1135, 125);
+            this.Load += new System.EventHandler(this.ucList_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblState;
-        private System.Windows.Forms.Label lblPlanDate;
-        private System.Windows.Forms.Label lblProductDate;
-        private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.Label lblWorkNum;
-        private System.Windows.Forms.Label lblPerformanceCnt;
-        private System.Windows.Forms.Label lblPlanCnt;
-        private System.Windows.Forms.Label lblFinishTime;
-        private System.Windows.Forms.Label lblStartTime;
-        private System.Windows.Forms.Label lblRemark;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbld4;
+        private System.Windows.Forms.Label lblu4;
+        private System.Windows.Forms.Label lbld5;
+        private System.Windows.Forms.Label lblu5;
+        private System.Windows.Forms.Label lbld3;
+        private System.Windows.Forms.Label lblu3;
+        private System.Windows.Forms.Label lbld2;
+        private System.Windows.Forms.Label lblu2;
+        private System.Windows.Forms.Label lbl6;
+        private System.Windows.Forms.Label lbl1;
     }
 }

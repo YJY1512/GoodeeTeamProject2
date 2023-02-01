@@ -58,6 +58,12 @@
     <Compile Include="Controls\ucListSelect.Designer.cs">
       <DependentUpon>ucListSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ucTEST.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTEST.Designer.cs">
+      <DependentUpon>ucTEST.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCalcPop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucListSelect.resx">
       <DependentUpon>ucListSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ucTEST.resx">
+      <DependentUpon>ucTEST.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCalcPop.resx">
       <DependentUpon>frmCalcPop.cs</DependentUpon>
