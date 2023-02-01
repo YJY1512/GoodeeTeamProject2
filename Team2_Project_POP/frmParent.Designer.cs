@@ -46,7 +46,7 @@ namespace Team2_Project_POP
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1684, 140);
+            this.panel1.Size = new System.Drawing.Size(1684, 130);
             this.panel1.TabIndex = 0;
             // 
             // lblSelected
@@ -74,7 +74,7 @@ namespace Team2_Project_POP
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.DarkRed;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(1474, 10);
+            this.btnClose.Location = new System.Drawing.Point(1474, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(200, 120);
             this.btnClose.TabIndex = 0;
@@ -93,8 +93,8 @@ namespace Team2_Project_POP
             // 
             // frmParent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 45F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1684, 614);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Configuration;
 using Team2_Project_WEB.Models;
 using Team2_Project_WEB.Models.DAO;
+using System.Text;
 
 namespace Team2_Project_WEB.Controllers
 {
@@ -19,7 +20,7 @@ namespace Team2_Project_WEB.Controllers
 
         public ActionResult Item(string from = "", string to = "") //제품별 판매량 조회
         {
-            ViewBag.ColText = "선택 기간 ";
+            ViewBag.ColText = "선택기간 ";
             ViewBag.FromDate = from;
             ViewBag.ToDate = to;
 
@@ -36,6 +37,21 @@ namespace Team2_Project_WEB.Controllers
 
             ItemDAO dao = new ItemDAO();
             List<ItemVO> list = dao.GetItemList(ViewBag.FromDate, ViewBag.ToDate);
+            StringBuilder sb1 = new StringBuilder();
+            List<int> OrderSumList = new List<int>();
+            List<int> CustomerSumList = new List<int>();
+            foreach (ItemVO item in list)
+            {
+                if (item.OrderSum < 1)
+                    continue;
+                sb1.Append(item.Name).Append(",");
+                OrderSumList.Add(item.OrderSum);
+                CustomerSumList.Add(item.CustomerSum);
+            }
+
+            ViewData["Name"] = sb1.ToString().TrimEnd(',');
+            ViewData["OrderSum"] = "[" + string.Join(",", OrderSumList) + "]";
+            ViewData["CustomerSum"] = "[" + string.Join(",", CustomerSumList) + "]";
 
             return View(list);
         }

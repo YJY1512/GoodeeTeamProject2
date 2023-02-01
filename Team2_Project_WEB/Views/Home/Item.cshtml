@@ -18,55 +18,54 @@
             <div class="card">
                 <div class="card-header">
                     <form action="/Home/Item" method="get">
-
-                            <div class="row" style="margin-bottom: 0px">
-                                <div class="col-6 row">
-                                    <div class="col-2" style="padding-top:6px"><label>기간 조회</label></div>
-                                    <div class="input-group date col-5" id="datetimepicker1" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="시작일" name="from" value=@ViewBag.FromDate />
-                                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group date col-5" id="datetimepicker2" data-target-input="nearest" ">
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate/>
-                                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                            <div class="input-group-text">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                        </div>
+                        <div class="row" style="margin-bottom: 0px">
+                            <div class="col-6 row">
+                                <div class="col-2" style="padding-top:6px"><label>기간 조회</label></div>
+                                <div class="input-group date col-5" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="시작일" name="from" value=@ViewBag.FromDate />
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
-                                <div class="col-3"></div>
-                                <div class="col-3">
-                                    <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
+                                <div class="input-group date col-5" id="datetimepicker2" data-target-input="nearest" ">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate />
+                                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                        <div class="input-group-text">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-3"></div>
+                            <div class="col-3">
+                                <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
+                            </div>
+                        </div>
+                    </form>
 
-                            <!-- 기존 DateRangePicker-->
-                            @*<label for="dateRangeSelect" class="col-4 col-form-label">검색 기간 선택</label>
-                <div class="input-group col-8">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="far fa-calendar-alt"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control float-right" id="dateRangeSelect">
-                </div>*@
+                    <!-- 기존 DateRangePicker-->
+                    @*<label for="dateRangeSelect" class="col-4 col-form-label">검색 기간 선택</label>
+                        <div class="input-group col-8">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control float-right" id="dateRangeSelect">
+                        </div>*@
 
-                            <!--/.input group -->
-                            <!-- 콤보박스로 기간선택-->
-                            @*<label>Date range button:</label>
-                <div class="input-group">
-                    <button type="button" class="btn btn-default float-right" id="daterange-btn">
-                        <i class="far fa-calendar-alt"></i> Date range picker
-                        <i class="fas fa-caret-down"></i>
-                    </button>
-                </div>*@
+                    <!--/.input group -->
+                    <!-- 콤보박스로 기간선택-->
+                    @*<label>Date range button:</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-default float-right" id="daterange-btn">
+                                <i class="far fa-calendar-alt"></i> Date range picker
+                                <i class="fas fa-caret-down"></i>
+                            </button>
+                        </div>*@
 
 
-                    </div>
+                </div>
                 <!-- /.card-header -->
                 <!-- 목록 -->
                 <div class="card-body table-responsive p-0">
@@ -91,9 +90,8 @@
                                     <td>@(item.Ratio.ToString("0.00")+" %")</td>
                                 </tr>
                             }
-
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -133,6 +131,12 @@
     </div>
 </section>
 
+@{
+    string name = ViewData["Name"].ToString();
+    string orderSum = ViewData["OrderSum"].ToString();
+    string customerSum = ViewData["CustomerSum"].ToString();
+}
+
 @section Scripts{
     <!-- ChartJS -->
     <script src="~/plugins/chart.js/Chart.min.js"></script>
@@ -153,18 +157,24 @@
         // Get context with jQuery - using jQuery's .get() method.
         var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
         var donutChartCanvas2 = $('#donutChart2').get(0).getContext('2d')
-        var donutData = {
-            labels: [
-                'Chrome',
-                'IE',
-                'FireFox',
-                'Safari',
-                'Opera',
-                'Navigator',
-            ],
+
+        var names = "@name"
+        var namearr = names.split(',')
+
+        var donutData1 = {
+            labels: namearr,
             datasets: [
                 {
-                    data: [700, 500, 400, 600, 300, 100],
+                    data: @orderSum,
+                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                }
+            ]
+        }
+        var donutData2 = {
+            labels: namearr,
+            datasets: [
+                {
+                    data: @customerSum,
                     backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
                 }
             ]
@@ -177,13 +187,13 @@
         // You can switch between pie and douhnut using the method below.
         new Chart(donutChartCanvas1, {
             type: 'doughnut',
-            data: donutData,
+            data: donutData1,
             options: donutOptions
         })
 
         new Chart(donutChartCanvas2, {
             type: 'doughnut',
-            data: donutData,
+            data: donutData2,
             options: donutOptions
         })
 
