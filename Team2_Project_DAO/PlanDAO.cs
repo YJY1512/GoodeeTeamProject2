@@ -76,8 +76,8 @@ namespace Team2_Project_DAO
                         cmd.Parameters["@Prd_Req_No"].Value = plan.Prd_Req_No;
                         cmd.Parameters["@Item_Code"].Value = plan.Item_Code;
                         cmd.Parameters["@Wc_Code"].Value = plan.Wc_Code;
-
-                        cmd.ExecuteNonQuery();
+                        
+                        cmd.ExecuteNonQuery();                        
 
                         string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                         int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
@@ -86,8 +86,7 @@ namespace Team2_Project_DAO
                             throw new Exception(pMsg);
                         }
                     }
-
-                    conn.Close();
+                    
                     return true;
                 }
             }
@@ -95,6 +94,10 @@ namespace Team2_Project_DAO
             {
                 Debug.WriteLine(err.Message);
                 return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -151,6 +154,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
 
                     cmd.ExecuteNonQuery();
+                    conn.Close();
 
                     string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                     int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
@@ -159,8 +163,7 @@ namespace Team2_Project_DAO
                     {
                         throw new Exception(pMsg);
                     }
-
-                    conn.Close();
+                    
                     return true;
                 }
             }
@@ -168,6 +171,66 @@ namespace Team2_Project_DAO
             {
                 Debug.WriteLine(err.Message);
                 return false;
+            }
+        }
+
+        public int DeletePlan(string planID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_DeletePlan", conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", planID);
+                    
+                    cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+                    
+                    return pCode;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+
+        public int UpdatePlan(PlanDTO plan)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_UpdatePlan", conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", plan.Prd_Plan_No);
+                    cmd.Parameters.AddWithValue("@Plan_Qty", plan.Plan_Qty);
+                    cmd.Parameters.AddWithValue("@Up_Emp", plan.Up_Emp);
+
+                    cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+
+                    return pCode;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
             }
         }
     

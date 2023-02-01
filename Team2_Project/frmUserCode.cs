@@ -98,14 +98,14 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            if (codeList == null || codeList.Count < 1)
+            string code = ucMaCodeSC._Code;
+            string useYN = (cboSearchUse.SelectedItem.ToString() == "전체")? "" : cboSearchUse.SelectedItem.ToString();
+
+            if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(useYN))
             {
                 LoadData();
                 return;
             }
-
-            string code = ucMaCodeSC._Code;
-            string useYN = (cboSearchUse.SelectedItem.ToString() == "전체")? "" : cboSearchUse.SelectedItem.ToString();
            
             var list = (from c in codeList
                         where c.Userdefine_Ma_Code == (string.IsNullOrWhiteSpace(code)? c.Userdefine_Ma_Code : code) && c.Use_YN.Contains(useYN)
@@ -168,6 +168,7 @@ namespace Team2_Project
             if (dgvMi.SelectedRows.Count < 1)
             {
                 MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
 

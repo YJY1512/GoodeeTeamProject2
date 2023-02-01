@@ -74,15 +74,15 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            if (defList == null)
-            {
-                LoadData();
-                return;
-            }
-
             string defName = txtNameSC.Text;
             string defCode = txtCodeSC.Text;
             string useYN = (cboUseSC.SelectedItem.ToString() == "전체") ? "" : cboUseSC.SelectedItem.ToString();
+
+            if (string.IsNullOrWhiteSpace(defName) && string.IsNullOrWhiteSpace(defCode) && string.IsNullOrWhiteSpace(useYN))
+            {
+                LoadData();
+                return;
+            }            
 
             var list = (from c in defList
                         where c.Def_Ma_Code.Contains(defCode) && c.Def_Ma_Name.Contains(defName) && c.Use_YN.Contains(useYN)
@@ -112,6 +112,7 @@ namespace Team2_Project
             if (dgvMa.SelectedRows.Count < 1)
             {
                 MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
 
@@ -126,6 +127,7 @@ namespace Team2_Project
             if (dgvMa.SelectedRows.Count < 1)
             {
                 MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
 
