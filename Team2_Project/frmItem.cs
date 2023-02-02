@@ -67,9 +67,6 @@ namespace Team2_Project
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            //1. 추가,수정버튼 클릭 -> 입력패널이 활성화
-            //2. 저장버튼 클릭 시   -> 추가,수정 적용 
-
             LoadData();     //로드            
             OnSearch();     //조회
             empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
@@ -77,6 +74,7 @@ namespace Team2_Project
 
         private void LoadData()
         {
+            #region test
             //CodeList = srv.GetCode("ITEM_TYPE");
             ////CommonCodeUtil.ComboBinding(cboTypeSC, CodeList, "ITEM_TYPE");
 
@@ -89,6 +87,7 @@ namespace Team2_Project
             //                       Category = "ITEM_TYPE"
             //                   }).ToList();
             //CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
+            #endregion
 
             cboTypeSC.Items.Add("전체");
             cboTypeSC.Items.Add("완제품");
@@ -143,8 +142,7 @@ namespace Team2_Project
             };
             itemList = srv.GetItemSearch(item);
             AdvancedListBind(itemList, dgvData);
-            //dgvData.ClearSelection();
-            ResetBottom();  //입력패널 리셋
+            ResetBottom();      //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
         }
 
