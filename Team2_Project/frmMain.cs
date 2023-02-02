@@ -256,7 +256,7 @@ namespace Team2_Project
                 //OpenGMMainPage<>();
                 MessageBox.Show("빈 생성 화면입니다.");
             }
-            else if (e.Node.Text == "시간대별 실적 조회")
+            else if (e.Node.Text == "시간대별 실적조회")
             {
                 OpenChildPage<frmTimeProductionHistory>();
             }
@@ -269,10 +269,9 @@ namespace Team2_Project
             {
                 OpenChildPage<frmNop>();
             }
-            else if (e.Node.Text == "일별 생산 현황")
+            else if (e.Node.Text == "월별 생산현황")
             {
-                //OpenGMMainPage<>();
-                MessageBox.Show("빈 생성 화면입니다.");
+                OpenChildPage<frmMonthProductionHistory>();
             }
             else
             {

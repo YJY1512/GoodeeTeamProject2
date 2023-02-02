@@ -39,7 +39,7 @@ namespace Team2_Project
             treeNode2,
             treeNode3});
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("작업지시 생성 및 마감");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("시간대별 실적 조회");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("시간대별 실적조회");
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("작업지시 현황");
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("작업지시 관리", new System.Windows.Forms.TreeNode[] {
             treeNode5,
@@ -48,7 +48,7 @@ namespace Team2_Project
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("비가동 내역");
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("실적 관리", new System.Windows.Forms.TreeNode[] {
             treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("일별 생산 현황");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("월별 생산현황");
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("분석 관리", new System.Windows.Forms.TreeNode[] {
             treeNode11});
             System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("공정정보");
@@ -515,7 +515,7 @@ namespace Team2_Project
             treeNode5.Text = "작업지시 생성 및 마감";
             treeNode6.Name = "노드7";
             treeNode6.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            treeNode6.Text = "시간대별 실적 조회";
+            treeNode6.Text = "시간대별 실적조회";
             treeNode7.Name = "노드8";
             treeNode7.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
             treeNode7.Text = "작업지시 현황";
@@ -530,7 +530,7 @@ namespace Team2_Project
             treeNode10.Text = "실적 관리";
             treeNode11.Name = "노드6";
             treeNode11.NodeFont = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            treeNode11.Text = "일별 생산 현황";
+            treeNode11.Text = "월별 생산현황";
             treeNode12.Name = "노드5";
             treeNode12.NodeFont = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold);
             treeNode12.Text = "분석 관리";
