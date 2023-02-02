@@ -26,22 +26,24 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public List<DashboardMappingDTO> GetData(string uid)
+        public List<DashboardDTO> GetData(string uid)
         {
             try
             {
-                string sql = @"SELECT User_ID, DashboardItem, Loc 
-                                 FROM Dashboard_Mapping
-                                WHERE USER_ID = @USER_ID AND Use_YN = 'Y'
-                                ORDER BY Loc DESC";               
-
+                string sql = @"SELECT User_ID , D.DashboardItem, Loc
+	                                , CASE WHEN M.Use_YN = 'N' THEN '미사용대쉬보드'
+		                                ELSE M.Title_Ko END AS Title_Ko
+	                                , M.Use_YN
+                                 FROM Dashboard_Mapping D INNER JOIN Dashboard_Master M ON D.DashboardItem = M.DashboardItem
+                                WHERE USER_ID = @USER_ID
+                                ORDER BY Loc DESC";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@USER_ID", uid);
 
                     conn.Open();
                     Debug.WriteLine(cmd.CommandText);
-                    List<DashboardMappingDTO> list = Helper.DataReaderMapToList<DashboardMappingDTO>(cmd.ExecuteReader());
+                    List<DashboardDTO> list = Helper.DataReaderMapToList<DashboardDTO>(cmd.ExecuteReader());
                     return list;
                 }
             }
@@ -55,23 +57,26 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+                
 
-        
-        public bool UpdateDashboardMapping() //사용자 대시보드 매핑 UPDATE
+        public bool UpdateDashboardMapping(DashboardDTO dto) //사용자 대시보드 매핑 UPDATE
         {
             try
             {
-                string sql = @"update 
-                                set 
-                                where ";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    //cmd.Parameters.AddWithValue("@", );
+                    cmd.Connection = new SqlConnection();
+                    cmd.CommandText = "SP_DashboardMapping";
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@User_ID", dto.User_ID);
+                    cmd.Parameters.AddWithValue("@TopPage", dto.TopPage);
+                    cmd.Parameters.AddWithValue("@BottomPage", dto.BottomPage);
+
+                    cmd.Connection.Open();
+                    Debug.WriteLine(cmd.CommandText);
                     int iRowAffect = cmd.ExecuteNonQuery();
-                    conn.Close();
+                    cmd.Connection.Close();
                     return (iRowAffect > 0);
                 }
             }
@@ -86,6 +91,31 @@ namespace Team2_Project_DAO
             }
         }
 
+
+        public List<DashboardDTO> GetDashList()
+        {
+            try
+            {
+                string sql = @"SELECT Title_Ko FROM Dashboard_Master";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    Debug.WriteLine(cmd.CommandText);
+                    List<DashboardDTO> list = Helper.DataReaderMapToList<DashboardDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
     }
 }
