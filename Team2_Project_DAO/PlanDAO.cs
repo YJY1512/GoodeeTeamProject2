@@ -52,8 +52,10 @@ namespace Team2_Project_DAO
 
         public bool InsertReqPlan(List<PlanDTO> plans)
         {
+            SqlTransaction trans = conn.BeginTransaction();
+
             try
-            {
+            {                
                 using (SqlCommand cmd = new SqlCommand("SP_InsertReqPlan", conn))
                 {
                     conn.Open();
@@ -64,6 +66,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.Add("@Prd_Req_No", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Item_Code", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Wc_Code", SqlDbType.NVarChar);
+                    cmd.Transaction = trans;
 
                     cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
@@ -84,15 +87,17 @@ namespace Team2_Project_DAO
                         if (pCode < 0)
                         {
                             throw new Exception(pMsg);
-                        }
+                        }                        
                     }
-                    
+
+                    trans.Commit();
                     return true;
                 }
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
+                trans.Rollback();
                 return false;
             }
             finally
@@ -105,21 +110,8 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"with req_plan_alloc as
-                                (
-                                	select a.Prd_Req_No, Prd_Plan_No, pj.Company_Name, r.Delivery_Date
-                                	from Prd_Req_Plan_Allocation a inner join Production_Req r on a.Prd_Req_No = r.Prd_Req_No
-                                									inner join Project pj on r.Prj_No = pj.Prj_No
-                                ), planDetail as
-                                (
-                                	select d.Prd_Plan_No, Plan_Month, d.Item_Code, i.Item_Name, d.Plan_Qty, Plan_Rest_Qty, d.Wc_Code, w.Wc_Name, s.Sys_Mi_Name Prd_Plan_Status
-                                	from Production_Plan_Detail d inner join Item_Master i on d.Item_Code = i.Item_Code
-                                								inner join WorkCenter_Master w on d.Wc_Code = w.Wc_Code
-                                								inner join Sys_Mi_Master s on s.Sys_Mi_Code = d.Prd_Plan_Status and s.Sys_Ma_Code = 'PRD_PLAN_STATUS'
-                                	where Plan_Month = @Plan_Month
-                                ) select D.*, A.Company_Name, A.Delivery_Date
-                                from planDetail D left outer join req_plan_alloc A on D.Prd_Plan_No = A.Prd_Plan_No";
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                SqlDataAdapter da = new SqlDataAdapter("SP_GetPlan", conn);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand.Parameters.AddWithValue("@Plan_Month", planMonth);
 
                 DataTable dt = new DataTable();
