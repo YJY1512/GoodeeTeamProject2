@@ -20,10 +20,10 @@ namespace Team2_Project
         string empID;
 
         string txt = "Top";
-        DataGridView dgvWorkCenter;
-        DataGridView dgvProduction;
-        DataGridView dgvProductionHistory;
-        DataGridView dgvNop;
+        DataGridView dgvWorkCenter = new DataGridView();
+        DataGridView dgvProduction = new DataGridView();
+        DataGridView dgvProductionHistory = new DataGridView();
+        DataGridView dgvNop = new DataGridView();
 
         public frmDashBoard()
         {
