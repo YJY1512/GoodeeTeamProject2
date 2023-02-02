@@ -9,15 +9,21 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
+using System.Linq;
 
 namespace Team2_Project
 {
     public partial class frmDashBoard : Team2_Project.BaseForms.frmStart
     {
+        DashboardService srv = new DashboardService();
+        List<DashboardDTO> mappingList = new List<DashboardDTO>();
         string empID;
-        string txt = "Top";
-        DataGridView dgv;
 
+        string txt = "Top";
+        DataGridView dgvWorkCenter = new DataGridView();
+        DataGridView dgvProduction = new DataGridView();
+        DataGridView dgvProductionHistory = new DataGridView();
+        DataGridView dgvNop = new DataGridView();
 
         public frmDashBoard()
         {
@@ -26,13 +32,27 @@ namespace Team2_Project
 
         private void frmDashBoard_Load(object sender, EventArgs e)
         {
-            LoadData();
             empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            //LoadData();            
         }
 
         private void LoadData()
         {
             //사용자에 따른 대시보드를 보여줘야함.
+            mappingList = srv.GetData(empID);
+            if (mappingList.Count > 0)
+            {
+                lblTitleUp.Text = (from top in mappingList
+                                   where top.Loc.Equals("U")
+                                   select top.Title_Ko).ToList().FirstOrDefault();
+                lblTitleDown.Text = (from top in mappingList
+                                      where top.Loc.Equals("L")
+                                      select top.Title_Ko).ToList().FirstOrDefault();
+            }
+            else
+                lblTitleUp.Text = lblTitleDown.Text = "미선택";
+
+
             //대시보드 위치컬럼에 따라서 바인딩
 
             /* 생산진행현황
@@ -41,32 +61,54 @@ namespace Team2_Project
              * 비가동내역
              */
 
-            if (txt.Equals("Top"))
-                dgv = dgvDataA;
-            else if (txt.Equals("Bottom"))
-                dgv = dgvDataB;
+            //if (txt.Equals("Top"))
+            //    dgv = dgvDataA;
+            //else if (txt.Equals("Bottom"))
+            //    dgv = dgvDataB;
 
             //temp//
             //WorkCenterData(dgvDataA);
             //NopData(dgvDataB);
 
+            if (lblTitleUp.Text == "작업장현황") dgvDataA.DataSource = dgvWorkCenter;
+            else if (lblTitleUp.Text == "생산진행현황") dgvDataA.DataSource = dgvProduction;
+            else if (lblTitleUp.Text == "생산실적") dgvDataA.DataSource = dgvProductionHistory;
+            else if (lblTitleUp.Text == "비가동내역") dgvDataA.DataSource = dgvNop;
 
+
+            if (lblTitleDown.Text == "작업장현황") dgvDataB.DataSource = dgvWorkCenter;
+            else if (lblTitleDown.Text == "생산진행현황") dgvDataB.DataSource = dgvProduction;
+            else if (lblTitleDown.Text == "생산실적") dgvDataB.DataSource = dgvProductionHistory;
+            else if (lblTitleDown.Text == "비가동내역") dgvDataB.DataSource = dgvNop;
         }
 
-        private void WorkCenterData(DataGridView dgv) //작업장현황
+        private void WorkCenterData() //작업장현황
         {   
-            DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장상태", "Wc_Status", 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장코드", "Wc_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장명", "Wc_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장그룹명", "Wc_Group_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "공정코드", "Process_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "공정명", "Process_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "팔렛생성여부", "Pallet_YN", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "사용여부", "Use_YN", 150);
+            DataGridViewUtil.SetInitDataGridView(dgvWorkCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "작업장상태", "Wc_Status", 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "작업장코드", "Wc_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "작업장명", "Wc_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "작업장그룹명", "Wc_Group_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "공정코드", "Process_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "공정명", "Process_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "팔렛생성여부", "Pallet_YN", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkCenter, "사용여부", "Use_YN", 150);
             //서비스 DB연결
 
         }
+
+        private void ProductionData() //생산진행현황
+        {
+
+
+        }
+
+        private void ProductionHistoryData() //생산실적
+        {
+
+
+        }
+
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
@@ -86,19 +128,5 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동대분류명", "Nop_Ma_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동유형", "Nop_type", 150);
         }
-
-        private void ProductionData() //생산진행현황
-        {
-
-
-        }
-
-        private void ProductionHistoryData() //생산실적
-        {
-
-
-        }
-
-
     }
 }
