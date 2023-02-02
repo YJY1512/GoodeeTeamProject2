@@ -31,7 +31,7 @@ namespace Team2_Project_DAO
 
         public EmployeeDTO GetLoginEmp(string userID, string userPw)
         {
-            string sql = @"select u.User_ID, User_Name, Customer_Code,User_PW, User_Type, umas.UserGroup_Code, umas.UserGroup_Name, u.Use_YN
+            string sql = @"select u.User_ID, User_Name, Customer_Code,User_PW, umas.UserGroup_Code, umas.UserGroup_Name, u.Use_YN
                            from UserGroup_Mapping umap inner join User_Master u on umap.User_ID = u.User_ID
                            inner join UserGroup_Master umas on umap.UserGroup_Code = umas.UserGroup_Code
                            where u.User_ID = @User_ID and PWDCOMPARE(@User_PW,User_PW) = 1 and u.Use_YN = 'Y'";
