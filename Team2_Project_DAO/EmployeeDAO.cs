@@ -76,8 +76,8 @@ namespace Team2_Project_DAO
 
         public bool Insert(EmployeeDTO data, string Ins_Emp)
         {
-            string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp, User_Type)
-values (@User_ID, @User_Name, pwdencrypt(@User_ID), 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp, 'U')";
+            string sql1 = @"insert into User_Master (User_ID, User_Name, User_PW, PW_Reset_Count, Use_YN, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
+values (@User_ID, @User_Name, pwdencrypt(@User_ID), 0, @Use_YN, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";
 
             string sql2 = @"insert into UserGroup_Mapping (UserGroup_Code, User_ID, Ins_Date, Ins_Emp, Up_Date, Up_Emp)
 values (@UserGroup_Code, @User_ID, getdate(), @Ins_Emp, getdate(), @Ins_Emp)";

@@ -222,6 +222,7 @@ namespace Team2_Project
             this.dgvPlan.RowTemplate.Height = 23;
             this.dgvPlan.Size = new System.Drawing.Size(1249, 233);
             this.dgvPlan.TabIndex = 0;
+            this.dgvPlan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellClick);
             // 
             // dgvWorkOrder
             // 
@@ -247,6 +248,7 @@ namespace Team2_Project
             this.btnAdd.TabIndex = 33;
             this.btnAdd.Text = "작업지시 생성";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label4
             // 

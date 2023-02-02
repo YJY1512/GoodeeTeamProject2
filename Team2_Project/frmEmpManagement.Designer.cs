@@ -48,9 +48,6 @@ namespace Team2_Project
             this.label12 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cboAuth = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -58,6 +55,8 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pnlTitleD.SuspendLayout();
+            this.pnlTitleU.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,9 +91,6 @@ namespace Team2_Project
             // 
             // pnlArea
             // 
-            this.pnlArea.Controls.Add(this.label18);
-            this.pnlArea.Controls.Add(this.cboAuth);
-            this.pnlArea.Controls.Add(this.label19);
             this.pnlArea.Controls.Add(this.label17);
             this.pnlArea.Controls.Add(this.label16);
             this.pnlArea.Controls.Add(this.label12);
@@ -114,6 +110,14 @@ namespace Team2_Project
             this.splitContainer1.Location = new System.Drawing.Point(0, 60);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 800);
             this.splitContainer1.SplitterDistance = 635;
+            // 
+            // pnlTitleD
+            // 
+            this.pnlTitleD.Size = new System.Drawing.Size(1834, 43);
+            // 
+            // pnlTitleU
+            // 
+            this.pnlTitleU.Size = new System.Drawing.Size(1834, 43);
             // 
             // dgvEmp
             // 
@@ -150,9 +154,9 @@ namespace Team2_Project
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(387, 21);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.Size = new System.Drawing.Size(82, 17);
             this.label5.TabIndex = 2;
-            this.label5.Text = "권한 그룹";
+            this.label5.Text = "사용자 그룹";
             // 
             // txtID
             // 
@@ -178,7 +182,7 @@ namespace Team2_Project
             this.ucSearchGroup._Name = "";
             this.ucSearchGroup.BackColor = System.Drawing.Color.Transparent;
             this.ucSearchGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearchGroup.Location = new System.Drawing.Point(470, 18);
+            this.ucSearchGroup.Location = new System.Drawing.Point(488, 18);
             this.ucSearchGroup.Margin = new System.Windows.Forms.Padding(4);
             this.ucSearchGroup.Name = "ucSearchGroup";
             this.ucSearchGroup.Size = new System.Drawing.Size(340, 26);
@@ -198,7 +202,7 @@ namespace Team2_Project
             // cboDel
             // 
             this.cboDel.FormattingEnabled = true;
-            this.cboDel.Location = new System.Drawing.Point(470, 78);
+            this.cboDel.Location = new System.Drawing.Point(488, 78);
             this.cboDel.Name = "cboDel";
             this.cboDel.Size = new System.Drawing.Size(130, 25);
             this.cboDel.TabIndex = 3;
@@ -304,37 +308,6 @@ namespace Team2_Project
             this.label17.TabIndex = 24;
             this.label17.Text = "*";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(870, 21);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(17, 17);
-            this.label18.TabIndex = 28;
-            this.label18.Text = "*";
-            this.label18.Visible = false;
-            // 
-            // cboAuth
-            // 
-            this.cboAuth.FormattingEnabled = true;
-            this.cboAuth.Location = new System.Drawing.Point(987, 18);
-            this.cboAuth.Name = "cboAuth";
-            this.cboAuth.Size = new System.Drawing.Size(130, 25);
-            this.cboAuth.TabIndex = 4;
-            this.cboAuth.Visible = false;
-            this.cboAuth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(890, 21);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(82, 17);
-            this.label19.TabIndex = 26;
-            this.label19.Text = "사용자 권한";
-            this.label19.Visible = false;
-            // 
             // frmEmpManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -352,6 +325,10 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pnlTitleD.ResumeLayout(false);
+            this.pnlTitleD.PerformLayout();
+            this.pnlTitleU.ResumeLayout(false);
+            this.pnlTitleU.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).EndInit();
             this.ResumeLayout(false);
 
@@ -378,8 +355,5 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label16;
         protected System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Label label7;
-        protected System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox cboAuth;
-        private System.Windows.Forms.Label label19;
     }
 }
