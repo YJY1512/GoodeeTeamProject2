@@ -58,8 +58,6 @@ namespace Team2_Project_DAO
         public DataTable GetEmployeeList()
         {
             string sql = @"select u.User_ID, User_Name, 
-                                case when User_Type = 'A' then '관리자'
-                                     else '일반' end User_Type, 
                                 umas.UserGroup_Code, umas.UserGroup_Name,
                                 case when u.Use_YN = 'Y' then '재직'
                                     else '퇴직' end Use_YN
