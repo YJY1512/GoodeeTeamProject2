@@ -36,7 +36,6 @@ namespace Team2_Project
             this.lblTop = new System.Windows.Forms.Label();
             this.panBottom = new System.Windows.Forms.Panel();
             this.lblBottom = new System.Windows.Forms.Label();
-            this.lblTestTop = new System.Windows.Forms.Label();
             this.panTop.SuspendLayout();
             this.panBottom.SuspendLayout();
             this.SuspendLayout();
@@ -113,22 +112,12 @@ namespace Team2_Project
             this.lblBottom.Text = "대시보드 하단";
             this.lblBottom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblTestTop
-            // 
-            this.lblTestTop.AutoSize = true;
-            this.lblTestTop.Location = new System.Drawing.Point(148, 409);
-            this.lblTestTop.Name = "lblTestTop";
-            this.lblTestTop.Size = new System.Drawing.Size(51, 17);
-            this.lblTestTop.TabIndex = 6;
-            this.lblTestTop.Text = "[TEST]";
-            // 
             // frmSettingDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(828, 470);
-            this.Controls.Add(this.lblTestTop);
             this.Controls.Add(this.panBottom);
             this.Controls.Add(this.panTop);
             this.Controls.Add(this.lbltxt);
@@ -156,6 +145,5 @@ namespace Team2_Project
         private System.Windows.Forms.Panel panBottom;
         private System.Windows.Forms.Label lblTop;
         private System.Windows.Forms.Label lblBottom;
-        private System.Windows.Forms.Label lblTestTop;
     }
 }

@@ -73,28 +73,7 @@ namespace Team2_Project
         }
 
         private void LoadData()
-        {
-            #region test
-            //CodeList = srv.GetCode("ITEM_TYPE");
-            ////CommonCodeUtil.ComboBinding(cboTypeSC, CodeList, "ITEM_TYPE");
-
-            //var cboList = (from li in CodeList
-            //                   where li.Name == cboTypeSC.Text
-            //                   select new CodeDTO
-            //                   {
-            //                       Code = li.Code,
-            //                       Name = li.Name,
-            //                       Category = "ITEM_TYPE"
-            //                   }).ToList();
-            //CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
-            #endregion
-
-            cboTypeSC.Items.Add("전체");
-            cboTypeSC.Items.Add("완제품");
-            cboTypeSC.Items.Add("반제품");
-            cboTypeSC.SelectedIndex = 0;
-            cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
-
+        {            
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 200);
@@ -104,22 +83,30 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비고", "Remark", 500);
             dgvData.MultiSelect = false;
 
+            CodeList = srv.GetCode();
+            var cboList = (from li in CodeList
+                           where li.Name != "자재"
+                           select new CodeDTO
+                           {
+                               Code = li.Code,
+                               Name = li.Name,
+                               Category = "ITEM_TYPE"
+                           }).ToList();
+            CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
+            cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
+
             CommonCodeUtil.UseYNComboBinding(cboUseYNSC);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             cboUseYNSC.SelectedIndex = 0;
             cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            cboType.Items.Add("-선택-");
-            cboType.Items.Add("완제품");
-            cboType.Items.Add("반제품");
-            cboType.SelectedIndex = 0;
+            CommonCodeUtil.ComboBinding(cboType, cboList, "ITEM_TYPE", blankText:"-선택-");
             cboType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            cboSpec.Items.Add("-선택-");
-            cboSpec.Items.Add("300x600");
-            cboSpec.Items.Add("200x500");
-            cboSpec.SelectedIndex = 0;
+
+            List<CodeDTO> SpecList = srv.GetSpec();
+            CommonCodeUtil.ComboBinding(cboSpec, SpecList, "ITEM_SPEC", blankText: "-선택-");
             cboSpec.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
