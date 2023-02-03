@@ -223,7 +223,7 @@ namespace Team2_Project
             this.dgvPlan.Size = new System.Drawing.Size(1249, 233);
             this.dgvPlan.TabIndex = 0;
             this.dgvPlan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellClick);
-            this.dgvPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellDoubleClick);
+            this.dgvPlan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellContentClick);
             // 
             // dgvWorkOrder
             // 
@@ -235,6 +235,7 @@ namespace Team2_Project
             this.dgvWorkOrder.RowTemplate.Height = 23;
             this.dgvWorkOrder.Size = new System.Drawing.Size(1249, 226);
             this.dgvWorkOrder.TabIndex = 0;
+            this.dgvWorkOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrder_CellDoubleClick);
             this.dgvWorkOrder.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkOrder_CellFormatting);
             // 
             // btnAdd

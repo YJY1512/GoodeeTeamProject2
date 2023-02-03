@@ -178,7 +178,7 @@ namespace Team2_Project
                 {
                     MessageBox.Show("삭제가 완료되었습니다.");
                 }
-                else if (result == 3726) //FK 충돌
+                else if (result == 547 || result == 3726) //FK 충돌
                 {
                     MessageBox.Show("데이터를 삭제할 수 없습니다.");
                 }

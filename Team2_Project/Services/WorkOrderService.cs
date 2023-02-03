@@ -11,7 +11,7 @@ namespace Team2_Project.Services
 {
     public class WorkOrderService
     {
-        public bool InserWorkOrder(List<WorkOrderDTO> workOrder)
+        public bool InserWorkOrder(WorkOrderDTO workOrder)
         {
             WorkOrderDAO db = new WorkOrderDAO();
             bool result = db.InserWorkOrder(workOrder);

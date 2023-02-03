@@ -132,6 +132,12 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSiyuPop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSiyuPop.Designer.cs">
+      <DependentUpon>frmSiyuPop.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWorkOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -442,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSiyuPop.resx">
+      <DependentUpon>frmSiyuPop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSiyuWorkOrder.resx">
       <DependentUpon>frmSiyuWorkOrder.cs</DependentUpon>

@@ -27,57 +27,49 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public bool InserWorkOrder(List<WorkOrderDTO> workOrder)
-        {
-            conn.Open();
-            SqlTransaction trans = conn.BeginTransaction();
-
+        public bool InserWorkOrder(WorkOrderDTO workOrder)
+        {            
             try
             {
                 using (SqlCommand cmd = new SqlCommand("SP_InsertWorkOrder", conn))
-                {                    
+                {
+                    
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@Prd_Plan_No", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Wc_Code", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Plan_Qty_Box", SqlDbType.Int);
                     cmd.Parameters.Add("@Ins_Emp", SqlDbType.NVarChar);
-
-                    cmd.Transaction = trans;
+                    cmd.Parameters.Add("@Plan_Date", SqlDbType.Date);
 
                     cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
 
-                    foreach (var wo in workOrder)
+                    cmd.Parameters["@Prd_Plan_No"].Value = workOrder.Prd_Plan_No;
+                    cmd.Parameters["@Wc_Code"].Value = workOrder.Wc_Code;
+                    cmd.Parameters["@Plan_Qty_Box"].Value = workOrder.Plan_Qty_Box;
+                    cmd.Parameters["@Ins_Emp"].Value = workOrder.Ins_Emp;
+                    cmd.Parameters["@Plan_Date"].Value = workOrder.Plan_Date;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+                    if (pCode < 0)
                     {
-                        cmd.Parameters["@Prd_Plan_No"].Value = wo.Prd_Plan_No;
-                        cmd.Parameters["@Wc_Code"].Value = wo.Wc_Code;
-                        cmd.Parameters["@Plan_Qty_Box"].Value = wo.Plan_Qty_Box;
-                        cmd.Parameters["@Ins_Emp"].Value = wo.Ins_Emp;
-
-                        cmd.ExecuteNonQuery();
-
-                        string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
-                        int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
-                        if (pCode < 0)
-                        {
-                            throw new Exception(pMsg);
-                        }
+                        throw new Exception(pMsg);
                     }
 
-                    trans.Commit();
                     return true;
                 }
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                trans.Rollback();
                 return false;
             }
-            finally
-            {
-                conn.Close();
-            }
+
         }
 
         public DataTable GetWorkOrder(string planMonth)
