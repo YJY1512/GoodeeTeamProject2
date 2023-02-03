@@ -10,50 +10,53 @@
 @section css{
     <!-- daterange picker -->
     <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
 }
 
 <section class="content">
-    <div class="container-fluid">
-        <div class="col-12">
+    <div class="container-fluid row">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
                     <form action="/Home/Item" method="get">
                         <div class="row" style="margin-bottom: 0px">
-                            <div class="col-6 row">
-                                <div class="col-2" style="padding-top:6px"><label>기간 조회</label></div>
-                                <div class="input-group date col-5" id="datetimepicker1" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="시작일" name="from" value=@ViewBag.FromDate />
-                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-                                <div class="input-group date col-5" id="datetimepicker2" data-target-input="nearest" ">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate />
-                                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-calendar"></i>
+                            <div class="col-sm-8 row">
+                                <div class="col-sm-2" style="padding-top: 6px; text-align: center"><label>조회기간</label></div>
+
+                                <!-- dateTimePicker 2개 -->
+                                @*<div class="input-group date col-sm-5" id="datetimepicker1" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="시작일" name="from" value=@ViewBag.FromDate />
+                                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                    <div class="input-group date col-sm-5" id="datetimepicker2" data-target-input="nearest" ">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate />
+                                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                <div class="input-group col-sm-6">
+                                    <input type="text" class="form-control float-right" id="dateRangeSelect">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="hidden" name="from" id="startDate" />
+                                    <input type="hidden" name="to" id="endDate" />
                                 </div>
                             </div>
-                            <div class="col-3"></div>
-                            <div class="col-3">
+                            <div class="col-sm-4">
                                 <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
                             </div>
                         </div>
                     </form>
-
-                    <!-- 기존 DateRangePicker-->
-                    @*<label for="dateRangeSelect" class="col-4 col-form-label">검색 기간 선택</label>
-                        <div class="input-group col-8">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control float-right" id="dateRangeSelect">
-                        </div>*@
-
                     <!--/.input group -->
                     <!-- 콤보박스로 기간선택-->
                     @*<label>Date range button:</label>
@@ -64,14 +67,13 @@
                             </button>
                         </div>*@
 
-
                 </div>
                 <!-- /.card-header -->
                 <!-- 목록 -->
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover text-nowrap">
                         <thead>
-                            <tr>
+                            <tr style="text-align:center">
                                 <th>제품명</th>
                                 <th>제품코드</th>
                                 <th>@ViewBag.ColText 주문량</th>
@@ -82,7 +84,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr style="text-align:center">
                                     <td>@item.Name</td>
                                     <td>@item.Code</td>
                                     <td>@item.OrderSum</td>
@@ -97,36 +99,29 @@
             </div>
             <!-- /.card -->
         </div>
-
         <!-- /목록 -->
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-danger">
-                    <div class="card-header">
-                        <h3 class="card-title">제품별 거래총량</h3>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="donutChart1" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
-                    </div>
-                    <!-- /.card-body -->
+        <div class="col-sm-4">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">제품별 거래총량</h3>
                 </div>
-                <!-- /.card -->
+                <div class="card-body">
+                    <canvas id="donutChart1" style="min-height: 275px; height: 275px; max-height: 275px; max-width: 100%; "></canvas>
+                </div>
+                <!-- /.card-body -->
             </div>
+            <!-- /.card -->
 
-            <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">제품별 거래횟수</h3>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="donutChart2" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
-                    </div>
-                    <!-- /.card-body -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">제품별 거래횟수</h3>
                 </div>
-                <!-- /.card -->
+                <div class="card-body">
+                    <canvas id="donutChart2" style="min-height: 275px; height: 275px; max-height: 275px; max-width: 100%; "></canvas>
+                </div>
+                <!-- /.card-body -->
             </div>
+            <!-- /.card -->
         </div>
     </div>
 </section>
@@ -135,6 +130,8 @@
     string name = ViewData["Name"].ToString();
     string orderSum = ViewData["OrderSum"].ToString();
     string customerSum = ViewData["CustomerSum"].ToString();
+    string from = ViewBag.FromDate;
+    string to = ViewBag.ToDate;
 }
 
 @section Scripts{
@@ -142,30 +139,49 @@
     <script src="~/plugins/chart.js/Chart.min.js"></script>
     <!-- InputMask -->
     <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/moment/moment-with-locales.min.js"></script>
     <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- date-range-picker -->
     <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
 
     <script>
         //Date range picker
-        $('#dateRangeSelect').daterangepicker()
+        $('#dateRangeSelect').daterangepicker({
+            locale: {
+                format: 'YYYY-MM-DD',
+                applyLabel: '입력',
+                cancelLabel: '취소',
+                locale: moment.locale('ko')
+            },
+            startDate: '@from',
+            endDate: '@to',
+            showDropdowns: true,
+            showWeekNumbers: true,
+        });
+
+        $('#dateRangeSelect').on('apply.daterangepicker', function (ev, picker) {
+            document.getElementById("startDate").value = picker.startDate.format('YYYY-MM-DD');
+            document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
+        })
         //-------------
         //- DONUT CHART -
         //-------------
         // Get context with jQuery - using jQuery's .get() method.
+
         var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
         var donutChartCanvas2 = $('#donutChart2').get(0).getContext('2d')
 
         var names = "@name"
         var namearr = names.split(',')
 
-        var donutData1 = {
+        var donutData1 = { 
             labels: namearr,
             datasets: [
                 {
-                    data: @orderSum,
+                    data:@orderSum,
                     backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
                 }
             ]
@@ -181,10 +197,9 @@
         }
         var donutOptions = {
             maintainAspectRatio: false,
-            responsive: true,
-        }
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
+            responsive: true
+        };
+
         new Chart(donutChartCanvas1, {
             type: 'doughnut',
             data: donutData1,
@@ -198,7 +213,7 @@
         })
 
         //Date range as a button
-        $('#daterange-btn').daterangepicker(
+        @*$('#daterange-btn').daterangepicker(
             {
                 ranges: {
                     '최근 일주일': [moment().subtract(6, 'days'), moment()],
@@ -217,10 +232,12 @@
 
         $(function () {
             $('#datetimepicker1').datetimepicker({
-                format: 'YYYY-MM-DD'
+                format: 'YYYY-MM-DD',
+                locale: 'ko'
             });
             $('#datetimepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
+                locale: 'ko',
                 useCurrent: false
             });
             $("#datetimepicker1").on("change.datetimepicker", function (e) {
@@ -230,6 +247,7 @@
                 $('#datetimepicker1').datetimepicker('maxDate', e.date);
             });
         });
+            *@
 
     </script>
 }

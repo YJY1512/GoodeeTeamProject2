@@ -49,17 +49,45 @@ namespace Team2_Project_WEB.Controllers
                 CustomerSumList.Add(item.CustomerSum);
             }
 
-            ViewData["Name"] = sb1.ToString().TrimEnd(',');
+            ViewData["Name"] = string.IsNullOrWhiteSpace(sb1.ToString().TrimEnd(',')) ? "주문없음" : sb1.ToString().TrimEnd(',');
             ViewData["OrderSum"] = "[" + string.Join(",", OrderSumList) + "]";
             ViewData["CustomerSum"] = "[" + string.Join(",", CustomerSumList) + "]";
 
             return View(list);
         }
 
-        public ActionResult ProdO() //생산지시 실적 조회
+        public ActionResult ProdO(string date) //생산지시 실적 조회
         {
-            List<ItemVO> list = new List<ItemVO>();
-            //list.Add(new ItemVO { Name = "제품1", Code = "Prod1", Ratio = 100, Order_p = 10, Customer_p = 2, Order_c = 20, Customer_c = 4 });
+            ViewBag.Date = date;
+            if (string.IsNullOrWhiteSpace(date))
+                ViewBag.Date = DateTime.Today.ToString("yyyy-MM-dd");
+
+
+            string[] dateTemp = ViewBag.Date.Split('-');
+            ViewBag.DateStr = $"20{dateTemp[0]}년 {dateTemp[1]}월 {dateTemp[2]}일";
+
+            ProductionDAO dao = new ProductionDAO();
+            List<ProductionVO> list = dao.GetProdOList(ViewBag.Date);
+
+            ViewBag.DateProgress = list.Sum((e) => e.Progress) / list.Count;
+
+            //list.Sum((e)=>e.Total)list.Sum((e)=>e.Plan_Qty_Box)
+
+            //StringBuilder sb1 = new StringBuilder();
+            //List<int> OrderSumList = new List<int>();
+            //List<int> CustomerSumList = new List<int>();
+            //foreach (ItemVO item in list)
+            //{
+            //    if (item.OrderSum < 1)
+            //        continue;
+            //    sb1.Append(item.Name).Append(",");
+            //    OrderSumList.Add(item.OrderSum);
+            //    CustomerSumList.Add(item.CustomerSum);
+            //}
+
+            //ViewData["Name"] = sb1.ToString().TrimEnd(',');
+            //ViewData["OrderSum"] = "[" + string.Join(",", OrderSumList) + "]";
+            //ViewData["CustomerSum"] = "[" + string.Join(",", CustomerSumList) + "]";
 
             return View(list);
         }
