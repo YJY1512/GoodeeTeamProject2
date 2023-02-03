@@ -324,6 +324,7 @@
     <Compile Include="Services\DefCodeService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\NopCodeService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PlanService.cs" />
