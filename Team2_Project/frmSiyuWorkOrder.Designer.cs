@@ -223,6 +223,7 @@ namespace Team2_Project
             this.dgvPlan.Size = new System.Drawing.Size(1249, 233);
             this.dgvPlan.TabIndex = 0;
             this.dgvPlan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellClick);
+            this.dgvPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellDoubleClick);
             // 
             // dgvWorkOrder
             // 
@@ -234,6 +235,7 @@ namespace Team2_Project
             this.dgvWorkOrder.RowTemplate.Height = 23;
             this.dgvWorkOrder.Size = new System.Drawing.Size(1249, 226);
             this.dgvWorkOrder.TabIndex = 0;
+            this.dgvWorkOrder.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkOrder_CellFormatting);
             // 
             // btnAdd
             // 
@@ -347,6 +349,7 @@ namespace Team2_Project
             this.Name = "frmSiyuWorkOrder";
             this.Text = "시유작업지시생성";
             this.Load += new System.EventHandler(this.frmSiyuWorkOrder_Load);
+            this.Shown += new System.EventHandler(this.frmSiyuWorkOrder_Shown);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlListUP.ResumeLayout(false);
