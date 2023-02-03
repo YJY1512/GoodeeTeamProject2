@@ -62,13 +62,13 @@ namespace Team2_Project_WEB.Controllers
             if (string.IsNullOrWhiteSpace(date))
                 ViewBag.Date = DateTime.Today.ToString("yyyy-MM-dd");
 
-
             string[] dateTemp = ViewBag.Date.Split('-');
             ViewBag.DateStr = $"20{dateTemp[0]}년 {dateTemp[1]}월 {dateTemp[2]}일";
 
             ProductionDAO dao = new ProductionDAO();
             List<ProductionVO> list = dao.GetProdOList(ViewBag.Date);
 
+            // 화면 상단 선택일 진행도 Progerss Bar로 표시
             ViewBag.DateProgress = list.Sum((e) => e.Progress) / list.Count;
 
             //list.Sum((e)=>e.Total)list.Sum((e)=>e.Plan_Qty_Box)

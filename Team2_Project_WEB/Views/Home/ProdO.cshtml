@@ -17,80 +17,84 @@
 
 <section class="content">
     <div class="container-fluid">
-            <div class="col-sm-12 card">
-                <div class="card-header">
-                    <form action="/Home/ProdO" method="get">
-                        <div class="row" style="margin-bottom: 0px">
-                            <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업일자</label></div>
-                            <div class="input-group date col-sm-3" id="datetimepicker1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
-                            <div class="input-group date col-sm-3" id="datetimepicker1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                            @*<div class="input-group date col-sm-5" id="datetimepicker2" data-target-input="nearest" ">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate />
-            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                <div class="input-group-text">
-                    <i class="fa fa-calendar"></i>
-                </div>
-            </div>
-        </div>*@
+        <!-- Progerss Bar 들어갈 공간 -->>
 
-                            @*<div class="input-group col-sm-6">
-            <input type="text" class="form-control float-right" id="dateRangeSelect">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="far fa-calendar-alt"></i>
-                </span>
-            </div>
-            <input type="hidden" name="from" id="startDate" />
-            <input type="hidden" name="to" id="endDate" />
-        </div>*@
-                            <div class="col-sm-4">
-                                <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
+
+
+        <div class="col-sm-12 card">
+            <div class="card-header">
+                <form action="/Home/ProdO" method="get">
+                    <div class="row" style="margin-bottom: 0px">
+                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업일자</label></div>
+                        <div class="input-group date col-sm-3" id="datetimepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
+                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
-                    </form>
-                    <!--/.input group -->
-                    <!-- 콤보박스로 기간선택-->
-                    @*<label>Date range button:</label>
-                        <div class="input-group">
-                            <button type="button" class="btn btn-default float-right" id="daterange-btn">
-                                <i class="far fa-calendar-alt"></i> Date range picker
-                                <i class="fas fa-caret-down"></i>
-                            </button>
+                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
+                        <div class="input-group date col-sm-3" id="datetimepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
+                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        @*<div class="input-group date col-sm-5" id="datetimepicker2" data-target-input="nearest" ">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate />
+                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
                         </div>*@
 
-                </div>
-                <!-- /.card-header -->
-                <!-- 목록 -->
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
-                            <tr style="text-align:center">
-                                <th>작업지시번호</th>
-                                <th>작업일자</th>
-                                <th>품목코드</th>
-                                <th>품목명</th>
-                                <th>계획수량</th>
-                                <th>생산진행도</th>
-                                <th>양품수량</th>
-                                <th>불량수량</th>
-                                <th>양품률</th>
-                                <th>불량률</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+                        @*<div class="input-group col-sm-6">
+                            <input type="text" class="form-control float-right" id="dateRangeSelect">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="hidden" name="from" id="startDate" />
+                            <input type="hidden" name="to" id="endDate" />
+                        </div>*@
+                        <div class="col-sm-4">
+                            <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
+                        </div>
+                    </div>
+                </form>
+                <!--/.input group -->
+                <!-- 콤보박스로 기간선택-->
+                @*<label>Date range button:</label>
+                <div class="input-group">
+                    <button type="button" class="btn btn-default float-right" id="daterange-btn">
+                        <i class="far fa-calendar-alt"></i> Date range picker
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>*@
+
+            </div>
+            <!-- /.card-header -->
+            <!-- 목록 -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th>작업지시번호</th>
+                            <th>작업일자</th>
+                            <th>품목코드</th>
+                            <th>품목명</th>
+                            <th>계획수량</th>
+                            <th>생산진행도</th>
+                            <th>양품수량</th>
+                            <th>불량수량</th>
+                            <th>양품률</th>
+                            <th>불량률</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr style="text-align:center">
                                 <td>@item.WorkOrderNo</td>
                                 <td>@item.Plan_Date</td>
@@ -103,36 +107,35 @@
                                 <td>@(item.FairRatio.ToString("0.00")+" %")</td>
                                 <td>@(item.DefRatio.ToString("0.00")+" %")</td>
                             </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
+                        }
+                    </tbody>
+                </table>
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
         <!-- /목록 -->
         <!--<div class="col-sm-6">
-            <div class="card card-danger">
-                <div class="card-header">
-                    <h3 class="card-title">제품별 거래총량</h3>
-                </div>
-                <div class="card-body">
-                    <canvas id="donutChart1" style="min-height: 375px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
-                </div>-->
-                <!-- /.card-body -->
-            <!--</div>-->
-            <!-- /.card -->
-
-            <!--<div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">제품별 거래횟수</h3>
-                </div>
-                <div class="card-body">
-                    <canvas id="donutChart2" style="min-height: 375px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
-                </div>-->
-                <!-- /.card-body -->
-            <!--</div>-->
-            <!-- /.card -->
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title">제품별 거래총량</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="donutChart1" style="min-height: 375px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
+            </div>-->
+        <!-- /.card-body -->
+        <!--</div>-->
+        <!-- /.card -->
+        <!--<div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">제품별 거래횟수</h3>
+        </div>
+        <div class="card-body">
+            <canvas id="donutChart2" style="min-height: 375px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
+        </div>-->
+        <!-- /.card-body -->
+        <!--</div>-->
+        <!-- /.card -->
         <!--</div>-->
     </div>
 </section>
