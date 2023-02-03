@@ -63,20 +63,17 @@ namespace Team2_Project_DAO
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand("SP_DashboardMapping", conn))
                 {
-                    cmd.Connection = new SqlConnection();
-                    cmd.CommandText = "SP_DashboardMapping";
+                    conn.Open();
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@User_ID", dto.User_ID);
                     cmd.Parameters.AddWithValue("@TopPage", dto.TopPage);
                     cmd.Parameters.AddWithValue("@BottomPage", dto.BottomPage);
-
-                    cmd.Connection.Open();
+                    
                     Debug.WriteLine(cmd.CommandText);
                     int iRowAffect = cmd.ExecuteNonQuery();
-                    cmd.Connection.Close();
+                    conn.Close();
                     return (iRowAffect > 0);
                 }
             }

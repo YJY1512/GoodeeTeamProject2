@@ -226,16 +226,14 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<CodeDTO> GetCode(string txt) //완제품/반제품 //값 안뜸
+        public List<CodeDTO> GetCode() //품목유형
         {
             try
             {
-                string sql = @"SELECT Sys_Ma_Code, Sys_Mi_Code, Sys_Mi_Name
+                string sql = @"SELECT Sys_Ma_Code Category, Sys_Mi_Code Code, Sys_Mi_Name Name
                                 FROM Sys_Mi_Master
-                                WHERE Sys_Ma_Code = @txt";
-
+                                WHERE Sys_Ma_Code = 'ITEM_TYPE'";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@txt", txt);
                 conn.Open();
                 List<CodeDTO> list = Helper.DataReaderMapToList<CodeDTO>(cmd.ExecuteReader());
                 conn.Close();
@@ -248,6 +246,25 @@ namespace Team2_Project_DAO
             }
         }
 
+        public List<CodeDTO> GetSpec() //품목사양
+        {
+            try
+            {
+                string sql = @"SELECT Userdefine_Mi_Code Code, Userdefine_Ma_Code Category, Userdefine_Mi_Name Name
+                                FROM Userdefine_Mi_Master
+                                WHERE Userdefine_Ma_Code = 'ITEM_SPEC'";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                List<CodeDTO> list = Helper.DataReaderMapToList<CodeDTO>(cmd.ExecuteReader());
+                conn.Close();
+                return list;
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+                return null;
+            }
+        }
 
 
 

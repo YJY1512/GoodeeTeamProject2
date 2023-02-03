@@ -33,17 +33,16 @@ namespace Team2_Project_DAO
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    conn.Open();
                     cmd.CommandText = "SP_TimeProductionHistory";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@PrdDateFrom", from);
                     cmd.Parameters.AddWithValue("@PrdDateTo", to);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(reader);
                     reader.Close();
-
                     return list;
                 }
             }
@@ -65,12 +64,11 @@ namespace Team2_Project_DAO
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    conn.Open();
                     cmd.CommandText = "SP_TIMETEST";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
-                    conn.Open();
-
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(reader);
                     reader.Close();

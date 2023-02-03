@@ -19,6 +19,7 @@ namespace Team2_Project
         AnalysisService srv = new AnalysisService();
         List<TimeProductionHistoryDTO> TPHistoryList = new List<TimeProductionHistoryDTO>();
 
+
         public frmTimeProductionHistory()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "계획수량단위", "Plan_Unit", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장", "", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일자", "Prd_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산시작", "Prd_StartTime", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산종료", "Prd_EndTime", 150);
@@ -60,8 +61,9 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 150);
             dgvData.MultiSelect = false;
 
-            OnSearch();            
+                     
             cboTest.SelectedIndex = 0; // test
+            OnSearch();
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -113,17 +115,17 @@ namespace Team2_Project
 
             //var list = (from g in TPHistoryList
             //            group g by g.Process_Code ).ToList();
-            var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
+            //var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
 
-            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
+            //List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
 
-            CommonPop<TimeProductionHistoryDTO> dto = new CommonPop<TimeProductionHistoryDTO>();
-            dto.DgvDatasource = list;
-            dto.DgvCols = col;
-            dto.PopName = "공정정보 검색";
-            ucProcessCode.OpenPop(dto);
+            //CommonPop<TimeProductionHistoryDTO> dto = new CommonPop<TimeProductionHistoryDTO>();
+            //dto.DgvDatasource = list;
+            //dto.DgvCols = col;
+            //dto.PopName = "공정정보 검색";
+            //ucProcessCode.OpenPop(dto);
         }
 
         private void ucWcCode_BtnClick(object sender, EventArgs e)
@@ -174,7 +176,6 @@ namespace Team2_Project
                 chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
                 chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", "Label=Def_Qty"); // X축: Time, Y축: Score
             }
-
             
             #region test
             //(방법2)//////////////////
@@ -202,5 +203,5 @@ namespace Team2_Project
             //                                                                    //chtData.DataBindTable(students, "Time");
             #endregion
         }
-    }
+    }    
 }
