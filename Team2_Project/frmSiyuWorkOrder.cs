@@ -42,7 +42,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "품목명", "Item_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획량", "Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획수량", "Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "거래처", "Company_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "납기일", "Delivery_Date", 120, DataGridViewContentAlignment.MiddleCenter);
@@ -104,7 +104,7 @@ namespace Team2_Project
 
             if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
             {
-                MessageBox.Show("대기상태인 생산계획만 작업지시 생성이 가능합니다.");
+                MessageBox.Show("작업지시가 이미 생성되었습니다.");
                 return;
             }
 
@@ -115,7 +115,7 @@ namespace Team2_Project
                 Wc_Code = dgvPlan["Wc_Code", rIdx].Value.ToString(),
                 Wc_Name = dgvPlan["Wc_Name", rIdx].Value.ToString(),
                 Item_Code = dgvPlan["Item_Code", rIdx].Value.ToString(),
-                Item_Name = dgvPlan["Item_Code", rIdx].Value.ToString(),
+                Item_Name = dgvPlan["Item_Name", rIdx].Value.ToString(),
                 Plan_Month = dgvPlan["Plan_Month", rIdx].Value.ToString(),
                 Plan_Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value)
             };

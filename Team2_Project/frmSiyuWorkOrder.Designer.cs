@@ -50,6 +50,10 @@ namespace Team2_Project
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlListUP.SuspendLayout();
             this.pnlListDown.SuspendLayout();
@@ -71,13 +75,13 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.dtpMonth);
             this.pnlSub.Controls.Add(this.label11);
             this.pnlSub.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pnlSub.Size = new System.Drawing.Size(1249, 120);
+            this.pnlSub.Size = new System.Drawing.Size(1362, 120);
             // 
             // pnlListUP
             // 
             this.pnlListUP.Controls.Add(this.dgvPlan);
             this.pnlListUP.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pnlListUP.Size = new System.Drawing.Size(1249, 233);
+            this.pnlListUP.Size = new System.Drawing.Size(1362, 233);
             // 
             // lblTitleU
             // 
@@ -89,7 +93,7 @@ namespace Team2_Project
             // 
             this.pnlListDown.Controls.Add(this.dgvWorkOrder);
             this.pnlListDown.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pnlListDown.Size = new System.Drawing.Size(1249, 226);
+            this.pnlListDown.Size = new System.Drawing.Size(1362, 226);
             // 
             // lblTitleD
             // 
@@ -99,10 +103,14 @@ namespace Team2_Project
             // 
             // pnlTitleU
             // 
-            this.pnlTitleU.Size = new System.Drawing.Size(1249, 43);
+            this.pnlTitleU.Size = new System.Drawing.Size(1362, 43);
             // 
             // pnlTitleD
             // 
+            this.pnlTitleD.Controls.Add(this.button4);
+            this.pnlTitleD.Controls.Add(this.button3);
+            this.pnlTitleD.Controls.Add(this.button2);
+            this.pnlTitleD.Controls.Add(this.button1);
             this.pnlTitleD.Controls.Add(this.label15);
             this.pnlTitleD.Controls.Add(this.label16);
             this.pnlTitleD.Controls.Add(this.label10);
@@ -114,7 +122,7 @@ namespace Team2_Project
             this.pnlTitleD.Controls.Add(this.label5);
             this.pnlTitleD.Controls.Add(this.label4);
             this.pnlTitleD.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pnlTitleD.Size = new System.Drawing.Size(1249, 43);
+            this.pnlTitleD.Size = new System.Drawing.Size(1362, 43);
             this.pnlTitleD.Controls.SetChildIndex(this.lblTitleD, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.label4, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.label5, 0);
@@ -126,6 +134,10 @@ namespace Team2_Project
             this.pnlTitleD.Controls.SetChildIndex(this.label10, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.label16, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.label15, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.button1, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.button2, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.button3, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.button4, 0);
             // 
             // ucWc
             // 
@@ -220,7 +232,7 @@ namespace Team2_Project
             this.dgvPlan.Location = new System.Drawing.Point(0, 0);
             this.dgvPlan.Name = "dgvPlan";
             this.dgvPlan.RowTemplate.Height = 23;
-            this.dgvPlan.Size = new System.Drawing.Size(1249, 233);
+            this.dgvPlan.Size = new System.Drawing.Size(1362, 233);
             this.dgvPlan.TabIndex = 0;
             this.dgvPlan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellClick);
             this.dgvPlan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellContentClick);
@@ -233,7 +245,7 @@ namespace Team2_Project
             this.dgvWorkOrder.Location = new System.Drawing.Point(0, 0);
             this.dgvWorkOrder.Name = "dgvWorkOrder";
             this.dgvWorkOrder.RowTemplate.Height = 23;
-            this.dgvWorkOrder.Size = new System.Drawing.Size(1249, 226);
+            this.dgvWorkOrder.Size = new System.Drawing.Size(1362, 226);
             this.dgvWorkOrder.TabIndex = 0;
             this.dgvWorkOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrder_CellDoubleClick);
             this.dgvWorkOrder.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkOrder_CellFormatting);
@@ -245,7 +257,7 @@ namespace Team2_Project
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(1064, 23);
+            this.btnAdd.Location = new System.Drawing.Point(1177, 23);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(156, 71);
             this.btnAdd.TabIndex = 33;
@@ -343,10 +355,50 @@ namespace Team2_Project
             this.label16.Size = new System.Drawing.Size(32, 17);
             this.label16.TabIndex = 10;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Location = new System.Drawing.Point(904, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 26);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "작업지시 수정 저장";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(752, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(146, 26);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "작업지시 추가";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button3.Location = new System.Drawing.Point(1056, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(146, 26);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "작업지시 삭제";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button4.Location = new System.Drawing.Point(1208, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(146, 26);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "전달사항 수정";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // frmSiyuWorkOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1249, 669);
+            this.ClientSize = new System.Drawing.Size(1362, 669);
             this.Name = "frmSiyuWorkOrder";
             this.Text = "시유작업지시생성";
             this.Load += new System.EventHandler(this.frmSiyuWorkOrder_Load);
@@ -388,5 +440,9 @@ namespace Team2_Project
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
