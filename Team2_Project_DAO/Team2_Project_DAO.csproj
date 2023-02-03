@@ -47,6 +47,7 @@
     <Compile Include="DefCodeDAO.cs" />
     <Compile Include="EmployeeDAO.cs" />
     <Compile Include="ItemDAO.cs" />
+    <Compile Include="MenuDAO.cs" />
     <Compile Include="NopCodeDAO.cs" />
     <Compile Include="NopHistoryDAO.cs" />
     <Compile Include="PlanDAO.cs" />
