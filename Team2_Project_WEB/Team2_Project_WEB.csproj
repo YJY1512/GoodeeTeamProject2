@@ -100,9 +100,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductionVO.cs" />
     <Compile Include="Models\DAO\CommonDAO.cs" />
     <Compile Include="Models\DAO\Helper.cs" />
     <Compile Include="Models\DAO\ItemDAO.cs" />
+    <Compile Include="Models\DAO\ProductionDAO.cs" />
     <Compile Include="Models\ItemVO.cs" />
     <Compile Include="Models\MenuVO.cs" />
     <Compile Include="Models\PagingInfo.cs" />

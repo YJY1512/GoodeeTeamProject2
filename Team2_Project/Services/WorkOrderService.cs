@@ -19,10 +19,10 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public DataTable GetWorkOrder(List<string> planID)
+        public DataTable GetWorkOrder(string planMonth)
         {
             WorkOrderDAO db = new WorkOrderDAO();
-            DataTable dt = db.GetWorkOrder(planID);
+            DataTable dt = db.GetWorkOrder(planMonth);
 
             return dt;
         }
