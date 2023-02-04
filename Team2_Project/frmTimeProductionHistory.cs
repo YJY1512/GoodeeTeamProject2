@@ -19,7 +19,6 @@ namespace Team2_Project
         AnalysisService srv = new AnalysisService();
         List<TimeProductionHistoryDTO> TPHistoryList = new List<TimeProductionHistoryDTO>();
 
-
         public frmTimeProductionHistory()
         {
             InitializeComponent();
@@ -32,14 +31,17 @@ namespace Team2_Project
 
         private void LoadData()
         {
-            cboWoStatus.Items.Add("전체");
-            cboWoStatus.Items.Add("생산대기");
-            cboWoStatus.Items.Add("생산중");
-            cboWoStatus.Items.Add("생산중지");
-            cboWoStatus.Items.Add("현장마감");
-            cboWoStatus.Items.Add("작업지시마감"); //추후 DB에서 CODE 가져오기
-            cboWoStatus.SelectedIndex = 0;
+            List<CodeDTO> SpecList = srv.GetWoStatus();  /////////SQL넣기
+            CommonCodeUtil.ComboBinding(cboWoStatus, SpecList, "@@@@@", blankText: "전체");
             cboWoStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            #region cboWoStatus항목
+            //cboWoStatus.Items.Add("전체");
+            //cboWoStatus.Items.Add("생산대기");
+            //cboWoStatus.Items.Add("생산중");
+            //cboWoStatus.Items.Add("생산중지");
+            //cboWoStatus.Items.Add("현장마감");
+            //cboWoStatus.Items.Add("작업지시마감"); //추후 DB에서 CODE 가져오기
+            #endregion
 
             //작업지시목록 : 작업지시번호, 작업지시일자, 작업지시수량, 계획수량단위, 품목코드, 품목명, 작업장, 생산일자, 생산시작, 생산종료, 투입, 산출, 생산수량, 불량수량
             DataGridViewUtil.SetInitDataGridView(dgvData);
@@ -61,8 +63,11 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 120);
             dgvData.MultiSelect = false;
 
-                     
-            cboTest.SelectedIndex = 0; // test
+            //---- test용 ----
+            cboTest.SelectedIndex = 0; 
+            cboTest.DropDownStyle = ComboBoxStyle.DropDownList;
+            //----------------
+
             OnSearch();
         }
 
@@ -76,15 +81,15 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd"));
-
+            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd")); //////////SP불량부분 수정하기
             if (TPHistoryList != null && TPHistoryList.Count > 0)
             {
-                //var list = TPHistoryList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-                AdvancedListBind(TPHistoryList, dgvData);
+                string processSC = ucProcessCode._Code;
+                string workSC = ucWcCode._Code;
+                string woStatus = (cboWoStatus.SelectedItem.ToString() == "전체") ? "" : cboWoStatus.SelectedItem.ToString();
+                List<TimeProductionHistoryDTO> list = TPHistoryList.Where(t => t.Process_Code.Equals(processSC) && t.Wc_Code.Equals(workSC) && t.Wo_Status.Equals(woStatus)).Select((t) => t).ToList();
+                AdvancedListBind(list, dgvData);
             }
-
-            ChartData(); //// CHART TEST (셀선택시)
         }
 
         public void OnReLoad()  //새로고침
@@ -111,37 +116,30 @@ namespace Team2_Project
 
         private void ucProcessCode_BtnClick(object sender, EventArgs e)
         {
-            if (TPHistoryList == null || TPHistoryList.Count() < 1) return;
+            var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
 
-            //var list = (from g in TPHistoryList
-            //            group g by g.Process_Code ).ToList();
-            //var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
-
-            //List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
-            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
-
-            //CommonPop<TimeProductionHistoryDTO> dto = new CommonPop<TimeProductionHistoryDTO>();
-            //dto.DgvDatasource = list;
-            //dto.DgvCols = col;
-            //dto.PopName = "공정정보 검색";
-            //ucProcessCode.OpenPop(dto);
+            CommonPop<TimeProductionHistoryDTO> popInfo = new CommonPop<TimeProductionHistoryDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "공정정보 검색";
+            ucProcessCode.OpenPop(popInfo);
         }
 
         private void ucWcCode_BtnClick(object sender, EventArgs e)
         {
-            if (TPHistoryList == null || TPHistoryList.Count() < 1) return;
-
             var list = TPHistoryList.GroupBy((g) => g.Wc_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
 
-            CommonPop<TimeProductionHistoryDTO> dto = new CommonPop<TimeProductionHistoryDTO>();
-            dto.DgvDatasource = list;
-            dto.DgvCols = col;
-            dto.PopName = "작업장정보 검색";
-            ucWcCode.OpenPop(dto);
+            CommonPop<TimeProductionHistoryDTO> popInfo = new CommonPop<TimeProductionHistoryDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "작업장정보 검색";
+            ucWcCode.OpenPop(popInfo);
         }
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -149,17 +147,21 @@ namespace Team2_Project
             //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
             //2. 작업지시 dgv를 선택하면 작업지시번호 DB가져가서 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
 
+            //string txt = dgvData["WorkOrderNo", e.RowIndex].Value.ToString();
+            if (e.RowIndex < 0) return;
+            //else
+                //ChartData();
         }
 
 
         public void ChartData()
         {
             //---test----
-            string curInfo = cboTest.Text;
+            //string curInfo = cboTest.Text;
             //------------
 
-            //string curInfo = (dgvData[0, dgvData.CurrentRow.Index].Value.ToString()) ?? "333";
-            TPHistoryList = srv.GetTimeProductionHistory(curInfo);
+            string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
+            TPHistoryList = srv.GetTimeProductionHistory(curInfo); //SP 테스트용 아닌걸로 수정
 
             chtData.Series.Clear();
             chtData.Series.Add("생산량");
@@ -203,5 +205,11 @@ namespace Team2_Project
             //                                                                    //chtData.DataBindTable(students, "Time");
             #endregion
         }
+
+        #region TEST
+
+
+        #endregion
+
     }    
 }

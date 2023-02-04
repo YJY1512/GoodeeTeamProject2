@@ -10,6 +10,7 @@ using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Linq;
 
 namespace Team2_Project
 {
@@ -47,13 +48,14 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
             dgvData.MultiSelect = false;
 
-            ChartData();
+            OnSearch();
         }
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            
+
+            ChartData();
         }
 
         public void OnReLoad()  //새로고침
@@ -72,28 +74,23 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
-            //2. 작업지시 dgv를 선택하면 작업지시번호 DB가져가서 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
+            //1. 조회조건으로 검색하면  (DB에서 List<생산현황>가져와서)   dgv가 뜸 
+            //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
 
         }
 
 
         public void ChartData()
         {
-            ////---test----
-            //string curInfo = cboTest.Text;
-            ////------------
-
-            ////string curInfo = (dgvData[0, dgvData.CurrentRow.Index].Value.ToString()) ?? "333";
-            //TPHistoryList = srv.GetTimeProductionHistory(curInfo);
+            //string curInfo = dgvData["Item_Code", dgvData.CurrentRow.Index].Value.ToString();
+            //TPHistoryList = srv.Get(curInfo);
 
             chtData.Titles.Add("월별 제품 생산비율");
             chtData.Series.Clear();
             chtData.Series.Add("품목");
             chtData.Series["품목"].Points.Clear();
             chtData.Series["품목"].ChartType = SeriesChartType.Doughnut;
-
-            
+                        
             chtData.Series["품목"].Points.Add(75);
             chtData.Series["품목"].Points[0].LegendText = "품목1";
 
@@ -106,6 +103,20 @@ namespace Team2_Project
             chtData.Series["품목"].Points[0].Color = Color.FromArgb(211, 226, 223);
             chtData.Series["품목"].Points[1].Color = Color.FromArgb(255, 227, 217);
             chtData.Series["품목"].Points[2].Color = Color.FromArgb(255, 237, 227);
+        }
+
+        private void ucItemSearch_BtnClick(object sender, EventArgs e)
+        {
+            var list = itemList.GroupBy((g) => g.Item_Code).Select((g) => g.FirstOrDefault()).ToList();
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
+
+            CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
+            popInfo.DgvDatasource = list;
+            popInfo.DgvCols = colList;
+            popInfo.PopName = "품목코드 검색";
+            ucItemSearch.OpenPop(popInfo);
         }
     }
 }

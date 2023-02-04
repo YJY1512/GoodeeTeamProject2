@@ -27,6 +27,8 @@ namespace Team2_Project_DTO
         public string Item_Name { get; set; }     //품목명
         public int Def_Qty { get; set; }          //불량수량
 
+        public string Process_Code { get; set; }     //공정코드
+        public string Process_Name { get; set; }     //공정명
 
         public int Start_Hour { get; set; }
         //public int Prd_Qty { get; set; }
