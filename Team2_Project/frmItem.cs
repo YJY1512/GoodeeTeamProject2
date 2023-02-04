@@ -179,9 +179,6 @@ namespace Team2_Project
                 MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
                 return;
             }
-
-            dgvData.Enabled = false;
-
             if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 int result = srv.DeleteItemCode(txtCode.Text);

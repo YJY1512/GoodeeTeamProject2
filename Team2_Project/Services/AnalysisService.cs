@@ -26,5 +26,12 @@ namespace Team2_Project.Services
             db.Dispose();
             return list;
         }
+        public List<CodeDTO> GetWoStatus() //작업지시상태cbo
+        {
+            ItemDAO db = new ItemDAO();
+            List<CodeDTO> list = db.GetSpec();
+            db.Dispose();
+            return list;
+        }
     }
 }

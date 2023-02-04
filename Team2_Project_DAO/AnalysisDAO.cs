@@ -65,7 +65,7 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     conn.Open();
-                    cmd.CommandText = "SP_TIMETEST";
+                    cmd.CommandText = "SP_TIMETEST"; /////SP_테스트용아닌걸로 수정
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
@@ -86,5 +86,26 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
+        public List<CodeDTO> GetWoStatus() //작업지시상태
+        {
+            try
+            {
+                string sql = @"@@@@@";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                List<CodeDTO> list = Helper.DataReaderMapToList<CodeDTO>(cmd.ExecuteReader());
+                conn.Close();
+                return list;
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+                return null;
+            }
+        }
+
+
+
     }
 }

@@ -109,6 +109,7 @@ namespace Team2_Project
             this.ucItemSearch.Name = "ucItemSearch";
             this.ucItemSearch.Size = new System.Drawing.Size(340, 28);
             this.ucItemSearch.TabIndex = 77;
+            this.ucItemSearch.BtnClick += new System.EventHandler(this.ucItemSearch_BtnClick);
             // 
             // label1
             // 
