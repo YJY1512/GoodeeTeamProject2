@@ -51,7 +51,6 @@ namespace Team2_Project
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnMenu = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.chkHide = new System.Windows.Forms.CheckBox();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -319,7 +318,6 @@ namespace Team2_Project
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.panel2.Controls.Add(this.pnlMenu);
-            this.panel2.Controls.Add(this.btnMenu);
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 111);
@@ -331,27 +329,10 @@ namespace Team2_Project
             // pnlMenu
             // 
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlMenu.Location = new System.Drawing.Point(0, 65);
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(212, 673);
+            this.pnlMenu.Size = new System.Drawing.Size(212, 738);
             this.pnlMenu.TabIndex = 49;
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenu.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnMenu.ForeColor = System.Drawing.Color.White;
-            this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenu.ImageIndex = 0;
-            this.btnMenu.ImageList = this.imageListLeftSideBar;
-            this.btnMenu.Location = new System.Drawing.Point(0, 0);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Padding = new System.Windows.Forms.Padding(8);
-            this.btnMenu.Size = new System.Drawing.Size(212, 65);
-            this.btnMenu.TabIndex = 48;
-            this.btnMenu.Text = "     홈";
-            this.btnMenu.UseVisualStyleBackColor = false;
             // 
             // panel6
             // 
@@ -535,7 +516,6 @@ namespace Team2_Project
         private System.Windows.Forms.CheckBox chkHide;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.FlowLayoutPanel pnlMenu;
-        private System.Windows.Forms.Button btnMenu;
     }
 }
 
