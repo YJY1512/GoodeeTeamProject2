@@ -40,7 +40,6 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@USER_ID", uid);
-
                     conn.Open();
                     Debug.WriteLine(cmd.CommandText);
                     List<DashboardDTO> list = Helper.DataReaderMapToList<DashboardDTO>(cmd.ExecuteReader());
@@ -114,5 +113,55 @@ namespace Team2_Project_DAO
             }
         }
 
+        public List<WorkCenterDTO> GetWorkCenterInfo() //작업장정보
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetWorkCenter", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    List<WorkCenterDTO> list = Helper.DataReaderMapToList<WorkCenterDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<NopHistoryDTO> GetNopHistory() //비가동이력 조회
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_NopHistory", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DateFrom", DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd") );
+                    cmd.Parameters.AddWithValue("@DateTo", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@Ma_Code", "%%");
+                    cmd.Parameters.AddWithValue("@Ma_Name", "%%");
+
+                    conn.Open();
+                    List<NopHistoryDTO> list = Helper.DataReaderMapToList<NopHistoryDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

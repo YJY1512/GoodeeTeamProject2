@@ -34,7 +34,25 @@ namespace Team2_Project.Services
             db.Dispose();
             return list;
         }
-        
+
+        public List<WorkCenterDTO> GetWorkCenterInfo()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<WorkCenterDTO> list = db.GetWorkCenterInfo();
+            db.Dispose();
+            return list;
+        }
+
+        public List<NopHistoryDTO> GetNopHistory()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<NopHistoryDTO> list = db.GetNopHistory();
+            db.Dispose();
+            return list;
+        }
+
+
+
 
     }
 }

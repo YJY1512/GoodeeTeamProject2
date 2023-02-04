@@ -116,7 +116,7 @@ namespace Team2_Project
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 747);
-            this.splitContainer1.SplitterDistance = 276;
+            this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 0;
             // 
             // dgvData
@@ -127,7 +127,7 @@ namespace Team2_Project
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 276);
+            this.dgvData.Size = new System.Drawing.Size(1834, 287);
             this.dgvData.TabIndex = 1;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
@@ -145,8 +145,8 @@ namespace Team2_Project
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.chtData);
-            this.splitContainer2.Size = new System.Drawing.Size(1834, 467);
-            this.splitContainer2.SplitterDistance = 47;
+            this.splitContainer2.Size = new System.Drawing.Size(1834, 456);
+            this.splitContainer2.SplitterDistance = 45;
             this.splitContainer2.TabIndex = 1;
             // 
             // panel2
@@ -193,7 +193,7 @@ namespace Team2_Project
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 416);
+            this.chtData.Size = new System.Drawing.Size(1834, 407);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart";
             // 

@@ -22,6 +22,22 @@ namespace Team2_Project
         string situation = "";
         string empID;
 
+        #region 유효성체크 실패 시 넣어줘야하는 버튼 이벤트 (!!!!!!!!필수!!!!!!!!)
+        // 유효성 체크 후 return 값 주기 전에 이벤트 넣어주시면 됩니다. 
+        // OnSave() 버튼 이벤트에서만 사용
+        // 예시)
+        // MessageBox.Show($"{lblGroupCode.Text} 항목을 입력해주시기 바랍니다.");
+        //            if (clickState == "각 폼에서 clickstate를 '추가'로 정의해준 문자열 혹은 숫자 적어주시면됩니다")
+        //            {
+        //                ((frmMain)this.MdiParent).AddClickEvent();
+        //            }
+        //            else if (clickState == "각 폼에서 clickstate를 '수정'으로 정의해준 문자열 혹은 숫자 적어주시면됩니다")
+        //            {
+        //                ((frmMain)this.MdiParent).EditClickEvent();
+        //            }
+        //  return;
+        #endregion
+
         public frmItem()
         {
             InitializeComponent();
