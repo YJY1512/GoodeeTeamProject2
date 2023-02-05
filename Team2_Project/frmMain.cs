@@ -84,7 +84,7 @@ namespace Team2_Project
                 menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
                 chkHide.Checked = true;
                 RoadClickEvent();
-                //OpenChildPage<frmDashBoard>();
+                OpenChildPage("frmDashBoard" , "HOME");
             }
             catch(Exception err)
             {
@@ -477,6 +477,12 @@ namespace Team2_Project
         private void tsBtnSetting_Click(object sender, EventArgs e)
         {
             frmSettings pop = new frmSettings();
+            pop.ShowDialog(this);
+        }
+
+        private void tsBtnFavorite_Click(object sender, EventArgs e)
+        {
+            frmFavorite pop = new frmFavorite();
             pop.ShowDialog(this);
         }
     }
