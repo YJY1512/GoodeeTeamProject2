@@ -14,6 +14,7 @@ namespace Team2_Project_POP
     public partial class frmParent : Form
     {
         public WorkCenterDTO LoginedWorkCenter { get; set; }
+        public List<WorkOrderDTO> LoginedOrders { get; set; }
         public frmParent()
         {
             InitializeComponent();

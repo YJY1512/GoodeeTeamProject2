@@ -27,8 +27,6 @@ namespace Team2_Project_POP
             btnPerfomance.Location = new Point((screenWidh / 6) * 3, 0);
             btnFinish.Location = new Point((screenWidh / 6) * 4, 0);
             btnNonP.Location = new Point((screenWidh / 6) * 5, 0);
-
-           
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)

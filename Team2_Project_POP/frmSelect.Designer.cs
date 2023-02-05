@@ -30,14 +30,14 @@ namespace Team2_Project_POP
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblClear = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.lblClear = new System.Windows.Forms.Label();
-            this.ucSelectedList1 = new Team2_Project_POP.Controls.ucSelectedList();
+            this.ucTitle = new Team2_Project_POP.Controls.ucSelectedList();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -54,6 +54,16 @@ namespace Team2_Project_POP
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1253, 120);
             this.panel1.TabIndex = 0;
+            // 
+            // lblClear
+            // 
+            this.lblClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblClear.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.lblClear.Image = global::Team2_Project_POP.Properties.Resources.png__10_;
+            this.lblClear.Location = new System.Drawing.Point(1144, 16);
+            this.lblClear.Name = "lblClear";
+            this.lblClear.Size = new System.Drawing.Size(94, 93);
+            this.lblClear.TabIndex = 2;
             // 
             // lblTitle
             // 
@@ -113,31 +123,22 @@ namespace Team2_Project_POP
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Silver;
-            this.panel5.Controls.Add(this.ucSelectedList1);
+            this.panel5.Controls.Add(this.ucTitle);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(982, 120);
             this.panel5.TabIndex = 0;
             // 
-            // lblClear
+            // ucTitle
             // 
-            this.lblClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblClear.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.lblClear.Image = global::Team2_Project_POP.Properties.Resources.png__10_;
-            this.lblClear.Location = new System.Drawing.Point(1144, 16);
-            this.lblClear.Name = "lblClear";
-            this.lblClear.Size = new System.Drawing.Size(94, 93);
-            this.lblClear.TabIndex = 2;
-            // 
-            // ucSelectedList1
-            // 
-            this.ucSelectedList1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSelectedList1.Location = new System.Drawing.Point(58, 27);
-            this.ucSelectedList1.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSelectedList1.Name = "ucSelectedList1";
-            this.ucSelectedList1.Size = new System.Drawing.Size(251, 49);
-            this.ucSelectedList1.TabIndex = 0;
+            this.ucTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTitle.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTitle.Location = new System.Drawing.Point(0, 0);
+            this.ucTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.ucTitle.Name = "ucTitle";
+            this.ucTitle.Size = new System.Drawing.Size(982, 120);
+            this.ucTitle.TabIndex = 0;
             // 
             // frmSelect
             // 
@@ -170,7 +171,7 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel2;
-        private Controls.ucSelectedList ucSelectedList1;
+        private Controls.ucSelectedList ucTitle;
     }
 }
 

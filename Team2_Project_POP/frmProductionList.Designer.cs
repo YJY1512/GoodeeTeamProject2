@@ -36,19 +36,24 @@ namespace Team2_Project_POP
             this.btnPalette = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblRemark = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblProductDate = new System.Windows.Forms.Label();
+            this.lblPlanDate = new System.Windows.Forms.Label();
+            this.lblProcessNum = new System.Windows.Forms.Label();
+            this.lblPlanQty = new System.Windows.Forms.Label();
+            this.lblStartTime = new System.Windows.Forms.Label();
+            this.lblIngQty = new System.Windows.Forms.Label();
+            this.lblFinishTime = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
+            this.lblStatuse = new System.Windows.Forms.Label();
+            this.pnlList = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -123,164 +128,209 @@ namespace Team2_Project_POP
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
             // 
-            // panel3
+            // panel1
             // 
-            this.panel3.BackColor = System.Drawing.Color.Silver;
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1316, 125);
-            this.panel3.TabIndex = 2;
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1316, 160);
+            this.panel1.TabIndex = 2;
             // 
-            // label9
+            // lblRemark
             // 
-            this.label9.BackColor = System.Drawing.Color.DarkBlue;
-            this.label9.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(700, 65);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(150, 55);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "실적 수량";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRemark.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblRemark.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRemark.ForeColor = System.Drawing.Color.White;
+            this.lblRemark.Location = new System.Drawing.Point(1015, 4);
+            this.lblRemark.Margin = new System.Windows.Forms.Padding(2, 4, 4, 4);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(297, 152);
+            this.lblRemark.TabIndex = 2;
+            this.lblRemark.Text = "전달 사항";
+            this.lblRemark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // tableLayoutPanel1
             // 
-            this.label10.BackColor = System.Drawing.Color.DarkBlue;
-            this.label10.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(700, 5);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(150, 55);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "계획 수량";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Gray;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
+            this.tableLayoutPanel1.Controls.Add(this.lblRemark, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblStatuse, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1316, 160);
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // label7
+            // tableLayoutPanel2
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.BackColor = System.Drawing.Color.DarkBlue;
-            this.label7.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(855, 65);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(200, 55);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "생산 종료 시간";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Gray;
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel2.Controls.Add(this.lblProductDate, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblPlanDate, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblProcessNum, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblPlanQty, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblStartTime, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblIngQty, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblFinishTime, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblProductName, 1, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(184, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(829, 160);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label8
+            // lblProductDate
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.BackColor = System.Drawing.Color.DarkBlue;
-            this.label8.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(855, 5);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(200, 55);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "생산 시작 시간";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblProductDate.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblProductDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProductDate.ForeColor = System.Drawing.Color.White;
+            this.lblProductDate.Location = new System.Drawing.Point(2, 82);
+            this.lblProductDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.lblProductDate.Name = "lblProductDate";
+            this.lblProductDate.Size = new System.Drawing.Size(228, 74);
+            this.lblProductDate.TabIndex = 7;
+            this.lblProductDate.Text = "생산 일자";
+            this.lblProductDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // lblPlanDate
             // 
-            this.label5.BackColor = System.Drawing.Color.DarkBlue;
-            this.label5.Font = new System.Drawing.Font("맑은 고딕", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(405, 65);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(290, 55);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "품목명";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlanDate.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblPlanDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPlanDate.ForeColor = System.Drawing.Color.White;
+            this.lblPlanDate.Location = new System.Drawing.Point(2, 4);
+            this.lblPlanDate.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.lblPlanDate.Name = "lblPlanDate";
+            this.lblPlanDate.Size = new System.Drawing.Size(228, 74);
+            this.lblPlanDate.TabIndex = 3;
+            this.lblPlanDate.Text = "계획 일자";
+            this.lblPlanDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // lblProcessNum
             // 
-            this.label6.BackColor = System.Drawing.Color.DarkBlue;
-            this.label6.Font = new System.Drawing.Font("맑은 고딕", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(405, 5);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(290, 55);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "작업 지시 번호";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblProcessNum.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblProcessNum.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProcessNum.ForeColor = System.Drawing.Color.White;
+            this.lblProcessNum.Location = new System.Drawing.Point(234, 4);
+            this.lblProcessNum.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.lblProcessNum.Name = "lblProcessNum";
+            this.lblProcessNum.Size = new System.Drawing.Size(228, 74);
+            this.lblProcessNum.TabIndex = 4;
+            this.lblProcessNum.Text = "작업 지시 번호";
+            this.lblProcessNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // lblPlanQty
             // 
-            this.label4.BackColor = System.Drawing.Color.DarkBlue;
-            this.label4.Font = new System.Drawing.Font("맑은 고딕", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(160, 65);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(240, 55);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "생산 일자";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlanQty.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblPlanQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPlanQty.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPlanQty.ForeColor = System.Drawing.Color.White;
+            this.lblPlanQty.Location = new System.Drawing.Point(466, 4);
+            this.lblPlanQty.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.lblPlanQty.Name = "lblPlanQty";
+            this.lblPlanQty.Size = new System.Drawing.Size(128, 74);
+            this.lblPlanQty.TabIndex = 5;
+            this.lblPlanQty.Text = "계획 수량";
+            this.lblPlanQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // lblStartTime
             // 
-            this.label3.BackColor = System.Drawing.Color.DarkBlue;
-            this.label3.Font = new System.Drawing.Font("맑은 고딕", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(160, 5);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(240, 55);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "계획 일자";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStartTime.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblStartTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStartTime.ForeColor = System.Drawing.Color.White;
+            this.lblStartTime.Location = new System.Drawing.Point(598, 4);
+            this.lblStartTime.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.lblStartTime.Name = "lblStartTime";
+            this.lblStartTime.Size = new System.Drawing.Size(229, 74);
+            this.lblStartTime.TabIndex = 6;
+            this.lblStartTime.Text = "생산 시작 시간";
+            this.lblStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // lblIngQty
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BackColor = System.Drawing.Color.DarkBlue;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1060, 5);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 115);
-            this.label2.TabIndex = 1;
-            this.label2.Text = " 전달  사항";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIngQty.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblIngQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIngQty.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblIngQty.ForeColor = System.Drawing.Color.White;
+            this.lblIngQty.Location = new System.Drawing.Point(466, 82);
+            this.lblIngQty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.lblIngQty.Name = "lblIngQty";
+            this.lblIngQty.Size = new System.Drawing.Size(128, 74);
+            this.lblIngQty.TabIndex = 9;
+            this.lblIngQty.Text = "실적 수량";
+            this.lblIngQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // lblFinishTime
             // 
-            this.label1.BackColor = System.Drawing.Color.DarkBlue;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 115);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "상 태";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFinishTime.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblFinishTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFinishTime.ForeColor = System.Drawing.Color.White;
+            this.lblFinishTime.Location = new System.Drawing.Point(598, 82);
+            this.lblFinishTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.lblFinishTime.Name = "lblFinishTime";
+            this.lblFinishTime.Size = new System.Drawing.Size(229, 74);
+            this.lblFinishTime.TabIndex = 10;
+            this.lblFinishTime.Text = "생산 종료 시간";
+            this.lblFinishTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblProductName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProductName.ForeColor = System.Drawing.Color.White;
+            this.lblProductName.Location = new System.Drawing.Point(234, 82);
+            this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(228, 74);
+            this.lblProductName.TabIndex = 8;
+            this.lblProductName.Text = "품목명";
+            this.lblProductName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblStatuse
+            // 
+            this.lblStatuse.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblStatuse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStatuse.ForeColor = System.Drawing.Color.White;
+            this.lblStatuse.Location = new System.Drawing.Point(4, 4);
+            this.lblStatuse.Margin = new System.Windows.Forms.Padding(4, 4, 2, 4);
+            this.lblStatuse.Name = "lblStatuse";
+            this.lblStatuse.Size = new System.Drawing.Size(178, 152);
+            this.lblStatuse.TabIndex = 1;
+            this.lblStatuse.Text = "상  태";
+            this.lblStatuse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlList
+            // 
+            this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlList.Location = new System.Drawing.Point(0, 160);
+            this.pnlList.Name = "pnlList";
+            this.pnlList.Size = new System.Drawing.Size(1316, 477);
+            this.pnlList.TabIndex = 3;
             // 
             // frmProductionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1316, 767);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlList);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
@@ -288,7 +338,9 @@ namespace Team2_Project_POP
             this.Text = "frmProductionList";
             this.Load += new System.EventHandler(this.frmProductionList_Load);
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -301,16 +353,19 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Button btnPalette;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblRemark;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lblProductDate;
+        private System.Windows.Forms.Label lblPlanDate;
+        private System.Windows.Forms.Label lblProcessNum;
+        private System.Windows.Forms.Label lblPlanQty;
+        private System.Windows.Forms.Label lblStartTime;
+        private System.Windows.Forms.Label lblIngQty;
+        private System.Windows.Forms.Label lblFinishTime;
+        private System.Windows.Forms.Label lblProductName;
+        private System.Windows.Forms.Label lblStatuse;
+        private System.Windows.Forms.Panel pnlList;
     }
 }
