@@ -47,6 +47,7 @@
     <Compile Include="DefCodeDAO.cs" />
     <Compile Include="EmployeeDAO.cs" />
     <Compile Include="ItemDAO.cs" />
+    <Compile Include="MenuDAO.cs" />
     <Compile Include="NopCodeDAO.cs" />
     <Compile Include="NopHistoryDAO.cs" />
     <Compile Include="PlanDAO.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="UserGroupDAO.cs" />
     <Compile Include="Util\Helper.cs" />
     <Compile Include="WorkCenterDAO.cs" />
+    <Compile Include="WorkOrderDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Team2_Project_DTO\Team2_Project_DTO.csproj">

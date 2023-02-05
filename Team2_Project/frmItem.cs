@@ -22,6 +22,22 @@ namespace Team2_Project
         string situation = "";
         string empID;
 
+        #region 유효성체크 실패 시 넣어줘야하는 버튼 이벤트 (!!!!!!!!필수!!!!!!!!)
+        // 유효성 체크 후 return 값 주기 전에 이벤트 넣어주시면 됩니다. 
+        // OnSave() 버튼 이벤트에서만 사용
+        // 예시)
+        // MessageBox.Show($"{lblGroupCode.Text} 항목을 입력해주시기 바랍니다.");
+        //            if (clickState == "각 폼에서 clickstate를 '추가'로 정의해준 문자열 혹은 숫자 적어주시면됩니다")
+        //            {
+        //                ((frmMain)this.MdiParent).AddClickEvent();
+        //            }
+        //            else if (clickState == "각 폼에서 clickstate를 '수정'으로 정의해준 문자열 혹은 숫자 적어주시면됩니다")
+        //            {
+        //                ((frmMain)this.MdiParent).EditClickEvent();
+        //            }
+        //  return;
+        #endregion
+
         public frmItem()
         {
             InitializeComponent();
@@ -67,35 +83,13 @@ namespace Team2_Project
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            //1. 추가,수정버튼 클릭 -> 입력패널이 활성화
-            //2. 저장버튼 클릭 시   -> 추가,수정 적용 
-
             LoadData();     //로드            
             OnSearch();     //조회
             empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         private void LoadData()
-        {
-            //CodeList = srv.GetCode("ITEM_TYPE");
-            ////CommonCodeUtil.ComboBinding(cboTypeSC, CodeList, "ITEM_TYPE");
-
-            //var cboList = (from li in CodeList
-            //                   where li.Name == cboTypeSC.Text
-            //                   select new CodeDTO
-            //                   {
-            //                       Code = li.Code,
-            //                       Name = li.Name,
-            //                       Category = "ITEM_TYPE"
-            //                   }).ToList();
-            //CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
-
-            cboTypeSC.Items.Add("전체");
-            cboTypeSC.Items.Add("완제품");
-            cboTypeSC.Items.Add("반제품");
-            cboTypeSC.SelectedIndex = 0;
-            cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
-
+        {            
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 200);
@@ -105,22 +99,30 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비고", "Remark", 500);
             dgvData.MultiSelect = false;
 
+            CodeList = srv.GetCode();
+            var cboList = (from li in CodeList
+                           where li.Name != "자재"
+                           select new CodeDTO
+                           {
+                               Code = li.Code,
+                               Name = li.Name,
+                               Category = "ITEM_TYPE"
+                           }).ToList();
+            CommonCodeUtil.ComboBinding(cboTypeSC, cboList, "ITEM_TYPE");
+            cboTypeSC.DropDownStyle = ComboBoxStyle.DropDownList;
+
             CommonCodeUtil.UseYNComboBinding(cboUseYNSC);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             cboUseYNSC.SelectedIndex = 0;
             cboUseYNSC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            cboType.Items.Add("-선택-");
-            cboType.Items.Add("완제품");
-            cboType.Items.Add("반제품");
-            cboType.SelectedIndex = 0;
+            CommonCodeUtil.ComboBinding(cboType, cboList, "ITEM_TYPE", blankText:"-선택-");
             cboType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            cboSpec.Items.Add("-선택-");
-            cboSpec.Items.Add("300x600");
-            cboSpec.Items.Add("200x500");
-            cboSpec.SelectedIndex = 0;
+
+            List<CodeDTO> SpecList = srv.GetSpec();
+            CommonCodeUtil.ComboBinding(cboSpec, SpecList, "ITEM_SPEC", blankText: "-선택-");
             cboSpec.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -143,8 +145,7 @@ namespace Team2_Project
             };
             itemList = srv.GetItemSearch(item);
             AdvancedListBind(itemList, dgvData);
-            //dgvData.ClearSelection();
-            ResetBottom();  //입력패널 리셋
+            ResetBottom();      //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
         }
 
@@ -178,9 +179,6 @@ namespace Team2_Project
                 MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
                 return;
             }
-
-            dgvData.Enabled = false;
-
             if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 int result = srv.DeleteItemCode(txtCode.Text);

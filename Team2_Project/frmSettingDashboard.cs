@@ -17,6 +17,7 @@ namespace Team2_Project
     public partial class frmSettingDashboard : Form
     {
         DashboardService srv = new DashboardService();
+        List<DashboardDTO> mappingList = new List<DashboardDTO>();
         string empID;
 
         public frmSettingDashboard()
@@ -26,18 +27,30 @@ namespace Team2_Project
 
         private void frmSettingDashboard_Load(object sender, EventArgs e)
         {
+            empID = ((frmSettings)this.MdiParent).LoginEmp.User_ID;
             LoadData();
-            empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
         }
 
         public void LoadData()
         {
-            lstContent.Items.Add("생산진행현황");
-            lstContent.Items.Add("작업장현황");
-            lstContent.Items.Add("생산실적현황");
-            lstContent.Items.Add("비가동현황");
-        }
+            foreach (var item in srv.GetDashList()) //생산진행현황, 작업장현황, 생산실적현황, 비가동현황
+            {
+                lstContent.Items.Add(item.Title_Ko);
+            }
 
+            mappingList = srv.GetData(empID);
+            if (mappingList.Count > 0)
+            {
+                lblTop.Text = (from top in mappingList
+                               where top.Loc.Equals("U")
+                               select top.Title_Ko).ToList().FirstOrDefault();
+                lblBottom.Text = (from top in mappingList
+                                  where top.Loc.Equals("L")
+                                  select top.Title_Ko).ToList().FirstOrDefault();
+            }
+            else
+                lblTop.Text = lblBottom.Text = "미선택";
+        }
 
         #region 마우스 드래그이벤트
         private void lstContent_MouseDown(object sender, MouseEventArgs e) => DoDragDrop(((ListBox)sender).Text, DragDropEffects.All);
@@ -63,15 +76,19 @@ namespace Team2_Project
             DialogResult dr = MessageBox.Show("대시보드 설정을 저장하시겠습니까?", "설정저장", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (dr == DialogResult.OK)
             {
-                DashboardMappingDTO dto = new DashboardMappingDTO() //사용자 DB에 UPDATE //반복문 돌면서 lblTop과 lblBottom 대시보드코드와 위치를 (top/bottom) 업데이트
+                
+                DashboardDTO dto = new DashboardDTO() //사용자 DB에 UPDATE //반복문 돌면서 lblTop과 lblBottom 대시보드코드와 위치를 (top/bottom) 업데이트
                 {
                     User_ID = empID,
-                    DashboardItem = "",
-                    Loc = "",
-                    Use_YN = "Y"
+                    TopPage = lblTop.Text,
+                    BottomPage = lblBottom.Text
                 };
-                bool result = srv.UpdateDashboardMapping();
-                if (result) MessageBox.Show("저장이 완료되었습니다.", "저장완료");
+                bool result = srv.UpdateDashboardMapping(dto);
+                if (result)
+                {
+                    MessageBox.Show("저장이 완료되었습니다. \n재로그인시 반영됩니다.", "저장완료");
+                    this.ParentForm.Close();
+                }
                 else MessageBox.Show("저장중 오류가 발생했습니다. 다시 시도하여주십시오.", "저장오류");
             }
             else if (dr == DialogResult.Cancel) return;
@@ -90,4 +107,11 @@ namespace Team2_Project
 /*
  * 사용자에 따른 대시보드정보 저장
  * 사용자ID(FK), 대시보드코드(FK), 위치, 사용여부 (+수정정보) UPDATE
+ */
+
+
+/*
+대시보드를 먼저 만들고
+각 대시보드 코드를 부여하여 db에 저장
+ 
  */

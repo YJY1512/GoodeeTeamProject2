@@ -33,6 +33,7 @@ namespace Team2_Project
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.ucItemSearch = new Team2_Project.Controls.ucSearch();
@@ -108,6 +109,7 @@ namespace Team2_Project
             this.ucItemSearch.Name = "ucItemSearch";
             this.ucItemSearch.Size = new System.Drawing.Size(340, 28);
             this.ucItemSearch.TabIndex = 77;
+            this.ucItemSearch.BtnClick += new System.EventHandler(this.ucItemSearch_BtnClick);
             // 
             // label1
             // 
@@ -138,7 +140,7 @@ namespace Team2_Project
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 545);
+            this.chtData.Size = new System.Drawing.Size(1834, 471);
             this.chtData.TabIndex = 3;
             this.chtData.Text = "chart1";
             // 
@@ -165,8 +167,16 @@ namespace Team2_Project
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 254);
+            this.dgvData.Size = new System.Drawing.Size(1834, 328);
             this.dgvData.TabIndex = 4;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
@@ -185,7 +195,7 @@ namespace Team2_Project
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chtData);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 803);
-            this.splitContainer1.SplitterDistance = 254;
+            this.splitContainer1.SplitterDistance = 328;
             this.splitContainer1.TabIndex = 5;
             // 
             // frmMonthProductionHistory

@@ -42,5 +42,29 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public int DeletePlan(string planID)
+        {
+            PlanDAO db = new PlanDAO();
+            int result = db.DeletePlan(planID);
+
+            return result;
+        }
+
+        public int UpdatePlan(PlanDTO plan)
+        {
+            PlanDAO db = new PlanDAO();
+            int result = db.UpdatePlan(plan);
+
+            return result;
+        }
+
+        public bool SplitPlan(PlanDTO plan)
+        {
+            PlanDAO db = new PlanDAO();
+            bool result = db.SplitPlan(plan);
+
+            return result;
+        }
     }
 }

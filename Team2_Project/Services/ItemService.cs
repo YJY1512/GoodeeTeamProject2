@@ -59,10 +59,18 @@ namespace Team2_Project.Services
             return list;
         }
 
-        public List<CodeDTO> GetCode(string txt)
+        public List<CodeDTO> GetCode()
         {
             ItemDAO db = new ItemDAO();
-            List<CodeDTO> list = db.GetCode(txt);
+            List<CodeDTO> list = db.GetCode();
+            db.Dispose();
+            return list;
+        }
+
+        public List<CodeDTO> GetSpec()
+        {
+            ItemDAO db = new ItemDAO();
+            List<CodeDTO> list = db.GetSpec();
             db.Dispose();
             return list;
         }

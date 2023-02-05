@@ -41,9 +41,8 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvEmp);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 ID", "User_ID", 180);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 이름", "User_Name", 200);
-            //DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자 권한", "User_Type", 120, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹코드", "UserGroup_Code", 180);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "권한그룹 명", "UserGroup_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자그룹 코드", "UserGroup_Code", 180);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "사용자그룹 명", "UserGroup_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvEmp, "재직여부", "Use_YN", 120, align: DataGridViewContentAlignment.MiddleCenter);
             dgvEmp.MultiSelect = false;
 

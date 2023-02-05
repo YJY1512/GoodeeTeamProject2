@@ -9,14 +9,48 @@ using Team2_Project_DTO;
 namespace Team2_Project.Services
 {
     class DashboardService
-    { 
-        public bool UpdateDashboardMapping()
+    {
+
+        public List<DashboardDTO> GetData(string uid)
         {
             DashboardDAO db = new DashboardDAO();
-            bool result = db.UpdateDashboardMapping();
+            List<DashboardDTO> list = db.GetData(uid);
+            db.Dispose();
+            return list;
+        }
+
+        public bool UpdateDashboardMapping(DashboardDTO dto)
+        {
+            DashboardDAO db = new DashboardDAO();
+            bool result = db.UpdateDashboardMapping(dto);
             db.Dispose();
             return result;
         }
+
+        public List<DashboardDTO> GetDashList()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<DashboardDTO> list = db.GetDashList();
+            db.Dispose();
+            return list;
+        }
+
+        public List<WorkCenterDTO> GetWorkCenterInfo()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<WorkCenterDTO> list = db.GetWorkCenterInfo();
+            db.Dispose();
+            return list;
+        }
+
+        public List<NopHistoryDTO> GetNopHistory()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<NopHistoryDTO> list = db.GetNopHistory();
+            db.Dispose();
+            return list;
+        }
+
 
 
 

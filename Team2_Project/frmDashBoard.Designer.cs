@@ -43,19 +43,28 @@ namespace Team2_Project
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Size = new System.Drawing.Size(1834, 911);
+            this.splitContainer1.SplitterDistance = 451;
             // 
             // pnlUp
             // 
             this.pnlUp.Controls.Add(this.dgvDataA);
+            this.pnlUp.Size = new System.Drawing.Size(1834, 408);
             // 
             // lblTitleUp
             // 
-            this.lblTitleUp.Size = new System.Drawing.Size(56, 18);
-            this.lblTitleUp.Text = "소제목d";
+            this.lblTitleUp.Size = new System.Drawing.Size(57, 18);
+            this.lblTitleUp.Text = "소제목A";
             // 
             // pnlDown
             // 
             this.pnlDown.Controls.Add(this.dgvDataB);
+            this.pnlDown.Size = new System.Drawing.Size(1834, 413);
+            // 
+            // lblTitleDown
+            // 
+            this.lblTitleDown.Size = new System.Drawing.Size(58, 18);
+            this.lblTitleDown.Text = "소제목B";
             // 
             // dgvDataA
             // 
@@ -65,7 +74,7 @@ namespace Team2_Project
             this.dgvDataA.Location = new System.Drawing.Point(0, 0);
             this.dgvDataA.Name = "dgvDataA";
             this.dgvDataA.RowTemplate.Height = 23;
-            this.dgvDataA.Size = new System.Drawing.Size(800, 180);
+            this.dgvDataA.Size = new System.Drawing.Size(1834, 408);
             this.dgvDataA.TabIndex = 2;
             // 
             // dgvDataB
@@ -76,13 +85,13 @@ namespace Team2_Project
             this.dgvDataB.Location = new System.Drawing.Point(0, 0);
             this.dgvDataB.Name = "dgvDataB";
             this.dgvDataB.RowTemplate.Height = 23;
-            this.dgvDataB.Size = new System.Drawing.Size(800, 180);
+            this.dgvDataB.Size = new System.Drawing.Size(1834, 413);
             this.dgvDataB.TabIndex = 2;
             // 
             // frmDashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1834, 911);
             this.Name = "frmDashBoard";
             this.Text = "DashBoard";
             this.Load += new System.EventHandler(this.frmDashBoard_Load);

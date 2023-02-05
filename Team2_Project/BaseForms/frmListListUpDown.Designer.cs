@@ -192,12 +192,12 @@ namespace Team2_Project
         protected System.Windows.Forms.Panel pnlSub;
         private System.Windows.Forms.SplitContainer splitContainer1;
         protected System.Windows.Forms.Panel pnlListUP;
-        private System.Windows.Forms.Panel pnlTitleU;
         private System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label lblTitleU;
         protected System.Windows.Forms.Panel pnlListDown;
-        private System.Windows.Forms.Panel pnlTitleD;
         private System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label lblTitleD;
+        protected System.Windows.Forms.Panel pnlTitleU;
+        protected System.Windows.Forms.Panel pnlTitleD;
     }
 }

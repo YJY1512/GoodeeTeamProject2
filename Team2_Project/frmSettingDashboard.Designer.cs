@@ -87,7 +87,7 @@ namespace Team2_Project
             this.lblTop.Name = "lblTop";
             this.lblTop.Size = new System.Drawing.Size(248, 33);
             this.lblTop.TabIndex = 0;
-            this.lblTop.Text = "A";
+            this.lblTop.Text = "대시보드 상단";
             this.lblTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panBottom
@@ -109,7 +109,7 @@ namespace Team2_Project
             this.lblBottom.Name = "lblBottom";
             this.lblBottom.Size = new System.Drawing.Size(246, 33);
             this.lblBottom.TabIndex = 1;
-            this.lblBottom.Text = "B";
+            this.lblBottom.Text = "대시보드 하단";
             this.lblBottom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmSettingDashboard
