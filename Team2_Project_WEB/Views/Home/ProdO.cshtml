@@ -8,71 +8,75 @@
 }
 
 @section css{
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
 }
 
 <section class="content">
     <div class="container-fluid">
-        <!-- Progerss Bar 들어갈 공간 -->>
-
-
-
+        <!-- Progerss Bar -->
+        <div class="col-sm-12">
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewBag.DateStr 생산진행도</h3>
+                </div>
+                <div class="card-body row">
+                    <div class="col-sm-2"><h3 style="font-weight:normal;text-align:center">@ViewBag.DateProgress.ToString("P")</h3></div>
+                    <div class="col-sm-10">
+                        <div class="progress" style="height: 2.5rem">
+                            <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="(@ViewBag.DateProgress*100)" aria-valuemin="0" aria-valuemax="100" style="width:@ViewBag.DateProgress.ToString("P")">
+                                <span class="sr-only">@ViewBag.DateProgress.ToString("P") Complete (success)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Progerss Bar -->
         <div class="col-sm-12 card">
             <div class="card-header">
                 <form action="/Home/ProdO" method="get">
                     <div class="row" style="margin-bottom: 0px">
                         <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업일자</label></div>
-                        <div class="input-group date col-sm-3" id="datetimepicker1" data-target-input="nearest">
+                        <div class="input-group date col-sm-3" id="datetimepicker" data-target-input="nearest">
                             <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                            <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
                         <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
-                        <div class="input-group date col-sm-3" id="datetimepicker1" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
+                        <div class=" col-sm-3">
+                            @Html.DropDownList("itemCode", (IEnumerable<SelectListItem>)ViewBag.Items, new { @class = "select2 select2-hidden-accessible", @multiple = "multiple", @style = "width: 100%;", @tabindex = "-1" })
                         </div>
-                        @*<div class="input-group date col-sm-5" id="datetimepicker2" data-target-input="nearest" ">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="종료일" name="to" value=@ViewBag.ToDate />
-                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                <div class="input-group-text">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                            </div>
-                        </div>*@
+                        
+                        @*<select class="select2 select2-hidden-accessible col-sm-3" id="" name="itemCode">
+                            @for (int i = 0; i < ViewBag.Items.Count; i++)
+                            {
+                                <option data-select2-id="@ViewBag.Items[i].Code">@ViewBag.Items[i].Name</option>
+                            }
+                        </select>
 
-                        @*<div class="input-group col-sm-6">
-                            <input type="text" class="form-control float-right" id="dateRangeSelect">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="hidden" name="from" id="startDate" />
-                            <input type="hidden" name="to" id="endDate" />
-                        </div>*@
-                        <div class="col-sm-4">
+
+                        <div class="input-group col-sm-3" data-select2-id="47">
+                            <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="제품 선택" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                            </select>*@
+    <!-- /.form-group -->
+
+                        @*<div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
+        <div class="input-group date col-sm-3" id="datetimepicker12" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>*@
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3">
                             <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
                         </div>
                     </div>
                 </form>
-                <!--/.input group -->
-                <!-- 콤보박스로 기간선택-->
-                @*<label>Date range button:</label>
-                <div class="input-group">
-                    <button type="button" class="btn btn-default float-right" id="daterange-btn">
-                        <i class="far fa-calendar-alt"></i> Date range picker
-                        <i class="fas fa-caret-down"></i>
-                    </button>
-                </div>*@
-
             </div>
             <!-- /.card-header -->
             <!-- 목록 -->
@@ -113,29 +117,37 @@
             </div>
             <!-- /.card-body -->
         </div>
-        <!-- /.card -->
-        <!-- /목록 -->
-        <!--<div class="col-sm-6">
-        <div class="card card-danger">
-            <div class="card-header">
-                <h3 class="card-title">제품별 거래총량</h3>
-            </div>
-            <div class="card-body">
-                <canvas id="donutChart1" style="min-height: 375px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
-            </div>-->
-        <!-- /.card-body -->
-        <!--</div>-->
-        <!-- /.card -->
-        <!--<div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title">제품별 거래횟수</h3>
-        </div>
-        <div class="card-body">
-            <canvas id="donutChart2" style="min-height: 375px; height: 300px; max-height: 300px; max-width: 100%; "></canvas>
-        </div>-->
-        <!-- /.card-body -->
-        <!--</div>-->
-        <!-- /.card -->
-        <!--</div>-->
     </div>
 </section>
+
+@section Scripts{
+    <!-- ChartJS -->
+    <script src="~/plugins/chart.js/Chart.min.js"></script>
+    <!-- InputMask -->
+    <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/moment/moment-with-locales.min.js"></script>
+    <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+    <!-- Select2 -->
+    <script src="~/plugins/select2/js/select2.full.min.js"></script>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                placeholder: "제품 선택",
+                allowClear: true
+            })
+        })
+
+        // datetimepicker
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'ko'
+            });
+        });
+    </script>
+}

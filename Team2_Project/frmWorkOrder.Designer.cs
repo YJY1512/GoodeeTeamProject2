@@ -29,7 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucWcGrp = new Team2_Project.Controls.ucSearch();
+            this.ucProcess = new Team2_Project.Controls.ucSearch();
             this.label1 = new System.Windows.Forms.Label();
             this.ucWc = new Team2_Project.Controls.ucSearch();
             this.label13 = new System.Windows.Forms.Label();
@@ -50,8 +50,29 @@ namespace Team2_Project
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnCloseCnl = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.dtpWo = new System.Windows.Forms.DateTimePicker();
+            this.txtWoQty = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.ucProcess2 = new Team2_Project.Controls.ucSearch();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtWorkOrder = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.ucProd2 = new Team2_Project.Controls.ucSearch();
+            this.label27 = new System.Windows.Forms.Label();
+            this.ucWc2 = new Team2_Project.Controls.ucSearch();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
+            this.pnlArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,7 +88,7 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label6);
             this.pnlSub.Controls.Add(this.dtpReqFrom);
             this.pnlSub.Controls.Add(this.label4);
-            this.pnlSub.Controls.Add(this.ucWcGrp);
+            this.pnlSub.Controls.Add(this.ucProcess);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.ucWc);
             this.pnlSub.Controls.Add(this.label13);
@@ -91,17 +112,37 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvWorkOrder);
-            this.pnlList.Size = new System.Drawing.Size(1232, 223);
+            this.pnlList.Size = new System.Drawing.Size(1232, 283);
             // 
             // pnlArea
             // 
-            this.pnlArea.Size = new System.Drawing.Size(1232, 197);
+            this.pnlArea.Controls.Add(this.label29);
+            this.pnlArea.Controls.Add(this.ucWc2);
+            this.pnlArea.Controls.Add(this.label28);
+            this.pnlArea.Controls.Add(this.label18);
+            this.pnlArea.Controls.Add(this.label19);
+            this.pnlArea.Controls.Add(this.dtpWo);
+            this.pnlArea.Controls.Add(this.txtWoQty);
+            this.pnlArea.Controls.Add(this.label20);
+            this.pnlArea.Controls.Add(this.label21);
+            this.pnlArea.Controls.Add(this.label22);
+            this.pnlArea.Controls.Add(this.ucProcess2);
+            this.pnlArea.Controls.Add(this.label23);
+            this.pnlArea.Controls.Add(this.txtWorkOrder);
+            this.pnlArea.Controls.Add(this.label24);
+            this.pnlArea.Controls.Add(this.label25);
+            this.pnlArea.Controls.Add(this.label26);
+            this.pnlArea.Controls.Add(this.ucProd2);
+            this.pnlArea.Controls.Add(this.label27);
+            this.pnlArea.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlArea.Size = new System.Drawing.Size(1232, 173);
             // 
             // splitContainer1
             // 
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 120);
-            this.splitContainer1.Size = new System.Drawing.Size(1232, 510);
-            this.splitContainer1.SplitterDistance = 266;
+            this.splitContainer1.Size = new System.Drawing.Size(1232, 546);
+            this.splitContainer1.SplitterDistance = 326;
             // 
             // pnlTitleD
             // 
@@ -109,6 +150,8 @@ namespace Team2_Project
             // 
             // pnlTitleU
             // 
+            this.pnlTitleU.Controls.Add(this.btnClose);
+            this.pnlTitleU.Controls.Add(this.btnCloseCnl);
             this.pnlTitleU.Controls.Add(this.label15);
             this.pnlTitleU.Controls.Add(this.label16);
             this.pnlTitleU.Controls.Add(this.label10);
@@ -132,18 +175,21 @@ namespace Team2_Project
             this.pnlTitleU.Controls.SetChildIndex(this.label10, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.label16, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.label15, 0);
+            this.pnlTitleU.Controls.SetChildIndex(this.btnCloseCnl, 0);
+            this.pnlTitleU.Controls.SetChildIndex(this.btnClose, 0);
             // 
-            // ucWcGrp
+            // ucProcess
             // 
-            this.ucWcGrp._Code = "";
-            this.ucWcGrp._Name = "";
-            this.ucWcGrp.BackColor = System.Drawing.Color.Transparent;
-            this.ucWcGrp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucWcGrp.Location = new System.Drawing.Point(588, 23);
-            this.ucWcGrp.Margin = new System.Windows.Forms.Padding(4);
-            this.ucWcGrp.Name = "ucWcGrp";
-            this.ucWcGrp.Size = new System.Drawing.Size(340, 28);
-            this.ucWcGrp.TabIndex = 27;
+            this.ucProcess._Code = "";
+            this.ucProcess._Name = "";
+            this.ucProcess.BackColor = System.Drawing.Color.Transparent;
+            this.ucProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProcess.Location = new System.Drawing.Point(588, 23);
+            this.ucProcess.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProcess.Name = "ucProcess";
+            this.ucProcess.Size = new System.Drawing.Size(340, 28);
+            this.ucProcess.TabIndex = 27;
+            this.ucProcess.BtnClick += new System.EventHandler(this.ucProcess_BtnClick);
             // 
             // label1
             // 
@@ -166,6 +212,7 @@ namespace Team2_Project
             this.ucWc.Name = "ucWc";
             this.ucWc.Size = new System.Drawing.Size(340, 28);
             this.ucWc.TabIndex = 25;
+            this.ucWc.BtnClick += new System.EventHandler(this.ucWc_BtnClick);
             // 
             // label13
             // 
@@ -188,6 +235,7 @@ namespace Team2_Project
             this.ucProd.Name = "ucProd";
             this.ucProd.Size = new System.Drawing.Size(340, 28);
             this.ucProd.TabIndex = 23;
+            this.ucProd.BtnClick += new System.EventHandler(this.ucProd_BtnClick);
             // 
             // label12
             // 
@@ -243,7 +291,7 @@ namespace Team2_Project
             this.dgvWorkOrder.Location = new System.Drawing.Point(0, 0);
             this.dgvWorkOrder.Name = "dgvWorkOrder";
             this.dgvWorkOrder.RowTemplate.Height = 23;
-            this.dgvWorkOrder.Size = new System.Drawing.Size(1232, 223);
+            this.dgvWorkOrder.Size = new System.Drawing.Size(1232, 283);
             this.dgvWorkOrder.TabIndex = 0;
             // 
             // label15
@@ -336,15 +384,228 @@ namespace Team2_Project
             this.label17.Size = new System.Drawing.Size(32, 17);
             this.label17.TabIndex = 12;
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClose.Location = new System.Drawing.Point(753, 6);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(146, 26);
+            this.btnClose.TabIndex = 23;
+            this.btnClose.Text = "작업지시 마감";
+            this.btnClose.UseVisualStyleBackColor = false;
+            // 
+            // btnCloseCnl
+            // 
+            this.btnCloseCnl.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCloseCnl.Location = new System.Drawing.Point(905, 6);
+            this.btnCloseCnl.Name = "btnCloseCnl";
+            this.btnCloseCnl.Size = new System.Drawing.Size(146, 26);
+            this.btnCloseCnl.TabIndex = 22;
+            this.btnCloseCnl.Text = "작업지시 마감취소";
+            this.btnCloseCnl.UseVisualStyleBackColor = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(544, 75);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(17, 17);
+            this.label18.TabIndex = 72;
+            this.label18.Text = "*";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Location = new System.Drawing.Point(576, 129);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(92, 17);
+            this.label19.TabIndex = 71;
+            this.label19.Text = "작업지시일자";
+            // 
+            // dtpWo
+            // 
+            this.dtpWo.CustomFormat = "";
+            this.dtpWo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWo.Location = new System.Drawing.Point(683, 125);
+            this.dtpWo.Name = "dtpWo";
+            this.dtpWo.Size = new System.Drawing.Size(170, 25);
+            this.dtpWo.TabIndex = 70;
+            // 
+            // txtWoQty
+            // 
+            this.txtWoQty.Location = new System.Drawing.Point(683, 71);
+            this.txtWoQty.Name = "txtWoQty";
+            this.txtWoQty.Size = new System.Drawing.Size(170, 25);
+            this.txtWoQty.TabIndex = 69;
+            this.txtWoQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWoQty_KeyPress);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.ForeColor = System.Drawing.Color.Red;
+            this.label20.Location = new System.Drawing.Point(544, 129);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(17, 17);
+            this.label20.TabIndex = 68;
+            this.label20.Text = "*";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Location = new System.Drawing.Point(576, 75);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(92, 17);
+            this.label21.TabIndex = 67;
+            this.label21.Text = "작업지시수량";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(20, 129);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(17, 17);
+            this.label22.TabIndex = 66;
+            this.label22.Text = "*";
+            // 
+            // ucProcess2
+            // 
+            this.ucProcess2._Code = "";
+            this.ucProcess2._Name = "";
+            this.ucProcess2.BackColor = System.Drawing.Color.Transparent;
+            this.ucProcess2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProcess2.Location = new System.Drawing.Point(147, 125);
+            this.ucProcess2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProcess2.Name = "ucProcess2";
+            this.ucProcess2.Size = new System.Drawing.Size(340, 28);
+            this.ucProcess2.TabIndex = 65;
+            this.ucProcess2.BtnClick += new System.EventHandler(this.ucProcess_BtnClick);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Location = new System.Drawing.Point(40, 129);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(36, 17);
+            this.label23.TabIndex = 64;
+            this.label23.Text = "공정";
+            // 
+            // txtWorkOrder
+            // 
+            this.txtWorkOrder.Enabled = false;
+            this.txtWorkOrder.Location = new System.Drawing.Point(147, 17);
+            this.txtWorkOrder.Name = "txtWorkOrder";
+            this.txtWorkOrder.Size = new System.Drawing.Size(170, 25);
+            this.txtWorkOrder.TabIndex = 63;
+            this.txtWorkOrder.Text = "시스템자동생성";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.Location = new System.Drawing.Point(20, 21);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(17, 17);
+            this.label24.TabIndex = 62;
+            this.label24.Text = "*";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Location = new System.Drawing.Point(40, 21);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(92, 17);
+            this.label25.TabIndex = 61;
+            this.label25.Text = "작업지시번호";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(20, 75);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(17, 17);
+            this.label26.TabIndex = 60;
+            this.label26.Text = "*";
+            // 
+            // ucProd2
+            // 
+            this.ucProd2._Code = "";
+            this.ucProd2._Name = "";
+            this.ucProd2.BackColor = System.Drawing.Color.Transparent;
+            this.ucProd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProd2.Location = new System.Drawing.Point(147, 71);
+            this.ucProd2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProd2.Name = "ucProd2";
+            this.ucProd2.Size = new System.Drawing.Size(340, 28);
+            this.ucProd2.TabIndex = 59;
+            this.ucProd2.BtnClick += new System.EventHandler(this.ucProd_BtnClick);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Location = new System.Drawing.Point(40, 75);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(36, 17);
+            this.label27.TabIndex = 58;
+            this.label27.Text = "품목";
+            // 
+            // ucWc2
+            // 
+            this.ucWc2._Code = "";
+            this.ucWc2._Name = "";
+            this.ucWc2.BackColor = System.Drawing.Color.Transparent;
+            this.ucWc2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucWc2.Location = new System.Drawing.Point(683, 17);
+            this.ucWc2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucWc2.Name = "ucWc2";
+            this.ucWc2.Size = new System.Drawing.Size(340, 28);
+            this.ucWc2.TabIndex = 74;
+            this.ucWc2.BtnClick += new System.EventHandler(this.ucWc_BtnClick);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.Location = new System.Drawing.Point(576, 21);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(50, 17);
+            this.label28.TabIndex = 73;
+            this.label28.Text = "작업장";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.ForeColor = System.Drawing.Color.Red;
+            this.label29.Location = new System.Drawing.Point(544, 21);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(17, 17);
+            this.label29.TabIndex = 75;
+            this.label29.Text = "*";
+            // 
             // frmWorkOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
-            this.ClientSize = new System.Drawing.Size(1232, 630);
+            this.ClientSize = new System.Drawing.Size(1232, 666);
             this.Name = "frmWorkOrder";
             this.Text = "작업지시 생성 및 마감";
+            this.Load += new System.EventHandler(this.frmWorkOrder_Load);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
             this.pnlList.ResumeLayout(false);
+            this.pnlArea.ResumeLayout(false);
+            this.pnlArea.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -360,7 +621,7 @@ namespace Team2_Project
 
         #endregion
 
-        private Controls.ucSearch ucWcGrp;
+        private Controls.ucSearch ucProcess;
         private System.Windows.Forms.Label label1;
         private Controls.ucSearch ucWc;
         private System.Windows.Forms.Label label13;
@@ -381,5 +642,25 @@ namespace Team2_Project
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnCloseCnl;
+        public System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.DateTimePicker dtpWo;
+        private System.Windows.Forms.TextBox txtWoQty;
+        public System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.Label label22;
+        private Controls.ucSearch ucProcess2;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtWorkOrder;
+        public System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        public System.Windows.Forms.Label label26;
+        private Controls.ucSearch ucProd2;
+        private System.Windows.Forms.Label label27;
+        public System.Windows.Forms.Label label29;
+        private Controls.ucSearch ucWc2;
+        private System.Windows.Forms.Label label28;
     }
 }

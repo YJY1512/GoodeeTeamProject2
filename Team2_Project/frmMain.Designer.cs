@@ -120,6 +120,7 @@ namespace Team2_Project
             this.tsBtnFavorite.Name = "tsBtnFavorite";
             this.tsBtnFavorite.Size = new System.Drawing.Size(79, 32);
             this.tsBtnFavorite.Text = "즐겨찾기";
+            this.tsBtnFavorite.Click += new System.EventHandler(this.tsBtnFavorite_Click);
             // 
             // imageListLeftSideBar
             // 
