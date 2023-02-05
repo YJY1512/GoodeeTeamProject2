@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Team2_Project_POP.Controls
 {
-    public partial class ucTEST : UserControl
+    public partial class ucSelectedList : UserControl
     {
-        public ucTEST()
+        public ucSelectedList()
         {
             InitializeComponent();
         }
