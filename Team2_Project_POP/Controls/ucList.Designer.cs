@@ -29,206 +29,228 @@ namespace Team2_Project_POP.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbld4 = new System.Windows.Forms.Label();
-            this.lblu4 = new System.Windows.Forms.Label();
-            this.lbld5 = new System.Windows.Forms.Label();
-            this.lblu5 = new System.Windows.Forms.Label();
-            this.lbld3 = new System.Windows.Forms.Label();
-            this.lblu3 = new System.Windows.Forms.Label();
-            this.lbld2 = new System.Windows.Forms.Label();
-            this.lblu2 = new System.Windows.Forms.Label();
-            this.lbl6 = new System.Windows.Forms.Label();
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // tableLayoutPanel1
             // 
-            this.panel1.Controls.Add(this.lbld4);
-            this.panel1.Controls.Add(this.lblu4);
-            this.panel1.Controls.Add(this.lbld5);
-            this.panel1.Controls.Add(this.lblu5);
-            this.panel1.Controls.Add(this.lbld3);
-            this.panel1.Controls.Add(this.lblu3);
-            this.panel1.Controls.Add(this.lbld2);
-            this.panel1.Controls.Add(this.lblu2);
-            this.panel1.Controls.Add(this.lbl6);
-            this.panel1.Controls.Add(this.lbl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1135, 125);
-            this.panel1.TabIndex = 0;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
+            this.tableLayoutPanel1.Controls.Add(this.label10, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1135, 118);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lbld4
+            // label10
             // 
-            this.lbld4.BackColor = System.Drawing.Color.DarkBlue;
-            this.lbld4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbld4.ForeColor = System.Drawing.Color.White;
-            this.lbld4.Location = new System.Drawing.Point(570, 65);
-            this.lbld4.Margin = new System.Windows.Forms.Padding(0);
-            this.lbld4.Name = "lbld4";
-            this.lbld4.Size = new System.Drawing.Size(100, 55);
-            this.lbld4.TabIndex = 29;
-            this.lbld4.Tag = "2";
-            this.lbld4.Text = "실적 수량";
-            this.lbld4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(875, 4);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 4, 4, 4);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(256, 110);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "전달 사항";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblu4
+            // tableLayoutPanel2
             // 
-            this.lblu4.BackColor = System.Drawing.Color.DarkBlue;
-            this.lblu4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblu4.ForeColor = System.Drawing.Color.White;
-            this.lblu4.Location = new System.Drawing.Point(570, 5);
-            this.lblu4.Margin = new System.Windows.Forms.Padding(0);
-            this.lblu4.Name = "lblu4";
-            this.lblu4.Size = new System.Drawing.Size(100, 55);
-            this.lblu4.TabIndex = 28;
-            this.lblu4.Tag = "2";
-            this.lblu4.Text = "계획 수량";
-            this.lblu4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label5, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label8, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label7, 1, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(158, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(715, 118);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // lbld5
+            // label6
             // 
-            this.lbld5.BackColor = System.Drawing.Color.DarkBlue;
-            this.lbld5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbld5.ForeColor = System.Drawing.Color.White;
-            this.lbld5.Location = new System.Drawing.Point(675, 65);
-            this.lbld5.Margin = new System.Windows.Forms.Padding(0);
-            this.lbld5.Name = "lbld5";
-            this.lbld5.Size = new System.Drawing.Size(200, 55);
-            this.lbld5.TabIndex = 27;
-            this.lbld5.Tag = "4";
-            this.lbld5.Text = "생산 종료 시간";
-            this.lbld5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(2, 61);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(196, 53);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "생산 일자";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblu5
+            // label2
             // 
-            this.lblu5.BackColor = System.Drawing.Color.DarkBlue;
-            this.lblu5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblu5.ForeColor = System.Drawing.Color.White;
-            this.lblu5.Location = new System.Drawing.Point(675, 5);
-            this.lblu5.Margin = new System.Windows.Forms.Padding(0);
-            this.lblu5.Name = "lblu5";
-            this.lblu5.Size = new System.Drawing.Size(200, 55);
-            this.lblu5.TabIndex = 26;
-            this.lblu5.Tag = "4";
-            this.lblu5.Text = "생산 시작 시간";
-            this.lblu5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(2, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(196, 53);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "계획 일자";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbld3
+            // label3
             // 
-            this.lbld3.BackColor = System.Drawing.Color.DarkBlue;
-            this.lbld3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbld3.ForeColor = System.Drawing.Color.White;
-            this.lbld3.Location = new System.Drawing.Point(365, 65);
-            this.lbld3.Margin = new System.Windows.Forms.Padding(0);
-            this.lbld3.Name = "lbld3";
-            this.lbld3.Size = new System.Drawing.Size(200, 55);
-            this.lbld3.TabIndex = 25;
-            this.lbld3.Tag = "4";
-            this.lbld3.Text = "품목명";
-            this.lbld3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(202, 4);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(196, 53);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "작업 지시 번호";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblu3
+            // label4
             // 
-            this.lblu3.BackColor = System.Drawing.Color.DarkBlue;
-            this.lblu3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblu3.ForeColor = System.Drawing.Color.White;
-            this.lblu3.Location = new System.Drawing.Point(365, 5);
-            this.lblu3.Margin = new System.Windows.Forms.Padding(0);
-            this.lblu3.Name = "lblu3";
-            this.lblu3.Size = new System.Drawing.Size(200, 55);
-            this.lblu3.TabIndex = 24;
-            this.lblu3.Tag = "4";
-            this.lblu3.Text = "작업 지시 번호";
-            this.lblu3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(402, 4);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 53);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "계획 수량";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbld2
+            // label5
             // 
-            this.lbld2.BackColor = System.Drawing.Color.DarkBlue;
-            this.lbld2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbld2.ForeColor = System.Drawing.Color.White;
-            this.lbld2.Location = new System.Drawing.Point(160, 65);
-            this.lbld2.Margin = new System.Windows.Forms.Padding(0);
-            this.lbld2.Name = "lbld2";
-            this.lbld2.Size = new System.Drawing.Size(200, 55);
-            this.lbld2.TabIndex = 23;
-            this.lbld2.Tag = "4";
-            this.lbld2.Text = "생산 일자";
-            this.lbld2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(516, 4);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(197, 53);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "생산 시작 시간";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblu2
+            // label8
             // 
-            this.lblu2.BackColor = System.Drawing.Color.DarkBlue;
-            this.lblu2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblu2.ForeColor = System.Drawing.Color.White;
-            this.lblu2.Location = new System.Drawing.Point(160, 5);
-            this.lblu2.Margin = new System.Windows.Forms.Padding(0);
-            this.lblu2.Name = "lblu2";
-            this.lblu2.Size = new System.Drawing.Size(200, 55);
-            this.lblu2.TabIndex = 22;
-            this.lblu2.Tag = "4";
-            this.lblu2.Text = "계획 일자";
-            this.lblu2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(402, 61);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 53);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "실적 수량";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbl6
+            // label9
             // 
-            this.lbl6.BackColor = System.Drawing.Color.DarkBlue;
-            this.lbl6.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl6.ForeColor = System.Drawing.Color.White;
-            this.lbl6.Location = new System.Drawing.Point(880, 5);
-            this.lbl6.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl6.Name = "lbl6";
-            this.lbl6.Size = new System.Drawing.Size(250, 115);
-            this.lbl6.TabIndex = 21;
-            this.lbl6.Tag = "5";
-            this.lbl6.Text = " 전달  사항";
-            this.lbl6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(516, 61);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(197, 53);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "생산 종료 시간";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbl1
+            // label7
             // 
-            this.lbl1.BackColor = System.Drawing.Color.DarkBlue;
-            this.lbl1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.ForeColor = System.Drawing.Color.White;
-            this.lbl1.Location = new System.Drawing.Point(5, 5);
-            this.lbl1.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(150, 115);
-            this.lbl1.TabIndex = 20;
-            this.lbl1.Tag = "3";
-            this.lbl1.Text = "상 태";
-            this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(202, 61);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(196, 53);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "품목명";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 4, 2, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 110);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "상  태";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "ucList";
-            this.Size = new System.Drawing.Size(1135, 125);
-            this.Load += new System.EventHandler(this.ucList_Load);
-            this.panel1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(1135, 118);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbld4;
-        private System.Windows.Forms.Label lblu4;
-        private System.Windows.Forms.Label lbld5;
-        private System.Windows.Forms.Label lblu5;
-        private System.Windows.Forms.Label lbld3;
-        private System.Windows.Forms.Label lblu3;
-        private System.Windows.Forms.Label lbld2;
-        private System.Windows.Forms.Label lblu2;
-        private System.Windows.Forms.Label lbl6;
-        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
     }
 }
