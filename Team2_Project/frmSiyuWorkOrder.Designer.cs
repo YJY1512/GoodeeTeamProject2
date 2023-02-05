@@ -50,10 +50,10 @@ namespace Team2_Project
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnWoEdit = new System.Windows.Forms.Button();
+            this.btnWoAdd = new System.Windows.Forms.Button();
+            this.btnWoDel = new System.Windows.Forms.Button();
+            this.btnMsgEdit = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlListUP.SuspendLayout();
             this.pnlListDown.SuspendLayout();
@@ -107,10 +107,10 @@ namespace Team2_Project
             // 
             // pnlTitleD
             // 
-            this.pnlTitleD.Controls.Add(this.button4);
-            this.pnlTitleD.Controls.Add(this.button3);
-            this.pnlTitleD.Controls.Add(this.button2);
-            this.pnlTitleD.Controls.Add(this.button1);
+            this.pnlTitleD.Controls.Add(this.btnMsgEdit);
+            this.pnlTitleD.Controls.Add(this.btnWoDel);
+            this.pnlTitleD.Controls.Add(this.btnWoAdd);
+            this.pnlTitleD.Controls.Add(this.btnWoEdit);
             this.pnlTitleD.Controls.Add(this.label15);
             this.pnlTitleD.Controls.Add(this.label16);
             this.pnlTitleD.Controls.Add(this.label10);
@@ -134,10 +134,10 @@ namespace Team2_Project
             this.pnlTitleD.Controls.SetChildIndex(this.label10, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.label16, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.label15, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.button1, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.button2, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.button3, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.button4, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.btnWoEdit, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.btnWoAdd, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.btnWoDel, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.btnMsgEdit, 0);
             // 
             // ucWc
             // 
@@ -150,6 +150,7 @@ namespace Team2_Project
             this.ucWc.Name = "ucWc";
             this.ucWc.Size = new System.Drawing.Size(340, 28);
             this.ucWc.TabIndex = 17;
+            this.ucWc.BtnClick += new System.EventHandler(this.ucWc_BtnClick);
             // 
             // label13
             // 
@@ -172,6 +173,7 @@ namespace Team2_Project
             this.ucProd.Name = "ucProd";
             this.ucProd.Size = new System.Drawing.Size(340, 28);
             this.ucProd.TabIndex = 15;
+            this.ucProd.BtnClick += new System.EventHandler(this.ucProd_BtnClick);
             // 
             // label12
             // 
@@ -213,6 +215,7 @@ namespace Team2_Project
             this.ucWcGrp.Name = "ucWcGrp";
             this.ucWcGrp.Size = new System.Drawing.Size(340, 28);
             this.ucWcGrp.TabIndex = 19;
+            this.ucWcGrp.BtnClick += new System.EventHandler(this.ucWcGrp_BtnClick);
             // 
             // label1
             // 
@@ -355,45 +358,49 @@ namespace Team2_Project
             this.label16.Size = new System.Drawing.Size(32, 17);
             this.label16.TabIndex = 10;
             // 
-            // button1
+            // btnWoEdit
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(904, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 26);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "작업지시 수정 저장";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnWoEdit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnWoEdit.Location = new System.Drawing.Point(904, 6);
+            this.btnWoEdit.Name = "btnWoEdit";
+            this.btnWoEdit.Size = new System.Drawing.Size(146, 26);
+            this.btnWoEdit.TabIndex = 12;
+            this.btnWoEdit.Text = "작업지시 수정 저장";
+            this.btnWoEdit.UseVisualStyleBackColor = false;
+            this.btnWoEdit.Click += new System.EventHandler(this.btnWoEdit_Click);
             // 
-            // button2
+            // btnWoAdd
             // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(752, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 26);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "작업지시 추가";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnWoAdd.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnWoAdd.Location = new System.Drawing.Point(752, 6);
+            this.btnWoAdd.Name = "btnWoAdd";
+            this.btnWoAdd.Size = new System.Drawing.Size(146, 26);
+            this.btnWoAdd.TabIndex = 13;
+            this.btnWoAdd.Text = "작업지시 추가";
+            this.btnWoAdd.UseVisualStyleBackColor = false;
+            this.btnWoAdd.Click += new System.EventHandler(this.btnWoAdd_Click);
             // 
-            // button3
+            // btnWoDel
             // 
-            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Location = new System.Drawing.Point(1056, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 26);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "작업지시 삭제";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnWoDel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnWoDel.Location = new System.Drawing.Point(1056, 6);
+            this.btnWoDel.Name = "btnWoDel";
+            this.btnWoDel.Size = new System.Drawing.Size(146, 26);
+            this.btnWoDel.TabIndex = 13;
+            this.btnWoDel.Text = "작업지시 삭제";
+            this.btnWoDel.UseVisualStyleBackColor = false;
+            this.btnWoDel.Click += new System.EventHandler(this.btnWoDel_Click);
             // 
-            // button4
+            // btnMsgEdit
             // 
-            this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button4.Location = new System.Drawing.Point(1208, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(146, 26);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "전달사항 수정";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnMsgEdit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnMsgEdit.Location = new System.Drawing.Point(1208, 6);
+            this.btnMsgEdit.Name = "btnMsgEdit";
+            this.btnMsgEdit.Size = new System.Drawing.Size(146, 26);
+            this.btnMsgEdit.TabIndex = 14;
+            this.btnMsgEdit.Text = "전달사항 수정";
+            this.btnMsgEdit.UseVisualStyleBackColor = false;
+            this.btnMsgEdit.Click += new System.EventHandler(this.btnMsgEdit_Click);
             // 
             // frmSiyuWorkOrder
             // 
@@ -440,9 +447,9 @@ namespace Team2_Project
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMsgEdit;
+        private System.Windows.Forms.Button btnWoDel;
+        private System.Windows.Forms.Button btnWoAdd;
+        private System.Windows.Forms.Button btnWoEdit;
     }
 }

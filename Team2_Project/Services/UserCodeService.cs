@@ -10,10 +10,10 @@ namespace Team2_Project.Services
 {
     public class UserCodeService
     {
-        public List<UserCodeDTO> GetUserCode()
+        public List<UserCodeDTO> GetAllUserCode()
         {
             UserCodeDAO db = new UserCodeDAO();
-            List<UserCodeDTO> list = db.GetUserCode();
+            List<UserCodeDTO> list = db.GetAllUserCode();
 
             return list;
         }
@@ -48,6 +48,14 @@ namespace Team2_Project.Services
             int result = db.DeleteUserCode(maCode, miCode);
 
             return result;
+        }
+
+        public List<UserCodeDTO> GetUserMiCode(string userMaCode)
+        {
+            UserCodeDAO db = new UserCodeDAO();
+            List<UserCodeDTO> list = db.GetUserMiCode(userMaCode);
+
+            return list;
         }
     }
 }

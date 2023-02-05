@@ -35,20 +35,14 @@ namespace Team2_Project_DAO
                 {
                     
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Prd_Plan_No", SqlDbType.NVarChar);
-                    cmd.Parameters.Add("@Wc_Code", SqlDbType.NVarChar);
-                    cmd.Parameters.Add("@Plan_Qty_Box", SqlDbType.Int);
-                    cmd.Parameters.Add("@Ins_Emp", SqlDbType.NVarChar);
-                    cmd.Parameters.Add("@Plan_Date", SqlDbType.Date);
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", workOrder.Prd_Plan_No);
+                    cmd.Parameters.AddWithValue("@Wc_Code", workOrder.Wc_Code);
+                    cmd.Parameters.AddWithValue("@Plan_Qty_Box", workOrder.Plan_Qty_Box);
+                    cmd.Parameters.AddWithValue("@Ins_Emp", workOrder.Ins_Emp);
+                    cmd.Parameters.AddWithValue("@Plan_Date", workOrder.Plan_Date);
 
                     cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
-
-                    cmd.Parameters["@Prd_Plan_No"].Value = workOrder.Prd_Plan_No;
-                    cmd.Parameters["@Wc_Code"].Value = workOrder.Wc_Code;
-                    cmd.Parameters["@Plan_Qty_Box"].Value = workOrder.Plan_Qty_Box;
-                    cmd.Parameters["@Ins_Emp"].Value = workOrder.Ins_Emp;
-                    cmd.Parameters["@Plan_Date"].Value = workOrder.Plan_Date;
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -97,6 +91,96 @@ namespace Team2_Project_DAO
             {
                 Debug.WriteLine(err.Message);
                 return null;
+            }
+        }
+
+        public bool UpdateWorkOrder(List<WorkOrderDTO> workOrders)
+        {
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                string sql = @"update WorkOrder
+                               set Plan_Qty_Box = @Plan_Qty_Box,
+                               		Plan_Date = @Plan_Date,
+                               		Wc_Code = @Wc_Code,
+                               		Up_Date = GETDATE(),
+                               		Up_Emp = @Up_Emp
+                               where WorkOrderNo = @WorkOrderNo";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {                    
+                    cmd.Parameters.Add("@Up_Emp", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@Plan_Qty_Box", SqlDbType.Int);
+                    cmd.Parameters.Add("@Plan_Date", SqlDbType.Date);
+                    cmd.Parameters.Add("@Wc_Code", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@WorkOrderNo", SqlDbType.NVarChar);
+                    cmd.Transaction = trans;
+
+                    foreach (var wo in workOrders)
+                    {
+                        cmd.Parameters["@Up_Emp"].Value = wo.Up_Emp;
+                        cmd.Parameters["@Plan_Qty_Box"].Value = wo.Plan_Qty_Box;
+                        cmd.Parameters["@Plan_Date"].Value = wo.Plan_Date;
+                        cmd.Parameters["@Wc_Code"].Value = wo.Wc_Code;
+                        cmd.Parameters["@WorkOrderNo"].Value = wo.WorkOrderNo;
+
+                        int iRowAffet = cmd.ExecuteNonQuery();
+
+                        if (iRowAffet < 1)
+                        {
+                            throw new Exception();
+                        }
+                    }
+
+                    trans.Commit();
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                trans.Rollback();
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool DeleteWorkOrder(List<string> delWoIDs, string empId)
+        {
+            try
+            {
+                string delIds = string.Join("@", delWoIDs);
+                using (SqlCommand cmd = new SqlCommand("SP_DeleteWorkOrder", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", delIds);
+                    cmd.Parameters.AddWithValue("@Up_Emp", empId);
+
+                    cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+                    if (pCode < 0)
+                    {
+                        throw new Exception(pMsg);
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
             }
         }
 
