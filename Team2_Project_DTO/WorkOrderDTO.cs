@@ -15,6 +15,7 @@ namespace Team2_Project_DTO
 		public DateTime Prd_Date { get; set; }   //실제생산일자
 		public string Prd_Plan_No { get; set; }  //
 		public string Wc_Code { get; set; }  //
+		public string Wc_Name { get; set; }  //
 		public string Wo_Status { get; set; }    //
 		public int Wo_Order { get; set; }    //작업순서
 		public DateTime Plan_StartTime { get; set; }     //
@@ -34,5 +35,11 @@ namespace Team2_Project_DTO
 		public string Ins_Emp { get; set; }  //
 		public DateTime Up_Date { get; set; }    //
 		public string Up_Emp { get; set; }   //
+
+		public string Item_Code { get; set; }    //
+		public string Item_Name { get; set; }    //
+
+		public string Process_Code { get; set; }    //
+		public string Process_Name { get; set; }    //
 	}
 }

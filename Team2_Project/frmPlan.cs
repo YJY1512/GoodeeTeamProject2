@@ -366,6 +366,7 @@ namespace Team2_Project
             if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
             {
                 MessageBox.Show("대기중인 계획만 분할이 가능합니다.");
+                dgvPlan.Enabled = true;
                 return;
             }
 

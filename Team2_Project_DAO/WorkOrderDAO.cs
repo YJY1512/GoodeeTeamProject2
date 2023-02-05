@@ -66,7 +66,7 @@ namespace Team2_Project_DAO
 
         }
 
-        public DataTable GetWorkOrder(string planMonth)
+        public DataTable GetSiyuWorkOrder(string planMonth)
         {
             try
             {
@@ -92,6 +92,11 @@ namespace Team2_Project_DAO
                 Debug.WriteLine(err.Message);
                 return null;
             }
+        }
+
+        public List<WorkOrderDTO> GetWorkOrder(string start, string end)
+        {
+            return null;
         }
 
         public bool UpdateWorkOrder(List<WorkOrderDTO> workOrders)

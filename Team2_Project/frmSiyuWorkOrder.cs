@@ -99,7 +99,7 @@ namespace Team2_Project
             dgvPlan.DataSource = planDt;
 
             dgvWorkOrder.DataSource = null;
-            woDt = woSrv.GetWorkOrder(planMonth);
+            woDt = woSrv.GetSiyuWorkOrder(planMonth);
         }
 
         private void SetInit()

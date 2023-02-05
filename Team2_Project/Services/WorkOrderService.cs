@@ -19,10 +19,10 @@ namespace Team2_Project.Services
             return result;
         }
 
-        public DataTable GetWorkOrder(string planMonth)
+        public DataTable GetSiyuWorkOrder(string planMonth)
         {
             WorkOrderDAO db = new WorkOrderDAO();
-            DataTable dt = db.GetWorkOrder(planMonth);
+            DataTable dt = db.GetSiyuWorkOrder(planMonth);
 
             return dt;
         }
