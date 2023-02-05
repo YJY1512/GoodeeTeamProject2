@@ -34,22 +34,24 @@ namespace Team2_Project
         #endregion
 
         public EmployeeDTO LoginEmp { get; set; }
-        
-        //public event EventHandler BtnClick;
+        public int curP_MenuID { get; set; }
 
-        private Boolean showPanelTreenode1 = false;
-        private Boolean showPanelTreenode2 = false;
-        private Boolean showPanelTreenode3 = false;
-        private Boolean showPanelTreenode4 = false;
+        MenuService srv = new MenuService();
+        List<MenuDTO> menuList;
+        Panel pnlChildMenu = new Panel();
+        TreeView menuTree = new TreeView();
+
+        //private Boolean showPanelTreenode1 = false;
+        //private Boolean showPanelTreenode2 = false;
+        //private Boolean showPanelTreenode3 = false;
+        //private Boolean showPanelTreenode4 = false;
         const int MaxWidth = 212;
         const int MinWidth = 56;
-        Panel pnlChildMenu = new Panel();
-        public string curP_MenuID { get; set; }
         public frmMain()
         {
             InitializeComponent();
 
-            tooglepanels();
+            //tooglepanels();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,13 +65,31 @@ namespace Team2_Project
                 return;
             }
             this.Visible = true;
-            tStripDate.Text = DateTime.Now.ToShortDateString();
-            tStripTime.Text = DateTime.Now.ToShortTimeString();
-            tStripName.Text = LoginEmp.User_Name;
-            tStripDept.Text = LoginEmp.UserGroup_Name;
-            RoadClickEvent();
-            OpenChildPage<frmDashBoard>();
-            
+            try
+            {
+                tStripDate.Text = DateTime.Now.ToShortDateString();
+                tStripTime.Text = DateTime.Now.ToShortTimeString();
+                tStripName.Text = LoginEmp.User_Name;
+                tStripDept.Text = LoginEmp.UserGroup_Name;
+
+                menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
+                DrawSideMenu();
+                pnlChildMenu.Visible = false;
+                menuTree.ItemHeight = 30;
+                menuTree.ExpandAll();
+                menuTree.ShowLines = false;
+                menuTree.ShowRootLines = false;
+                menuTree.AfterSelect += MenuTree_AfterSelect;
+                menuTree.Font = new Font("나눔고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(129)));
+                menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+                chkHide.Checked = true;
+                RoadClickEvent();
+                OpenChildPage("frmDashBoard" , "HOME");
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }            
         }
 
         private void chkHide_CheckedChanged(object sender, EventArgs e)
@@ -90,11 +110,135 @@ namespace Team2_Project
             }
         }
 
-        private void OpenChildPage<T>() where T : Form, new()
+        private void DrawSideMenu()
         {
+            List<MenuDTO> menu1List = menuList.FindAll((m) => m.Menu_Level == 1).OrderBy((m) => m.Sort_Index).ToList();
+            for (int i = 0; i < menu1List.Count; i++)
+            {
+                Button btn = new Button();              
+                btn.Name = menu1List[i].Screen_Code;
+                btn.Location = new Point(0, (i * 65));
+                btn.AutoSize = true;
+                btn.Size = new Size(MaxWidth, 65);
+                btn.BackColor = Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+                btn.Dock = DockStyle.Top;
+                btn.FlatStyle = FlatStyle.Standard;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.FlatAppearance.BorderColor = Color.White;
+                btn.Margin = new Padding(0);
+                btn.Padding = new Padding(8, 8, 8, 8);
+                
+                btn.UseVisualStyleBackColor = false;
+                btn.FlatAppearance.MouseDownBackColor = Color.WhiteSmoke;
+                btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
+                btn.Font = new Font("나눔고딕 ExtraBold", 14F, FontStyle.Bold, GraphicsUnit.Point, 129);
+                btn.ForeColor = Color.White;
+                btn.ImageList = imageListLeftSideBar;
+                btn.ImageIndex = Convert.ToInt32(menu1List[i].Menu_Image);
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Text = menu1List[i].Menu_Name.PadLeft(menu1List[i].Menu_Name.Length + 6);
+                btn.TextAlign = ContentAlignment.MiddleCenter;
+                btn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                btn.Tag = i;
+
+                pnlMenu.Controls.Add(btn);
+                
+                btn.Click += Btn_Click;
+                btn.MouseEnter += Btn_MouseEnter;
+
+                pnlChildMenu.Dock = DockStyle.Bottom;
+                pnlChildMenu.Location = new Point(0, 0);
+                pnlChildMenu.Size = new Size(MaxWidth, 330);
+                menuTree.Dock = DockStyle.Fill;
+                menuTree.Location = new Point(0, 0);
+                menuTree.Size = new Size(MaxWidth, 330);
+                pnlMenu.Controls.Add(pnlChildMenu);
+                pnlChildMenu.Controls.Add(menuTree);
+                
+            }
+        }
+
+        private void Btn_MouseEnter(object sender, EventArgs e)
+        {
+            if (chkHide.Checked) return;
+
+            panel2.Width = MaxWidth;
+            pnlMenu.Width = MaxWidth;
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            chkHide.Checked = false;
+
+            Button btn = (Button)sender;
+            string menuID = btn.Name;
+            int pnlIndex = Convert.ToInt32(btn.Tag) + 1;
+
+            if (menuID == "HOM")
+            {
+                OpenChildPage("frmDashBoard", "대쉬보드");
+            }
+
+            pnlMenu.Controls.SetChildIndex(pnlChildMenu, pnlIndex);      //SetChildIndex : 어떤 컨트롤을 index 몇으로 바꾸겠다는 메서드 
+            pnlMenu.Invalidate();                                  //Invalidate    : 다시 디자인을 그려달라는 메서드 
+
+            menuTree.Nodes.Clear();
+
+            var menu2List = menuList.FindAll((m) => m.Parent_Screen_Code == menuID
+                                                    && m.Menu_Level == 2)
+                                    .OrderBy((m) => m.Sort_Index).ToList();
+
+            for (int k = 0; k < menu2List.Count; k++)
+            {
+                TreeNode treeNode1 = new TreeNode();
+                treeNode1.Name = menu2List[k].Screen_Code;
+                treeNode1.Text = menu2List[k].Menu_Name;
+                treeNode1.Tag = menu2List[k].Form_Name;
+                treeNode1.BackColor = Color.FromArgb(211, 226, 223);
+                treeNode1.NodeFont = new Font("나눔고딕", 11.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
+                treeNode1.ForeColor = Color.Black;
+
+                string menu1ID = treeNode1.Name;
+                var menu3List = menuList.FindAll((m) => m.Parent_Screen_Code == menu1ID
+                                        && m.Menu_Level == 3).OrderBy((m) => m.Sort_Index).ToList();
+
+                for (int c = 0; c < menu3List.Count; c++)
+                {
+                    TreeNode childNode = new TreeNode();
+                    childNode.Name = menu3List[c].Screen_Code;
+                    childNode.Text = menu3List[c].Menu_Name;
+                    childNode.Tag = menu3List[c].Form_Name;
+                    childNode.BackColor = Color.FromArgb(211, 226, 223);
+                    childNode.NodeFont = new Font("나눔고딕", 9.75F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
+                    childNode.ForeColor = Color.Black;
+                    treeNode1.Nodes.Add(childNode);
+                }
+
+                menuTree.Nodes.Add(treeNode1);
+            }
+
+            pnlChildMenu.Visible = true;
+            menuTree.ExpandAll();
+        }
+
+        private void MenuTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Tag != null)
+            {
+                OpenChildPage(e.Node.Tag.ToString(), e.Node.Text);
+            }
+            else
+            {
+                MessageBox.Show("미생성 화면");
+            }
+        }
+        private void OpenChildPage(string prgName, string menuName)
+        {
+            string appName = Assembly.GetEntryAssembly().GetName().Name;
+            Type frmType = Type.GetType($"{appName}.{prgName}");
             foreach (Form form in Application.OpenForms)
             {
-                if (form.GetType() == typeof(T))
+                if (form.GetType() == frmType)
                 {
                     form.Activate();
                     form.BringToFront();
@@ -102,209 +246,17 @@ namespace Team2_Project
                     return;
                 }
             }
-            T frm = new T();
+            if (frmType == null)
+            {
+                MessageBox.Show("미생성 화면");
+                return;
+            }
+            Form frm = (Form)Activator.CreateInstance(frmType);
             frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
+            frm.Text = menuName;
             frm.Show();
         } //자식폼 Open 이벤트 
-
-        #region 왼쪽버튼 수정 예정
-        private void tooglepanels()
-        {
-            if (showPanelTreenode1)
-            {
-                pnltreenode1.Height = 188;
-                treeView1.ExpandAll();
-            }
-            else
-            {
-                pnltreenode1.Height = 0;
-            }
-
-            if (showPanelTreenode2)
-            {
-                pnltreenode2.Height = 336;
-                treeView2.ExpandAll();
-            }
-            else
-            {
-                pnltreenode2.Height = 0;
-            }
-
-            if (showPanelTreenode3)
-            {
-                pnltreenode3.Height = 247;
-                treeView3.ExpandAll();
-            }
-            else
-            {
-                pnltreenode3.Height = 0;
-            }
-
-            if (showPanelTreenode4)
-            {
-                pnltreenode4.Height = 100;
-                treeView4.ExpandAll();
-            }
-            else
-            {
-                pnltreenode4.Height = 0;
-            }
-        }
-
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void btnsystem_Click(object sender, EventArgs e)
-        {
-            showPanelTreenode1 = !showPanelTreenode1;
-
-            tooglepanels();
-        }
-
-        private void btnBasic_Click(object sender, EventArgs e)
-        {
-            showPanelTreenode2 = !showPanelTreenode2;
-
-            tooglepanels();
-        }
-
-        private void btnProcess_Click(object sender, EventArgs e)
-        {
-            showPanelTreenode3 = !showPanelTreenode3;
-
-            tooglepanels();
-        }
-
-        private void btnProduce_Click(object sender, EventArgs e)
-        {
-            showPanelTreenode4 = !showPanelTreenode4;
-
-            tooglepanels();
-        }
-        #endregion
-
-        #region 왼쪽 treeview 수정예정
-        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            curP_MenuID = e.Node.Text.ToString();
-            if (e.Node.Text == "사용자 그룹코드")
-            {
-                OpenChildPage<frmUserGroupCode>();
-            }
-            else if (e.Node.Text == "사용자 권한설정")
-            {
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-            else if (e.Node.Text == "사용자 관리")
-            {
-                OpenChildPage<frmEmpManagement>();
-            }
-            else
-            {
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-        }
-
-        private void treeView2_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            curP_MenuID = e.Node.Text.ToString();
-            if (e.Node.Text == "공정정보")
-            {
-                OpenChildPage<frmProcessManagement>();
-            }
-            else if (e.Node.Text == "작업장정보")
-            {
-                OpenChildPage<frmWorkCenter>();
-            }
-            else if (e.Node.Text == "품목정보")
-            {
-                OpenChildPage<frmItem>();
-            }
-            else if (e.Node.Text == "사용자 정의 관리")
-            {
-                OpenChildPage<frmUserCode>();
-            }
-            else if (e.Node.Text == "불량현상 대분류코드")
-            {
-                OpenChildPage<frmDefectCode>();
-            }
-            else if (e.Node.Text == "불량현상 상세분류코드")
-            {
-                OpenChildPage<frmDefectCodeDetail>();
-            }
-            else if (e.Node.Text == "비가동 대분류코드")
-            {
-                OpenChildPage<frmNopMaCode>();
-            }
-            else if (e.Node.Text == "비가동 상세분류코드")
-            {
-                OpenChildPage<frmNopMiCode>();
-            }
-            else
-            {
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-        }
-
-        private void treeView3_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            curP_MenuID = e.Node.Text.ToString();
-            if (e.Node.Text == "작업지시 생성 및 마감")
-            {
-                //OpenGMMainPage<>();
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-            else if (e.Node.Text == "시간대별 실적조회")
-            {
-                OpenChildPage<frmTimeProductionHistory>();
-            }
-            else if (e.Node.Text == "작업지시 현황")
-            {
-                //OpenGMMainPage<>();
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-            else if (e.Node.Text == "비가동 내역")
-            {
-                OpenChildPage<frmNop>();
-            }
-            else if (e.Node.Text == "월별 생산현황")
-            {
-                OpenChildPage<frmMonthProductionHistory>();
-            }
-            else
-            {
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-        }
-
-        private void treeView4_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            curP_MenuID = e.Node.Text.ToString();
-            if (e.Node.Text == "생산요청 관리")
-            {
-                OpenChildPage<frmOrder>();
-            }
-            else if (e.Node.Text == "생산계획 관리")
-            {
-                OpenChildPage<frmPlan>();
-            }
-            else if (e.Node.Text == "시유 작업지시 생성")
-            {
-                OpenChildPage<frmSiyuWorkOrder>();
-                //MessageBox.Show("빈 생성 화면입니다.");
-            }
-            else
-            {
-                MessageBox.Show("빈 생성 화면입니다.");
-            }
-        }
-        #endregion
-        private void OpenCreateForm(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            
-        }
+       
 
         private void frmMain_MdiChildActivate(object sender, EventArgs e)
         {
@@ -318,7 +270,7 @@ namespace Team2_Project
 
                 if (this.ActiveMdiChild.Tag == null) //신규로 탭을 생성하는 경우
                 {
-                    TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
+                    TabPage tp = new TabPage(this.ActiveMdiChild.Text + "       ");
                     tabControl1.TabPages.Add(tp);
 
                     //tp.Tag = this.ActiveMdiChild;
@@ -527,10 +479,16 @@ namespace Team2_Project
             frmSettings pop = new frmSettings();
             pop.ShowDialog(this);
         }
+
+        private void tsBtnFavorite_Click(object sender, EventArgs e)
+        {
+            frmFavorite pop = new frmFavorite();
+            pop.ShowDialog(this);
+        }
     }
     class TabTag
     {
         public Form ActiveOpenForm { get; set; }
-        public string MenuID { get; set; }
+        public int MenuID { get; set; }
     }
 }

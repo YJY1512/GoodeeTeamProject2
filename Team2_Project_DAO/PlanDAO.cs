@@ -52,13 +52,13 @@ namespace Team2_Project_DAO
 
         public bool InsertReqPlan(List<PlanDTO> plans)
         {
+            conn.Open();
             SqlTransaction trans = conn.BeginTransaction();
 
             try
             {                
                 using (SqlCommand cmd = new SqlCommand("SP_InsertReqPlan", conn))
-                {
-                    conn.Open();
+                {                    
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@Emp", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Plan_Qty", SqlDbType.Int);

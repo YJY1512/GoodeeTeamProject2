@@ -75,7 +75,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "품목명", "Item_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획량", "Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획수량", "Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "거래처", "Company_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "납기일", "Delivery_Date", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획상태", "Prd_Plan_Status", 120, DataGridViewContentAlignment.MiddleCenter);
@@ -90,11 +90,9 @@ namespace Team2_Project
         private CommonPop<WorkCenterDTO> GetWcPopInfo()
         {            
             if (wcList == null)
-            {                
-                
+            {                                
                 WorkCenterService srv = new WorkCenterService();
-                wcList = srv.GetWcCodeName();
-                              
+                wcList = srv.GetWcCodeName();                              
             }
 
             CommonPop<WorkCenterDTO> wcPopInfo = new CommonPop<WorkCenterDTO>();
@@ -204,19 +202,19 @@ namespace Team2_Project
                 DgvWcPlanBinding(newDt);
             }
         }
-
+        
 
         private void dgvReq_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
 
-            int rIdx = e.RowIndex;
             if (e.ColumnIndex == dgvReq.Columns["Wc_Code"].Index || e.ColumnIndex == dgvReq.Columns["Wc_Name"].Index)
             {
-                OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvReq, rIdx);
+                OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvReq, e.RowIndex);
             }
         }
 
+        //생산계획 생성버튼
         private void btnAdd_Click(object sender, EventArgs e)
         {
             List<PlanDTO> plan = new List<PlanDTO>();
@@ -368,6 +366,7 @@ namespace Team2_Project
             if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
             {
                 MessageBox.Show("대기중인 계획만 분할이 가능합니다.");
+                dgvPlan.Enabled = true;
                 return;
             }
 
@@ -410,15 +409,14 @@ namespace Team2_Project
 
             if (clickState == ButtonClick.Add)
             {
-                int rIdx = e.RowIndex;
                 if (e.ColumnIndex == dgvPlan.Columns["Wc_Code"].Index || e.ColumnIndex == dgvPlan.Columns["Wc_Name"].Index)
                 {
-                    OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvPlan, rIdx);
+                    OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvPlan, e.RowIndex);
                 }
 
                 if (e.ColumnIndex == dgvPlan.Columns["Item_Code"].Index || e.ColumnIndex == dgvPlan.Columns["Item_Name"].Index)
                 {
-                    OpenPop<ItemDTO>(GetItemPopInfo(), dgvPlan, rIdx);
+                    OpenPop<ItemDTO>(GetItemPopInfo(), dgvPlan, e.RowIndex);
                 }
             }
         }
@@ -540,8 +538,6 @@ namespace Team2_Project
                 return;
             }
 
-            dgvPlan.Enabled = false;
-
             int rIdx = dgvPlan.CurrentRow.Index;
             if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
             {
@@ -550,6 +546,7 @@ namespace Team2_Project
                 return;
             }
 
+            dgvPlan.Enabled = false;
             clickState = ButtonClick.Edit;
 
             frmPlanPop pop = new frmPlanPop();
@@ -566,7 +563,8 @@ namespace Team2_Project
             else
             {
                 clickState = ButtonClick.None;
-                ((frmMain)this.MdiParent).BtnEditReturn(true);                
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+                dgvPlan.Enabled = true;
             }
         }
 
@@ -597,7 +595,7 @@ namespace Team2_Project
                 {
                     MessageBox.Show("삭제가 완료되었습니다.");
                 }
-                else if (result == 3726) //FK 충돌
+                else if (result == 547 || result == 3726) //FK 충돌
                 {
                     MessageBox.Show("이미 생성된 생산지시가 있어 생산계획을 삭제할 수 없습니다.");
                 }
@@ -620,7 +618,7 @@ namespace Team2_Project
                 return;
             }
 
-            if (clickState == ButtonClick.Add)
+            if (clickState == ButtonClick.Add) //추가
             {
                 dgvPlan.Columns["Plan_Qty"].ReadOnly = true;
 
@@ -676,7 +674,7 @@ namespace Team2_Project
                 rIdx = -1;
                 OnReLoad();
             }
-            else if (clickState == ButtonClick.Edit)
+            else if (clickState == ButtonClick.Edit) //수정
             {
                 int rIdx = dgvPlan.CurrentRow.Index;
 
@@ -693,7 +691,7 @@ namespace Team2_Project
                     MessageBox.Show("수정이 완료되었습니다.");
                     ((frmMain)this.MdiParent).BtnEditReturn(true);
                 }
-                else if (result == 3726) //FK 충돌
+                else if (result == 547 || result == 3726) //FK 충돌
                 {
                     MessageBox.Show("대기중인 계획만 수정이 가능합니다.");
                 }
@@ -722,7 +720,7 @@ namespace Team2_Project
             
                 planDt.Rows.RemoveAt(rIdx);
                 rIdx = -1;
-            }            
+            }
         }
 
         public void OnReLoad()  //새로고침

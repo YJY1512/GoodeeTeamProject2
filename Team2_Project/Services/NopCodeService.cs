@@ -96,7 +96,7 @@ namespace Team2_Project.Services
         public List<NopHistoryDTO> GetNopMiSearch(NopHistoryDTO item)
         {
             NopHistoryDAO db = new NopHistoryDAO();
-            List<NopHistoryDTO> list = db.GetNopMiSearch(item);
+            List<NopHistoryDTO> list = db.GetNopHistory(item);
             db.Dispose();
             return list;
         }

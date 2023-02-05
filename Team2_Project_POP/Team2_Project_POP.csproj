@@ -52,17 +52,11 @@
     <Compile Include="Controls\ucList.Designer.cs">
       <DependentUpon>ucList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ucListSelect.cs">
+    <Compile Include="Controls\ucSelectedList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ucListSelect.Designer.cs">
-      <DependentUpon>ucListSelect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ucTEST.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ucTEST.Designer.cs">
-      <DependentUpon>ucTEST.cs</DependentUpon>
+    <Compile Include="Controls\ucSelectedList.Designer.cs">
+      <DependentUpon>ucSelectedList.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCalcPop.cs">
       <SubType>Form</SubType>
@@ -118,11 +112,8 @@
     <EmbeddedResource Include="Controls\ucList.resx">
       <DependentUpon>ucList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ucListSelect.resx">
-      <DependentUpon>ucListSelect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ucTEST.resx">
-      <DependentUpon>ucTEST.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ucSelectedList.resx">
+      <DependentUpon>ucSelectedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCalcPop.resx">
       <DependentUpon>frmCalcPop.cs</DependentUpon>

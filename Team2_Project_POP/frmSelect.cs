@@ -27,47 +27,40 @@ namespace Team2_Project_POP
             int screenWidh = ((Screen.PrimaryScreen.Bounds.Width - 120) / 50);
             lblTitle.Location = new Point(screenWidh * 50 / 2, 30);
 
-            lbl1.Location = new Point(20, 20);
-            lbl1.Size = new Size(screenWidh * 8, 80);
             
-            lbl2.Location = new Point(40 + lbl1.Size.Width, 20);
-            lbl2.Size = new Size(screenWidh * 26, 80);
-            
-            lbl3.Location = new Point(60 + lbl1.Size.Width + lbl2.Size.Width, 20);
-            lbl3.Size = new Size(screenWidh * 8, 80);
 
             workCenterList = ser.GetWorkCenterInfo();
 
-            for(int i = 0; i < workCenterList.Count;i++)
-            {
-                Controls.ucListSelect list = new Controls.ucListSelect();
-                list.Location = new Point(0, i * 100);
-                list.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 120, 100);
-                list.Name = $"list{i}";
-                list.Status = workCenterList[i].Wc_Status;
-                list.Space = workCenterList[i].Wc_Name;
-                list.Group = workCenterList[i].Wc_Group_Name;
-                list.Tag = workCenterList[i].Wc_Code;
-                list.ListClick += List_ListClick;
-                list.ListMouseEnter += List_MouseEnter;
-                list.ListMouseOut += List_MouseLeave;
-                panel2.Controls.Add(list);
-            }
+            //for(int i = 0; i < workCenterList.Count;i++)
+            //{
+            //    Controls.ucList list = new Controls.ucList();
+            //    list.Location = new Point(0, i * 100);
+            //    list.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 120, 100);
+            //    list.Name = $"list{i}";
+            //    list.Status = workCenterList[i].Wc_Status;
+            //    list.Space = workCenterList[i].Wc_Name;
+            //    list.Group = workCenterList[i].Wc_Group_Name;
+            //    list.Tag = workCenterList[i].Wc_Code;
+            //    list.ListClick += List_ListClick;
+            //    list.ListMouseEnter += List_MouseEnter;
+            //    list.ListMouseOut += List_MouseLeave;
+            //    panel2.Controls.Add(list);
+            //}
         }
 
         private void List_MouseLeave(object sender, EventArgs e)
         {
-            ((Controls.ucListSelect)sender).BackColor = Color.White;
+            ((Controls.ucList)sender).BackColor = Color.White;
         }
 
         private void List_MouseEnter(object sender, EventArgs e)
         {
-            ((Controls.ucListSelect)sender).BackColor = Color.Black;
+            ((Controls.ucList)sender).BackColor = Color.Black;
         }
 
         private void List_ListClick(object sender, EventArgs e)
         {
-            ((frmParent)this.MdiParent).LoginedWorkCenter = workCenterList.Find((work) => work.Wc_Code == ((Controls.ucListSelect)sender).Tag.ToString());
+            ((frmParent)this.MdiParent).LoginedWorkCenter = workCenterList.Find((work) => work.Wc_Code == ((Controls.ucList)sender).Tag.ToString());
             ((frmParent)this.MdiParent).lblSelected.Text = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Name;
         }
 
