@@ -52,7 +52,7 @@ namespace Team2_Project_DAO
 
                     string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                     int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
-                    if (pCode < 0)
+                    if (pCode != 1)
                     {
                         throw new Exception(pMsg);
                     }
@@ -91,7 +91,7 @@ namespace Team2_Project_DAO
 
                     string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                     int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
-                    if (pCode < 0)
+                    if (pCode != 1)
                     {
                         throw new Exception(pMsg);
                     }
@@ -282,12 +282,71 @@ namespace Team2_Project_DAO
 
                     string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                     int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
-                    if (pCode < 0)
+                    if (pCode != 1)
                     {
                         throw new Exception(pMsg);
                     }
 
                     return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public bool CloseWorkOrder(List<string> woIDs, string empID)
+        {
+            try
+            {
+                string ids = string.Join("','", woIDs);
+                string sql = $@"update WorkOrder
+                                set Wo_Status = 'W05',
+                                	Manager_CloseTime = GETDATE(),
+                                	Up_Date = GETDATE(),
+                                	Up_Emp = @Up_Emp
+                                where WorkOrderNo in ('{ids}')";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Up_Emp", empID);
+
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public bool CloseCancel(List<string> woIDs, string empID)
+        {
+            try
+            {
+                string ids = string.Join("','", woIDs);
+                string sql = $@"update WorkOrder
+                                set Wo_Status = 'W04',
+                                	Up_Date = GETDATE(),
+                                	Up_Emp = @Up_Emp
+                                where WorkOrderNo in ('{ids}')";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Up_Emp", empID);
+
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return (iRowAffect > 0);
                 }
             }
             catch (Exception err)

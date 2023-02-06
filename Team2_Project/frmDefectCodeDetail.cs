@@ -45,12 +45,7 @@ namespace Team2_Project
             SetInitPnl();
             LoadData();
 
-            label8.Visible = label13.Visible = txtRemark.Visible = false;
-
-            if (defList != null && defList.Count > 0)
-            {
-                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, 0));
-            }            
+            label8.Visible = label13.Visible = txtRemark.Visible = false;        
         }
 
         private void LoadData()
@@ -60,8 +55,15 @@ namespace Team2_Project
             {
                 var list = defList.GroupBy((g) => g.Def_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
                 AdvancedListBind(list, dgvMa);
+
+                if (dgvMa.CurrentRow != null)
+                    dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
             }
-            dgvMi.DataSource = null;
+            else
+            {
+                dgvMi.DataSource = null;
+            }
+            
         }
 
         private void AdvancedListBind(List<DefCodeDTO> datasource, DataGridView dgv)
@@ -278,11 +280,6 @@ namespace Team2_Project
 
             SetInitPnl();
             LoadData();
-
-            if (dgvMa.CurrentRow != null)
-            {
-                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
-            }            
         }
         #endregion
 
@@ -297,7 +294,7 @@ namespace Team2_Project
                         where c.Def_Ma_Code == code && c.Use_YN.Contains(useYN)
                         select c).ToList();
 
-            if (list.Count > 0 && list.FindIndex((c)=>c.Use_YN == "") == -1)
+            if (list.Count > 0)
             {
                 AdvancedListBind(list, dgvMi);
                 dgvMi_CellClick(dgvMi, new DataGridViewCellEventArgs(0, 0));

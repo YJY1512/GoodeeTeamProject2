@@ -66,5 +66,21 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public bool ClosePlan(string planID, string empID)
+        {
+            PlanDAO db = new PlanDAO();
+            bool result = db.ClosePlan(planID, empID);
+
+            return result;
+        }
+
+        public bool CloseCancel(string planID, string empID)
+        {
+            PlanDAO db = new PlanDAO();
+            bool result = db.CloseCancel(planID, empID);
+
+            return result;
+        }
     }
 }

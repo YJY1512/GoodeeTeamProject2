@@ -84,7 +84,7 @@ namespace Team2_Project_DAO
 
                         string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                         int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
-                        if (pCode < 0)
+                        if (pCode != 1)
                         {
                             throw new Exception(pMsg);
                         }                        
@@ -151,7 +151,7 @@ namespace Team2_Project_DAO
                     string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                     int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
 
-                    if (pCode < 0)
+                    if (pCode != 1)
                     {
                         throw new Exception(pMsg);
                     }
@@ -249,12 +249,72 @@ namespace Team2_Project_DAO
                     string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
                     int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
 
-                    if (pCode < 0)
+                    if (pCode != 1)
                     {
                         throw new Exception(pMsg);
                     }
 
                     return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public bool ClosePlan(string planID, string empID)
+        {
+            try
+            {
+                string sql = @"update Production_Plan_Detail
+                                set Prd_Plan_Status = 'C',
+                                	Up_Date = GETDATE(),
+                                	Up_Emp = @Up_Emp
+                                where Prd_Plan_No = @Prd_Plan_No";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {                    
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", planID);
+                    cmd.Parameters.AddWithValue("@Up_Emp", empID);
+
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+        }
+
+        public bool CloseCancel(string planID, string empID)
+        {
+            try
+            {
+                string sql = @"update Production_Plan_Detail
+                                set Prd_Plan_Status = case when (select count(Wo_Status) from WorkOrder 
+                                                                where Prd_Plan_No = @Prd_Plan_No and Wo_Status <> 'W01') > 0 
+                                                        then 'B' else 'D' end,
+                                	Up_Date = GETDATE(),
+                                	Up_Emp = @Up_Emp
+                                where Prd_Plan_No = @Prd_Plan_No";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", planID);
+                    cmd.Parameters.AddWithValue("@Up_Emp", empID);
+
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return (iRowAffect > 0);
                 }
             }
             catch (Exception err)

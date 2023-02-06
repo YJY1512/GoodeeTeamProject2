@@ -51,7 +51,7 @@ namespace Team2_Project
             this.label11 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnCloseCnl = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.dtpWo = new System.Windows.Forms.DateTimePicker();
@@ -155,7 +155,7 @@ namespace Team2_Project
             // pnlTitleU
             // 
             this.pnlTitleU.Controls.Add(this.btnClose);
-            this.pnlTitleU.Controls.Add(this.btnCloseCnl);
+            this.pnlTitleU.Controls.Add(this.btnCancel);
             this.pnlTitleU.Controls.Add(this.label15);
             this.pnlTitleU.Controls.Add(this.label16);
             this.pnlTitleU.Controls.Add(this.label10);
@@ -179,7 +179,7 @@ namespace Team2_Project
             this.pnlTitleU.Controls.SetChildIndex(this.label10, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.label16, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.label15, 0);
-            this.pnlTitleU.Controls.SetChildIndex(this.btnCloseCnl, 0);
+            this.pnlTitleU.Controls.SetChildIndex(this.btnCancel, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.btnClose, 0);
             // 
             // ucProcess
@@ -398,16 +398,18 @@ namespace Team2_Project
             this.btnClose.TabIndex = 23;
             this.btnClose.Text = "작업지시 마감";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnCloseCnl
+            // btnCancel
             // 
-            this.btnCloseCnl.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCloseCnl.Location = new System.Drawing.Point(905, 6);
-            this.btnCloseCnl.Name = "btnCloseCnl";
-            this.btnCloseCnl.Size = new System.Drawing.Size(146, 26);
-            this.btnCloseCnl.TabIndex = 22;
-            this.btnCloseCnl.Text = "작업지시 마감취소";
-            this.btnCloseCnl.UseVisualStyleBackColor = false;
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancel.Location = new System.Drawing.Point(905, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(146, 26);
+            this.btnCancel.TabIndex = 22;
+            this.btnCancel.Text = "작업지시 마감취소";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label18
             // 
@@ -648,7 +650,7 @@ namespace Team2_Project
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnCloseCnl;
+        private System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DateTimePicker dtpWo;

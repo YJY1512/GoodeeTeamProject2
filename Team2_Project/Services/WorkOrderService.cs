@@ -69,5 +69,21 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public bool CloseWorkOrder(List<string> woIDs, string empID)
+        {
+            WorkOrderDAO db = new WorkOrderDAO();
+            bool result = db.CloseWorkOrder(woIDs, empID);
+
+            return result;
+        }
+
+        public bool CloseCancel(List<string> woIDs, string empID)
+        {
+            WorkOrderDAO db = new WorkOrderDAO();
+            bool result = db.CloseCancel(woIDs, empID);
+
+            return result;
+        }
     }
 }
