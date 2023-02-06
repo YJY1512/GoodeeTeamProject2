@@ -21,11 +21,11 @@ namespace Team2_Project_POP.Services
 
         public List<WorkOrderDTO> GetOrders(string Wc_Code)
         {
-            WorkOrderDAO db = new WorkOrderDAO();
-            //List<WorkOrderDTO> list = db.GetWorkCenterInfo(Wc_Code);
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            //List<WorkOrderDTO> list = db.GetWorkOrders(Wc_Code);
             db.Dispose();
 
-            return null;// list;
+            return null; // list;
         }
     }
 }
