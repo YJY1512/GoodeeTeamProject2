@@ -17,5 +17,6 @@ namespace Team2_Project_DTO
         public string Menu_Image         { get; set; }
         public int    Menu_Level         { get; set; }
         public string Use_YN             { get; set; }
+        public int    Seq                { get; set; }
     }
 }
