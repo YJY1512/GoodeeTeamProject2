@@ -143,7 +143,7 @@ namespace Team2_Project
 
             if (pop.ShowDialog() == DialogResult.OK)
             {
-                bool result = woSrv.InserWorkOrder(pop.WoInfo);
+                bool result = woSrv.InserSiyuWorkOrder(pop.WoInfo);
 
                 if (result)
                 {
@@ -237,6 +237,7 @@ namespace Team2_Project
                         WorkOrderNo = row.Cells["WorkOrderNo"].Value.ToString(),
                         Plan_Qty_Box = Convert.ToInt32(row.Cells["Plan_Qty_Box"].Value),
                         Plan_Date = Convert.ToDateTime(row.Cells["Plan_Date"].Value),
+                        Item_Code = row.Cells["Item_Code"].Value.ToString(),
                         Wc_Code = row.Cells["Wc_Code"].Value.ToString(),
                         Up_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                     });
@@ -643,7 +644,7 @@ namespace Team2_Project
                     Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
-                bool result = woSrv.InserWorkOrder(wo);
+                bool result = woSrv.InserSiyuWorkOrder(wo);
                 if (result)
                 {
                     MessageBox.Show("작업지시 생성이 완료되었습니다.");

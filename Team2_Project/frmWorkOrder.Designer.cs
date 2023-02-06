@@ -35,9 +35,9 @@ namespace Team2_Project
             this.label13 = new System.Windows.Forms.Label();
             this.ucProd = new Team2_Project.Controls.ucSearch();
             this.label12 = new System.Windows.Forms.Label();
-            this.dtpReqTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpWoTo = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.dtpReqFrom = new System.Windows.Forms.DateTimePicker();
+            this.dtpWoFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvWorkOrder = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
@@ -84,9 +84,9 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.dtpReqTo);
+            this.pnlSub.Controls.Add(this.dtpWoTo);
             this.pnlSub.Controls.Add(this.label6);
-            this.pnlSub.Controls.Add(this.dtpReqFrom);
+            this.pnlSub.Controls.Add(this.dtpWoFrom);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.ucProcess);
             this.pnlSub.Controls.Add(this.label1);
@@ -141,6 +141,10 @@ namespace Team2_Project
             // 
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 120);
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer1.Size = new System.Drawing.Size(1232, 546);
             this.splitContainer1.SplitterDistance = 326;
             // 
@@ -247,13 +251,13 @@ namespace Team2_Project
             this.label12.TabIndex = 22;
             this.label12.Text = "품목";
             // 
-            // dtpReqTo
+            // dtpWoTo
             // 
-            this.dtpReqTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReqTo.Location = new System.Drawing.Point(292, 23);
-            this.dtpReqTo.Name = "dtpReqTo";
-            this.dtpReqTo.Size = new System.Drawing.Size(125, 25);
-            this.dtpReqTo.TabIndex = 31;
+            this.dtpWoTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWoTo.Location = new System.Drawing.Point(292, 23);
+            this.dtpWoTo.Name = "dtpWoTo";
+            this.dtpWoTo.Size = new System.Drawing.Size(125, 25);
+            this.dtpWoTo.TabIndex = 31;
             // 
             // label6
             // 
@@ -265,13 +269,13 @@ namespace Team2_Project
             this.label6.TabIndex = 30;
             this.label6.Text = "~";
             // 
-            // dtpReqFrom
+            // dtpWoFrom
             // 
-            this.dtpReqFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReqFrom.Location = new System.Drawing.Point(137, 23);
-            this.dtpReqFrom.Name = "dtpReqFrom";
-            this.dtpReqFrom.Size = new System.Drawing.Size(125, 25);
-            this.dtpReqFrom.TabIndex = 29;
+            this.dtpWoFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWoFrom.Location = new System.Drawing.Point(137, 23);
+            this.dtpWoFrom.Name = "dtpWoFrom";
+            this.dtpWoFrom.Size = new System.Drawing.Size(125, 25);
+            this.dtpWoFrom.TabIndex = 29;
             // 
             // label4
             // 
@@ -293,6 +297,7 @@ namespace Team2_Project
             this.dgvWorkOrder.RowTemplate.Height = 23;
             this.dgvWorkOrder.Size = new System.Drawing.Size(1232, 283);
             this.dgvWorkOrder.TabIndex = 0;
+            this.dgvWorkOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrder_CellClick);
             // 
             // label15
             // 
@@ -627,9 +632,9 @@ namespace Team2_Project
         private System.Windows.Forms.Label label13;
         private Controls.ucSearch ucProd;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DateTimePicker dtpReqTo;
+        private System.Windows.Forms.DateTimePicker dtpWoTo;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtpReqFrom;
+        private System.Windows.Forms.DateTimePicker dtpWoFrom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvWorkOrder;
         private System.Windows.Forms.Label label15;
