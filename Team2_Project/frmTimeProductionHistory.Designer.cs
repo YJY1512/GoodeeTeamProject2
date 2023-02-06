@@ -29,8 +29,8 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -51,7 +51,6 @@ namespace Team2_Project
             this.chkDefQty = new System.Windows.Forms.CheckBox();
             this.cboTest = new System.Windows.Forms.ComboBox();
             this.lbltest = new System.Windows.Forms.Label();
-            this.btnChartTest = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -70,7 +69,6 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.btnChartTest);
             this.pnlSub.Controls.Add(this.lbltest);
             this.pnlSub.Controls.Add(this.cboTest);
             this.pnlSub.Controls.Add(this.chkDefQty);
@@ -187,11 +185,11 @@ namespace Team2_Project
             // 
             // chtData
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
             this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chtData.Legends.Add(legend3);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
@@ -339,17 +337,6 @@ namespace Team2_Project
             this.lbltest.TabIndex = 80;
             this.lbltest.Text = "임시작업지시번호";
             // 
-            // btnChartTest
-            // 
-            this.btnChartTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChartTest.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnChartTest.Location = new System.Drawing.Point(1392, 69);
-            this.btnChartTest.Name = "btnChartTest";
-            this.btnChartTest.Size = new System.Drawing.Size(226, 25);
-            this.btnChartTest.TabIndex = 83;
-            this.btnChartTest.Text = "작업지시번호 가져와서 차트불러오기";
-            this.btnChartTest.UseVisualStyleBackColor = true;
-            // 
             // frmTimeProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -401,6 +388,5 @@ namespace Team2_Project
         private System.Windows.Forms.CheckBox chkDefQty;
         private System.Windows.Forms.ComboBox cboTest;
         private System.Windows.Forms.Label lbltest;
-        private System.Windows.Forms.Button btnChartTest;
     }
 }

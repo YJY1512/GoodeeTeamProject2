@@ -29,6 +29,7 @@ namespace Team2_Project
         {
             empID = ((frmSettings)this.MdiParent).LoginEmp.User_ID;
             LoadData();
+            //lstContent.SelectedItems[0] = Color.FromArgb(211, 226, 223);
         }
 
         public void LoadData()

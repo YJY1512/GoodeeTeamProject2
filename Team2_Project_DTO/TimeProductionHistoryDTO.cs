@@ -20,17 +20,22 @@ namespace Team2_Project_DTO
         public string Prd_Date { get; set; }      //생산일자
         public string Prd_StartTime { get; set; } //생산시작
         public string Prd_EndTime { get; set; }   //생산종료
-        public int In_Qty_Sub { get; set; }       //투입수량
+        public int In_Qty_Main { get; set; }       //투입수량
         public int Out_Qty_Main { get; set; }     //산출수량
         public int Prd_Qty { get; set; }          //생산수량
         public string Item_Code { get; set; }     //품목코드
         public string Item_Name { get; set; }     //품목명
         public int Def_Qty { get; set; }          //불량수량
 
+
         public string Process_Code { get; set; }     //공정코드
         public string Process_Name { get; set; }     //공정명
 
-        public int Start_Hour { get; set; }
+
+        public int Start_Hour { get; set; }     //시작시간대
+        public string Prd_Unit { get; set; }     //생산수량단위
+
+
         //public int Prd_Qty { get; set; }
         //public int Def_Qty { get; set; }
     }
