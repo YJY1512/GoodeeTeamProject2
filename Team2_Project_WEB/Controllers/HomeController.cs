@@ -113,12 +113,13 @@ namespace Team2_Project_WEB.Controllers
         {
             //날짜, 작업장, 품목
             //발생일자, 작업장, 품목, 불량코드, 불량수량
+            //불량발생일자, 품목, 작업장, 불량코드로 차트
             //페이징
 
             return View();
         }
 
-        public ActionResult WPlace() //작업장 가동현황 조회
+        public ActionResult WPlace() //작업장 가동현황 조회 - 일정보고 넣기 / 빼기 생각
         {
            //가동상태, 작업장명, 작업장 코드, 공정명, 진행 생산지시, 상태, 비고:비가동이면 사유
 
@@ -127,7 +128,7 @@ namespace Team2_Project_WEB.Controllers
 
         
 
-        public ActionResult Schedule() //월별 스케쥴 조회
+        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
         {
             
 

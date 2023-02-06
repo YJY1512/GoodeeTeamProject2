@@ -48,5 +48,30 @@ namespace Team2_Project_DAO
 
             return list;
         }
+
+        public List<MenuDTO> GetFavoriteInfo(string userID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "SP_GetFavoriteInfo";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@User_ID", userID);
+
+                    conn.Open();
+                    List<MenuDTO> list = Helper.DataReaderMapToList<MenuDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
     }
 }

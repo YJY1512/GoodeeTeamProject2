@@ -18,5 +18,14 @@ namespace Team2_Project.Services
 
             return list;
         }
+
+        public List<MenuDTO> GetFavoriteInfo(string userID)
+        {
+            MenuDAO db = new MenuDAO();
+            List<MenuDTO> list = db.GetFavoriteInfo(userID);
+            db.Dispose();
+
+            return list;
+        }
     }
 }
