@@ -31,8 +31,8 @@ namespace Team2_Project
 
         private void LoadData()
         {
-            List<CodeDTO> SpecList = srv.GetWoStatus();  /////////SQL넣기
-            CommonCodeUtil.ComboBinding(cboWoStatus, SpecList, "@@@@@", blankText: "전체");
+            List<CodeDTO> SpecList = srv.GetWoStatus();
+            CommonCodeUtil.ComboBinding(cboWoStatus, SpecList, "WO_STATUS", blankText: "전체");
             cboWoStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             #region cboWoStatus항목
             //cboWoStatus.Items.Add("전체");
@@ -45,7 +45,7 @@ namespace Team2_Project
 
             //작업지시목록 : 작업지시번호, 작업지시일자, 작업지시수량, 계획수량단위, 품목코드, 품목명, 작업장, 생산일자, 생산시작, 생산종료, 투입, 산출, 생산수량, 불량수량
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "Wo_Status", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 120);
@@ -64,7 +64,7 @@ namespace Team2_Project
             dgvData.MultiSelect = false;
 
             //---- test용 ----
-            cboTest.SelectedIndex = 0; 
+            cboWoStatus.SelectedIndex = cboTest.SelectedIndex = 0; 
             cboTest.DropDownStyle = ComboBoxStyle.DropDownList;
             //----------------
 
@@ -84,11 +84,20 @@ namespace Team2_Project
             TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd")); //////////SP불량부분 수정하기
             if (TPHistoryList != null && TPHistoryList.Count > 0)
             {
-                string processSC = ucProcessCode._Code;
-                string workSC = ucWcCode._Code;
-                string woStatus = (cboWoStatus.SelectedItem.ToString() == "전체") ? "" : cboWoStatus.SelectedItem.ToString();
-                List<TimeProductionHistoryDTO> list = TPHistoryList.Where(t => t.Process_Code.Equals(processSC) && t.Wc_Code.Equals(workSC) && t.Wo_Status.Equals(woStatus)).Select((t) => t).ToList();
-                AdvancedListBind(list, dgvData);
+                string processSC = ucProcessCode._Code ?? "";
+                string workSC = ucWcCode._Code ?? "";
+                string woStatus = (cboWoStatus.Text == "전체") ? "" : cboWoStatus.Text;
+                if (TPHistoryList.Where(t => t.Process_Code == (string.IsNullOrWhiteSpace(processSC) ? t.Process_Code : processSC)
+                                        && t.Wc_Code == (string.IsNullOrWhiteSpace(workSC) ? t.Wc_Code : workSC)
+                                         && t.Wo_Status == (string.IsNullOrWhiteSpace(woStatus) ? t.Wo_Status : woStatus)).ToList() == null)
+                    AdvancedListBind(TPHistoryList, dgvData);
+                else
+                {
+                    List<TimeProductionHistoryDTO> list = TPHistoryList.Where(t => t.Process_Code == (string.IsNullOrWhiteSpace(processSC) ? t.Process_Code : processSC)
+                                        && t.Wc_Code == (string.IsNullOrWhiteSpace(workSC) ? t.Wc_Code : workSC)
+                                         && t.Wo_Status == (string.IsNullOrWhiteSpace(woStatus) ? t.Wo_Status : woStatus)).ToList();
+                    AdvancedListBind(list, dgvData);
+                }
             }
         }
 
@@ -147,20 +156,21 @@ namespace Team2_Project
             //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
             //2. 작업지시 dgv를 선택하면 작업지시번호 DB가져가서 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
 
-            //string txt = dgvData["WorkOrderNo", e.RowIndex].Value.ToString();
+            string txt = dgvData["WorkOrderNo", e.RowIndex].Value.ToString();
             if (e.RowIndex < 0) return;
-            //else
-                //ChartData();
+            else
+                MessageBox.Show($"차트불러올 작업지시번호 : {txt}", "TEST");
+            //ChartData();
         }
 
 
         public void ChartData()
         {
             //---test----
-            //string curInfo = cboTest.Text;
+            string curInfo = cboTest.Text;
             //------------
 
-            string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
+            //string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
             TPHistoryList = srv.GetTimeProductionHistory(curInfo); //SP 테스트용 아닌걸로 수정
 
             chtData.Series.Clear();
@@ -192,8 +202,6 @@ namespace Team2_Project
             //chtData.Series[0].Points.DataBindXY(x, y);
 
 
-
-
             //(방법3)//////////////////
             //List<Student> students = new List<Student>();
             //for (int i = 8; i <= 24; i++)
@@ -207,8 +215,6 @@ namespace Team2_Project
         }
 
         #region TEST
-
-
         #endregion
 
     }    
