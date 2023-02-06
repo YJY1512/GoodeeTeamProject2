@@ -51,6 +51,7 @@
     <Compile Include="NopCodeDAO.cs" />
     <Compile Include="NopHistoryDAO.cs" />
     <Compile Include="PlanDAO.cs" />
+    <Compile Include="PopWorkOrderDAO.cs" />
     <Compile Include="ProcessMasterDAO.cs" />
     <Compile Include="OrderDAO.cs" />
     <Compile Include="ProjectDAO.cs" />

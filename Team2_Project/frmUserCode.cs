@@ -57,7 +57,7 @@ namespace Team2_Project
 
         private void LoadData()
         {
-            codeList = srv.GetUserCode();
+            codeList = srv.GetAllUserCode();
             if (codeList != null && codeList.Count > 0)
             {
                 var list = codeList.GroupBy((g) => g.Userdefine_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();

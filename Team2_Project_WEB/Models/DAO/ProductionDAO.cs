@@ -36,11 +36,11 @@ namespace Team2_Project_WEB.Models.DAO
                             )
 
                             select wo.WorkOrderNo, convert(nvarchar(10), Plan_Date, 23) Plan_Date, ppd.Item_Code, Item_Name 
-                                ,Plan_Qty_Box, round( convert( decimal, (isnull(prd_Qty, 0) + isnull(TotDef, 0))) / Plan_Qty_Box, 2 ) * 100 Progress, (isnull(prd_Qty, 0)) Prd_Qty, (isnull(TotDef, 0)) TotDef
+                                ,Plan_Qty_Box, round( convert( decimal, (isnull(prd_Qty, 0) + isnull(TotDef, 0))) / Plan_Qty_Box, 2 ) Progress, (isnull(prd_Qty, 0)) Prd_Qty, (isnull(TotDef, 0)) TotDef
                             from WorkOrder wo inner join Production_Plan_Detail ppd on wo.Prd_Plan_No = ppd.Prd_Plan_No
 	                            inner join Item_Master im on ppd.Item_Code = im.Item_Code
-	                            inner join Def_History dh on wo.WorkOrderNo = dh.WorkOrderNo
-	                            inner join GetDefData gd on wo.WorkOrderNo = gd.WorkOrderNo
+	                            left outer join GetDefData gd on wo.WorkOrderNo = gd.WorkOrderNo
+                            where convert(date, Plan_Date) = convert(date, @date)
                             order by wo.WorkOrderNo";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))

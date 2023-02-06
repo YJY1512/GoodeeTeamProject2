@@ -8,95 +8,127 @@
 }
 
 @section css{
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
 }
-
 
 <section class="content">
     <div class="container-fluid">
-        <div class="col-12">
-            <div class="card">
+        <!-- Progerss Bar -->
+        <div class="col-sm-12">
+            <div class="card card-success">
                 <div class="card-header">
-                    <div class="form-group row col-3" style="margin-bottom: 0px">
-                        <label for="dateRangeSelect" class="col-4 col-form-label">검색 기간 선택</label>
-                        <div class="input-group col-8">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
+                    <h3 class="card-title"> 생산진행도</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Progerss Bar -->
+        <div class="col-sm-12 card">
+            <div class="card-header">
+                <form action="/Home/ProdO" method="get">
+                    <div class="row" style="margin-bottom: 0px">
+                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업일자</label></div>
+                        <div class="input-group date col-sm-2" id="datetimepicker" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
+                            <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input type="text" class="form-control float-right" id="dateRangeSelect">
                         </div>
-                        <!-- /.input group -->
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <!-- 목록 -->
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>제품명</th>
-                                <th>제품코드</th>
-                                <th>거래비율</th>
-                                <th>전월 주문량</th>
-                                <th>전월 주문고객수</th>
-                                <th>당월 주문량</th>
-                                <th>당월 주문고객수</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
+                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
+                        <div class=" col-sm-2">
+                            @*@Html.DropDownList("itemCode", (IEnumerable<SelectListItem>)ViewBag.Items, new { @class = "select2 select2-hidden-accessible", @multiple = "multiple", @style = "width: 100%;", @tabindex = "-1" })*@
+                        </div>
+                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업장</label></div>
+                        <div class=" col-sm-2">
+
+                            @*<select class="select2 select2-hidden-accessible col-sm-3" id="" name="itemCode">
+                                    @for (int i = 0; i < ViewBag.Items.Count; i++)
+                                    {
+                                        <option data-select2-id="@ViewBag.Items[i].Code">@ViewBag.Items[i].Name</option>
+                                    }
+                                </select>
+
+
+                                <div class="input-group col-sm-3" data-select2-id="47">
+                                    <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="제품 선택" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                    </select>*@
+                            <!-- /.form-group -->
+                            @*<div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
+                                <div class="input-group date col-sm-3" id="datetimepicker12" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>*@
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <!-- /.card-header -->
+            <!-- 목록 -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th>발생일자</th>
+                            <th>작업장</th>
+                            <th>품목</th>
+                            <th>불량코드</th>
+                            <th>불량수량</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.Name</td>
-                                    <td>@item.Code</td>
-                                    <td>@(item.Ratio.ToString("0.00")+" %")</td>
-                                    <td>@item.Order_p</td>
-                                    <td>@item.Customer_p</td>
-                                    <td>@item.Order_c</td>
-                                    <td>@item.Customer_c</td>
+                                <tr style="text-align:center">
+                                    <td>@item.WorkOrderNo</td>
+                                    <td>@item.Plan_Date</td>
+                                    <td>@item.Item_Code</td>
+                                    <td>@item.Item_Name</td>
+                                    <td>@item.Plan_Qty_Box</td>
+                                    <td>@(item.Progress.ToString("0.00")+" %")</td>
+                                    <td>@item.Prd_Qty</td>
+                                    <td>@item.TotDef</td>
+                                    <td>@(item.FairRatio.ToString("0.00")+" %")</td>
+                                    <td>@(item.DefRatio.ToString("0.00")+" %")</td>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
+                            }*@
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <!-- /.card -->
-        </div>
+            <!-- /.card-body -->
 
-        <!-- /목록 -->
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-danger">
-                    <div class="card-header">
-                        <h3 class="card-title">Donut Chart</h3>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="donutChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
 
-            <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">qwe</h3>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="donutChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
         </div>
+        <!-- STACKED BAR CHART -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Stacked Bar Chart</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
     </div>
 </section>
 
@@ -105,53 +137,83 @@
     <script src="~/plugins/chart.js/Chart.min.js"></script>
     <!-- InputMask -->
     <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/moment/moment-with-locales.min.js"></script>
     <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+    <!-- Select2 -->
+    <script src="~/plugins/select2/js/select2.full.min.js"></script>
 
     <script>
-        //Date range picker
-        $('#dateRangeSelect').daterangepicker()
-        //-------------
-        //- DONUT CHART -
-        //-------------
-        // Get context with jQuery - using jQuery's .get() method.
-        var donutChartCanvas1 = $('#donutChart1').get(0).getContext('2d')
-        var donutChartCanvas2 = $('#donutChart2').get(0).getContext('2d')
-        var donutData = {
-            labels: [
-                'Chrome',
-                'IE',
-                'FireFox',
-                'Safari',
-                'Opera',
-                'Navigator',
-            ],
-            datasets: [
-                {
-                    data: [700, 500, 400, 600, 300, 100],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                }
-            ]
-        }
-        var donutOptions = {
-            maintainAspectRatio: false,
-            responsive: true,
-        }
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        new Chart(donutChartCanvas1, {
-            type: 'doughnut',
-            data: donutData,
-            options: donutOptions
-        })
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                placeholder: "제품 선택",
+                allowClear: true
+            })
 
-        new Chart(donutChartCanvas2, {
-            type: 'doughnut',
-            data: donutData,
-            options: donutOptions
+            $('#datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'ko'
+            });
+
+            var areaChartData = {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'Digital Goods',
+                        backgroundColor: 'rgba(60,141,188,0.9)',
+                        borderColor: 'rgba(60,141,188,0.8)',
+                        pointRadius: false,
+                        pointColor: '#3b8bba',
+                        pointStrokeColor: 'rgba(60,141,188,1)',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(60,141,188,1)',
+                        data: [28, 48, 40, 19, 86, 27, 90]
+                    },
+                    {
+                        label: 'Electronics',
+                        backgroundColor: 'rgba(210, 214, 222, 1)',
+                        borderColor: 'rgba(210, 214, 222, 1)',
+                        pointRadius: false,
+                        pointColor: 'rgba(210, 214, 222, 1)',
+                        pointStrokeColor: '#c1c7d1',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(220,220,220,1)',
+                        data: [65, 59, 80, 81, 56, 55, 40]
+                    },
+                ]
+            }
+            //---------------------
+            //- STACKED BAR CHART -
+            //---------------------
+            var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+            var barChartData = $.extend(true, {}, areaChartData)
+            var temp0 = areaChartData.datasets[0]
+            var temp1 = areaChartData.datasets[1]
+            barChartData.datasets[0] = temp1
+            barChartData.datasets[1] = temp0
+            var stackedBarChartData = $.extend(true, {}, barChartData)
+
+            var stackedBarChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+
+            new Chart(stackedBarChartCanvas, {
+                type: 'bar',
+                data: stackedBarChartData,
+                options: stackedBarChartOptions
+            })
         })
     </script>
 }

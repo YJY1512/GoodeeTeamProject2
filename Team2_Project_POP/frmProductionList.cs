@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_Project_POP.Services;
 
 namespace Team2_Project_POP
 {
     public partial class frmProductionList : Form
     {
-        
+        PoPService popSrv = new PoPService();
+
         public frmProductionList()
         {
             InitializeComponent();
@@ -28,12 +30,11 @@ namespace Team2_Project_POP
             btnFinish.Location = new Point((screenWidh / 6) * 4, 0);
             btnNonP.Location = new Point((screenWidh / 6) * 5, 0);
 
-           
-        }
+            //popSrv.GetOrders();
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
 
         }
+
+       
     }
 }

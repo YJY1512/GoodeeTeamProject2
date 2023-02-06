@@ -26,7 +26,7 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public List<UserCodeDTO> GetUserCode()
+        public List<UserCodeDTO> GetAllUserCode()
         {
             try
             {
@@ -176,6 +176,36 @@ namespace Team2_Project_DAO
             {
                 Debug.WriteLine(err.Message);
                 return -1;
+            }
+        }
+
+        /// <summary>
+        /// UserCode 대분류와 일치하는 세부코드, 이름 가져오기 (pop 연동)
+        /// </summary>
+        /// <param name="UserMaCode"></param>
+        /// <returns></returns>
+        public List<UserCodeDTO> GetUserMiCode(string userMaCode)
+        {
+            try
+            {
+                string sql = @"select Userdefine_Mi_Code, Userdefine_Mi_Name
+                                from Userdefine_Mi_Master
+                                where Userdefine_Ma_Code = @userMaCode and Use_YN = 'Y'";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@userMaCode", userMaCode);
+                    List<UserCodeDTO> list = Helper.DataReaderMapToList<UserCodeDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
             }
         }
     }

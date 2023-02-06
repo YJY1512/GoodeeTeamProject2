@@ -40,11 +40,6 @@ namespace Team2_Project
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgvPlan = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.pnlSub = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cboReqStat = new System.Windows.Forms.ComboBox();
@@ -57,16 +52,21 @@ namespace Team2_Project
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvPlan = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSplit = new System.Windows.Forms.Button();
             this.ucWc = new Team2_Project.Controls.ucSearch();
             this.label13 = new System.Windows.Forms.Label();
             this.ucProd2 = new Team2_Project.Controls.ucSearch();
             this.label12 = new System.Windows.Forms.Label();
             this.dtpMonth = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnSplit = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -77,10 +77,10 @@ namespace Team2_Project
             this.pnlTitleR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWcPlan)).BeginInit();
             this.panel1.SuspendLayout();
+            this.pnlSub.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlan)).BeginInit();
             this.panel3.SuspendLayout();
-            this.pnlSub.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,68 +223,6 @@ namespace Team2_Project
             this.label8.TabIndex = 0;
             this.label8.Text = "라인별 계획수량";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.dgvPlan);
-            this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1306, 662);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "생산계획";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dgvPlan
-            // 
-            this.dgvPlan.BackgroundColor = System.Drawing.Color.White;
-            this.dgvPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPlan.Location = new System.Drawing.Point(4, 167);
-            this.dgvPlan.Name = "dgvPlan";
-            this.dgvPlan.RowTemplate.Height = 23;
-            this.dgvPlan.Size = new System.Drawing.Size(1298, 491);
-            this.dgvPlan.TabIndex = 5;
-            this.dgvPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellDoubleClick);
-            this.dgvPlan.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvPlan_EditingControlShowing);
-            this.dgvPlan.SelectionChanged += new System.EventHandler(this.dgvPlan_SelectionChanged);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(4, 124);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1298, 43);
-            this.panel3.TabIndex = 4;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("나눔고딕OTF ExtraBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(10, 10);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(22, 17);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "▷";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(40, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 17);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "조회내역";
-            // 
             // pnlSub
             // 
             this.pnlSub.BackColor = System.Drawing.Color.White;
@@ -419,15 +357,77 @@ namespace Team2_Project
             this.label1.TabIndex = 0;
             this.label1.Text = "생산요청일";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dgvPlan);
+            this.tabPage2.Controls.Add(this.panel3);
+            this.tabPage2.Controls.Add(this.panel2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Size = new System.Drawing.Size(1306, 662);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "생산계획";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgvPlan
+            // 
+            this.dgvPlan.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPlan.Location = new System.Drawing.Point(4, 167);
+            this.dgvPlan.Name = "dgvPlan";
+            this.dgvPlan.RowTemplate.Height = 23;
+            this.dgvPlan.Size = new System.Drawing.Size(1298, 491);
+            this.dgvPlan.TabIndex = 5;
+            this.dgvPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlan_CellDoubleClick);
+            this.dgvPlan.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvPlan_EditingControlShowing);
+            this.dgvPlan.SelectionChanged += new System.EventHandler(this.dgvPlan_SelectionChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.btnSplit);
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(4, 124);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1298, 43);
+            this.panel3.TabIndex = 4;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("나눔고딕OTF ExtraBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(10, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(22, 17);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "▷";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(40, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 17);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "조회내역";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BackgroundImage = global::Team2_Project.Properties.Resources.pnl1;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnClose);
-            this.panel2.Controls.Add(this.btnSplit);
             this.panel2.Controls.Add(this.ucWc);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.ucProd2);
@@ -439,49 +439,6 @@ namespace Team2_Project
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1298, 120);
             this.panel2.TabIndex = 2;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.White;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Location = new System.Drawing.Point(1116, 16);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(148, 40);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "생산계획 마감취소";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.White;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(962, 16);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(148, 40);
-            this.btnClose.TabIndex = 13;
-            this.btnClose.Text = "생산계획 마감";
-            this.btnClose.UseVisualStyleBackColor = false;
-            // 
-            // btnSplit
-            // 
-            this.btnSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSplit.BackColor = System.Drawing.Color.White;
-            this.btnSplit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSplit.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSplit.ForeColor = System.Drawing.Color.Black;
-            this.btnSplit.Location = new System.Drawing.Point(1116, 64);
-            this.btnSplit.Name = "btnSplit";
-            this.btnSplit.Size = new System.Drawing.Size(148, 40);
-            this.btnSplit.TabIndex = 12;
-            this.btnSplit.Text = "생산계획 분할";
-            this.btnSplit.UseVisualStyleBackColor = false;
-            this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
             // 
             // ucWc
             // 
@@ -548,6 +505,38 @@ namespace Team2_Project
             this.label11.TabIndex = 6;
             this.label11.Text = "생산계획월";
             // 
+            // btnSplit
+            // 
+            this.btnSplit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSplit.Location = new System.Drawing.Point(427, 5);
+            this.btnSplit.Name = "btnSplit";
+            this.btnSplit.Size = new System.Drawing.Size(146, 26);
+            this.btnSplit.TabIndex = 19;
+            this.btnSplit.Text = "생산계획 분할";
+            this.btnSplit.UseVisualStyleBackColor = false;
+            this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(275, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(146, 26);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "생산계획 마감취소";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClose.Location = new System.Drawing.Point(123, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(146, 26);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "생산계획 마감";
+            this.btnClose.UseVisualStyleBackColor = false;
+            // 
             // frmPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -571,12 +560,12 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvWcPlan)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlSub.ResumeLayout(false);
+            this.pnlSub.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlan)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.pnlSub.ResumeLayout(false);
-            this.pnlSub.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -613,9 +602,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnSplit;
         private Controls.ucSearch ucWc;
         private System.Windows.Forms.Label label13;
         private Controls.ucSearch ucProd2;
@@ -623,5 +609,8 @@ namespace Team2_Project
         private System.Windows.Forms.DateTimePicker dtpMonth;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView dgvPlan;
+        private System.Windows.Forms.Button btnSplit;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnClose;
     }
 }

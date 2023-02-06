@@ -27,40 +27,49 @@ namespace Team2_Project_POP
             int screenWidh = ((Screen.PrimaryScreen.Bounds.Width - 120) / 50);
             lblTitle.Location = new Point(screenWidh * 50 / 2, 30);
 
-            
-
             workCenterList = ser.GetWorkCenterInfo();
 
-            //for(int i = 0; i < workCenterList.Count;i++)
-            //{
-            //    Controls.ucList list = new Controls.ucList();
-            //    list.Location = new Point(0, i * 100);
-            //    list.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 120, 100);
-            //    list.Name = $"list{i}";
-            //    list.Status = workCenterList[i].Wc_Status;
-            //    list.Space = workCenterList[i].Wc_Name;
-            //    list.Group = workCenterList[i].Wc_Group_Name;
-            //    list.Tag = workCenterList[i].Wc_Code;
-            //    list.ListClick += List_ListClick;
-            //    list.ListMouseEnter += List_MouseEnter;
-            //    list.ListMouseOut += List_MouseLeave;
-            //    panel2.Controls.Add(list);
-            //}
+            for (int i = 0; i < workCenterList.Count; i++)
+            {
+                Controls.ucSelectedList list = new Controls.ucSelectedList();
+                //list.Location = new Point(0, i * 100);
+                //list.Size = new Size(Screen.PrimaryScreen.Bounds.Width - 120, 100);
+                
+                list.Size = new Size( 100,100);
+                list.Dock = DockStyle.Top;
+                list.Name = $"list{i}";
+                list.Statuse = workCenterList[i].Wc_Status;
+                list.WorkSpace = workCenterList[i].Wc_Name;
+                list.Group = workCenterList[i].Wc_Group_Name;
+                list.Tag = workCenterList[i].Wc_Code;
+                if (list.Statuse == "Stop")
+                    list.lblStatuse.BackColor = Color.Red;
+                else if (list.Statuse == "Run")
+                    list.lblStatuse.BackColor = Color.Green;
+                list.lblWorkSpace.BackColor = list.lblGroup.BackColor = Color.LightSkyBlue;
+                list.lblWorkSpace.ForeColor = list.lblGroup.ForeColor = Color.Black;
+                list.ucListClick += List_ListClick;
+                list.ucListEnter += List_MouseEnter;
+                list.ucListLeave += List_MouseLeave;
+                panel2.Controls.Add(list);
+            }
         }
 
         private void List_MouseLeave(object sender, EventArgs e)
         {
-            ((Controls.ucList)sender).BackColor = Color.White;
+            ((Controls.ucSelectedList)sender).BackColor = Color.White;
         }
 
         private void List_MouseEnter(object sender, EventArgs e)
         {
-            ((Controls.ucList)sender).BackColor = Color.Black;
+            ((Controls.ucSelectedList)sender).BackColor = Color.Black;
         }
 
         private void List_ListClick(object sender, EventArgs e)
         {
-            ((frmParent)this.MdiParent).LoginedWorkCenter = workCenterList.Find((work) => work.Wc_Code == ((Controls.ucList)sender).Tag.ToString());
+            ((frmParent)this.MdiParent).LoginedWorkCenter = workCenterList.Find((work) => work.Wc_Code == ((Controls.ucSelectedList)sender).Tag.ToString());
+            ((frmParent)this.MdiParent).LoginedOrders = ser.GetOrders(((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Code);
+            //확인후 코딩
             ((frmParent)this.MdiParent).lblSelected.Text = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Name;
         }
 
