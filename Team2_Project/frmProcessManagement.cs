@@ -62,7 +62,7 @@ namespace Team2_Project
 
             // Enable 처리
             txtProcessCodeArea.Enabled = txtProcessCodeNameArea.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = false;
-            dgvProcess.ClearSelection();
+            
         }
 
 
@@ -86,13 +86,13 @@ namespace Team2_Project
             else useYN = "아니요";
             
             var list = (from c in processList
-                        where c.Process_Code.Contains(processCode) && c.Process_Group.Contains(processCodeName) && c.Process_Group.Contains(processGroup) && c.Use_YN.Contains(useYN)
+                        where c.Process_Code.Contains(processCode) && c.Process_Name.Contains(processCodeName) && c.Process_Group.Contains(processGroup) && c.Use_YN.Contains(useYN)
                         select c).ToList();
             
             BindingSource bs = new BindingSource(new AdvancedList<ProcessMasterDTO>(list), null);
             dgvProcess.DataSource = bs;
             dgvProcess.Enabled = true;
-            dgvProcess.ClearSelection();
+            
         }
         //추가
         public void OnAdd()
@@ -157,7 +157,7 @@ namespace Team2_Project
                 txtRemark.Clear();
                 cboProcessGroupSub.SelectedIndex = cboUseSub.SelectedIndex = cboProcessGroupArea.SelectedIndex = cboUseArea.SelectedIndex = 0;
                 dgvProcess.Enabled = true;
-                dgvProcess.ClearSelection();
+                
             }
         }
         //저장
@@ -239,7 +239,7 @@ namespace Team2_Project
             txtProcessCodeSub.Clear();
             txtProcessCodeNameSub.Clear();
             dgvProcess.Enabled = true;
-            dgvProcess.ClearSelection();
+            
             //txtProcessCode.Enabled = txtProcessCodeName.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = isAdd = isEdit = false;
             //ucSearch1.Enabled = cboProcessGroupSub.Enabled = cboUseSub.Enabled = true;
             //txtProcessCode.Clear();
@@ -258,20 +258,10 @@ namespace Team2_Project
             cboProcessGroupArea.SelectedIndex = cboUseArea.SelectedIndex = 0;
             txtRemark.Clear();
             dgvProcess.Enabled = true;
-            dgvProcess.ClearSelection();
+            
             // 후처리
             txtProcessCodeArea.Enabled = txtProcessCodeNameArea.Enabled = txtRemark.Enabled = cboProcessGroupArea.Enabled = cboUseArea.Enabled = isAdd = isEdit = false;
             txtProcessCodeSub.Enabled = txtProcessCodeNameSub.Enabled = cboProcessGroupSub.Enabled = cboUseSub.Enabled = true;
-        }
-
-        private void dgvProcess_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-            txtProcessCodeArea.Text = dgvProcess["Process_Code", e.RowIndex].Value.ToString();
-            txtProcessCodeNameArea.Text = dgvProcess["Process_Name", e.RowIndex].Value.ToString();
-            cboProcessGroupArea.SelectedValue = dgvProcess["Process_Group", e.RowIndex].Value.ToString();
-            cboUseArea.SelectedValue = (dgvProcess["Use_YN", e.RowIndex].Value.ToString() == "예") ? "Y" : "N";
-            txtRemark.Text = dgvProcess["Remark", e.RowIndex].Value.ToString();
         }
 
         //새로고침
@@ -289,10 +279,19 @@ namespace Team2_Project
             BindingSource bs = new BindingSource(processList, null);
             dgvProcess.DataSource = bs;
             dgvProcess.Enabled = true;
-            dgvProcess.ClearSelection();
+            
         }
 
-        
+       
+        private void dgvProcess_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            txtProcessCodeArea.Text = dgvProcess["Process_Code", e.RowIndex].Value.ToString();
+            txtProcessCodeNameArea.Text = dgvProcess["Process_Name", e.RowIndex].Value.ToString();
+            cboProcessGroupArea.SelectedValue = (dgvProcess["Process_Group", e.RowIndex].Value.ToString() == "시유") ? "PG050" : "PG070";
+            cboUseArea.SelectedValue = (dgvProcess["Use_YN", e.RowIndex].Value.ToString() == "예") ? "Y" : "N";
+            txtRemark.Text = dgvProcess["Remark", e.RowIndex].Value.ToString();
+        }
+
         public void CodeSetting()
         {
             code = new List<CodeDTO>();

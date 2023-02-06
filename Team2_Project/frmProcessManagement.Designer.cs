@@ -141,7 +141,7 @@ namespace Team2_Project
             this.dgvProcess.RowTemplate.Height = 23;
             this.dgvProcess.Size = new System.Drawing.Size(1289, 339);
             this.dgvProcess.TabIndex = 0;
-            this.dgvProcess.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProcess_CellDoubleClick);
+            this.dgvProcess.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProcess_RowEnter);
             // 
             // label1
             // 
