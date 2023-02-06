@@ -30,9 +30,9 @@ namespace Team2_Project_POP.Controls
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblGroup = new System.Windows.Forms.Label();
+            this.lblWorkSpace = new System.Windows.Forms.Label();
+            this.lblStatuse = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,9 +42,9 @@ namespace Team2_Project_POP.Controls
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblGroup, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblWorkSpace, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblStatuse, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -54,44 +54,53 @@ namespace Team2_Project_POP.Controls
             this.tableLayoutPanel1.Size = new System.Drawing.Size(797, 100);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // lblGroup
             // 
-            this.label1.BackColor = System.Drawing.Color.DarkBlue;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(10, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 80);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "상  태";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGroup.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblGroup.ForeColor = System.Drawing.Color.White;
+            this.lblGroup.Location = new System.Drawing.Point(673, 10);
+            this.lblGroup.Margin = new System.Windows.Forms.Padding(5, 10, 10, 10);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(114, 80);
+            this.lblGroup.TabIndex = 2;
+            this.lblGroup.Text = "그  룹";
+            this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGroup.Click += new System.EventHandler(this.ucSelectedList_Click);
+            this.lblGroup.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
+            this.lblGroup.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             // 
-            // label2
+            // lblWorkSpace
             // 
-            this.label2.BackColor = System.Drawing.Color.DarkBlue;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(132, 10);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(531, 80);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "작 업 장";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblWorkSpace.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblWorkSpace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWorkSpace.ForeColor = System.Drawing.Color.White;
+            this.lblWorkSpace.Location = new System.Drawing.Point(132, 10);
+            this.lblWorkSpace.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.lblWorkSpace.Name = "lblWorkSpace";
+            this.lblWorkSpace.Size = new System.Drawing.Size(531, 80);
+            this.lblWorkSpace.TabIndex = 1;
+            this.lblWorkSpace.Text = "작 업 장";
+            this.lblWorkSpace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblWorkSpace.Click += new System.EventHandler(this.ucSelectedList_Click);
+            this.lblWorkSpace.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
+            this.lblWorkSpace.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             // 
-            // label3
+            // lblStatuse
             // 
-            this.label3.BackColor = System.Drawing.Color.DarkBlue;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(673, 10);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 10, 10, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 80);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "그  룹";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStatuse.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblStatuse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStatuse.ForeColor = System.Drawing.Color.White;
+            this.lblStatuse.Location = new System.Drawing.Point(10, 10);
+            this.lblStatuse.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
+            this.lblStatuse.Name = "lblStatuse";
+            this.lblStatuse.Size = new System.Drawing.Size(112, 80);
+            this.lblStatuse.TabIndex = 0;
+            this.lblStatuse.Text = "상  태";
+            this.lblStatuse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStatuse.Click += new System.EventHandler(this.ucSelectedList_Click);
+            this.lblStatuse.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
+            this.lblStatuse.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             // 
             // ucSelectedList
             // 
@@ -101,6 +110,10 @@ namespace Team2_Project_POP.Controls
             this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "ucSelectedList";
             this.Size = new System.Drawing.Size(797, 100);
+            this.Load += new System.EventHandler(this.ucSelectedList_Load);
+            this.Click += new System.EventHandler(this.ucSelectedList_Click);
+            this.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -109,8 +122,8 @@ namespace Team2_Project_POP.Controls
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lblWorkSpace;
+        public System.Windows.Forms.Label lblStatuse;
+        public System.Windows.Forms.Label lblGroup;
     }
 }

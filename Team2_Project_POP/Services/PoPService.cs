@@ -18,5 +18,14 @@ namespace Team2_Project_POP.Services
 
             return list;
         }
+
+        public List<WorkOrderDTO> GetOrders(string Wc_Code)
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            //List<WorkOrderDTO> list = db.GetWorkOrders(Wc_Code);
+            db.Dispose();
+
+            return null; // list;
+        }
     }
 }

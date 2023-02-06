@@ -35,8 +35,8 @@ namespace Team2_Project
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtProcessCode = new System.Windows.Forms.TextBox();
-            this.txtProcessCodeName = new System.Windows.Forms.TextBox();
+            this.txtProcessCodeArea = new System.Windows.Forms.TextBox();
+            this.txtProcessCodeNameArea = new System.Windows.Forms.TextBox();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.cboProcessGroupArea = new System.Windows.Forms.ComboBox();
             this.cboUseArea = new System.Windows.Forms.ComboBox();
@@ -46,11 +46,13 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.ucSearch1 = new Team2_Project.Controls.ucSearch();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.txtProcessCodeSub = new System.Windows.Forms.TextBox();
+            this.txtProcessCodeNameSub = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -58,13 +60,17 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pnlTitleD.SuspendLayout();
+            this.pnlTitleU.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcess)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
             this.pnlSub.BackColor = System.Drawing.Color.Transparent;
-            this.pnlSub.Controls.Add(this.ucSearch1);
+            this.pnlSub.Controls.Add(this.txtProcessCodeNameSub);
+            this.pnlSub.Controls.Add(this.label16);
+            this.pnlSub.Controls.Add(this.txtProcessCodeSub);
             this.pnlSub.Controls.Add(this.label12);
             this.pnlSub.Controls.Add(this.cboUseSub);
             this.pnlSub.Controls.Add(this.cboProcessGroupSub);
@@ -101,8 +107,8 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.cboUseArea);
             this.pnlArea.Controls.Add(this.cboProcessGroupArea);
             this.pnlArea.Controls.Add(this.txtRemark);
-            this.pnlArea.Controls.Add(this.txtProcessCodeName);
-            this.pnlArea.Controls.Add(this.txtProcessCode);
+            this.pnlArea.Controls.Add(this.txtProcessCodeNameArea);
+            this.pnlArea.Controls.Add(this.txtProcessCodeArea);
             this.pnlArea.Controls.Add(this.label7);
             this.pnlArea.Controls.Add(this.label6);
             this.pnlArea.Controls.Add(this.label5);
@@ -116,6 +122,14 @@ namespace Team2_Project
             this.splitContainer1.Size = new System.Drawing.Size(1289, 594);
             this.splitContainer1.SplitterDistance = 382;
             // 
+            // pnlTitleD
+            // 
+            this.pnlTitleD.Size = new System.Drawing.Size(1289, 43);
+            // 
+            // pnlTitleU
+            // 
+            this.pnlTitleU.Size = new System.Drawing.Size(1289, 43);
+            // 
             // dgvProcess
             // 
             this.dgvProcess.BackgroundColor = System.Drawing.Color.White;
@@ -127,7 +141,7 @@ namespace Team2_Project
             this.dgvProcess.RowTemplate.Height = 23;
             this.dgvProcess.Size = new System.Drawing.Size(1289, 339);
             this.dgvProcess.TabIndex = 0;
-            this.dgvProcess.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProcess_CellDoubleClick);
+            this.dgvProcess.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProcess_RowEnter);
             // 
             // label1
             // 
@@ -174,19 +188,19 @@ namespace Team2_Project
             this.label7.TabIndex = 4;
             this.label7.Text = "비고";
             // 
-            // txtProcessCode
+            // txtProcessCodeArea
             // 
-            this.txtProcessCode.Location = new System.Drawing.Point(115, 15);
-            this.txtProcessCode.Name = "txtProcessCode";
-            this.txtProcessCode.Size = new System.Drawing.Size(170, 24);
-            this.txtProcessCode.TabIndex = 5;
+            this.txtProcessCodeArea.Location = new System.Drawing.Point(115, 15);
+            this.txtProcessCodeArea.Name = "txtProcessCodeArea";
+            this.txtProcessCodeArea.Size = new System.Drawing.Size(170, 24);
+            this.txtProcessCodeArea.TabIndex = 5;
             // 
-            // txtProcessCodeName
+            // txtProcessCodeNameArea
             // 
-            this.txtProcessCodeName.Location = new System.Drawing.Point(115, 75);
-            this.txtProcessCodeName.Name = "txtProcessCodeName";
-            this.txtProcessCodeName.Size = new System.Drawing.Size(170, 24);
-            this.txtProcessCodeName.TabIndex = 6;
+            this.txtProcessCodeNameArea.Location = new System.Drawing.Point(115, 75);
+            this.txtProcessCodeNameArea.Name = "txtProcessCodeNameArea";
+            this.txtProcessCodeNameArea.Size = new System.Drawing.Size(170, 24);
+            this.txtProcessCodeNameArea.TabIndex = 6;
             // 
             // txtRemark
             // 
@@ -216,7 +230,7 @@ namespace Team2_Project
             // cboUseSub
             // 
             this.cboUseSub.FormattingEnabled = true;
-            this.cboUseSub.Location = new System.Drawing.Point(850, 15);
+            this.cboUseSub.Location = new System.Drawing.Point(972, 15);
             this.cboUseSub.Name = "cboUseSub";
             this.cboUseSub.Size = new System.Drawing.Size(130, 26);
             this.cboUseSub.TabIndex = 17;
@@ -224,7 +238,7 @@ namespace Team2_Project
             // cboProcessGroupSub
             // 
             this.cboProcessGroupSub.FormattingEnabled = true;
-            this.cboProcessGroupSub.Location = new System.Drawing.Point(585, 15);
+            this.cboProcessGroupSub.Location = new System.Drawing.Point(707, 15);
             this.cboProcessGroupSub.Name = "cboProcessGroupSub";
             this.cboProcessGroupSub.Size = new System.Drawing.Size(130, 26);
             this.cboProcessGroupSub.TabIndex = 16;
@@ -233,7 +247,7 @@ namespace Team2_Project
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(775, 18);
+            this.label8.Location = new System.Drawing.Point(897, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 18);
             this.label8.TabIndex = 13;
@@ -243,7 +257,7 @@ namespace Team2_Project
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(510, 18);
+            this.label9.Location = new System.Drawing.Point(632, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 18);
             this.label9.TabIndex = 12;
@@ -269,19 +283,6 @@ namespace Team2_Project
             this.label10.Size = new System.Drawing.Size(14, 18);
             this.label10.TabIndex = 38;
             this.label10.Text = "*";
-            // 
-            // ucSearch1
-            // 
-            this.ucSearch1._Code = "";
-            this.ucSearch1._Name = "";
-            this.ucSearch1.BackColor = System.Drawing.Color.Transparent;
-            this.ucSearch1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucSearch1.Location = new System.Drawing.Point(110, 15);
-            this.ucSearch1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucSearch1.Name = "ucSearch1";
-            this.ucSearch1.Size = new System.Drawing.Size(340, 28);
-            this.ucSearch1.TabIndex = 19;
-            this.ucSearch1.BtnClick += new System.EventHandler(this.ucSearch1_BtnClick);
             // 
             // label11
             // 
@@ -327,6 +328,29 @@ namespace Team2_Project
             this.label15.TabIndex = 42;
             this.label15.Text = "*";
             // 
+            // txtProcessCodeSub
+            // 
+            this.txtProcessCodeSub.Location = new System.Drawing.Point(110, 15);
+            this.txtProcessCodeSub.Name = "txtProcessCodeSub";
+            this.txtProcessCodeSub.Size = new System.Drawing.Size(170, 24);
+            this.txtProcessCodeSub.TabIndex = 19;
+            // 
+            // txtProcessCodeNameSub
+            // 
+            this.txtProcessCodeNameSub.Location = new System.Drawing.Point(402, 15);
+            this.txtProcessCodeNameSub.Name = "txtProcessCodeNameSub";
+            this.txtProcessCodeNameSub.Size = new System.Drawing.Size(170, 24);
+            this.txtProcessCodeNameSub.TabIndex = 21;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(340, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 18);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "공정명";
+            // 
             // frmProcessManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -344,6 +368,10 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pnlTitleD.ResumeLayout(false);
+            this.pnlTitleD.PerformLayout();
+            this.pnlTitleU.ResumeLayout(false);
+            this.pnlTitleU.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcess)).EndInit();
             this.ResumeLayout(false);
 
@@ -360,8 +388,8 @@ namespace Team2_Project
         private System.Windows.Forms.ComboBox cboUseArea;
         private System.Windows.Forms.ComboBox cboProcessGroupArea;
         private System.Windows.Forms.TextBox txtRemark;
-        private System.Windows.Forms.TextBox txtProcessCodeName;
-        private System.Windows.Forms.TextBox txtProcessCode;
+        private System.Windows.Forms.TextBox txtProcessCodeNameArea;
+        private System.Windows.Forms.TextBox txtProcessCodeArea;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -369,10 +397,12 @@ namespace Team2_Project
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Label label10;
-        private Controls.ucSearch ucSearch1;
         protected System.Windows.Forms.Label label15;
         protected System.Windows.Forms.Label label14;
         protected System.Windows.Forms.Label label13;
         protected System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtProcessCodeNameSub;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtProcessCodeSub;
     }
 }
