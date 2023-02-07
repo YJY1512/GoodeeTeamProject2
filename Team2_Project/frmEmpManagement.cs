@@ -302,6 +302,10 @@ namespace Team2_Project
         /// </summary>
         public void OnSearch()
         {
+            idx = -1;
+            ClearPnl();
+            dgvEmp.ClearSelection();
+
             DataTable temp = dt;
             if (!string.IsNullOrWhiteSpace(txtSearchID.Text))
                 temp = Filtering(temp, "User_ID", txtSearchID.Text);
@@ -313,7 +317,7 @@ namespace Team2_Project
             dgvEmp.DataSource = null;
             dgvEmp.DataSource = temp;
 
-            dgvEmp_CellClick(dgvEmp, new DataGridViewCellEventArgs(0, 0));
+            //dgvEmp_CellClick(dgvEmp, new DataGridViewCellEventArgs(0, 0));
         }
 
         /// <summary>
