@@ -163,7 +163,6 @@ namespace Team2_Project
             //ChartData();
         }
 
-
         public void ChartData()
         {
             //---test----
@@ -213,9 +212,5 @@ namespace Team2_Project
             //                                                                    //chtData.DataBindTable(students, "Time");
             #endregion
         }
-
-        #region TEST
-        #endregion
-
     }    
 }

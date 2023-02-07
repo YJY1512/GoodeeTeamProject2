@@ -82,6 +82,7 @@ namespace Team2_Project
             List<WorkCenterDTO> wcList = new List<WorkCenterDTO>();
             wcList = srv.GetWorkCenterInfo();
             dgv.DataSource = wcList;
+
         }
 
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
@@ -112,18 +113,17 @@ namespace Team2_Project
         {
             //WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo");
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "시작시간대", "Start_Hour");
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main");
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main");
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty");
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량단위", "Prd_Unit");
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "시작시간대", "Start_Hour", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량단위", "Prd_Unit", 150);
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.GetProductionHistory();
             dgv.DataSource = ProductionHistoryList;
         }
    
-
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
