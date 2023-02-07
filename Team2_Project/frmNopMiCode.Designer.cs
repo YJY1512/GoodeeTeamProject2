@@ -70,8 +70,8 @@ namespace Team2_Project
             // label9
             // 
             this.label9.Location = new System.Drawing.Point(43, 225);
-            this.label9.Size = new System.Drawing.Size(82, 17);
-            this.label9.Text = "비가동 유형";
+            this.label9.Size = new System.Drawing.Size(78, 17);
+            this.label9.Text = "비가동유형";
             // 
             // label5
             // 

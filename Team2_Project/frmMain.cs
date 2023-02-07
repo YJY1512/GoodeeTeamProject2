@@ -97,7 +97,7 @@ namespace Team2_Project
             if (chkHide.Checked)
             {
                 panel2.Width = MinWidth;
-                pnlMenu.Width = MinWidth-5;
+                pnlMenu.Width = MinWidth;
                 pnlChildMenu.Visible = false;
                 chkHide.Text = ">";
             }

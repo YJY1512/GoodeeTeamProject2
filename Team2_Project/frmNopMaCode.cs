@@ -60,17 +60,20 @@ namespace Team2_Project
         {
             NopMaCodeDTO item = new NopMaCodeDTO
             {
-                Nop_Ma_Code = ucCodeSearch._Code,
-                Nop_Ma_Name = ucCodeSearch._Name,
+                Nop_Ma_Code = ucCodeSearch.Text,
                 Use_YN = cboUseYNSC.Text
             };
             NopMaList = srv.GetNopMaSearch(item);
             AdvancedListBind(NopMaList, dgvData);
             //dgvData.ClearSelection();
-            //ResetBottom();  //입력패널 리셋
+            ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
 
-            dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0,0));
+            if (NopMaList != null && NopMaList.Count > 0)
+            {
+                dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+            }
+            
         }
 
         public void OnAdd()     //추가
@@ -192,7 +195,7 @@ namespace Team2_Project
 
         private void ResetTop() //검색 리셋
         {
-            ucCodeSearch._Code = ucCodeSearch._Name = "";
+            ucCodeSearch.Text = "";
             cboUseYNSC.SelectedIndex = 0;
         }
 
@@ -226,19 +229,19 @@ namespace Team2_Project
             txtCode.Enabled = txtName.Enabled = cboUseYN.Enabled = false;
         }
 
-        private void ucCodeSearch_BtnClick(object sender, EventArgs e)
-        {
-            var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+        //private void ucCodeSearch_BtnClick(object sender, EventArgs e)
+        //{
+        //    var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+        //    List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+        //    col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+        //    col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
 
-            CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
-            dto.DgvDatasource = list;
-            dto.DgvCols = col;
-            dto.PopName = "비가동 대분류코드 검색";
-            ucCodeSearch.OpenPop(dto);
-        }
+        //    CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
+        //    dto.DgvDatasource = list;
+        //    dto.DgvCols = col;
+        //    dto.PopName = "비가동 대분류코드 검색";
+        //    ucCodeSearchs.OpenPop(dto);
+        //}
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
