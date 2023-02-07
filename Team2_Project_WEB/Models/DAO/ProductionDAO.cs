@@ -61,7 +61,7 @@ namespace Team2_Project_WEB.Models.DAO
             }
         }
 
-        public List<ProductionVO> GetProdNoList()
+        public List<string> GetProdNoList()
         {
             string sql = @"select top 10 WorkOrderNo 
                             from WorkOrder 
@@ -70,7 +70,45 @@ namespace Team2_Project_WEB.Models.DAO
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             { 
                 SqlDataReader reader = cmd.ExecuteReader();
-                List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
+                //List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
+                List<string> list = new List<string>();
+                while (reader.Read())
+                {
+                    list.Add(reader["WorkOrderNo"].ToString());
+                }
+                reader.Close();
+
+                return list;
+            }
+        }
+
+        public List<string> GetProdList_TotProd()
+        {
+            //작업일자, 계획수량, 양품수량, 불량수량, 작업시작시각, 작업종료시각, 비가동시간, 가동률, 비가동률, 시간당 생샨량
+            string sql = @"with GetDefData as(
+	                            select wo.WorkOrderNo, sum(Def_Qty) TotDef
+	                            from WorkOrder wo inner join Def_History dh on wo.WorkOrderNo = dh.WorkOrderNo
+	                            where convert(date, Plan_Date) = convert(date, @date)
+	                            group by wo.WorkOrderNo
+                            )
+
+                            select convert(nvarchar(10), Plan_Date, 23) Plan_Date, sum(Plan_Qty_Box) Plan_Qty_Box, (isnull(sum(prd_Qty), 0)) Prd_Qty, (isnull(sum(TotDef), 0)) TotDef
+                                , CONVERT(VARCHAR(23), wo.Prd_StartTime, 8) Prd_StartTime, CONVERT(VARCHAR(23), wo.Prd_EndTime, 8) Prd_EndTime
+                            from WorkOrder wo inner join Production_Plan_Detail ppd on wo.Prd_Plan_No = ppd.Prd_Plan_No
+	                            inner join Item_Master im on ppd.Item_Code = im.Item_Code
+	                            left outer join GetDefData gd on wo.WorkOrderNo = gd.WorkOrderNo
+                            where convert(date, Plan_Date) = convert(date, @date)
+                            group by convert(nvarchar(10), Plan_Date, 23)";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                //List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
+                List<string> list = new List<string>();
+                while (reader.Read())
+                {
+                    list.Add(reader["WorkOrderNo"].ToString());
+                }
                 reader.Close();
 
                 return list;
