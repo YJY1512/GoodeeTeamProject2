@@ -146,7 +146,6 @@ namespace Team2_Project
             ResetBottom();      //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
 
-
             if (itemList != null && itemList.Count > 0)
             {
                 dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
