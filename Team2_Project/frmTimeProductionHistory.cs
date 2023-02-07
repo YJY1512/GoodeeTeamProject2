@@ -47,7 +47,7 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "계획수량단위", "Plan_Unit", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 120);
@@ -62,6 +62,9 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "Def_Qty", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 120);
             dgvData.MultiSelect = false;
+
+            dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
+            dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
 
             //---- test용 ----
             cboWoStatus.SelectedIndex = cboTest.SelectedIndex = 0; 

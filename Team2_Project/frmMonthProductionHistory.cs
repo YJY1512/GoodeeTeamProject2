@@ -48,6 +48,9 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
             dgvData.MultiSelect = false;
 
+            dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
+            dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
+
             ResetTop();
             OnSearch();
             ChartData();
