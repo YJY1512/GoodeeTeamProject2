@@ -358,15 +358,24 @@ namespace Team2_Project
             ucWc.OpenPop(GetWcPopInfo());
         }
 
+        #region 생산계획 dgv 컨트롤 버튼(분할, 마감, 마감취소)
+        //생산계획 dgv 버튼 enable 상태 설정
+        private void SetPlanbtnEnabled(bool active)
+        {
+            btnClose.Enabled = btnCancel.Enabled = btnSplit.Enabled = active;
+        }
+
         private void btnSplit_Click(object sender, EventArgs e)
         {
             dgvPlan.Enabled = false;
+            SetPlanbtnEnabled(false);
 
             int rIdx = dgvPlan.CurrentRow.Index;
             if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
             {
                 MessageBox.Show("대기중인 계획만 분할이 가능합니다.");
                 dgvPlan.Enabled = true;
+                SetPlanbtnEnabled(true);
                 return;
             }
 
@@ -401,7 +410,74 @@ namespace Team2_Project
             }
 
             dgvPlan.Enabled = true;
+            SetPlanbtnEnabled(true);
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            dgvPlan.Enabled = false;
+            SetPlanbtnEnabled(false);
+
+            int rIdx = dgvPlan.CurrentRow.Index;
+            if (dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+            {
+                MessageBox.Show("작업지시 미생성 계획은 마감이 불가합니다.");
+                dgvPlan.Enabled = true;
+                SetPlanbtnEnabled(true);
+                return;
+            }
+
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+            string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+
+            bool result = srv.ClosePlan(planID, empID);
+            if (result)
+            {
+                MessageBox.Show("마감처리가 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("마감처리 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+
+            dgvPlan.Enabled = true;
+            SetPlanbtnEnabled(true);
+            OnReLoad();
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            dgvPlan.Enabled = false;
+            SetPlanbtnEnabled(false);
+
+            int rIdx = dgvPlan.CurrentRow.Index;
+            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("생산마감"))
+            {
+                MessageBox.Show("마감된 생산계획만 취소가 가능합니다.");
+                dgvPlan.Enabled = true;
+                SetPlanbtnEnabled(true);
+                return;
+            }
+
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+            string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+
+            bool result = srv.CloseCancel(planID, empID);
+            if (result)
+            {
+                MessageBox.Show("마감취소가 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("마감취소 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+
+            dgvPlan.Enabled = true;
+            SetPlanbtnEnabled(true);
+            OnReLoad();
+        }
+        #endregion
 
         private void dgvPlan_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -507,6 +583,7 @@ namespace Team2_Project
             }
 
             //tab2
+            SetPlanbtnEnabled(false);
             planDt.Rows.Add();
             rIdx = dgvPlan.Rows.Count - 1;
 
@@ -538,15 +615,19 @@ namespace Team2_Project
                 return;
             }
 
+            dgvPlan.Enabled = false;
+            SetPlanbtnEnabled(false);
+
             int rIdx = dgvPlan.CurrentRow.Index;
             if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
             {
                 MessageBox.Show("대기중인 계획만 수정이 가능합니다.");
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
+                SetPlanbtnEnabled(true);
+                dgvPlan.Enabled = true;
                 return;
             }
-
-            dgvPlan.Enabled = false;
+            
             clickState = ButtonClick.Edit;
 
             frmPlanPop pop = new frmPlanPop();
@@ -565,6 +646,7 @@ namespace Team2_Project
                 clickState = ButtonClick.None;
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
                 dgvPlan.Enabled = true;
+                SetPlanbtnEnabled(true);
             }
         }
 
@@ -584,14 +666,23 @@ namespace Team2_Project
             }
 
             dgvPlan.Enabled = false;
+            SetPlanbtnEnabled(false);
+
             int rIdx = dgvPlan.CurrentRow.Index;
             string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
 
             if (MessageBox.Show($"생산계획({planID})를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+                {
+                    MessageBox.Show("대기중인 계획만 삭제가 가능합니다.");
+                    ((frmMain)this.MdiParent).BtnEditReturn(true);
+                    return;
+                }
+
                 int result = srv.DeletePlan(planID);
 
-                if (result == 0) //성공
+                if (result == 1) //성공
                 {
                     MessageBox.Show("삭제가 완료되었습니다.");
                 }
@@ -608,6 +699,7 @@ namespace Team2_Project
             }
 
             dgvPlan.Enabled = true;
+            SetPlanbtnEnabled(true);
         }
 
         public void OnSave()    //저장
@@ -670,9 +762,7 @@ namespace Team2_Project
                     MessageBox.Show("계획등록 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                clickState = ButtonClick.None;
                 rIdx = -1;
-                OnReLoad();
             }
             else if (clickState == ButtonClick.Edit) //수정
             {
@@ -686,7 +776,7 @@ namespace Team2_Project
                 };
 
                 int result = srv.UpdatePlan(plan);
-                if (result == 0) //성공
+                if (result == 1) //성공
                 {
                     MessageBox.Show("수정이 완료되었습니다.");
                     ((frmMain)this.MdiParent).BtnEditReturn(true);
@@ -699,11 +789,13 @@ namespace Team2_Project
                 {
                     MessageBox.Show("수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
-                
-                clickState = ButtonClick.None;
+                                
                 dgvPlan.Enabled = true;                
-                OnReLoad();
             }
+
+            clickState = ButtonClick.None;
+            SetPlanbtnEnabled(true);
+            OnReLoad();
         }
 
         public void OnCancel()  //취소
@@ -717,7 +809,8 @@ namespace Team2_Project
             if (clickState == ButtonClick.Add)
             {
                 clickState = ButtonClick.None;
-            
+                SetPlanbtnEnabled(true);
+
                 planDt.Rows.RemoveAt(rIdx);
                 rIdx = -1;
             }
@@ -737,9 +830,9 @@ namespace Team2_Project
             }
         }
 
+
+
         #endregion
-
-
 
     }
 }

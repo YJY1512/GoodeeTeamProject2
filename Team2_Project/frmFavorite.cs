@@ -19,6 +19,9 @@ namespace Team2_Project
         public EmployeeDTO LoginEmp { get; set; }
         MenuService srv = new MenuService();
         List<MenuDTO> allMenuList;
+        List<MenuDTO> favoriteList;
+        int startcnt;
+        int curCnt;
         public frmFavorite()
         {
             InitializeComponent();
@@ -26,9 +29,14 @@ namespace Team2_Project
 
         private void frmFavorite_Load(object sender, EventArgs e)
         {
+            startcnt = 0;
+            curCnt = 0;
             this.LoginEmp = ((frmMain)this.Owner).LoginEmp;
             allMenuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
+            favoriteList = srv.GetFavoriteInfo(LoginEmp.User_ID);
             AllMenuBinding();
+            FavritListBinding();
+            startcnt = trvAllList.Nodes.Count;
         }
 
         private void AllMenuBinding()   //allList에 대메뉴 중메뉴만 출력 
@@ -63,7 +71,20 @@ namespace Team2_Project
 
         private void FavritListBinding()
         {
+            List<MenuDTO> lists = favoriteList;
+            var list1 = lists.FindAll((k) => k.Menu_Level == 3).OrderBy((k) => k.Seq).ToList();
+            for (int l = 0; l < list1.Count; l++)
+            {
+                TreeNode favNode = new TreeNode();
+                favNode.Name = list1[l].Screen_Code;
+                favNode.Text = list1[l].Menu_Name;
+                favNode.Tag = l;
+                favNode.NodeFont = new Font("나눔고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
+                favNode.ForeColor = Color.FromArgb(60, 75, 80);
 
+                trvFavList.Nodes.Add(favNode);
+                trvFavList.ExpandAll();
+            }
         }
 
 
@@ -112,6 +133,64 @@ namespace Team2_Project
                 }
             }
         }
+        private void btnNodeUp_Click(object sender, EventArgs e)
+        {
+            TreeNode curNode = trvFavList.SelectedNode;
+            TreeNode pntNode = curNode.Parent;
+            TreeView view = curNode.TreeView;
+            if (pntNode != null)
+            {
+                int index = pntNode.Nodes.IndexOf(curNode);
+                if (index > 0)
+                {
+                    pntNode.Nodes.RemoveAt(index);
+                    pntNode.Nodes.Insert(index - 1, curNode);
+                }
+            }
+            else if (curNode.TreeView.Nodes.Contains(curNode))
+            {
+                int index = view.Nodes.IndexOf(curNode);
+                if (index > 0)
+                {
+                    view.Nodes.RemoveAt(index);
+                    view.Nodes.Insert(index - 1, curNode);
+                    curNode.ForeColor = Color.FromArgb(211, 226, 223);
+                }
+            }
+        }
+
+        private void btnNodeDown_Click(object sender, EventArgs e)
+        {
+            TreeNode curNode = trvFavList.SelectedNode;
+            TreeNode pntNode = curNode.Parent;
+            TreeView view = curNode.TreeView;
+            if (pntNode != null)
+            {
+                int index = pntNode.Nodes.IndexOf(curNode);
+                if (index < pntNode.Nodes.Count - 1)
+                {
+                    pntNode.Nodes.RemoveAt(index);
+                    pntNode.Nodes.Insert(index + 1, curNode);
+                }
+            }
+            else if (view != null && view.Nodes.Contains(curNode))
+            {
+                int index = view.Nodes.IndexOf(curNode);
+                if (index < view.Nodes.Count - 1)
+                {
+                    view.Nodes.RemoveAt(index);
+                    view.Nodes.Insert(index + 1, curNode);
+                    curNode.ForeColor = Color.FromArgb(211, 226, 223);
+                }
+            }
+        }
+
+        private void btnNodeDel_Click(object sender, EventArgs e)
+        {
+            trvFavList.Nodes.Remove(trvFavList.SelectedNode);
+
+
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             lstFavorite.Items.Remove(lstFavorite.SelectedItem);
@@ -131,9 +210,28 @@ namespace Team2_Project
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            curCnt = trvFavList.Nodes.Count;
             if (lstFavorite.Items.Count > 0)
             {
                 if (MessageBox.Show("현재 즐겨찾기 추가한 목록들이 아직 저장되지 않았습니다. \n 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                    return;
+            }
+            else if (trvFavList.SelectedNode.BackColor == Color.FromArgb(211, 226, 223))
+            {
+                if (MessageBox.Show("현재 즐겨찾기List에 순서 변경 값이 저장되지 않았습니다. \n 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                    return;
+            }
+            else if (startcnt != curCnt)
+            {
+                if (MessageBox.Show("현재 즐겨찾기List에 삭제된 값이 저장되지 않았습니다. \n 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     this.Close();
                 }
@@ -144,5 +242,6 @@ namespace Team2_Project
                 this.Close();
         }
 
+        
     }
 }

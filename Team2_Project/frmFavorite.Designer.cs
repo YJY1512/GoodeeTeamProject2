@@ -46,6 +46,9 @@ namespace Team2_Project
             this.trvFavList = new System.Windows.Forms.TreeView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnNodeUp = new System.Windows.Forms.Button();
+            this.btnNodeDown = new System.Windows.Forms.Button();
+            this.btnNodeDel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +62,7 @@ namespace Team2_Project
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1122, 30);
+            this.panel1.Size = new System.Drawing.Size(1160, 30);
             this.panel1.TabIndex = 6;
             // 
             // btnClose
@@ -67,7 +70,7 @@ namespace Team2_Project
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(1087, 0);
+            this.btnClose.Location = new System.Drawing.Point(1125, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(35, 30);
             this.btnClose.TabIndex = 1;
@@ -98,7 +101,7 @@ namespace Team2_Project
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 507);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1122, 50);
+            this.panel3.Size = new System.Drawing.Size(1160, 50);
             this.panel3.TabIndex = 8;
             // 
             // btnCancel
@@ -108,7 +111,7 @@ namespace Team2_Project
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.btnCancel.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(1029, 8);
+            this.btnCancel.Location = new System.Drawing.Point(1067, 8);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 34);
             this.btnCancel.TabIndex = 1;
@@ -123,7 +126,7 @@ namespace Team2_Project
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.btnSave.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(924, 8);
+            this.btnSave.Location = new System.Drawing.Point(962, 8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 34);
             this.btnSave.TabIndex = 0;
@@ -232,12 +235,45 @@ namespace Team2_Project
             this.label5.Size = new System.Drawing.Size(42, 39);
             this.label5.TabIndex = 21;
             // 
+            // btnNodeUp
+            // 
+            this.btnNodeUp.Image = ((System.Drawing.Image)(resources.GetObject("btnNodeUp.Image")));
+            this.btnNodeUp.Location = new System.Drawing.Point(1116, 69);
+            this.btnNodeUp.Name = "btnNodeUp";
+            this.btnNodeUp.Size = new System.Drawing.Size(33, 39);
+            this.btnNodeUp.TabIndex = 22;
+            this.btnNodeUp.UseVisualStyleBackColor = true;
+            this.btnNodeUp.Click += new System.EventHandler(this.btnNodeUp_Click);
+            // 
+            // btnNodeDown
+            // 
+            this.btnNodeDown.Image = ((System.Drawing.Image)(resources.GetObject("btnNodeDown.Image")));
+            this.btnNodeDown.Location = new System.Drawing.Point(1116, 116);
+            this.btnNodeDown.Name = "btnNodeDown";
+            this.btnNodeDown.Size = new System.Drawing.Size(33, 39);
+            this.btnNodeDown.TabIndex = 23;
+            this.btnNodeDown.UseVisualStyleBackColor = true;
+            this.btnNodeDown.Click += new System.EventHandler(this.btnNodeDown_Click);
+            // 
+            // btnNodeDel
+            // 
+            this.btnNodeDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNodeDel.Image")));
+            this.btnNodeDel.Location = new System.Drawing.Point(1116, 161);
+            this.btnNodeDel.Name = "btnNodeDel";
+            this.btnNodeDel.Size = new System.Drawing.Size(33, 39);
+            this.btnNodeDel.TabIndex = 24;
+            this.btnNodeDel.UseVisualStyleBackColor = true;
+            this.btnNodeDel.Click += new System.EventHandler(this.btnNodeDel_Click);
+            // 
             // frmFavorite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.ClientSize = new System.Drawing.Size(1122, 557);
+            this.ClientSize = new System.Drawing.Size(1160, 557);
+            this.Controls.Add(this.btnNodeDel);
+            this.Controls.Add(this.btnNodeDown);
+            this.Controls.Add(this.btnNodeUp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.trvFavList);
             this.Controls.Add(this.lstFavorite);
@@ -282,5 +318,8 @@ namespace Team2_Project
         private System.Windows.Forms.TreeView trvFavList;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnNodeUp;
+        private System.Windows.Forms.Button btnNodeDown;
+        private System.Windows.Forms.Button btnNodeDel;
     }
 }

@@ -37,20 +37,19 @@ namespace Team2_Project
             cboUseSC.SelectedIndex = 0;
 
             LoadData();
-            SetInitPnl();
-
-            if (defList != null && defList.Count > 0)
-            {
-                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, 0));
-            }            
+            SetInitPnl();         
         }
 
         private void LoadData()
         {
             defList = srv.GetDefCode(true);
-            if (defList != null)
+            if (defList != null && defList.Count > 0)
             {
                 AdvancedListBind(defList, dgvMa);
+
+                if (dgvMa.CurrentRow != null)
+                    dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
+                
             }            
         }
 
@@ -92,7 +91,7 @@ namespace Team2_Project
 
             if (list != null && list.Count > 0)
             {
-                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, 0));
             }            
         }
 
@@ -240,11 +239,6 @@ namespace Team2_Project
             
             SetInitPnl();
             LoadData();
-
-            if (dgvMa.CurrentRow != null)
-            {
-                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
-            }            
         }
         #endregion
 

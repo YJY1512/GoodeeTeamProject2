@@ -35,9 +35,9 @@ namespace Team2_Project
             this.label13 = new System.Windows.Forms.Label();
             this.ucProd = new Team2_Project.Controls.ucSearch();
             this.label12 = new System.Windows.Forms.Label();
-            this.dtpReqTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpWoTo = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.dtpReqFrom = new System.Windows.Forms.DateTimePicker();
+            this.dtpWoFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvWorkOrder = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@ namespace Team2_Project
             this.label11 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnCloseCnl = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.dtpWo = new System.Windows.Forms.DateTimePicker();
@@ -84,9 +84,9 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.dtpReqTo);
+            this.pnlSub.Controls.Add(this.dtpWoTo);
             this.pnlSub.Controls.Add(this.label6);
-            this.pnlSub.Controls.Add(this.dtpReqFrom);
+            this.pnlSub.Controls.Add(this.dtpWoFrom);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.ucProcess);
             this.pnlSub.Controls.Add(this.label1);
@@ -141,6 +141,10 @@ namespace Team2_Project
             // 
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 120);
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer1.Size = new System.Drawing.Size(1232, 546);
             this.splitContainer1.SplitterDistance = 326;
             // 
@@ -151,7 +155,7 @@ namespace Team2_Project
             // pnlTitleU
             // 
             this.pnlTitleU.Controls.Add(this.btnClose);
-            this.pnlTitleU.Controls.Add(this.btnCloseCnl);
+            this.pnlTitleU.Controls.Add(this.btnCancel);
             this.pnlTitleU.Controls.Add(this.label15);
             this.pnlTitleU.Controls.Add(this.label16);
             this.pnlTitleU.Controls.Add(this.label10);
@@ -175,7 +179,7 @@ namespace Team2_Project
             this.pnlTitleU.Controls.SetChildIndex(this.label10, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.label16, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.label15, 0);
-            this.pnlTitleU.Controls.SetChildIndex(this.btnCloseCnl, 0);
+            this.pnlTitleU.Controls.SetChildIndex(this.btnCancel, 0);
             this.pnlTitleU.Controls.SetChildIndex(this.btnClose, 0);
             // 
             // ucProcess
@@ -247,13 +251,13 @@ namespace Team2_Project
             this.label12.TabIndex = 22;
             this.label12.Text = "품목";
             // 
-            // dtpReqTo
+            // dtpWoTo
             // 
-            this.dtpReqTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReqTo.Location = new System.Drawing.Point(292, 23);
-            this.dtpReqTo.Name = "dtpReqTo";
-            this.dtpReqTo.Size = new System.Drawing.Size(125, 25);
-            this.dtpReqTo.TabIndex = 31;
+            this.dtpWoTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWoTo.Location = new System.Drawing.Point(292, 23);
+            this.dtpWoTo.Name = "dtpWoTo";
+            this.dtpWoTo.Size = new System.Drawing.Size(125, 25);
+            this.dtpWoTo.TabIndex = 31;
             // 
             // label6
             // 
@@ -265,13 +269,13 @@ namespace Team2_Project
             this.label6.TabIndex = 30;
             this.label6.Text = "~";
             // 
-            // dtpReqFrom
+            // dtpWoFrom
             // 
-            this.dtpReqFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReqFrom.Location = new System.Drawing.Point(137, 23);
-            this.dtpReqFrom.Name = "dtpReqFrom";
-            this.dtpReqFrom.Size = new System.Drawing.Size(125, 25);
-            this.dtpReqFrom.TabIndex = 29;
+            this.dtpWoFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWoFrom.Location = new System.Drawing.Point(137, 23);
+            this.dtpWoFrom.Name = "dtpWoFrom";
+            this.dtpWoFrom.Size = new System.Drawing.Size(125, 25);
+            this.dtpWoFrom.TabIndex = 29;
             // 
             // label4
             // 
@@ -293,6 +297,7 @@ namespace Team2_Project
             this.dgvWorkOrder.RowTemplate.Height = 23;
             this.dgvWorkOrder.Size = new System.Drawing.Size(1232, 283);
             this.dgvWorkOrder.TabIndex = 0;
+            this.dgvWorkOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrder_CellClick);
             // 
             // label15
             // 
@@ -393,16 +398,18 @@ namespace Team2_Project
             this.btnClose.TabIndex = 23;
             this.btnClose.Text = "작업지시 마감";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnCloseCnl
+            // btnCancel
             // 
-            this.btnCloseCnl.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCloseCnl.Location = new System.Drawing.Point(905, 6);
-            this.btnCloseCnl.Name = "btnCloseCnl";
-            this.btnCloseCnl.Size = new System.Drawing.Size(146, 26);
-            this.btnCloseCnl.TabIndex = 22;
-            this.btnCloseCnl.Text = "작업지시 마감취소";
-            this.btnCloseCnl.UseVisualStyleBackColor = false;
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancel.Location = new System.Drawing.Point(905, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(146, 26);
+            this.btnCancel.TabIndex = 22;
+            this.btnCancel.Text = "작업지시 마감취소";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label18
             // 
@@ -627,9 +634,9 @@ namespace Team2_Project
         private System.Windows.Forms.Label label13;
         private Controls.ucSearch ucProd;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DateTimePicker dtpReqTo;
+        private System.Windows.Forms.DateTimePicker dtpWoTo;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtpReqFrom;
+        private System.Windows.Forms.DateTimePicker dtpWoFrom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvWorkOrder;
         private System.Windows.Forms.Label label15;
@@ -643,7 +650,7 @@ namespace Team2_Project
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnCloseCnl;
+        private System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DateTimePicker dtpWo;

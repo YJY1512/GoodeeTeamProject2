@@ -143,13 +143,65 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand("SP_NopHistory", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DateFrom", DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd") );
-                    cmd.Parameters.AddWithValue("@DateTo", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@DateFrom", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") );
+                    cmd.Parameters.AddWithValue("@DateTo", DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@Ma_Code", "%%");
                     cmd.Parameters.AddWithValue("@Ma_Name", "%%");
 
                     conn.Open();
                     List<NopHistoryDTO> list = Helper.DataReaderMapToList<NopHistoryDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<TimeProductionHistoryDTO> Production() //생산진행현황 (작업지시별)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_TimeProductionHistory", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@@PrdDateFrom", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@@PrdDateTo", DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"));;
+
+                    conn.Open();
+                    List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<TimeProductionHistoryDTO> GetProductionHistory() //생산실적현황 (시간대별)
+        {
+            try
+            {
+                string sql = @"SELECT WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
+                                 FROM Time_Production_History 
+                                WHERE Ins_Date = getdate()";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(cmd.ExecuteReader());
                     return list;
                 }
             }

@@ -51,7 +51,21 @@ namespace Team2_Project.Services
             return list;
         }
 
+        public List<TimeProductionHistoryDTO> Production()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<TimeProductionHistoryDTO> list = db.Production();
+            db.Dispose();
+            return list;
+        }
 
+        public List<TimeProductionHistoryDTO> GetProductionHistory()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<TimeProductionHistoryDTO> list = db.GetProductionHistory();
+            db.Dispose();
+            return list;
+        }
 
 
     }
