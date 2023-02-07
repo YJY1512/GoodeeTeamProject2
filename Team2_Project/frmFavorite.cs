@@ -147,8 +147,7 @@ namespace Team2_Project
 
                 trvFavorite.Nodes.Add(nodes);
                 favoriteList.Add(childMenu[0]);
-            }
-            
+            }         
         }
 
         private void btnNodeUp_Click(object sender, EventArgs e)
@@ -220,8 +219,8 @@ namespace Team2_Project
         private void btnClose_Click(object sender, EventArgs e)
         {
             curCnt = trvFavorite.Nodes.Count;
-            TreeNode curNode = trvFavorite.SelectedNode;
-            curNode.BackColor = Color.White;
+            //TreeNode curNode = trvFavorite.SelectedNode;
+            //curNode.BackColor = Color.White;
             if (startcnt != curCnt )
             {
                 if (MessageBox.Show("현재 즐겨찾기 List에 수정된 사항이 있습니다. \n 종료하시면 수정된 내용이 저장되지 않습니다. 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)

@@ -175,7 +175,7 @@ namespace Team2_Project
             // 
             this.label4.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
-            this.label4.Location = new System.Drawing.Point(444, 66);
+            this.label4.Location = new System.Drawing.Point(442, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 39);
             this.label4.TabIndex = 16;

@@ -48,14 +48,16 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
             dgvData.MultiSelect = false;
 
+            ResetTop();
             OnSearch();
+            ChartData();
         }
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
 
-            ChartData();
+
         }
 
         public void OnReLoad()  //새로고침
@@ -118,7 +120,7 @@ namespace Team2_Project
             popInfo.PopName = "품목코드 검색";
             ucItemSearch.OpenPop(popInfo);
         }
-    }
+    }  
 }
 /*
  (분석소재)
