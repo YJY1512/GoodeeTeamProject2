@@ -106,5 +106,13 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public string ChkStatus(string planID)
+        {
+            PlanDAO db = new PlanDAO();
+            string result = db.ChkStatus(planID);
+
+            return result;
+        }
     }
 }

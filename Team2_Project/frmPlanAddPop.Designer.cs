@@ -99,6 +99,7 @@ namespace Team2_Project
             this.dtpPlanMonth.Name = "dtpPlanMonth";
             this.dtpPlanMonth.Size = new System.Drawing.Size(132, 25);
             this.dtpPlanMonth.TabIndex = 8;
+            this.dtpPlanMonth.ValueChanged += new System.EventHandler(this.dtpPlanMonth_ValueChanged);
             // 
             // label4
             // 

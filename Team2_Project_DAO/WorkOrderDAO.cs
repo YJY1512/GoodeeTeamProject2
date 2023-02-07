@@ -404,5 +404,31 @@ namespace Team2_Project_DAO
             }
         }
 
+        public string ChkStatus(string woID)
+        {
+            try
+            {
+                string sql = @"select Wo_Status
+                                from WorkOrder
+                                where WorkOrderNo = @WorkOrderNo";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", woID);
+
+                    string result = cmd.ExecuteScalar().ToString();
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
     }
 }
