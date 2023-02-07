@@ -258,6 +258,8 @@ namespace Team2_Project
             this.dgvWorkOrder.TabIndex = 0;
             this.dgvWorkOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrder_CellDoubleClick);
             this.dgvWorkOrder.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkOrder_CellFormatting);
+            this.dgvWorkOrder.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvWorkOrder_EditingControlShowing);
+            this.dgvWorkOrder.SelectionChanged += new System.EventHandler(this.dgvWorkOrder_SelectionChanged);
             // 
             // btnAdd
             // 
