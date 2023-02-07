@@ -53,7 +53,8 @@ namespace Team2_Project
             // 
             // lblTitleUp
             // 
-            this.lblTitleUp.Size = new System.Drawing.Size(57, 18);
+            this.lblTitleUp.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitleUp.Size = new System.Drawing.Size(61, 17);
             this.lblTitleUp.Text = "소제목A";
             // 
             // pnlDown
@@ -63,7 +64,8 @@ namespace Team2_Project
             // 
             // lblTitleDown
             // 
-            this.lblTitleDown.Size = new System.Drawing.Size(58, 18);
+            this.lblTitleDown.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitleDown.Size = new System.Drawing.Size(59, 17);
             this.lblTitleDown.Text = "소제목B";
             // 
             // dgvDataA

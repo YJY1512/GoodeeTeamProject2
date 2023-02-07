@@ -46,29 +46,54 @@ namespace Team2_Project
             // 
             // label16
             // 
-            this.label16.Location = new System.Drawing.Point(662, 17);
+            this.label16.Location = new System.Drawing.Point(662, 21);
             // 
             // cboSearchUse
             // 
-            this.cboSearchUse.Location = new System.Drawing.Point(741, 13);
-            this.cboSearchUse.Size = new System.Drawing.Size(136, 25);
+            this.cboSearchUse.Location = new System.Drawing.Point(741, 17);
             this.cboSearchUse.TabIndex = 2;
             // 
             // lblSearchCode
             // 
-            this.lblSearchCode.Location = new System.Drawing.Point(33, 17);
+            this.lblSearchCode.Location = new System.Drawing.Point(33, 21);
             this.lblSearchCode.Size = new System.Drawing.Size(124, 17);
             this.lblSearchCode.Text = "비가동 대분류코드";
             // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(687, 66);
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(710, 66);
+            // 
             // label9
             // 
+            this.label9.Location = new System.Drawing.Point(43, 225);
             this.label9.Size = new System.Drawing.Size(82, 17);
             this.label9.Text = "비가동 유형";
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(20, 172);
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(20, 119);
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(43, 172);
+            // 
+            // lblInfoNameMa
+            // 
+            this.lblInfoNameMa.Location = new System.Drawing.Point(43, 119);
             // 
             // txtInfoNameMi
             // 
             this.txtInfoNameMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInfoNameMi.ImeMode = System.Windows.Forms.ImeMode.Hangul;
+            this.txtInfoNameMi.Location = new System.Drawing.Point(182, 168);
             this.txtInfoNameMi.MaxLength = 20;
             this.txtInfoNameMi.TabIndex = 5;
             // 
@@ -76,12 +101,15 @@ namespace Team2_Project
             // 
             this.txtInfoCodeMi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInfoCodeMi.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtInfoCodeMi.Location = new System.Drawing.Point(182, 115);
             this.txtInfoCodeMi.MaxLength = 20;
             this.txtInfoCodeMi.TabIndex = 4;
             // 
             // nudSort
             // 
-            this.nudSort.Location = new System.Drawing.Point(802, 219);
+            this.nudSort.Location = new System.Drawing.Point(1054, 217);
+            this.nudSort.Size = new System.Drawing.Size(40, 25);
+            this.nudSort.Visible = false;
             // 
             // splitContainer2
             // 
@@ -93,47 +121,57 @@ namespace Team2_Project
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.cboNoptype);
-            this.splitContainer2.Size = new System.Drawing.Size(1177, 702);
-            this.splitContainer2.SplitterDistance = 423;
+            this.splitContainer2.Size = new System.Drawing.Size(1177, 692);
+            this.splitContainer2.SplitterDistance = 422;
             // 
             // ucMaCode
             // 
+            this.ucMaCode.Location = new System.Drawing.Point(182, 59);
             this.ucMaCode.TabIndex = 3;
             this.ucMaCode.BtnClick += new System.EventHandler(this.ucMaCode_BtnClick);
             // 
             // cboUseYN
             // 
             this.cboUseYN.ItemHeight = 17;
-            this.cboUseYN.Location = new System.Drawing.Point(793, 62);
-            this.cboUseYN.Size = new System.Drawing.Size(136, 25);
+            this.cboUseYN.Location = new System.Drawing.Point(794, 62);
             // 
             // ucMaCodeSC
             // 
-            this.ucMaCodeSC.Location = new System.Drawing.Point(178, 11);
+            this.ucMaCodeSC.Location = new System.Drawing.Point(178, 15);
             this.ucMaCodeSC.TabIndex = 1;
             this.ucMaCodeSC.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
             // 
             // label12
             // 
             this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(20, 225);
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(687, 119);
             // 
             // txtRemark
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemark.Location = new System.Drawing.Point(794, 115);
             this.txtRemark.Size = new System.Drawing.Size(300, 89);
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(710, 119);
             // 
             // pnlSub
             // 
-            this.pnlSub.Size = new System.Drawing.Size(1769, 50);
+            this.pnlSub.Size = new System.Drawing.Size(1769, 60);
             // 
             // pnlListL
             // 
             this.pnlListL.Controls.Add(this.dgvMaData);
-            this.pnlListL.Size = new System.Drawing.Size(588, 702);
+            this.pnlListL.Size = new System.Drawing.Size(588, 692);
             // 
             // pnlListR
             // 
-            this.pnlListR.Size = new System.Drawing.Size(1177, 702);
+            this.pnlListR.Size = new System.Drawing.Size(1177, 692);
             // 
             // dgvMaData
             // 
@@ -143,7 +181,7 @@ namespace Team2_Project
             this.dgvMaData.Location = new System.Drawing.Point(0, 0);
             this.dgvMaData.Name = "dgvMaData";
             this.dgvMaData.RowTemplate.Height = 23;
-            this.dgvMaData.Size = new System.Drawing.Size(588, 702);
+            this.dgvMaData.Size = new System.Drawing.Size(588, 692);
             this.dgvMaData.TabIndex = 0;
             this.dgvMaData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaData_CellClick);
             // 
@@ -155,7 +193,7 @@ namespace Team2_Project
             this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(1177, 423);
+            this.dgvMiData.Size = new System.Drawing.Size(1177, 422);
             this.dgvMiData.TabIndex = 1;
             this.dgvMiData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMiData_CellClick);
             // 
@@ -163,9 +201,9 @@ namespace Team2_Project
             // 
             this.cboNoptype.FormattingEnabled = true;
             this.cboNoptype.ItemHeight = 17;
-            this.cboNoptype.Location = new System.Drawing.Point(260, 232);
+            this.cboNoptype.Location = new System.Drawing.Point(182, 221);
             this.cboNoptype.Name = "cboNoptype";
-            this.cboNoptype.Size = new System.Drawing.Size(121, 25);
+            this.cboNoptype.Size = new System.Drawing.Size(130, 25);
             this.cboNoptype.TabIndex = 35;
             // 
             // frmNopMiCode

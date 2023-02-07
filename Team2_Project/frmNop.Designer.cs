@@ -29,7 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,18 +51,18 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label6);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.label9);
-            this.pnlSub.Size = new System.Drawing.Size(1651, 57);
+            this.pnlSub.Size = new System.Drawing.Size(1651, 60);
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(0, 57);
+            this.pnlTitle.Location = new System.Drawing.Point(0, 60);
             this.pnlTitle.Size = new System.Drawing.Size(1651, 41);
             // 
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvData);
-            this.pnlList.Location = new System.Drawing.Point(0, 98);
-            this.pnlList.Size = new System.Drawing.Size(1651, 762);
+            this.pnlList.Location = new System.Drawing.Point(0, 101);
+            this.pnlList.Size = new System.Drawing.Size(1651, 759);
             // 
             // lblTitle
             // 
@@ -75,7 +75,7 @@ namespace Team2_Project
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(565, 19);
+            this.label9.Location = new System.Drawing.Point(593, 19);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 17);
             this.label9.TabIndex = 57;
@@ -86,7 +86,7 @@ namespace Team2_Project
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(783, 19);
+            this.label1.Location = new System.Drawing.Point(811, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 17);
             this.label1.TabIndex = 59;
@@ -107,7 +107,7 @@ namespace Team2_Project
             // 
             this.dtpFrom.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(655, 15);
+            this.dtpFrom.Location = new System.Drawing.Point(683, 15);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(122, 25);
             this.dtpFrom.TabIndex = 2;
@@ -130,7 +130,7 @@ namespace Team2_Project
             // 
             this.dtpTo.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(808, 15);
+            this.dtpTo.Location = new System.Drawing.Point(836, 15);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(122, 25);
             this.dtpTo.TabIndex = 3;
@@ -139,20 +139,20 @@ namespace Team2_Project
             // dgvData
             // 
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1651, 762);
+            this.dgvData.Size = new System.Drawing.Size(1651, 759);
             this.dgvData.TabIndex = 1;
             // 
             // frmNop
