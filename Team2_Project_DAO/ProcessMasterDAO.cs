@@ -32,7 +32,7 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"select Process_Code, Process_Name, Process_Group, case when Use_YN = 'Y' then '예'
+                string sql = @"select Process_Code, Process_Name, Process_Group, case when Process_Group = 'PG050' then '시유' when  Process_Group = 'PG070' then '포장' end as Process_Group_Name, case when Use_YN = 'Y' then '예'
                                     when Use_YN = 'N' then '아니요' end as Use_YN, Remark from Process_Master";
 
                 SqlCommand cmd = new SqlCommand(sql,conn);

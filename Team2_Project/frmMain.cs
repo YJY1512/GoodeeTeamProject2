@@ -251,6 +251,7 @@ namespace Team2_Project
                 {
                     form.Activate();
                     form.BringToFront();
+                    
 
                     return;
                 }
@@ -318,6 +319,7 @@ namespace Team2_Project
             {
                 Form frm = ((TabTag)tabControl1.SelectedTab.Tag).ActiveOpenForm;
                 frm.Select();
+                btnSearch_Click(frm, new EventArgs());
             }
         }
 

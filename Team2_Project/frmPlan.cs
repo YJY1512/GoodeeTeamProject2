@@ -225,7 +225,7 @@ namespace Team2_Project
                 {
                     if (row.Cells["Plan_Rest_Qty"].Value.ToString().Equals("0"))
                     {
-                        MessageBox.Show("계획 잔량이 0이므로 계획 생성이 불가합니다.");
+                        MessageBox.Show("계획 잔량이 0인 경우 계획 생성이 불가합니다.");
                         tab1LoadData();
                         return;
                     }
@@ -259,6 +259,17 @@ namespace Team2_Project
             {
                 MessageBox.Show("생산계획을 생성할 항목을 선택하여 주십시오.");
                 return;
+            }
+
+            frmPlanAddPop pop = new frmPlanAddPop();
+            pop.EmpID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+
+            if (pop.ShowDialog() == DialogResult.OK)
+            {
+                foreach(var item in plan)
+                {
+                    item.Plan_Month = pop.PlanMonth;
+                }
             }
 
             bool result = srv.InsertReqPlan(plan);
@@ -749,7 +760,8 @@ namespace Team2_Project
                     Plan_Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value),
                     Plan_Rest_Qty = 0,
                     Wc_Code = dgvPlan["Wc_Code", rIdx].Value.ToString(),
-                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID,
+                    Plan_Month = dtpMonth.Value.ToString("yyyy-MM")
                 };
 
                 bool result = srv.InsertPlan(plan);
