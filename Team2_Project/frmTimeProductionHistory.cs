@@ -67,8 +67,9 @@ namespace Team2_Project
             cboWoStatus.SelectedIndex = cboTest.SelectedIndex = 0; 
             cboTest.DropDownStyle = ComboBoxStyle.DropDownList;
             //----------------
-
+            ResetDtp();
             OnSearch();
+
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
