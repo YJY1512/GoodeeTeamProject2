@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_Project.BaseForms;
+using Team2_Project.Controls;
 using Team2_Project.Services;
 using Team2_Project.Utils;
 using Team2_Project_DTO;
@@ -16,8 +18,14 @@ namespace Team2_Project
     {
         List<WorkCenterDTO> wcList;
         List<ItemDTO> itemList;
+        List<ProcessMasterDTO> prcList;
+        List<WorkOrderDTO> woList;
 
         WorkOrderService srv = new WorkOrderService();
+
+        enum ButtonClick { Add, Edit, None };
+        ButtonClick clickState;
+
         public frmWorkOrder()
         {
             InitializeComponent();
@@ -48,13 +56,398 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산일자", "Prd_Date", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산수량", "Prd_Qty", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Wo_Status_code", "Wo_Status_code", visible: false);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Prd_Plan_No", "Prd_Plan_No", visible: false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Process_Code", "Process_Code", visible: false);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Process_Name", "Process_Name", visible: false);
+
+            SetInit();
+            LoadData();            
         }
 
         private void LoadData()
         {
-            dgvWorkOrder.DataSource = null;
+            woList = srv.GetWorkOrder(dtpWoFrom.Value.ToShortDateString(), dtpWoTo.Value.ToShortDateString());
+            dgvWorkOrder.DataSource = woList;
 
+            if (woList != null && woList.Count > 0)
+            {
+                if (dgvWorkOrder.CurrentRow != null)
+                    dgvWorkOrder_CellClick(dgvWorkOrder, new DataGridViewCellEventArgs(0, dgvWorkOrder.CurrentRow.Index));
+            }
+        }
+
+        private void SetInit()
+        {
+            dtpWoFrom.Value = DateTime.Today;
+            dtpWoTo.Value = dtpWoFrom.Value.AddDays(1);
+
+            ucProcess._Code = ucProcess._Name = "";
+            ucProd._Code = ucProd._Name = "";
+            ucWc._Code = ucWc._Name = "";
+
+            SetInitPnl();
+        }
+
+        private void SetInitPnl()
+        {
+            ucProcess2.Enabled = ucProd2.Enabled = ucWc2.Enabled = false;
+            dtpWo.Enabled = false;
+            txtWoQty.Enabled = false;
+
+            txtWorkOrder.Text = "시스템 자동생성";
+            ucProcess2._Code = ucProcess2._Name = "";
+            ucProd2._Code = ucProd2._Name = "";
+            ucWc2._Code = ucWc2._Name = "";
+            dtpWo.Value = DateTime.Today;
+            txtWoQty.Text = "";
+        }
+
+        #region 작업지시 dgv 컨트롤 버튼(마감, 마감취소)
+
+        //작업지시 dgv 버튼 enable 상태 설정
+        private void SetWobtnEnabled(bool active)
+        {
+            btnClose.Enabled = btnCancel.Enabled = active;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e) //작업지시 마감
+        {
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
+
+
+            List<string> woIds = new List<string>();
+            foreach (DataGridViewRow row in dgvWorkOrder.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W04"))
+                    {
+                        MessageBox.Show("현장마감된 작업지시만 마감이 가능합니다.");
+                        ((frmMain)this.MdiParent).BtnEditReturn(true);
+                        dgvWorkOrder.Enabled = true;
+                        SetWobtnEnabled(true);
+                        return;
+                    }
+
+                    woIds.Add(row.Cells["WorkOrderNo"].Value.ToString());
+                }
+            }
+
+            if (woIds.Count < 1)
+            {
+                MessageBox.Show("마감할 항목을 선택하여 주십시오.");
+                dgvWorkOrder.Enabled = true;
+                SetWobtnEnabled(true);
+                return;
+            }
+
+            string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+
+            bool result = srv.CloseWorkOrder(woIds, empID);
+            if (result)
+            {
+                MessageBox.Show("마감처리가 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("마감처리 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+            OnReLoad();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e) //작업지시 마감취소
+        {
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
+
+            List<string> woIds = new List<string>();
+            foreach (DataGridViewRow row in dgvWorkOrder.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W05"))
+                    {
+                        MessageBox.Show("마감된 작업지시가 아닙니다.");
+                        ((frmMain)this.MdiParent).BtnEditReturn(true);
+                        dgvWorkOrder.Enabled = true;
+                        SetWobtnEnabled(true);
+                        return;
+                    }
+
+                    woIds.Add(row.Cells["WorkOrderNo"].Value.ToString());
+                }
+            }
+
+            if (woIds.Count < 1)
+            {
+                MessageBox.Show("마감취소할 항목을 선택하여 주십시오.");
+                dgvWorkOrder.Enabled = true;
+                SetWobtnEnabled(true);
+                return;
+            }
+
+            string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+
+            bool result = srv.CloseCancel(woIds, empID);
+            if (result)
+            {
+                MessageBox.Show("마감취소가 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("마감취소 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+            OnReLoad();
+
+        }
+        #endregion
+
+
+        private void dgvWorkOrder_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            txtWorkOrder.Text = dgvWorkOrder["WorkOrderNo", e.RowIndex].Value.ToString();
+            ucProd2._Code = dgvWorkOrder["Item_Code", e.RowIndex].Value.ToString();
+            ucProd2._Name = dgvWorkOrder["Item_Name", e.RowIndex].Value.ToString();
+            ucProcess2._Code = dgvWorkOrder["Process_Code", e.RowIndex].Value.ToString();
+            ucProcess2._Name = dgvWorkOrder["Process_Name", e.RowIndex].Value.ToString();
+            ucWc2._Code = dgvWorkOrder["Wc_Code", e.RowIndex].Value.ToString();
+            ucWc2._Name = dgvWorkOrder["Wc_Name", e.RowIndex].Value.ToString();
+            txtWoQty.Text = dgvWorkOrder["Plan_Qty_Box", e.RowIndex].Value.ToString();
+            dtpWo.Value = Convert.ToDateTime(dgvWorkOrder["Plan_Date", e.RowIndex].Value);
+        }
+
+        #region Main 버튼 클릭이벤트
+        public void OnSearch()  //검색 
+        {
+            string itemCode = ucProd._Code;
+            string prcCode = ucProcess._Code;
+            string wcCode = ucWc._Code;
+
+            if (string.IsNullOrWhiteSpace(itemCode) && string.IsNullOrWhiteSpace(prcCode) && string.IsNullOrWhiteSpace(wcCode))
+            {
+                LoadData();
+                return;
+            }
+
+            var list = (from c in woList
+                        where c.Item_Code == (string.IsNullOrWhiteSpace(itemCode) ? c.Item_Code : itemCode) &&
+                            c.Process_Code == (string.IsNullOrWhiteSpace(prcCode) ? c.Process_Code : prcCode) &&
+                            c.Wc_Code == (string.IsNullOrWhiteSpace(wcCode) ? c.Wc_Code : wcCode)
+                        select c).ToList();
+
+            if (list != null && list.Count > 0)
+            {
+                dgvWorkOrder.DataSource = list;
+                dgvWorkOrder_CellClick(dgvWorkOrder, new DataGridViewCellEventArgs(0, 0));
+            }
+            else
+            {
+                dgvWorkOrder.DataSource = null;
+                SetInitPnl();
+            }
+        }
+
+        public void OnAdd()     //추가
+        {
+            SetInitPnl();
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
+
+            ucProcess2.Enabled = ucProd2.Enabled = ucWc2.Enabled = true;
+            dtpWo.Enabled = true;
+            txtWoQty.Enabled = true;
+
+            clickState = ButtonClick.Add;
+        }
+
+        public void OnEdit()    //수정
+        {
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
+
+            int rIdx = dgvWorkOrder.CurrentRow.Index;
+            if (!dgvWorkOrder["Wo_Status_code", rIdx].Value.ToString().Equals("W01"))
+            {
+                MessageBox.Show("생산대기중인 작업지시만 수정이 가능합니다.");
+                ((frmMain)this.MdiParent).BtnEditReturn(true);
+                dgvWorkOrder.Enabled = true;
+                SetWobtnEnabled(true);
+                return;
+            }
+
+            ucProcess2.Enabled = ucProd2.Enabled = ucWc2.Enabled = true;
+            dtpWo.Enabled = true;
+            txtWoQty.Enabled = true;
+
+            clickState = ButtonClick.Edit;
+        }
+
+        public void OnDelete()  //삭제
+        {
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
+
+            List<string> delIds = new List<string>();
+            foreach (DataGridViewRow row in dgvWorkOrder.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W01"))
+                    {
+                        MessageBox.Show("생산대기중인 작업지시만 삭제가 가능합니다.");
+                        dgvWorkOrder.Enabled = true;
+                        SetWobtnEnabled(true);
+                        return;
+                    }
+
+                    delIds.Add(row.Cells["WorkOrderNo"].Value.ToString());
+                }
+            }
+
+            if (delIds.Count < 1)
+            {
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                dgvWorkOrder.Enabled = true;
+                SetWobtnEnabled(true);
+                return;
+            }
+
+            string upEmp = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            bool result = srv.DeleteWorkOrder(delIds, upEmp);
+            if (result)
+            {
+                MessageBox.Show("작업지시 삭제가 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("작업지시 삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+            OnReLoad();
+        }
+
+        public void OnSave()    //저장
+        {
+            bool isVaild = WorkOrderValidChk();
+            if (!isVaild)
+            {
+                ((frmMain)this.MdiParent).AddClickEvent();
+                return;
+            }
+
+            if (clickState == ButtonClick.Add) //추가
+            {
+                WorkOrderDTO wo = new WorkOrderDTO
+                {
+                    Plan_Date = dtpWo.Value,
+                    Plan_Qty_Box = Convert.ToInt32(txtWoQty.Text),
+                    Wc_Code = ucWc2._Code,
+                    Item_Code = ucProd2._Code,
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
+                };
+
+                bool result = srv.InserWorkOrder(wo);
+                if (result)
+                {
+                    MessageBox.Show("작업지시 생성이 완료되었습니다.");
+                }
+                else
+                {
+                    MessageBox.Show("작업지시 생성 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
+            }
+            else if (clickState == ButtonClick.Edit)
+            {
+                WorkOrderDTO wo = new WorkOrderDTO
+                {
+                    Plan_Date = dtpWo.Value,
+                    Plan_Qty_Box = Convert.ToInt32(txtWoQty.Text),
+                    Wc_Code = ucWc2._Code,
+                    Item_Code = ucProd2._Code,
+                    Up_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID,
+                    WorkOrderNo = txtWorkOrder.Text
+                };
+
+                bool result = srv.UpdateWorkOrder(wo);
+                if (result)
+                {
+                    MessageBox.Show("작업지시 수정이 완료되었습니다.");
+                }
+                else
+                {
+                    MessageBox.Show("작업지시 수정 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
+            }
+
+            clickState = ButtonClick.None;
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+            OnReLoad();
+        }
+
+        public void OnCancel()  //취소
+        {
+            SetInitPnl();
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+            clickState = ButtonClick.None;
+        }
+
+        public void OnReLoad()  //새로고침
+        {
+            SetInit();
+            LoadData();
+        }
+
+        #endregion
+
+        //유효성 체크
+        private bool WorkOrderValidChk()
+        {
+            if (string.IsNullOrWhiteSpace(ucProcess2._Code) ||
+                    string.IsNullOrWhiteSpace(ucProcess2._Name))
+            {
+                MessageBox.Show("공정 정보를 입력해주세요.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(ucWc2._Code) ||
+                    string.IsNullOrWhiteSpace(ucWc2._Name))
+            {
+                MessageBox.Show("작업장 정보를 입력해주세요.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(ucProd2._Code) ||
+                   string.IsNullOrWhiteSpace(ucProd2._Name))
+            {
+                MessageBox.Show("품목 정보를 입력해주세요.");
+                return false;
+            }
+
+            if (dtpWo.Value < DateTime.Today)
+            {
+                MessageBox.Show("작업지시 일자는 오늘 이전으로 설정할 수 없습니다.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtWoQty.Text) || Convert.ToInt32(txtWoQty.Text) == 0)
+            {
+                MessageBox.Show("작업지시 수량을 입력해주세요.");
+                return false;
+            }
+
+            return true;
         }
 
 
@@ -102,33 +495,46 @@ namespace Team2_Project
             return itemPopInfo;
         }
 
-        private void OpenPop<T>(CommonPop<T> popInfo, DataGridView dgv, int rowIndex) where T : class, new()
+        private CommonPop<ProcessMasterDTO> GetProcessPopInfo()
         {
-            frmPop pop = new frmPop();
-            pop.PopLoadData<T>(popInfo);
-
-            if (pop.ShowDialog() == DialogResult.OK)
+            if (prcList == null)
             {
-                dgv[popInfo.DgvCols[0].DataPropertyName, rowIndex].Value = pop.SelCode;
-                dgv[popInfo.DgvCols[1].DataPropertyName, rowIndex].Value = pop.SelName;
+                ProcessMasterService srv = new ProcessMasterService();
+                prcList = srv.GetPrcCodeName();
             }
-        }
 
+            CommonPop<ProcessMasterDTO> prcPopInfo = new CommonPop<ProcessMasterDTO>();
+            prcPopInfo.DgvDatasource = prcList;
+            prcPopInfo.PopName = "공정 검색";
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
+
+            prcPopInfo.DgvCols = colList;
+
+            return prcPopInfo;
+        }
         #endregion
 
         private void ucProd_BtnClick(object sender, EventArgs e)
         {
+            ucSearch ucProd = (ucSearch)sender;
             ucProd.OpenPop(GetItemPopInfo());
         }
 
         private void ucWc_BtnClick(object sender, EventArgs e)
         {
+            ucSearch ucWc = (ucSearch)sender;
             ucWc.OpenPop(GetWcPopInfo());
         }
 
         private void ucProcess_BtnClick(object sender, EventArgs e)
         {
-
+            ucSearch ucProcess = (ucSearch)sender;
+            ucProcess.OpenPop(GetProcessPopInfo());
         }
+
+
     }
 }

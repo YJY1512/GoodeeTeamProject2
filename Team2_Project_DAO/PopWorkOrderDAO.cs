@@ -27,9 +27,46 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        //publci List<> GetWorkOrders(string ){
+        public List<WorkOrderDTO> GetWorkOrders(string Wc_Code)
+        {
+            List<WorkOrderDTO> result = new List<WorkOrderDTO>();
 
-        //}
+            using (SqlCommand cmd = new SqlCommand("SP_PopWorkOrderList", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Wc_code", Wc_Code);
+
+                conn.Open();
+                result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
+                conn.Close();
+
+                return result;
+            }
+        }
+
+        public List<WorkOrderDTO> StartWork(WorkOrderDTO work)
+        {
+            List<WorkOrderDTO> result = new List<WorkOrderDTO>();
+
+            using (SqlCommand cmd = new SqlCommand("SP_PopUpdateWorkOrderList", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Wo_Status", work.Wo_Status);
+                cmd.Parameters.AddWithValue("@Prd_Date", work.Prd_Date);
+                cmd.Parameters.AddWithValue("@Prd_Qty", work.Prd_Qty);
+                cmd.Parameters.AddWithValue("@Prd_StartTime", work.Prd_StartTime);
+                cmd.Parameters.AddWithValue("@Prd_EndTime", work.Prd_EndTime);
+                cmd.Parameters.AddWithValue("@Worker_CloseTime", work.Worker_CloseTime);
+                cmd.Parameters.AddWithValue("@Prd_Plan_No", work.Prd_Plan_No);
+                cmd.Parameters.AddWithValue("@Wc_code", work.Wc_Code);
+
+                conn.Open();
+                result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
+                conn.Close();
+
+                return result;
+            }
+        }
 
     }
 }

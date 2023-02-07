@@ -15,16 +15,26 @@ namespace Team2_Project_WEB.Models
         public decimal Progress { get; set; }
         public int Prd_Qty { get; set; }
         public int TotDef { get; set; }
+        public string Prd_StartTime { get; set; }
+        public string Prd_EndTime { get; set; }
         public int Total { get { return Prd_Qty + TotDef; } }
-        public decimal FairRatio { get {
+
+        public decimal FairRatio { get 
+            {
                 if (Total == 0)
                     return 0;
                 else
-                    return Math.Round((decimal)Prd_Qty * 100 / Total, 2); } }
-        public decimal DefRatio { get {
+                    return Math.Round((decimal)Prd_Qty * 100 / Total, 2); 
+            } 
+        }
+
+        public decimal DefRatio { get 
+            {
                 if (Total == 0)
                     return 0;
                 else
-                    return Math.Round((decimal)TotDef * 100 / Total, 2); } }
+                    return Math.Round((decimal)TotDef * 100 / Total, 2); 
+            } 
+        }
     }
 }

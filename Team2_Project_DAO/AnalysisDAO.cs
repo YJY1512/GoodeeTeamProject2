@@ -91,7 +91,9 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"@@@@@";
+                string sql = @"SELECT Sys_Ma_Code Category, Sys_Mi_Code Code, Sys_Mi_Name Name
+                                 FROM Sys_Mi_Master
+                                WHERE Sys_Ma_Code = 'WO_STATUS'";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
                 List<CodeDTO> list = Helper.DataReaderMapToList<CodeDTO>(cmd.ExecuteReader());

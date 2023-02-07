@@ -34,12 +34,14 @@ namespace Team2_Project_POP
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btnGoHome = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.btnGoHome);
             this.panel1.Controls.Add(this.lblSelected);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnClose);
@@ -91,6 +93,19 @@ namespace Team2_Project_POP
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemAdded += new System.Windows.Forms.ToolStripItemEventHandler(this.menuStrip1_ItemAdded);
             // 
+            // btnGoHome
+            // 
+            this.btnGoHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGoHome.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.btnGoHome.ForeColor = System.Drawing.Color.White;
+            this.btnGoHome.Location = new System.Drawing.Point(1268, 5);
+            this.btnGoHome.Name = "btnGoHome";
+            this.btnGoHome.Size = new System.Drawing.Size(200, 120);
+            this.btnGoHome.TabIndex = 5;
+            this.btnGoHome.Text = "홈으로";
+            this.btnGoHome.UseVisualStyleBackColor = false;
+            this.btnGoHome.Click += new System.EventHandler(this.btnGoHome_Click);
+            // 
             // frmParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -118,5 +133,6 @@ namespace Team2_Project_POP
         private System.Windows.Forms.MenuStrip menuStrip1;
         public System.Windows.Forms.Label lblSelected;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnGoHome;
     }
 }

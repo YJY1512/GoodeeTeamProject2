@@ -101,6 +101,14 @@ namespace Team2_Project.Services
             return list;
         }
 
+        public List<CodeDTO> GetNopType()
+        {
+            NopCodeDAO db = new NopCodeDAO();
+            List<CodeDTO> list = db.GetNopType();
+            db.Dispose();
+            return list;
+        }
+
         #region 미사용
         public List<NopMaCodeDTO> GetMaCurItem(string item)
         {
