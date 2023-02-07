@@ -45,5 +45,25 @@ namespace Team2_Project_POP
         {
             Application.Exit();
         }
+
+        private void btnGoHome_Click(object sender, EventArgs e)
+        {
+            Type frmType = this.ActiveMdiChild.GetType();
+            if (frmType == typeof(frmSelect))
+                return;
+
+            this.lblSelected.Text = "";
+            this.LoginedOrders = null;
+            this.LoginedWorkCenter = null;
+
+            foreach(Form frms in this.MdiChildren)
+                frms.Close();
+            
+            frmSelect frm = new frmSelect();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+
+        }
     }
 }

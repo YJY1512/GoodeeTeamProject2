@@ -22,10 +22,19 @@ namespace Team2_Project_POP.Services
         public List<WorkOrderDTO> GetOrders(string Wc_Code)
         {
             PopWorkOrderDAO db = new PopWorkOrderDAO();
-            //List<WorkOrderDTO> list = db.GetWorkOrders(Wc_Code);
+            List<WorkOrderDTO> list = db.GetWorkOrders(Wc_Code);
             db.Dispose();
 
-            return null; // list;
+            return list;
+        }
+
+        public List<WorkOrderDTO> StartWork(WorkOrderDTO work)
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            List<WorkOrderDTO> list = db.StartWork(work);
+            db.Dispose();
+
+            return list;
         }
     }
 }

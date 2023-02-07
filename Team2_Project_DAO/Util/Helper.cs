@@ -83,7 +83,7 @@ namespace Team2_Project_DAO
         {
             foreach (DataRow row in  reader.GetSchemaTable().Rows)
             {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         if (row["ColumnName"].ToString() == columnName)
+                    if (row["ColumnName"].ToString() == columnName)
                     return true;
             }
             return false;
