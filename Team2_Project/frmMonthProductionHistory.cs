@@ -49,13 +49,14 @@ namespace Team2_Project
             dgvData.MultiSelect = false;
 
             OnSearch();
+            ChartData();
         }
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
 
-            ChartData();
+
         }
 
         public void OnReLoad()  //새로고침
