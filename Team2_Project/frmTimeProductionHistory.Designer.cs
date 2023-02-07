@@ -323,7 +323,8 @@ namespace Team2_Project
             this.cboTest.Items.AddRange(new object[] {
             "WorkOrder_001",
             "WorkOrder_002",
-            "WorkOrder_003"});
+            "WorkOrder_003",
+            "WorkOrder_004"});
             this.cboTest.Location = new System.Drawing.Point(1638, 54);
             this.cboTest.Name = "cboTest";
             this.cboTest.Size = new System.Drawing.Size(194, 25);
