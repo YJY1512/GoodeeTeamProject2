@@ -44,7 +44,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
             dgvData.MultiSelect = false;
 
