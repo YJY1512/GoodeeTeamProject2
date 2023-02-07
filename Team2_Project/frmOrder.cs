@@ -22,7 +22,7 @@ namespace Team2_Project
         DataTable dt;
         List<ItemDTO> itemCodeList;
         List<ProjectDTO> projectCodeList;
-        Dictionary<string, string> categoryList = new Dictionary<string, string>() { { "D", "납기일자" }, { "R", "요청일자" } };
+        Dictionary<string, string> categoryList = new Dictionary<string, string>() { { "R", "요청일자" }, { "D", "납기일자" } };
         int idx;    //추가/수정하는 행의 index
         int stat;   //0 = 일반, 1 = 추가, 2 = 수정 상태
         //bool cellEditStat = false;
@@ -46,17 +46,17 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 120); //2
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 140); //3
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "Company_Name", 140); //4
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 120, align: DataGridViewContentAlignment.MiddleCenter); //5
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 120, align: DataGridViewContentAlignment.MiddleCenter); //6
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 125, align: DataGridViewContentAlignment.MiddleCenter); //5
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 125, align: DataGridViewContentAlignment.MiddleCenter); //6
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 120); //7
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 140); //8
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 80, align: DataGridViewContentAlignment.MiddleRight); //9
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 525); //10
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 515); //10
             dgvOrder.MultiSelect = false;
 
             foreach (int i in orangeCols)
             {
-                dgvOrder.Columns[i].DefaultCellStyle.BackColor = Color.Orange;
+                dgvOrder.Columns[i].DefaultCellStyle.BackColor = Color.PeachPuff;
             }
             
             cbo.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -74,7 +74,7 @@ namespace Team2_Project
         /// </summary>
         private void ResetSearchCtrls()
         {
-            dtpSearchFrom.Value = DateTime.Today;
+            dtpSearchFrom.Value = DateTime.Today.AddMonths(-1);
             dtpSearchTo.Value = DateTime.Today.AddMonths(1);
             ucSearchItem._Code = "";
             ucSearchItem._Name = "";

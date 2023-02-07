@@ -34,21 +34,17 @@ namespace Team2_Project
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.trvAllList = new System.Windows.Forms.TreeView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lstSubList = new System.Windows.Forms.ListBox();
-            this.lstFavorite = new System.Windows.Forms.ListBox();
-            this.trvFavList = new System.Windows.Forms.TreeView();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnNodeUp = new System.Windows.Forms.Button();
             this.btnNodeDown = new System.Windows.Forms.Button();
             this.btnNodeDel = new System.Windows.Forms.Button();
+            this.trvFavorite = new System.Windows.Forms.TreeView();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +58,7 @@ namespace Team2_Project
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1160, 30);
+            this.panel1.Size = new System.Drawing.Size(1012, 30);
             this.panel1.TabIndex = 6;
             // 
             // btnClose
@@ -70,7 +66,7 @@ namespace Team2_Project
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(1125, 0);
+            this.btnClose.Location = new System.Drawing.Point(977, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(35, 30);
             this.btnClose.TabIndex = 1;
@@ -95,29 +91,13 @@ namespace Team2_Project
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.btnCancel);
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.panel3.Controls.Add(this.btnSave);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 507);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1160, 50);
+            this.panel3.Size = new System.Drawing.Size(1012, 50);
             this.panel3.TabIndex = 8;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnCancel.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(1067, 8);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(80, 34);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "취소";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -126,9 +106,9 @@ namespace Team2_Project
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.btnSave.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(962, 8);
+            this.btnSave.Location = new System.Drawing.Point(884, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(80, 34);
+            this.btnSave.Size = new System.Drawing.Size(125, 44);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "저장";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -136,6 +116,7 @@ namespace Team2_Project
             // 
             // trvAllList
             // 
+            this.trvAllList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.trvAllList.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.trvAllList.Location = new System.Drawing.Point(12, 69);
             this.trvAllList.Name = "trvAllList";
@@ -159,30 +140,22 @@ namespace Team2_Project
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnAdd.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(526, 242);
+            this.btnAdd.Location = new System.Drawing.Point(598, 242);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 55);
+            this.btnAdd.Size = new System.Drawing.Size(75, 83);
             this.btnAdd.TabIndex = 12;
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(526, 329);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 55);
-            this.btnDelete.TabIndex = 13;
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(935, 49);
+            this.label3.Location = new System.Drawing.Point(774, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 17);
             this.label3.TabIndex = 15;
@@ -190,97 +163,81 @@ namespace Team2_Project
             // 
             // lstSubList
             // 
+            this.lstSubList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.lstSubList.FormattingEnabled = true;
             this.lstSubList.ItemHeight = 17;
-            this.lstSubList.Location = new System.Drawing.Point(314, 158);
+            this.lstSubList.Location = new System.Drawing.Point(328, 108);
             this.lstSubList.Name = "lstSubList";
-            this.lstSubList.Size = new System.Drawing.Size(197, 327);
+            this.lstSubList.Size = new System.Drawing.Size(253, 378);
             this.lstSubList.TabIndex = 18;
-            // 
-            // lstFavorite
-            // 
-            this.lstFavorite.FormattingEnabled = true;
-            this.lstFavorite.ItemHeight = 17;
-            this.lstFavorite.Location = new System.Drawing.Point(616, 158);
-            this.lstFavorite.Name = "lstFavorite";
-            this.lstFavorite.Size = new System.Drawing.Size(197, 327);
-            this.lstFavorite.TabIndex = 19;
-            // 
-            // trvFavList
-            // 
-            this.trvFavList.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.trvFavList.Location = new System.Drawing.Point(845, 69);
-            this.trvFavList.Name = "trvFavList";
-            this.trvFavList.ShowLines = false;
-            this.trvFavList.ShowPlusMinus = false;
-            this.trvFavList.ShowRootLines = false;
-            this.trvFavList.Size = new System.Drawing.Size(265, 416);
-            this.trvFavList.TabIndex = 20;
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
-            this.label4.Location = new System.Drawing.Point(400, 116);
+            this.label4.Location = new System.Drawing.Point(442, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 39);
             this.label4.TabIndex = 16;
             // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
-            this.label5.Location = new System.Drawing.Point(695, 116);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 39);
-            this.label5.TabIndex = 21;
-            // 
             // btnNodeUp
             // 
+            this.btnNodeUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnNodeUp.Image = ((System.Drawing.Image)(resources.GetObject("btnNodeUp.Image")));
-            this.btnNodeUp.Location = new System.Drawing.Point(1116, 69);
+            this.btnNodeUp.Location = new System.Drawing.Point(959, 69);
             this.btnNodeUp.Name = "btnNodeUp";
-            this.btnNodeUp.Size = new System.Drawing.Size(33, 39);
+            this.btnNodeUp.Size = new System.Drawing.Size(43, 39);
             this.btnNodeUp.TabIndex = 22;
-            this.btnNodeUp.UseVisualStyleBackColor = true;
+            this.btnNodeUp.UseVisualStyleBackColor = false;
             this.btnNodeUp.Click += new System.EventHandler(this.btnNodeUp_Click);
             // 
             // btnNodeDown
             // 
+            this.btnNodeDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnNodeDown.Image = ((System.Drawing.Image)(resources.GetObject("btnNodeDown.Image")));
-            this.btnNodeDown.Location = new System.Drawing.Point(1116, 116);
+            this.btnNodeDown.Location = new System.Drawing.Point(959, 116);
             this.btnNodeDown.Name = "btnNodeDown";
-            this.btnNodeDown.Size = new System.Drawing.Size(33, 39);
+            this.btnNodeDown.Size = new System.Drawing.Size(43, 39);
             this.btnNodeDown.TabIndex = 23;
-            this.btnNodeDown.UseVisualStyleBackColor = true;
+            this.btnNodeDown.UseVisualStyleBackColor = false;
             this.btnNodeDown.Click += new System.EventHandler(this.btnNodeDown_Click);
             // 
             // btnNodeDel
             // 
+            this.btnNodeDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnNodeDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNodeDel.Image")));
-            this.btnNodeDel.Location = new System.Drawing.Point(1116, 161);
+            this.btnNodeDel.Location = new System.Drawing.Point(959, 161);
             this.btnNodeDel.Name = "btnNodeDel";
-            this.btnNodeDel.Size = new System.Drawing.Size(33, 39);
+            this.btnNodeDel.Size = new System.Drawing.Size(43, 39);
             this.btnNodeDel.TabIndex = 24;
-            this.btnNodeDel.UseVisualStyleBackColor = true;
+            this.btnNodeDel.UseVisualStyleBackColor = false;
             this.btnNodeDel.Click += new System.EventHandler(this.btnNodeDel_Click);
+            // 
+            // trvFavorite
+            // 
+            this.trvFavorite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.trvFavorite.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.trvFavorite.ItemHeight = 30;
+            this.trvFavorite.Location = new System.Drawing.Point(689, 69);
+            this.trvFavorite.Name = "trvFavorite";
+            this.trvFavorite.ShowLines = false;
+            this.trvFavorite.ShowPlusMinus = false;
+            this.trvFavorite.Size = new System.Drawing.Size(264, 416);
+            this.trvFavorite.TabIndex = 26;
             // 
             // frmFavorite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.ClientSize = new System.Drawing.Size(1160, 557);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1012, 557);
+            this.Controls.Add(this.trvFavorite);
             this.Controls.Add(this.btnNodeDel);
             this.Controls.Add(this.btnNodeDown);
             this.Controls.Add(this.btnNodeUp);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.trvFavList);
-            this.Controls.Add(this.lstFavorite);
             this.Controls.Add(this.lstSubList);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trvAllList);
@@ -306,20 +263,16 @@ namespace Team2_Project
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TreeView trvAllList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox lstSubList;
-        private System.Windows.Forms.ListBox lstFavorite;
-        private System.Windows.Forms.TreeView trvFavList;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnNodeUp;
         private System.Windows.Forms.Button btnNodeDown;
         private System.Windows.Forms.Button btnNodeDel;
+        private System.Windows.Forms.TreeView trvFavorite;
     }
 }

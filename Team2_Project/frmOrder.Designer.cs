@@ -29,7 +29,7 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvOrder = new System.Windows.Forms.DataGridView();
@@ -39,6 +39,8 @@ namespace Team2_Project
             this.ucSearchProject = new Team2_Project.Controls.ucSearch();
             this.label5 = new System.Windows.Forms.Label();
             this.cbo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -59,8 +61,13 @@ namespace Team2_Project
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.label1);
+            this.pnlTitle.Controls.Add(this.label4);
             this.pnlTitle.Location = new System.Drawing.Point(0, 60);
             this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
+            this.pnlTitle.Controls.SetChildIndex(this.lblTitle, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label4, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label1, 0);
             // 
             // pnlList
             // 
@@ -104,8 +111,8 @@ namespace Team2_Project
             this.dgvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOrder.Location = new System.Drawing.Point(0, 0);
             this.dgvOrder.Name = "dgvOrder";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dgvOrder.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dgvOrder.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOrder.RowTemplate.Height = 23;
             this.dgvOrder.Size = new System.Drawing.Size(1834, 808);
             this.dgvOrder.TabIndex = 0;
@@ -178,6 +185,25 @@ namespace Team2_Project
             this.cbo.Size = new System.Drawing.Size(110, 25);
             this.cbo.TabIndex = 76;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(157, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "입력항목";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.PeachPuff;
+            this.label4.Location = new System.Drawing.Point(119, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 18);
+            this.label4.TabIndex = 4;
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 17F);
@@ -207,5 +233,7 @@ namespace Team2_Project
         private Controls.ucSearch ucSearchProject;
         protected System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }

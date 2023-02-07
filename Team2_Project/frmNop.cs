@@ -53,6 +53,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류명", "Nop_Ma_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동유형", "Nop_type", 150);
             dgvData.MultiSelect = false;
+            dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
         }
 

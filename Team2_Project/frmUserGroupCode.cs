@@ -42,7 +42,6 @@ namespace Team2_Project
 
             SetInitEditPnl();
             LoadData();
-            dgvGroup.DataSource = null;
         }
 
         private void LoadData()
@@ -52,7 +51,10 @@ namespace Team2_Project
             dgvGroup.ClearSelection();
             dgvGroup.DataSource = null;
             dgvGroup.DataSource = gc;
-            
+            if (dgvGroup.CurrentRow != null)
+            {
+                dgvGroup_CellClick(dgvGroup, new DataGridViewCellEventArgs(0, dgvGroup.CurrentRow.Index));
+            }         
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금

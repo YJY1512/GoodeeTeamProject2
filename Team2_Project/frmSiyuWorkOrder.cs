@@ -210,6 +210,7 @@ namespace Team2_Project
 
         private void btnWoEdit_Click(object sender, EventArgs e) //작업지시 수정저장
         {
+            dgvPlan.Enabled = false;
             dgvWorkOrder.Enabled = false;
             SetWobtnEnabled(false);
             clickState = ButtonClick.Edit;
@@ -252,6 +253,7 @@ namespace Team2_Project
             if (wo.Count < 1)
             {
                 MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                dgvPlan.Enabled = true;
                 dgvWorkOrder.Enabled = true;
                 SetWobtnEnabled(true);
                 clickState = ButtonClick.None;
@@ -270,6 +272,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             dgvWorkOrder.Enabled = true;
+            dgvPlan.Enabled = true;
             SetWobtnEnabled(true);            
             OnReLoad();
 
@@ -583,18 +586,48 @@ namespace Team2_Project
         private void dgvWorkOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
+                
             if (e.ColumnIndex == dgvWorkOrder.Columns["Plan_Date"].Index)
-            {
+            {                
                 SetDtpCell(dgvWorkOrder[e.ColumnIndex, e.RowIndex]);
+
+                if (clickState != ButtonClick.Add)
+                {
+                    dgvPlan.Enabled = false;
+                    clickState = ButtonClick.Edit;
+                    rIdx = e.RowIndex;
+                }
             }
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Wc_Code"].Index || e.ColumnIndex == dgvWorkOrder.Columns["Wc_Name"].Index)
             {
                 OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvWorkOrder, e.RowIndex);
+
+                if (clickState != ButtonClick.Add)
+                {
+                    dgvPlan.Enabled = false;
+                    clickState = ButtonClick.Edit;
+                    rIdx = e.RowIndex;
+                }
             }
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Remark"].Index)
             {
                 dgvWorkOrder[e.ColumnIndex, e.RowIndex].ReadOnly = false;
+
+                if (clickState != ButtonClick.Add)
+                {
+                    dgvPlan.Enabled = false;
+                    clickState = ButtonClick.Edit;
+                    rIdx = e.RowIndex;
+                }
+            }
+            else if (e.ColumnIndex == dgvWorkOrder.Columns["Plan_Qty_Box"].Index)
+            {
+                if (clickState != ButtonClick.Add)
+                {
+                    dgvPlan.Enabled = false;
+                    clickState = ButtonClick.Edit;
+                    rIdx = e.RowIndex;
+                }
             }
 
             if (e.ColumnIndex != dgvWorkOrder.Columns["Plan_Date"].Index 
@@ -605,6 +638,41 @@ namespace Team2_Project
                 Dtp_CloseUp(dgvWorkOrder.Tag, null);             
             }
         }
+
+
+        //Add, Edit 상태일 때 cell 선택 불가하게
+        private void dgvWorkOrder_SelectionChanged(object sender, EventArgs e)
+        {
+            if (clickState == ButtonClick.Add || clickState == ButtonClick.Edit)
+            {
+                dgvWorkOrder.CurrentCell.Selected = false;
+                dgvWorkOrder.CurrentCell = dgvWorkOrder.Rows[rIdx].Cells[0];
+            }
+        }
+
+        #region 데이터그리드뷰 숫자만 입력가능하게
+        private void dgvWorkOrder_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            OnDgvCellKeyPress(dgvWorkOrder, "Plan_Qty_Box", e);
+        }
+
+        //데이터그리드뷰 숫자만 입력가능 관련 공통 메서드
+        private void OnDgvCellKeyPress(DataGridView dgv, string colName, DataGridViewEditingControlShowingEventArgs e)
+        {
+            string curCol = dgv.CurrentCell.OwningColumn.Name;
+
+            if (curCol == colName)
+                e.Control.KeyPress += CheckIsNum;
+            else
+                e.Control.KeyPress -= CheckIsNum;
+        }
+
+        private void CheckIsNum(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+        #endregion
 
 
         #region 데이터그리드뷰 dtp 관련 메서드
@@ -741,6 +809,8 @@ namespace Team2_Project
         }
 
 
+
+
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -852,14 +922,19 @@ namespace Team2_Project
 
             if (clickState == ButtonClick.Add)
             {
-                clickState = ButtonClick.None;
-
                 filterWoDt.Rows.RemoveAt(rIdx);
                 rIdx = -1;
 
-                dgvPlan.Enabled = true;
                 SetWobtnEnabled(true);
             }
+
+            if (dgvWorkOrder.Tag != null)
+            {
+                Dtp_CloseUp(dgvWorkOrder.Tag, null);
+            }
+
+            dgvPlan.Enabled = true;
+            clickState = ButtonClick.None;
         }
 
         public void OnReLoad()  //새로고침
@@ -869,5 +944,7 @@ namespace Team2_Project
         }
 
         #endregion
+
+       
     }
 }

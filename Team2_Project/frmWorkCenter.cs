@@ -41,6 +41,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 공정명", "Process_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 팔렛생성여부", "Pallet_YN", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 사용여부", "Use_YN", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 실적단위", "Prd_Unit", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 150);
 
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹", "Wc_Group",visible:false);
@@ -58,7 +59,6 @@ namespace Team2_Project
             SetInitEditPnl();
             processList = prosrv.SetData();
             LoadData();
-            dgvWorkShop.DataSource = null;
         }
         private void LoadData()
         {
@@ -66,7 +66,10 @@ namespace Team2_Project
             BindingSource bs = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
             dgvWorkShop.DataSource = null;
             dgvWorkShop.DataSource = bs;
-            dgvWorkShop.ClearSelection();
+            if (dgvWorkShop.CurrentRow != null)
+            {
+                dgvWorkShop_CellClick(dgvWorkShop, new DataGridViewCellEventArgs(0, dgvWorkShop.CurrentRow.Index));
+            }
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
@@ -137,7 +140,7 @@ namespace Team2_Project
 
         public void OnSearch()  //검색
         {
-            string cenCode = txtSearchCode.Text;
+            string cenCode = txtSearchCode.Text.ToUpper();
             string cenName = txtSearchName.Text;
             string proCode = ucSrchProcCode._Code;
             string useYN = (cboSearchUseYN.SelectedItem.ToString() == "전체") ? "" : cboSearchUseYN.SelectedItem.ToString();
@@ -290,6 +293,7 @@ namespace Team2_Project
                     Process_Name = ucProcCode._Name,
                     Pallet_YN = (cboPalletYN.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
+                    Prd_Unit = cboUnit.SelectedValue.ToString(),
                     Remark = txtRemark.Text,
                     Ins_Emp = empID
                 };
@@ -317,6 +321,7 @@ namespace Team2_Project
                     Process_Name = ucProcCode._Name,
                     Pallet_YN = (cboPalletYN.SelectedItem.ToString() == "예") ? "Y" : "N",
                     Use_YN = (cboUseYN.SelectedItem.ToString() == "예") ? "Y" : "N",
+                    Prd_Unit = cboUnit.SelectedValue.ToString(),
                     Remark = txtRemark.Text,
                     Up_Emp = empID
                 };

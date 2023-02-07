@@ -80,8 +80,8 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"Insert Into WorkCenter_Master(Wc_Code, Wc_Name, Wc_Group, Wo_Status, Process_Code, Remark, Use_YN, Pallet_YN, Ins_Emp)
-				                        Values (@Wc_Code, @Wc_Name, @Wc_Group , 'W01' ,@Process_Code, @Remark, @Use_YN, @Pallet_YN, @Ins_Emp)";
+                string sql = @"Insert Into WorkCenter_Master(Wc_Code, Wc_Name, Wc_Group, Wo_Status, Process_Code, Remark, Use_YN, Prd_Unit, Pallet_YN, Ins_Emp)
+				                        Values (@Wc_Code, @Wc_Name, @Wc_Group , 'W01' ,@Process_Code, @Remark, @Use_YN, @Prd_Unit, @Pallet_YN, @Ins_Emp)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Wc_Code", wc.Wc_Code);
                 cmd.Parameters.AddWithValue("@Wc_Name", wc.Wc_Name);
@@ -89,6 +89,7 @@ namespace Team2_Project_DAO
                 cmd.Parameters.AddWithValue("@Process_Code", wc.Process_Code);
                 cmd.Parameters.AddWithValue("@Remark", wc.Remark);
                 cmd.Parameters.AddWithValue("@Use_YN", wc.Use_YN);
+                cmd.Parameters.AddWithValue("@Prd_Unit", wc.Prd_Unit);
                 cmd.Parameters.AddWithValue("@Pallet_YN", wc.Pallet_YN);
                 cmd.Parameters.AddWithValue("@Ins_Emp", wc.Ins_Emp);
 
@@ -113,7 +114,7 @@ namespace Team2_Project_DAO
             {
                 string sql = @"Update WorkCenter_Master
                                Set Wc_Name = @Wc_Name, Wc_Group = @Wc_Group, Process_Code = @Process_Code, Remark = @Remark, 
-                               	 Use_YN = @Use_YN, Pallet_YN = @Pallet_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                               	 Use_YN = @Use_YN, Prd_Unit = @Prd_Unit , Pallet_YN = @Pallet_YN, Up_Date = GETDATE(), Up_Emp = @Up_Emp
                                where Wc_Code = @Wc_Code";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -123,6 +124,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Process_Code", wc.Process_Code);
                     cmd.Parameters.AddWithValue("@Remark", wc.Remark);
                     cmd.Parameters.AddWithValue("@Use_YN", wc.Use_YN);
+                    cmd.Parameters.AddWithValue("@Prd_Unit", wc.Use_YN);
                     cmd.Parameters.AddWithValue("@Pallet_YN", wc.Pallet_YN);
                     cmd.Parameters.AddWithValue("@Up_Emp", wc.Up_Emp);
                     cmd.Parameters.AddWithValue("@Wc_Code", wc.Wc_Code);
