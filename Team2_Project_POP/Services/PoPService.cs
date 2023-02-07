@@ -28,10 +28,10 @@ namespace Team2_Project_POP.Services
             return list;
         }
 
-        public List<WorkOrderDTO> StartWork(WorkOrderDTO work)
+        public List<WorkOrderDTO> StartWork(string WorkOrderNo, string Wc_Code)
         {
             PopWorkOrderDAO db = new PopWorkOrderDAO();
-            List<WorkOrderDTO> list = db.StartWork(work);
+            List<WorkOrderDTO> list = db.StartWork(WorkOrderNo, Wc_Code);
             db.Dispose();
 
             return list;

@@ -17,6 +17,7 @@ namespace Team2_Project_DTO
 		public string Wc_Code { get; set; }  //
 		public string Wc_Name { get; set; }  //
 		public string Wo_Status { get; set; }    //
+		public string Wo_Status_Code { get; set; }//
 		public int Wo_Order { get; set; }    //작업순서
 		public DateTime Plan_StartTime { get; set; }     //
 		public DateTime Plan_EndTime { get; set; }   //
@@ -42,6 +43,6 @@ namespace Team2_Project_DTO
 		public string Process_Code { get; set; }    //
 		public string Process_Name { get; set; }    //
 
-		public string Wo_Status_code { get; set; }
+		
 	}
 }

@@ -45,6 +45,7 @@ namespace Team2_Project_POP
                 list.Dock = DockStyle.Top;
                 list.Name = $"list{i}";
                 list.Status = workList[i].Wo_Status;
+                list.Status_Code = workList[i].Wo_Status_Code;
                 list.Plan_Date = workList[i].Plan_Date;
                 list.Prd_Date = workList[i].Prd_Date;
                 list.WorkOrderNo = workList[i].WorkOrderNo;
@@ -52,15 +53,14 @@ namespace Team2_Project_POP
                 list.ItemCode = workList[i].Item_Code;
                 list.PlanQty = workList[i].Plan_Qty_Box;
                 list.Prd_Qty = workList[i].Prd_Qty;
-                list.StartTime = workList[i].Plan_StartTime;
+                list.StartTime = workList[i].Prd_StartTime;
                 list.EndTime = workList[i].Prd_EndTime;
                 list.Remark = workList[i].Remark;
                 list.Wc_Code = workList[i].Wc_Code;
                 list.isClick = false;
 
                 list.UcListClick += List_ucListClick;
-                list.UcListEnter += List_ucListEnter;
-                list.UcListLeave += List_ucListLeave;
+                
                 pnlList.Controls.Add(list);
             }
 
@@ -147,37 +147,51 @@ namespace Team2_Project_POP
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (selectedList == null || selectedList.lblStatuse.Text == "생산중" || selectedList.lblStatuse.Text == "현장마감") return;
+            if (selectedList == null) return;
 
             // 대기 >>  생산 중인 경우
-            WorkOrderDTO work = new WorkOrderDTO();
-            if (selectedList.lblStatuse.Text == "대기")
+
+            ((frmParent)this.MdiParent).LoginedOrders = serv.StartWork(selectedList.WorkOrderNo, ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Code);
+            pnlList.Controls.Clear();
+
+            workList = ((frmParent)this.MdiParent).LoginedOrders;
+
+            for (int i = 0; i < workList.Count; i++)
             {
-                work.Wo_Status = "W02";
-                work.Plan_Date = Convert.ToDateTime(selectedList.lblPlanDate.Text);
-                work.Prd_Date = DateTime.Now;
-                work.Prd_Plan_No = selectedList.lblProcessNum.Text;
-                work.Item_Name = selectedList.ItemName;
-                work.Item_Code = selectedList.ItemCode;
-                work.Plan_Qty_Box = Convert.ToInt32(selectedList.lblPlanQty.Text);
-                work.Prd_Qty = Convert.ToInt32(selectedList.lblIngQty.Text);
-                work.Prd_StartTime = DateTime.Now;
-                work.Prd_EndTime = Convert.ToDateTime("00:00:00");
-                work.Remark = selectedList.lblRemark.Text;
-                work.Wc_Code = selectedList.Wc_Code;
+                Controls.ucList list = new Controls.ucList();
 
-                ((frmParent)this.MdiParent).LoginedOrders = serv.StartWork(work);
-                frmProductionList_Load(this, e);
+                list.Size = new Size(100, 100);
+                list.Dock = DockStyle.Top;
+                list.Name = $"list{i}";
+                list.Status = workList[i].Wo_Status;
+                list.Status_Code = workList[i].Wo_Status_Code;
+                list.Plan_Date = workList[i].Plan_Date;
+                list.Prd_Date = workList[i].Prd_Date;
+                list.WorkOrderNo = workList[i].WorkOrderNo;
+                list.ItemName = workList[i].Item_Name;
+                list.ItemCode = workList[i].Item_Code;
+                list.PlanQty = workList[i].Plan_Qty_Box;
+                list.Prd_Qty = workList[i].Prd_Qty;
+                list.StartTime = workList[i].Prd_StartTime;
+                list.EndTime = workList[i].Prd_EndTime;
+                list.Remark = workList[i].Remark;
+                list.Wc_Code = workList[i].Wc_Code;
+                list.isClick = false;
+
+                list.UcListClick += List_ucListClick;
+                pnlList.Controls.Add(list);
             }
+        }
 
+        private void btnPerfomance_Click(object sender, EventArgs e)
+        {
+            if (selectedList == null || selectedList.Status_Code != "W02") return;
+
+            frmPerformance frm = new frmPerformance();
+            frm.MdiParent = this.MdiParent;
+            frm.WindowState = FormWindowState.Maximized;
             
-
-            else if(selectedList.lblStatuse.Text == "생산정지")
-            {
-
-            }
-
-            
+            frm.Show();
         }
     }
 }

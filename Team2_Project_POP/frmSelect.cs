@@ -49,20 +49,9 @@ namespace Team2_Project_POP
                 list.lblWorkSpace.BackColor = list.lblGroup.BackColor = Color.LightSkyBlue;
                 list.lblWorkSpace.ForeColor = list.lblGroup.ForeColor = Color.Black;
                 list.ucListClick += List_ListClick;
-                list.ucListEnter += List_MouseEnter;
-                list.ucListLeave += List_MouseLeave;
+             
                 panel2.Controls.Add(list);
             }
-        }
-
-        private void List_MouseLeave(object sender, EventArgs e)
-        {
-            ((Controls.ucSelectedList)sender).BackColor = Color.White;
-        }
-
-        private void List_MouseEnter(object sender, EventArgs e)
-        {
-            ((Controls.ucSelectedList)sender).BackColor = Color.Black;
         }
 
         private void List_ListClick(object sender, EventArgs e)
