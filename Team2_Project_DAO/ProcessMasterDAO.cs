@@ -164,5 +164,21 @@ namespace Team2_Project_DAO
                 return null;
             }
         }
+
+        //공정 코드랑 이름만 가져오는 메서드 (이은실)
+        public List<ProcessMasterDTO> GetPrcCodeName()
+        {
+            string sql = @"select Process_Code, Process_Name FROM Process_Master
+                            WHERE Use_YN = 'Y'";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                conn.Open();
+                List<ProcessMasterDTO> list = Helper.DataReaderMapToList<ProcessMasterDTO>(cmd.ExecuteReader());
+                conn.Close();
+
+                return list;
+            }
+        }
     }
 }

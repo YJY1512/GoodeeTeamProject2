@@ -26,7 +26,7 @@ namespace Team2_Project_WEB.Models.DAO
                 conn.Close();
         }
 
-        public List<ProductionVO> GetProdOList(string date)
+        public List<ProductionVO> GetProdOList(string date, string code)
         {
             string sql = @"with GetDefData as(
 	                            select wo.WorkOrderNo, sum(Def_Qty) TotDef
@@ -40,13 +40,35 @@ namespace Team2_Project_WEB.Models.DAO
                             from WorkOrder wo inner join Production_Plan_Detail ppd on wo.Prd_Plan_No = ppd.Prd_Plan_No
 	                            inner join Item_Master im on ppd.Item_Code = im.Item_Code
 	                            left outer join GetDefData gd on wo.WorkOrderNo = gd.WorkOrderNo
-                            where convert(date, Plan_Date) = convert(date, @date)
-                            order by wo.WorkOrderNo";
+                            where convert(date, Plan_Date) = convert(date, @date)";
+
+            if (!string.IsNullOrWhiteSpace(code))
+                sql += " and ppd.Item_Code = @code";
+
+            sql += " order by wo.WorkOrderNo";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@date", date);
+                if (!string.IsNullOrWhiteSpace(code))
+                    cmd.Parameters.AddWithValue("@code", code);
 
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
+                reader.Close();
+
+                return list;
+            }
+        }
+
+        public List<ProductionVO> GetProdNoList()
+        {
+            string sql = @"select top 10 WorkOrderNo 
+                            from WorkOrder 
+                            where Plan_Date between convert(varchar(10), dateadd(day, -7, getdate()), 23) and convert(varchar(10), getdate(), 23)";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            { 
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
                 reader.Close();

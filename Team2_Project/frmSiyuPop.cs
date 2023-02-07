@@ -45,6 +45,7 @@ namespace Team2_Project
                     Prd_Plan_No = txtPlanID.Text,
                     Plan_Date = dtpWo.Value,
                     Plan_Qty_Box = Convert.ToInt32(txtWoQty.Text),
+                    Item_Code = ucProd2._Code,
                     Wc_Code = ucWc2._Code,
                     Ins_Emp = this.UserId
                 };

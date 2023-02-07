@@ -41,5 +41,7 @@ namespace Team2_Project_DTO
 
 		public string Process_Code { get; set; }    //
 		public string Process_Name { get; set; }    //
+
+		public string Wo_Status_code { get; set; }
 	}
 }

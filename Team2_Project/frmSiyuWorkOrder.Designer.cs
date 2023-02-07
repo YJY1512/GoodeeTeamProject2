@@ -54,8 +54,8 @@ namespace Team2_Project
             this.btnWoAdd = new System.Windows.Forms.Button();
             this.btnWoDel = new System.Windows.Forms.Button();
             this.btnMsgEdit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlListUP.SuspendLayout();
             this.pnlListDown.SuspendLayout();
@@ -109,8 +109,8 @@ namespace Team2_Project
             // 
             // pnlTitleD
             // 
-            this.pnlTitleD.Controls.Add(this.button1);
-            this.pnlTitleD.Controls.Add(this.button2);
+            this.pnlTitleD.Controls.Add(this.btnCancel);
+            this.pnlTitleD.Controls.Add(this.btnClose);
             this.pnlTitleD.Controls.Add(this.btnMsgEdit);
             this.pnlTitleD.Controls.Add(this.btnWoDel);
             this.pnlTitleD.Controls.Add(this.btnWoAdd);
@@ -142,8 +142,8 @@ namespace Team2_Project
             this.pnlTitleD.Controls.SetChildIndex(this.btnWoAdd, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.btnWoDel, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.btnMsgEdit, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.button2, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.button1, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.btnClose, 0);
+            this.pnlTitleD.Controls.SetChildIndex(this.btnCancel, 0);
             // 
             // ucWc
             // 
@@ -408,25 +408,27 @@ namespace Team2_Project
             this.btnMsgEdit.UseVisualStyleBackColor = false;
             this.btnMsgEdit.Click += new System.EventHandler(this.btnMsgEdit_Click);
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(1360, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 26);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "작업지시 마감취소";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancel.Location = new System.Drawing.Point(1360, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(146, 26);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "작업지시 마감취소";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button2
+            // btnClose
             // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(1208, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 26);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "작업지시 마감";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClose.Location = new System.Drawing.Point(1208, 6);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(146, 26);
+            this.btnClose.TabIndex = 15;
+            this.btnClose.Text = "작업지시 마감";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmSiyuWorkOrder
             // 
@@ -477,7 +479,7 @@ namespace Team2_Project
         private System.Windows.Forms.Button btnWoDel;
         private System.Windows.Forms.Button btnWoAdd;
         private System.Windows.Forms.Button btnWoEdit;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnClose;
     }
 }
