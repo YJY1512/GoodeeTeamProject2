@@ -356,5 +356,53 @@ namespace Team2_Project_DAO
             }
         }
 
+        public bool UpdateMsg(Dictionary<string, string> woMsg, string empID)
+        {
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                string sql = @"update WorkOrder
+                                set Remark = @Remark,
+                                	Up_Date = GETDATE(),
+                                	Up_Emp = @Up_Emp
+                                where WorkOrderNo = @WorkOrderNo";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Up_Emp", empID);
+                    cmd.Parameters.Add("@Remark", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@WorkOrderNo", SqlDbType.NVarChar);
+                    cmd.Transaction = trans;
+
+                    foreach (var msg in woMsg)
+                    {
+                        cmd.Parameters["@Remark"].Value = msg.Value;
+                        cmd.Parameters["@WorkOrderNo"].Value = msg.Key;
+
+                        int iRowAffet = cmd.ExecuteNonQuery();
+
+                        if (iRowAffet < 1)
+                        {
+                            throw new Exception();
+                        }
+                    }
+
+                    trans.Commit();
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                trans.Rollback();
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
 }
