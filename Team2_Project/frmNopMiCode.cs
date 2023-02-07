@@ -103,7 +103,11 @@ namespace Team2_Project
             ResetBottom();        //입력 리셋
             DeactivationBottom(); //입력 비활성화
 
-            dgvMaData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+            if (NopMiList != null && NopMiList.Count > 0)
+            {
+                dgvMaData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+            }
+
         }
 
         public void OnAdd()     //추가

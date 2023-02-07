@@ -137,8 +137,7 @@ namespace Team2_Project
         {
             ItemDTO item = new ItemDTO
             {
-                Item_Code = ucCodeSearch._Code,
-                Item_Name = ucCodeSearch._Name,
+                Item_Code = txtCodeSearch.Text,
                 Item_Type = cboTypeSC.Text,
                 Use_YN = cboUseYNSC.Text
             };
@@ -147,7 +146,12 @@ namespace Team2_Project
             ResetBottom();      //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
 
-            dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+
+            if (itemList != null && itemList.Count > 0)
+            {
+                dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+            }
+            
         }
 
         public void OnAdd()     //추가
@@ -272,18 +276,18 @@ namespace Team2_Project
 
         private void ResetTop() //검색 리셋
         {
-            ucCodeSearch._Code = ucCodeSearch._Name = "";
+            txtCodeSearch.Text = "";
             cboTypeSC.SelectedIndex = cboUseYNSC.SelectedIndex = 0;
         }
 
         private void ActivationTop() //검색 활성화
         {
-            ucCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = true;
+            txtCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = true;
         }
 
         private void DeactivationTop() //검색 비활성화
         {
-            ucCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = false;
+            txtCodeSearch.Enabled = cboTypeSC.Enabled = cboUseYNSC.Enabled = false;
         }
 
         private void ResetBottom() //입력 리셋
@@ -307,19 +311,19 @@ namespace Team2_Project
             txtCode.Enabled = txtName.Enabled = txtRemark.Enabled = cboType.Enabled = cboSpec.Enabled = cboUseYN.Enabled = false;
         }
 
-        private void ucCodeSearch_BtnClick(object sender, EventArgs e)
-        {
-            var list = itemList.GroupBy((g) => g.Item_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
+        //private void ucCodeSearch_BtnClick(object sender, EventArgs e)
+        //{
+        //    var list = itemList.GroupBy((g) => g.Item_Code).Select((g) => g.FirstOrDefault()).ToList();
+        //    List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+        //    colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
+        //    colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
 
-            CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
-            popInfo.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "품목코드 검색";
-            ucCodeSearch.OpenPop(popInfo);
-        }
+        //    CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
+        //    popInfo.DgvDatasource = list;
+        //    popInfo.DgvCols = colList;
+        //    popInfo.PopName = "품목코드 검색";
+        //    ucCodeSearchs.OpenPop(popInfo);
+        //}
 
         private void cboType_SelectedValueChanged(object sender, EventArgs e)
         {

@@ -42,7 +42,7 @@ namespace Team2_Project
             this.cboUseYN = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.ucCodeSearch = new Team2_Project.Controls.ucSearch();
+            this.ucCodeSearch = new System.Windows.Forms.TextBox();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -110,7 +110,7 @@ namespace Team2_Project
             // cboUseYNSC
             // 
             this.cboUseYNSC.FormattingEnabled = true;
-            this.cboUseYNSC.Location = new System.Drawing.Point(729, 18);
+            this.cboUseYNSC.Location = new System.Drawing.Point(535, 18);
             this.cboUseYNSC.Name = "cboUseYNSC";
             this.cboUseYNSC.Size = new System.Drawing.Size(130, 25);
             this.cboUseYNSC.TabIndex = 2;
@@ -119,7 +119,7 @@ namespace Team2_Project
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(650, 22);
+            this.label4.Location = new System.Drawing.Point(456, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 13;
@@ -238,16 +238,12 @@ namespace Team2_Project
             // 
             // ucCodeSearch
             // 
-            this.ucCodeSearch._Code = "";
-            this.ucCodeSearch._Name = "";
-            this.ucCodeSearch.BackColor = System.Drawing.Color.Transparent;
-            this.ucCodeSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucCodeSearch.Location = new System.Drawing.Point(171, 16);
-            this.ucCodeSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.ucCodeSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucCodeSearch.Location = new System.Drawing.Point(181, 18);
+            this.ucCodeSearch.MaxLength = 20;
             this.ucCodeSearch.Name = "ucCodeSearch";
-            this.ucCodeSearch.Size = new System.Drawing.Size(340, 28);
-            this.ucCodeSearch.TabIndex = 1;
-            this.ucCodeSearch.BtnClick += new System.EventHandler(this.ucCodeSearch_BtnClick);
+            this.ucCodeSearch.Size = new System.Drawing.Size(170, 25);
+            this.ucCodeSearch.TabIndex = 62;
             // 
             // frmNopMaCode
             // 
@@ -290,6 +286,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboUseYN;
         protected System.Windows.Forms.Label label10;
-        private Controls.ucSearch ucCodeSearch;
+        protected System.Windows.Forms.TextBox ucCodeSearch;
     }
 }
