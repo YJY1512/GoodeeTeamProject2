@@ -124,7 +124,6 @@ namespace Team2_Project
             dgv.DataSource = ProductionHistoryList;
         }
    
-
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);

@@ -351,5 +351,26 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
+        public List<CodeDTO> GetNopType() //비가동유형cbo바인딩
+        {
+            try
+            {
+                string sql = @"SELECT Userdefine_Mi_Code Code, Userdefine_Ma_Code Category, Userdefine_Mi_Name Name
+                                FROM Userdefine_Mi_Master
+                                WHERE Userdefine_Ma_Code = 'PROC_GROUP'
+								AND Userdefine_Mi_Code IN ('PG050', 'PG070')";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                List<CodeDTO> list = Helper.DataReaderMapToList<CodeDTO>(cmd.ExecuteReader());
+                conn.Close();
+                return list;
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+                return null;
+            }
+        }
     }
 }

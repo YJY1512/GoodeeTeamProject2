@@ -87,10 +87,10 @@ namespace Team2_Project
                 bool result = srv.UpdateDashboardMapping(dto);
                 if (result)
                 {
-                    MessageBox.Show("저장이 완료되었습니다. \n재로그인시 반영됩니다.", "저장완료");
+                    MessageBox.Show("저장이 완료되었습니다. 재로그인시 반영됩니다.", "저장완료", MessageBoxButtons.OK, MessageBoxIcon.None);
                     this.ParentForm.Close();
                 }
-                else MessageBox.Show("저장중 오류가 발생했습니다. 다시 시도하여주십시오.", "저장오류");
+                else MessageBox.Show("저장중 오류가 발생했습니다. 다시 시도하여주십시오.", "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (dr == DialogResult.Cancel) return;
         }
@@ -104,15 +104,3 @@ namespace Team2_Project
         #endregion
     }
 }
-
-/*
- * 사용자에 따른 대시보드정보 저장
- * 사용자ID(FK), 대시보드코드(FK), 위치, 사용여부 (+수정정보) UPDATE
- */
-
-
-/*
-대시보드를 먼저 만들고
-각 대시보드 코드를 부여하여 db에 저장
- 
- */

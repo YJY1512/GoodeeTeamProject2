@@ -50,11 +50,14 @@ namespace Team2_Project
             dgvMaData.MultiSelect = false;
             dgvMiData.MultiSelect = false;
 
-            cboNoptype.Items.Add("-선택-");
-            cboNoptype.Items.Add("시유");
-            cboNoptype.Items.Add("포장");
-            cboNoptype.SelectedIndex = 0;
+            List<CodeDTO> cboList = srv.GetNopType();
+            CommonCodeUtil.ComboBinding(cboNoptype, cboList, "PROC_GROUP", blankText: "-선택-");
             cboNoptype.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
+            //cboNoptype.Items.Add("-선택-");
+            //cboNoptype.Items.Add("시유");
+            ////cboNoptype.Items.Add("포장");
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUse);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
@@ -91,21 +94,6 @@ namespace Team2_Project
             {
                 var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
                 AdvancedListBind(list, dgvMaData);
-
-                //var list = from n in NopMiList
-                //           group new { Nop_Ma_Code = n.Nop_Ma_Code }
-                //           by n.Nop_Ma_Code;
-
-                //var list = (from n in NopMiList 
-                //            group n by n.Nop_Ma_Code).ToList();
-                //new
-                //{
-                //    n.Nop_Ma_Code,
-                //    n.Nop_Ma_Name,
-                //    n.Use_YN
-                //}).ToList();
-
-                //Debug.WriteLine(list);
             }
 
             if (situation == "")
@@ -118,12 +106,11 @@ namespace Team2_Project
             dgvMaData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
         }
 
-
         public void OnAdd()     //추가
         {
             if (dgvMaData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("추가할 항목을 선택하여 주십시오.");
+                MessageBox.Show("추가할 항목을 선택하여 주십시오.","추가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -131,14 +118,15 @@ namespace Team2_Project
             DeactivationTop();            //검색조건 비활성화
             ResetBottom();                //입력패널 리셋
             ActivationBottom(situation);  //입력패널 활성화
-            cboUseYN.SelectedIndex = 0;
+            cboUseYN.SelectedIndex = cboNoptype.SelectedIndex = 0;
             txtInfoCodeMi.Focus();
         }
+
         public void OnEdit()    //수정
         {
             if (dgvMiData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.","수정", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
@@ -146,22 +134,23 @@ namespace Team2_Project
             DeactivationTop();      //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
         }
+
         public void OnDelete()  //삭제
         {
             if (dgvMiData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.","삭제", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             dgvMaData.Enabled = dgvMiData.Enabled = false;
 
-            if (MessageBox.Show($"{txtInfoNameMi.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show($"{txtInfoNameMi.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 int result = srv.DeleteMiCode(txtInfoCodeMi.Text);
-                if (result == 0) MessageBox.Show("삭제가 완료되었습니다."); //성공
-                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다."); //FK 충돌
-                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                if (result == 0) MessageBox.Show("삭제가 완료되었습니다.","삭제완료", MessageBoxButtons.OK, MessageBoxIcon.None); //성공
+                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다.","삭제불가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); //FK 충돌
+                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.","삭제오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ResetBottom(); //입력패널 리셋
                 OnSearch();    //로드
             }
@@ -171,7 +160,7 @@ namespace Team2_Project
         {
             if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text) || cboNoptype.SelectedIndex == 0) //|| cboUseYN.SelectedIndex == 0
             {
-                MessageBox.Show("필수항목을 입력하여 주십시오.");
+                MessageBox.Show("필수항목을 입력하여 주십시오.","미입력", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -191,26 +180,26 @@ namespace Team2_Project
                 bool pkresult = srv.CheckMiPK(txtInfoCodeMi.Text);
                 if (!pkresult)
                 {
-                    MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.","코드중복", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     txtInfoCodeMi.Clear();
                     txtInfoCodeMi.Focus();
                     return;
                 }
                 bool result = srv.NopMiCodeAdd(code);
-                if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
+                if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료", MessageBoxButtons.OK, MessageBoxIcon.None);
                 else
                 {
-                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                    MessageBox.Show("다시 시도하여주십시오.", "등록오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
             else if (situation == "Update")
             {
                 bool result = srv.NopMiCodeUpdate(code);
-                if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
+                if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료", MessageBoxButtons.OK, MessageBoxIcon.None);
                 else
                 {
-                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                    MessageBox.Show("다시 시도하여주십시오.", "수정오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -230,6 +219,7 @@ namespace Team2_Project
             OnSearch();             //로드
             ActivationTop();        //검색 활성화
         }
+
         public void OnReLoad()  //새로고침
         {
             ResetTop();       //검색 리셋
@@ -349,8 +339,8 @@ namespace Team2_Project
             ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
             txtInfoCodeMi.Text = dgvMiData["Nop_Mi_Code", e.RowIndex].Value.ToString();
             txtInfoNameMi.Text = dgvMiData["Nop_Mi_Name", e.RowIndex].Value.ToString();
-            cboNoptype.SelectedItem = dgvMiData["Nop_type", e.RowIndex].Value.ToString();
-            cboUseYN.SelectedItem = dgvMiData["Use_YN", e.RowIndex].Value.ToString();
+            cboNoptype.Text = dgvMiData["Nop_type", e.RowIndex].Value.ToString();
+            cboUseYN.Text = dgvMiData["Use_YN", e.RowIndex].Value.ToString();
         }
     }
 }
