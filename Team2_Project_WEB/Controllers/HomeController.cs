@@ -72,8 +72,12 @@ namespace Team2_Project_WEB.Controllers
                 ViewBag.DateStr = "";
             }
 
+            //if (itemCode != null && itemCode.Length > 0)
+            //    codes = "'" + string.Join("','", itemCode) + "'";
+            //ViewBag.ItemCodes = codes;
+
             ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date);
+            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode);
             ItemDAO daoI = new ItemDAO();
             List<ItemVO> itemList = daoI.GetItemCodeNameList();
             ViewBag.Items = new SelectList(itemList, "Code", "Name");
@@ -84,12 +88,10 @@ namespace Team2_Project_WEB.Controllers
             else
                 ViewBag.DateProgress = 0.00;
 
-            // 받은 itemCode가 있으면 그 품목만 Linq로 FindAll해서 보여주기
-
             return View(prodOlist);
         }
 
-        public ActionResult ProdT() //시간당 생산량 조회
+        public ActionResult ProdT(string prdCode) //시간당 생산량 조회
         {
             //생산지시 선택 -> 시작시간 ~ 작업장 마감시간 시간별로 쪼개서 생산량 분석
             //바 차트로 시간당 생산량
@@ -97,6 +99,14 @@ namespace Team2_Project_WEB.Controllers
             //작업지시번호(작업일자) 시간당 생산량
             //작업장:작업장명(작업장번호)   관리자:담당직원ID  생산품목:품목명(품목코드)
             //시간(09:00) 생산량, 양품수량, 불량수량, 양품률, 불량률, 비고:비가동(빨간색으로?)
+
+            // 작업지시번호 DropDown 일주일간
+            ProductionDAO dao = new ProductionDAO();
+            List<ProductionVO> codeList = dao.GetProdNoList();
+            
+
+
+
 
             return View();
         }
@@ -113,12 +123,13 @@ namespace Team2_Project_WEB.Controllers
         {
             //날짜, 작업장, 품목
             //발생일자, 작업장, 품목, 불량코드, 불량수량
+            //불량발생일자, 품목, 작업장, 불량코드로 차트
             //페이징
 
             return View();
         }
 
-        public ActionResult WPlace() //작업장 가동현황 조회
+        public ActionResult WPlace() //작업장 가동현황 조회 - 일정보고 넣기 / 빼기 생각
         {
            //가동상태, 작업장명, 작업장 코드, 공정명, 진행 생산지시, 상태, 비고:비가동이면 사유
 
@@ -127,7 +138,7 @@ namespace Team2_Project_WEB.Controllers
 
         
 
-        public ActionResult Schedule() //월별 스케쥴 조회
+        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
         {
             
 

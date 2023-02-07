@@ -47,30 +47,9 @@
                             </div>
                         </div>
                         <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
-                        <div class=" col-sm-3">
-                            @Html.DropDownList("itemCode", (IEnumerable<SelectListItem>)ViewBag.Items, new { @class = "select2 select2-hidden-accessible", @multiple = "multiple", @style = "width: 100%;", @tabindex = "-1" })
+                        <div class="col-sm-3">
+                            @Html.DropDownList("itemCode", (IEnumerable<SelectListItem>)ViewBag.Items, new { @class = "form-control" })
                         </div>
-                        
-                        @*<select class="select2 select2-hidden-accessible col-sm-3" id="" name="itemCode">
-                            @for (int i = 0; i < ViewBag.Items.Count; i++)
-                            {
-                                <option data-select2-id="@ViewBag.Items[i].Code">@ViewBag.Items[i].Name</option>
-                            }
-                        </select>
-
-
-                        <div class="input-group col-sm-3" data-select2-id="47">
-                            <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="제품 선택" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                            </select>*@
-    <!-- /.form-group -->
-
-                        @*<div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
-        <div class="input-group date col-sm-3" id="datetimepicker12" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
-        </div>*@
                         <div class="col-sm-1"></div>
                         <div class="col-sm-3">
                             <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
@@ -99,18 +78,18 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr style="text-align:center">
-                                <td>@item.WorkOrderNo</td>
-                                <td>@item.Plan_Date</td>
-                                <td>@item.Item_Code</td>
-                                <td>@item.Item_Name</td>
-                                <td>@item.Plan_Qty_Box</td>
-                                <td>@(item.Progress.ToString("0.00")+" %")</td>
-                                <td>@item.Prd_Qty</td>
-                                <td>@item.TotDef</td>
-                                <td>@(item.FairRatio.ToString("0.00")+" %")</td>
-                                <td>@(item.DefRatio.ToString("0.00")+" %")</td>
-                            </tr>
+                        <tr style="text-align:center">
+                            <td>@item.WorkOrderNo</td>
+                            <td>@item.Plan_Date</td>
+                            <td>@item.Item_Code</td>
+                            <td>@item.Item_Name</td>
+                            <td>@item.Plan_Qty_Box</td>
+                            <td>@(item.Progress.ToString("P"))</td>
+                            <td>@item.Prd_Qty</td>
+                            <td>@item.TotDef</td>
+                            <td>@(item.FairRatio.ToString("0.00")+" %")</td>
+                            <td>@(item.DefRatio.ToString("0.00")+" %")</td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -138,12 +117,10 @@
             //Initialize Select2 Elements
             $('.select2').select2({
                 placeholder: "제품 선택",
-                allowClear: true
+                allowClear: true 
             })
-        })
 
         // datetimepicker
-        $(function () {
             $('#datetimepicker').datetimepicker({
                 format: 'YYYY-MM-DD',
                 locale: 'ko'

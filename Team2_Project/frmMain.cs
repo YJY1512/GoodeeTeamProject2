@@ -97,7 +97,7 @@ namespace Team2_Project
             if (chkHide.Checked)
             {
                 panel2.Width = MinWidth;
-                pnlMenu.Width = MinWidth;
+                pnlMenu.Width = MinWidth-5;
                 pnlChildMenu.Visible = false;
                 chkHide.Text = ">";
             }
@@ -108,6 +108,7 @@ namespace Team2_Project
                 pnlChildMenu.Visible = false;
                 chkHide.Text = "<";
             }
+            pnlMenu.Update();
         }
 
         private void DrawSideMenu()
@@ -116,21 +117,16 @@ namespace Team2_Project
             for (int i = 0; i < menu1List.Count; i++)
             {
                 Button btn = new Button();              
-                btn.Name = menu1List[i].Screen_Code;
-                btn.Location = new Point(0, (i * 65));
-                btn.AutoSize = true;
-                btn.Size = new Size(MaxWidth, 65);
+                
                 btn.BackColor = Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
                 btn.Dock = DockStyle.Top;
-                btn.FlatStyle = FlatStyle.Standard;
-                btn.FlatAppearance.BorderSize = 1;
                 btn.FlatAppearance.BorderColor = Color.White;
+                btn.FlatAppearance.BorderSize = 3;               
+                btn.FlatStyle = FlatStyle.Flat;
                 btn.Margin = new Padding(0);
                 btn.Padding = new Padding(8, 8, 8, 8);
-                
-                btn.UseVisualStyleBackColor = false;
-                btn.FlatAppearance.MouseDownBackColor = Color.WhiteSmoke;
-                btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
+                btn.FlatAppearance.MouseDownBackColor = Color.Black;
+                btn.FlatAppearance.MouseOverBackColor = Color.Black;
                 btn.Font = new Font("나눔고딕 ExtraBold", 14F, FontStyle.Bold, GraphicsUnit.Point, 129);
                 btn.ForeColor = Color.White;
                 btn.ImageList = imageListLeftSideBar;
@@ -138,23 +134,31 @@ namespace Team2_Project
                 btn.ImageAlign = ContentAlignment.MiddleLeft;
                 btn.Text = menu1List[i].Menu_Name.PadLeft(menu1List[i].Menu_Name.Length + 6);
                 btn.TextAlign = ContentAlignment.MiddleCenter;
+                btn.Name = menu1List[i].Screen_Code;
+                btn.Location = new Point(0, (i * 65));
+                btn.Size = new Size(MaxWidth, 65);
+
                 btn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                btn.UseVisualStyleBackColor = false;
+
                 btn.Tag = i;
+
+
 
                 pnlMenu.Controls.Add(btn);
                 
                 btn.Click += Btn_Click;
                 btn.MouseEnter += Btn_MouseEnter;
 
-                pnlChildMenu.Dock = DockStyle.Bottom;
+                pnlChildMenu.Dock = DockStyle.Top;
                 pnlChildMenu.Location = new Point(0, 0);
-                pnlChildMenu.Size = new Size(MaxWidth, 330);
+                pnlChildMenu.Size = new Size(MaxWidth, 350);
                 menuTree.Dock = DockStyle.Fill;
                 menuTree.Location = new Point(0, 0);
-                menuTree.Size = new Size(MaxWidth, 330);
+                menuTree.Size = new Size(MaxWidth, 350);
+               
                 pnlMenu.Controls.Add(pnlChildMenu);
-                pnlChildMenu.Controls.Add(menuTree);
-                
+                pnlChildMenu.Controls.Add(menuTree);                  
             }
         }
 
@@ -180,7 +184,13 @@ namespace Team2_Project
             }
 
             pnlMenu.Controls.SetChildIndex(pnlChildMenu, pnlIndex);      //SetChildIndex : 어떤 컨트롤을 index 몇으로 바꾸겠다는 메서드 
-            pnlMenu.Invalidate();                                  //Invalidate    : 다시 디자인을 그려달라는 메서드 
+            if (pnlIndex == 1)
+            {
+                pnlChildMenu.Visible = false;
+                return;
+            }
+            pnlMenu.Invalidate();                                        //Invalidate    : 다시 디자인을 그려달라는 메서드 
+
 
             menuTree.Nodes.Clear();
 
@@ -216,7 +226,6 @@ namespace Team2_Project
 
                 menuTree.Nodes.Add(treeNode1);
             }
-
             pnlChildMenu.Visible = true;
             menuTree.ExpandAll();
         }
@@ -323,6 +332,7 @@ namespace Team2_Project
 
                 if (closeRect.Contains(e.Location))
                 {
+                    if (ActiveMdiChild.Text == "HOME") return;
                     this.ActiveMdiChild.Close();
                     break;
                 }

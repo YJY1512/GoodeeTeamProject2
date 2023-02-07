@@ -46,5 +46,14 @@ namespace Team2_Project.Services
 
             return list;
         }
+
+        public List<ProcessMasterDTO> GetPrcCodeName()
+        {
+            ProcessMasterDAO db = new ProcessMasterDAO();
+            List<ProcessMasterDTO> list = db.GetPrcCodeName();
+            db.Dispose();
+
+            return list;
+        }
     }
 }

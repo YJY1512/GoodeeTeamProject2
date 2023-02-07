@@ -55,6 +55,9 @@ namespace Team2_Project
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvPlan = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSplit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -64,9 +67,6 @@ namespace Team2_Project
             this.label12 = new System.Windows.Forms.Label();
             this.dtpMonth = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnSplit = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -390,7 +390,7 @@ namespace Team2_Project
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.btnSplit);
-            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label10);
@@ -399,6 +399,39 @@ namespace Team2_Project
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1298, 43);
             this.panel3.TabIndex = 4;
+            // 
+            // btnSplit
+            // 
+            this.btnSplit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSplit.Location = new System.Drawing.Point(427, 5);
+            this.btnSplit.Name = "btnSplit";
+            this.btnSplit.Size = new System.Drawing.Size(146, 26);
+            this.btnSplit.TabIndex = 19;
+            this.btnSplit.Text = "생산계획 분할";
+            this.btnSplit.UseVisualStyleBackColor = false;
+            this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancel.Location = new System.Drawing.Point(275, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(146, 26);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "생산계획 마감취소";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClose.Location = new System.Drawing.Point(123, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(146, 26);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "생산계획 마감";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label9
             // 
@@ -505,38 +538,6 @@ namespace Team2_Project
             this.label11.TabIndex = 6;
             this.label11.Text = "생산계획월";
             // 
-            // btnSplit
-            // 
-            this.btnSplit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSplit.Location = new System.Drawing.Point(427, 5);
-            this.btnSplit.Name = "btnSplit";
-            this.btnSplit.Size = new System.Drawing.Size(146, 26);
-            this.btnSplit.TabIndex = 19;
-            this.btnSplit.Text = "생산계획 분할";
-            this.btnSplit.UseVisualStyleBackColor = false;
-            this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(275, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 26);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "생산계획 마감취소";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnClose.Location = new System.Drawing.Point(123, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(146, 26);
-            this.btnClose.TabIndex = 17;
-            this.btnClose.Text = "생산계획 마감";
-            this.btnClose.UseVisualStyleBackColor = false;
-            // 
             // frmPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -610,7 +611,7 @@ namespace Team2_Project
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView dgvPlan;
         private System.Windows.Forms.Button btnSplit;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnClose;
     }
 }

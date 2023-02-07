@@ -120,7 +120,6 @@ namespace Team2_Project
             CommonCodeUtil.ComboBinding(cboType, cboList, "ITEM_TYPE", blankText:"-선택-");
             cboType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
             List<CodeDTO> SpecList = srv.GetSpec();
             CommonCodeUtil.ComboBinding(cboSpec, SpecList, "ITEM_SPEC", blankText: "-선택-");
             cboSpec.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -147,6 +146,8 @@ namespace Team2_Project
             AdvancedListBind(itemList, dgvData);
             ResetBottom();      //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
+
+            dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
         }
 
         public void OnAdd()     //추가
@@ -163,7 +164,7 @@ namespace Team2_Project
         {
             if (dgvData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("수정할 항목을 선택하여 주십시오.");
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.","수정", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
@@ -176,15 +177,15 @@ namespace Team2_Project
         {
             if (dgvData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.","삭제", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show($"{txtName.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 int result = srv.DeleteItemCode(txtCode.Text);
-                if (result == 0) MessageBox.Show("삭제가 완료되었습니다."); //성공
-                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다."); //FK 충돌
-                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                if (result == 0) MessageBox.Show("삭제가 완료되었습니다.","삭제완료", MessageBoxButtons.OK, MessageBoxIcon.None); //성공
+                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다.", "삭제불가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); //FK 충돌
+                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.", "삭제오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ResetBottom(); //입력패널 리셋
                 OnSearch();    //로드
             }
@@ -195,12 +196,12 @@ namespace Team2_Project
         {
             if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text) || cboType.SelectedIndex == 0)
             {
-                MessageBox.Show("필수항목을 입력하여 주십시오.");
+                MessageBox.Show("필수항목을 입력하여 주십시오.", "미입력", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             else if (cboType.SelectedIndex != 2 && cboSpec.SelectedIndex == 0)
             {
-                MessageBox.Show("규격을 선택하여 주십시오.");
+                MessageBox.Show("규격을 선택하여 주십시오.","미선택", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -221,27 +222,27 @@ namespace Team2_Project
                 bool pkresult = srv.CheckPK(txtCode.Text);
                 if (!pkresult)
                 {
-                    MessageBox.Show("품목코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    MessageBox.Show("품목코드가 중복되었습니다. 다시 입력하여 주십시오.","코드중복", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     txtCode.Clear();
                     txtCode.Focus();
                     return;
                 }
 
                 bool result = srv.GetItemAdd(item);
-                if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료");
+                if (result) MessageBox.Show("등록이 완료되었습니다.", "등록완료", MessageBoxButtons.OK, MessageBoxIcon.None);
                 else
                 {
-                    MessageBox.Show("다시 시도하여주십시오.", "등록오류");
+                    MessageBox.Show("다시 시도하여주십시오.", "등록오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
             else if (situation == "Update")
             {
                 bool result = srv.GetItemUpdate(item);
-                if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료");
+                if (result) MessageBox.Show("수정이 완료되었습니다.", "수정완료", MessageBoxButtons.OK, MessageBoxIcon.None);
                 else
                 {
-                    MessageBox.Show("다시 시도하여주십시오.", "수정오류");
+                    MessageBox.Show("다시 시도하여주십시오.", "수정오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -337,14 +338,19 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Test");
-
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
             txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
-            cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
-            if (dgvData["Item_Spec", e.RowIndex].Value.Equals("")) cboSpec.SelectedIndex = -1;
-            else cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+
+            cboType.Text = dgvData["Item_Type", e.RowIndex].Value.ToString();
+            
+            cboSpec.Text = dgvData["Item_Spec", e.RowIndex].Value.ToString() ?? "-선택-";
+
+            if (cboType.Text == "완제품")
+                cboSpec.Text = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+            else
+                cboSpec.Text = "-선택-";
+
             cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
             txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }
