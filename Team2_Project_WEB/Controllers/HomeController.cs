@@ -56,8 +56,10 @@ namespace Team2_Project_WEB.Controllers
             return View(list);
         }
 
-        public ActionResult ProdO(string date, string itemCode) //생산지시 실적 조회
+        public ActionResult ProdO(string date, string itemCode, int page = 1) //생산지시 실적 조회
         {
+            int pagesize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
+
             ViewBag.Date = date;
             if (string.IsNullOrWhiteSpace(date))
                 ViewBag.Date = DateTime.Today.ToString("yyyy-MM-dd");
@@ -72,15 +74,27 @@ namespace Team2_Project_WEB.Controllers
                 ViewBag.DateStr = "";
             }
 
+            if (itemCode.Equals("All"))
+                itemCode = null;
+            ViewBag.ItemCode = itemCode;
             ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode);
+            int totalCount;
+            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, out totalCount);
             daoP.Dispose();
 
             ItemDAO daoI = new ItemDAO();
             List<ItemVO> itemList = daoI.GetItemCodeNameList();
             daoI.Dispose();
 
+            itemList.Insert(0, new ItemVO { Code = "All", Name ="전체"}); 
             ViewBag.Items = new SelectList(itemList, "Code", "Name");
+
+            ViewBag.Page = new PagingInfo
+            {
+                TotalItems = totalCount,
+                CurrentPage = page,
+                ItemsPerPage = pagesize
+            };
 
             // 화면 상단 선택일 진행도 Progerss Bar로 표시
             if (prodOlist.Count > 0)
@@ -91,7 +105,7 @@ namespace Team2_Project_WEB.Controllers
             return View(prodOlist);
         }
 
-        public ActionResult TotProd(string fromDate, string toDate, string wcCode, string itemCode) //제조 종합 효율 조회
+        public ActionResult TotProd(string fromDate, string toDate, string wcCode, string itemCode, int page = 1) //제조 종합 효율 조회
         {
             //날짜(Range), 작업장, 품목
             //작업일자, 계획수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 비가동시간, 가동률, 비가동률, 시간당 생샨량
@@ -101,6 +115,7 @@ namespace Team2_Project_WEB.Controllers
             List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
             daoW.Dispose();
             ViewBag.wcList = new SelectList(wcList, "Code", "Name");
+
 
             ItemDAO daoI = new ItemDAO();
             List<ItemVO> itemList = daoI.GetItemCodeNameList();

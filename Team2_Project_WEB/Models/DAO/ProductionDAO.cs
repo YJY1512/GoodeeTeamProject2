@@ -26,7 +26,7 @@ namespace Team2_Project_WEB.Models.DAO
                 conn.Close();
         }
 
-        public List<ProductionVO> GetProdOList(string date, string code)
+        public List<ProductionVO> GetProdOList(string date, string code, out int totalCount)
         {
             string sql = @"with GetDefData as(
 	                            select wo.WorkOrderNo, sum(Def_Qty) TotDef
@@ -56,6 +56,9 @@ namespace Team2_Project_WEB.Models.DAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
                 reader.Close();
+
+                totalCount = 0;
+
 
                 return list;
             }
