@@ -29,8 +29,8 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -82,18 +82,18 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label9);
             this.pnlSub.Controls.Add(this.cboWoStatus);
             this.pnlSub.Controls.Add(this.label5);
-            this.pnlSub.Size = new System.Drawing.Size(1834, 121);
+            this.pnlSub.Size = new System.Drawing.Size(1834, 120);
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(0, 121);
+            this.pnlTitle.Location = new System.Drawing.Point(0, 120);
             this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
             // 
             // pnlList
             // 
             this.pnlList.Controls.Add(this.splitContainer1);
-            this.pnlList.Location = new System.Drawing.Point(0, 164);
-            this.pnlList.Size = new System.Drawing.Size(1834, 747);
+            this.pnlList.Location = new System.Drawing.Point(0, 163);
+            this.pnlList.Size = new System.Drawing.Size(1834, 748);
             // 
             // lblTitle
             // 
@@ -115,7 +115,7 @@ namespace Team2_Project
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1834, 747);
+            this.splitContainer1.Size = new System.Drawing.Size(1834, 748);
             this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -145,7 +145,7 @@ namespace Team2_Project
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.chtData);
-            this.splitContainer2.Size = new System.Drawing.Size(1834, 456);
+            this.splitContainer2.Size = new System.Drawing.Size(1834, 457);
             this.splitContainer2.SplitterDistance = 45;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -185,31 +185,31 @@ namespace Team2_Project
             // 
             // chtData
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea2);
             this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chtData.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chtData.Legends.Add(legend2);
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 407);
+            this.chtData.Size = new System.Drawing.Size(1834, 408);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart";
             // 
             // cboWoStatus
             // 
             this.cboWoStatus.FormattingEnabled = true;
-            this.cboWoStatus.Location = new System.Drawing.Point(591, 14);
+            this.cboWoStatus.Location = new System.Drawing.Point(130, 68);
             this.cboWoStatus.Name = "cboWoStatus";
-            this.cboWoStatus.Size = new System.Drawing.Size(155, 25);
+            this.cboWoStatus.Size = new System.Drawing.Size(130, 25);
             this.cboWoStatus.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(29, 50);
+            this.label5.Location = new System.Drawing.Point(464, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 17);
             this.label5.TabIndex = 9;
@@ -219,9 +219,9 @@ namespace Team2_Project
             // 
             this.dtpTo.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(263, 14);
+            this.dtpTo.Location = new System.Drawing.Point(280, 19);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(122, 25);
+            this.dtpTo.Size = new System.Drawing.Size(125, 25);
             this.dtpTo.TabIndex = 69;
             this.dtpTo.Value = new System.DateTime(2023, 1, 30, 0, 0, 0, 0);
             // 
@@ -231,7 +231,7 @@ namespace Team2_Project
             this.ucWcCode._Name = "";
             this.ucWcCode.BackColor = System.Drawing.Color.Transparent;
             this.ucWcCode.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucWcCode.Location = new System.Drawing.Point(110, 77);
+            this.ucWcCode.Location = new System.Drawing.Point(544, 67);
             this.ucWcCode.Margin = new System.Windows.Forms.Padding(4);
             this.ucWcCode.Name = "ucWcCode";
             this.ucWcCode.Size = new System.Drawing.Size(340, 26);
@@ -242,9 +242,9 @@ namespace Team2_Project
             // 
             this.dtpFrom.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(110, 14);
+            this.dtpFrom.Location = new System.Drawing.Point(127, 19);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(122, 25);
+            this.dtpFrom.Size = new System.Drawing.Size(125, 25);
             this.dtpFrom.TabIndex = 68;
             this.dtpFrom.Value = new System.DateTime(2023, 1, 25, 0, 0, 0, 0);
             // 
@@ -253,7 +253,7 @@ namespace Team2_Project
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(29, 18);
+            this.label6.Location = new System.Drawing.Point(29, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 17);
             this.label6.TabIndex = 72;
@@ -264,7 +264,7 @@ namespace Team2_Project
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(238, 18);
+            this.label4.Location = new System.Drawing.Point(258, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(18, 17);
             this.label4.TabIndex = 71;
@@ -275,7 +275,7 @@ namespace Team2_Project
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(493, 18);
+            this.label9.Location = new System.Drawing.Point(29, 72);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 17);
             this.label9.TabIndex = 70;
@@ -285,7 +285,7 @@ namespace Team2_Project
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(29, 82);
+            this.label7.Location = new System.Drawing.Point(464, 72);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 17);
             this.label7.TabIndex = 74;
@@ -297,7 +297,7 @@ namespace Team2_Project
             this.ucProcessCode._Name = "";
             this.ucProcessCode.BackColor = System.Drawing.Color.Transparent;
             this.ucProcessCode.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucProcessCode.Location = new System.Drawing.Point(110, 45);
+            this.ucProcessCode.Location = new System.Drawing.Point(544, 18);
             this.ucProcessCode.Margin = new System.Windows.Forms.Padding(4);
             this.ucProcessCode.Name = "ucProcessCode";
             this.ucProcessCode.Size = new System.Drawing.Size(340, 26);
@@ -308,7 +308,7 @@ namespace Team2_Project
             // 
             this.chkDefQty.AutoSize = true;
             this.chkDefQty.BackColor = System.Drawing.Color.Transparent;
-            this.chkDefQty.Location = new System.Drawing.Point(496, 50);
+            this.chkDefQty.Location = new System.Drawing.Point(927, 21);
             this.chkDefQty.Name = "chkDefQty";
             this.chkDefQty.Size = new System.Drawing.Size(83, 21);
             this.chkDefQty.TabIndex = 77;
@@ -322,16 +322,16 @@ namespace Team2_Project
             "WorkOrder_001",
             "WorkOrder_002",
             "WorkOrder_003"});
-            this.cboTest.Location = new System.Drawing.Point(1392, 39);
+            this.cboTest.Location = new System.Drawing.Point(1577, 40);
             this.cboTest.Name = "cboTest";
-            this.cboTest.Size = new System.Drawing.Size(226, 25);
+            this.cboTest.Size = new System.Drawing.Size(215, 25);
             this.cboTest.TabIndex = 79;
             // 
             // lbltest
             // 
             this.lbltest.AutoSize = true;
             this.lbltest.BackColor = System.Drawing.Color.Transparent;
-            this.lbltest.Location = new System.Drawing.Point(1392, 17);
+            this.lbltest.Location = new System.Drawing.Point(1577, 18);
             this.lbltest.Name = "lbltest";
             this.lbltest.Size = new System.Drawing.Size(120, 17);
             this.lbltest.TabIndex = 80;

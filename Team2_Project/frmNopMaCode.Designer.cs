@@ -50,6 +50,8 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pnlTitleD.SuspendLayout();
+            this.pnlTitleU.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.cboUseYNSC);
             this.pnlSub.Controls.Add(this.label4);
             this.pnlSub.Controls.Add(this.label1);
-            this.pnlSub.Size = new System.Drawing.Size(1834, 59);
+            this.pnlSub.Size = new System.Drawing.Size(1834, 60);
             // 
             // lblTitleU
             // 
@@ -76,7 +78,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvData);
-            this.pnlList.Size = new System.Drawing.Size(1834, 707);
+            this.pnlList.Size = new System.Drawing.Size(1834, 700);
             // 
             // pnlArea
             // 
@@ -89,20 +91,28 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.txtCode);
             this.pnlArea.Controls.Add(this.label6);
             this.pnlArea.Controls.Add(this.label7);
-            this.pnlArea.Size = new System.Drawing.Size(1834, 55);
+            this.pnlArea.Size = new System.Drawing.Size(1834, 61);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(0, 59);
-            this.splitContainer1.Size = new System.Drawing.Size(1834, 852);
-            this.splitContainer1.SplitterDistance = 750;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 60);
+            this.splitContainer1.Size = new System.Drawing.Size(1834, 851);
+            this.splitContainer1.SplitterDistance = 743;
+            // 
+            // pnlTitleD
+            // 
+            this.pnlTitleD.Size = new System.Drawing.Size(1834, 43);
+            // 
+            // pnlTitleU
+            // 
+            this.pnlTitleU.Size = new System.Drawing.Size(1834, 43);
             // 
             // cboUseYNSC
             // 
             this.cboUseYNSC.FormattingEnabled = true;
             this.cboUseYNSC.Location = new System.Drawing.Point(729, 18);
             this.cboUseYNSC.Name = "cboUseYNSC";
-            this.cboUseYNSC.Size = new System.Drawing.Size(136, 25);
+            this.cboUseYNSC.Size = new System.Drawing.Size(130, 25);
             this.cboUseYNSC.TabIndex = 2;
             // 
             // label4
@@ -129,17 +139,17 @@ namespace Team2_Project
             // 
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hangul;
-            this.txtName.Location = new System.Drawing.Point(665, 14);
+            this.txtName.Location = new System.Drawing.Point(641, 14);
             this.txtName.MaxLength = 20;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(222, 25);
+            this.txtName.Size = new System.Drawing.Size(170, 25);
             this.txtName.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(529, 18);
+            this.label6.Location = new System.Drawing.Point(505, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(110, 17);
             this.label6.TabIndex = 19;
@@ -151,7 +161,7 @@ namespace Team2_Project
             this.txtCode.Location = new System.Drawing.Point(192, 14);
             this.txtCode.MaxLength = 20;
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(222, 25);
+            this.txtCode.Size = new System.Drawing.Size(170, 25);
             this.txtCode.TabIndex = 3;
             // 
             // label7
@@ -169,7 +179,7 @@ namespace Team2_Project
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(496, 18);
+            this.label8.Location = new System.Drawing.Point(472, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 17);
             this.label8.TabIndex = 60;
@@ -194,23 +204,23 @@ namespace Team2_Project
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 707);
+            this.dgvData.Size = new System.Drawing.Size(1834, 700);
             this.dgvData.TabIndex = 1;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(1081, 14);
+            this.cboUseYN.Location = new System.Drawing.Point(1054, 14);
             this.cboUseYN.Name = "cboUseYN";
-            this.cboUseYN.Size = new System.Drawing.Size(136, 25);
+            this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 5;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(1002, 18);
+            this.label10.Location = new System.Drawing.Point(975, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 17;
@@ -220,7 +230,7 @@ namespace Team2_Project
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(973, 18);
+            this.label11.Location = new System.Drawing.Point(946, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 17);
             this.label11.TabIndex = 61;
@@ -256,6 +266,10 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pnlTitleD.ResumeLayout(false);
+            this.pnlTitleD.PerformLayout();
+            this.pnlTitleU.ResumeLayout(false);
+            this.pnlTitleU.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
 

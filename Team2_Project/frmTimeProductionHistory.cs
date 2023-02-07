@@ -67,8 +67,9 @@ namespace Team2_Project
             cboWoStatus.SelectedIndex = cboTest.SelectedIndex = 0; 
             cboTest.DropDownStyle = ComboBoxStyle.DropDownList;
             //----------------
-
+            ResetDtp();
             OnSearch();
+
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -163,7 +164,6 @@ namespace Team2_Project
             //ChartData();
         }
 
-
         public void ChartData()
         {
             //---test----
@@ -213,9 +213,5 @@ namespace Team2_Project
             //                                                                    //chtData.DataBindTable(students, "Time");
             #endregion
         }
-
-        #region TEST
-        #endregion
-
     }    
 }

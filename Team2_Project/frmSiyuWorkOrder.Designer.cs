@@ -404,7 +404,7 @@ namespace Team2_Project
             this.btnMsgEdit.Name = "btnMsgEdit";
             this.btnMsgEdit.Size = new System.Drawing.Size(146, 26);
             this.btnMsgEdit.TabIndex = 14;
-            this.btnMsgEdit.Text = "전달사항 수정";
+            this.btnMsgEdit.Text = "전달사항 수정저장";
             this.btnMsgEdit.UseVisualStyleBackColor = false;
             this.btnMsgEdit.Click += new System.EventHandler(this.btnMsgEdit_Click);
             // 

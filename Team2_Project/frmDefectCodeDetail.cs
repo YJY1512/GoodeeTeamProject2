@@ -33,7 +33,7 @@ namespace Team2_Project
 
             DataGridViewUtil.SetInitDataGridView(dgvMi);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "불량현상 상세분류코드", "Def_Mi_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "불량현상 상세분류명", "Def_Mi_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "불량현상 상세분류명", "Def_Mi_Name", 350);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "사용유무", "Use_YN");
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "Def_Ma_Code", "Def_Ma_Code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMi, "Def_Ma_Name", "Def_Ma_Name", visible: false);
@@ -210,12 +210,13 @@ namespace Team2_Project
                 return;
             }
 
-            if (txtInfoCodeMi.Enabled) //신규 저장
+            if (clickState == ButtonClick.Add) //신규 저장
             {
                 bool result = srv.CheckPK(false, txtInfoCodeMi.Text);
                 if (!result)
                 {
                     MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
                     return;
                 }
                 
@@ -239,7 +240,7 @@ namespace Team2_Project
                 }
 
             }
-            else //수정 저장
+            else if (clickState == ButtonClick.Edit)//수정 저장
             {
                 DefCodeDTO code = new DefCodeDTO
                 {
@@ -270,7 +271,8 @@ namespace Team2_Project
             SetInitPnl();
 
             dgvMa.Enabled = dgvMi.Enabled = true;
-            dgvMi.ClearSelection();
+            if (dgvMa.CurrentRow != null)
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
         }
 
         public void OnReLoad()  //새로고침

@@ -85,5 +85,13 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public bool UpdateMsg(Dictionary<string, string> woMsg, string empID)
+        {
+            WorkOrderDAO db = new WorkOrderDAO();
+            bool result = db.UpdateMsg(woMsg, empID);
+
+            return result;
+        }
     }
 }

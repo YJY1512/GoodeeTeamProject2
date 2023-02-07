@@ -29,7 +29,6 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSearchCode = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboTypeSC = new System.Windows.Forms.ComboBox();
@@ -64,6 +63,8 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pnlTitleD.SuspendLayout();
+            this.pnlTitleU.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.cboTypeSC);
             this.pnlSub.Controls.Add(this.label5);
             this.pnlSub.Controls.Add(this.lblSearchCode);
-            this.pnlSub.Size = new System.Drawing.Size(1834, 59);
+            this.pnlSub.Size = new System.Drawing.Size(1834, 60);
             // 
             // lblTitleU
             // 
@@ -92,7 +93,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvData);
-            this.pnlList.Size = new System.Drawing.Size(1834, 669);
+            this.pnlList.Size = new System.Drawing.Size(1834, 668);
             // 
             // pnlArea
             // 
@@ -120,9 +121,17 @@ namespace Team2_Project
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(0, 59);
-            this.splitContainer1.Size = new System.Drawing.Size(1834, 852);
-            this.splitContainer1.SplitterDistance = 712;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 60);
+            this.splitContainer1.Size = new System.Drawing.Size(1834, 851);
+            this.splitContainer1.SplitterDistance = 711;
+            // 
+            // pnlTitleD
+            // 
+            this.pnlTitleD.Size = new System.Drawing.Size(1834, 43);
+            // 
+            // pnlTitleU
+            // 
+            this.pnlTitleU.Size = new System.Drawing.Size(1834, 43);
             // 
             // lblSearchCode
             // 
@@ -138,7 +147,7 @@ namespace Team2_Project
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(670, 20);
+            this.label5.Location = new System.Drawing.Point(544, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 17);
             this.label5.TabIndex = 7;
@@ -147,9 +156,9 @@ namespace Team2_Project
             // cboTypeSC
             // 
             this.cboTypeSC.FormattingEnabled = true;
-            this.cboTypeSC.Location = new System.Drawing.Point(740, 16);
+            this.cboTypeSC.Location = new System.Drawing.Point(618, 16);
             this.cboTypeSC.Name = "cboTypeSC";
-            this.cboTypeSC.Size = new System.Drawing.Size(121, 25);
+            this.cboTypeSC.Size = new System.Drawing.Size(130, 25);
             this.cboTypeSC.TabIndex = 2;
             // 
             // label12
@@ -157,7 +166,7 @@ namespace Team2_Project
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(440, 17);
+            this.label12.Location = new System.Drawing.Point(419, 17);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 17);
             this.label12.TabIndex = 41;
@@ -189,7 +198,7 @@ namespace Team2_Project
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(463, 56);
+            this.label8.Location = new System.Drawing.Point(442, 56);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(0, 17);
             this.label8.TabIndex = 33;
@@ -198,7 +207,7 @@ namespace Team2_Project
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(463, 17);
+            this.label10.Location = new System.Drawing.Point(442, 17);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 31;
@@ -220,7 +229,7 @@ namespace Team2_Project
             this.txtCode.Location = new System.Drawing.Point(140, 13);
             this.txtCode.MaxLength = 20;
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(250, 25);
+            this.txtCode.Size = new System.Drawing.Size(170, 25);
             this.txtCode.TabIndex = 4;
             // 
             // lblInfoCodeMa
@@ -236,9 +245,9 @@ namespace Team2_Project
             // cboType
             // 
             this.cboType.FormattingEnabled = true;
-            this.cboType.Location = new System.Drawing.Point(545, 13);
+            this.cboType.Location = new System.Drawing.Point(524, 13);
             this.cboType.Name = "cboType";
-            this.cboType.Size = new System.Drawing.Size(128, 25);
+            this.cboType.Size = new System.Drawing.Size(130, 25);
             this.cboType.TabIndex = 6;
             this.cboType.SelectedValueChanged += new System.EventHandler(this.cboType_SelectedValueChanged);
             // 
@@ -246,35 +255,27 @@ namespace Team2_Project
             // 
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 669);
+            this.dgvData.Size = new System.Drawing.Size(1834, 668);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
             // cboUseYNSC
             // 
             this.cboUseYNSC.FormattingEnabled = true;
-            this.cboUseYNSC.Location = new System.Drawing.Point(995, 16);
+            this.cboUseYNSC.Location = new System.Drawing.Point(916, 16);
             this.cboUseYNSC.Name = "cboUseYNSC";
-            this.cboUseYNSC.Size = new System.Drawing.Size(121, 25);
+            this.cboUseYNSC.Size = new System.Drawing.Size(130, 25);
             this.cboUseYNSC.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(925, 20);
+            this.label4.Location = new System.Drawing.Point(842, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 9;
@@ -283,16 +284,16 @@ namespace Team2_Project
             // cboSpec
             // 
             this.cboSpec.FormattingEnabled = true;
-            this.cboSpec.Location = new System.Drawing.Point(545, 52);
+            this.cboSpec.Location = new System.Drawing.Point(524, 52);
             this.cboSpec.Name = "cboSpec";
-            this.cboSpec.Size = new System.Drawing.Size(128, 25);
+            this.cboSpec.Size = new System.Drawing.Size(130, 25);
             this.cboSpec.TabIndex = 7;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(440, 56);
+            this.label11.Location = new System.Drawing.Point(419, 56);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 17);
             this.label11.TabIndex = 46;
@@ -302,7 +303,7 @@ namespace Team2_Project
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(463, 56);
+            this.label13.Location = new System.Drawing.Point(442, 56);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 17);
             this.label13.TabIndex = 45;
@@ -311,9 +312,9 @@ namespace Team2_Project
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(828, 13);
+            this.cboUseYN.Location = new System.Drawing.Point(856, 13);
             this.cboUseYN.Name = "cboUseYN";
-            this.cboUseYN.Size = new System.Drawing.Size(128, 25);
+            this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 8;
             // 
             // label14
@@ -321,7 +322,7 @@ namespace Team2_Project
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(723, 17);
+            this.label14.Location = new System.Drawing.Point(751, 17);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 17);
             this.label14.TabIndex = 50;
@@ -331,7 +332,7 @@ namespace Team2_Project
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(746, 17);
+            this.label15.Location = new System.Drawing.Point(774, 17);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(64, 17);
             this.label15.TabIndex = 49;
@@ -341,7 +342,7 @@ namespace Team2_Project
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(746, 17);
+            this.label16.Location = new System.Drawing.Point(774, 17);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(0, 17);
             this.label16.TabIndex = 48;
@@ -352,14 +353,14 @@ namespace Team2_Project
             this.txtName.Location = new System.Drawing.Point(140, 52);
             this.txtName.MaxLength = 30;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(250, 25);
+            this.txtName.Size = new System.Drawing.Size(170, 25);
             this.txtName.TabIndex = 5;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(1006, 17);
+            this.label17.Location = new System.Drawing.Point(1076, 17);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 17);
             this.label17.TabIndex = 55;
@@ -368,19 +369,19 @@ namespace Team2_Project
             // txtRemark
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemark.Location = new System.Drawing.Point(1074, 13);
+            this.txtRemark.Location = new System.Drawing.Point(1148, 13);
             this.txtRemark.MaxLength = 200;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtRemark.Size = new System.Drawing.Size(394, 64);
+            this.txtRemark.Size = new System.Drawing.Size(300, 64);
             this.txtRemark.TabIndex = 9;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(1029, 17);
+            this.label18.Location = new System.Drawing.Point(1099, 17);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(36, 17);
             this.label18.TabIndex = 53;
@@ -417,6 +418,10 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pnlTitleD.ResumeLayout(false);
+            this.pnlTitleD.PerformLayout();
+            this.pnlTitleU.ResumeLayout(false);
+            this.pnlTitleU.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
 

@@ -15,7 +15,6 @@ namespace Team2_Project
 {
     public partial class frmProcessManagement : Team2_Project.frmListUpAreaDown
     {
-        string loginedUser = "";
         bool isAdd, isEdit = false;
         ProcessMasterService service;
 
