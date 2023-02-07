@@ -147,8 +147,7 @@ namespace Team2_Project
 
                 trvFavorite.Nodes.Add(nodes);
                 favoriteList.Add(childMenu[0]);
-            }
-            
+            }         
         }
 
         private void btnNodeUp_Click(object sender, EventArgs e)
