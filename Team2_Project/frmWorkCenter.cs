@@ -58,7 +58,6 @@ namespace Team2_Project
             SetInitEditPnl();
             processList = prosrv.SetData();
             LoadData();
-            dgvWorkShop.DataSource = null;
         }
         private void LoadData()
         {
@@ -66,7 +65,10 @@ namespace Team2_Project
             BindingSource bs = new BindingSource(new AdvancedList<WorkCenterDTO>(wcList), null);
             dgvWorkShop.DataSource = null;
             dgvWorkShop.DataSource = bs;
-            dgvWorkShop.ClearSelection();
+            if (dgvWorkShop.CurrentRow != null)
+            {
+                dgvWorkShop_CellClick(dgvWorkShop, new DataGridViewCellEventArgs(0, dgvWorkShop.CurrentRow.Index));
+            }
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
