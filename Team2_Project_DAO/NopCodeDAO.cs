@@ -266,8 +266,9 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"SELECT MA.Nop_Ma_Code, MA.Nop_Ma_Name, MI.Nop_Mi_Code, MI.Nop_Mi_Name, MI.Nop_type, 
-	                                CASE WHEN MI.Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN, MI.Ins_Emp
+                string sql = @"SELECT MA.Nop_Ma_Code, MA.Nop_Ma_Name, MI.Nop_Mi_Code, MI.Nop_Mi_Name
+                                    , CASE WHEN MI.Nop_type = 'PG050' THEN '시유' ELSE '포장' END AS Nop_type
+	                                , CASE WHEN MI.Use_YN = 'Y' THEN '예' ELSE '아니오' END AS Use_YN, MI.Ins_Emp
 	                                , CONVERT(VARCHAR(10), MI.Ins_Date, 23) Ins_Date 
 	                                , CONVERT(VARCHAR(10), MI.Up_Date, 23) Ins_Date	, MI.Up_Emp
                                 FROM Nop_Ma_Master MA LEFT OUTER JOIN Nop_Mi_Master MI ON MA.Nop_Ma_Code = MI.Nop_Ma_Code

@@ -147,6 +147,8 @@ namespace Team2_Project
             AdvancedListBind(itemList, dgvData);
             ResetBottom();      //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
+
+            dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
         }
 
         public void OnAdd()     //추가
@@ -337,14 +339,19 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Test");
-
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             txtCode.Text = dgvData["Item_Code", e.RowIndex].Value.ToString();
             txtName.Text = dgvData["Item_Name", e.RowIndex].Value.ToString();
-            cboType.SelectedItem = dgvData["Item_Type", e.RowIndex].Value.ToString();
-            if (dgvData["Item_Spec", e.RowIndex].Value.Equals("")) cboSpec.SelectedIndex = -1;
-            else cboSpec.SelectedItem = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+
+            cboType.Text = dgvData["Item_Type", e.RowIndex].Value.ToString();
+            
+            cboSpec.Text = dgvData["Item_Spec", e.RowIndex].Value.ToString() ?? "-선택-";
+
+            if (cboType.Text == "완제품")
+                cboSpec.Text = dgvData["Item_Spec", e.RowIndex].Value.ToString();
+            else
+                cboSpec.Text = "-선택-";
+
             cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
             txtRemark.Text = dgvData["Remark", e.RowIndex].Value.ToString();
         }

@@ -65,10 +65,13 @@ namespace Team2_Project
             };
             NopMaList = srv.GetNopMaSearch(item);
             AdvancedListBind(NopMaList, dgvData);
-            dgvData.ClearSelection();
-            ResetBottom();  //입력패널 리셋
+            //dgvData.ClearSelection();
+            //ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
+
+            dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0,0));
         }
+
         public void OnAdd()     //추가
         {
             situation = "Add";

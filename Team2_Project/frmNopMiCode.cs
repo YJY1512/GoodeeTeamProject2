@@ -65,6 +65,8 @@ namespace Team2_Project
             DeactivationBottom(); //입력패널 비활성화
             OnSearch();
             nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
+
+
         }
 
         private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
@@ -112,6 +114,8 @@ namespace Team2_Project
 
             ResetBottom();        //입력 리셋
             DeactivationBottom(); //입력 비활성화
+
+            dgvMaData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
         }
 
 
@@ -323,22 +327,30 @@ namespace Team2_Project
 
                 //var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
                 if (NopMiList == null) return;
-                AdvancedListBind(list, dgvMiData);
+                
+                if (list.Count > 0)
+                {
+                    AdvancedListBind(list, dgvMiData);
+                    dgvMiData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                }
+                else
+                {
+                    dgvMiData.DataSource = null;
+                    ResetBottom();
+                }
             }
-            dgvMiData.ClearSelection();
+            //dgvMiData.ClearSelection();
         }
 
         private void dgvMiData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            ucMaCode._Code = dgvMaData[0, dgvMaData.CurrentRow.Index].Value.ToString();
-            ucMaCode._Name = dgvMaData[1, dgvMaData.CurrentRow.Index].Value.ToString();
+            ucMaCode._Code = dgvMaData["Nop_Ma_Code", dgvMaData.CurrentRow.Index].Value.ToString();
+            ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
             txtInfoCodeMi.Text = dgvMiData["Nop_Mi_Code", e.RowIndex].Value.ToString();
             txtInfoNameMi.Text = dgvMiData["Nop_Mi_Name", e.RowIndex].Value.ToString();
+            cboNoptype.SelectedItem = dgvMiData["Nop_type", e.RowIndex].Value.ToString();
             cboUseYN.SelectedItem = dgvMiData["Use_YN", e.RowIndex].Value.ToString();
-
-            //ucMaCode._Code = dgvMaData["Nop_Ma_Code", dgvMaData.CurrentRow.Index].Value.ToString();
-            //ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
         }
     }
 }
