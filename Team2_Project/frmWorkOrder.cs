@@ -54,7 +54,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "작업장코드", "Wc_Code", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산일자", "Prd_Date", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산수량", "Prd_Qty", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Wo_Status_code", "Wo_Status_code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Process_Code", "Process_Code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Process_Name", "Process_Name", visible: false);
@@ -539,6 +539,32 @@ namespace Team2_Project
             ucProcess.OpenPop(GetProcessPopInfo());
         }
 
+        private void dgvWorkOrder_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
 
+            if (dgvWorkOrder["Wo_Status_code", e.RowIndex].Value == null) return;
+
+            string status = dgvWorkOrder["Wo_Status_code", e.RowIndex].Value.ToString();
+            switch (status)
+            {
+                case "W01": //생산대기
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.Orange;
+                    break;
+                case "W02": //생산중
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.ForestGreen;
+                    break;
+                case "W03": //생산중지
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.Gold;
+                    break;
+                case "W04": //현장마감
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.LightSkyBlue;
+                    break;
+                case "W05": //작업지시마감
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.DarkBlue;
+                    break;
+                default: break;
+            }
+        }
     }
 }

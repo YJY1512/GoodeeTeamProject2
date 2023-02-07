@@ -298,6 +298,7 @@ namespace Team2_Project
             this.dgvWorkOrder.Size = new System.Drawing.Size(1232, 283);
             this.dgvWorkOrder.TabIndex = 0;
             this.dgvWorkOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrder_CellClick);
+            this.dgvWorkOrder.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvWorkOrder_CellFormatting);
             // 
             // label15
             // 

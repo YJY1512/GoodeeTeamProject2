@@ -140,12 +140,12 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"select WorkOrderNo, Plan_Qty_Box, Plan_Date, wo.Wc_Code, wc.Wc_Name, wo.Item_Code, i.Item_Name, s.Sys_Mi_Name Wo_Status, 
-                                        Prd_Date, Prd_Qty, wo.Wo_Status Wo_Status_code,  wc.Process_Code, p.Process_Name
+                                        Prd_Date, Prd_Qty, wo.Wo_Status Wo_Status_Code,  wc.Process_Code, p.Process_Name
                                 from WorkOrder wo inner join WorkCenter_Master wc on wo.Wc_Code = wc.Wc_Code
                                 					inner join Process_Master p on wc.Process_Code = p.Process_Code
                                 					inner join Item_Master i on wo.Item_Code = i.Item_Code
                                 					inner join Sys_Mi_Master s on s.Sys_Mi_Code = wo.Wo_Status and s.Sys_Ma_Code = 'WO_STATUS'
-                                where Plan_Date between @start and @end and wo.Prd_Plan_No is null";
+                                where Plan_Date between @start and @end";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
