@@ -82,7 +82,7 @@ namespace Team2_Project
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(125, 25);
             this.dtpDate.TabIndex = 73;
-            this.dtpDate.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
+            this.dtpDate.Value = new System.DateTime(2023, 2, 1, 0, 0, 0, 0);
             // 
             // label6
             // 

@@ -45,7 +45,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Mi_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Mi_Name", 200);
             //DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 구분", "Regular_Type", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 유형", "Nop_type", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동유형", "Nop_type", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 100);
             dgvMaData.MultiSelect = false;
             dgvMiData.MultiSelect = false;
