@@ -73,7 +73,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "작업장명", "Wc_Name", 150, OrangebackColor: true);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산일자", "Prd_Date", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산수량", "Prd_Qty", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "전달사항", "Remark", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "전달사항", "Remark", 200, OrangebackColor: true);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Wo_Status_code", "Wo_Status_code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Prd_Plan_No", "Prd_Plan_No", visible:false);
             dgvWorkOrder.Columns["Plan_Qty_Box"].ReadOnly = false;
@@ -325,7 +325,50 @@ namespace Team2_Project
 
         private void btnMsgEdit_Click(object sender, EventArgs e) //전달메세지 수정저장
         {
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
 
+            Dictionary<string, string> woMsg = new Dictionary<string, string>();
+            foreach (DataGridViewRow row in dgvWorkOrder.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    string msg = row.Cells["Remark"].Value.ToString();
+                    if (string.IsNullOrWhiteSpace(msg))
+                    {
+                        MessageBox.Show("전달메세지를 입력하여 주십시오.");
+                        dgvWorkOrder.Enabled = true;
+                        SetWobtnEnabled(true);
+                        return;
+                    }
+
+                    woMsg.Add(row.Cells["WorkOrderNo"].Value.ToString(), row.Cells["Remark"].Value.ToString());
+                }
+            }
+
+            if (woMsg.Count < 1)
+            {
+                MessageBox.Show("저장할 항목을 선택하여 주십시오.");
+                dgvWorkOrder.Enabled = true;
+                SetWobtnEnabled(true);
+                clickState = ButtonClick.None;
+                return;
+            }
+
+            string upEmp = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+            bool result = woSrv.UpdateMsg(woMsg, upEmp);
+            if (result)
+            {
+                MessageBox.Show("저장이 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("저장 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+            }
+
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+            OnReLoad();
         }
 
         private void btnClose_Click(object sender, EventArgs e) //작업지시 마감
@@ -448,6 +491,21 @@ namespace Team2_Project
                 return false;
             }
 
+            if ((clickState == ButtonClick.Add || clickState == ButtonClick.Edit) &&
+                dgvWorkOrder["Plan_Date", rowIdx].Value == DBNull.Value)
+            {
+                if (dgvWorkOrder.Tag == null)
+                {
+                    MessageBox.Show("작업지시 일자를 입력하여 주십시오.");
+                    return false;
+                }
+                else
+                {
+                    Dtp_TextChanged(dgvWorkOrder.Tag, null);
+                    Dtp_CloseUp(dgvWorkOrder.Tag, null);
+                }
+            }
+
             if (Convert.ToDateTime(dgvWorkOrder["Plan_Date", rowIdx].Value) < DateTime.Today)
             {
                 MessageBox.Show("작업지시 일자는 오늘 이전으로 설정할 수 없습니다.");
@@ -476,7 +534,6 @@ namespace Team2_Project
             
             dgvWorkOrder.DataSource = filter.CopyToDataTable();
             dgvWorkOrder.ClearSelection();
-           
         }
 
         private void dgvPlan_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -535,9 +592,19 @@ namespace Team2_Project
             {
                 OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvWorkOrder, e.RowIndex);
             }
+            else if (e.ColumnIndex == dgvWorkOrder.Columns["Remark"].Index)
+            {
+                dgvWorkOrder[e.ColumnIndex, e.RowIndex].ReadOnly = false;
+            }
+
+            if (e.ColumnIndex != dgvWorkOrder.Columns["Plan_Date"].Index 
+                    && (clickState == ButtonClick.Add || clickState == ButtonClick.Edit) 
+                    && dgvWorkOrder.Tag != null && dgvWorkOrder["Plan_Date", e.RowIndex].Value == DBNull.Value)
+            {
+                Dtp_TextChanged(dgvWorkOrder.Tag, null);
+                Dtp_CloseUp(dgvWorkOrder.Tag, null);             
+            }
         }
-
-
 
 
         #region 데이터그리드뷰 dtp 관련 메서드
@@ -558,10 +625,12 @@ namespace Team2_Project
             dtp.Size = new Size(rect.Width, rect.Height);
             dtp.Location = new Point(rect.X, rect.Y);
             dgvWorkOrder.Controls.Add(dtp);
+            dgvWorkOrder.Tag = dtp;
 
             dtp.CloseUp += Dtp_CloseUp;
             dtp.TextChanged += Dtp_TextChanged;
         }
+
 
         private void Dtp_TextChanged(object sender, EventArgs e)
         {
@@ -573,6 +642,7 @@ namespace Team2_Project
             ((DateTimePicker)sender).Visible = false;
             dgvWorkOrder.Controls.Remove((DateTimePicker)sender);
             dgvWorkOrder.ScrollBars = ScrollBars.Both;
+            dgvWorkOrder.Tag = null;
         }
         #endregion
 
@@ -745,6 +815,7 @@ namespace Team2_Project
                     Plan_Date = Convert.ToDateTime(dgvWorkOrder["Plan_Date", rIdx].Value),
                     Plan_Qty_Box = Convert.ToInt32(dgvWorkOrder["Plan_Qty_Box", rIdx].Value),
                     Wc_Code = dgvWorkOrder["Wc_Code", rIdx].Value.ToString(),
+                    Item_Code = dgvWorkOrder["Item_Code", rIdx].Value.ToString(),
                     Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
                 };
 
@@ -798,6 +869,5 @@ namespace Team2_Project
         }
 
         #endregion
-
     }
 }
