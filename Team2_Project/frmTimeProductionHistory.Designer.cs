@@ -324,24 +324,24 @@ namespace Team2_Project
             "WorkOrder_001",
             "WorkOrder_002",
             "WorkOrder_003"});
-            this.cboTest.Location = new System.Drawing.Point(1596, 62);
+            this.cboTest.Location = new System.Drawing.Point(1638, 54);
             this.cboTest.Name = "cboTest";
-            this.cboTest.Size = new System.Drawing.Size(215, 25);
+            this.cboTest.Size = new System.Drawing.Size(194, 25);
             this.cboTest.TabIndex = 79;
             // 
             // lbltest
             // 
             this.lbltest.AutoSize = true;
             this.lbltest.BackColor = System.Drawing.Color.Transparent;
-            this.lbltest.Location = new System.Drawing.Point(1596, 35);
+            this.lbltest.Location = new System.Drawing.Point(1638, 14);
             this.lbltest.Name = "lbltest";
-            this.lbltest.Size = new System.Drawing.Size(120, 17);
+            this.lbltest.Size = new System.Drawing.Size(120, 34);
             this.lbltest.TabIndex = 80;
-            this.lbltest.Text = "임시작업지시번호";
+            this.lbltest.Text = "(바인딩 테스트)\r\n임시작업지시번호";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1740, 30);
+            this.button1.Location = new System.Drawing.Point(1761, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 26);
             this.button1.TabIndex = 81;
