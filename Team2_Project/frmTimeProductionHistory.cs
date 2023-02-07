@@ -213,5 +213,10 @@ namespace Team2_Project
             //                                                                    //chtData.DataBindTable(students, "Time");
             #endregion
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ChartData();
+        }
     }    
 }

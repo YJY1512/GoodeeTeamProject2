@@ -29,8 +29,8 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -51,6 +51,7 @@ namespace Team2_Project
             this.chkDefQty = new System.Windows.Forms.CheckBox();
             this.cboTest = new System.Windows.Forms.ComboBox();
             this.lbltest = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -69,8 +70,9 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.lbltest);
             this.pnlSub.Controls.Add(this.cboTest);
+            this.pnlSub.Controls.Add(this.button1);
+            this.pnlSub.Controls.Add(this.lbltest);
             this.pnlSub.Controls.Add(this.chkDefQty);
             this.pnlSub.Controls.Add(this.ucProcessCode);
             this.pnlSub.Controls.Add(this.label7);
@@ -185,11 +187,11 @@ namespace Team2_Project
             // 
             // chtData
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
             this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chtData.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
@@ -322,7 +324,7 @@ namespace Team2_Project
             "WorkOrder_001",
             "WorkOrder_002",
             "WorkOrder_003"});
-            this.cboTest.Location = new System.Drawing.Point(1577, 40);
+            this.cboTest.Location = new System.Drawing.Point(1596, 62);
             this.cboTest.Name = "cboTest";
             this.cboTest.Size = new System.Drawing.Size(215, 25);
             this.cboTest.TabIndex = 79;
@@ -331,11 +333,21 @@ namespace Team2_Project
             // 
             this.lbltest.AutoSize = true;
             this.lbltest.BackColor = System.Drawing.Color.Transparent;
-            this.lbltest.Location = new System.Drawing.Point(1577, 18);
+            this.lbltest.Location = new System.Drawing.Point(1596, 35);
             this.lbltest.Name = "lbltest";
             this.lbltest.Size = new System.Drawing.Size(120, 17);
             this.lbltest.TabIndex = 80;
             this.lbltest.Text = "임시작업지시번호";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1740, 30);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(68, 26);
+            this.button1.TabIndex = 81;
+            this.button1.Text = "테스트";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmTimeProductionHistory
             // 
@@ -388,5 +400,6 @@ namespace Team2_Project
         private System.Windows.Forms.CheckBox chkDefQty;
         private System.Windows.Forms.ComboBox cboTest;
         private System.Windows.Forms.Label lbltest;
+        private System.Windows.Forms.Button button1;
     }
 }
