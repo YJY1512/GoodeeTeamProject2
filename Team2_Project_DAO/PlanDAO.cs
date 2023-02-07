@@ -66,6 +66,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.Add("@Prd_Req_No", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Item_Code", SqlDbType.NVarChar);
                     cmd.Parameters.Add("@Wc_Code", SqlDbType.NVarChar);
+                    cmd.Parameters.Add("@Plan_Month", SqlDbType.NVarChar);
                     cmd.Transaction = trans;
 
                     cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -79,6 +80,7 @@ namespace Team2_Project_DAO
                         cmd.Parameters["@Prd_Req_No"].Value = plan.Prd_Req_No;
                         cmd.Parameters["@Item_Code"].Value = plan.Item_Code;
                         cmd.Parameters["@Wc_Code"].Value = plan.Wc_Code;
+                        cmd.Parameters["@Plan_Month"].Value = plan.Plan_Month;
                         
                         cmd.ExecuteNonQuery();                        
 
@@ -141,6 +143,7 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Plan_Rest_Qty", plan.Plan_Rest_Qty);
                     cmd.Parameters.AddWithValue("@Item_Code", plan.Item_Code);
                     cmd.Parameters.AddWithValue("@Wc_Code", plan.Wc_Code);
+                    cmd.Parameters.AddWithValue("@Plan_Month", plan.Plan_Month);
 
                     cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
@@ -323,6 +326,91 @@ namespace Team2_Project_DAO
                 return false;
             }
         }
-    
+
+        public List<PlanHeaderDTO> GetPlanHeader()
+        {
+            try
+            {
+                string sql = @"select top 6 Plan_Month, Plan_Title 
+                                from Production_Plan_Header
+                                where SUBSTRING(Plan_Month, 1, 4) = @year
+                                order by Plan_Month desc";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@year", DateTime.Today.Year.ToString());
+                    List<PlanHeaderDTO> list = Helper.DataReaderMapToList<PlanHeaderDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public int UpsertPlanHeader(PlanHeaderDTO planHeader)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_UpsertPlanHeader", conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Plan_Month", planHeader.Plan_Month);
+                    cmd.Parameters.AddWithValue("@Plan_Title", planHeader.Plan_Title);
+                    cmd.Parameters.AddWithValue("@Emp", planHeader.Ins_Emp);
+
+                    cmd.Parameters.Add("@PO_CD", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@PO_MSG", SqlDbType.NVarChar, 1000).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    string pMsg = cmd.Parameters["@PO_MSG"].Value.ToString();
+                    int pCode = Convert.ToInt32(cmd.Parameters["@PO_CD"].Value);
+
+                    return pCode;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+
+        public int DelPlanHeader(string planMonth)
+        {
+            try
+            {
+                string sql = @"delete Production_Plan_Header
+                                where Plan_Month = @Plan_Month;
+                                select @@ERROR";
+          
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Plan_Month", planMonth);
+
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return -1;
+            }
+        }
+
+     
+
+
     }
 }

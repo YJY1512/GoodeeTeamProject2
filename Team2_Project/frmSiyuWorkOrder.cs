@@ -523,6 +523,11 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
+            if (dgvWorkOrder.Tag != null)
+            {
+                Dtp_CloseUp(dgvWorkOrder.Tag, null);
+            }
+
             string planID = dgvPlan["Prd_Plan_No", e.RowIndex].Value.ToString();
 
             var filter = from row in woDt.AsEnumerable()
@@ -586,47 +591,32 @@ namespace Team2_Project
         private void dgvWorkOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-                
+
+            if (dgvWorkOrder.Tag != null)
+            {
+                Dtp_CloseUp(dgvWorkOrder.Tag, null);
+            }
+
             if (e.ColumnIndex == dgvWorkOrder.Columns["Plan_Date"].Index)
             {                
                 SetDtpCell(dgvWorkOrder[e.ColumnIndex, e.RowIndex]);
 
-                if (clickState != ButtonClick.Add)
-                {
-                    dgvPlan.Enabled = false;
-                    clickState = ButtonClick.Edit;
-                    rIdx = e.RowIndex;
-                }
             }
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Wc_Code"].Index || e.ColumnIndex == dgvWorkOrder.Columns["Wc_Name"].Index)
             {
                 OpenPop<WorkCenterDTO>(GetWcPopInfo(), dgvWorkOrder, e.RowIndex);
 
-                if (clickState != ButtonClick.Add)
-                {
-                    dgvPlan.Enabled = false;
-                    clickState = ButtonClick.Edit;
-                    rIdx = e.RowIndex;
-                }
             }
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Remark"].Index)
             {
                 dgvWorkOrder[e.ColumnIndex, e.RowIndex].ReadOnly = false;
 
-                if (clickState != ButtonClick.Add)
-                {
-                    dgvPlan.Enabled = false;
-                    clickState = ButtonClick.Edit;
-                    rIdx = e.RowIndex;
-                }
             }
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Plan_Qty_Box"].Index)
             {
-                if (clickState != ButtonClick.Add)
+                if (dgvWorkOrder.Tag != null)
                 {
-                    dgvPlan.Enabled = false;
-                    clickState = ButtonClick.Edit;
-                    rIdx = e.RowIndex;
+                    Dtp_CloseUp(dgvWorkOrder.Tag, null);
                 }
             }
 
@@ -643,7 +633,7 @@ namespace Team2_Project
         //Add, Edit 상태일 때 cell 선택 불가하게
         private void dgvWorkOrder_SelectionChanged(object sender, EventArgs e)
         {
-            if (clickState == ButtonClick.Add || clickState == ButtonClick.Edit)
+            if (clickState == ButtonClick.Add)
             {
                 dgvWorkOrder.CurrentCell.Selected = false;
                 dgvWorkOrder.CurrentCell = dgvWorkOrder.Rows[rIdx].Cells[0];
@@ -922,19 +912,18 @@ namespace Team2_Project
 
             if (clickState == ButtonClick.Add)
             {
+                clickState = ButtonClick.None;
                 filterWoDt.Rows.RemoveAt(rIdx);
                 rIdx = -1;
 
                 SetWobtnEnabled(true);
+                dgvPlan.Enabled = true;
             }
 
             if (dgvWorkOrder.Tag != null)
             {
                 Dtp_CloseUp(dgvWorkOrder.Tag, null);
-            }
-
-            dgvPlan.Enabled = true;
-            clickState = ButtonClick.None;
+            }            
         }
 
         public void OnReLoad()  //새로고침
