@@ -22,7 +22,7 @@ namespace Team2_Project
         DataTable dt;
         List<ItemDTO> itemCodeList;
         List<ProjectDTO> projectCodeList;
-        Dictionary<string, string> categoryList = new Dictionary<string, string>() { { "D", "납기일자" }, { "R", "요청일자" } };
+        Dictionary<string, string> categoryList = new Dictionary<string, string>() { { "R", "요청일자" }, { "D", "납기일자" } };
         int idx;    //추가/수정하는 행의 index
         int stat;   //0 = 일반, 1 = 추가, 2 = 수정 상태
         //bool cellEditStat = false;
@@ -56,7 +56,7 @@ namespace Team2_Project
 
             foreach (int i in orangeCols)
             {
-                dgvOrder.Columns[i].DefaultCellStyle.BackColor = Color.Orange;
+                dgvOrder.Columns[i].DefaultCellStyle.BackColor = Color.PeachPuff;
             }
             
             cbo.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -74,7 +74,7 @@ namespace Team2_Project
         /// </summary>
         private void ResetSearchCtrls()
         {
-            dtpSearchFrom.Value = DateTime.Today;
+            dtpSearchFrom.Value = DateTime.Today.AddMonths(-1);
             dtpSearchTo.Value = DateTime.Today.AddMonths(1);
             ucSearchItem._Code = "";
             ucSearchItem._Name = "";
