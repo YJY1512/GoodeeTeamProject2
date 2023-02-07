@@ -36,8 +36,9 @@ namespace Team2_Project
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
             cboUseSC.SelectedIndex = 0;
 
+            SetInitPnl();
             LoadData();
-            SetInitPnl();         
+                  
         }
 
         private void LoadData()
@@ -73,8 +74,8 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            string defName = txtNameSC.Text;
-            string defCode = txtCodeSC.Text;
+            string defName = txtNameSC.Text.ToLower();
+            string defCode = txtCodeSC.Text.ToLower();
             string useYN = (cboUseSC.SelectedItem.ToString() == "전체") ? "" : cboUseSC.SelectedItem.ToString();
 
             if (string.IsNullOrWhiteSpace(defName) && string.IsNullOrWhiteSpace(defCode) && string.IsNullOrWhiteSpace(useYN))
@@ -84,7 +85,7 @@ namespace Team2_Project
             }            
 
             var list = (from c in defList
-                        where c.Def_Ma_Code.Contains(defCode) && c.Def_Ma_Name.Contains(defName) && c.Use_YN.Contains(useYN)
+                        where c.Def_Ma_Code.ToLower().Contains(defCode) && c.Def_Ma_Name.ToLower().Contains(defName) && c.Use_YN.Contains(useYN)
                         select c).ToList();
 
             AdvancedListBind(list, dgvMa);
@@ -176,6 +177,7 @@ namespace Team2_Project
                 if (!result)
                 {
                     MessageBox.Show("불량현상 대분류코드가 중복되었습니다. 다시 입력하여 주십시오.");
+                    ((frmMain)this.MdiParent).AddClickEvent();
                     return;
                 }
 
@@ -229,7 +231,8 @@ namespace Team2_Project
             SetInitPnl();
 
             dgvMa.Enabled = true;
-            dgvMa.ClearSelection();
+            if (dgvMa.CurrentRow != null)
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, dgvMa.CurrentRow.Index));
         }
 
         public void OnReLoad()  //새로고침
