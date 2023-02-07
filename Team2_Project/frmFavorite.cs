@@ -219,7 +219,7 @@ namespace Team2_Project
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            //curCnt = trvFavorite.Nodes.Count;
+            curCnt = trvFavorite.Nodes.Count;
             //TreeNode curNode = trvFavorite.SelectedNode;
             //curNode.BackColor = Color.White;
             if (startcnt != curCnt )
