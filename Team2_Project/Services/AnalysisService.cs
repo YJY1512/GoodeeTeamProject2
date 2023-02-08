@@ -34,5 +34,13 @@ namespace Team2_Project.Services
             db.Dispose();
             return list;
         }
+
+        public List<MonthProductionHistoryDTO> GetMonthProductionHistory(string MonthDate)
+        {
+            AnalysisDAO db = new AnalysisDAO();
+            List<MonthProductionHistoryDTO> list = db.GetMonthProductionHistory(MonthDate);
+            db.Dispose();
+            return list;
+        }
     }
 }

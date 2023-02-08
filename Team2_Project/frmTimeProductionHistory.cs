@@ -88,7 +88,7 @@ namespace Team2_Project
             string wcCode = ucWcCode._Code;
 
             List<TimeProductionHistoryDTO> list = null;
-            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd")); //////////SP불량부분 수정하기
+            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd")); ////////// SP불량부분 수정하기
             if (TPHistoryList != null && TPHistoryList.Count > 0)
             {
                 string processSC = ucProcessCode._Code ?? "";
@@ -258,6 +258,6 @@ namespace Team2_Project
         private void button1_Click(object sender, EventArgs e)
         {
             ChartData();
-        }
+        } //test
     }    
 }
