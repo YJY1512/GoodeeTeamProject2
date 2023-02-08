@@ -67,8 +67,6 @@ namespace Team2_Project_POP.Controls
             this.lblGroup.Text = "그  룹";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblGroup.Click += new System.EventHandler(this.ucSelectedList_Click);
-            this.lblGroup.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
-            this.lblGroup.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             // 
             // lblWorkSpace
             // 
@@ -83,8 +81,6 @@ namespace Team2_Project_POP.Controls
             this.lblWorkSpace.Text = "작 업 장";
             this.lblWorkSpace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblWorkSpace.Click += new System.EventHandler(this.ucSelectedList_Click);
-            this.lblWorkSpace.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
-            this.lblWorkSpace.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             // 
             // lblStatuse
             // 
@@ -99,8 +95,6 @@ namespace Team2_Project_POP.Controls
             this.lblStatuse.Text = "상  태";
             this.lblStatuse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblStatuse.Click += new System.EventHandler(this.ucSelectedList_Click);
-            this.lblStatuse.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
-            this.lblStatuse.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             // 
             // ucSelectedList
             // 
@@ -112,8 +106,6 @@ namespace Team2_Project_POP.Controls
             this.Size = new System.Drawing.Size(797, 100);
             this.Load += new System.EventHandler(this.ucSelectedList_Load);
             this.Click += new System.EventHandler(this.ucSelectedList_Click);
-            this.MouseEnter += new System.EventHandler(this.ucSelectedList_MouseEnter);
-            this.MouseLeave += new System.EventHandler(this.ucSelectedList_MouseLeave);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

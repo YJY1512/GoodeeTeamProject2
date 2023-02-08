@@ -20,6 +20,7 @@ namespace Team2_Project
         MenuService srv = new MenuService();
         List<MenuDTO> allMenuList;
         List<MenuDTO> favoriteList;
+        List<MenuDTO> currentList;
         int startcnt;
         int curCnt;
         public frmFavorite()
@@ -37,6 +38,7 @@ namespace Team2_Project
             AllMenuBinding();
             FavritListBinding();
             startcnt = trvFavorite.Nodes.Count;
+            
         }
 
         private void AllMenuBinding()   //allList에 대메뉴 중메뉴만 출력 
@@ -72,12 +74,13 @@ namespace Team2_Project
         private void FavritListBinding()
         {
             List<MenuDTO> lists = favoriteList;
-            var list1 = lists.FindAll((k) => k.Menu_Level == 3).OrderBy((k) => k.Seq).ToList();
+            var list1 = lists.FindAll((k) => k.Menu_Level == 3).OrderBy((k) => k.Sort_Index).ToList();
             for (int l = 0; l < list1.Count; l++)
             {
                 TreeNode favList = new TreeNode();
                 favList.Name = list1[l].Screen_Code;
                 favList.Text = list1[l].Menu_Name;
+                favList.Tag = l;
                 favList.NodeFont = new Font("나눔고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
                 favList.ForeColor = Color.FromArgb(60, 75, 80);
                 favList.BackColor = Color.FromArgb(211, 226, 223);
@@ -113,6 +116,20 @@ namespace Team2_Project
             }
         }
 
+        private void trvFavorite_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            e.Node.BackColor = Color.White;
+            
+        }
+
+        private void trvFavorite_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            foreach (TreeNode item in trvFavorite.Nodes)          //루트노드만 조회한다 
+            {
+                ClearRecursive(item);
+            }
+        }
+
         private void ClearRecursive(TreeNode node)      //재귀함수 
         {
             foreach (TreeNode item in node.Nodes)
@@ -134,13 +151,14 @@ namespace Team2_Project
                 return;
             }
 
-            var childMenu = allMenuList.FindAll((c) => c.Menu_Level == 3 && c.Menu_Name == selItemName).ToList();
+            var childMenu = allMenuList.FindAll((c) => c.Menu_Name == selItemName).ToList();
             int d = 0;
             if (childMenu.Count == 1)
             {
                 TreeNode nodes = new TreeNode();
                 nodes.Name = childMenu[d].Screen_Code;
                 nodes.Text = childMenu[d].Menu_Name;
+                nodes.Tag = trvFavorite.Nodes.Count;
                 nodes.NodeFont = new Font("나눔고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
                 nodes.ForeColor = Color.FromArgb(60, 75, 80);
                 nodes.BackColor = Color.White;
@@ -151,7 +169,14 @@ namespace Team2_Project
         }
 
         private void btnNodeUp_Click(object sender, EventArgs e)
-        { 
+        {
+            if (trvFavorite.SelectedNode == null)
+            {
+                MessageBox.Show("순서를 변경할 항목을 선택하여주세요.");
+                return;
+            }
+            string selItem = trvFavorite.SelectedNode.Text;
+            var favlist = favoriteList.FindAll((f) => f.Menu_Name == selItem).ToList();
             TreeNode curNode = trvFavorite.SelectedNode;
             TreeNode pntNode = curNode.Parent;
             TreeView view = curNode.TreeView;
@@ -170,17 +195,27 @@ namespace Team2_Project
                 if (index > 0)
                 {
                     view.Nodes.RemoveAt(index);
+                    favoriteList.RemoveAt(index);
                     view.Nodes.Insert(index - 1, curNode);
-                    curNode.ForeColor = Color.White;
+                    favoriteList.Insert(index - 1, favlist[0]);
+                    curNode.BackColor = Color.White;
                 }
             }
         }
 
         private void btnNodeDown_Click(object sender, EventArgs e)
         {
+            if (trvFavorite.SelectedNode == null)
+            {
+                MessageBox.Show("순서를 변경할 항목을 선택하여주세요.");
+                return;
+            }
+            string selItem = trvFavorite.SelectedNode.Text;
+            var favlist = favoriteList.FindAll((f) => f.Menu_Name == selItem).ToList();
             TreeNode curNode = trvFavorite.SelectedNode;
             TreeNode pntNode = curNode.Parent;
             TreeView view = curNode.TreeView;
+            
             if (pntNode != null)
             {
                 int index = pntNode.Nodes.IndexOf(curNode);
@@ -196,8 +231,10 @@ namespace Team2_Project
                 if (index < view.Nodes.Count - 1)
                 {
                     view.Nodes.RemoveAt(index);
+                    favoriteList.RemoveAt(index);
                     view.Nodes.Insert(index + 1, curNode);
-                    curNode.ForeColor = Color.White;
+                    favoriteList.Insert(index + 1, favlist[0]);
+                    curNode.BackColor = Color.White;                 
                 }
             }
         }
@@ -210,18 +247,30 @@ namespace Team2_Project
             favoriteList.Remove(delmenu[0]);
         }
         
-
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string userID = LoginEmp.User_ID;
 
+            bool result = srv.SaveFavorite(userID, favoriteList);
+            if (result)
+            {
+                MessageBox.Show("저장되었습니다. 즐겨찾기List 변경사항은 다음 로그인시 적용됩니다.");
+                favoriteList = srv.GetFavoriteInfo(LoginEmp.User_ID);
+                trvFavorite.SelectedNode.BackColor = Color.White;
+            }
+            else
+            {
+                MessageBox.Show("저장에 실패하였습니다. 다시 시도하여 주세요.");
+            } 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            curCnt = trvFavorite.Nodes.Count;
-            //TreeNode curNode = trvFavorite.SelectedNode;
-            //curNode.BackColor = Color.White;
-            if (startcnt != curCnt )
+            //유효성체크 오른쪽 즐겨찾기 List에 backcolor가 white가 있으면 
+            int curCnt = trvFavorite.Nodes.Count;
+            currentList = srv.GetFavoriteInfo(LoginEmp.User_ID);
+            int dbfavList = currentList.Count;
+            if (dbfavList != curCnt)
             {
                 if (MessageBox.Show("현재 즐겨찾기 List에 수정된 사항이 있습니다. \n 종료하시면 수정된 내용이 저장되지 않습니다. 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
@@ -232,6 +281,8 @@ namespace Team2_Project
             }
             this.Close();
             
-        }      
+        }
+
+        
     }
 }

@@ -93,5 +93,13 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public string ChkStatus(string woID)
+        {
+            WorkOrderDAO db = new WorkOrderDAO();
+            string result = db.ChkStatus(woID);
+
+            return result;
+        }
     }
 }

@@ -132,6 +132,18 @@
     <Compile Include="Controls\ucSearch.Designer.cs">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAuthority.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthority.Designer.cs">
+      <DependentUpon>frmAuthority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlanAddPop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlanAddPop.Designer.cs">
+      <DependentUpon>frmPlanAddPop.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSiyuPop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +395,9 @@
     <EmbeddedResource Include="Controls\ucSearch.resx">
       <DependentUpon>ucSearch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAuthority.resx">
+      <DependentUpon>frmAuthority.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -433,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPlan.resx">
       <DependentUpon>frmPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlanAddPop.resx">
+      <DependentUpon>frmPlanAddPop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPlanPop.resx">
       <DependentUpon>frmPlanPop.cs</DependentUpon>

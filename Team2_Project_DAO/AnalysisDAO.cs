@@ -27,7 +27,7 @@ namespace Team2_Project_DAO
         }
 
         
-        public List<TimeProductionHistoryDTO> GetWorkOrder(string from, string to) //날짜기준으로 시간대별실적 (작업조회기준) 데이터 가져오기
+        public List<TimeProductionHistoryDTO> GetWorkOrder(string from, string to) //날짜기준 시간대별실적 (작업지시번호 기준) dgv 데이터 가져오기
         {
             try
             {
@@ -57,15 +57,15 @@ namespace Team2_Project_DAO
             }
         }
 
-
-        public List<TimeProductionHistoryDTO> GetTimeProductionHistory(string WorkOrderNo) //시간대별 데이터
+        public List<TimeProductionHistoryDTO> GetTimeProductionHistory(string WorkOrderNo) //시간대별실적 데이터 (차트)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     conn.Open();
-                    cmd.CommandText = "SP_TIMETEST"; /////SP_테스트용아닌걸로 수정
+                    //cmd.CommandText = "SP_TIMETEST"; /////SP_테스트용아닌걸로 수정
+                    cmd.CommandText = "SP_TimeProductionChart";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
@@ -87,7 +87,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<CodeDTO> GetWoStatus() //작업지시상태
+        public List<CodeDTO> GetWoStatus() //작업지시상태 cbobox
         {
             try
             {
@@ -107,7 +107,34 @@ namespace Team2_Project_DAO
             }
         }
 
+        public List<MonthProductionHistoryDTO> GetMonthProductionHistory(string MonthDate) //월기준 월별 제품 생산 비율 dgv 데이터 가져오기
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    conn.Open();
+                    cmd.CommandText = "SP_MonthProductionHistory";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MonthDate", MonthDate);
 
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<MonthProductionHistoryDTO> list = Helper.DataReaderMapToList<MonthProductionHistoryDTO>(reader);
+                    reader.Close();
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
     }
 }

@@ -213,6 +213,7 @@ namespace Team2_Project
             // 
             // cboProcessGroupArea
             // 
+            this.cboProcessGroupArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProcessGroupArea.FormattingEnabled = true;
             this.cboProcessGroupArea.Location = new System.Drawing.Point(435, 15);
             this.cboProcessGroupArea.Name = "cboProcessGroupArea";
@@ -221,6 +222,7 @@ namespace Team2_Project
             // 
             // cboUseArea
             // 
+            this.cboUseArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseArea.FormattingEnabled = true;
             this.cboUseArea.Location = new System.Drawing.Point(435, 75);
             this.cboUseArea.Name = "cboUseArea";
@@ -229,6 +231,7 @@ namespace Team2_Project
             // 
             // cboUseSub
             // 
+            this.cboUseSub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseSub.FormattingEnabled = true;
             this.cboUseSub.Location = new System.Drawing.Point(972, 15);
             this.cboUseSub.Name = "cboUseSub";
@@ -237,6 +240,7 @@ namespace Team2_Project
             // 
             // cboProcessGroupSub
             // 
+            this.cboProcessGroupSub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProcessGroupSub.FormattingEnabled = true;
             this.cboProcessGroupSub.Location = new System.Drawing.Point(707, 15);
             this.cboProcessGroupSub.Name = "cboProcessGroupSub";

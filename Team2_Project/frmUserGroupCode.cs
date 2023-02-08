@@ -127,6 +127,9 @@ namespace Team2_Project
                 dgvGroup.DataSource = null;
                 dgvGroup.DataSource = gc;
             }
+            SetInitEditPnl();
+            if (dgvGroup.CurrentRow != null)
+                dgvGroup_CellClick(dgvGroup, new DataGridViewCellEventArgs(0, 0));
         }
         public void OnAdd()     //추가
         {

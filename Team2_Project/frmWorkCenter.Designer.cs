@@ -59,6 +59,9 @@ namespace Team2_Project
             this.txtSearchName = new System.Windows.Forms.TextBox();
             this.ucSrchProcCode = new Team2_Project.Controls.ucSearch();
             this.cboWCGroup = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboUnit = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlArea.SuspendLayout();
@@ -66,6 +69,8 @@ namespace Team2_Project
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pnlTitleD.SuspendLayout();
+            this.pnlTitleU.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkShop)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,6 +107,9 @@ namespace Team2_Project
             // 
             // pnlArea
             // 
+            this.pnlArea.Controls.Add(this.label1);
+            this.pnlArea.Controls.Add(this.cboUnit);
+            this.pnlArea.Controls.Add(this.label4);
             this.pnlArea.Controls.Add(this.cboWCGroup);
             this.pnlArea.Controls.Add(this.label20);
             this.pnlArea.Controls.Add(this.label19);
@@ -131,6 +139,14 @@ namespace Team2_Project
             this.splitContainer1.Location = new System.Drawing.Point(0, 120);
             this.splitContainer1.Size = new System.Drawing.Size(1351, 765);
             this.splitContainer1.SplitterDistance = 538;
+            // 
+            // pnlTitleD
+            // 
+            this.pnlTitleD.Size = new System.Drawing.Size(1351, 43);
+            // 
+            // pnlTitleU
+            // 
+            this.pnlTitleU.Size = new System.Drawing.Size(1351, 43);
             // 
             // dgvWorkShop
             // 
@@ -202,7 +218,7 @@ namespace Team2_Project
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 17);
             this.label8.TabIndex = 8;
-            this.label8.Text = "사용여부";
+            this.label8.Text = "실적단위";
             // 
             // cboPalletYN
             // 
@@ -218,7 +234,7 @@ namespace Team2_Project
             this.cboUseYN.BackColor = System.Drawing.Color.White;
             this.cboUseYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(505, 133);
+            this.cboUseYN.Location = new System.Drawing.Point(1025, 133);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 11;
@@ -243,11 +259,11 @@ namespace Team2_Project
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(979, 19);
+            this.txtRemark.Location = new System.Drawing.Point(1025, 19);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRemark.Size = new System.Drawing.Size(289, 134);
+            this.txtRemark.Size = new System.Drawing.Size(289, 90);
             this.txtRemark.TabIndex = 15;
             // 
             // label11
@@ -428,6 +444,36 @@ namespace Team2_Project
             this.cboWCGroup.TabIndex = 28;
             this.cboWCGroup.SelectedIndexChanged += new System.EventHandler(this.cboWCGroup_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(902, 136);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 17);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "*";
+            // 
+            // cboUnit
+            // 
+            this.cboUnit.BackColor = System.Drawing.Color.White;
+            this.cboUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnit.FormattingEnabled = true;
+            this.cboUnit.Location = new System.Drawing.Point(505, 133);
+            this.cboUnit.Name = "cboUnit";
+            this.cboUnit.Size = new System.Drawing.Size(130, 25);
+            this.cboUnit.TabIndex = 30;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(925, 136);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 17);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "사용여부";
+            // 
             // frmWorkCenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -445,6 +491,10 @@ namespace Team2_Project
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pnlTitleD.ResumeLayout(false);
+            this.pnlTitleD.PerformLayout();
+            this.pnlTitleU.ResumeLayout(false);
+            this.pnlTitleU.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkShop)).EndInit();
             this.ResumeLayout(false);
 
@@ -482,5 +532,8 @@ namespace Team2_Project
         private System.Windows.Forms.TextBox txtSearchName;
         private System.Windows.Forms.TextBox txtSearchCode;
         private System.Windows.Forms.ComboBox cboWCGroup;
+        protected System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboUnit;
+        private System.Windows.Forms.Label label4;
     }
 }

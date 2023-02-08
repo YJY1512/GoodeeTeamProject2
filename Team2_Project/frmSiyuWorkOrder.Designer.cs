@@ -54,8 +54,6 @@ namespace Team2_Project
             this.btnWoAdd = new System.Windows.Forms.Button();
             this.btnWoDel = new System.Windows.Forms.Button();
             this.btnMsgEdit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlListUP.SuspendLayout();
             this.pnlListDown.SuspendLayout();
@@ -109,8 +107,6 @@ namespace Team2_Project
             // 
             // pnlTitleD
             // 
-            this.pnlTitleD.Controls.Add(this.btnCancel);
-            this.pnlTitleD.Controls.Add(this.btnClose);
             this.pnlTitleD.Controls.Add(this.btnMsgEdit);
             this.pnlTitleD.Controls.Add(this.btnWoDel);
             this.pnlTitleD.Controls.Add(this.btnWoAdd);
@@ -142,8 +138,6 @@ namespace Team2_Project
             this.pnlTitleD.Controls.SetChildIndex(this.btnWoAdd, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.btnWoDel, 0);
             this.pnlTitleD.Controls.SetChildIndex(this.btnMsgEdit, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.btnClose, 0);
-            this.pnlTitleD.Controls.SetChildIndex(this.btnCancel, 0);
             // 
             // ucWc
             // 
@@ -402,35 +396,13 @@ namespace Team2_Project
             // btnMsgEdit
             // 
             this.btnMsgEdit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnMsgEdit.Location = new System.Drawing.Point(1512, 6);
+            this.btnMsgEdit.Location = new System.Drawing.Point(1208, 6);
             this.btnMsgEdit.Name = "btnMsgEdit";
             this.btnMsgEdit.Size = new System.Drawing.Size(146, 26);
             this.btnMsgEdit.TabIndex = 14;
             this.btnMsgEdit.Text = "전달사항 수정저장";
             this.btnMsgEdit.UseVisualStyleBackColor = false;
             this.btnMsgEdit.Click += new System.EventHandler(this.btnMsgEdit_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCancel.Location = new System.Drawing.Point(1360, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(146, 26);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "작업지시 마감취소";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnClose.Location = new System.Drawing.Point(1208, 6);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(146, 26);
-            this.btnClose.TabIndex = 15;
-            this.btnClose.Text = "작업지시 마감";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmSiyuWorkOrder
             // 
@@ -481,7 +453,5 @@ namespace Team2_Project
         private System.Windows.Forms.Button btnWoDel;
         private System.Windows.Forms.Button btnWoAdd;
         private System.Windows.Forms.Button btnWoEdit;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -29,8 +29,8 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -52,9 +52,19 @@ namespace Team2_Project
             this.cboTest = new System.Windows.Forms.ComboBox();
             this.lbltest = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
-            this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
+            this.pnlTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,11 +96,6 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label5);
             this.pnlSub.Size = new System.Drawing.Size(1834, 120);
             // 
-            // pnlTitle
-            // 
-            this.pnlTitle.Location = new System.Drawing.Point(0, 120);
-            this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
-            // 
             // pnlList
             // 
             this.pnlList.Controls.Add(this.splitContainer1);
@@ -101,6 +106,32 @@ namespace Team2_Project
             // 
             this.lblTitle.Size = new System.Drawing.Size(86, 18);
             this.lblTitle.Text = "작업지시목록";
+            // 
+            // pnlTitle
+            // 
+            this.pnlTitle.Controls.Add(this.label15);
+            this.pnlTitle.Controls.Add(this.label16);
+            this.pnlTitle.Controls.Add(this.label10);
+            this.pnlTitle.Controls.Add(this.label18);
+            this.pnlTitle.Controls.Add(this.label14);
+            this.pnlTitle.Controls.Add(this.label17);
+            this.pnlTitle.Controls.Add(this.label8);
+            this.pnlTitle.Controls.Add(this.label13);
+            this.pnlTitle.Controls.Add(this.label11);
+            this.pnlTitle.Controls.Add(this.label12);
+            this.pnlTitle.Location = new System.Drawing.Point(0, 120);
+            this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
+            this.pnlTitle.Controls.SetChildIndex(this.label12, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label11, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label13, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label8, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label17, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label14, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label18, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label10, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.lblTitle, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label16, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.label15, 0);
             // 
             // splitContainer1
             // 
@@ -132,6 +163,7 @@ namespace Team2_Project
             this.dgvData.Size = new System.Drawing.Size(1834, 287);
             this.dgvData.TabIndex = 1;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
+            this.dgvData.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvData_CellFormatting);
             // 
             // splitContainer2
             // 
@@ -187,11 +219,11 @@ namespace Team2_Project
             // 
             // chtData
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea4);
             this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chtData.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chtData.Legends.Add(legend4);
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
@@ -323,25 +355,26 @@ namespace Team2_Project
             this.cboTest.Items.AddRange(new object[] {
             "WorkOrder_001",
             "WorkOrder_002",
-            "WorkOrder_003"});
-            this.cboTest.Location = new System.Drawing.Point(1596, 62);
+            "WorkOrder_003",
+            "WorkOrder_004"});
+            this.cboTest.Location = new System.Drawing.Point(1638, 54);
             this.cboTest.Name = "cboTest";
-            this.cboTest.Size = new System.Drawing.Size(215, 25);
+            this.cboTest.Size = new System.Drawing.Size(194, 25);
             this.cboTest.TabIndex = 79;
             // 
             // lbltest
             // 
             this.lbltest.AutoSize = true;
             this.lbltest.BackColor = System.Drawing.Color.Transparent;
-            this.lbltest.Location = new System.Drawing.Point(1596, 35);
+            this.lbltest.Location = new System.Drawing.Point(1638, 14);
             this.lbltest.Name = "lbltest";
-            this.lbltest.Size = new System.Drawing.Size(120, 17);
+            this.lbltest.Size = new System.Drawing.Size(120, 34);
             this.lbltest.TabIndex = 80;
-            this.lbltest.Text = "임시작업지시번호";
+            this.lbltest.Text = "(바인딩 테스트)\r\n임시작업지시번호";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1740, 30);
+            this.button1.Location = new System.Drawing.Point(1761, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 26);
             this.button1.TabIndex = 81;
@@ -349,19 +382,108 @@ namespace Team2_Project
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(638, 10);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 17);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "작업지시 마감";
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.DarkBlue;
+            this.label16.Location = new System.Drawing.Point(600, 10);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(32, 17);
+            this.label16.TabIndex = 30;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(521, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 17);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "현장마감";
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.label14.Location = new System.Drawing.Point(483, 10);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(32, 17);
+            this.label14.TabIndex = 28;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(404, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 17);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "생산중지";
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.Gold;
+            this.label11.Location = new System.Drawing.Point(366, 10);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 17);
+            this.label11.TabIndex = 26;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(301, 10);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 17);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "생산중";
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.ForestGreen;
+            this.label13.Location = new System.Drawing.Point(263, 10);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(32, 17);
+            this.label13.TabIndex = 24;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(187, 10);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(64, 17);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "생산대기";
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.Orange;
+            this.label18.Location = new System.Drawing.Point(149, 10);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(32, 17);
+            this.label18.TabIndex = 22;
+            // 
             // frmTimeProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.ClientSize = new System.Drawing.Size(1834, 911);
-            this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmTimeProductionHistory";
             this.Text = "시간대별 실적조회";
             this.Load += new System.EventHandler(this.frmTimeProductionHistory_Load);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
+            this.pnlList.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
-            this.pnlList.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -401,5 +523,15 @@ namespace Team2_Project
         private System.Windows.Forms.ComboBox cboTest;
         private System.Windows.Forms.Label lbltest;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

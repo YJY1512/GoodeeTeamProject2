@@ -47,7 +47,6 @@ namespace Team2_Project
             this.dtpReqTo = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpReqFrom = new System.Windows.Forms.DateTimePicker();
-            this.ucProd = new Team2_Project.Controls.ucSearch();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,12 +60,13 @@ namespace Team2_Project
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ucWc = new Team2_Project.Controls.ucSearch();
             this.label13 = new System.Windows.Forms.Label();
-            this.ucProd2 = new Team2_Project.Controls.ucSearch();
             this.label12 = new System.Windows.Forms.Label();
             this.dtpMonth = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
+            this.ucProd = new Team2_Project.Controls.ucSearch();
+            this.ucWc = new Team2_Project.Controls.ucSearch();
+            this.ucProd2 = new Team2_Project.Controls.ucSearch();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -304,19 +304,6 @@ namespace Team2_Project
             this.dtpReqFrom.Size = new System.Drawing.Size(125, 25);
             this.dtpReqFrom.TabIndex = 5;
             // 
-            // ucProd
-            // 
-            this.ucProd._Code = "";
-            this.ucProd._Name = "";
-            this.ucProd.BackColor = System.Drawing.Color.Transparent;
-            this.ucProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucProd.Location = new System.Drawing.Point(542, 23);
-            this.ucProd.Margin = new System.Windows.Forms.Padding(4);
-            this.ucProd.Name = "ucProd";
-            this.ucProd.Size = new System.Drawing.Size(340, 28);
-            this.ucProd.TabIndex = 4;
-            this.ucProd.BtnClick += new System.EventHandler(this.ucProd_BtnClick);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -473,19 +460,6 @@ namespace Team2_Project
             this.panel2.Size = new System.Drawing.Size(1298, 120);
             this.panel2.TabIndex = 2;
             // 
-            // ucWc
-            // 
-            this.ucWc._Code = "";
-            this.ucWc._Name = "";
-            this.ucWc.BackColor = System.Drawing.Color.Transparent;
-            this.ucWc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucWc.Location = new System.Drawing.Point(588, 69);
-            this.ucWc.Margin = new System.Windows.Forms.Padding(4);
-            this.ucWc.Name = "ucWc";
-            this.ucWc.Size = new System.Drawing.Size(340, 28);
-            this.ucWc.TabIndex = 11;
-            this.ucWc.BtnClick += new System.EventHandler(this.ucWc_BtnClick);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -495,19 +469,6 @@ namespace Team2_Project
             this.label13.Size = new System.Drawing.Size(50, 17);
             this.label13.TabIndex = 10;
             this.label13.Text = "작업장";
-            // 
-            // ucProd2
-            // 
-            this.ucProd2._Code = "";
-            this.ucProd2._Name = "";
-            this.ucProd2.BackColor = System.Drawing.Color.Transparent;
-            this.ucProd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucProd2.Location = new System.Drawing.Point(123, 69);
-            this.ucProd2.Margin = new System.Windows.Forms.Padding(4);
-            this.ucProd2.Name = "ucProd2";
-            this.ucProd2.Size = new System.Drawing.Size(340, 28);
-            this.ucProd2.TabIndex = 9;
-            this.ucProd2.BtnClick += new System.EventHandler(this.ucProd2_BtnClick);
             // 
             // label12
             // 
@@ -537,6 +498,45 @@ namespace Team2_Project
             this.label11.Size = new System.Drawing.Size(78, 17);
             this.label11.TabIndex = 6;
             this.label11.Text = "생산계획월";
+            // 
+            // ucProd
+            // 
+            this.ucProd._Code = "";
+            this.ucProd._Name = "";
+            this.ucProd.BackColor = System.Drawing.Color.Transparent;
+            this.ucProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProd.Location = new System.Drawing.Point(542, 23);
+            this.ucProd.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProd.Name = "ucProd";
+            this.ucProd.Size = new System.Drawing.Size(340, 28);
+            this.ucProd.TabIndex = 4;
+            this.ucProd.BtnClick += new System.EventHandler(this.ucProd_BtnClick);
+            // 
+            // ucWc
+            // 
+            this.ucWc._Code = "";
+            this.ucWc._Name = "";
+            this.ucWc.BackColor = System.Drawing.Color.Transparent;
+            this.ucWc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucWc.Location = new System.Drawing.Point(588, 69);
+            this.ucWc.Margin = new System.Windows.Forms.Padding(4);
+            this.ucWc.Name = "ucWc";
+            this.ucWc.Size = new System.Drawing.Size(340, 28);
+            this.ucWc.TabIndex = 11;
+            this.ucWc.BtnClick += new System.EventHandler(this.ucWc_BtnClick);
+            // 
+            // ucProd2
+            // 
+            this.ucProd2._Code = "";
+            this.ucProd2._Name = "";
+            this.ucProd2.BackColor = System.Drawing.Color.Transparent;
+            this.ucProd2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucProd2.Location = new System.Drawing.Point(123, 69);
+            this.ucProd2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucProd2.Name = "ucProd2";
+            this.ucProd2.Size = new System.Drawing.Size(340, 28);
+            this.ucProd2.TabIndex = 9;
+            this.ucProd2.BtnClick += new System.EventHandler(this.ucProd2_BtnClick);
             // 
             // frmPlan
             // 

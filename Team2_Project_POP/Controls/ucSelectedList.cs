@@ -21,9 +21,7 @@ namespace Team2_Project_POP.Controls
 
         
         public event EventHandler ucListClick;
-        public event EventHandler ucListEnter;
-        public event EventHandler ucListLeave;
-
+     
         public ucSelectedList()
         {
             InitializeComponent();
@@ -36,21 +34,7 @@ namespace Team2_Project_POP.Controls
             lblGroup.Text = Group;
         }
 
-        private void ucSelectedList_MouseEnter(object sender, EventArgs e)
-        {
-            if (ucListEnter != null)
-            {
-                ucListEnter(this, e);
-            }
-        }
-
-        private void ucSelectedList_MouseLeave(object sender, EventArgs e)
-        {
-            if (ucListLeave != null)
-            {
-                ucListLeave(this, e);
-            }
-        }
+       
 
         private void ucSelectedList_Click(object sender, EventArgs e)
         {

@@ -22,12 +22,13 @@ namespace Team2_Project_DTO
         public string Up_Date        { get; set; }   //최종수정날짜
         public string Ins_Emp        { get; set; }   //최초 등록자
         public string Up_Emp         { get; set; }   //최종 수정자
+        public string Prd_Unit       { get; set; }   //실적 단위
+        public string Prd_Unit_Name  { get; set; }   //실적 단위 이름
 
 
         //사용 안함
         //public string Auto_Wo_YN { get; set; }   //자동작업지시 여부
         //public string Auto_Start_YN { get; set; }   //자동작업지시 시작여부
         //public string Last_Cnt_Time { get; set; }   //최종실적 처리시간
-        //public string Prd_Unit { get; set; }   //실적 단위
     }
 }

@@ -33,7 +33,8 @@ namespace Team2_Project_DAO
                 string sql = @"select ma.Userdefine_Ma_Code, Userdefine_Ma_Name, 
                                     isnull(Userdefine_Mi_Code, '') Userdefine_Mi_Code, 
                                     isnull(Userdefine_Mi_Name, '') Userdefine_Mi_Name,
-                                    Sort_Index, mi.Remark,
+                                    Sort_Index, 
+									isnull(mi.Remark, '') Remark ,
                                     isnull((case when mi.Use_YN = 'Y' then '예'
 										when mi.Use_YN = 'N' then '아니오' end), '') as Use_YN
                             from Userdefine_Mi_Master mi right outer join Userdefine_Ma_Master ma 
@@ -155,10 +156,14 @@ namespace Team2_Project_DAO
         public int DeleteUserCode(string maCode, string miCode)
         {
             try
-            {
-                string sql = @"delete from Userdefine_Mi_Master
-                                where Userdefine_Ma_Code = @Userdefine_Ma_Code and Userdefine_Mi_Code = @Userdefine_Mi_Code;
-                                select @@ERROR";
+            {               
+                string sql = @"BEGIN TRY
+                               delete from Userdefine_Mi_Master
+                                where Userdefine_Ma_Code = @Userdefine_Ma_Code and Userdefine_Mi_Code = @Userdefine_Mi_Code
+                                END TRY
+                                BEGIN CATCH
+                                select @@ERROR
+                                END CATCH";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

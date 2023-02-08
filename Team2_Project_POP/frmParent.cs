@@ -49,8 +49,12 @@ namespace Team2_Project_POP
         private void btnGoHome_Click(object sender, EventArgs e)
         {
             Type frmType = this.ActiveMdiChild.GetType();
-            if (frmType == typeof(frmSelect))
+            if (frmType == typeof(frmSelect)) 
+            {
+                this.lblSelected.Text = "";
                 return;
+            }
+                
 
             this.lblSelected.Text = "";
             this.LoginedOrders = null;

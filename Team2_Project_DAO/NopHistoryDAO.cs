@@ -57,5 +57,21 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
+        public List<NopMaCodeDTO> GetNopCodeName()
+        {
+            string sql = @"select Nop_Ma_Code, Nop_Ma_Name
+                             from Nop_Ma_Master
+                            where Use_YN = 'Y'";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                conn.Open();
+                List<NopMaCodeDTO> list = Helper.DataReaderMapToList<NopMaCodeDTO>(cmd.ExecuteReader());
+                conn.Close();
+
+                return list;
+            }
+        }
     }
 }

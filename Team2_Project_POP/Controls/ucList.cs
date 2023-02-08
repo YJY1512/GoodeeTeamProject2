@@ -13,6 +13,7 @@ namespace Team2_Project_POP.Controls
     public partial class ucList : UserControl
     {
         public string       Status          { get; set; }
+        public string       Status_Code          { get; set; }
         public DateTime     Plan_Date { get; set; }
         public DateTime     Prd_Date { get; set; }
         public string       WorkOrderNo { get; set; }
@@ -28,8 +29,7 @@ namespace Team2_Project_POP.Controls
 
 
         public event EventHandler UcListClick;
-        public event EventHandler UcListEnter;
-        public event EventHandler UcListLeave;
+        
         public ucList()
         {
             InitializeComponent();
@@ -38,27 +38,24 @@ namespace Team2_Project_POP.Controls
         private void ucList_Load(object sender, EventArgs e)
         {
             //lblStatuse.Text = Status;
-            switch (Status) 
+            
+            lblStatuse.Text = Status;
+            switch (Status_Code)
             {
-                case "W01": 
-                    lblStatuse.Text = "대기";
+                case "W01":
                     lblStatuse.BackColor = Color.Orange;
                     break;
-                case "W02": 
-                    lblStatuse.Text = "생산중";
+                case "W02":
                     lblStatuse.BackColor = Color.Green;
                     break;
-                case "W03": 
-                    lblStatuse.Text = "생산정지";
+                case "W03":
                     lblStatuse.BackColor = Color.Yellow;
                     break;
-                case "W04": 
-                    lblStatuse.Text = "현장마감";
+                case "W04":
                     lblStatuse.BackColor = Color.DarkBlue;
                     lblStatuse.ForeColor = Color.White;
                     break;
             }
-                
             lblPlanDate.Text = Plan_Date.ToString("yyyy-MM-dd");
             lblProductDate.Text = (Prd_Date.ToString("yyyy-MM-dd") == "0001-01-01") ? "-" : Prd_Date.ToString("yyyy-MM-dd");
             lblProcessNum.Text = WorkOrderNo;
@@ -70,22 +67,7 @@ namespace Team2_Project_POP.Controls
             lblRemark.Text = Remark;
         }
 
-        private void lblStatuse_MouseEnter(object sender, EventArgs e)
-        {
-            if (UcListEnter != null)
-            {
-                UcListEnter(this, e);
-            }
-        }
-
-        private void lblStatuse_MouseLeave(object sender, EventArgs e)
-        {
-            if (UcListLeave != null)
-            {
-                UcListLeave(this, e);
-            }
-        }
-
+        
         private void lblRemark_Click(object sender, EventArgs e)
         {
             if (UcListClick != null)

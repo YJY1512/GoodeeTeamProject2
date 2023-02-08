@@ -18,6 +18,7 @@ namespace Team2_Project
     {
         AnalysisService srv = new AnalysisService();
         List<ItemDTO> itemList = new List<ItemDTO>();
+        List<MonthProductionHistoryDTO> MTHistoryList = new List<MonthProductionHistoryDTO>();
 
         public frmMonthProductionHistory()
         {
@@ -44,7 +45,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
             dgvData.MultiSelect = false;
 
@@ -53,14 +54,46 @@ namespace Team2_Project
 
             ResetTop();
             OnSearch();
+
+            //---- test ----
             ChartData();
+            //--------------
+        }
+
+        private void AdvancedListBind(List<MonthProductionHistoryDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<MonthProductionHistoryDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
         }
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
+            MTHistoryList = srv.GetMonthProductionHistory(dtpDate.Value.ToString("yyyy-MM"));
+            if(MTHistoryList != null && MTHistoryList.Count > 0)
+            {
+                //if ()
+                //{
 
+                //    AdvancedListBind(MTHistoryList, dgvData);
+                //}
+                //else
+                //{
 
+                //    AdvancedListBind(MTHistoryList, dgvData);
+                //}
+
+                if (dgvData.Rows.Count > 0)
+                {
+                    if (dgvData.CurrentRow != null)
+                        dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                }
+                else
+                    chtData.Series.Clear();
+            }
+            else
+                dgvData.DataSource = null;
         }
 
         public void OnReLoad()  //새로고침
@@ -82,6 +115,8 @@ namespace Team2_Project
             //1. 조회조건으로 검색하면  (DB에서 List<생산현황>가져와서)   dgv가 뜸 
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
 
+
+            ChartData();
         }
 
 
@@ -110,18 +145,30 @@ namespace Team2_Project
             chtData.Series["품목"].Points[2].Color = Color.FromArgb(255, 237, 227);
         }
 
-        private void ucItemSearch_BtnClick(object sender, EventArgs e)
+        private CommonPop<ItemDTO> GetItemPopInfo()
         {
-            var list = itemList.GroupBy((g) => g.Item_Code).Select((g) => g.FirstOrDefault()).ToList();
+            if (itemList == null)
+            {
+                ItemService srv = new ItemService();
+                itemList = srv.GetItemCodeName();
+            }
+
+            CommonPop<ItemDTO> itemPopInfo = new CommonPop<ItemDTO>();
+            itemPopInfo.DgvDatasource = itemList;
+            itemPopInfo.PopName = "품목 검색";
+
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목명", "Item_Name", 200));
 
-            CommonPop<ItemDTO> popInfo = new CommonPop<ItemDTO>();
-            popInfo.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "품목코드 검색";
-            ucItemSearch.OpenPop(popInfo);
+            itemPopInfo.DgvCols = colList;
+
+            return itemPopInfo;
+        }
+
+        private void ucItemSearch_BtnClick(object sender, EventArgs e)
+        {
+            ucItemSearch.OpenPop(GetItemPopInfo());
         }
     }  
 }

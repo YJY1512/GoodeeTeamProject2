@@ -18,7 +18,8 @@ namespace Team2_Project
     {
         NopCodeService srv = new NopCodeService();
         List<NopHistoryDTO> NopList = new List<NopHistoryDTO>();
-        List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
+        //List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
+        List<NopMaCodeDTO> NopMaList;
 
         public frmNop()
         {
@@ -28,7 +29,7 @@ namespace Team2_Project
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadData();
-            OnSearch();
+            
             ResetDtp();//초기dtp (1주전~today)
         }
 
@@ -55,6 +56,7 @@ namespace Team2_Project
             dgvData.MultiSelect = false;
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
+            OnSearch();
         }
 
         private void AdvancedListBind(List<NopHistoryDTO> datasource, DataGridView dgv)
@@ -72,9 +74,9 @@ namespace Team2_Project
                 Nop_Ma_Code = ucCodeSearch._Code,
                 Nop_Ma_Name = ucCodeSearch._Name,
                 DateFrom = dtpFrom.Value.ToString("yyyy-MM-dd"),
-                DateTo =dtpTo.Value.ToString("yyyy-MM-dd")
+                DateTo =dtpTo.Value.AddDays(1).ToString("yyyy-MM-dd")
             };
-            NopList = srv.GetNopMiSearch(item);
+            NopList = srv.GetNopHistory(item);
             AdvancedListBind(NopList, dgvData);
             dgvData.ClearSelection();
         }
@@ -92,18 +94,40 @@ namespace Team2_Project
             ResetDtp();
         }
 
+        private CommonPop<NopMaCodeDTO> GetNopPopInfo()
+        {
+            if (NopMaList == null)
+            {
+                NopCodeService srv = new NopCodeService();
+                NopMaList = srv.GetNopCodeName();
+            }
+
+            CommonPop<NopMaCodeDTO> PopInfo = new CommonPop<NopMaCodeDTO>();
+            PopInfo.DgvDatasource = NopMaList;
+            PopInfo.PopName = "비가동 대분류코드 검색";
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+
+            PopInfo.DgvCols = colList;
+
+            return PopInfo;
+        }
+
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
-            var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-            col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
+            ucCodeSearch.OpenPop(GetNopPopInfo());
+            //var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+            //List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
+            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
+            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
 
-            CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
-            dto.DgvDatasource = list;
-            dto.DgvCols = col;
-            dto.PopName = "비가동 대분류코드 검색";
-            ucCodeSearch.OpenPop(dto);
+            //CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
+            //dto.DgvDatasource = list;
+            //dto.DgvCols = col;
+            //dto.PopName = "비가동 대분류코드 검색";
+            //ucCodeSearch.OpenPop(dto);
         }
 
         private void ResetDtp()
