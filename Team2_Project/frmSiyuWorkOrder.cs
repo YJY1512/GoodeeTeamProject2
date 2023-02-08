@@ -116,13 +116,17 @@ namespace Team2_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int rIdx = dgvPlan.CurrentRow.Index;
+
             if (!Convert.ToBoolean(dgvPlan[0, rIdx].Value))
             {
                 MessageBox.Show("작업지시를 생성할 항목을 선택하여 주십시오.");
                 return;
             }
 
-            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+            string status = planSrv.ChkStatus(planID);
+
+            if (!status.Equals("A")) //대기중
             {
                 MessageBox.Show("대기중인 계획만 작업지시 생성이 가능합니다.");
                 return;
@@ -164,29 +168,43 @@ namespace Team2_Project
         //작업지시 dgv 버튼 enable 상태 설정
         private void SetWobtnEnabled(bool active)
         {
-            btnWoAdd.Enabled = btnWoEdit.Enabled = btnWoDel.Enabled = btnMsgEdit.Enabled = btnClose.Enabled = btnCancel.Enabled = active;
+            btnWoAdd.Enabled = btnWoEdit.Enabled = btnWoDel.Enabled = btnMsgEdit.Enabled = active;
         }
+        private void SetEditStart()
+        {
+            dgvPlan.Enabled = false;
+            dgvWorkOrder.Enabled = false;
+            SetWobtnEnabled(false);
+        }
+        private void SetEditEnd()
+        {
+            dgvPlan.Enabled = true;
+            dgvWorkOrder.Enabled = true;
+            SetWobtnEnabled(true);
+        }
+
 
         private void btnWoAdd_Click(object sender, EventArgs e) //작업지시 추가
         {
             int curIdx = dgvPlan.CurrentRow.Index;
-            if (dgvPlan["Prd_Plan_Status", curIdx].Value.ToString().Equals("대기중"))
+            string planID = dgvPlan["Prd_Plan_No", curIdx].Value.ToString();
+            string status = planSrv.ChkStatus(planID);
+
+            if (status.Equals("A")) //대기중
             {
                 MessageBox.Show("작업지시 미생성 계획입니다. 작업지시 생성 후 다시 시도하여 주십시오.");
                 return;
-            }
-
-            if (dgvPlan["Prd_Plan_Status", curIdx].Value.ToString().Equals("생산마감"))
+            }                
+            else if(status.Equals("C")) //생산마감
             {
                 MessageBox.Show("이미 마감된 생산계획이므로 작업지시 추가가 불가합니다.");
                 return;
             }
 
-            dgvPlan.Enabled = false;
             ((frmMain)this.MdiParent).AddClickEvent();
-            SetWobtnEnabled(false);
+            SetEditStart();
+            clickState = ButtonClick.Add;
 
-            
             filterWoDt = (DataTable)dgvWorkOrder.DataSource;
 
             DataRow dr = filterWoDt.NewRow();
@@ -203,16 +221,14 @@ namespace Team2_Project
                 dgvWorkOrder[col, rIdx].Style.SelectionBackColor = Color.PeachPuff;
                 dgvWorkOrder[col, rIdx].Style.SelectionForeColor = Color.Black;
             }
-
-            clickState = ButtonClick.Add;
+            
             dgvWorkOrder.CurrentCell = dgvWorkOrder.Rows[rIdx].Cells[0];
+            dgvWorkOrder.Enabled = true;
         }
 
         private void btnWoEdit_Click(object sender, EventArgs e) //작업지시 수정저장
         {
-            dgvPlan.Enabled = false;
-            dgvWorkOrder.Enabled = false;
-            SetWobtnEnabled(false);
+            SetEditStart();
             clickState = ButtonClick.Edit;
 
             List<WorkOrderDTO> wo = new List<WorkOrderDTO>();
@@ -220,21 +236,21 @@ namespace Team2_Project
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
-                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W01"))
+                    string woID = row.Cells["WorkOrderNo"].Value.ToString();
+                    string status = woSrv.ChkStatus(woID);
+                    if (!status.Equals("W01")) //생산대기
                     {
                         MessageBox.Show("생산대기중인 작업지시만 수정이 가능합니다.");
-                        dgvWorkOrder.Enabled = true;
-                        SetWobtnEnabled(true);
                         clickState = ButtonClick.None;
+                        SetEditEnd();                        
                         return;
                     }
 
                     bool isVaild = WorkOrderValidChk(row.Index);
                     if (!isVaild)
                     {
-                        dgvWorkOrder.Enabled = true;
-                        SetWobtnEnabled(true);
                         clickState = ButtonClick.None;
+                        SetEditEnd();
                         return;
                     }
 
@@ -253,10 +269,8 @@ namespace Team2_Project
             if (wo.Count < 1)
             {
                 MessageBox.Show("수정할 항목을 선택하여 주십시오.");
-                dgvPlan.Enabled = true;
-                dgvWorkOrder.Enabled = true;
-                SetWobtnEnabled(true);
                 clickState = ButtonClick.None;
+                SetEditEnd();                
                 return;
             }
 
@@ -271,29 +285,27 @@ namespace Team2_Project
             }
 
             clickState = ButtonClick.None;
-            dgvWorkOrder.Enabled = true;
-            dgvPlan.Enabled = true;
-            SetWobtnEnabled(true);            
+            SetEditEnd();
             OnReLoad();
 
         }
 
         private void btnWoDel_Click(object sender, EventArgs e) //작업지시 삭제
         {
-            dgvWorkOrder.Enabled = false;
-            SetWobtnEnabled(false);
+            SetEditStart();
 
             List<string> delIds = new List<string>();
             foreach (DataGridViewRow row in dgvWorkOrder.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
-                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W01"))
+                    string woID = row.Cells["WorkOrderNo"].Value.ToString();
+                    string status = woSrv.ChkStatus(woID);
+                    if (!status.Equals("W01")) //생산대기
                     {
                         MessageBox.Show("생산대기중인 작업지시만 삭제가 가능합니다.");
-                        dgvWorkOrder.Enabled = true;
-                        SetWobtnEnabled(true);
                         clickState = ButtonClick.None;
+                        SetEditEnd();
                         return;
                     }
 
@@ -304,9 +316,8 @@ namespace Team2_Project
             if (delIds.Count < 1)
             {
                 MessageBox.Show("삭제할 항목을 선택하여 주십시오.");
-                dgvWorkOrder.Enabled = true;
-                SetWobtnEnabled(true);
                 clickState = ButtonClick.None;
+                SetEditEnd();
                 return;
             }
 
@@ -321,15 +332,14 @@ namespace Team2_Project
                 MessageBox.Show("작업지시 삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
             }
 
-            dgvWorkOrder.Enabled = true;
-            SetWobtnEnabled(true);
+            clickState = ButtonClick.None;
+            SetEditEnd();
             OnReLoad();
         }
 
         private void btnMsgEdit_Click(object sender, EventArgs e) //전달메세지 수정저장
         {
-            dgvWorkOrder.Enabled = false;
-            SetWobtnEnabled(false);
+            SetEditStart();
 
             Dictionary<string, string> woMsg = new Dictionary<string, string>();
             foreach (DataGridViewRow row in dgvWorkOrder.Rows)
@@ -340,8 +350,8 @@ namespace Team2_Project
                     if (string.IsNullOrWhiteSpace(msg))
                     {
                         MessageBox.Show("전달메세지를 입력하여 주십시오.");
-                        dgvWorkOrder.Enabled = true;
-                        SetWobtnEnabled(true);
+                        clickState = ButtonClick.None;
+                        SetEditEnd();
                         return;
                     }
 
@@ -352,9 +362,8 @@ namespace Team2_Project
             if (woMsg.Count < 1)
             {
                 MessageBox.Show("저장할 항목을 선택하여 주십시오.");
-                dgvWorkOrder.Enabled = true;
-                SetWobtnEnabled(true);
                 clickState = ButtonClick.None;
+                SetEditEnd();                
                 return;
             }
 
@@ -369,104 +378,8 @@ namespace Team2_Project
                 MessageBox.Show("저장 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
             }
 
-            dgvWorkOrder.Enabled = true;
-            SetWobtnEnabled(true);
-            OnReLoad();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e) //작업지시 마감
-        {
-            dgvWorkOrder.Enabled = false;
-            SetWobtnEnabled(false);
-
-            List<string> woIds = new List<string>();
-            foreach (DataGridViewRow row in dgvWorkOrder.Rows)
-            {
-                if (Convert.ToBoolean(row.Cells[0].Value))
-                {
-                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W04"))
-                    {
-                        MessageBox.Show("현장마감된 작업지시만 마감이 가능합니다.");
-                        ((frmMain)this.MdiParent).BtnEditReturn(true);
-                        dgvWorkOrder.Enabled = true;
-                        SetWobtnEnabled(true);
-                        return;
-                    }
-
-                    woIds.Add(row.Cells["WorkOrderNo"].Value.ToString());
-                }
-            }
-
-            if (woIds.Count < 1)
-            {
-                MessageBox.Show("마감할 항목을 선택하여 주십시오.");
-                dgvWorkOrder.Enabled = true;
-                SetWobtnEnabled(true);
-                return;
-            }
-
-            string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
-
-            bool result = woSrv.CloseWorkOrder(woIds, empID);
-            if (result)
-            {
-                MessageBox.Show("마감처리가 완료되었습니다.");
-            }
-            else
-            {
-                MessageBox.Show("마감처리 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
-            }
-
-            dgvWorkOrder.Enabled = true;
-            SetWobtnEnabled(true);
-            OnReLoad();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e) //작업지시 마감취소
-        {
-            dgvWorkOrder.Enabled = false;
-            SetWobtnEnabled(false);
-
-            List<string> woIds = new List<string>();
-            foreach (DataGridViewRow row in dgvWorkOrder.Rows)
-            {
-                if (Convert.ToBoolean(row.Cells[0].Value))
-                {
-                    if (!row.Cells["Wo_Status_code"].Value.ToString().Equals("W05"))
-                    {
-                        MessageBox.Show("마감된 작업지시가 아닙니다.");
-                        ((frmMain)this.MdiParent).BtnEditReturn(true);
-                        dgvWorkOrder.Enabled = true;
-                        SetWobtnEnabled(true);
-                        return;
-                    }
-
-                    woIds.Add(row.Cells["WorkOrderNo"].Value.ToString());
-                }
-            }
-
-            if (woIds.Count < 1)
-            {
-                MessageBox.Show("마감취소할 항목을 선택하여 주십시오.");
-                dgvWorkOrder.Enabled = true;
-                SetWobtnEnabled(true);
-                return;
-            }
-
-            string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
-
-            bool result = woSrv.CloseCancel(woIds, empID);
-            if (result)
-            {
-                MessageBox.Show("마감취소가 완료되었습니다.");
-            }
-            else
-            {
-                MessageBox.Show("마감취소 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
-            }
-
-            dgvWorkOrder.Enabled = true;
-            SetWobtnEnabled(true);
+            clickState = ButtonClick.None;
+            SetEditEnd();
             OnReLoad();
         }
 
@@ -592,15 +505,10 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            if (dgvWorkOrder.Tag != null)
-            {
-                Dtp_CloseUp(dgvWorkOrder.Tag, null);
-            }
-
             if (e.ColumnIndex == dgvWorkOrder.Columns["Plan_Date"].Index)
-            {                
-                SetDtpCell(dgvWorkOrder[e.ColumnIndex, e.RowIndex]);
-
+            {
+                if (dgvWorkOrder.Tag == null)
+                    SetDtpCell(dgvWorkOrder[e.ColumnIndex, e.RowIndex]);
             }
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Wc_Code"].Index || e.ColumnIndex == dgvWorkOrder.Columns["Wc_Name"].Index)
             {
@@ -610,14 +518,6 @@ namespace Team2_Project
             else if (e.ColumnIndex == dgvWorkOrder.Columns["Remark"].Index)
             {
                 dgvWorkOrder[e.ColumnIndex, e.RowIndex].ReadOnly = false;
-
-            }
-            else if (e.ColumnIndex == dgvWorkOrder.Columns["Plan_Qty_Box"].Index)
-            {
-                if (dgvWorkOrder.Tag != null)
-                {
-                    Dtp_CloseUp(dgvWorkOrder.Tag, null);
-                }
             }
 
             if (e.ColumnIndex != dgvWorkOrder.Columns["Plan_Date"].Index 
@@ -688,7 +588,6 @@ namespace Team2_Project
             dtp.CloseUp += Dtp_CloseUp;
             dtp.TextChanged += Dtp_TextChanged;
         }
-
 
         private void Dtp_TextChanged(object sender, EventArgs e)
         {
@@ -891,8 +790,7 @@ namespace Team2_Project
 
                 clickState = ButtonClick.None;
                 rIdx = -1;
-                dgvPlan.Enabled = true;
-                SetWobtnEnabled(true);
+                SetEditEnd();
                 OnReLoad();
             }
             else
@@ -916,8 +814,7 @@ namespace Team2_Project
                 filterWoDt.Rows.RemoveAt(rIdx);
                 rIdx = -1;
 
-                SetWobtnEnabled(true);
-                dgvPlan.Enabled = true;
+                SetEditEnd();
             }
 
             if (dgvWorkOrder.Tag != null)

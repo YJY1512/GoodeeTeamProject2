@@ -156,10 +156,14 @@ namespace Team2_Project_DAO
         public int DeleteUserCode(string maCode, string miCode)
         {
             try
-            {
-                string sql = @"delete from Userdefine_Mi_Master
-                                where Userdefine_Ma_Code = @Userdefine_Ma_Code and Userdefine_Mi_Code = @Userdefine_Mi_Code;
-                                select @@ERROR";
+            {               
+                string sql = @"BEGIN TRY
+                               delete from Userdefine_Mi_Master
+                                where Userdefine_Ma_Code = @Userdefine_Ma_Code and Userdefine_Mi_Code = @Userdefine_Mi_Code
+                                END TRY
+                                BEGIN CATCH
+                                select @@ERROR
+                                END CATCH";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

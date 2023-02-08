@@ -31,6 +31,8 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlanHeader, "생산계획월", "Plan_Month", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlanHeader, "생산계획제목", "Plan_Title", 200);
 
+            dtpPlanMonth.Value = DateTime.Today;
+
             LoadData();
         }
 
@@ -40,8 +42,6 @@ namespace Team2_Project
 
             if (list != null && list.Count > 0)
             {
-                dtpPlanMonth.Value = Convert.ToDateTime(list[0].Plan_Month);
-                txtPlanTitle.Text = list[0].Plan_Title;
                 dgvPlanHeader.DataSource = list;
             }
         }
@@ -133,7 +133,7 @@ namespace Team2_Project
         private void btnDel_Click(object sender, EventArgs e)
         {
             string planMonth = dtpPlanMonth.Value.ToString("yyyy-MM");
-            if (DialogResult.OK == MessageBox.Show($"{planMonth} 계획을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel))
+            if (DialogResult.OK == MessageBox.Show($"'{planMonth}월'의 계획을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel))
             {
                 int result = srv.DelPlanHeader(planMonth);
 
@@ -158,8 +158,16 @@ namespace Team2_Project
         {  
             PlanMonth = dtpPlanMonth.Value.ToString("yyyy-MM");
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            if (DialogResult.OK == MessageBox.Show($"'{PlanMonth}월'의 생산계획을 생성하시겠습니까?", "계획생성확인", MessageBoxButtons.OKCancel))
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }            
+        }
+
+        private void dtpPlanMonth_ValueChanged(object sender, EventArgs e)
+        {
+            txtPlanTitle.Text = "";
         }
     }
 }

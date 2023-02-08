@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using Team2_Project_DTO;
 using System.Configuration;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Team2_Project_DAO
 {
@@ -71,6 +72,55 @@ namespace Team2_Project_DAO
             {
                 Debug.WriteLine(err.Message);
                 return null;
+            }
+        }
+
+        public bool SaveFavorite (string userID, List<MenuDTO> favoriteList)
+        {
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                string sql = "delete from Favorite_Master where User_ID = @User_ID";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@User_ID", userID);
+                cmd.Transaction = trans;
+                cmd.ExecuteNonQuery();
+
+                sql = @"insert into Favorite_Master (User_ID, Screen_Code, Parent_Screen_Code, Sort_Index, Ins_Date, Ins_Emp)
+					values (@User_ID, @Screen_Code, @Parent_Screen_Code,  @Sort_Index, GETDATE(), @Ins_Emp)";
+
+                SqlCommand cmd2 = new SqlCommand(sql, conn);
+                cmd2.Parameters.Add(new SqlParameter("@User_ID", SqlDbType.NVarChar, 20));
+                cmd2.Parameters.Add(new SqlParameter("@Screen_Code", SqlDbType.NVarChar, 50));
+                cmd2.Parameters.Add(new SqlParameter("@Parent_Screen_Code", SqlDbType.NVarChar, 50));
+                cmd2.Parameters.Add(new SqlParameter("@Sort_Index", SqlDbType.Int));
+                cmd2.Parameters.Add(new SqlParameter("@Ins_Emp", SqlDbType.NVarChar, 20));
+                cmd2.Transaction = trans;
+
+                for (int i = 0; i < favoriteList.Count; i++)
+                {
+                    cmd2.Parameters["@User_ID"].Value = userID;
+                    cmd2.Parameters["@Screen_Code"].Value = favoriteList[i].Screen_Code;
+                    cmd2.Parameters["@Parent_Screen_Code"].Value = favoriteList[i].Parent_Screen_Code;
+                    cmd2.Parameters["@Sort_Index"].Value = i;
+                    cmd2.Parameters["@Ins_Emp"].Value = userID;
+                    cmd2.ExecuteNonQuery();
+                }
+
+                trans.Commit();
+                return true;
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                Debug.WriteLine(err.Message);
+                MessageBox.Show(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }

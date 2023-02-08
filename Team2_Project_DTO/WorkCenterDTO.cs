@@ -23,6 +23,7 @@ namespace Team2_Project_DTO
         public string Ins_Emp        { get; set; }   //최초 등록자
         public string Up_Emp         { get; set; }   //최종 수정자
         public string Prd_Unit       { get; set; }   //실적 단위
+        public string Prd_Unit_Name  { get; set; }   //실적 단위 이름
 
 
         //사용 안함

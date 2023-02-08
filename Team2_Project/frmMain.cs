@@ -40,18 +40,11 @@ namespace Team2_Project
         List<MenuDTO> menuList;
         Panel pnlChildMenu = new Panel();
         TreeView menuTree = new TreeView();
-
-        //private Boolean showPanelTreenode1 = false;
-        //private Boolean showPanelTreenode2 = false;
-        //private Boolean showPanelTreenode3 = false;
-        //private Boolean showPanelTreenode4 = false;
         const int MaxWidth = 212;
         const int MinWidth = 56;
         public frmMain()
         {
             InitializeComponent();
-
-            //tooglepanels();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -386,18 +379,6 @@ namespace Team2_Project
                 MessageBox.Show("자식폼 이벤트핸들러 미구현");
             }
         }
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    Form d = this.ActiveMdiChild;
-        //    OpenChildPage<frmStartMain>();
-        //    Button btn = (Button)sender;
-        //    if (this.BtnClick != null)
-        //    {
-        //        btn.Tag = btn.Name;
-        //        BtnClick(btn, e);
-        //    }    
-        //}
 
         #region 버튼 클릭 이벤트
         public void RoadClickEvent()

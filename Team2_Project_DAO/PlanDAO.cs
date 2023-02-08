@@ -387,9 +387,13 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"delete Production_Plan_Header
-                                where Plan_Month = @Plan_Month;
-                                select @@ERROR";
+                string sql = @"BEGIN TRY
+                                delete Production_Plan_Header
+                                where Plan_Month = @Plan_Month
+                                END TRY
+                                BEGIN CATCH
+                                select @@ERROR
+                                END CATCH";
           
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -409,6 +413,31 @@ namespace Team2_Project_DAO
             }
         }
 
+        public string ChkStatus(string planID)
+        {
+            try
+            {
+                string sql = @"select Prd_Plan_Status
+                                from Production_Plan_Detail
+                                where Prd_Plan_No = @Prd_Plan_No";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Prd_Plan_No", planID);
+
+                    string result = cmd.ExecuteScalar().ToString();
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
      
 
 

@@ -41,9 +41,10 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 공정명", "Process_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 팔렛생성여부", "Pallet_YN", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 사용여부", "Use_YN", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 실적단위", "Prd_Unit", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 실적단위", "Prd_Unit_Name", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 150); 
 
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 실적단위", "Prd_Unit", visible:false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹", "Wc_Group",visible:false);
             dgvWorkShop.MultiSelect = false;
 
@@ -54,7 +55,8 @@ namespace Team2_Project
             CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
             CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
             CommonCodeUtil.ComboBinding(cboWCGroup, code, "WC_GROUP");
-
+            CommonCodeUtil.ComboBinding(cboUnit, code, "PRD_UNIT");
+            CommonCodeUtil.ComboBinding(cboUnit, code, "PRD_UNIT");
 
             SetInitEditPnl();
             processList = prosrv.SetData();
@@ -69,7 +71,9 @@ namespace Team2_Project
             if (dgvWorkShop.CurrentRow != null)
             {
                 dgvWorkShop_CellClick(dgvWorkShop, new DataGridViewCellEventArgs(0, dgvWorkShop.CurrentRow.Index));
+                
             }
+            
         }
         #region 패널 이벤트
         private void SetSearchPnl()  //검색 패널 값 clear 및 잠금
@@ -108,7 +112,7 @@ namespace Team2_Project
                 ctrl.Enabled = false;
             }
             ucProcCode._Code = ucProcCode._Name = "";
-            cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = cboPalletYN.SelectedIndex = -1;
+            cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = cboPalletYN.SelectedIndex = cboUnit.SelectedIndex = -1;
         }
         private void OpenInitEditPnl()  //폼 하단 패널 잠금해제 
         {
@@ -117,7 +121,7 @@ namespace Team2_Project
                 txtCenterCode.Text = txtCenterName.Text = txtRemark.Text =  ucProcCode._Code = ucProcCode._Name = txtRemark.Text = "";
                 txtCenterCode.Enabled = txtCenterName.Enabled = txtRemark.Enabled 
                 = ucProcCode.Enabled  = cboUseYN.Enabled = cboWCGroup.Enabled =true;
-                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = 0;
+                cboPalletYN.SelectedIndex = cboUseYN.SelectedIndex = cboWCGroup.SelectedIndex = cboUnit.SelectedIndex = 0;
             }
             else if (clickState == "Edit")
             {
@@ -126,11 +130,15 @@ namespace Team2_Project
                 {
                     cboPalletYN.SelectedIndex = 1;      //팔렛 생성 여부는 N
                     cboPalletYN.Enabled = false;
+                    cboUnit.SelectedIndex = 1;
+                    cboUnit.Enabled = false;
                 }
                 else if (cboWCGroup.SelectedIndex == 3)  //작업장 그룹이 포장일 때
                 {
                     cboPalletYN.SelectedIndex = 0;      //팔렛 생성 여부는 Y
                     cboPalletYN.Enabled = false;
+                    cboUnit.SelectedIndex = 2;
+                    cboUnit.Enabled = false;
                 }
             }
         }
@@ -166,6 +174,8 @@ namespace Team2_Project
             }
 
             SetInitEditPnl();
+            if (dgvWorkShop.CurrentRow != null)
+                dgvWorkShop_CellClick(dgvWorkShop, new DataGridViewCellEventArgs(0, 0));
 
         }
         public void OnAdd()     //추가
@@ -381,6 +391,20 @@ namespace Team2_Project
             cd3.Pcode = "";
             code.Add(cd3);
 
+            CodeDTO pu1 = new CodeDTO(); //PCS
+            pu1.Code = "PU001";
+            pu1.Category = "PRD_UNIT";
+            pu1.Name = "PCS";
+            pu1.Pcode = "";
+            code.Add(pu1);
+
+            CodeDTO pu2 = new CodeDTO(); //BOX
+            pu2.Code = "PU002";
+            pu2.Category = "PRD_UNIT";
+            pu2.Name = "BOX";
+            pu2.Pcode = "";
+            code.Add(pu2);
+
         }
         private void dgvWorkShop_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -393,6 +417,7 @@ namespace Team2_Project
             ucProcCode._Name = dgvWorkShop["Process_Name", e.RowIndex].Value.ToString();
             cboPalletYN.SelectedItem = dgvWorkShop["Pallet_YN", e.RowIndex].Value.ToString();
             cboUseYN.SelectedItem = dgvWorkShop["Use_YN", e.RowIndex].Value.ToString();
+            cboUnit.SelectedValue = dgvWorkShop["Prd_Unit", e.RowIndex].Value.ToString();
             txtRemark.Text = dgvWorkShop["Remark", e.RowIndex].Value.ToString();
         }
 
@@ -453,11 +478,16 @@ namespace Team2_Project
             {
                 cboPalletYN.SelectedIndex = 1;      //팔렛 생성 여부는 N
                 cboPalletYN.Enabled = false;
+                cboUnit.SelectedIndex = 1;
+                cboUnit.Enabled = false;
+
             }
             else if (cboWCGroup.SelectedIndex == 3)  //작업장 그룹이 포장일 때
             {
                 cboPalletYN.SelectedIndex = 0;      //팔렛 생성 여부는 Y
                 cboPalletYN.Enabled = false;
+                cboUnit.SelectedIndex = 2;
+                cboUnit.Enabled = false;
             }
         }
     }
