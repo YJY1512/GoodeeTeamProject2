@@ -75,5 +75,19 @@ namespace Team2_Project.Utils
 
             return col;
         }
+
+        public static void AddCheckBoxColumn(DataGridView grid, string name, string text, int width, bool frozen = false, bool visible = true)
+        {
+            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            col.HeaderText = text;
+            col.Width = width;
+            col.DataPropertyName = name;
+            col.Frozen = frozen;
+            col.Visible = visible;
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            grid.Columns.Add(col);
+        }
     }
 }

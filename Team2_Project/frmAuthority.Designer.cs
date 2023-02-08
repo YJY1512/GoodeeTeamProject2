@@ -29,10 +29,10 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAuthority = new System.Windows.Forms.DataGridView();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthority)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSub
@@ -41,7 +41,7 @@ namespace Team2_Project
             // 
             // pnlList
             // 
-            this.pnlList.Controls.Add(this.dataGridView1);
+            this.pnlList.Controls.Add(this.dgvAuthority);
             this.pnlList.Size = new System.Drawing.Size(1252, 533);
             // 
             // lblTitle
@@ -57,14 +57,18 @@ namespace Team2_Project
             // 
             this.pnlTitle.Size = new System.Drawing.Size(1252, 43);
             // 
-            // dataGridView1
+            // dgvAuthority
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(172, 91);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvAuthority.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvAuthority.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAuthority.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuthority.Location = new System.Drawing.Point(0, 0);
+            this.dgvAuthority.Name = "dgvAuthority";
+            this.dgvAuthority.RowTemplate.Height = 23;
+            this.dgvAuthority.Size = new System.Drawing.Size(1205, 533);
+            this.dgvAuthority.TabIndex = 0;
             // 
             // frmAuthority
             // 
@@ -72,16 +76,17 @@ namespace Team2_Project
             this.ClientSize = new System.Drawing.Size(1252, 641);
             this.Name = "frmAuthority";
             this.Text = "사용자권한설정";
+            this.Load += new System.EventHandler(this.frmAuthority_Load);
             this.pnlList.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthority)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAuthority;
     }
 }
