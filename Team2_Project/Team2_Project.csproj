@@ -144,6 +144,12 @@
     <Compile Include="frmSiyuPop.Designer.cs">
       <DependentUpon>frmSiyuPop.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUserAuthority.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserAuthority.Designer.cs">
+      <DependentUpon>frmUserAuthority.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWorkOrder.cs">
       <SubType>Form</SubType>
     </Compile>
