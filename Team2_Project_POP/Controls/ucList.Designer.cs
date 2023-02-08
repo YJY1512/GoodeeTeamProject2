@@ -49,9 +49,9 @@ namespace Team2_Project_POP.Controls
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.lblRemark, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblStatuse, 0, 0);
@@ -64,24 +64,20 @@ namespace Team2_Project_POP.Controls
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1135, 118);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Click += new System.EventHandler(this.lblRemark_Click);
-            this.tableLayoutPanel1.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.tableLayoutPanel1.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblRemark
             // 
             this.lblRemark.BackColor = System.Drawing.Color.LightSkyBlue;
             this.lblRemark.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblRemark.ForeColor = System.Drawing.Color.Black;
-            this.lblRemark.Location = new System.Drawing.Point(852, 4);
+            this.lblRemark.Location = new System.Drawing.Point(909, 4);
             this.lblRemark.Margin = new System.Windows.Forms.Padding(2, 4, 4, 4);
             this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(279, 110);
+            this.lblRemark.Size = new System.Drawing.Size(222, 110);
             this.lblRemark.TabIndex = 2;
             this.lblRemark.Text = "전달 사항";
             this.lblRemark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblRemark.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblRemark.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblRemark.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // tableLayoutPanel2
             // 
@@ -100,7 +96,7 @@ namespace Team2_Project_POP.Controls
             this.tableLayoutPanel2.Controls.Add(this.lblFinishTime, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblProductName, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(113, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(170, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
@@ -110,8 +106,6 @@ namespace Team2_Project_POP.Controls
             this.tableLayoutPanel2.Size = new System.Drawing.Size(737, 118);
             this.tableLayoutPanel2.TabIndex = 0;
             this.tableLayoutPanel2.Click += new System.EventHandler(this.lblRemark_Click);
-            this.tableLayoutPanel2.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.tableLayoutPanel2.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblProductDate
             // 
@@ -126,8 +120,6 @@ namespace Team2_Project_POP.Controls
             this.lblProductDate.Text = "생산 일자";
             this.lblProductDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblProductDate.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblProductDate.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblProductDate.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblPlanDate
             // 
@@ -142,8 +134,6 @@ namespace Team2_Project_POP.Controls
             this.lblPlanDate.Text = "계획 일자";
             this.lblPlanDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPlanDate.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblPlanDate.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblPlanDate.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblProcessNum
             // 
@@ -158,8 +148,6 @@ namespace Team2_Project_POP.Controls
             this.lblProcessNum.Text = "작업 지시 번호";
             this.lblProcessNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblProcessNum.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblProcessNum.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblProcessNum.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblPlanQty
             // 
@@ -175,8 +163,6 @@ namespace Team2_Project_POP.Controls
             this.lblPlanQty.Text = "계획 수량";
             this.lblPlanQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPlanQty.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblPlanQty.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblPlanQty.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblStartTime
             // 
@@ -191,8 +177,6 @@ namespace Team2_Project_POP.Controls
             this.lblStartTime.Text = "생산 시작 시간";
             this.lblStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblStartTime.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblStartTime.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblStartTime.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblIngQty
             // 
@@ -208,8 +192,6 @@ namespace Team2_Project_POP.Controls
             this.lblIngQty.Text = "실적 수량";
             this.lblIngQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblIngQty.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblIngQty.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblIngQty.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblFinishTime
             // 
@@ -224,8 +206,6 @@ namespace Team2_Project_POP.Controls
             this.lblFinishTime.Text = "생산 종료 시간";
             this.lblFinishTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblFinishTime.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblFinishTime.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblFinishTime.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblProductName
             // 
@@ -240,8 +220,6 @@ namespace Team2_Project_POP.Controls
             this.lblProductName.Text = "품목명";
             this.lblProductName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblProductName.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblProductName.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblProductName.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // lblStatuse
             // 
@@ -251,13 +229,11 @@ namespace Team2_Project_POP.Controls
             this.lblStatuse.Location = new System.Drawing.Point(4, 4);
             this.lblStatuse.Margin = new System.Windows.Forms.Padding(4, 4, 2, 4);
             this.lblStatuse.Name = "lblStatuse";
-            this.lblStatuse.Size = new System.Drawing.Size(107, 110);
+            this.lblStatuse.Size = new System.Drawing.Size(164, 110);
             this.lblStatuse.TabIndex = 1;
             this.lblStatuse.Text = "상  태";
             this.lblStatuse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblStatuse.Click += new System.EventHandler(this.lblRemark_Click);
-            this.lblStatuse.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.lblStatuse.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             // 
             // ucList
             // 
@@ -270,8 +246,6 @@ namespace Team2_Project_POP.Controls
             this.Size = new System.Drawing.Size(1135, 118);
             this.Load += new System.EventHandler(this.ucList_Load);
             this.Click += new System.EventHandler(this.lblRemark_Click);
-            this.MouseEnter += new System.EventHandler(this.lblStatuse_MouseEnter);
-            this.MouseLeave += new System.EventHandler(this.lblStatuse_MouseLeave);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -11,6 +11,7 @@ namespace Team2_Project_DTO
         public string Process_Code { get; set; }
         public string Process_Name { get; set; }
         public string Process_Group { get; set; }
+        public string Process_Group_Name { get; set; }
         public string Use_YN { get; set; }
         public string Remark { get; set; }
         public DateTime Up_Date { get; set; }   //

@@ -65,7 +65,8 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     conn.Open();
-                    cmd.CommandText = "SP_TIMETEST"; /////SP_테스트용아닌걸로 수정
+                    //cmd.CommandText = "SP_TIMETEST"; /////SP_테스트용아닌걸로 수정
+                    cmd.CommandText = "SP_TimeProductionChart";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);

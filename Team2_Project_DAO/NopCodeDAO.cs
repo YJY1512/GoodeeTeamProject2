@@ -211,9 +211,13 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"DELETE FROM Nop_Ma_Master
-                                WHERE Nop_Ma_Code = @Nop_Ma_Code;
-                                SELECT @@ERROR";
+                string sql = @"BEGIN TRY
+                              DELETE FROM Nop_Ma_Master
+                                WHERE Nop_Ma_Code = @Nop_Ma_Code
+                                END TRY
+                                BEGIN CATCH
+                                select @@ERROR
+                                END CATCH";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
@@ -235,10 +239,14 @@ namespace Team2_Project_DAO
         public int DeleteMiCode(string Code)
         {
             try
-            {
-                string sql = @"DELETE FROM Nop_Mi_Master
-                                WHERE Nop_Mi_Code = @Nop_Mi_Code;
-                                SELECT @@ERROR";
+            { 
+                string sql = @"BEGIN TRY
+                             DELETE FROM Nop_Mi_Master
+                                WHERE Nop_Mi_Code = @Nop_Mi_Code
+                                END TRY
+                                BEGIN CATCH
+                                select @@ERROR
+                                END CATCH";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();

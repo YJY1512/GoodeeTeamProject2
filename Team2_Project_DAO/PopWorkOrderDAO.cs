@@ -30,41 +30,50 @@ namespace Team2_Project_DAO
         public List<WorkOrderDTO> GetWorkOrders(string Wc_Code)
         {
             List<WorkOrderDTO> result = new List<WorkOrderDTO>();
+            try 
+            { 
+                using (SqlCommand cmd = new SqlCommand("SP_PopWorkOrderList", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Wc_code", Wc_Code);
 
-            using (SqlCommand cmd = new SqlCommand("SP_PopWorkOrderList", conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Wc_code", Wc_Code);
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
+                    conn.Close();
 
-                conn.Open();
-                result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
-                conn.Close();
-
-                return result;
+                    return result;
+                }
             }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+
         }
 
-        public List<WorkOrderDTO> StartWork(WorkOrderDTO work)
+        public List<WorkOrderDTO> StartWork(string work, string Wc_Code)
         {
             List<WorkOrderDTO> result = new List<WorkOrderDTO>();
+            try 
+            { 
+                using (SqlCommand cmd = new SqlCommand("SP_PopUpdateWorkOrderList", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", work);
+                    cmd.Parameters.AddWithValue("@Wc_Code", Wc_Code);
 
-            using (SqlCommand cmd = new SqlCommand("SP_PopUpdateWorkOrderList", conn))
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Wo_Status", work.Wo_Status);
-                cmd.Parameters.AddWithValue("@Prd_Date", work.Prd_Date);
-                cmd.Parameters.AddWithValue("@Prd_Qty", work.Prd_Qty);
-                cmd.Parameters.AddWithValue("@Prd_StartTime", work.Prd_StartTime);
-                cmd.Parameters.AddWithValue("@Prd_EndTime", work.Prd_EndTime);
-                cmd.Parameters.AddWithValue("@Worker_CloseTime", work.Worker_CloseTime);
-                cmd.Parameters.AddWithValue("@Prd_Plan_No", work.Prd_Plan_No);
-                cmd.Parameters.AddWithValue("@Wc_code", work.Wc_Code);
-
-                conn.Open();
-                result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
-                conn.Close();
-
-                return result;
+                Debug.WriteLine(err.Message);
+                return null;
             }
         }
 

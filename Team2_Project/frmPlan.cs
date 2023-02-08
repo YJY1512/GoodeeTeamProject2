@@ -225,7 +225,7 @@ namespace Team2_Project
                 {
                     if (row.Cells["Plan_Rest_Qty"].Value.ToString().Equals("0"))
                     {
-                        MessageBox.Show("계획 잔량이 0이므로 계획 생성이 불가합니다.");
+                        MessageBox.Show("계획 잔량이 0인 경우 계획 생성이 불가합니다.");
                         tab1LoadData();
                         return;
                     }
@@ -261,16 +261,29 @@ namespace Team2_Project
                 return;
             }
 
-            bool result = srv.InsertReqPlan(plan);
-            if (result)
+            frmPlanAddPop pop = new frmPlanAddPop();
+            pop.EmpID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
+
+            if (pop.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("계획생성이 완료되었습니다.");
-                tab1LoadData();
+                foreach(var item in plan)
+                {
+                    item.Plan_Month = pop.PlanMonth;
+                }
+
+                bool result = srv.InsertReqPlan(plan);
+                if (result)
+                {
+                    MessageBox.Show("계획생성이 완료되었습니다.");
+                    tab1LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("계획생성 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
+                }
             }
-            else
-            {
-                MessageBox.Show("계획생성 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
-            }
+
+            
         }
 
         private void ucProd_BtnClick(object sender, EventArgs e)
@@ -371,7 +384,10 @@ namespace Team2_Project
             SetPlanbtnEnabled(false);
 
             int rIdx = dgvPlan.CurrentRow.Index;
-            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+
+            string status = srv.ChkStatus(planID);
+            if (!status.Equals("A")) //대기중
             {
                 MessageBox.Show("대기중인 계획만 분할이 가능합니다.");
                 dgvPlan.Enabled = true;
@@ -382,7 +398,7 @@ namespace Team2_Project
             frmPlanPop pop = new frmPlanPop();
             pop.mode = frmPlanPop.OpenMode.Split;
 
-            pop.PlanID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+            pop.PlanID = planID;
             pop.Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value);
 
             if (pop.ShowDialog(this) == DialogResult.OK)
@@ -419,7 +435,10 @@ namespace Team2_Project
             SetPlanbtnEnabled(false);
 
             int rIdx = dgvPlan.CurrentRow.Index;
-            if (dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+
+            string status = srv.ChkStatus(planID);
+            if (status.Equals("A")) //대기중
             {
                 MessageBox.Show("작업지시 미생성 계획은 마감이 불가합니다.");
                 dgvPlan.Enabled = true;
@@ -427,7 +446,6 @@ namespace Team2_Project
                 return;
             }
 
-            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
             string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
 
             bool result = srv.ClosePlan(planID, empID);
@@ -452,7 +470,10 @@ namespace Team2_Project
             SetPlanbtnEnabled(false);
 
             int rIdx = dgvPlan.CurrentRow.Index;
-            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("생산마감"))
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+
+            string status = srv.ChkStatus(planID);
+            if (!status.Equals("C")) //생산마감
             {
                 MessageBox.Show("마감된 생산계획만 취소가 가능합니다.");
                 dgvPlan.Enabled = true;
@@ -460,7 +481,6 @@ namespace Team2_Project
                 return;
             }
 
-            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
             string empID = ((frmMain)this.MdiParent).LoginEmp.User_ID;
 
             bool result = srv.CloseCancel(planID, empID);
@@ -619,7 +639,10 @@ namespace Team2_Project
             SetPlanbtnEnabled(false);
 
             int rIdx = dgvPlan.CurrentRow.Index;
-            if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+            string planID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+
+            string status = srv.ChkStatus(planID);
+            if (!status.Equals("A")) //대기중
             {
                 MessageBox.Show("대기중인 계획만 수정이 가능합니다.");
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
@@ -633,7 +656,7 @@ namespace Team2_Project
             frmPlanPop pop = new frmPlanPop();
             pop.mode = frmPlanPop.OpenMode.Edit;
 
-            pop.PlanID = dgvPlan["Prd_Plan_No", rIdx].Value.ToString();
+            pop.PlanID = planID;
             pop.Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value);
 
             if (pop.ShowDialog(this) == DialogResult.OK)
@@ -673,7 +696,8 @@ namespace Team2_Project
 
             if (MessageBox.Show($"생산계획({planID})를 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                if (!dgvPlan["Prd_Plan_Status", rIdx].Value.ToString().Equals("대기중"))
+                string status = srv.ChkStatus(planID);
+                if (!status.Equals("A")) //대기중
                 {
                     MessageBox.Show("대기중인 계획만 삭제가 가능합니다.");
                     ((frmMain)this.MdiParent).BtnEditReturn(true);
@@ -749,7 +773,8 @@ namespace Team2_Project
                     Plan_Qty = Convert.ToInt32(dgvPlan["Plan_Qty", rIdx].Value),
                     Plan_Rest_Qty = 0,
                     Wc_Code = dgvPlan["Wc_Code", rIdx].Value.ToString(),
-                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID
+                    Ins_Emp = ((frmMain)this.MdiParent).LoginEmp.User_ID,
+                    Plan_Month = dtpMonth.Value.ToString("yyyy-MM")
                 };
 
                 bool result = srv.InsertPlan(plan);

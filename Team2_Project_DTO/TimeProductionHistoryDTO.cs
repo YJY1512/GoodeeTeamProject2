@@ -12,7 +12,7 @@ namespace Team2_Project_DTO
 
         public string Wo_Status { get; set; }     //작업지시상태
         public string WorkOrderNo { get; set; }   //작업지시번호
-        public string Ins_Date { get; set; }      //작업지시일자
+        public string Plan_Date { get; set; }      //작업지시일자
         public int Plan_Qty_Box { get; set; }     //작업지시수량
         public string Plan_Unit { get; set; }     //계획수량단위
         public string Wc_Code { get; set; }       //작업장코드

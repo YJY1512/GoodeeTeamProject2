@@ -93,7 +93,7 @@ namespace Team2_Project.Services
         }
 
         //비가동이력조회
-        public List<NopHistoryDTO> GetNopMiSearch(NopHistoryDTO item)
+        public List<NopHistoryDTO> GetNopHistory(NopHistoryDTO item)
         {
             NopHistoryDAO db = new NopHistoryDAO();
             List<NopHistoryDTO> list = db.GetNopHistory(item);
@@ -105,6 +105,14 @@ namespace Team2_Project.Services
         {
             NopCodeDAO db = new NopCodeDAO();
             List<CodeDTO> list = db.GetNopType();
+            db.Dispose();
+            return list;
+        }
+
+        public List<NopMaCodeDTO> GetNopCodeName()
+        {
+            NopHistoryDAO db = new NopHistoryDAO();
+            List<NopMaCodeDTO> list = db.GetNopCodeName();
             db.Dispose();
             return list;
         }

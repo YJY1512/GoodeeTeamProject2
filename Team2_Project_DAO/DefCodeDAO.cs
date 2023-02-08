@@ -207,17 +207,17 @@ namespace Team2_Project_DAO
                 if (isMaCode)
                 {
                     sql = @"delete from Def_Ma_Master
-                                where Def_Ma_Code = @Code;
-                                select @@ERROR";
+                                where Def_Ma_Code = @Code";
                 }
                 else
                 {
                     sql = @"delete from Def_Mi_Master
-                                where Def_Mi_Code = @Code;
-                                select @@ERROR";
+                                where Def_Mi_Code = @Code";
                 }
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                string sqltext = string.Format("BEGIN TRY {0} END TRY BEGIN CATCH select @@ERROR END CATCH", sql);
+
+                using (SqlCommand cmd = new SqlCommand(sqltext, conn))
                 {
                     conn.Open();
                     cmd.Parameters.AddWithValue("@Code", code);

@@ -82,5 +82,37 @@ namespace Team2_Project.Services
 
             return result;
         }
+
+        public List<PlanHeaderDTO> GetPlanHeader()
+        {
+            PlanDAO db = new PlanDAO();
+            List<PlanHeaderDTO> list = db.GetPlanHeader();
+
+            return list;
+        }
+
+        public int UpsertPlanHeader(PlanHeaderDTO planHeader)
+        {
+            PlanDAO db = new PlanDAO();
+            int result = db.UpsertPlanHeader(planHeader);
+
+            return result;
+        }
+
+        public int DelPlanHeader(string planMonth)
+        {
+            PlanDAO db = new PlanDAO();
+            int result = db.DelPlanHeader(planMonth);
+
+            return result;
+        }
+
+        public string ChkStatus(string planID)
+        {
+            PlanDAO db = new PlanDAO();
+            string result = db.ChkStatus(planID);
+
+            return result;
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace Team2_Project
     {
         AnalysisService srv = new AnalysisService();
         List<TimeProductionHistoryDTO> TPHistoryList = new List<TimeProductionHistoryDTO>();
+        List<WorkCenterDTO> wcList;
+        List<ProcessMasterDTO> prcList;
 
         public frmTimeProductionHistory()
         {
@@ -43,19 +45,18 @@ namespace Team2_Project
             //cboWoStatus.Items.Add("작업지시마감"); //추후 DB에서 CODE 가져오기
             #endregion
 
-            //작업지시목록 : 작업지시번호, 작업지시일자, 작업지시수량, 계획수량단위, 품목코드, 품목명, 작업장, 생산일자, 생산시작, 생산종료, 투입, 산출, 생산수량, 불량수량
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Ins_Date", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Plan_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "계획수량단위", "Plan_Unit", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장", "Wc_Name", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일자", "Prd_Date", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산시작", "Prd_StartTime", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산종료", "Prd_EndTime", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산시작", "Prd_StartTime", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산종료", "Prd_EndTime", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "In_Qty_Main", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "Out_Qty_Main", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
@@ -72,7 +73,6 @@ namespace Team2_Project
             //----------------
             ResetDtp();
             OnSearch();
-
         }
 
         private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
@@ -85,6 +85,9 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
+            string wcCode = ucWcCode._Code;
+
+            List<TimeProductionHistoryDTO> list = null;
             TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd")); //////////SP불량부분 수정하기
             if (TPHistoryList != null && TPHistoryList.Count > 0)
             {
@@ -97,11 +100,19 @@ namespace Team2_Project
                     AdvancedListBind(TPHistoryList, dgvData);
                 else
                 {
-                    List<TimeProductionHistoryDTO> list = TPHistoryList.Where(t => t.Process_Code == (string.IsNullOrWhiteSpace(processSC) ? t.Process_Code : processSC)
+                    list = TPHistoryList.Where(t => t.Process_Code == (string.IsNullOrWhiteSpace(processSC) ? t.Process_Code : processSC)
                                         && t.Wc_Code == (string.IsNullOrWhiteSpace(workSC) ? t.Wc_Code : workSC)
                                          && t.Wo_Status == (string.IsNullOrWhiteSpace(woStatus) ? t.Wo_Status : woStatus)).ToList();
                     AdvancedListBind(list, dgvData);
                 }
+
+                if (dgvData.Rows.Count > 0)
+                {
+                    if (dgvData.CurrentRow != null)
+                        dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                }
+                else
+                    chtData.Series.Clear();
             }
         }
 
@@ -127,32 +138,56 @@ namespace Team2_Project
             dtpTo.Value = DateTime.Now;
         }
 
-        private void ucProcessCode_BtnClick(object sender, EventArgs e)
+        private CommonPop<WorkCenterDTO> GetWcPopInfo()
         {
-            var list = TPHistoryList.GroupBy((g) => g.Process_Code).Select((g) => g.FirstOrDefault()).ToList();
-            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
-            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
+            if (wcList == null)
+            {
+                WorkCenterService srv = new WorkCenterService();
+                wcList = srv.GetWcCodeName();
+            }
 
-            CommonPop<TimeProductionHistoryDTO> popInfo = new CommonPop<TimeProductionHistoryDTO>();
-            popInfo.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "공정정보 검색";
-            ucProcessCode.OpenPop(popInfo);
-        }
+            CommonPop<WorkCenterDTO> wcPopInfo = new CommonPop<WorkCenterDTO>();
+            wcPopInfo.DgvDatasource = wcList;
+            wcPopInfo.PopName = "작업장 검색";
 
-        private void ucWcCode_BtnClick(object sender, EventArgs e)
-        {
-            var list = TPHistoryList.GroupBy((g) => g.Wc_Code).Select((g) => g.FirstOrDefault()).ToList();
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
 
-            CommonPop<TimeProductionHistoryDTO> popInfo = new CommonPop<TimeProductionHistoryDTO>();
-            popInfo.DgvDatasource = list;
-            popInfo.DgvCols = colList;
-            popInfo.PopName = "작업장정보 검색";
-            ucWcCode.OpenPop(popInfo);
+            wcPopInfo.DgvCols = colList;
+
+            return wcPopInfo;
+        }
+
+        private CommonPop<ProcessMasterDTO> GetProcessPopInfo()
+        {
+            if (prcList == null)
+            {
+                ProcessMasterService srv = new ProcessMasterService();
+                prcList = srv.GetPrcCodeName();
+            }
+
+            CommonPop<ProcessMasterDTO> prcPopInfo = new CommonPop<ProcessMasterDTO>();
+            prcPopInfo.DgvDatasource = prcList;
+            prcPopInfo.PopName = "공정 검색";
+
+            List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
+            colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
+
+            prcPopInfo.DgvCols = colList;
+
+            return prcPopInfo;
+        }
+
+        private void ucProcessCode_BtnClick(object sender, EventArgs e)
+        {
+            ucProcessCode.OpenPop(GetProcessPopInfo());
+        }
+
+        private void ucWcCode_BtnClick(object sender, EventArgs e)
+        {
+            ucWcCode.OpenPop(GetWcPopInfo());
         }
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -160,20 +195,21 @@ namespace Team2_Project
             //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
             //2. 작업지시 dgv를 선택하면 작업지시번호 DB가져가서 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
 
-            string txt = dgvData["WorkOrderNo", e.RowIndex].Value.ToString();
-            if (e.RowIndex < 0) return;
-            else
-                MessageBox.Show($"차트불러올 작업지시번호 : {txt}", "TEST");
-            //ChartData();
+            //string txt = dgvData["WorkOrderNo", e.RowIndex].Value.ToString();
+            //MessageBox.Show($"차트불러올 작업지시번호 : {txt}", "TEST");
+
+            if (e.RowIndex < 0) return;           
+            else if(dgvData.Rows.Count > 0)
+                ChartData();
         }
 
         public void ChartData()
         {
             //---test----
-            string curInfo = cboTest.Text;
+            //string curInfo = cboTest.Text;
             //------------
 
-            //string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
+            string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
             TPHistoryList = srv.GetTimeProductionHistory(curInfo); //SP 테스트용 아닌걸로 수정
 
             chtData.Series.Clear();
@@ -181,6 +217,7 @@ namespace Team2_Project
             chtData.Series["생산량"].Points.Clear();
             chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;
             chtData.Series["생산량"].Color = Color.FromArgb(211, 226, 223);
+            chtData.Series["생산량"].Points.Clear();
             chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", "Label=Prd_Qty"); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
 
             if (!chkDefQty.Checked)
@@ -189,6 +226,7 @@ namespace Team2_Project
                 chtData.Series["불량"].Points.Clear();
                 chtData.Series["불량"].ChartType = SeriesChartType.StackedColumn;
                 chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
+                chtData.Series["불량"].Points.Clear();
                 chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", "Label=Def_Qty"); // X축: Time, Y축: Score
             }
             
