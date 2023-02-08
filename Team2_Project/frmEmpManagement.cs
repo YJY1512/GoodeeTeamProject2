@@ -88,10 +88,7 @@ namespace Team2_Project
 
         private void ucSearchGroup_BtnClick(object sender, EventArgs e)
         {
-            if (userGroupCodeList == null || userGroupCodeList.Count() < 1)
-            {
-                userGroupCodeList = empSrv.GetUserGroupCode();
-            }
+            userGroupCodeList = empSrv.GetUserGroupCode();
 
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("그룹코드", "Code", 200));
@@ -302,10 +299,6 @@ namespace Team2_Project
         /// </summary>
         public void OnSearch()
         {
-            idx = -1;
-            ClearPnl();
-            dgvEmp.ClearSelection();
-
             DataTable temp = dt;
             if (!string.IsNullOrWhiteSpace(txtSearchID.Text))
                 temp = Filtering(temp, "User_ID", txtSearchID.Text);
@@ -317,7 +310,16 @@ namespace Team2_Project
             dgvEmp.DataSource = null;
             dgvEmp.DataSource = temp;
 
-            //dgvEmp_CellClick(dgvEmp, new DataGridViewCellEventArgs(0, 0));
+            if(dgvEmp.Rows.Count > 0)
+            {
+                idx = 0;
+                dgvEmp_CellClick(dgvEmp, new DataGridViewCellEventArgs(0, 0));
+            }
+            else
+            {
+                idx = -1;
+                ClearPnl();
+            }
         }
 
         /// <summary>

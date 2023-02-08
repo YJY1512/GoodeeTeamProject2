@@ -24,7 +24,10 @@ namespace Team2_Project_WEB.Models
                 if (Total == 0)
                     return 0;
                 else
-                    return Math.Round((decimal)Prd_Qty * 100 / Total, 2); 
+                {
+                    decimal fairRatio = Math.Round((decimal)Prd_Qty * 100 / Total, 2);
+                    return (fairRatio > 1.00m ? 1.00m : fairRatio);
+                }
             } 
         }
 
@@ -33,7 +36,11 @@ namespace Team2_Project_WEB.Models
                 if (Total == 0)
                     return 0;
                 else
-                    return Math.Round((decimal)TotDef * 100 / Total, 2); 
+                {
+                    decimal defRatio = Math.Round((decimal)TotDef * 100 / Total, 2);
+                    return (defRatio > 1.00m ? 1.00m : defRatio);
+                }
+                    
             } 
         }
     }

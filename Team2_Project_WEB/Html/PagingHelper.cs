@@ -12,18 +12,6 @@ namespace Team2_Project_WEB.Html
     {
         public static MvcHtmlString PageLinks(this HtmlHelper html, PagingInfo info, Func<int, string> pageUrl)
         {
-            //    @for(int p = 1; p <= Model.Page.TotalPages; p++)
-            //{
-            //        if (p == Model.Page.CurrentPage)
-            //        {
-            //        < li class="page-item active" aria-current="page"><p class="page-link">@p</p></li>
-            //    }
-            //    else
-            //    {
-            //        <li class="page-item"><a class="page-link" href="/Product/Index?category=@Model.CurrentCategory&page=@p">@p</a></li>
-            //    }
-            //}
-
             StringBuilder sb = new StringBuilder();
 
             for (int i = 1; i <= info.TotalPages; i++)

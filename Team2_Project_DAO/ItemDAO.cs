@@ -272,7 +272,7 @@ namespace Team2_Project_DAO
         public List<ItemDTO> GetItemCodeName()
         {
             string sql = @"select Item_Code, Item_Name FROM Item_Master
-                            WHERE Use_YN = 'Y'";
+                            WHERE Use_YN = 'Y' and Item_Type = 'PR'";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {

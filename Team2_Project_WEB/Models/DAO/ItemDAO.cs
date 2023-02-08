@@ -37,7 +37,7 @@ namespace Team2_Project_WEB.Models.DAO
                             )
                             , ResultWithoutRatio as
                             (
-	                            select im.Item_Code, Item_Name, isnull(OrderSum, 0) OrderSum, isnull(ProjCnt, 0) ProjCnt, round(convert(decimal, isnull(OrderSum, 0)) / (select sum(OrderSum) from OrderData), 2) * 100 ratio
+	                            select im.Item_Code, Item_Name, isnull(OrderSum, 0) OrderSum, isnull(ProjCnt, 0) ProjCnt, round(convert(decimal, isnull(OrderSum, 0)) / (select sum(OrderSum) from OrderData), 4) ratio
 	                            from Item_Master im left outer join OrderData od on im.Item_Code = od.Item_Code
 	                            where Item_Type = 'PR'
                             )
