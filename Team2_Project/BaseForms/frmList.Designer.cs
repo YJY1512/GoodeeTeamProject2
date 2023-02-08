@@ -118,6 +118,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Panel pnlList;
         private System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label lblTitle;
-        public System.Windows.Forms.Panel pnlTitle;
+        protected System.Windows.Forms.Panel pnlTitle;
     }
 }
