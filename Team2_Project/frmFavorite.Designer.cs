@@ -224,6 +224,8 @@ namespace Team2_Project
             this.trvFavorite.ShowPlusMinus = false;
             this.trvFavorite.Size = new System.Drawing.Size(264, 416);
             this.trvFavorite.TabIndex = 26;
+            this.trvFavorite.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvFavorite_BeforeSelect);
+            this.trvFavorite.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvFavorite_AfterSelect);
             // 
             // frmFavorite
             // 
