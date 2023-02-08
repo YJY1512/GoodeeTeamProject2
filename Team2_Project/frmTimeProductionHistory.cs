@@ -46,7 +46,7 @@ namespace Team2_Project
             #endregion
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Plan_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);

@@ -95,7 +95,7 @@ namespace Team2_Project
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시상태", "Wo_Status", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시상태", "Wo_Status", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시일자", "Plan_Date", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
@@ -129,7 +129,7 @@ namespace Team2_Project
         {
             //WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 150, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "시작시간대", "Start_Hour", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 150, DataGridViewContentAlignment.MiddleRight);
@@ -151,7 +151,7 @@ namespace Team2_Project
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "순번", "Nop_Seq", 60);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "순번", "Nop_Seq", 60, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동발생일자", "Nop_Date", 160);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동발생일시", "Nop_HappenTime", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동해제일시", "Nop_CancelTime", 200);
