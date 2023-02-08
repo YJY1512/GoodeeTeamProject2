@@ -74,7 +74,7 @@ namespace Team2_Project
                 Nop_Ma_Code = ucCodeSearch._Code,
                 Nop_Ma_Name = ucCodeSearch._Name,
                 DateFrom = dtpFrom.Value.ToString("yyyy-MM-dd"),
-                DateTo =dtpTo.Value.ToString("yyyy-MM-dd")
+                DateTo =dtpTo.Value.AddDays(1).ToString("yyyy-MM-dd")
             };
             NopList = srv.GetNopHistory(item);
             AdvancedListBind(NopList, dgvData);

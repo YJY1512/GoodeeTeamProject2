@@ -4,7 +4,7 @@
 @using Team2_Project_WEB.Html
 
 @{
-    ViewBag.Title = "생산지시 실적 조회";
+    ViewBag.Title = "작업지시 실적 조회";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 
@@ -21,7 +21,7 @@
         <div class="col-sm-12">
             <div class="card card-success">
                 <div class="card-header">
-                    <h3 class="card-title">@ViewBag.DateStr 생산진행도</h3>
+                    <h3 class="card-title">@ViewBag.DateStr 목표달성률</h3>
                 </div>
                 <div class="card-body row">
                     <div class="col-sm-2"><h3 style="font-weight:normal;text-align:center">@ViewBag.DateProgress.ToString("P")</h3></div>
@@ -69,7 +69,7 @@
                             <th>품목코드</th>
                             <th>품목명</th>
                             <th>계획수량</th>
-                            <th>생산진행도</th>
+                            <th>작업진행도</th>
                             <th>양품수량</th>
                             <th>불량수량</th>
                             <th>양품률</th>
@@ -88,22 +88,23 @@
                                 <td>@(item.Progress.ToString("P"))</td>
                                 <td>@item.Prd_Qty</td>
                                 <td>@item.TotDef</td>
-                                <td>@(item.FairRatio.ToString("0.00")+" %")</td>
-                                <td>@(item.DefRatio.ToString("0.00")+" %")</td>
+                                <td>@item.FairRatio.ToString("P")</td>
+                                <td>@item.DefRatio.ToString("P")</td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
-            <!-- 페이지 nav -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination d-flex justify-content-center">
-                    @Html.PageLinks((PagingInfo)ViewBag.Page, (p) => Url.Action("ProdO", new { date = ViewBag.Date, itemCode = ViewBag.ItemCode, page = p }))
-                </ul>
-            </nav>
-            <!-- /페이지 nav -->
+
         </div>
+        <!-- 페이지 nav -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination d-flex justify-content-center">
+                @Html.PageLinks((PagingInfo)ViewBag.Page, (p) => Url.Action("ProdO", new { date = ViewBag.Date, itemCode = ViewBag.ItemCode, page = p }))
+            </ul>
+        </nav>
+        <!-- /페이지 nav -->
     </div>
 </section>
 
@@ -124,7 +125,7 @@
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2({
-                placeholder: "제품 선택",
+                placeholder: "품목 선택",
                 allowClear: true
             })
 

@@ -372,10 +372,7 @@ namespace Team2_Project
 
         private CommonPop<ProjectDTO> GetPopInfo_Project()
         {
-            if (projectCodeList == null || projectCodeList.Count() < 1)
-            {
-                projectCodeList = ordSrv.GetProjectList();
-            }
+            projectCodeList = ordSrv.GetProjectList();
 
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("프로젝트코드", "Prj_No", 200));
@@ -392,10 +389,7 @@ namespace Team2_Project
 
         private CommonPop<ItemDTO> GetPopInfo_Item()
         {
-            if (itemCodeList == null || itemCodeList.Count() < 1)
-            {
-                itemCodeList = ordSrv.GetItemCodeName();
-            }
+            itemCodeList = ordSrv.GetItemCodeName();
 
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("품목코드", "Item_Code", 200));

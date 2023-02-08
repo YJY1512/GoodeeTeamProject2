@@ -11,6 +11,7 @@ namespace Team2_Project_DTO
         //작업지시목록 : 작업지시상태	작업지시번호	최초입력일자	계획수량	계획수량단위	품목코드	품목명	작업장코드	생산일자	작업시작시간	작업종료시간	투입수량Main	산출수량Main	생산수량	불량수량
 
         public string Wo_Status { get; set; }     //작업지시상태
+        public string Wo_Status_code { get; set; }     //작업지시상태
         public string WorkOrderNo { get; set; }   //작업지시번호
         public string Plan_Date { get; set; }      //작업지시일자
         public int Plan_Qty_Box { get; set; }     //작업지시수량

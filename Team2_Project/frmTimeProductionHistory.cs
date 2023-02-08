@@ -46,7 +46,7 @@ namespace Team2_Project
             #endregion
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시번호", "WorkOrderNo", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시일자", "Plan_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
@@ -62,6 +62,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "Def_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태코드", "Wo_Status_code", visible:false);
             dgvData.MultiSelect = false;
 
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
@@ -88,7 +89,7 @@ namespace Team2_Project
             string wcCode = ucWcCode._Code;
 
             List<TimeProductionHistoryDTO> list = null;
-            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.ToString("yyyy-MM-dd")); //////////SP불량부분 수정하기
+            TPHistoryList = srv.GetWorkOrder(dtpFrom.Value.ToString("yyyy-MM-dd"), dtpTo.Value.AddDays(1).ToString("yyyy-MM-dd")); ////////// SP불량부분 수정하기
             if (TPHistoryList != null && TPHistoryList.Count > 0)
             {
                 string processSC = ucProcessCode._Code ?? "";
@@ -114,6 +115,8 @@ namespace Team2_Project
                 else
                     chtData.Series.Clear();
             }
+            else
+                dgvData.DataSource = null;
         }
 
         public void OnReLoad()  //새로고침
@@ -258,6 +261,34 @@ namespace Team2_Project
         private void button1_Click(object sender, EventArgs e)
         {
             ChartData();
+        } //test
+
+        private void dgvData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvData["Wo_Status_code", e.RowIndex].Value == null) return;
+
+            string status = dgvData["Wo_Status_code", e.RowIndex].Value.ToString();
+            switch (status)
+            {
+                case "W01": //생산대기
+                    dgvData["Wo_Status", e.RowIndex].Style.BackColor = Color.Orange;
+                    break;
+                case "W02": //생산중
+                    dgvData["Wo_Status", e.RowIndex].Style.BackColor = Color.ForestGreen;
+                    break;
+                case "W03": //생산중지
+                    dgvData["Wo_Status", e.RowIndex].Style.BackColor = Color.Gold;
+                    break;
+                case "W04": //현장마감
+                    dgvData["Wo_Status", e.RowIndex].Style.BackColor = Color.LightSkyBlue;
+                    break;
+                case "W05": //작업지시마감
+                    dgvData["Wo_Status", e.RowIndex].Style.BackColor = Color.DarkBlue;
+                    break;
+                default: break;
+            }
         }
     }    
 }
