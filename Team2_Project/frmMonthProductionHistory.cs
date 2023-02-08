@@ -91,7 +91,9 @@ namespace Team2_Project
                 }
                 else
                     chtData.Series.Clear();
-            }            
+            }
+            else
+                dgvData.DataSource = null;
         }
 
         public void OnReLoad()  //새로고침
