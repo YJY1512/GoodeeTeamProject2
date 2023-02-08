@@ -28,6 +28,7 @@ namespace Team2_Project_WEB.Models.DAO
 
         public List<ProductionVO> GetProdOList(string date, string itemCode, int page , int pagesize, out int totalCount)
         {
+            List<ProductionVO> list = new List<ProductionVO>();
             string sql = "SP_GetProdOList";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -46,7 +47,7 @@ namespace Team2_Project_WEB.Models.DAO
                 cmd.Parameters.Add(pOutput);
 
                 SqlDataReader reader = cmd.ExecuteReader();
-                List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
+                list = Helper.DataReaderMapToList<ProductionVO>(reader);
                 reader.Close();
 
                 totalCount = Convert.ToInt32(pOutput.Value);

@@ -16,9 +16,8 @@ namespace Team2_Project_WEB.Models
         public int Prd_Qty { get; set; }
         public int TotDef { get; set; }
         public string Prd_StartTime { get; set; }
-        public string Prd_EndTime { get; set; }
+        public string Worker_CloseTime { get; set; }
         public int Total { get { return Prd_Qty + TotDef; } }
-
         public decimal FairRatio { get 
             {
                 if (Total == 0)
@@ -30,7 +29,6 @@ namespace Team2_Project_WEB.Models
                 }
             } 
         }
-
         public decimal DefRatio { get 
             {
                 if (Total == 0)

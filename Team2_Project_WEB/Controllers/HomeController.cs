@@ -121,10 +121,10 @@ namespace Team2_Project_WEB.Controllers
             return View(prodOlist);
         }
 
-        public ActionResult TotProd(string fromDate, string toDate, string wcCode, string itemCode, int page = 1) //작업 종합 효율 조회
+        public ActionResult TotProd(string fromDate, string toDate, string wcCode, string itemCode, int page = 1) //작업지시 종합 실적 조회
         {
             //날짜(Range), 작업장, 품목
-            //작업일자, 계획수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 비가동시간, 가동률, 비가동률, 시간당 생샨량
+            //작업일자, 작업수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 시간당 생샨량
 
             // 작업장, 품목 목록 불러오기
             WorkCenterDAO daoW = new WorkCenterDAO();
@@ -170,24 +170,18 @@ namespace Team2_Project_WEB.Controllers
             return View();
         }
 
+        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
+        {
+            Session["SelectedAM"] = "Schedule";
 
-
-
+            return View();
+        }
 
 
         public ActionResult WPlace() //작업장 가동현황 조회 - 일정보고 넣기 / 빼기 생각
         {
             //가동상태, 작업장명, 작업장 코드, 공정명, 진행 생산지시, 상태, 비고:비가동이면 사유
 
-
-            return View();
-        }
-
-        
-
-        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
-        {
-            Session["SelectedAM"] = "Schedule";
 
             return View();
         }
