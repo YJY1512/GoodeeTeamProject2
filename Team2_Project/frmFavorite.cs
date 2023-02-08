@@ -72,12 +72,13 @@ namespace Team2_Project
         private void FavritListBinding()
         {
             List<MenuDTO> lists = favoriteList;
-            var list1 = lists.FindAll((k) => k.Menu_Level == 3).OrderBy((k) => k.Seq).ToList();
+            var list1 = lists.FindAll((k) => k.Menu_Level == 3).OrderBy((k) => k.Sort_Index).ToList();
             for (int l = 0; l < list1.Count; l++)
             {
                 TreeNode favList = new TreeNode();
                 favList.Name = list1[l].Screen_Code;
                 favList.Text = list1[l].Menu_Name;
+                favList.Tag = l;
                 favList.NodeFont = new Font("나눔고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
                 favList.ForeColor = Color.FromArgb(60, 75, 80);
                 favList.BackColor = Color.FromArgb(211, 226, 223);
@@ -134,13 +135,14 @@ namespace Team2_Project
                 return;
             }
 
-            var childMenu = allMenuList.FindAll((c) => c.Menu_Level == 3 && c.Menu_Name == selItemName).ToList();
+            var childMenu = allMenuList.FindAll((c) => c.Menu_Name == selItemName).ToList();
             int d = 0;
             if (childMenu.Count == 1)
             {
                 TreeNode nodes = new TreeNode();
                 nodes.Name = childMenu[d].Screen_Code;
                 nodes.Text = childMenu[d].Menu_Name;
+                nodes.Tag = trvFavorite.Nodes.Count;
                 nodes.NodeFont = new Font("나눔고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
                 nodes.ForeColor = Color.FromArgb(60, 75, 80);
                 nodes.BackColor = Color.White;
@@ -171,7 +173,7 @@ namespace Team2_Project
                 {
                     view.Nodes.RemoveAt(index);
                     view.Nodes.Insert(index - 1, curNode);
-                    curNode.ForeColor = Color.White;
+                    curNode.BackColor = Color.White;
                 }
             }
         }
@@ -197,7 +199,7 @@ namespace Team2_Project
                 {
                     view.Nodes.RemoveAt(index);
                     view.Nodes.Insert(index + 1, curNode);
-                    curNode.ForeColor = Color.White;
+                    curNode.BackColor = Color.White;
                 }
             }
         }
@@ -210,9 +212,24 @@ namespace Team2_Project
             favoriteList.Remove(delmenu[0]);
         }
         
-
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string userID = LoginEmp.User_ID;
+            //int idx = 1;
+            //favoriteList.ForEach((i) => i.Sort_Index = (int)trvFavorite.Nodes[idx++].Tag);
+            //var list = favoriteList;
+
+            bool result = srv.SaveFavorite(userID, favoriteList);
+            if (result)
+            {
+                MessageBox.Show("저장되었습니다. 즐겨찾기List 변경사항은 다음 로그인시 적용됩니다.");
+            }
+            else
+            {
+                MessageBox.Show("저장에 실패하였습니다. 다시 시도하여 주세요.");
+            }
+            //var nodes = favoriteList.FindAll((n)=> n.Menu_Name == 
+
 
         }
 

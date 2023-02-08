@@ -27,5 +27,14 @@ namespace Team2_Project.Services
 
             return list;
         }
+
+        public bool SaveFavorite(string userID, List<MenuDTO> favoriteList)
+        {
+            MenuDAO db = new MenuDAO();
+            bool result = db.SaveFavorite(userID, favoriteList);
+            db.Dispose();
+
+            return result;
+        }
     }
 }
