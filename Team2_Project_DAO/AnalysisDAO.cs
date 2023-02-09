@@ -107,7 +107,7 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<MonthProductionHistoryDTO> GetMonthProductionHistory(string MonthDate) //월기준 월별 제품 생산 비율 dgv 데이터 가져오기
+        public List<MonthProductionHistoryDTO> GetMonthProductionHistory(string from, string to) //월기준 월별 제품 생산 비율 dgv 데이터 가져오기
         {
             try
             {
@@ -117,7 +117,8 @@ namespace Team2_Project_DAO
                     cmd.CommandText = "SP_MonthProductionHistory";
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MonthDate", MonthDate);
+                    cmd.Parameters.AddWithValue("@from", from);
+                    cmd.Parameters.AddWithValue("@to", to);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<MonthProductionHistoryDTO> list = Helper.DataReaderMapToList<MonthProductionHistoryDTO>(reader);

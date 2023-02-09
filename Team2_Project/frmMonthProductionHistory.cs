@@ -72,13 +72,16 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            MTHistoryList = srv.GetMonthProductionHistory(dtpDate.Value.ToString("yyyy-MM"));
-            if(MTHistoryList != null && MTHistoryList.Count > 0)
+            string from = dtpDate.Value.ToString("yyyy-MM") + "-01";
+            string to = dtpDate.Value.AddMonths(1).ToString("yyyyMM") + "-01";
+
+            MTHistoryList = srv.GetMonthProductionHistory(from, to);
+            if (MTHistoryList != null && MTHistoryList.Count > 0)
             {
                 //if ()
                 //{
 
-                //    AdvancedListBind(MTHistoryList, dgvData);
+                AdvancedListBind(MTHistoryList, dgvData);
                 //}
                 //else
                 //{
