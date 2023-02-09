@@ -126,7 +126,9 @@ namespace Team2_Project
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
 
 
-            //ChartData();
+            if (e.RowIndex < 0) return;
+            else if (dgvData.Rows.Count > 0)
+                ChartData();
         }
 
 
@@ -135,25 +137,29 @@ namespace Team2_Project
             //string curInfo = dgvData["Item_Code", dgvData.CurrentRow.Index].Value.ToString();
             //TPHistoryList = srv.Get(curInfo);
 
-            chtData.Titles.Add("월별 제품 생산비율");
             chtData.Series.Clear();
-            chtData.Series.Add("품목");
-            chtData.Series["품목"].Points.Clear();
-            chtData.Series["품목"].ChartType = SeriesChartType.Doughnut;
+            //chtData.Titles.Add("월별 제품 생산비율");
+            chtData.Series.Add("월별 제품 생산비율");
+            chtData.Series["월별 제품 생산비율"].Points.Clear();
+            chtData.Series["월별 제품 생산비율"].ChartType = SeriesChartType.Doughnut;
+            chtData.Series["월별 제품 생산비율"].IsValueShownAsLabel = true;
+            //chtData.Series["월별 제품 생산비율"].IsXValueIndexed = true;
+
 
             int num = 0;
+            int colors = 5;
             foreach (var item in MTHistoryList)
-            {
-                
+            {                
                 string itemName = MTHistoryList.Where(x => x.Item_Name.Equals(item.Item_Name)).Select((x) => x.Item_Name).ToList().FirstOrDefault() ?? string.Empty;
                 int TotPrdQty = MTHistoryList.Where(x => x.TotPrdQty.Equals(item.TotPrdQty)).Select((x) => x.TotPrdQty).ToList().FirstOrDefault();
 
-
-                chtData.Series["품목"].Points.Add(TotPrdQty);
-
-                chtData.Series["품목"].Points[num].LegendText = itemName;
-                chtData.Series["품목"].Points[num].Color = Color.FromArgb(211 , 226 , 223 );
+                chtData.Series["월별 제품 생산비율"].Points.AddXY(itemName, TotPrdQty);
+                //chtData.Series["월별 제품 생산비율"].Points.Add(TotPrdQty);
+                chtData.Series["월별 제품 생산비율"].Points[num].LegendText = itemName;
+                chtData.Series["월별 제품 생산비율"].Points[num].Color = Color.FromArgb(211 + colors, 226 , 223);
+                //chtData.Series["품목"].Points[num].Color = Color.FromArgb(211  , 226 , 223 );
                 num++;
+                colors += 7;
             }
         }
 
