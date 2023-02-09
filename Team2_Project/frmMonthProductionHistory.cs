@@ -23,6 +23,7 @@ namespace Team2_Project
         public frmMonthProductionHistory()
         {
             InitializeComponent();
+            dtpDate.Value = new DateTime(2023, 02, 1);
         }
 
         private void frmMonthProductionHistory_Load(object sender, EventArgs e)
@@ -39,14 +40,16 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 150);
 
             //예상컬럼//
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "TotPlanQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입량", "TotInQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "TotPrd_Qty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "TotLoss", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
+            this.dgvData.Columns["Item_Name"].Frozen = true;
             dgvData.MultiSelect = false;
 
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
@@ -70,13 +73,16 @@ namespace Team2_Project
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
-            MTHistoryList = srv.GetMonthProductionHistory(dtpDate.Value.ToString("yyyy-MM"));
-            if(MTHistoryList != null && MTHistoryList.Count > 0)
+            string from = dtpDate.Value.ToString("yyyy-MM") + "-01";
+            string to = dtpDate.Value.AddMonths(1).ToString("yyyyMM") + "-01";
+
+            MTHistoryList = srv.GetMonthProductionHistory(from, to);
+            if (MTHistoryList != null && MTHistoryList.Count > 0)
             {
                 //if ()
                 //{
 
-                //    AdvancedListBind(MTHistoryList, dgvData);
+                AdvancedListBind(MTHistoryList, dgvData);
                 //}
                 //else
                 //{
@@ -116,7 +122,7 @@ namespace Team2_Project
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
 
 
-            ChartData();
+            //ChartData();
         }
 
 
