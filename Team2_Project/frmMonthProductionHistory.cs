@@ -39,13 +39,14 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 150);
 
             //예상컬럼//
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "TotPlanQty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입량", "TotInQty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "TotPrd_Qty", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "TotLoss", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
             this.dgvData.Columns["Item_Name"].Frozen = true;
             dgvData.MultiSelect = false;
