@@ -30,6 +30,9 @@ namespace Team2_Project
         private void InitializeComponent()
         {
             this.dgvAuthority = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ucgrpSearch = new Team2_Project.Controls.ucSearch();
+            this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthority)).BeginInit();
@@ -37,6 +40,8 @@ namespace Team2_Project
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.ucgrpSearch);
+            this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Size = new System.Drawing.Size(1252, 65);
             // 
             // pnlList
@@ -70,6 +75,29 @@ namespace Team2_Project
             this.dgvAuthority.Size = new System.Drawing.Size(1205, 533);
             this.dgvAuthority.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(32, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "사용자 그룹";
+            // 
+            // ucgrpSearch
+            // 
+            this.ucgrpSearch._Code = "";
+            this.ucgrpSearch._Name = "";
+            this.ucgrpSearch.BackColor = System.Drawing.Color.Transparent;
+            this.ucgrpSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucgrpSearch.Location = new System.Drawing.Point(125, 18);
+            this.ucgrpSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.ucgrpSearch.Name = "ucgrpSearch";
+            this.ucgrpSearch.Size = new System.Drawing.Size(340, 28);
+            this.ucgrpSearch.TabIndex = 1;
+            this.ucgrpSearch.BtnClick += new System.EventHandler(this.ucSearch1_BtnClick);
+            // 
             // frmAuthority
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -77,6 +105,8 @@ namespace Team2_Project
             this.Name = "frmAuthority";
             this.Text = "사용자권한설정";
             this.Load += new System.EventHandler(this.frmAuthority_Load);
+            this.pnlSub.ResumeLayout(false);
+            this.pnlSub.PerformLayout();
             this.pnlList.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
@@ -88,5 +118,7 @@ namespace Team2_Project
         #endregion
 
         private System.Windows.Forms.DataGridView dgvAuthority;
+        private System.Windows.Forms.Label label1;
+        private Controls.ucSearch ucgrpSearch;
     }
 }

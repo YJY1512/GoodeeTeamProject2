@@ -68,13 +68,13 @@ namespace Team2_Project
                 menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
                 DrawSideMenu();
                 pnlChildMenu.Visible = false;
-                menuTree.ItemHeight = 30;
-                menuTree.ExpandAll();
-                menuTree.ShowLines = false;
-                menuTree.ShowRootLines = false;
-                menuTree.AfterSelect += MenuTree_AfterSelect;
-                menuTree.Font = new Font("나눔고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(129)));
-                menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+                //menuTree.ItemHeight = 30;
+                //menuTree.ExpandAll();
+                //menuTree.ShowLines = false;
+                //menuTree.ShowRootLines = false;
+                //menuTree.AfterSelect += MenuTree_AfterSelect;
+                //menuTree.Font = new Font("나눔고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(129)));
+                //menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
                 chkHide.Checked = true;
                 RoadClickEvent();
                 OpenChildPage("frmDashBoard" , "HOME");
@@ -214,26 +214,35 @@ namespace Team2_Project
                     childNode.BackColor = Color.FromArgb(211, 226, 223);
                     childNode.NodeFont = new Font("나눔고딕", 9.75F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
                     childNode.ForeColor = Color.Black;
+                    
                     treeNode1.Nodes.Add(childNode);
+                    
                 }
 
                 menuTree.Nodes.Add(treeNode1);
             }
             pnlChildMenu.Visible = true;
+            menuTree.ItemHeight = 30;
             menuTree.ExpandAll();
+            menuTree.ShowLines = false;
+            menuTree.ShowRootLines = false;
+            menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            menuTree.NodeMouseClick += MenuTree_NodeMouseClick;
         }
 
-        private void MenuTree_AfterSelect(object sender, TreeViewEventArgs e)
+        private void MenuTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Tag != null)
             {
                 OpenChildPage(e.Node.Tag.ToString(), e.Node.Text);
+                //menuTree.SelectedNode = null;
             }
             else
             {
-                MessageBox.Show("미생성 화면");
+                return;
             }
         }
+
         private void OpenChildPage(string prgName, string menuName)
         {
             string appName = Assembly.GetEntryAssembly().GetName().Name;
@@ -376,7 +385,7 @@ namespace Team2_Project
             }
             catch
             {
-                MessageBox.Show("자식폼 이벤트핸들러 미구현");
+                //MessageBox.Show("자식폼 이벤트핸들러 미구현");
             }
         }
 
