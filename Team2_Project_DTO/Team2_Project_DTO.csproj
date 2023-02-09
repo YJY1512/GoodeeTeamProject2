@@ -55,6 +55,7 @@
     <Compile Include="NopHistoryDTO.cs" />
     <Compile Include="OrderDTO.cs" />
     <Compile Include="PlanDTO.cs" />
+    <Compile Include="PopPrdDTO.cs" />
     <Compile Include="ProcessMasterDTO.cs" />
     <Compile Include="PlanHeaderDTO.cs" />
     <Compile Include="ProjectDTO.cs" />
