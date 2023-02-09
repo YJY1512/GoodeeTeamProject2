@@ -74,7 +74,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlList.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlList.Location = new System.Drawing.Point(0, 108);
             this.pnlList.Name = "pnlList";
             this.pnlList.Size = new System.Drawing.Size(1100, 522);
@@ -101,7 +101,7 @@ namespace Team2_Project
             this.Controls.Add(this.pnlList);
             this.Controls.Add(this.pnlTitle);
             this.Controls.Add(this.pnlSub);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmList";
             this.Text = "frmList";
@@ -115,9 +115,9 @@ namespace Team2_Project
         #endregion
 
         protected System.Windows.Forms.Panel pnlSub; // 검색 조건 등 공간
-        protected System.Windows.Forms.Panel pnlTitle; // 고정
         protected System.Windows.Forms.Panel pnlList;
         private System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label lblTitle;
+        protected System.Windows.Forms.Panel pnlTitle;
     }
 }

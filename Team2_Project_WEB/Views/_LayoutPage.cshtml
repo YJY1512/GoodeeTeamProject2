@@ -53,17 +53,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     @if (Session["UserName"] != null)
                     {
-        <div class="image">
-            <img src="~/dist//img/user-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-                        <div class="info">
-                            @Session["UserName"].ToString() 님
-                        </div>
-                                        <div class="logout">
-                                            <button type="button" class="right btn btn-block btn-danger btn-sm" onclick="location.href='/Login/LogOut'">로그아웃</button>
-                                        </div>}
+                    <div class="image">
+                        <img src="~/dist//img/user-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info" style="color:white">
+                        @Session["UserName"].ToString() 님    
+                    </div>
+                    <div class="logout ml-auto" style="float:right" >
+                        <button type="button" class="btn btn-block btn-danger btn-sm" onclick="location.href='/Login/LogOut'">로그아웃</button>
+                    </div>
+                    }
                 </div>
-
                 <!-- SidebarSearch Form -->
                 @*<div class="form-inline">
                         <div class="input-group" data-widget="sidebar-search">

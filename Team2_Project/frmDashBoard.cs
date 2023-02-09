@@ -32,6 +32,7 @@ namespace Team2_Project
 
         private void LoadData()
         {
+            lblMsg1.Visible = lblMsg2.Visible = false;
             mappingList = srv.GetData(empID);
             if (mappingList.Count > 0)
             {
@@ -58,6 +59,9 @@ namespace Team2_Project
             dgvDataA.ReadOnly = true;
             dgvDataB.ReadOnly = true;
 
+            //dgvDataA.ClearSelection();
+            //dgvDataB.ClearSelection();
+
             #region 대시보드 종류
             /* 생산진행현황
              * 작업장현황
@@ -81,53 +85,75 @@ namespace Team2_Project
 
             List<WorkCenterDTO> wcList = new List<WorkCenterDTO>();
             wcList = srv.GetWorkCenterInfo();
-            dgv.DataSource = wcList;
+            if (wcList.Count > 0)
+            {
+                dgv.DataSource = wcList;
+            }
+            else
+            {
+                NoData(dgv);
+            }
 
         }
 
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시상태", "Wo_Status", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시상태", "Wo_Status", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시일자", "Ins_Date", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시수량", "Plan_Qty_Box", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시일자", "Plan_Date", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "계획수량단위", "Plan_Unit", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "품목코드", "Item_Code", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "품목명", "Item_Name", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장", "Wc_Name", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산일자", "Prd_Date", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산시작", "Prd_StartTime", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산종료", "Prd_EndTime", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량수량", "Def_Qty", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산시작", "Prd_StartTime", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산종료", "Prd_EndTime", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량수량", "Def_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장코드", "Wc_Code", 120);
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.Production();
-            dgv.DataSource = ProductionHistoryList;
+            if (ProductionHistoryList.Count > 0)
+            {
+                var newList = ProductionHistoryList.OrderByDescending(x => x.Plan_Date).ToList();
+                dgv.DataSource = newList;
+            }
+            else
+            {
+                NoData(dgv);
+            }
         }
 
         private void ProductionHistoryData(DataGridView dgv) //생산실적현황 (시간대별)
         {
             //WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 150, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "시작시간대", "Start_Hour", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "투입수량", "In_Qty_Main", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량단위", "Prd_Unit", 150);
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.GetProductionHistory();
-            dgv.DataSource = ProductionHistoryList;
+            if (ProductionHistoryList.Count > 0)
+            {
+                dgv.DataSource = ProductionHistoryList;
+            }
+            else
+            {
+                NoData(dgv);
+            }
         }
-   
+
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "순번", "Nop_Seq", 60);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "순번", "Nop_Seq", 60, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동발생일자", "Nop_Date", 160);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동발생일시", "Nop_HappenTime", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동해제일시", "Nop_CancelTime", 200);
@@ -145,7 +171,32 @@ namespace Team2_Project
 
             List<NopHistoryDTO> NopHistoryList = new List<NopHistoryDTO>();
             NopHistoryList = srv.GetNopHistory();
-            dgv.DataSource = NopHistoryList;
+            if (NopHistoryList.Count > 0)
+            {
+                dgv.DataSource = NopHistoryList;
+            }
+            else
+            {
+                NoData(dgv);
+                //dgv.Rows.Add("데이터가 없습니다.");
+            }
+        }
+
+        private void NoData(DataGridView dgv)
+        {
+            dgv.DataSource = null;
+            dgv.Visible = false;
+
+            if (dgv == dgvDataA)
+            {
+                lblMsg1.Visible = true;
+                lblMsg1.Text = "최신 데이터가 없습니다.";
+            }
+            else if (dgv == dgvDataB)
+            {
+                lblMsg2.Visible = true;
+                lblMsg2.Text = "최신 데이터가 없습니다.";
+            }
         }
 
     }

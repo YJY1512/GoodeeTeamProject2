@@ -49,6 +49,7 @@
     <Compile Include="DefCodeDTO.cs" />
     <Compile Include="FavoriteDTO.cs" />
     <Compile Include="MenuDTO.cs" />
+    <Compile Include="MonthProductionHistoryDTO.cs" />
     <Compile Include="NopCodeDTO.cs" />
     <Compile Include="EmployeeDTO.cs" />
     <Compile Include="ItemDTO.cs" />

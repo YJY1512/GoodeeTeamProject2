@@ -12,28 +12,50 @@ namespace Team2_Project_WEB.Models
         public string Item_Code { get; set; }
         public string Item_Name { get; set; }
         public int Plan_Qty_Box { get; set; }
-        public decimal Progress { get; set; }
+        public decimal Progress { get;  set; }
         public int Prd_Qty { get; set; }
         public int TotDef { get; set; }
-        public string Prd_StartTime { get; set; }
-        public string Prd_EndTime { get; set; }
+        public DateTime Prd_StartTime { get; set; }
+        public DateTime Worker_CloseTime { get; set; }
+        public string Dates { get; set; }
         public int Total { get { return Prd_Qty + TotDef; } }
-
         public decimal FairRatio { get 
             {
                 if (Total == 0)
                     return 0;
                 else
-                    return Math.Round((decimal)Prd_Qty * 100 / Total, 2); 
+                {
+                    decimal fairRatio = Math.Round((decimal)Prd_Qty / Total, 2);
+                    return (fairRatio > 1.00m ? 1.00m : fairRatio);
+                }
             } 
         }
-
         public decimal DefRatio { get 
             {
                 if (Total == 0)
                     return 0;
                 else
-                    return Math.Round((decimal)TotDef * 100 / Total, 2); 
+                {
+                    decimal defRatio = Math.Round((decimal)TotDef / Total, 2);
+                    return (defRatio > 1.00m ? 1.00m : defRatio);
+                }
+                    
+            } 
+        }
+        public TimeSpan TotWorkTime { get 
+            {
+                if (Prd_StartTime == default(DateTime) || Worker_CloseTime == default(DateTime))
+                    return TimeSpan.Zero;
+                else
+                    return Convert.ToDateTime(Worker_CloseTime) - Convert.ToDateTime(Prd_StartTime);
+            } 
+        }
+        public double ProductPerHour { get 
+            {
+                if (TotWorkTime == TimeSpan.Zero)
+                    return 0;
+                else
+                    return (double)Total / TotWorkTime.Seconds / 3600;
             } 
         }
     }

@@ -25,30 +25,22 @@ namespace Team2_Project_WEB.Models.DAO
                 conn.Close();
         }
 
-        public UserVO Login(string uid, string pwd)
+        public string Login(string uid, string pwd)
         {
-            string sql = @"select user_id, user_pwd, user_name, auth_name
-                            from Userinfo u inner join Authority a on u.auth_id = a.auth_id
-                            where user_id = @uid and user_pwd = @pwd";
+            string sql = @"select User_Name
+                            from User_Master
+                            where User_ID = @id and PWDCOMPARE(@pwd, User_PW) = 1";
 
             using(SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@uid", uid);
+                cmd.Parameters.AddWithValue("@id", uid);
                 cmd.Parameters.AddWithValue("@pwd", pwd);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
-                {
-                    return new UserVO
-                    {
-                        UserId = reader["user_id"].ToString(),
-                        UserPwd = reader["user_pwd"].ToString(),
-                        UserName = reader["user_name"].ToString(),
-                        AuthName = reader["auth_name"].ToString()
-                    };
-                }
+                    return reader["User_Name"].ToString();
                 else
-                    return null;
+                    return "";
             }
         }
     }

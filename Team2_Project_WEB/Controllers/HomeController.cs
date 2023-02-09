@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Text;
 using System.Web.Configuration;
+using System.Web.Mvc;
 using Team2_Project_WEB.Models;
 using Team2_Project_WEB.Models.DAO;
-using System.Text;
 
 namespace Team2_Project_WEB.Controllers
 {
@@ -15,10 +14,19 @@ namespace Team2_Project_WEB.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //로그인을 했을때만 상품목록을 보여주고 싶은 경우
+            //Session["LoginFailed"] = false;
+            //if (Session["UserName"] == null)
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
+
+            Session["SelectedAM"] = "Index";
+
             return View();
         }
 
-        public ActionResult Item(string from = "", string to = "") //제품별 판매량 조회
+        public ActionResult Item(string from = "", string to = "") //품목별 판매량 조회
         {
             ViewBag.ColText = "선택기간 ";
             ViewBag.FromDate = from;
@@ -53,10 +61,12 @@ namespace Team2_Project_WEB.Controllers
             ViewData["OrderSum"] = "[" + string.Join(",", OrderSumList) + "]";
             ViewData["CustomerSum"] = "[" + string.Join(",", CustomerSumList) + "]";
 
+            Session["SelectedAM"] = "Item";
+
             return View(list);
         }
 
-        public ActionResult ProdO(string date, string itemCode, int page = 1) //생산지시 실적 조회
+        public ActionResult ProdO(string date, string itemCode, int page = 1) //작업지시 실적 조회
         {
             int pagesize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
 
@@ -74,19 +84,19 @@ namespace Team2_Project_WEB.Controllers
                 ViewBag.DateStr = "";
             }
 
-            if (itemCode.Equals("All"))
+            if (!string.IsNullOrWhiteSpace(itemCode) && itemCode.Equals("All"))
                 itemCode = null;
             ViewBag.ItemCode = itemCode;
-            ProductionDAO daoP = new ProductionDAO();
             int totalCount;
-            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, out totalCount);
+            ProductionDAO daoP = new ProductionDAO();
+            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, page , pagesize, out totalCount);
             daoP.Dispose();
 
             ItemDAO daoI = new ItemDAO();
-            List<ItemVO> itemList = daoI.GetItemCodeNameList();
+            List<CommonVO> itemList = daoI.GetItemCodeNameList();
             daoI.Dispose();
 
-            itemList.Insert(0, new ItemVO { Code = "All", Name ="전체"}); 
+            itemList.Insert(0, new CommonVO { Code = "All", Name ="전체"}); 
             ViewBag.Items = new SelectList(itemList, "Code", "Name");
 
             ViewBag.Page = new PagingInfo
@@ -96,30 +106,36 @@ namespace Team2_Project_WEB.Controllers
                 ItemsPerPage = pagesize
             };
 
-            // 화면 상단 선택일 진행도 Progerss Bar로 표시
-            if (prodOlist.Count > 0)
-                ViewBag.DateProgress = prodOlist.Sum((e) => e.Progress) / prodOlist.Count;
+            // 화면 상단 선택일 진행률 Progerss Bar로 표시
+            if (prodOlist.Count > 0 && prodOlist.Sum((e) => e.Plan_Qty_Box) != 0)
+            {
+                double totProgress = (double)prodOlist.Sum((e) => e.Total) / prodOlist.Sum((e) => e.Plan_Qty_Box);
+                ViewBag.DateProgress = totProgress > 1.00 ? 1.00 : totProgress;
+            }
             else
                 ViewBag.DateProgress = 0.00;
+
+            Session["SelectedAM"] = "ProdO";
 
             return View(prodOlist);
         }
 
-        public ActionResult TotProd(string fromDate, string toDate, string wcCode, string itemCode, int page = 1) //제조 종합 효율 조회
+        public ActionResult TotProd(string fromDate = "", string toDate = "", string wcCode = null, string itemCode = null,  int page = 1) //작업지시 종합 실적 조회
         {
-            //날짜(Range), 작업장, 품목
-            //작업일자, 계획수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 비가동시간, 가동률, 비가동률, 시간당 생샨량
+            // 날짜(Range), 작업장, 품목
+            // 작업일자, 작업수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 시간당 생샨량
 
             // 작업장, 품목 목록 불러오기
             WorkCenterDAO daoW = new WorkCenterDAO();
             List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
             daoW.Dispose();
+            wcList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
             ViewBag.wcList = new SelectList(wcList, "Code", "Name");
 
-
             ItemDAO daoI = new ItemDAO();
-            List<ItemVO> itemList = daoI.GetItemCodeNameList();
+            List<CommonVO> itemList = daoI.GetItemCodeNameList();
             daoI.Dispose();
+            itemList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
             ViewBag.Items = new SelectList(itemList, "Code", "Name");
 
             // 조회조건(기간)
@@ -136,9 +152,45 @@ namespace Team2_Project_WEB.Controllers
                 ViewBag.ToDate = Convert.ToDateTime(fromDate).AddMonths(1).ToString("yyyy-MM-dd");
 
             // 데이터 가져오기
+            string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
+            int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
+            int totalCount;
+            if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
+                wcCode = null;
+            if (!string.IsNullOrWhiteSpace(itemCode) && itemCode.Equals("All"))
+                itemCode = null;
 
+            ProductionDAO daoP = new ProductionDAO();
+            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, pageSize, out totalCount);
+            daoP.Dispose();
 
-            return View();
+            ViewBag.ItemCode = itemCode;
+            ViewBag.WcCode = wcCode;
+
+            ViewBag.Page = new PagingInfo
+            {
+                TotalItems = totalCount,
+                CurrentPage = page,
+                ItemsPerPage = pageSize
+            };
+
+            StringBuilder sb1 = new StringBuilder();
+            List<int> fairSum = new List<int>();
+            List<int> defSum = new List<int>();
+            foreach (ProductionVO item in prodList)
+            {
+                sb1.Append(item.Dates).Append(",");
+                fairSum.Add(item.Prd_Qty);
+                defSum.Add(item.TotDef);
+            }
+
+            ViewData["Name"] = sb1.ToString().TrimEnd(',');
+            ViewData["fairSum"] = "[" + string.Join(",", fairSum) + "]";
+            ViewData["defSum"] = "[" + string.Join(",", defSum) + "]";
+
+            Session["SelectedAM"] = "TotProd";
+
+            return View(prodList);
         }
 
         public ActionResult Defect() //불량 이력 조회
@@ -148,25 +200,24 @@ namespace Team2_Project_WEB.Controllers
             //불량발생일자, 품목, 작업장, 불량코드로 차트
             //페이징
 
+            Session["SelectedAM"] = "Defect";
+
             return View();
         }
 
+        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
+        {
+            Session["SelectedAM"] = "Schedule";
 
-
-
+            return View();
+        }
 
 
         public ActionResult WPlace() //작업장 가동현황 조회 - 일정보고 넣기 / 빼기 생각
         {
-           //가동상태, 작업장명, 작업장 코드, 공정명, 진행 생산지시, 상태, 비고:비가동이면 사유
+            //가동상태, 작업장명, 작업장 코드, 공정명, 진행 생산지시, 상태, 비고:비가동이면 사유
 
-            return View();
-        }
 
-        
-
-        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
-        {
             return View();
         }
 

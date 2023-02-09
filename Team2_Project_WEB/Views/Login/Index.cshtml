@@ -23,14 +23,17 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="~/" class="h1"><b>Goodee</b>Shop</a>
+                <a href="~/" class="h1"><b>Goodee Tile EIS</b></a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-
+                @if (Convert.ToBoolean(Session["LoginFailed"]))
+                {
+                    <p class="login-box-msg" style="font-size:9px;color:crimson">"로그인에 실패하였습니다. 다시 시도해 주세요."</p>
+                }
+                <p class="login-box-msg"><b>ID</b> 와<b>Password</b> 를 입력해 주세요.</p>
                 <form action="~/Login/Login" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" name="userId" class="form-control" placeholder="User ID">
+                        <input type="text" name="userId" class="form-control" placeholder="ID">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="far fa-id-badge"></span>
@@ -47,31 +50,14 @@
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <!--
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                            -->
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">로그인</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <!--
-                <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
-                </p>
-                    -->
             </div>
             <!-- /.card-body -->
         </div>

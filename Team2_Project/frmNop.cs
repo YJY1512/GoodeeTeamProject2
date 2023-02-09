@@ -53,6 +53,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류코드", "Nop_Ma_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류명", "Nop_Ma_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동유형", "Nop_type", 150);
+            this.dgvData.Columns["Nop_Date"].Frozen = true;
             dgvData.MultiSelect = false;
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
@@ -74,7 +75,7 @@ namespace Team2_Project
                 Nop_Ma_Code = ucCodeSearch._Code,
                 Nop_Ma_Name = ucCodeSearch._Name,
                 DateFrom = dtpFrom.Value.ToString("yyyy-MM-dd"),
-                DateTo =dtpTo.Value.ToString("yyyy-MM-dd")
+                DateTo =dtpTo.Value.AddDays(1).ToString("yyyy-MM-dd")
             };
             NopList = srv.GetNopHistory(item);
             AdvancedListBind(NopList, dgvData);
