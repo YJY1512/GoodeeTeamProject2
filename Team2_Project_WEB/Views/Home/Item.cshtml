@@ -159,13 +159,15 @@
             startDate: '@from',
             endDate: '@to',
             showDropdowns: true,
-            showWeekNumbers: true,
+            showWeekNumbers: true
         });
 
         $('#dateRangeSelect').on('apply.daterangepicker', function (ev, picker) {
             document.getElementById("startDate").value = picker.startDate.format('YYYY-MM-DD');
             document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
         })
+
+        
         //-------------
         //- DONUT CHART -
         //-------------

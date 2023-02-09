@@ -59,14 +59,14 @@ namespace Team2_Project_WEB.Models.DAO
             }
         }
 
-        public List<ItemVO> GetItemCodeNameList()
+        public List<CommonVO> GetItemCodeNameList()
         {
             string sql = "select Item_Code Code, Item_Name Name from Item_Master where Use_YN = 'Y'";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 SqlDataReader reader = cmd.ExecuteReader();
-                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(reader);
+                List<CommonVO> list = Helper.DataReaderMapToList<CommonVO>(reader);
                 reader.Close();
 
                 return list;

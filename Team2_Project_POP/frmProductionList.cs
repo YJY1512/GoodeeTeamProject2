@@ -27,6 +27,7 @@ namespace Team2_Project_POP
 
         private void frmProductionList_Load(object sender, EventArgs e)
         {
+            ((frmParent)this.MdiParent).btnBack.Visible = false;
             int screenWidh = Screen.PrimaryScreen.Bounds.Width;
             btnStart.Size = btnStop.Size = btnPalette.Size = btnPerfomance.Size = btnFinish.Size = btnNonP.Size = new Size(screenWidh / 6, 150);
             btnStop.Location = new Point((screenWidh / 6), 0);
@@ -187,11 +188,34 @@ namespace Team2_Project_POP
         {
             if (selectedList == null || selectedList.Status_Code != "W02") return;
 
+            PopPrdDTO selected = new PopPrdDTO
+            {
+                WorkLineName = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Name,
+                WorkLineCode = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Code,
+                WorkOrderDate = selectedList.Plan_Date,
+                PrdDate = selectedList.Prd_Date,
+                WrokOrderNum = selectedList.WorkOrderNo,
+                PrdCode = selectedList.ItemCode,
+                PrdName = selectedList.ItemName,
+                PlanQty = selectedList.PlanQty,
+                PrdStartTime = selectedList.StartTime,
+                PrdEndTime = selectedList.EndTime,
+                Remark = selectedList.Remark
+            };
+
+            ((frmParent)this.MdiParent).SelectedWorkLine = selected;
+
             frmPerformance frm = new frmPerformance();
             frm.MdiParent = this.MdiParent;
             frm.WindowState = FormWindowState.Maximized;
             
             frm.Show();
+        }
+
+        private void frmProductionList_Activated(object sender, EventArgs e)
+        {
+            MessageBox.Show("이게 맞나 싶다 ");                                                                                                                  
+            
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Text;
 using System.Web.Configuration;
+using System.Web.Mvc;
 using Team2_Project_WEB.Models;
 using Team2_Project_WEB.Models.DAO;
-using System.Text;
 
 namespace Team2_Project_WEB.Controllers
 {
@@ -94,10 +93,10 @@ namespace Team2_Project_WEB.Controllers
             daoP.Dispose();
 
             ItemDAO daoI = new ItemDAO();
-            List<ItemVO> itemList = daoI.GetItemCodeNameList();
+            List<CommonVO> itemList = daoI.GetItemCodeNameList();
             daoI.Dispose();
 
-            itemList.Insert(0, new ItemVO { Code = "All", Name ="전체"}); 
+            itemList.Insert(0, new CommonVO { Code = "All", Name ="전체"}); 
             ViewBag.Items = new SelectList(itemList, "Code", "Name");
 
             ViewBag.Page = new PagingInfo
@@ -121,21 +120,22 @@ namespace Team2_Project_WEB.Controllers
             return View(prodOlist);
         }
 
-        public ActionResult TotProd(string fromDate, string toDate, string wcCode, string itemCode, int page = 1) //작업지시 종합 실적 조회
+        public ActionResult TotProd(string fromDate = "", string toDate = "", string wcCode = null, string itemCode = null,  int page = 1) //작업지시 종합 실적 조회
         {
-            //날짜(Range), 작업장, 품목
-            //작업일자, 작업수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 시간당 생샨량
+            // 날짜(Range), 작업장, 품목
+            // 작업일자, 작업수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 시간당 생샨량
 
             // 작업장, 품목 목록 불러오기
             WorkCenterDAO daoW = new WorkCenterDAO();
             List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
             daoW.Dispose();
+            wcList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
             ViewBag.wcList = new SelectList(wcList, "Code", "Name");
 
-
             ItemDAO daoI = new ItemDAO();
-            List<ItemVO> itemList = daoI.GetItemCodeNameList();
+            List<CommonVO> itemList = daoI.GetItemCodeNameList();
             daoI.Dispose();
+            itemList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
             ViewBag.Items = new SelectList(itemList, "Code", "Name");
 
             // 조회조건(기간)
@@ -152,10 +152,45 @@ namespace Team2_Project_WEB.Controllers
                 ViewBag.ToDate = Convert.ToDateTime(fromDate).AddMonths(1).ToString("yyyy-MM-dd");
 
             // 데이터 가져오기
+            string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
+            int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
+            int totalCount;
+            if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
+                wcCode = null;
+            if (!string.IsNullOrWhiteSpace(itemCode) && itemCode.Equals("All"))
+                itemCode = null;
+
+            ProductionDAO daoP = new ProductionDAO();
+            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, pageSize, out totalCount);
+            daoP.Dispose();
+
+            ViewBag.ItemCode = itemCode;
+            ViewBag.WcCode = wcCode;
+
+            ViewBag.Page = new PagingInfo
+            {
+                TotalItems = totalCount,
+                CurrentPage = page,
+                ItemsPerPage = pageSize
+            };
+
+            StringBuilder sb1 = new StringBuilder();
+            List<int> fairSum = new List<int>();
+            List<int> defSum = new List<int>();
+            foreach (ProductionVO item in prodList)
+            {
+                sb1.Append(item.Dates).Append(",");
+                fairSum.Add(item.Prd_Qty);
+                defSum.Add(item.TotDef);
+            }
+
+            ViewData["Name"] = sb1.ToString().TrimEnd(',');
+            ViewData["fairSum"] = "[" + string.Join(",", fairSum) + "]";
+            ViewData["defSum"] = "[" + string.Join(",", defSum) + "]";
 
             Session["SelectedAM"] = "TotProd";
 
-            return View();
+            return View(prodList);
         }
 
         public ActionResult Defect() //불량 이력 조회
