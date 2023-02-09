@@ -32,6 +32,7 @@ namespace Team2_Project
 
         private void LoadData()
         {
+            lblMsg1.Visible = lblMsg2.Visible = false;
             mappingList = srv.GetData(empID);
             if (mappingList.Count > 0)
             {
@@ -57,6 +58,9 @@ namespace Team2_Project
             dgvDataB.MultiSelect = false;
             dgvDataA.ReadOnly = true;
             dgvDataB.ReadOnly = true;
+
+            //dgvDataA.ClearSelection();
+            //dgvDataB.ClearSelection();
 
             #region 대시보드 종류
             /* 생산진행현황
@@ -87,9 +91,9 @@ namespace Team2_Project
             }
             else
             {
-                dgv.DataSource = null;
-                dgv.Rows.Add("데이터가 없습니다.");
+                NoData(dgv);
             }
+
         }
 
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
@@ -120,8 +124,7 @@ namespace Team2_Project
             }
             else
             {
-                dgv.DataSource = null;
-                dgv.Rows.Add("데이터가 없습니다.");
+                NoData(dgv);
             }
         }
 
@@ -143,11 +146,10 @@ namespace Team2_Project
             }
             else
             {
-                dgv.DataSource = null;
-                dgv.Rows.Add("데이터가 없습니다.");
-            }            
+                NoData(dgv);
+            }
         }
-   
+
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
@@ -169,16 +171,34 @@ namespace Team2_Project
 
             List<NopHistoryDTO> NopHistoryList = new List<NopHistoryDTO>();
             NopHistoryList = srv.GetNopHistory();
-            if(NopHistoryList.Count > 0)
+            if (NopHistoryList.Count > 0)
             {
                 dgv.DataSource = NopHistoryList;
             }
             else
             {
-                dgv.DataSource = null;
-                dgv.Rows.Add("데이터가 없습니다.");
+                NoData(dgv);
+                //dgv.Rows.Add("데이터가 없습니다.");
             }
         }
+
+        private void NoData(DataGridView dgv)
+        {
+            dgv.DataSource = null;
+            dgv.Visible = false;
+
+            if (dgv == dgvDataA)
+            {
+                lblMsg1.Visible = true;
+                lblMsg1.Text = "최신 데이터가 없습니다.";
+            }
+            else if (dgv == dgvDataB)
+            {
+                lblMsg2.Visible = true;
+                lblMsg2.Text = "최신 데이터가 없습니다.";
+            }
+        }
+
     }
 }
 //= Color.FromArgb(211, 226, 223);

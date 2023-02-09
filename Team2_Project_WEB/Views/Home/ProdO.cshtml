@@ -41,8 +41,8 @@
                 <form action="/Home/ProdO" method="get">
                     <div class="row" style="margin-bottom: 0px">
                         <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업일자</label></div>
-                        <div class="input-group date col-sm-3" id="datetimepicker" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
+                        <div class="input-group date col-sm-3" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" id="datetimepicker" data-toggle="datetimepicker" data-target="#datetimepicker" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
                             <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -69,28 +69,40 @@
                             <th>품목코드</th>
                             <th>품목명</th>
                             <th>계획수량</th>
-                            <th>작업진행도</th>
+                            <th>작업수량</th>
+                            <th>작업진행률</th>
                             <th>양품수량</th>
                             <th>불량수량</th>
                             <th>양품률</th>
                             <th>불량률</th>
+                            <th>작업시작시간</th>
+                            <th>작업종료시간</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr style="text-align:center">
-                                <td>@item.WorkOrderNo</td>
-                                <td>@item.Plan_Date</td>
-                                <td>@item.Item_Code</td>
-                                <td>@item.Item_Name</td>
-                                <td>@item.Plan_Qty_Box</td>
-                                <td>@(item.Progress.ToString("P"))</td>
-                                <td>@item.Prd_Qty</td>
-                                <td>@item.TotDef</td>
-                                <td>@item.FairRatio.ToString("P")</td>
-                                <td>@item.DefRatio.ToString("P")</td>
-                            </tr>
+                            string startDate = item.Prd_StartTime.ToString(@"HH\:mm\:ss");
+                            string EndDate = item.Worker_CloseTime.ToString(@"HH\:mm\:ss");
+                            decimal progress = item.Progress;
+                            if (item.Prd_StartTime == default(DateTime)) { startDate = ""; }
+                            if (item.Worker_CloseTime == default(DateTime)) { EndDate = ""; }
+                            if (item.Progress > 1.00m) { progress = 1.00m; }
+                        <tr style="text-align:center">
+                            <td>@item.WorkOrderNo</td>
+                            <td>@item.Plan_Date</td>
+                            <td>@item.Item_Code</td>
+                            <td>@item.Item_Name</td>
+                            <td>@item.Plan_Qty_Box</td>
+                            <td>@item.Total</td>
+                            <td>@progress.ToString("P")</td>
+                            <td>@item.Prd_Qty</td>
+                            <td>@item.TotDef</td>
+                            <td>@item.FairRatio.ToString("P")</td>
+                            <td>@item.DefRatio.ToString("P")</td>
+                            <td>@startDate</td>
+                            <td>@EndDate</td>
+                        </tr>
                         }
                     </tbody>
                 </table>

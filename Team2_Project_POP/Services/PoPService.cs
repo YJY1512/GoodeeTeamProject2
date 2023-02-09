@@ -36,5 +36,32 @@ namespace Team2_Project_POP.Services
 
             return list;
         }
+
+        public List<PopPrdQtyDTO> InPrd(PopPrdQtyDTO prdQty)
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            List<PopPrdQtyDTO> list = db.InPrd(prdQty);
+            db.Dispose();
+
+            return list;
+        }
+
+        public List<PopDefQtyDTO> InDef(PopDefQtyDTO defQty)
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            List<PopDefQtyDTO> list = db.InDef(defQty);
+            db.Dispose();
+
+            return list;
+        }
+
+        public List<DefVO> GetDefLIST()
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            List<DefVO> list = db.GetDefLIST();
+            db.Dispose();
+
+            return list;
+        }
     }
 }

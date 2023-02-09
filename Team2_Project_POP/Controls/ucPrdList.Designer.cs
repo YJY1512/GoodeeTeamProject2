@@ -30,9 +30,9 @@ namespace Team2_Project_POP.Controls
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblQty = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
             this.lblDate = new System.Windows.Forms.Label();
-            this.lblQty = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,17 +55,29 @@ namespace Team2_Project_POP.Controls
             this.tableLayoutPanel1.Size = new System.Drawing.Size(741, 88);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // lblQty
+            // 
+            this.lblQty.BackColor = System.Drawing.Color.White;
+            this.lblQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblQty.ForeColor = System.Drawing.Color.Black;
+            this.lblQty.Location = new System.Drawing.Point(520, 2);
+            this.lblQty.Margin = new System.Windows.Forms.Padding(2);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(219, 84);
+            this.lblQty.TabIndex = 3;
+            this.lblQty.Text = "label1";
+            this.lblQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnDel
             // 
-            this.btnDel.BackColor = System.Drawing.Color.DarkRed;
+            this.btnDel.BackColor = System.Drawing.Color.DarkBlue;
             this.btnDel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDel.ForeColor = System.Drawing.Color.White;
+            this.btnDel.ForeColor = System.Drawing.Color.Violet;
             this.btnDel.Location = new System.Drawing.Point(1, 1);
             this.btnDel.Margin = new System.Windows.Forms.Padding(1);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(109, 86);
             this.btnDel.TabIndex = 1;
-            this.btnDel.Text = "삭제";
             this.btnDel.UseVisualStyleBackColor = false;
             // 
             // lblDate
@@ -81,19 +93,6 @@ namespace Team2_Project_POP.Controls
             this.lblDate.Text = "label1";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblQty
-            // 
-            this.lblQty.BackColor = System.Drawing.Color.White;
-            this.lblQty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblQty.ForeColor = System.Drawing.Color.Black;
-            this.lblQty.Location = new System.Drawing.Point(520, 2);
-            this.lblQty.Margin = new System.Windows.Forms.Padding(2);
-            this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(219, 84);
-            this.lblQty.TabIndex = 3;
-            this.lblQty.Text = "label1";
-            this.lblQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // ucPrdList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -102,6 +101,7 @@ namespace Team2_Project_POP.Controls
             this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "ucPrdList";
             this.Size = new System.Drawing.Size(741, 88);
+            this.Load += new System.EventHandler(this.ucPrdList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

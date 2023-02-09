@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,10 +36,10 @@ namespace Team2_Project.Services
             return list;
         }
 
-        public List<MonthProductionHistoryDTO> GetMonthProductionHistory(string MonthDate)
+        public List<MonthProductionHistoryDTO> GetMonthProductionHistory(string from, string to)
         {
             AnalysisDAO db = new AnalysisDAO();
-            List<MonthProductionHistoryDTO> list = db.GetMonthProductionHistory(MonthDate);
+            List<MonthProductionHistoryDTO> list = db.GetMonthProductionHistory(from, to);
             db.Dispose();
             return list;
         }

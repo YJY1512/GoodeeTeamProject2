@@ -29,8 +29,6 @@ namespace Team2_Project_POP
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblProductionLine = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblQty = new System.Windows.Forms.Label();
             this.lblLine = new System.Windows.Forms.Label();
@@ -47,9 +45,7 @@ namespace Team2_Project_POP
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,32 +56,10 @@ namespace Team2_Project_POP
             this.label15 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.panel1.Controls.Add(this.lblProductionLine);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1411, 125);
-            this.panel1.TabIndex = 3;
-            // 
-            // lblProductionLine
-            // 
-            this.lblProductionLine.ForeColor = System.Drawing.Color.White;
-            this.lblProductionLine.Location = new System.Drawing.Point(538, 32);
-            this.lblProductionLine.Name = "lblProductionLine";
-            this.lblProductionLine.Size = new System.Drawing.Size(240, 60);
-            this.lblProductionLine.TabIndex = 1;
-            this.lblProductionLine.Text = "팔레트 등록";
-            this.lblProductionLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -103,7 +77,7 @@ namespace Team2_Project_POP
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 125);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1411, 143);
@@ -247,26 +221,24 @@ namespace Team2_Project_POP
             this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(932, 268);
+            this.panel3.Location = new System.Drawing.Point(932, 143);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(479, 411);
+            this.panel3.Size = new System.Drawing.Size(479, 536);
             this.panel3.TabIndex = 6;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(17, 282);
+            this.button1.Location = new System.Drawing.Point(6, 237);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(447, 117);
+            this.button1.Size = new System.Drawing.Size(447, 162);
             this.button1.TabIndex = 20;
             this.button1.Text = "팔레트 생성";
             this.button1.UseVisualStyleBackColor = false;
@@ -275,45 +247,23 @@ namespace Team2_Project_POP
             // 
             this.label9.BackColor = System.Drawing.Color.White;
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(215, 212);
+            this.label9.Location = new System.Drawing.Point(215, 146);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(250, 60);
             this.label9.TabIndex = 19;
             this.label9.Text = "수량";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(215, 146);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(250, 60);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "상세";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // label13
             // 
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(9, 212);
+            this.label13.Location = new System.Drawing.Point(9, 146);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(200, 60);
             this.label13.TabIndex = 17;
             this.label13.Text = "박스수량";
             this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label14
-            // 
-            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(9, 146);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(200, 60);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "등급상세";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3
             // 
@@ -411,7 +361,7 @@ namespace Team2_Project_POP
             this.panel5.Controls.Add(this.label17);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 268);
+            this.panel5.Location = new System.Drawing.Point(0, 143);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(932, 115);
             this.panel5.TabIndex = 8;
@@ -420,26 +370,24 @@ namespace Team2_Project_POP
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 383);
+            this.panel4.Location = new System.Drawing.Point(0, 258);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(932, 296);
+            this.panel4.Size = new System.Drawing.Size(932, 421);
             this.panel4.TabIndex = 9;
             // 
             // frmPalette
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(24F, 54F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1411, 679);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
             this.Name = "frmPalette";
             this.Text = "frmPalette";
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -448,9 +396,6 @@ namespace Team2_Project_POP
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblProductionLine;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.Label lblLine;
@@ -467,9 +412,7 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

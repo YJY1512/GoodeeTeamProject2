@@ -15,6 +15,12 @@ namespace Team2_Project_POP
     {
         public WorkCenterDTO LoginedWorkCenter { get; set; }
         public List<WorkOrderDTO> LoginedOrders { get; set; }
+        public PopPrdDTO SelectedWorkLine { get; set; }
+        public string DefMaCodeP { get; set; }
+        public string DefMaNameP { get; set; }
+        public string DefMiCodeP { get; set; }
+        public string DefMiNameP { get; set; }
+        public int PDQtyP { get; set; }
         public frmParent()
         {
             InitializeComponent();
@@ -24,6 +30,7 @@ namespace Team2_Project_POP
 
         private void frmParent_Load(object sender, EventArgs e)
         {
+            btnBack.Visible = false;
             frmSelect frm = new frmSelect();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
@@ -68,6 +75,12 @@ namespace Team2_Project_POP
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.ActiveMdiChild.Close();
+            this.btnBack.Visible = false;
         }
     }
 }

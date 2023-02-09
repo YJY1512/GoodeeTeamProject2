@@ -77,5 +77,86 @@ namespace Team2_Project_DAO
             }
         }
 
+        public List<PopPrdQtyDTO> InPrd(PopPrdQtyDTO prdQty)
+        {
+            List<PopPrdQtyDTO> result = new List<PopPrdQtyDTO>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_PopItemInProduction", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", prdQty.WorkOrderNo);
+                    cmd.Parameters.AddWithValue("@Item_Code", prdQty.Item_Code);
+                    cmd.Parameters.AddWithValue("@Item_Rank", prdQty.Item_Rank);
+                    cmd.Parameters.AddWithValue("@Item_In", prdQty.Item_Qty);
+                    cmd.Parameters.AddWithValue("@Item_out", prdQty.Item_Qty);
+                    cmd.Parameters.AddWithValue("@Item_Time", prdQty.Item_time);
+
+
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<PopPrdQtyDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public List<PopDefQtyDTO> InDef(PopDefQtyDTO defQty)
+        {
+            List<PopDefQtyDTO> result = new List<PopDefQtyDTO>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_PopDefInProduction", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", defQty.WorkOrderNo);
+                    cmd.Parameters.AddWithValue("@Def_Qty", defQty.Item_Qty);
+                    cmd.Parameters.AddWithValue("@Def_Ma_Code", defQty.DefMaCode);
+                    cmd.Parameters.AddWithValue("@Def_Mi_Code", defQty.DefMiCode);
+                    cmd.Parameters.AddWithValue("@Def_Date", defQty.Item_time);
+
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<PopDefQtyDTO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public List<DefVO> GetDefLIST()
+        {
+            List<DefVO> result = new List<DefVO>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_DefLists", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<DefVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
     }
 }
