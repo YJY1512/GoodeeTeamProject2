@@ -68,6 +68,8 @@ namespace Team2_Project
             this.dgvData.Columns["WorkOrderNo"].Frozen = true;
             dgvData.MultiSelect = false;
 
+            string[] dotCell = new string[] { "Plan_Qty_Box", "In_Qty_Main", "Out_Qty_Main", "Prd_Qty", "Def_Qty" };
+            foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);

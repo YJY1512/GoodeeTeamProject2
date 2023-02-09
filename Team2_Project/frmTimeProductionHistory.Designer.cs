@@ -33,7 +33,6 @@ namespace Team2_Project
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,6 +61,7 @@ namespace Team2_Project
             this.label13 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -70,12 +70,9 @@ namespace Team2_Project
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
@@ -147,7 +144,8 @@ namespace Team2_Project
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 748);
             this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 0;
@@ -164,24 +162,6 @@ namespace Team2_Project
             this.dgvData.TabIndex = 1;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             this.dgvData.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvData_CellFormatting);
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.panel2);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.chtData);
-            this.splitContainer2.Size = new System.Drawing.Size(1834, 457);
-            this.splitContainer2.SplitterDistance = 45;
-            this.splitContainer2.TabIndex = 1;
             // 
             // panel2
             // 
@@ -227,7 +207,7 @@ namespace Team2_Project
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 408);
+            this.chtData.Size = new System.Drawing.Size(1834, 414);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart";
             // 
@@ -472,6 +452,15 @@ namespace Team2_Project
             this.label18.Size = new System.Drawing.Size(32, 17);
             this.label18.TabIndex = 22;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.chtData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1834, 414);
+            this.panel1.TabIndex = 3;
+            // 
             // frmTimeProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -489,13 +478,10 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -518,7 +504,6 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.CheckBox chkDefQty;
         private System.Windows.Forms.ComboBox cboTest;
         private System.Windows.Forms.Label lbltest;
@@ -533,5 +518,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel1;
     }
 }

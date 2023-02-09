@@ -35,8 +35,8 @@ namespace Team2_Project
         public void LoadData()
         {
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 150);
 
             //예상컬럼//
@@ -50,6 +50,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "TotLoss", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
+            
             this.dgvData.Columns["Item_Name"].Frozen = true;
             dgvData.MultiSelect = false;
 
@@ -58,6 +59,9 @@ namespace Team2_Project
 
             string[] backColorCell = new string[] { "TotInQty", "TotPrdQty", "TotLoss" };
             foreach (string item in backColorCell) dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
+
+            string[] dotCell = new string[] { "TotPlanQty", "TotInQty", "TotOutQty", "TotPrdQty", "TotLoss" };
+            foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
             ResetTop();
             OnSearch();
@@ -193,6 +197,16 @@ namespace Team2_Project
         private void ucItemSearch_BtnClick(object sender, EventArgs e)
         {
             ucItemSearch.OpenPop(GetItemPopInfo());
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
