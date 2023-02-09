@@ -14,7 +14,8 @@ namespace Team2_Project_DTO
         public string Item_Type { get; set; } //품목유형
         public int TotPlanQty { get; set; } //총목표량
         public int TotInQty { get; set; } //총투입량
-        public int TotPrd_Qty { get; set; } //총생산량
+        public int TotOutQty { get; set; } //총Out량
+        public int TotPrdQty { get; set; } //총생산량
         public int TotLoss { get; set; } //총Loss수량
     }
 }

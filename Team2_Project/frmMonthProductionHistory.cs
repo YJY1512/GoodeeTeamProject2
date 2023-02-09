@@ -41,8 +41,9 @@ namespace Team2_Project
 
             //예상컬럼//
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "TotPlanQty", 150, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입량", "TotInQty", 150, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "TotPrd_Qty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "INPUT(투입량)", "TotInQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "OUTPUT(산출량)", "TotOutQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "총생산량", "TotPrdQty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
@@ -54,6 +55,9 @@ namespace Team2_Project
 
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
+
+            string[] backColorCell = new string[] { "TotInQty", "TotPrdQty", "TotLoss" };
+            foreach (string item in backColorCell) dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
 
             ResetTop();
             OnSearch();
@@ -136,20 +140,28 @@ namespace Team2_Project
             chtData.Series.Add("품목");
             chtData.Series["품목"].Points.Clear();
             chtData.Series["품목"].ChartType = SeriesChartType.Doughnut;
-                        
-            chtData.Series["품목"].Points.Add(75);
-            chtData.Series["품목"].Points[0].LegendText = "품목1";
 
-            chtData.Series["품목"].Points.Add(70);
-            chtData.Series["품목"].Points[1].LegendText = "품목2";
+            int num = 0;
+            foreach (var item in MTHistoryList)
+            {
+                
+                string itemName = MTHistoryList.Where(x => x.Item_Name.Equals(item.Item_Name)).Select((x) => x.Item_Name).ToList().FirstOrDefault() ?? string.Empty;
+                int TotPrdQty = MTHistoryList.Where(x => x.TotPrdQty.Equals(item.TotPrdQty)).Select((x) => x.TotPrdQty).ToList().FirstOrDefault();
 
-            chtData.Series["품목"].Points.Add(50);
-            chtData.Series["품목"].Points[2].LegendText = "품목3";
 
-            chtData.Series["품목"].Points[0].Color = Color.FromArgb(211, 226, 223);
-            chtData.Series["품목"].Points[1].Color = Color.FromArgb(255, 227, 217);
-            chtData.Series["품목"].Points[2].Color = Color.FromArgb(255, 237, 227);
+                chtData.Series["품목"].Points.Add(TotPrdQty);
+
+                chtData.Series["품목"].Points[num].LegendText = itemName;
+                chtData.Series["품목"].Points[num].Color = Color.FromArgb(211 , 226 , 223 );
+                num++;
+            }
         }
+
+        public void ChartColor()
+        {
+
+        }
+
 
         private CommonPop<ItemDTO> GetItemPopInfo()
         {
@@ -176,7 +188,7 @@ namespace Team2_Project
         {
             ucItemSearch.OpenPop(GetItemPopInfo());
         }
-    }  
+    }
 }
 /*
  (분석소재)
