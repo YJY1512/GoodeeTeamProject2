@@ -82,6 +82,12 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            string startDate = item.Prd_StartTime.ToString(@"HH\:mm\:ss");
+                            string EndDate = item.Worker_CloseTime.ToString(@"HH\:mm\:ss");
+                            decimal progress = item.Progress;
+                            if (item.Prd_StartTime == default(DateTime)) { startDate = ""; }
+                            if (item.Worker_CloseTime == default(DateTime)) { EndDate = ""; }
+                            if (item.Progress > 1.00m) { progress = 1.00m; }
                         <tr style="text-align:center">
                             <td>@item.WorkOrderNo</td>
                             <td>@item.Plan_Date</td>
@@ -89,13 +95,13 @@
                             <td>@item.Item_Name</td>
                             <td>@item.Plan_Qty_Box</td>
                             <td>@item.Total</td>
-                            <td>@(item.Progress.ToString("P"))</td>
+                            <td>@progress.ToString("P")</td>
                             <td>@item.Prd_Qty</td>
                             <td>@item.TotDef</td>
                             <td>@item.FairRatio.ToString("P")</td>
                             <td>@item.DefRatio.ToString("P")</td>
-                            <td>@item.Prd_StartTime</td>
-                            <td>@item.Worker_CloseTime</td>
+                            <td>@startDate</td>
+                            <td>@EndDate</td>
                         </tr>
                         }
                     </tbody>
