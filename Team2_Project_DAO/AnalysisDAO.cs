@@ -114,7 +114,8 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     conn.Open();
-                    cmd.CommandText = "SP_MonthProductionHistory";
+                    //cmd.CommandText = "SP_MonthProductionHistory";
+                    cmd.CommandText = "SP_MonthTest"; ///TEST
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@from", from);

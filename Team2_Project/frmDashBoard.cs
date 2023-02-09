@@ -93,6 +93,7 @@ namespace Team2_Project
             {
                 NoData(dgv);
             }
+
         }
 
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
@@ -146,9 +147,9 @@ namespace Team2_Project
             else
             {
                 NoData(dgv);
-            }            
+            }
         }
-   
+
         private void NopData(DataGridView dgv) //비가동내역
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
@@ -170,12 +171,12 @@ namespace Team2_Project
 
             List<NopHistoryDTO> NopHistoryList = new List<NopHistoryDTO>();
             NopHistoryList = srv.GetNopHistory();
-            if(NopHistoryList.Count > 0)
+            if (NopHistoryList.Count > 0)
             {
                 dgv.DataSource = NopHistoryList;
             }
             else
-            {                
+            {
                 NoData(dgv);
                 //dgv.Rows.Add("데이터가 없습니다.");
             }
@@ -186,7 +187,7 @@ namespace Team2_Project
             dgv.DataSource = null;
             dgv.Visible = false;
 
-            if(dgv == dgvDataA)
+            if (dgv == dgvDataA)
             {
                 lblMsg1.Visible = true;
                 lblMsg1.Text = "최신 데이터가 없습니다.";
@@ -197,6 +198,7 @@ namespace Team2_Project
                 lblMsg2.Text = "최신 데이터가 없습니다.";
             }
         }
+
     }
 }
 //= Color.FromArgb(211, 226, 223);

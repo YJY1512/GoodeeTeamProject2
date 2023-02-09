@@ -23,6 +23,7 @@ namespace Team2_Project
         public frmMonthProductionHistory()
         {
             InitializeComponent();
+            dtpDate.Value = new DateTime(2023, 02, 1);
         }
 
         private void frmMonthProductionHistory_Load(object sender, EventArgs e)
@@ -39,9 +40,9 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 150);
 
             //예상컬럼//
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "TotPlanQty", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입량", "TotInQty", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "TotPrd_Qty", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "TotPlanQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입량", "TotInQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산량", "TotPrd_Qty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
@@ -121,7 +122,7 @@ namespace Team2_Project
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
 
 
-            ChartData();
+            //ChartData();
         }
 
 
