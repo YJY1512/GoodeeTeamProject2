@@ -47,6 +47,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS수량", "", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "LOSS비율", "", 150);
+            this.dgvData.Columns["Item_Name"].Frozen = true;
             dgvData.MultiSelect = false;
 
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
