@@ -69,5 +69,41 @@ namespace Team2_Project_DAO
                 return null;
             }
         }
+
+        public bool SaveAuthority(string grpCode, string userID , List<AuthDTO> authList)
+        {
+            try
+            {
+                string sql = @"update ScreenItem_Authority
+                               set Screen_Code = @Screen_Code, Pre_Type= @Pre_Type, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                               where UserGroup_Code = @UserGroup_Code";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Screen_Code", SqlDbType.NVarChar, 50));
+                    cmd.Parameters.Add(new SqlParameter("@Pre_Type", SqlDbType.NVarChar, 20));
+                    cmd.Parameters.AddWithValue("@Up_Emp", userID);
+                    cmd.Parameters.AddWithValue("@UserGroup_Code", grpCode);
+
+                    for (int i = 0; i < authList.Count; i++)
+                    {
+                        cmd.Parameters["@Screen_Code"].Value = authList[i].Screen_Code;
+                        cmd.Parameters["@Pre_Type"].Value = authList[i].Pre_Type;
+                    }
+                    conn.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

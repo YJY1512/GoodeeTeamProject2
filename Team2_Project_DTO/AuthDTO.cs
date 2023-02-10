@@ -9,6 +9,7 @@ namespace Team2_Project_DTO
 {
     public class AuthDTO
     {
+        public string UserGroup_Code { get; set; }
         public string Screen_Code { get; set; }
         public string Parent_Screen_Code { get; set; }
         public string Menu_Name   { get; set; }
