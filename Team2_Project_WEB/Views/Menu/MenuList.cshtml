@@ -1,8 +1,8 @@
 ﻿<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
-    <li class="nav-item menu-@(Session["SelectedAM"] == null || Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM ? "close" : "open")">
-        <a href="#" class="nav-link @(Session["SelectedAM"] == null || Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM ? "" : "active")">
+    <li class="nav-item menu-@(Session["SelectedAM"] == null || Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == "Index"? "close" : "open")">
+        <a href="#" class="nav-link @(Session["SelectedAM"] == null || Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == "Index" ? "" : "active")">
             <i class="nav-icon fas fa-chart-bar"></i>
             <p>
                 데이터 분석
