@@ -21,8 +21,7 @@ namespace Team2_Project
         List<MenuDTO> allMenuList;
         List<MenuDTO> favoriteList;
         List<MenuDTO> currentList;
-        int startcnt;
-        int curCnt;
+
         public frmFavorite()
         {
             InitializeComponent();
@@ -30,15 +29,11 @@ namespace Team2_Project
 
         private void frmFavorite_Load(object sender, EventArgs e)
         {
-            startcnt = 0;
-            curCnt = 0;
             this.LoginEmp = ((frmMain)this.Owner).LoginEmp;
             allMenuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
             favoriteList = srv.GetFavoriteInfo(LoginEmp.User_ID);
             AllMenuBinding();
-            FavritListBinding();
-            startcnt = trvFavorite.Nodes.Count;
-            
+            FavritListBinding();      
         }
 
         private void AllMenuBinding()   //allList에 대메뉴 중메뉴만 출력 
@@ -116,19 +111,11 @@ namespace Team2_Project
             }
         }
 
-        private void trvFavorite_AfterSelect(object sender, TreeViewEventArgs e)
+        private void trvFavorite_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            e.Node.BackColor = Color.White;
-            
+            TreeNode node = trvFavorite.SelectedNode;
         }
 
-        private void trvFavorite_BeforeSelect(object sender, TreeViewCancelEventArgs e)
-        {
-            foreach (TreeNode item in trvFavorite.Nodes)          //루트노드만 조회한다 
-            {
-                ClearRecursive(item);
-            }
-        }
 
         private void ClearRecursive(TreeNode node)      //재귀함수 
         {
@@ -170,6 +157,9 @@ namespace Team2_Project
 
         private void btnNodeUp_Click(object sender, EventArgs e)
         {
+            TreeNode curNode = trvFavorite.SelectedNode;
+            TreeNode pntNode = curNode.Parent;
+            TreeView view = curNode.TreeView;
             if (trvFavorite.SelectedNode == null)
             {
                 MessageBox.Show("순서를 변경할 항목을 선택하여주세요.");
@@ -177,9 +167,6 @@ namespace Team2_Project
             }
             string selItem = trvFavorite.SelectedNode.Text;
             var favlist = favoriteList.FindAll((f) => f.Menu_Name == selItem).ToList();
-            TreeNode curNode = trvFavorite.SelectedNode;
-            TreeNode pntNode = curNode.Parent;
-            TreeView view = curNode.TreeView;
             if (pntNode != null)
             {
                 int index = pntNode.Nodes.IndexOf(curNode);
@@ -198,7 +185,6 @@ namespace Team2_Project
                     favoriteList.RemoveAt(index);
                     view.Nodes.Insert(index - 1, curNode);
                     favoriteList.Insert(index - 1, favlist[0]);
-                    curNode.BackColor = Color.White;
                 }
             }
         }
@@ -233,8 +219,7 @@ namespace Team2_Project
                     view.Nodes.RemoveAt(index);
                     favoriteList.RemoveAt(index);
                     view.Nodes.Insert(index + 1, curNode);
-                    favoriteList.Insert(index + 1, favlist[0]);
-                    curNode.BackColor = Color.White;                 
+                    favoriteList.Insert(index + 1, favlist[0]);             
                 }
             }
         }
@@ -270,6 +255,8 @@ namespace Team2_Project
             int curCnt = trvFavorite.Nodes.Count;
             currentList = srv.GetFavoriteInfo(LoginEmp.User_ID);
             int dbfavList = currentList.Count;
+            bool result = Enumerable.SequenceEqual(currentList, favoriteList);
+
             if (dbfavList != curCnt)
             {
                 if (MessageBox.Show("현재 즐겨찾기 List에 수정된 사항이 있습니다. \n 종료하시면 수정된 내용이 저장되지 않습니다. 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -279,8 +266,19 @@ namespace Team2_Project
                 else
                     return;
             }
-            this.Close();
-            
+            else if (result == false)
+            {
+                if (MessageBox.Show("현재 즐겨찾기 List에 수정된 사항이 있습니다. \n 종료하시면 수정된 내용이 저장되지 않습니다. 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                    return;
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         

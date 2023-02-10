@@ -31,8 +31,6 @@ namespace Team2_Project
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.ucItemSearch = new Team2_Project.Controls.ucSearch();
@@ -40,15 +38,21 @@ namespace Team2_Project
             this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlSub.SuspendLayout();
-            this.pnlTitle.SuspendLayout();
             this.pnlList.SuspendLayout();
+            this.pnlTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
@@ -58,11 +62,6 @@ namespace Team2_Project
             this.pnlSub.Controls.Add(this.label6);
             this.pnlSub.Controls.Add(this.dtpDate);
             this.pnlSub.Size = new System.Drawing.Size(1834, 60);
-            // 
-            // pnlTitle
-            // 
-            this.pnlTitle.Location = new System.Drawing.Point(0, 60);
-            this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
             // 
             // pnlList
             // 
@@ -74,6 +73,11 @@ namespace Team2_Project
             // 
             this.lblTitle.Size = new System.Drawing.Size(60, 18);
             this.lblTitle.Text = "조회내역";
+            // 
+            // pnlTitle
+            // 
+            this.pnlTitle.Location = new System.Drawing.Point(0, 60);
+            this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
             // 
             // dtpDate
             // 
@@ -130,30 +134,14 @@ namespace Team2_Project
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
             this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 474);
+            this.chtData.Size = new System.Drawing.Size(1834, 431);
             this.chtData.TabIndex = 3;
             this.chtData.Text = "chart1";
             // 
             // dgvData
             // 
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
@@ -175,30 +163,78 @@ namespace Team2_Project
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.chtData);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 808);
             this.splitContainer1.SplitterDistance = 330;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1834, 43);
+            this.panel2.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(40, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 18);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "월별 생산현황";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(10, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 18);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "▷";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.chtData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1834, 431);
+            this.panel1.TabIndex = 4;
             // 
             // frmMonthProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.ClientSize = new System.Drawing.Size(1834, 911);
-            this.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMonthProductionHistory";
             this.Text = "월별 생산현황";
             this.Load += new System.EventHandler(this.frmMonthProductionHistory_Load);
             this.pnlSub.ResumeLayout(false);
             this.pnlSub.PerformLayout();
+            this.pnlList.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
-            this.pnlList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -212,5 +248,9 @@ namespace Team2_Project
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panel1;
+        protected System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.Label label4;
     }
 }
