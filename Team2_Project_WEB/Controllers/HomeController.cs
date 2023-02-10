@@ -11,6 +11,8 @@ namespace Team2_Project_WEB.Controllers
 {
     public class HomeController : Controller
     {
+        int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
+
         // GET: Home
         public ActionResult Index()
         {
@@ -68,8 +70,6 @@ namespace Team2_Project_WEB.Controllers
 
         public ActionResult ProdO(string date, string itemCode, int page = 1) //작업지시 실적 조회
         {
-            int pagesize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
-
             ViewBag.Date = date;
             if (string.IsNullOrWhiteSpace(date))
                 ViewBag.Date = DateTime.Today.ToString("yyyy-MM-dd");
@@ -89,7 +89,7 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ItemCode = itemCode;
             int totalCount;
             ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, page , pagesize, out totalCount);
+            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, page, out totalCount);
             daoP.Dispose();
 
             ItemDAO daoI = new ItemDAO();
@@ -103,7 +103,7 @@ namespace Team2_Project_WEB.Controllers
             {
                 TotalItems = totalCount,
                 CurrentPage = page,
-                ItemsPerPage = pagesize
+                ItemsPerPage = pageSize
             };
 
             // 화면 상단 선택일 진행률 Progerss Bar로 표시
@@ -153,7 +153,6 @@ namespace Team2_Project_WEB.Controllers
 
             // 데이터 가져오기
             string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
-            int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
             int totalCount;
             if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
                 wcCode = null;
@@ -161,7 +160,7 @@ namespace Team2_Project_WEB.Controllers
                 itemCode = null;
 
             ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, pageSize, out totalCount);
+            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, out totalCount);
             daoP.Dispose();
 
             ViewBag.ItemCode = itemCode;
@@ -172,7 +171,7 @@ namespace Team2_Project_WEB.Controllers
                 TotalItems = totalCount,
                 CurrentPage = page,
                 ItemsPerPage = pageSize
-            };
+        };
 
             StringBuilder sb1 = new StringBuilder();
             List<int> fairSum = new List<int>();
@@ -193,12 +192,70 @@ namespace Team2_Project_WEB.Controllers
             return View(prodList);
         }
 
-        public ActionResult Defect() //불량 이력 조회
+        public ActionResult Defect(string fromDate = "", string toDate = "", string wcCode = null, string itemCode = null, int page = 1) //불량 이력 조회
         {
-            //날짜, 작업장, 품목
-            //발생일자, 작업장, 품목, 불량코드, 불량수량
-            //불량발생일자, 품목, 작업장, 불량코드로 차트
-            //페이징
+            // 날짜, 작업장, 품목
+            // 발생일시, 작업지시번호, 작업장명, 품목명, 불량현상 대분류명, 불량현상 상세분류명, 불량수량
+
+            // 작업장, 품목 목록 불러오기
+            WorkCenterDAO daoW = new WorkCenterDAO();
+            List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
+            daoW.Dispose();
+            wcList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
+            ViewBag.wcList = new SelectList(wcList, "Code", "Name");
+
+            ItemDAO daoI = new ItemDAO();
+            List<CommonVO> itemList = daoI.GetItemCodeNameList();
+            daoI.Dispose();
+            itemList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
+            ViewBag.Items = new SelectList(itemList, "Code", "Name");
+
+            // 조회조건(기간)
+            ViewBag.FromDate = fromDate;
+            ViewBag.ToDate = toDate;
+            if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
+            {
+                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+            else if (string.IsNullOrWhiteSpace(fromDate))
+                ViewBag.FromDate = Convert.ToDateTime(toDate).AddMonths(-1).ToString("yyyy-MM-dd");
+            else if (string.IsNullOrWhiteSpace(toDate))
+                ViewBag.ToDate = Convert.ToDateTime(fromDate).AddMonths(1).ToString("yyyy-MM-dd");
+
+            //데이터 가져오기
+            string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
+            int totalCount;
+            if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
+                wcCode = null;
+            if (!string.IsNullOrWhiteSpace(itemCode) && itemCode.Equals("All"))
+                itemCode = null;
+
+
+
+            //
+            ProductionDAO daoP = new ProductionDAO();
+            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, out totalCount);
+            daoP.Dispose();
+
+            ViewBag.ItemCode = itemCode;
+            ViewBag.WcCode = wcCode;
+
+            ViewBag.Page = new PagingInfo
+            {
+                TotalItems = totalCount,
+                CurrentPage = page,
+                ItemsPerPage = pageSize
+            };
+
+
+
+
+
+
+
+
+
 
             Session["SelectedAM"] = "Defect";
 
