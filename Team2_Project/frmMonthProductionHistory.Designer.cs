@@ -29,34 +29,54 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.ucItemSearch = new Team2_Project.Controls.ucSearch();
             this.label1 = new System.Windows.Forms.Label();
-            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtDataPie = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.splitContainerChart = new System.Windows.Forms.SplitContainer();
+            this.chtDataLine = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rdoPrdQty = new System.Windows.Forms.RadioButton();
+            this.rdoInQty = new System.Windows.Forms.RadioButton();
+            this.rdoOutQty = new System.Windows.Forms.RadioButton();
+            this.rdoPlanQty = new System.Windows.Forms.RadioButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.rdoLossQty = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rdoChartOne = new System.Windows.Forms.RadioButton();
+            this.rdoChartTwo = new System.Windows.Forms.RadioButton();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtDataPie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerChart)).BeginInit();
+            this.splitContainerChart.Panel1.SuspendLayout();
+            this.splitContainerChart.Panel2.SuspendLayout();
+            this.splitContainerChart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtDataLine)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
+            this.pnlSub.Controls.Add(this.panel3);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.ucItemSearch);
             this.pnlSub.Controls.Add(this.label6);
@@ -124,19 +144,19 @@ namespace Team2_Project
             this.label1.TabIndex = 78;
             this.label1.Text = "품목";
             // 
-            // chtData
+            // chtDataPie
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea1);
-            this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chtData.Legends.Add(legend1);
-            this.chtData.Location = new System.Drawing.Point(0, 0);
-            this.chtData.Name = "chtData";
-            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 431);
-            this.chtData.TabIndex = 3;
-            this.chtData.Text = "chart1";
+            chartArea2.Name = "ChartArea1";
+            this.chtDataPie.ChartAreas.Add(chartArea2);
+            this.chtDataPie.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Name = "Legend1";
+            this.chtDataPie.Legends.Add(legend2);
+            this.chtDataPie.Location = new System.Drawing.Point(0, 0);
+            this.chtDataPie.Name = "chtDataPie";
+            this.chtDataPie.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.chtDataPie.Size = new System.Drawing.Size(981, 431);
+            this.chtDataPie.TabIndex = 3;
+            this.chtDataPie.Text = "chart1";
             // 
             // dgvData
             // 
@@ -169,29 +189,59 @@ namespace Team2_Project
             this.splitContainer1.SplitterDistance = 330;
             this.splitContainer1.TabIndex = 5;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.splitContainerChart);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1834, 431);
+            this.panel1.TabIndex = 4;
+            // 
+            // splitContainerChart
+            // 
+            this.splitContainerChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerChart.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerChart.Name = "splitContainerChart";
+            // 
+            // splitContainerChart.Panel1
+            // 
+            this.splitContainerChart.Panel1.Controls.Add(this.chtDataLine);
+            // 
+            // splitContainerChart.Panel2
+            // 
+            this.splitContainerChart.Panel2.Controls.Add(this.chtDataPie);
+            this.splitContainerChart.Size = new System.Drawing.Size(1834, 431);
+            this.splitContainerChart.SplitterDistance = 849;
+            this.splitContainerChart.TabIndex = 0;
+            // 
+            // chtDataLine
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chtDataLine.ChartAreas.Add(chartArea1);
+            this.chtDataLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chtDataLine.Legends.Add(legend1);
+            this.chtDataLine.Location = new System.Drawing.Point(0, 0);
+            this.chtDataLine.Name = "chtDataLine";
+            this.chtDataLine.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.chtDataLine.Size = new System.Drawing.Size(849, 431);
+            this.chtDataLine.TabIndex = 4;
+            this.chtDataLine.Text = "chart1";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.rdoChartOne);
             this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.rdoChartTwo);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1834, 43);
             this.panel2.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(40, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 18);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "월별 생산현황";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -203,16 +253,134 @@ namespace Team2_Project
             this.label3.Size = new System.Drawing.Size(20, 18);
             this.label3.TabIndex = 1;
             this.label3.Text = "▷";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // panel1
+            // label4
             // 
-            this.panel1.Controls.Add(this.chtData);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1834, 431);
-            this.panel1.TabIndex = 4;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(40, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 18);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "월별 생산현황";
+            // 
+            // rdoPrdQty
+            // 
+            this.rdoPrdQty.AutoSize = true;
+            this.rdoPrdQty.BackColor = System.Drawing.Color.Transparent;
+            this.rdoPrdQty.Location = new System.Drawing.Point(77, 9);
+            this.rdoPrdQty.Name = "rdoPrdQty";
+            this.rdoPrdQty.Size = new System.Drawing.Size(82, 21);
+            this.rdoPrdQty.TabIndex = 79;
+            this.rdoPrdQty.TabStop = true;
+            this.rdoPrdQty.Text = "생산수량";
+            this.rdoPrdQty.UseVisualStyleBackColor = false;
+            this.rdoPrdQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
+            // 
+            // rdoInQty
+            // 
+            this.rdoInQty.AutoSize = true;
+            this.rdoInQty.BackColor = System.Drawing.Color.Transparent;
+            this.rdoInQty.Location = new System.Drawing.Point(273, 9);
+            this.rdoInQty.Name = "rdoInQty";
+            this.rdoInQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoInQty.TabIndex = 80;
+            this.rdoInQty.TabStop = true;
+            this.rdoInQty.Text = "투입량";
+            this.rdoInQty.UseVisualStyleBackColor = false;
+            this.rdoInQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
+            // 
+            // rdoOutQty
+            // 
+            this.rdoOutQty.AutoSize = true;
+            this.rdoOutQty.BackColor = System.Drawing.Color.Transparent;
+            this.rdoOutQty.Location = new System.Drawing.Point(364, 9);
+            this.rdoOutQty.Name = "rdoOutQty";
+            this.rdoOutQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoOutQty.TabIndex = 81;
+            this.rdoOutQty.TabStop = true;
+            this.rdoOutQty.Text = "산출량";
+            this.rdoOutQty.UseVisualStyleBackColor = false;
+            this.rdoOutQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
+            // 
+            // rdoPlanQty
+            // 
+            this.rdoPlanQty.AutoSize = true;
+            this.rdoPlanQty.BackColor = System.Drawing.Color.Transparent;
+            this.rdoPlanQty.Location = new System.Drawing.Point(182, 9);
+            this.rdoPlanQty.Name = "rdoPlanQty";
+            this.rdoPlanQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoPlanQty.TabIndex = 82;
+            this.rdoPlanQty.TabStop = true;
+            this.rdoPlanQty.Text = "목표량";
+            this.rdoPlanQty.UseVisualStyleBackColor = false;
+            this.rdoPlanQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.rdoLossQty);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.rdoPrdQty);
+            this.panel3.Controls.Add(this.rdoPlanQty);
+            this.panel3.Controls.Add(this.rdoOutQty);
+            this.panel3.Controls.Add(this.rdoInQty);
+            this.panel3.Location = new System.Drawing.Point(741, 11);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(561, 37);
+            this.panel3.TabIndex = 83;
+            // 
+            // rdoLossQty
+            // 
+            this.rdoLossQty.AutoSize = true;
+            this.rdoLossQty.BackColor = System.Drawing.Color.Transparent;
+            this.rdoLossQty.Location = new System.Drawing.Point(455, 10);
+            this.rdoLossQty.Name = "rdoLossQty";
+            this.rdoLossQty.Size = new System.Drawing.Size(82, 21);
+            this.rdoLossQty.TabIndex = 85;
+            this.rdoLossQty.TabStop = true;
+            this.rdoLossQty.Text = "Loss수량";
+            this.rdoLossQty.UseVisualStyleBackColor = false;
+            this.rdoLossQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(18, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 17);
+            this.label5.TabIndex = 84;
+            this.label5.Text = "품목";
+            // 
+            // rdoChartOne
+            // 
+            this.rdoChartOne.AutoSize = true;
+            this.rdoChartOne.BackColor = System.Drawing.Color.Transparent;
+            this.rdoChartOne.ForeColor = System.Drawing.Color.White;
+            this.rdoChartOne.Location = new System.Drawing.Point(175, 8);
+            this.rdoChartOne.Name = "rdoChartOne";
+            this.rdoChartOne.Size = new System.Drawing.Size(92, 21);
+            this.rdoChartOne.TabIndex = 86;
+            this.rdoChartOne.TabStop = true;
+            this.rdoChartOne.Text = "OneChart";
+            this.rdoChartOne.UseVisualStyleBackColor = false;
+            this.rdoChartOne.CheckedChanged += new System.EventHandler(this.rdoChartTwo_CheckedChanged);
+            // 
+            // rdoChartTwo
+            // 
+            this.rdoChartTwo.AutoSize = true;
+            this.rdoChartTwo.BackColor = System.Drawing.Color.Transparent;
+            this.rdoChartTwo.ForeColor = System.Drawing.Color.White;
+            this.rdoChartTwo.Location = new System.Drawing.Point(289, 8);
+            this.rdoChartTwo.Name = "rdoChartTwo";
+            this.rdoChartTwo.Size = new System.Drawing.Size(93, 21);
+            this.rdoChartTwo.TabIndex = 87;
+            this.rdoChartTwo.TabStop = true;
+            this.rdoChartTwo.Text = "TwoChart";
+            this.rdoChartTwo.UseVisualStyleBackColor = false;
+            this.rdoChartTwo.CheckedChanged += new System.EventHandler(this.rdoChartTwo_CheckedChanged);
             // 
             // frmMonthProductionHistory
             // 
@@ -226,15 +394,22 @@ namespace Team2_Project
             this.pnlList.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtDataPie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.splitContainerChart.Panel1.ResumeLayout(false);
+            this.splitContainerChart.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerChart)).EndInit();
+            this.splitContainerChart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chtDataLine)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,12 +420,23 @@ namespace Team2_Project
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label1;
         private Controls.ucSearch ucItemSearch;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtDataPie;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton rdoInQty;
+        private System.Windows.Forms.RadioButton rdoPrdQty;
+        private System.Windows.Forms.RadioButton rdoPlanQty;
+        private System.Windows.Forms.RadioButton rdoOutQty;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton rdoLossQty;
+        private System.Windows.Forms.SplitContainer splitContainerChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtDataLine;
+        private System.Windows.Forms.RadioButton rdoChartOne;
+        private System.Windows.Forms.RadioButton rdoChartTwo;
     }
 }
