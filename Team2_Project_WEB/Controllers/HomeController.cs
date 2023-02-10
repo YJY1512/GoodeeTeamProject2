@@ -232,11 +232,9 @@ namespace Team2_Project_WEB.Controllers
                 itemCode = null;
 
 
-
-            //
-            ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, out totalCount);
-            daoP.Dispose();
+            DefDAO daoD = new DefDAO();
+            List<DefVO> defList = daoD.GetDefList(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, out totalCount);
+            daoD.Dispose();
 
             ViewBag.ItemCode = itemCode;
             ViewBag.WcCode = wcCode;
@@ -248,18 +246,9 @@ namespace Team2_Project_WEB.Controllers
                 ItemsPerPage = pageSize
             };
 
-
-
-
-
-
-
-
-
-
             Session["SelectedAM"] = "Defect";
 
-            return View();
+            return View(defList);
         }
 
         public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각

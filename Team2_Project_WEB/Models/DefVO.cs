@@ -8,9 +8,11 @@ namespace Team2_Project_WEB.Models
     public class DefVO
     {
         public string Def_Date { get; set; }
-        //public string MyProperty { get; set; }
-        //public string MyProperty { get; set; }
-        //public string MyProperty { get; set; }
-        //public string MyProperty { get; set; }
+        public string WorkOrderNo { get; set; }
+        public string Wc_Name { get; set; }
+        public string Item_Name { get; set; }
+        public string Def_Ma_Name { get; set; }
+        public string Def_Mi_Name { get; set; }
+        public int Def_Qty { get; set; }
     }
 }

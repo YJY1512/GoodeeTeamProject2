@@ -28,11 +28,10 @@ namespace Team2_Project_WEB.Models.DAO
                 conn.Close();
         }
 
-        public List<ProductionVO> GetDefList(string from, string to, string wcCode, string itemCode, int page, out int totalCount)
+        public List<DefVO> GetDefList(string from, string to, string wcCode, string itemCode, int page, out int totalCount)
         {
             // 발생일시, 작업지시번호, 작업장명, 품목명, 불량현상 대분류명, 불량현상 상세분류명, 불량수량
-            List<ProductionVO> list = new List<ProductionVO>();
-            string sql = "SP_GetTotProdList";
+            string sql = "SP_GetDefectList";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
@@ -56,7 +55,7 @@ namespace Team2_Project_WEB.Models.DAO
                 cmd.Parameters.Add(pOutput);
 
                 SqlDataReader reader = cmd.ExecuteReader();
-                list = Helper.DataReaderMapToList<ProductionVO>(reader);
+                List<DefVO> list = Helper.DataReaderMapToList<DefVO>(reader);
                 reader.Close();
 
                 totalCount = Convert.ToInt32(pOutput.Value);
