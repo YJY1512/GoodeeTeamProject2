@@ -529,6 +529,8 @@ namespace Team2_Project
                 if (dgvData.CurrentRow != null) dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
                 else
                     chtDataPie.Series.Clear();
+
+            dgvData.ClearSelection();
         }
 
         private void rdoChartTwo_CheckedChanged(object sender, EventArgs e)
