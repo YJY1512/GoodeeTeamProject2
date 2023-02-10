@@ -130,9 +130,6 @@ namespace Team2_Project
         {
             //1. 조회조건으로 검색하면  (DB에서 List<생산현황>가져와서)   dgv가 뜸 
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
-
-
-
             if (e.RowIndex < 0) return;
             else if (dgvData.Rows.Count > 0)
             {
@@ -140,7 +137,6 @@ namespace Team2_Project
                     ChartDataOne();
                 else if (rdoChartTwo.Checked)
                     ChartDataTwo();
-
             }
         }
 
