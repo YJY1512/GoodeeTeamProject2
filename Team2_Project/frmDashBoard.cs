@@ -115,6 +115,10 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량수량", "Def_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장코드", "Wc_Code", 120);
+
+            string[] dotCell = new string[] { "Plan_Qty_Box", "In_Qty_Main", "Out_Qty_Main", "Prd_Qty", "Def_Qty" };
+            foreach (string item in dotCell) dgv.Columns[item].DefaultCellStyle.Format = "N0";
+
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.Production();
             if (ProductionHistoryList.Count > 0)
@@ -199,6 +203,11 @@ namespace Team2_Project
             }
         }
 
+        private void frmDashBoard_Activated(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
+    
 }
 //= Color.FromArgb(211, 226, 223);

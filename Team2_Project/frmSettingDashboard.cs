@@ -76,8 +76,7 @@ namespace Team2_Project
 
             DialogResult dr = MessageBox.Show("대시보드 설정을 저장하시겠습니까?", "설정저장", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (dr == DialogResult.OK)
-            {
-                
+            {                
                 DashboardDTO dto = new DashboardDTO() //사용자 DB에 UPDATE //반복문 돌면서 lblTop과 lblBottom 대시보드코드와 위치를 (top/bottom) 업데이트
                 {
                     User_ID = empID,
@@ -87,10 +86,11 @@ namespace Team2_Project
                 bool result = srv.UpdateDashboardMapping(dto);
                 if (result)
                 {
-                    MessageBox.Show("저장이 완료되었습니다. 재로그인시 반영됩니다.", "저장완료", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    MessageBox.Show("저장이 완료되었습니다.", "저장완료", MessageBoxButtons.OK, MessageBoxIcon.None);
+
                     this.ParentForm.Close();
                 }
-                else MessageBox.Show("저장중 오류가 발생했습니다. 다시 시도하여주십시오.", "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                else MessageBox.Show("저장중 오류가 발생했습니다. 다시 시도하여 주십시오.", "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (dr == DialogResult.Cancel) return;
         }
