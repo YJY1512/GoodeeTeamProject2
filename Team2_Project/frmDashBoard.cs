@@ -203,6 +203,11 @@ namespace Team2_Project
             }
         }
 
+        private void frmDashBoard_Activated(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
+    
 }
 //= Color.FromArgb(211, 226, 223);
