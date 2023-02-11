@@ -148,128 +148,131 @@ namespace Team2_Project
             int colors = 5;
 
             chtDataPie.Series.Clear();
-
-            if (rdoPrdQty.Checked) //생산수량
+            if(MTHistoryList != null)
             {
-                chartTitle = "월별 제품 생산비율";
-                #region 파이차트
-                string curInfo = dgvData["Item_Code", dgvData.CurrentRow.Index].Value.ToString();
-                //TPHistoryList = srv.Get(curInfo);
-
-                //chtData.Titles.Add("월별 제품 생산비율");
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-                //chtData.Series["월별 제품 생산비율"].IsXValueIndexed = true;
-
-
-                foreach (var item in MTHistoryList)
+                if (rdoPrdQty.Checked) //생산수량
                 {
-                    //string itemName = MTHistoryList.Where(x => x.Item_Name.Equals(item.Item_Name)).Select((x) => x.Item_Name).ToList().FirstOrDefault() ?? string.Empty;
-                    //int TotPrdQty = MTHistoryList.Where(x => x.TotPrdQty.Equals(item.TotPrdQty)).Select((x) => x.TotPrdQty).ToList().FirstOrDefault();
-                    string itemName = item.Item_Name;
-                    int TotPrdQty = item.TotPrdQty;
+                    chartTitle = "월별 제품 생산비율";
+                    #region 파이차트
+                    string curInfo = dgvData["Item_Code", dgvData.CurrentRow.Index].Value.ToString();
+                    //TPHistoryList = srv.Get(curInfo);
 
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPrdQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    //chtData.Titles.Add("월별 제품 생산비율");
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
+                    //chtData.Series["월별 제품 생산비율"].IsXValueIndexed = true;
+
+
+                    foreach (var item in MTHistoryList)
+                    {
+                        //string itemName = MTHistoryList.Where(x => x.Item_Name.Equals(item.Item_Name)).Select((x) => x.Item_Name).ToList().FirstOrDefault() ?? string.Empty;
+                        //int TotPrdQty = MTHistoryList.Where(x => x.TotPrdQty.Equals(item.TotPrdQty)).Select((x) => x.TotPrdQty).ToList().FirstOrDefault();
+                        string itemName = item.Item_Name;
+                        int TotPrdQty = item.TotPrdQty;
+
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPrdQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
+
                 }
-                #endregion
-
-            }
-            else if (rdoPlanQty.Checked) //목표량
-            {
-                chartTitle = "월별 제품 목표량";
-                #region 파이차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoPlanQty.Checked) //목표량
                 {
-                    string itemName = item.Item_Name;
-                    int TotPlanQty = item.TotPlanQty;
+                    chartTitle = "월별 제품 목표량";
+                    #region 파이차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPlanQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotPlanQty = item.TotPlanQty;
+
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPlanQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
+
                 }
-                #endregion
-
-            }
-            else if (rdoInQty.Checked) //투입량
-            {
-                chartTitle = "월별 제품 투입량";
-                #region 파이차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoInQty.Checked) //투입량
                 {
-                    string itemName = item.Item_Name;
-                    int TotInQty = item.TotInQty;
+                    chartTitle = "월별 제품 투입량";
+                    #region 파이차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotInQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotInQty = item.TotInQty;
+
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotInQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
+
                 }
-                #endregion
-
-            }
-            else if (rdoOutQty.Checked) //산출량
-            {
-                chartTitle = "월별 제품 산출량";
-                #region 파이차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoOutQty.Checked) //산출량
                 {
-                    string itemName = item.Item_Name;
-                    int TotOutQty = item.TotOutQty;
+                    chartTitle = "월별 제품 산출량";
+                    #region 파이차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotOutQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotOutQty = item.TotOutQty;
+
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotOutQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
-            }
-            else if (rdoLossQty.Checked) //Loss수량
-            {
-                chartTitle = "월별 제품 Loss수량";
-                #region 파이차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoLossQty.Checked) //Loss수량
                 {
-                    string itemName = item.Item_Name;
-                    int TotLoss = item.TotLoss;
+                    chartTitle = "월별 제품 Loss수량";
+                    #region 파이차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotLoss);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotLoss = item.TotLoss;
+
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotLoss);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
             }
+            
         }
 
         public void ChartDataTwo() //(테스트중)반복부분 메서드만들어서 수정해야함
@@ -279,163 +282,165 @@ namespace Team2_Project
             int colors = 5;
 
             chtDataPie.Series.Clear();
-
-            if (rdoPrdQty.Checked) //생산수량
+            if (MTHistoryList != null)
             {
-                chartTitle = "월별 제품 생산비율";
-                #region 파이차트, 라인차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                chtDataLine.Series.Clear();
-                chtDataLine.Series.Add(chartTitle);
-                chtDataLine.Series[chartTitle].Points.Clear();
-                chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
-                chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
-
-
-                foreach (var item in MTHistoryList)
+                if (rdoPrdQty.Checked) //생산수량
                 {
-                    string itemName = item.Item_Name;
-                    int TotPrdQty = item.TotPrdQty;
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPrdQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                    chartTitle = "월별 제품 생산비율";
+                    #region 파이차트, 라인차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotPrdQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    //chtDataLine.Series[chartTitle].Points[num]..DataBind(MTHistoryList, "Item_Name", "TotPrdQty", "Label=TotPrdQty"); // X축: 시간, Y축:  생산량
-                    num++;
-                    colors += 7;
+                    chtDataLine.Series.Clear();
+                    chtDataLine.Series.Add(chartTitle);
+                    chtDataLine.Series[chartTitle].Points.Clear();
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
+                    chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+
+
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotPrdQty = item.TotPrdQty;
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPrdQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+
+                        chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotPrdQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        //chtDataLine.Series[chartTitle].Points[num]..DataBind(MTHistoryList, "Item_Name", "TotPrdQty", "Label=TotPrdQty"); // X축: 시간, Y축:  생산량
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
-            }
-            else if (rdoPlanQty.Checked) //목표량
-            {
-                chartTitle = "월별 제품 목표량";
-                #region 파이차트, 라인차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                chtDataLine.Series.Clear();
-                chtDataLine.Series.Add(chartTitle);
-                chtDataLine.Series[chartTitle].Points.Clear();
-                chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
-                chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoPlanQty.Checked) //목표량
                 {
-                    string itemName = item.Item_Name;
-                    int TotPlanQty = item.TotPlanQty;
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPlanQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                    chartTitle = "월별 제품 목표량";
+                    #region 파이차트, 라인차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotPlanQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    chtDataLine.Series.Clear();
+                    chtDataLine.Series.Add(chartTitle);
+                    chtDataLine.Series[chartTitle].Points.Clear();
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
+                    chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotPlanQty = item.TotPlanQty;
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotPlanQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+
+                        chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotPlanQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
-            }
-            else if (rdoInQty.Checked) //투입량
-            {
-                chartTitle = "월별 제품 투입량";
-                #region 파이차트, 라인차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                chtDataLine.Series.Clear();
-                chtDataLine.Series.Add(chartTitle);
-                chtDataLine.Series[chartTitle].Points.Clear();
-                chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
-                chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoInQty.Checked) //투입량
                 {
-                    string itemName = item.Item_Name;
-                    int TotInQty = item.TotInQty;
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotInQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                    chartTitle = "월별 제품 투입량";
+                    #region 파이차트, 라인차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotInQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    chtDataLine.Series.Clear();
+                    chtDataLine.Series.Add(chartTitle);
+                    chtDataLine.Series[chartTitle].Points.Clear();
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
+                    chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotInQty = item.TotInQty;
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotInQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+
+                        chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotInQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
-            }
-            else if (rdoOutQty.Checked) //산출량
-            {
-                chartTitle = "월별 제품 산출량";
-                #region 파이차트, 라인차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                chtDataLine.Series.Clear();
-                chtDataLine.Series.Add(chartTitle);
-                chtDataLine.Series[chartTitle].Points.Clear();
-                chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
-                chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoOutQty.Checked) //산출량
                 {
-                    string itemName = item.Item_Name;
-                    int TotOutQty = item.TotOutQty;
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotOutQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                    chartTitle = "월별 제품 산출량";
+                    #region 파이차트, 라인차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotOutQty);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    chtDataLine.Series.Clear();
+                    chtDataLine.Series.Add(chartTitle);
+                    chtDataLine.Series[chartTitle].Points.Clear();
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
+                    chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotOutQty = item.TotOutQty;
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotOutQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+
+                        chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotOutQty);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
-            }
-            else if (rdoLossQty.Checked) //Loss수량
-            {
-                chartTitle = "월별 제품 Loss수량";
-                #region 파이차트, 라인차트
-                chtDataPie.Series.Add(chartTitle);
-                chtDataPie.Series[chartTitle].Points.Clear();
-                chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
-                chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
-
-                chtDataLine.Series.Clear();
-                chtDataLine.Series.Add(chartTitle);
-                chtDataLine.Series[chartTitle].Points.Clear();
-                chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
-                chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
-
-                foreach (var item in MTHistoryList)
+                else if (rdoLossQty.Checked) //Loss수량
                 {
-                    string itemName = item.Item_Name;
-                    int TotLoss = item.TotLoss;
-                    chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotLoss);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                    chartTitle = "월별 제품 Loss수량";
+                    #region 파이차트, 라인차트
+                    chtDataPie.Series.Add(chartTitle);
+                    chtDataPie.Series[chartTitle].Points.Clear();
+                    chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
+                    chtDataPie.Series[chartTitle].IsValueShownAsLabel = true;
 
-                    chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotLoss);
-                    chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                    chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
-                    num++;
-                    colors += 7;
+                    chtDataLine.Series.Clear();
+                    chtDataLine.Series.Add(chartTitle);
+                    chtDataLine.Series[chartTitle].Points.Clear();
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
+                    chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+
+                    foreach (var item in MTHistoryList)
+                    {
+                        string itemName = item.Item_Name;
+                        int TotLoss = item.TotLoss;
+                        chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotLoss);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+
+                        chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotLoss);
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        num++;
+                        colors += 7;
+                    }
+                    #endregion
                 }
-                #endregion
             }
         }
 
