@@ -41,10 +41,10 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 150);
 
             //예상컬럼//
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표량", "TotPlanQty", 150, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입량(INPUT)", "TotInQty", 150, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출량(OUTPUT)", "TotOutQty", 150, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "총생산량", "TotPrdQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표수량", "TotPlanQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "TotInQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 150, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "총생산수량", "TotPrdQty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일일생산량", "", 150);
