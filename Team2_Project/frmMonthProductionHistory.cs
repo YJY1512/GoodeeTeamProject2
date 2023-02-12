@@ -45,17 +45,25 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "TotPrdQty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "TotDefectQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성율", "AttainmentRate", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "양품률", "QualityRate", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "OperatingRate", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동율", "OperatingRate", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량비율", "DefectRate", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성률", "AttainmentRate", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "양품률", "QualityRate", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동률", "OperatingRate", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량률", "DefectRate", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일평균생산수량", "AverageDailyProduction", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "월평균생산수량", "AverageMonthProduction", 150, DataGridViewContentAlignment.MiddleRight); //일일생산량?
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "TotalProductionDays", 120, DataGridViewContentAlignment.MiddleRight);
 
             string[] dotCell = new string[] { "TotPlanQty", "TotInQty", "TotOutQty", "TotPrdQty", "AverageMonthProduction", "TotalProductionDays", "TotDefectQty" };
             foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
-            dgvData.ColumnHeadersDefaultCellStyle.Font = dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
+
+            string[] dotPersentCell = new string[] { "AttainmentRate", "QualityRate", "OperatingRate", "DefectRate" };
+            foreach (string item in dotPersentCell)
+            {
+                dgvData.Columns[item].DefaultCellStyle.Format = "N0";
+                //dgvData.Columns[item].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
+            }
+
+                dgvData.ColumnHeadersDefaultCellStyle.Font = dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
             this.dgvData.Columns["Item_Name"].Frozen = true;
             dgvData.MultiSelect = false;
             dgvData.ClearSelection();
@@ -276,6 +284,17 @@ namespace Team2_Project
                 chtDataLine.Visible = true;
             }
             ChartData();
+        }
+
+        private void dgvData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridViewColumn column = dgvData.Columns[e.ColumnIndex];
+
+            if (column.HeaderText == "달성률") column.HeaderCell.ToolTipText = "(생산수량 / 목표수량) *100";
+            else if (column.HeaderText == "양품률") column.HeaderCell.ToolTipText = "(산출수량 / 투입수량) *100";
+            else if (column.HeaderText == "가동률") column.HeaderCell.ToolTipText = "(투입수량 / 목표수량) *100";
+            else if (column.HeaderText == "불량률") column.HeaderCell.ToolTipText = "(불량수량 / 생산수량 ) *100";
+
         }
     }
 }
