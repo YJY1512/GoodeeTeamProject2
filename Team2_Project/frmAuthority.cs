@@ -24,7 +24,7 @@ namespace Team2_Project
         List<UserGroupAuthorityDTO> grpList = null;
         string empID;
         string grpCode;
-        string[] comboList = ["Y", "N" , "R" , "CRUD"];
+        string[] comboList = { "Y", "N", "R", "CRUD" };
         public frmAuthority()
         {
             InitializeComponent();
