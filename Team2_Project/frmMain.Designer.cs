@@ -210,7 +210,7 @@ namespace Team2_Project
             // btnReLoad
             // 
             this.btnReLoad.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnReLoad.FlatAppearance.BorderSize = 4;
+            this.btnReLoad.FlatAppearance.BorderSize = 3;
             this.btnReLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReLoad.ImageKey = "ReUpdate(2).png";
             this.btnReLoad.ImageList = this.imageList64;
@@ -225,7 +225,7 @@ namespace Team2_Project
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnCancel.FlatAppearance.BorderSize = 4;
+            this.btnCancel.FlatAppearance.BorderSize = 3;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ImageKey = "Cancel64(2).png";
             this.btnCancel.ImageList = this.imageList64;
@@ -240,7 +240,7 @@ namespace Team2_Project
             // btnSave
             // 
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnSave.FlatAppearance.BorderSize = 4;
+            this.btnSave.FlatAppearance.BorderSize = 3;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ImageKey = "Save64(2).png";
             this.btnSave.ImageList = this.imageList64;
@@ -255,7 +255,7 @@ namespace Team2_Project
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnDelete.FlatAppearance.BorderSize = 4;
+            this.btnDelete.FlatAppearance.BorderSize = 3;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ImageKey = "Delete64.png";
             this.btnDelete.ImageList = this.imageList64;
@@ -270,7 +270,7 @@ namespace Team2_Project
             // btnEdit
             // 
             this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnEdit.FlatAppearance.BorderSize = 4;
+            this.btnEdit.FlatAppearance.BorderSize = 3;
             this.btnEdit.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.ImageKey = "Edit64.png";
@@ -286,7 +286,7 @@ namespace Team2_Project
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnAdd.FlatAppearance.BorderSize = 4;
+            this.btnAdd.FlatAppearance.BorderSize = 3;
             this.btnAdd.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ImageKey = "Add.png";
@@ -303,7 +303,7 @@ namespace Team2_Project
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnSearch.FlatAppearance.BorderSize = 4;
+            this.btnSearch.FlatAppearance.BorderSize = 3;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ImageKey = "Search.png";
             this.btnSearch.ImageList = this.imageList64;

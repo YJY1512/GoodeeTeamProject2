@@ -118,6 +118,7 @@ namespace Team2_Project
             this.ClientSize = new System.Drawing.Size(1834, 911);
             this.Name = "frmDashBoard";
             this.Text = "DashBoard";
+            this.Activated += new System.EventHandler(this.frmDashBoard_Activated);
             this.Load += new System.EventHandler(this.frmDashBoard_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

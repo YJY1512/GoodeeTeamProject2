@@ -44,7 +44,9 @@ namespace Team2_Project
             this.splitContainerChart = new System.Windows.Forms.SplitContainer();
             this.chtDataLine = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rdoChartOne = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.rdoChartTwo = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.rdoPrdQty = new System.Windows.Forms.RadioButton();
             this.rdoInQty = new System.Windows.Forms.RadioButton();
@@ -53,8 +55,6 @@ namespace Team2_Project
             this.panel3 = new System.Windows.Forms.Panel();
             this.rdoLossQty = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.rdoChartOne = new System.Windows.Forms.RadioButton();
-            this.rdoChartTwo = new System.Windows.Forms.RadioButton();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -243,6 +243,20 @@ namespace Team2_Project
             this.panel2.Size = new System.Drawing.Size(1834, 43);
             this.panel2.TabIndex = 3;
             // 
+            // rdoChartOne
+            // 
+            this.rdoChartOne.AutoSize = true;
+            this.rdoChartOne.BackColor = System.Drawing.Color.Transparent;
+            this.rdoChartOne.ForeColor = System.Drawing.Color.White;
+            this.rdoChartOne.Location = new System.Drawing.Point(190, 8);
+            this.rdoChartOne.Name = "rdoChartOne";
+            this.rdoChartOne.Size = new System.Drawing.Size(68, 21);
+            this.rdoChartOne.TabIndex = 86;
+            this.rdoChartOne.TabStop = true;
+            this.rdoChartOne.Text = "Single";
+            this.rdoChartOne.UseVisualStyleBackColor = false;
+            this.rdoChartOne.CheckedChanged += new System.EventHandler(this.rdoChartTwo_CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -253,6 +267,20 @@ namespace Team2_Project
             this.label3.Size = new System.Drawing.Size(20, 18);
             this.label3.TabIndex = 1;
             this.label3.Text = "▷";
+            // 
+            // rdoChartTwo
+            // 
+            this.rdoChartTwo.AutoSize = true;
+            this.rdoChartTwo.BackColor = System.Drawing.Color.Transparent;
+            this.rdoChartTwo.ForeColor = System.Drawing.Color.White;
+            this.rdoChartTwo.Location = new System.Drawing.Point(285, 8);
+            this.rdoChartTwo.Name = "rdoChartTwo";
+            this.rdoChartTwo.Size = new System.Drawing.Size(76, 21);
+            this.rdoChartTwo.TabIndex = 87;
+            this.rdoChartTwo.TabStop = true;
+            this.rdoChartTwo.Text = "Double";
+            this.rdoChartTwo.UseVisualStyleBackColor = false;
+            this.rdoChartTwo.CheckedChanged += new System.EventHandler(this.rdoChartTwo_CheckedChanged);
             // 
             // label4
             // 
@@ -353,34 +381,6 @@ namespace Team2_Project
             this.label5.Size = new System.Drawing.Size(36, 17);
             this.label5.TabIndex = 84;
             this.label5.Text = "품목";
-            // 
-            // rdoChartOne
-            // 
-            this.rdoChartOne.AutoSize = true;
-            this.rdoChartOne.BackColor = System.Drawing.Color.Transparent;
-            this.rdoChartOne.ForeColor = System.Drawing.Color.White;
-            this.rdoChartOne.Location = new System.Drawing.Point(175, 8);
-            this.rdoChartOne.Name = "rdoChartOne";
-            this.rdoChartOne.Size = new System.Drawing.Size(92, 21);
-            this.rdoChartOne.TabIndex = 86;
-            this.rdoChartOne.TabStop = true;
-            this.rdoChartOne.Text = "OneChart";
-            this.rdoChartOne.UseVisualStyleBackColor = false;
-            this.rdoChartOne.CheckedChanged += new System.EventHandler(this.rdoChartTwo_CheckedChanged);
-            // 
-            // rdoChartTwo
-            // 
-            this.rdoChartTwo.AutoSize = true;
-            this.rdoChartTwo.BackColor = System.Drawing.Color.Transparent;
-            this.rdoChartTwo.ForeColor = System.Drawing.Color.White;
-            this.rdoChartTwo.Location = new System.Drawing.Point(289, 8);
-            this.rdoChartTwo.Name = "rdoChartTwo";
-            this.rdoChartTwo.Size = new System.Drawing.Size(93, 21);
-            this.rdoChartTwo.TabIndex = 87;
-            this.rdoChartTwo.TabStop = true;
-            this.rdoChartTwo.Text = "TwoChart";
-            this.rdoChartTwo.UseVisualStyleBackColor = false;
-            this.rdoChartTwo.CheckedChanged += new System.EventHandler(this.rdoChartTwo_CheckedChanged);
             // 
             // frmMonthProductionHistory
             // 
