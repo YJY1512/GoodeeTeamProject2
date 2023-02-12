@@ -11,22 +11,21 @@ namespace Team2_Project_WEB.Controllers
 {
     public class HomeController : Controller
     {
+        int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
+
         // GET: Home
         public ActionResult Index()
         {
-            //로그인을 했을때만 상품목록을 보여주고 싶은 경우
-            //Session["LoginFailed"] = false;
-            //if (Session["UserName"] == null)
-            //{
-            //    return RedirectToAction("Index", "Login");
-            //}
+            Session["LoginFailed"] = false;
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
-            Session["SelectedAM"] = "Index";
+            return RedirectToAction("ProdO", "Home");
+        } // 로그인 기능 주석
 
-            return View();
-        }
-
-        public ActionResult Item(string from = "", string to = "") //품목별 판매량 조회
+        public ActionResult Item(string from = "", string to = "") //품목별 거래현황 조회
         {
             ViewBag.ColText = "선택기간 ";
             ViewBag.FromDate = from;
@@ -68,8 +67,6 @@ namespace Team2_Project_WEB.Controllers
 
         public ActionResult ProdO(string date, string itemCode, int page = 1) //작업지시 실적 조회
         {
-            int pagesize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
-
             ViewBag.Date = date;
             if (string.IsNullOrWhiteSpace(date))
                 ViewBag.Date = DateTime.Today.ToString("yyyy-MM-dd");
@@ -89,7 +86,7 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ItemCode = itemCode;
             int totalCount;
             ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, page , pagesize, out totalCount);
+            List<ProductionVO> prodOlist = daoP.GetProdOList(ViewBag.Date, itemCode, page, out totalCount);
             daoP.Dispose();
 
             ItemDAO daoI = new ItemDAO();
@@ -103,7 +100,7 @@ namespace Team2_Project_WEB.Controllers
             {
                 TotalItems = totalCount,
                 CurrentPage = page,
-                ItemsPerPage = pagesize
+                ItemsPerPage = pageSize
             };
 
             // 화면 상단 선택일 진행률 Progerss Bar로 표시
@@ -153,7 +150,6 @@ namespace Team2_Project_WEB.Controllers
 
             // 데이터 가져오기
             string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
-            int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
             int totalCount;
             if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
                 wcCode = null;
@@ -161,7 +157,7 @@ namespace Team2_Project_WEB.Controllers
                 itemCode = null;
 
             ProductionDAO daoP = new ProductionDAO();
-            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, pageSize, out totalCount);
+            List<ProductionVO> prodList = daoP.GetProdList_TotProd(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, out totalCount);
             daoP.Dispose();
 
             ViewBag.ItemCode = itemCode;
@@ -172,7 +168,7 @@ namespace Team2_Project_WEB.Controllers
                 TotalItems = totalCount,
                 CurrentPage = page,
                 ItemsPerPage = pageSize
-            };
+        };
 
             StringBuilder sb1 = new StringBuilder();
             List<int> fairSum = new List<int>();
@@ -193,35 +189,115 @@ namespace Team2_Project_WEB.Controllers
             return View(prodList);
         }
 
-        public ActionResult Defect() //불량 이력 조회
+        public ActionResult Defect(string fromDate = "", string toDate = "", string wcCode = null, string itemCode = null, int page = 1) //불량 내역 조회
         {
-            //날짜, 작업장, 품목
-            //발생일자, 작업장, 품목, 불량코드, 불량수량
-            //불량발생일자, 품목, 작업장, 불량코드로 차트
-            //페이징
+            // 날짜, 작업장, 품목
+            // 발생일시, 작업지시번호, 작업장명, 품목명, 불량현상 대분류명, 불량현상 상세분류명, 불량수량
+
+            // 작업장, 품목 목록 불러오기
+            WorkCenterDAO daoW = new WorkCenterDAO();
+            List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
+            daoW.Dispose();
+            wcList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
+            ViewBag.wcList = new SelectList(wcList, "Code", "Name");
+
+            ItemDAO daoI = new ItemDAO();
+            List<CommonVO> itemList = daoI.GetItemCodeNameList();
+            daoI.Dispose();
+            itemList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
+            ViewBag.Items = new SelectList(itemList, "Code", "Name");
+
+            // 조회조건(기간)
+            ViewBag.FromDate = fromDate;
+            ViewBag.ToDate = toDate;
+            if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
+            {
+                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+            else if (string.IsNullOrWhiteSpace(fromDate))
+                ViewBag.FromDate = Convert.ToDateTime(toDate).AddMonths(-1).ToString("yyyy-MM-dd");
+            else if (string.IsNullOrWhiteSpace(toDate))
+                ViewBag.ToDate = Convert.ToDateTime(fromDate).AddMonths(1).ToString("yyyy-MM-dd");
+
+            //데이터 가져오기
+            string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
+            int totalCount;
+            if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
+                wcCode = null;
+            if (!string.IsNullOrWhiteSpace(itemCode) && itemCode.Equals("All"))
+                itemCode = null;
+
+
+            DefDAO daoD = new DefDAO();
+            List<DefVO> defList = daoD.GetDefList(ViewBag.FromDate, searchToDate, wcCode, itemCode, page, out totalCount);
+            daoD.Dispose();
+
+            ViewBag.ItemCode = itemCode;
+            ViewBag.WcCode = wcCode;
+
+            ViewBag.Page = new PagingInfo
+            {
+                TotalItems = totalCount,
+                CurrentPage = page,
+                ItemsPerPage = pageSize
+            };
 
             Session["SelectedAM"] = "Defect";
 
-            return View();
+            return View(defList);
         }
 
-        public ActionResult Schedule() //월별 스케쥴 조회 - 일정보고 넣기 / 빼기 생각
+        public ActionResult WPlace(string fromDate = "", string toDate = "", string wcCode = null, string itemCode = null, int page = 1) // 비가동 내역 조회
         {
-            Session["SelectedAM"] = "Schedule";
+            // 날짜, 작업장
+            // 발생일자, 작업장명, 비가동 대분류명, 비가동 상세분류명, 비가동발생일시, 비가동해제일시, 비가동시간
 
-            return View();
-        }
+            // 작업장, 품목 목록 불러오기
+            WorkCenterDAO daoW = new WorkCenterDAO();
+            List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
+            daoW.Dispose();
+            wcList.Insert(0, new CommonVO { Code = "All", Name = "전체" });
+            ViewBag.wcList = new SelectList(wcList, "Code", "Name");
 
+            // 조회조건(기간)
+            ViewBag.FromDate = fromDate;
+            ViewBag.ToDate = toDate;
+            if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
+            {
+                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+            else if (string.IsNullOrWhiteSpace(fromDate))
+                ViewBag.FromDate = Convert.ToDateTime(toDate).AddMonths(-1).ToString("yyyy-MM-dd");
+            else if (string.IsNullOrWhiteSpace(toDate))
+                ViewBag.ToDate = Convert.ToDateTime(fromDate).AddMonths(1).ToString("yyyy-MM-dd");
 
-        public ActionResult WPlace() //작업장 가동현황 조회 - 일정보고 넣기 / 빼기 생각
-        {
-            //가동상태, 작업장명, 작업장 코드, 공정명, 진행 생산지시, 상태, 비고:비가동이면 사유
+            //데이터 가져오기
+            string searchToDate = Convert.ToDateTime(ViewBag.ToDate).AddDays(1).ToString("yyyy-MM-dd");
+            int totalCount;
+            if (!string.IsNullOrWhiteSpace(wcCode) && wcCode.Equals("All"))
+                wcCode = null;
 
+            NopDAO daoN = new NopDAO();
+            List<NopVo> nopList = daoN.GetNopList(ViewBag.FromDate, searchToDate, wcCode, page, out totalCount);
+            daoN.Dispose();
 
-            return View();
-        }
+            ViewBag.WcCode = wcCode;
 
-        public ActionResult ProdT(string prdCode) //시간당 생산량 조회 - 불가능(실적 테이블 없음)
+            ViewBag.Page = new PagingInfo
+            {
+                TotalItems = totalCount,
+                CurrentPage = page,
+                ItemsPerPage = pageSize
+            };
+
+            Session["SelectedAM"] = "WPlace";  
+            return View(nopList); 
+        } 
+
+        #region 미사용
+        public ActionResult ProdT(string prdCode) //시간당 생산량 조회 - 구현 불가능으로 폐기(실적 테이블 없음)
         {
             //생산지시 선택 -> 시작시간 ~ 작업장 마감시간 시간별로 쪼개서 생산량 분석
             //바 차트로 시간당 생산량
@@ -243,5 +319,13 @@ namespace Team2_Project_WEB.Controllers
 
             return View();
         }
+
+        public ActionResult Schedule() //월별 스케쥴 조회 - 답없어서 폐기
+        {
+            Session["SelectedAM"] = "Schedule";
+
+            return View();
+        }
+        #endregion
     }
 }

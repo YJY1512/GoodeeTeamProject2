@@ -1,142 +1,111 @@
-﻿@model IEnumerable<Team2_Project_WEB.Models.ItemVO>
+﻿@model IEnumerable<Team2_Project_WEB.Models.NopVo>
 
 @using Team2_Project_WEB.Models
+@using Team2_Project_WEB.Html
 
 @{
-    ViewBag.Title = "작업장 가동현황 조회";
+    ViewBag.Title = "  비가동 내역 조회";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 
 @section css{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
-    <!-- Select2 -->
-    <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
 }
 
 <section class="content">
     <div class="container-fluid">
-        <!-- Progerss Bar -->
         <div class="col-sm-12">
-            <div class="card card-success">
+            <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"> 생산진행도</h3>
-                </div>
-
-            </div>
-        </div>
-        <!-- /Progerss Bar -->
-        <div class="col-sm-12 card">
-            <div class="card-header">
-                <form action="/Home/ProdO" method="get">
-                    <div class="row" style="margin-bottom: 0px">
-                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업일자</label></div>
-                        <div class="input-group date col-sm-2" id="datetimepicker" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-                            <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
-                        <div class=" col-sm-2">
-                            @*@Html.DropDownList("itemCode", (IEnumerable<SelectListItem>)ViewBag.Items, new { @class = "select2 select2-hidden-accessible", @multiple = "multiple", @style = "width: 100%;", @tabindex = "-1" })*@
-                        </div>
-                        <div class="col-sm-1" style="padding-top:6px;text-align:center"><label>작업장</label></div>
-                        <div class=" col-sm-2">
-
-                            @*<select class="select2 select2-hidden-accessible col-sm-3" id="" name="itemCode">
-                                    @for (int i = 0; i < ViewBag.Items.Count; i++)
-                                    {
-                                        <option data-select2-id="@ViewBag.Items[i].Code">@ViewBag.Items[i].Name</option>
-                                    }
-                                </select>
-
-
-                                <div class="input-group col-sm-3" data-select2-id="47">
-                                    <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="제품 선택" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                    </select>*@
-                            <!-- /.form-group -->
-                            @*<div class="col-sm-1" style="padding-top:6px;text-align:center"><label>품목</label></div>
-                                <div class="input-group date col-sm-3" id="datetimepicker12" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="날짜 선택" name="date" value=@ViewBag.Date />
-                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    <form action="/Home/WPlace" method="get">
+                        <div class="row" style="margin-bottom: 0px">
+                            <div class="col-sm-3 row">
+                                <div class="col-sm-3" style="padding-top: 6px; text-align: center"><label>조회기간</label></div>
+                                <div class="input-group col-sm-9">
+                                    <input type="text" class="form-control float-right" id="dateRangeSelect">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
                                     </div>
-                                </div>*@
+                                    <input type="hidden" name="fromDate" id="fDate" value="@ViewBag.FromDate" />
+                                    <input type="hidden" name="toDate" id="tDate" value="@ViewBag.ToDate" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3 row">
+                                <div class="col-sm-3" style="padding-top:6px;text-align:center"><label>작업장</label></div>
+                                <div class=" col-sm-9">
+                                    @Html.DropDownList("wcCode", (IEnumerable<SelectListItem>)ViewBag.wcList, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-3 row">
+                                <p></p>
+                            </div>
                             <div class="col-sm-1"></div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <input type="submit" class="btn btn-block bg-gradient-success" value="조회">
                             </div>
                         </div>
-                </form>
-            </div>
-            <!-- /.card-header -->
-            <!-- 목록 -->
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                    <thead>
-                        <tr style="text-align:center">
-                            <th>가동상태</th>
-                            <th>작업장명</th>
-                            <th>작업장코드</th>
-                            <th>공정명</th>
-                            <th>진행중 생산지시</th>
-                            <th>상태</th>
-                            <th>비고</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @*@foreach (var item in Model)
+                    </form>
+                </div>
+                <!-- /.card-header -->
+                <!-- 목록 -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr style="text-align:center">
+                                <th>발생일자</th>
+                                <th>작업장명</th>
+                                <th>비가동 대분류명</th>
+                                <th>비가동 상세분류명</th>
+                                <th>비가동발생일시</th>
+                                <th>비가동해제일시</th>
+                                <th>비가동시간</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
                             {
+                                string startDate = item.Nop_HappenTime.ToString(@"HH\:mm\:ss");
+                                string EndDate = item.Nop_CancelTime.ToString(@"HH\:mm\:ss");
+                                if (item.Nop_HappenTime == default(DateTime)) { startDate = ""; }
+                                if (item.Nop_CancelTime == default(DateTime)) { EndDate = ""; }
                                 <tr style="text-align:center">
-                                    <td>@item.WorkOrderNo</td>
-                                    <td>@item.Plan_Date</td>
-                                    <td>@item.Item_Code</td>
-                                    <td>@item.Item_Name</td>
-                                    <td>@item.Plan_Qty_Box</td>
-                                    <td>@(item.Progress.ToString("0.00")+" %")</td>
-                                    <td>@item.Prd_Qty</td>
-                                    <td>@item.TotDef</td>
-                                    <td>@(item.FairRatio.ToString("0.00")+" %")</td>
-                                    <td>@(item.DefRatio.ToString("0.00")+" %")</td>
+                                    <td>@item.Nop_Date</td>
+                                    <td>@item.Wc_Name</td>
+                                    <td>@item.Nop_Ma_Name</td>
+                                    <td>@item.Nop_Mi_Name</td>
+                                    <td>@startDate</td>
+                                    <td>@EndDate</td>
+                                    <td>@item.TotNopTime.ToString(@"hh\:mm\:ss")</td>
                                 </tr>
-                            }*@
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
-
-
-        </div>
-        <!-- STACKED BAR CHART -->
-        <div class="card card-success">
-            <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                    </button>
+                            }
+                        </tbody>
+                    </table>
                 </div>
+                <!-- /.card-body -->
             </div>
-            <div class="card-body">
-                <div class="chart">
-                    <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-            </div>
-            <!-- /.card-body -->
+            <!-- 페이지 nav -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination d-flex justify-content-center">
+                    @Html.PageLinks((PagingInfo)ViewBag.Page, (p) => Url.Action("Defect", new { fromDate = ViewBag.FromDate, toDate = ViewBag.ToDate, wcCode = ViewBag.WcCode, itemCode = ViewBag.ItemCode, page = p }))
+                </ul>
+            </nav>
+            <!-- /페이지 nav -->
+            <!-- /.card -->
         </div>
-        <!-- /.card -->
     </div>
 </section>
 
+@{
+    string from = ViewBag.FromDate;
+    string to = ViewBag.ToDate;
+}
+
 @section Scripts{
-    <!-- ChartJS -->
-    <script src="~/plugins/chart.js/Chart.min.js"></script>
     <!-- InputMask -->
     <script src="~/plugins/moment/moment.min.js"></script>
     <script src="~/plugins/moment/moment-with-locales.min.js"></script>
@@ -144,78 +113,26 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
-    <!-- Select2 -->
-    <script src="~/plugins/select2/js/select2.full.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
 
     <script>
-        $(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2({
-                placeholder: "제품 선택",
-                allowClear: true
-            })
-
-            $('#datetimepicker').datetimepicker({
+        $('#dateRangeSelect').daterangepicker({
+            locale: {
                 format: 'YYYY-MM-DD',
-                locale: 'ko'
-            });
+                applyLabel: '입력',
+                cancelLabel: '취소',
+                locale: moment.locale('ko')
+            },
+            startDate: '@from',
+            endDate: '@to',
+            showDropdowns: true,
+            showWeekNumbers: true
+        });
 
-            var areaChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [
-                    {
-                        label: 'Digital Goods',
-                        backgroundColor: 'rgba(60,141,188,0.9)',
-                        borderColor: 'rgba(60,141,188,0.8)',
-                        pointRadius: false,
-                        pointColor: '#3b8bba',
-                        pointStrokeColor: 'rgba(60,141,188,1)',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [28, 48, 40, 19, 86, 27, 90]
-                    },
-                    {
-                        label: 'Electronics',
-                        backgroundColor: 'rgba(210, 214, 222, 1)',
-                        borderColor: 'rgba(210, 214, 222, 1)',
-                        pointRadius: false,
-                        pointColor: 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor: '#c1c7d1',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                ]
-            }
-            //---------------------
-            //- STACKED BAR CHART -
-            //---------------------
-            var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-            var stackedBarChartData = $.extend(true, {}, barChartData)
-
-            var stackedBarChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
-            }
-
-            new Chart(stackedBarChartCanvas, {
-                type: 'bar',
-                data: stackedBarChartData,
-                options: stackedBarChartOptions
-            })
-        })
+        $('#dateRangeSelect').on('apply.daterangepicker', function (ev, picker) {
+            document.getElementById("fDate").value = picker.startDate.format('YYYY-MM-DD');
+            document.getElementById("tDate").value = picker.endDate.format('YYYY-MM-DD');
+        });
     </script>
 }

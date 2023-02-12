@@ -32,6 +32,7 @@ namespace Team2_Project
 
         private void LoadData()
         {
+            dgvDataA.DataSource = dgvDataB.DataSource = null;
             lblMsg1.Visible = lblMsg2.Visible = false;
             mappingList = srv.GetData(empID);
             if (mappingList.Count > 0)
@@ -115,6 +116,10 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량수량", "Def_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장코드", "Wc_Code", 120);
+            dgv.Columns["WorkOrderNo"].Frozen = true;
+            string[] dotCell = new string[] { "Plan_Qty_Box", "In_Qty_Main", "Out_Qty_Main", "Prd_Qty", "Def_Qty" };
+            foreach (string item in dotCell) dgv.Columns[item].DefaultCellStyle.Format = "N0";
+
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.Production();
             if (ProductionHistoryList.Count > 0)
@@ -168,6 +173,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동대분류코드", "Nop_Ma_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동대분류명", "Nop_Ma_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동유형", "Nop_type", 150);
+            dgv.Columns["Nop_Date"].Frozen = true;
 
             List<NopHistoryDTO> NopHistoryList = new List<NopHistoryDTO>();
             NopHistoryList = srv.GetNopHistory();
@@ -199,6 +205,12 @@ namespace Team2_Project
             }
         }
 
+        private void frmDashBoard_Activated(object sender, EventArgs e)
+        {
+            //dgvDataA.DataSource = dgvDataB.DataSource = null;
+            //LoadData();
+        }
     }
+    
 }
 //= Color.FromArgb(211, 226, 223);

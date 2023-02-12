@@ -13,17 +13,25 @@ namespace Team2_Project_WEB.Controllers
         // GET: Menu
         public PartialViewResult MenuList(string am)
         {
-            string[] MenuName = WebConfigurationManager.AppSettings["menuList"].Split(',');
-            string[] MenuAM = WebConfigurationManager.AppSettings["menuListAM"].Split(',');
+            string[] pMenuName = WebConfigurationManager.AppSettings["PmenuList"].Split(',');
+            string[] pMenuAM = WebConfigurationManager.AppSettings["PmenuListAM"].Split(',');
+            string[] menuName = WebConfigurationManager.AppSettings["menuList"].Split(',');
+            string[] menuAM = WebConfigurationManager.AppSettings["menuListAM"].Split(',');
+            List<MenuVO> pList = new List<MenuVO>();
             List<MenuVO> list = new List<MenuVO>();
 
-            for (int i = 0; i < MenuName.Length; i++)
+            for (int i = 0; i < pMenuName.Length; i++)
             {
-                list.Add(new MenuVO { MenuName = MenuName[i], MenuAM = MenuAM[i] });
+                pList.Add(new MenuVO { MenuName = pMenuName[i], MenuAM = pMenuAM[i] });
             }
 
+            for (int i = 0; i < menuName.Length; i++)
+            {
+                list.Add(new MenuVO { MenuName = menuName[i], MenuAM = menuAM[i] });
+            }
+
+            ViewBag.PMenuList = pList;
             ViewBag.MenuList = list;
-            ViewBag.SelectedAM = null;
 
             return PartialView();
         }

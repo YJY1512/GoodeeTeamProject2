@@ -68,14 +68,12 @@ namespace Team2_Project
             this.dgvData.Columns["WorkOrderNo"].Frozen = true;
             dgvData.MultiSelect = false;
 
+            string[] dotCell = new string[] { "Plan_Qty_Box", "In_Qty_Main", "Out_Qty_Main", "Prd_Qty", "Def_Qty" };
+            foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
 
-            //---- test용 ----
-            cboWoStatus.SelectedIndex = cboTest.SelectedIndex = 0; 
-            cboTest.DropDownStyle = ComboBoxStyle.DropDownList;
-            //----------------
             ResetDtp();
             OnSearch();
         }
@@ -224,7 +222,6 @@ namespace Team2_Project
             chtData.Series["생산량"].Points.Clear();
             chtData.Series["생산량"].ChartType = SeriesChartType.StackedColumn;
             chtData.Series["생산량"].Color = Color.FromArgb(211, 226, 223);
-            chtData.Series["생산량"].Points.Clear();
             chtData.Series["생산량"].Points.DataBind(TPHistoryList, "Start_Hour", "Prd_Qty", "Label=Prd_Qty"); // X축: 시간, Y축:  생산량    //Prd_Qty //Def_Qty
 
             if (!chkDefQty.Checked)
@@ -233,7 +230,6 @@ namespace Team2_Project
                 chtData.Series["불량"].Points.Clear();
                 chtData.Series["불량"].ChartType = SeriesChartType.StackedColumn;
                 chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
-                chtData.Series["불량"].Points.Clear();
                 chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", "Label=Def_Qty"); // X축: Time, Y축: Score
             }
             

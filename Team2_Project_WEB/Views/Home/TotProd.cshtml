@@ -4,16 +4,15 @@
 @using Team2_Project_WEB.Html
 
 @{
-    ViewBag.Title = "작업지시 종합실적 조회";
+    ViewBag.Title = "  작업지시 종합실적 조회";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 
 @section css{
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
 }
 
 <section class="content">
@@ -32,8 +31,8 @@
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="hidden" name="fromDate" id="fDate" value="@ViewBag.FromDate"/>
-                                    <input type="hidden" name="toDate" id="tDate" value="@ViewBag.ToDate"/>
+                                    <input type="hidden" name="fromDate" id="fDate" value="@ViewBag.FromDate" />
+                                    <input type="hidden" name="toDate" id="tDate" value="@ViewBag.ToDate" />
                                 </div>
                             </div>
                             <div class="col-sm-3 row">

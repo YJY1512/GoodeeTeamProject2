@@ -6,12 +6,14 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using Team2_Project_WEB.Models;
+using System.Web.Configuration;
 
 namespace Team2_Project_WEB.Models.DAO
 {
     public class ProductionDAO : IDisposable
     {
         SqlConnection conn = null;
+        int pageSize = int.Parse(WebConfigurationManager.AppSettings["list_pagesize"]);
 
         public ProductionDAO()
         {
@@ -26,7 +28,7 @@ namespace Team2_Project_WEB.Models.DAO
                 conn.Close();
         }
 
-        public List<ProductionVO> GetProdOList(string date, string itemCode, int page , int pagesize, out int totalCount)
+        public List<ProductionVO> GetProdOList(string date, string itemCode, int page, out int totalCount)
         {
             List<ProductionVO> list = new List<ProductionVO>();
             string sql = "SP_GetProdOList";
@@ -40,7 +42,7 @@ namespace Team2_Project_WEB.Models.DAO
                 else
                     cmd.Parameters.AddWithValue("@ItemCode", itemCode);
                 cmd.Parameters.AddWithValue("@Page", page);
-                cmd.Parameters.AddWithValue("@PageSize", pagesize);
+                cmd.Parameters.AddWithValue("@PageSize", pageSize);
 
                 SqlParameter pOutput = new SqlParameter("@PO_TotalCnt", DbType.Int32);
                 pOutput.Direction = ParameterDirection.Output;
@@ -56,29 +58,7 @@ namespace Team2_Project_WEB.Models.DAO
             }
         }
 
-        public List<string> GetProdNoList()
-        {
-            string sql = @"select top 10 WorkOrderNo 
-                            from WorkOrder 
-                            where Plan_Date between convert(varchar(10), dateadd(day, -7, getdate()), 23) 
-                                                and convert(varchar(10), getdate(), 23)";
-
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
-            { 
-                SqlDataReader reader = cmd.ExecuteReader();
-                //List<ProductionVO> list = Helper.DataReaderMapToList<ProductionVO>(reader);
-                List<string> list = new List<string>();
-                while (reader.Read())
-                {
-                    list.Add(reader["WorkOrderNo"].ToString());
-                }
-                reader.Close();
-
-                return list;
-            }
-        }
-
-        public List<ProductionVO> GetProdList_TotProd(string from , string to, string wcCode, string itemCode, int page, int pageSize, out int totalCount)
+        public List<ProductionVO> GetProdList_TotProd(string from , string to, string wcCode, string itemCode, int page, out int totalCount)
         {
             // 작업일자, 작업수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 시간당 생샨량
             List<ProductionVO> list = new List<ProductionVO>();

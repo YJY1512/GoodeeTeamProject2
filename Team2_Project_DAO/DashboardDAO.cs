@@ -117,7 +117,7 @@ namespace Team2_Project_DAO
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SP_GetWorkCenter", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_GetDashBoardWo", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();

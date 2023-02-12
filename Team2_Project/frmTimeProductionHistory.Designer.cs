@@ -29,15 +29,15 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cboWoStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
@@ -49,9 +49,6 @@ namespace Team2_Project
             this.label7 = new System.Windows.Forms.Label();
             this.ucProcessCode = new Team2_Project.Controls.ucSearch();
             this.chkDefQty = new System.Windows.Forms.CheckBox();
-            this.cboTest = new System.Windows.Forms.ComboBox();
-            this.lbltest = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -70,19 +67,13 @@ namespace Team2_Project
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.cboTest);
-            this.pnlSub.Controls.Add(this.button1);
-            this.pnlSub.Controls.Add(this.lbltest);
             this.pnlSub.Controls.Add(this.chkDefQty);
             this.pnlSub.Controls.Add(this.ucProcessCode);
             this.pnlSub.Controls.Add(this.label7);
@@ -147,7 +138,8 @@ namespace Team2_Project
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 748);
             this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 0;
@@ -165,23 +157,28 @@ namespace Team2_Project
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             this.dgvData.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvData_CellFormatting);
             // 
-            // splitContainer2
+            // panel1
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.panel1.Controls.Add(this.chtData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1834, 414);
+            this.panel1.TabIndex = 3;
             // 
-            // splitContainer2.Panel1
+            // chtData
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.panel2);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.chtData);
-            this.splitContainer2.Size = new System.Drawing.Size(1834, 457);
-            this.splitContainer2.SplitterDistance = 45;
-            this.splitContainer2.TabIndex = 1;
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
+            this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
+            this.chtData.Location = new System.Drawing.Point(0, 0);
+            this.chtData.Name = "chtData";
+            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.chtData.Size = new System.Drawing.Size(1834, 414);
+            this.chtData.TabIndex = 0;
+            this.chtData.Text = "chart";
             // 
             // panel2
             // 
@@ -192,7 +189,7 @@ namespace Team2_Project
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1834, 41);
+            this.panel2.Size = new System.Drawing.Size(1834, 43);
             this.panel2.TabIndex = 2;
             // 
             // label1
@@ -216,20 +213,6 @@ namespace Team2_Project
             this.label3.Size = new System.Drawing.Size(91, 18);
             this.label3.TabIndex = 0;
             this.label3.Text = "시간대별 실적";
-            // 
-            // chtData
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.chtData.ChartAreas.Add(chartArea4);
-            this.chtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chtData.Legends.Add(legend4);
-            this.chtData.Location = new System.Drawing.Point(0, 0);
-            this.chtData.Name = "chtData";
-            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtData.Size = new System.Drawing.Size(1834, 408);
-            this.chtData.TabIndex = 0;
-            this.chtData.Text = "chart";
             // 
             // cboWoStatus
             // 
@@ -349,39 +332,6 @@ namespace Team2_Project
             this.chkDefQty.Text = "불량제외";
             this.chkDefQty.UseVisualStyleBackColor = false;
             // 
-            // cboTest
-            // 
-            this.cboTest.FormattingEnabled = true;
-            this.cboTest.Items.AddRange(new object[] {
-            "WorkOrder_001",
-            "WorkOrder_002",
-            "WorkOrder_003",
-            "WorkOrder_004"});
-            this.cboTest.Location = new System.Drawing.Point(1638, 54);
-            this.cboTest.Name = "cboTest";
-            this.cboTest.Size = new System.Drawing.Size(194, 25);
-            this.cboTest.TabIndex = 79;
-            // 
-            // lbltest
-            // 
-            this.lbltest.AutoSize = true;
-            this.lbltest.BackColor = System.Drawing.Color.Transparent;
-            this.lbltest.Location = new System.Drawing.Point(1638, 14);
-            this.lbltest.Name = "lbltest";
-            this.lbltest.Size = new System.Drawing.Size(120, 34);
-            this.lbltest.TabIndex = 80;
-            this.lbltest.Text = "(바인딩 테스트)\r\n임시작업지시번호";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1761, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 26);
-            this.button1.TabIndex = 81;
-            this.button1.Text = "테스트";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -489,13 +439,10 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -518,11 +465,7 @@ namespace Team2_Project
         protected System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.CheckBox chkDefQty;
-        private System.Windows.Forms.ComboBox cboTest;
-        private System.Windows.Forms.Label lbltest;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label10;
@@ -533,5 +476,6 @@ namespace Team2_Project
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel1;
     }
 }
