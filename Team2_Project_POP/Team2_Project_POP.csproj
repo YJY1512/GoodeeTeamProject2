@@ -56,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\DataGridViewUtil.cs" />
+    <Compile Include="Controls\frmNonList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\frmNonList.Designer.cs">
+      <DependentUpon>frmNonList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ucDefList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PoPService.cs" />
+    <EmbeddedResource Include="Controls\frmNonList.resx">
+      <DependentUpon>frmNonList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucDefList.resx">
       <DependentUpon>ucDefList.cs</DependentUpon>
     </EmbeddedResource>

@@ -81,6 +81,7 @@ namespace Team2_Project_POP
             this.btnNonP.TabIndex = 5;
             this.btnNonP.Text = "비가동  등록";
             this.btnNonP.UseVisualStyleBackColor = true;
+            this.btnNonP.Click += new System.EventHandler(this.btnNonP_Click);
             // 
             // btnPerfomance
             // 
@@ -100,6 +101,7 @@ namespace Team2_Project_POP
             this.btnFinish.TabIndex = 3;
             this.btnFinish.Text = " 현장   마감";
             this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnPalette
             // 
@@ -109,6 +111,7 @@ namespace Team2_Project_POP
             this.btnPalette.TabIndex = 2;
             this.btnPalette.Text = " 팔렛   생성";
             this.btnPalette.UseVisualStyleBackColor = true;
+            this.btnPalette.Click += new System.EventHandler(this.btnPalette_Click);
             // 
             // btnStop
             // 
@@ -119,6 +122,7 @@ namespace Team2_Project_POP
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = false;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnStart
             // 
@@ -328,6 +332,7 @@ namespace Team2_Project_POP
             // 
             // pnlList
             // 
+            this.pnlList.AutoScroll = true;
             this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlList.Location = new System.Drawing.Point(0, 160);
             this.pnlList.Name = "pnlList";
