@@ -103,8 +103,10 @@
     <Compile Include="Html\PagingHelper.cs" />
     <Compile Include="Models\CommonVO.cs" />
     <Compile Include="Models\DAO\DefDAO.cs" />
+    <Compile Include="Models\DAO\NopDAO.cs" />
     <Compile Include="Models\DAO\WorkCenterDAO.cs" />
     <Compile Include="Models\DefVO.cs" />
+    <Compile Include="Models\NopVO.cs" />
     <Compile Include="Models\ProductionVO.cs" />
     <Compile Include="Models\DAO\CommonDAO.cs" />
     <Compile Include="Models\DAO\Helper.cs" />
