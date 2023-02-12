@@ -1,16 +1,36 @@
 ﻿<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
-    <li class="nav-item menu-@(Session["SelectedAM"] == null || Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == "Index"? "close" : "open")">
-        <a href="#" class="nav-link @(Session["SelectedAM"] == null || Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == "Index" ? "" : "active")">
+    <li class="nav-item menu-@(Session["SelectedAM"] != null && (Session["SelectedAM"].ToString() == ViewBag.PMenuList[0].MenuAM || Session["SelectedAM"].ToString() == ViewBag.PMenuList[1].MenuAM) ?  "open" : "close")">
+        <a href="#" class="nav-link @(Session["SelectedAM"] != null && (Session["SelectedAM"].ToString() == ViewBag.PMenuList[0].MenuAM || Session["SelectedAM"].ToString() == ViewBag.PMenuList[1].MenuAM) ? "active" : "")">
             <i class="nav-icon fas fa-chart-bar"></i>
             <p>
-                데이터 분석
+                생산지시 분석 조회
                 <i class="right fas fa-angle-left"></i>
             </p>
         </a>
         <ul class="nav nav-treeview">
-            @for (int i = 1; i < ViewBag.MenuList.Count; i++)
+            @for (int i = 0; i < ViewBag.PMenuList.Count; i++)
+            {
+                <li class="nav-item active">
+                    <a href="/Home/@ViewBag.PMenuList[i].MenuAM?page=1" class="nav-link @(((Session["SelectedAM"] == null ? "" : Session["SelectedAM"].ToString()) == ViewBag.PMenuList[i].MenuAM) ? "active" : "")">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>@ViewBag.PMenuList[i].MenuName</p>
+                    </a>
+                </li>
+            }
+        </ul>
+    </li>
+    <li class="nav-item menu-@(Session["SelectedAM"] != null && (Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == ViewBag.MenuList[1].MenuAM || Session["SelectedAM"].ToString() == ViewBag.MenuList[2].MenuAM) ? "open" : "close")">
+        <a href="#" class="nav-link @(Session["SelectedAM"] != null && (Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == ViewBag.MenuList[1].MenuAM || Session["SelectedAM"].ToString() == ViewBag.MenuList[2].MenuAM) ? "active" : "")">
+            <i class="nav-icon fas fa-chart-bar"></i>
+            <p>
+                현황 조회
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            @for (int i = 0; i < ViewBag.MenuList.Count; i++)
             {
                 <li class="nav-item active">
                     <a href="/Home/@ViewBag.MenuList[i].MenuAM?page=1" class="nav-link @(((Session["SelectedAM"] == null ? "" : Session["SelectedAM"].ToString()) == ViewBag.MenuList[i].MenuAM) ? "active" : "")">
@@ -21,13 +41,16 @@
             }
         </ul>
     </li>
-    <li class="nav-item">
+
+
+
+    <!--<li class="nav-item">
         <a href="/Home/Schedule?page=1" class="nav-link @(Session["SelectedAM"] != null && Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM ? "active" : "")">
             <i class="nav-icon fas fa-calendar-alt"></i>
-            <p>
-                @ViewBag.MenuList[0].MenuName
-            </p>
+            <p>-->
+    @*@ViewBag.MenuList[0].MenuName*@
+    <!--</p>
         </a>
-    </li>
+    </li>-->
 </ul>
 
