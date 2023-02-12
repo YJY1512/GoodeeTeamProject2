@@ -34,6 +34,7 @@ namespace Team2_Project
             dtpPlanMonth.Value = DateTime.Today;
 
             LoadData();
+            dgvPlanHeader.ClearSelection();
         }
 
         private void LoadData()
