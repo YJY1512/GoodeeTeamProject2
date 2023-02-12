@@ -29,10 +29,10 @@ namespace Team2_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.ucItemSearch = new Team2_Project.Controls.ucSearch();
@@ -52,7 +52,7 @@ namespace Team2_Project
             this.rdoInQty = new System.Windows.Forms.RadioButton();
             this.rdoOutQty = new System.Windows.Forms.RadioButton();
             this.rdoPlanQty = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panCriteria = new System.Windows.Forms.Panel();
             this.rdoLossQty = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
@@ -71,12 +71,12 @@ namespace Team2_Project
             this.splitContainerChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtDataLine)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panCriteria.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.panel3);
+            this.pnlSub.Controls.Add(this.panCriteria);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.ucItemSearch);
             this.pnlSub.Controls.Add(this.label6);
@@ -101,7 +101,7 @@ namespace Team2_Project
             // 
             // dtpDate
             // 
-            this.dtpDate.CustomFormat = "yyyy-mm";
+            this.dtpDate.CustomFormat = "yyyy-MM";
             this.dtpDate.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDate.Location = new System.Drawing.Point(111, 17);
@@ -146,11 +146,11 @@ namespace Team2_Project
             // 
             // chtDataPie
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chtDataPie.ChartAreas.Add(chartArea2);
+            chartArea3.Name = "ChartArea1";
+            this.chtDataPie.ChartAreas.Add(chartArea3);
             this.chtDataPie.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chtDataPie.Legends.Add(legend2);
+            legend3.Name = "Legend1";
+            this.chtDataPie.Legends.Add(legend3);
             this.chtDataPie.Location = new System.Drawing.Point(0, 0);
             this.chtDataPie.Name = "chtDataPie";
             this.chtDataPie.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
@@ -217,11 +217,11 @@ namespace Team2_Project
             // 
             // chtDataLine
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chtDataLine.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chtDataLine.ChartAreas.Add(chartArea4);
             this.chtDataLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chtDataLine.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chtDataLine.Legends.Add(legend4);
             this.chtDataLine.Location = new System.Drawing.Point(0, 0);
             this.chtDataLine.Name = "chtDataLine";
             this.chtDataLine.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
@@ -345,19 +345,19 @@ namespace Team2_Project
             this.rdoPlanQty.UseVisualStyleBackColor = false;
             this.rdoPlanQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
-            // panel3
+            // panCriteria
             // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.rdoLossQty);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.rdoPrdQty);
-            this.panel3.Controls.Add(this.rdoPlanQty);
-            this.panel3.Controls.Add(this.rdoOutQty);
-            this.panel3.Controls.Add(this.rdoInQty);
-            this.panel3.Location = new System.Drawing.Point(741, 11);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(561, 37);
-            this.panel3.TabIndex = 83;
+            this.panCriteria.BackColor = System.Drawing.Color.Transparent;
+            this.panCriteria.Controls.Add(this.rdoLossQty);
+            this.panCriteria.Controls.Add(this.label5);
+            this.panCriteria.Controls.Add(this.rdoPrdQty);
+            this.panCriteria.Controls.Add(this.rdoPlanQty);
+            this.panCriteria.Controls.Add(this.rdoOutQty);
+            this.panCriteria.Controls.Add(this.rdoInQty);
+            this.panCriteria.Location = new System.Drawing.Point(741, 11);
+            this.panCriteria.Name = "panCriteria";
+            this.panCriteria.Size = new System.Drawing.Size(561, 37);
+            this.panCriteria.TabIndex = 83;
             // 
             // rdoLossQty
             // 
@@ -380,7 +380,7 @@ namespace Team2_Project
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 17);
             this.label5.TabIndex = 84;
-            this.label5.Text = "품목";
+            this.label5.Text = "기준";
             // 
             // frmMonthProductionHistory
             // 
@@ -408,8 +408,8 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.chtDataLine)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panCriteria.ResumeLayout(false);
+            this.panCriteria.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -431,7 +431,7 @@ namespace Team2_Project
         private System.Windows.Forms.RadioButton rdoPrdQty;
         private System.Windows.Forms.RadioButton rdoPlanQty;
         private System.Windows.Forms.RadioButton rdoOutQty;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panCriteria;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton rdoLossQty;
         private System.Windows.Forms.SplitContainer splitContainerChart;

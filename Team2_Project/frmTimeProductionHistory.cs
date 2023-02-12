@@ -74,10 +74,6 @@ namespace Team2_Project
             dgvData.ColumnHeadersDefaultCellStyle.Font = new Font("나눔고딕", 11);
             dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
 
-            //---- test용 ----
-            cboWoStatus.SelectedIndex = cboTest.SelectedIndex = 0; 
-            cboTest.DropDownStyle = ComboBoxStyle.DropDownList;
-            //----------------
             ResetDtp();
             OnSearch();
         }
