@@ -33,14 +33,14 @@ namespace Team2_Project
             this.ucgrpSearch = new Team2_Project.Controls.ucSearch();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvAuthority = new System.Windows.Forms.DataGridView();
+            this.cboAuthNM = new System.Windows.Forms.ComboBox();
+            this.txtAuthType = new System.Windows.Forms.TextBox();
+            this.lblAuth = new System.Windows.Forms.Label();
+            this.txtMenuNM = new System.Windows.Forms.TextBox();
+            this.txtScreenCode = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtScreenCode = new System.Windows.Forms.TextBox();
-            this.txtMenuNM = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtAuthType = new System.Windows.Forms.TextBox();
-            this.cboAuthNM = new System.Windows.Forms.ComboBox();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -113,7 +113,7 @@ namespace Team2_Project
             // 
             this.splitContainer1.Panel2.Controls.Add(this.cboAuthNM);
             this.splitContainer1.Panel2.Controls.Add(this.txtAuthType);
-            this.splitContainer1.Panel2.Controls.Add(this.label6);
+            this.splitContainer1.Panel2.Controls.Add(this.lblAuth);
             this.splitContainer1.Panel2.Controls.Add(this.txtMenuNM);
             this.splitContainer1.Panel2.Controls.Add(this.txtScreenCode);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
@@ -134,6 +134,45 @@ namespace Team2_Project
             this.dgvAuthority.Size = new System.Drawing.Size(1032, 533);
             this.dgvAuthority.TabIndex = 1;
             this.dgvAuthority.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuthority_CellClick);
+            // 
+            // cboAuthNM
+            // 
+            this.cboAuthNM.FormattingEnabled = true;
+            this.cboAuthNM.Location = new System.Drawing.Point(147, 232);
+            this.cboAuthNM.Name = "cboAuthNM";
+            this.cboAuthNM.Size = new System.Drawing.Size(170, 25);
+            this.cboAuthNM.TabIndex = 7;
+            // 
+            // txtAuthType
+            // 
+            this.txtAuthType.Location = new System.Drawing.Point(147, 168);
+            this.txtAuthType.Name = "txtAuthType";
+            this.txtAuthType.Size = new System.Drawing.Size(170, 25);
+            this.txtAuthType.TabIndex = 6;
+            // 
+            // lblAuth
+            // 
+            this.lblAuth.AutoSize = true;
+            this.lblAuth.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblAuth.Location = new System.Drawing.Point(45, 238);
+            this.lblAuth.Name = "lblAuth";
+            this.lblAuth.Size = new System.Drawing.Size(69, 19);
+            this.lblAuth.TabIndex = 5;
+            this.lblAuth.Text = "권한문자";
+            // 
+            // txtMenuNM
+            // 
+            this.txtMenuNM.Location = new System.Drawing.Point(147, 104);
+            this.txtMenuNM.Name = "txtMenuNM";
+            this.txtMenuNM.Size = new System.Drawing.Size(170, 25);
+            this.txtMenuNM.TabIndex = 4;
+            // 
+            // txtScreenCode
+            // 
+            this.txtScreenCode.Location = new System.Drawing.Point(147, 40);
+            this.txtScreenCode.Name = "txtScreenCode";
+            this.txtScreenCode.Size = new System.Drawing.Size(170, 25);
+            this.txtScreenCode.TabIndex = 3;
             // 
             // label5
             // 
@@ -164,45 +203,6 @@ namespace Team2_Project
             this.label3.Size = new System.Drawing.Size(73, 19);
             this.label3.TabIndex = 0;
             this.label3.Text = "메뉴 코드";
-            // 
-            // txtScreenCode
-            // 
-            this.txtScreenCode.Location = new System.Drawing.Point(147, 40);
-            this.txtScreenCode.Name = "txtScreenCode";
-            this.txtScreenCode.Size = new System.Drawing.Size(170, 25);
-            this.txtScreenCode.TabIndex = 3;
-            // 
-            // txtMenuNM
-            // 
-            this.txtMenuNM.Location = new System.Drawing.Point(147, 104);
-            this.txtMenuNM.Name = "txtMenuNM";
-            this.txtMenuNM.Size = new System.Drawing.Size(170, 25);
-            this.txtMenuNM.TabIndex = 4;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(45, 238);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 19);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "권한문자";
-            // 
-            // txtAuthType
-            // 
-            this.txtAuthType.Location = new System.Drawing.Point(147, 168);
-            this.txtAuthType.Name = "txtAuthType";
-            this.txtAuthType.Size = new System.Drawing.Size(170, 25);
-            this.txtAuthType.TabIndex = 6;
-            // 
-            // cboAuthNM
-            // 
-            this.cboAuthNM.FormattingEnabled = true;
-            this.cboAuthNM.Location = new System.Drawing.Point(147, 232);
-            this.cboAuthNM.Name = "cboAuthNM";
-            this.cboAuthNM.Size = new System.Drawing.Size(170, 25);
-            this.cboAuthNM.TabIndex = 7;
             // 
             // frmAuthority
             // 
@@ -238,6 +238,6 @@ namespace Team2_Project
         private System.Windows.Forms.TextBox txtScreenCode;
         private System.Windows.Forms.ComboBox cboAuthNM;
         private System.Windows.Forms.TextBox txtAuthType;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblAuth;
     }
 }

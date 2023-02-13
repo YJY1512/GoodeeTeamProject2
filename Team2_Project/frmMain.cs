@@ -68,13 +68,6 @@ namespace Team2_Project
                 menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
                 DrawSideMenu();
                 pnlChildMenu.Visible = false;
-                //menuTree.ItemHeight = 30;
-                //menuTree.ExpandAll();
-                //menuTree.ShowLines = false;
-                //menuTree.ShowRootLines = false;
-                //menuTree.AfterSelect += MenuTree_AfterSelect;
-                //menuTree.Font = new Font("나눔고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(129)));
-                //menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
                 chkHide.Checked = true;
                 RoadClickEvent();
                 OpenChildPage("frmDashBoard" , "HOME");
