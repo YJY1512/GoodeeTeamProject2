@@ -54,6 +54,7 @@ namespace Team2_Project_DAO
                             Del = (Convert.ToInt32(reader["Del"]) == 1) ? true : false,
                             Type = reader["Type"].ToString(),
                             Pre_Type = reader["Pre_Type"].ToString(),
+                            Pre_Type_NM = reader["Pre_Type_NM"].ToString(),
                             Sort_Index = Convert.ToInt32(reader["Sort_Index"])
                         });
                     }

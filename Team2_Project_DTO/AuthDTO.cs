@@ -20,6 +20,7 @@ namespace Team2_Project_DTO
         public bool Del         { get; set; }
         public string Type        { get; set; }
         public string Pre_Type    { get; set; }
+        public string Pre_Type_NM { get; set; }
         public int    Sort_Index  { get; set; }
     } 
 }

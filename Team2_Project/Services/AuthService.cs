@@ -18,5 +18,14 @@ namespace Team2_Project.Services
 
             return list;
         }
+
+        public bool SaveAuthority(string grpCode, string userID, List<AuthDTO> authList)
+        {
+            AuthDAO db = new AuthDAO();
+            bool result = db.SaveAuthority(grpCode, userID, authList);
+            db.Dispose();
+
+            return result;
+        }
     }
 }
