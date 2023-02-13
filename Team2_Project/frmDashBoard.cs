@@ -135,7 +135,7 @@ namespace Team2_Project
 
         private void ProductionHistoryData(DataGridView dgv) //생산실적현황 (시간대별)
         {
-            //WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
+            //WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit, Ins_Date
             DataGridViewUtil.SetInitDataGridView(dgv);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 200, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "시작시간대", "Start_Hour", 150, DataGridViewContentAlignment.MiddleRight);
@@ -143,7 +143,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량단위", "Prd_Unit", 120, DataGridViewContentAlignment.MiddleCenter);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "등록일자", "Ins_Date", 120, DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "등록일자", "Ins_Date", 120);
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.GetProductionHistory();
             if (ProductionHistoryList.Count > 0)

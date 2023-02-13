@@ -194,7 +194,7 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"SELECT TOP 10 WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit, Ins_Date
+                string sql = @"SELECT TOP 10 WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit, CONVERT(VARCHAR(18), Ins_Date, 23) Ins_Date 
                                  FROM Time_Production_History 
 								ORDER BY Ins_Date DESC"; //--WHERE Ins_Date = getdate()
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
