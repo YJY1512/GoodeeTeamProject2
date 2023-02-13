@@ -35,7 +35,7 @@ namespace Team2_Project
             dgvDataA.DataSource = dgvDataB.DataSource = null;
             lblMsg1.Visible = lblMsg2.Visible = false;
             mappingList = srv.GetData(empID);
-            if (mappingList.Count > 0)
+            if (mappingList.Count > 0 && mappingList != null)
             {
                 lblTitleUp.Text = mappingList.Where(x => x.Loc.Equals("U")).Select((x) => x.Title_Ko).ToList().FirstOrDefault() ?? string.Empty;
                 lblTitleDown.Text = mappingList.Where(x => x.Loc.Equals("L")).Select((x) => x.Title_Ko).ToList().FirstOrDefault() ?? string.Empty;

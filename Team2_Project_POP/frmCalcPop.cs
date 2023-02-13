@@ -15,7 +15,8 @@ namespace Team2_Project_POP
     public partial class frmCalcPop : Form
     {
         StringBuilder sb = new StringBuilder();
-        
+        PoPService ser = new PoPService();
+
         public frmCalcPop()
         {
             InitializeComponent();
@@ -52,10 +53,36 @@ namespace Team2_Project_POP
 
         private void btnInput_Click(object sender, EventArgs e)
         {
-            ((frmParent)Owner).PDQtyP = Convert.ToInt32(sb.ToString());
+            bool result = false;
+            if (this.Tag.ToString() == "Prd")
+            {
+                //((frmParent)Owner).SelectedWorkOrder
+                PopPrdQtyDTO inPrd = new PopPrdQtyDTO {
+                    WorkOrderNo = ((frmParent)Owner).SelectedWorkOrder.WorkOrderNo,
+                    Item_Code = ((frmParent)Owner).SelectedWorkOrder.PrdCode,
+                    Item_Rank = "",
+                    Item_Qty = Convert.ToInt32(sb.ToString()),
+                    Item_time = DateTime.Now
+                };
+                result = ser.InPrd(inPrd);
+            }
+            else if(this.Tag.ToString() == "Def")
+            {
+                PopDefQtyDTO inDef = new PopDefQtyDTO{
+                    WorkOrderNo = ((frmParent)Owner).SelectedWorkOrder.WorkOrderNo,
+                    Item_Code = ((frmParent)Owner).SelectedWorkOrder.PrdCode,
+                    Item_Qty = Convert.ToInt32(sb.ToString()),
+                    DefMaCode = ((frmParent)Owner).DefMaCodeP,
+                    DefMiCode = ((frmParent)Owner).DefMiCodeP,
+                    Item_time = DateTime.Now
+                };
+                result = ser.InDef(inDef);
+            }
+
+            if (!result) MessageBox.Show("입력 오류");
+
+            //((frmParent)Owner).PDQtyP = Convert.ToInt32(sb.ToString());
          
-            DialogResult = DialogResult.OK;
-            
             this.Close();
         }
     }

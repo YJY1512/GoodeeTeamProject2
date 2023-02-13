@@ -17,7 +17,7 @@ namespace Team2_Project
     public partial class frmMonthProductionHistory : Team2_Project.frmList
     {
         AnalysisService srv = new AnalysisService();
-        List<ItemDTO> itemList = new List<ItemDTO>();
+        List<ItemDTO> itemList;
         List<MonthProductionHistoryDTO> MTHistoryList = new List<MonthProductionHistoryDTO>();
 
         public frmMonthProductionHistory()
@@ -57,11 +57,11 @@ namespace Team2_Project
             foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
             string[] dotPersentCell = new string[] { "AttainmentRate", "QualityRate", "OperatingRate", "DefectRate" };
-            foreach (string item in dotPersentCell)
-            {
-                dgvData.Columns[item].DefaultCellStyle.Format = "N0";
-                //dgvData.Columns[item].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
-            }
+            //foreach (string item in dotPersentCell)
+            //{
+            //    dgvData.Columns[item].DefaultCellStyle.Format = "N0";
+            //    //dgvData.Columns[item].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
+            //}
 
                 dgvData.ColumnHeadersDefaultCellStyle.Font = dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
             this.dgvData.Columns["Item_Name"].Frozen = true;
@@ -88,31 +88,32 @@ namespace Team2_Project
         {
             string from = dtpDate.Value.ToString("yyyy-MM") + "-01";
             string to = dtpDate.Value.AddMonths(1).ToString("yyyy-MM") + "-01";
+            //List<MonthProductionHistoryDTO> list = null;
 
             MTHistoryList = srv.GetMonthProductionHistory(from, to);
             if (MTHistoryList != null && MTHistoryList.Count > 0)
             {
-                AdvancedListBind(MTHistoryList, dgvData);
-
-                //if ()
-                //{
-                //    AdvancedListBind(MTHistoryList, dgvData);
-                //}
-                //else
-                //{
-                //    AdvancedListBind(MTHistoryList, dgvData);
-                //}
-
-                if (dgvData.Rows.Count > 0)
-                {
-                    if (dgvData.CurrentRow != null)
-                        dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
-                }
+                string ItemSC = ucItemSearch._Code ?? "";
+                if (MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList() == null) //조회조건없을 때
+                    AdvancedListBind(MTHistoryList, dgvData);
                 else
-                    chtDataPie.Series.Clear();
+                {
+                    MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건있을 때
+                    AdvancedListBind(MTHistoryList, dgvData);
+                }
+
+                if (dgvData.Rows.Count > 0) //데이터가 있을 때
+                {
+                    ChartData();
+                }
             }
             else
+            {
                 dgvData.DataSource = null;
+                chtDataPie.Series.Clear();
+                chtDataLine.Series.Clear();
+            }
+
         }
 
         public void OnReLoad()  //새로고침
@@ -132,11 +133,11 @@ namespace Team2_Project
         {
             //1. 조회조건으로 검색하면  (DB에서 List<생산현황>가져와서)   dgv가 뜸 
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
-            if (e.RowIndex < 0) return;
-            else if (dgvData.Rows.Count > 0)
-            {
-                ChartData();
-            }
+            //if (e.RowIndex < 0) return;
+            //else if (dgvData.Rows.Count > 0)
+            //{
+            //    ChartData();
+            //}
         }
 
         public void ChartData() //(테스트중)반복부분 메서드만들어서 수정해야함
@@ -152,7 +153,7 @@ namespace Team2_Project
                     else if (rdoPlanQty.Checked) chartTitle = "월별 제품 목표량";
                     else if (rdoInQty.Checked) chartTitle = "월별 제품 투입량";
                     else if (rdoOutQty.Checked) chartTitle = "월별 제품 산출량";
-                    else if (rdoLossQty.Checked) chartTitle = "월별 제품 Loss수량";
+                    else if (rdoLossQty.Checked) chartTitle = "월별 제품 불량수량";
 
                     int num = 0;
                     int colors = 5;
@@ -181,25 +182,27 @@ namespace Team2_Project
                         else if (chartTitle.Equals("월별 제품 목표량")) TotQty = item.TotPlanQty;
                         else if (chartTitle.Equals("월별 제품 투입량")) TotQty = item.TotInQty;
                         else if (chartTitle.Equals("월별 제품 산출량")) TotQty = item.TotOutQty;
-                        else if (chartTitle.Equals("월별 제품 Loss수량")) TotQty = item.TotDefectQty;
+                        else if (chartTitle.Equals("월별 제품 불량수량")) TotQty = item.TotDefectQty;
 
                         chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
                         chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        //chtDataPie.Series[chartTitle].Points[num].LabelFormat = "N2";
 
                         if (rdoChartTwo.Checked)
                         {
                             chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
-                            chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                            chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
                             chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                            //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         }
                         num++;
                         colors += 7;
                     }
                 }
-            }
-            
+            }            
         }
+
         private CommonPop<ItemDTO> GetItemPopInfo()
         {
             if (itemList == null)
@@ -263,7 +266,7 @@ namespace Team2_Project
                     dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
 
 
-                if (dgvData.CurrentRow != null) dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                if (dgvData.Rows.Count > 0) ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
                 else chtDataPie.Series.Clear();
 
                 dgvData.ClearSelection();

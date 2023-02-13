@@ -5,7 +5,7 @@
         <a href="#" class="nav-link @(Session["SelectedAM"] != null && (Session["SelectedAM"].ToString() == ViewBag.PMenuList[0].MenuAM || Session["SelectedAM"].ToString() == ViewBag.PMenuList[1].MenuAM) ? "active" : "")">
             <i class="nav-icon fas fa-chart-bar"></i>
             <p>
-                생산지시 분석 조회
+                작업지시 분석
                 <i class="right fas fa-angle-left"></i>
             </p>
         </a>
@@ -25,7 +25,7 @@
         <a href="#" class="nav-link @(Session["SelectedAM"] != null && (Session["SelectedAM"].ToString() == ViewBag.MenuList[0].MenuAM || Session["SelectedAM"].ToString() == ViewBag.MenuList[1].MenuAM || Session["SelectedAM"].ToString() == ViewBag.MenuList[2].MenuAM) ? "active" : "")">
             <i class="nav-icon fas fa-chart-bar"></i>
             <p>
-                현황 조회
+                업무현황
                 <i class="right fas fa-angle-left"></i>
             </p>
         </a>

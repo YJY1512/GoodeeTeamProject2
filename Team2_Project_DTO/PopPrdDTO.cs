@@ -12,7 +12,7 @@ namespace Team2_Project_DTO
         public string WorkLineCode { get; set; }
         public DateTime WorkOrderDate { get; set; }
         public DateTime PrdDate { get; set; }
-        public string WrokOrderNum { get; set; }
+        public string WorkOrderNo { get; set; }
         public string PrdName { get; set; }
         public string PrdCode { get; set; }
         public int PlanQty { get; set; }
@@ -78,7 +78,6 @@ namespace Team2_Project_DTO
     }
     public class PopDefQtyDTO
     {
-        public DateTime Item_time { get; set; }
         public string WorkOrderNo { get; set; }
         public string Item_Code { get; set; }
         public int Item_Qty { get; set; }
@@ -86,6 +85,7 @@ namespace Team2_Project_DTO
         public string DefMaName { get; set; }
         public string DefMiCode { get; set; }
         public string DefMiName { get; set; }
+        public DateTime Item_time { get; set; }
     }
 
     public class DefVO
