@@ -369,7 +369,7 @@ namespace Team2_Project
             this.rdoLossQty.Size = new System.Drawing.Size(82, 21);
             this.rdoLossQty.TabIndex = 85;
             this.rdoLossQty.TabStop = true;
-            this.rdoLossQty.Text = "Loss수량";
+            this.rdoLossQty.Text = "불량수량";
             this.rdoLossQty.UseVisualStyleBackColor = false;
             this.rdoLossQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
