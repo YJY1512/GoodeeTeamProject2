@@ -57,11 +57,11 @@ namespace Team2_Project
             foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
             string[] dotPersentCell = new string[] { "AttainmentRate", "QualityRate", "OperatingRate", "DefectRate" };
-            foreach (string item in dotPersentCell)
-            {
-                dgvData.Columns[item].DefaultCellStyle.Format = "N0";
-                //dgvData.Columns[item].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
-            }
+            //foreach (string item in dotPersentCell)
+            //{
+            //    dgvData.Columns[item].DefaultCellStyle.Format = "N0";
+            //    //dgvData.Columns[item].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
+            //}
 
                 dgvData.ColumnHeadersDefaultCellStyle.Font = dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
             this.dgvData.Columns["Item_Name"].Frozen = true;
@@ -88,20 +88,22 @@ namespace Team2_Project
         {
             string from = dtpDate.Value.ToString("yyyy-MM") + "-01";
             string to = dtpDate.Value.AddMonths(1).ToString("yyyy-MM") + "-01";
+            List<MonthProductionHistoryDTO> list = null;
 
             MTHistoryList = srv.GetMonthProductionHistory(from, to);
             if (MTHistoryList != null && MTHistoryList.Count > 0)
             {
-                AdvancedListBind(MTHistoryList, dgvData);
+                //AdvancedListBind(MTHistoryList, dgvData);
 
-                //if ()
-                //{
-                //    AdvancedListBind(MTHistoryList, dgvData);
-                //}
-                //else
-                //{
-                //    AdvancedListBind(MTHistoryList, dgvData);
-                //}
+                string ItemSC = ucItemSearch._Code ?? "";
+
+                if (MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList() == null)
+                    AdvancedListBind(MTHistoryList, dgvData);
+                else
+                {
+                    list = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList();
+                    AdvancedListBind(list, dgvData);
+                }
 
                 if (dgvData.Rows.Count > 0)
                 {
@@ -152,7 +154,7 @@ namespace Team2_Project
                     else if (rdoPlanQty.Checked) chartTitle = "월별 제품 목표량";
                     else if (rdoInQty.Checked) chartTitle = "월별 제품 투입량";
                     else if (rdoOutQty.Checked) chartTitle = "월별 제품 산출량";
-                    else if (rdoLossQty.Checked) chartTitle = "월별 제품 Loss수량";
+                    else if (rdoLossQty.Checked) chartTitle = "월별 제품 불량수량";
 
                     int num = 0;
                     int colors = 5;
@@ -181,25 +183,27 @@ namespace Team2_Project
                         else if (chartTitle.Equals("월별 제품 목표량")) TotQty = item.TotPlanQty;
                         else if (chartTitle.Equals("월별 제품 투입량")) TotQty = item.TotInQty;
                         else if (chartTitle.Equals("월별 제품 산출량")) TotQty = item.TotOutQty;
-                        else if (chartTitle.Equals("월별 제품 Loss수량")) TotQty = item.TotDefectQty;
+                        else if (chartTitle.Equals("월별 제품 불량수량")) TotQty = item.TotDefectQty;
 
                         chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
                         chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        //chtDataPie.Series[chartTitle].Points[num].LabelFormat = "N2";
 
                         if (rdoChartTwo.Checked)
                         {
                             chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
-                            chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                            chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
                             chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                            //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         }
                         num++;
                         colors += 7;
                     }
                 }
-            }
-            
+            }            
         }
+
         private CommonPop<ItemDTO> GetItemPopInfo()
         {
             if (itemList == null)
