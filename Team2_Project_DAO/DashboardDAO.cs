@@ -194,9 +194,9 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"SELECT WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
+                string sql = @"SELECT TOP 10 WorkOrderNo, Start_Hour, In_Qty_Main, Out_Qty_Main, Prd_Qty, Prd_Unit
                                  FROM Time_Production_History 
-                                WHERE Ins_Date = getdate()";
+								ORDER BY Ins_Date DESC"; //--WHERE Ins_Date = getdate()
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     //cmd.CommandType = CommandType.StoredProcedure;
