@@ -25,7 +25,6 @@ namespace Team2_Project
         List<UserGroupAuthorityDTO> grpList = null;
         string empID;
         string grpCode;
-        string[] comboList = ["Y", "N" , "R" , "CRUD"];
         public frmAuthority()
         {
             InitializeComponent();
@@ -203,7 +202,6 @@ namespace Team2_Project
                 ((frmMain)this.MdiParent).EditClickEvent();
                 return;
             }
-
 
             bool result = srv.SaveAuthority(grpCode, empID, authList);
             if (result)
