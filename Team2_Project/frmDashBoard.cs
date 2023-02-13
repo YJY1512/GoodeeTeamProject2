@@ -100,7 +100,7 @@ namespace Team2_Project
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
         {
             DataGridViewUtil.SetInitDataGridView(dgv);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시상태", "Wo_Status", 20, DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시상태", "Wo_Status", 200, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시일자", "Plan_Date", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
