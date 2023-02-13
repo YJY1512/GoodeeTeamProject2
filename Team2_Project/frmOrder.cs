@@ -51,7 +51,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목코드", "Item_Code", 120); //7
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "품목명", "Item_Name", 140); //8
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "수량", "Req_Qty", 80, align: DataGridViewContentAlignment.MiddleRight); //9
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 515); //10
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "비고", "Remark", 490); //10
             dgvOrder.MultiSelect = false;
 
             foreach (int i in orangeCols)
@@ -323,7 +323,7 @@ namespace Team2_Project
 
         private void SetDtpCell(DataGridViewCell cell)
         {
-            dgvOrder.ScrollBars = ScrollBars.None;
+            //dgvOrder.ScrollBars = ScrollBars.None;
             DateTimePicker dtp = new DateTimePicker();
             dtp.Format = DateTimePickerFormat.Short;
             dtp.Visible = true;
