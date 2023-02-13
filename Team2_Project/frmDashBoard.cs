@@ -143,6 +143,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량단위", "Prd_Unit", 120, DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "등록일자", "Ins_Date", 120, DataGridViewContentAlignment.MiddleCenter);
             List<TimeProductionHistoryDTO> ProductionHistoryList = new List<TimeProductionHistoryDTO>();
             ProductionHistoryList = srv.GetProductionHistory();
             if (ProductionHistoryList.Count > 0)
