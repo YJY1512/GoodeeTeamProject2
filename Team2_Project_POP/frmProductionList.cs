@@ -14,20 +14,53 @@ namespace Team2_Project_POP
 {
     public partial class frmProductionList : Form
     {
-        List<WorkOrderDTO> workList = null;
+        //List<WorkOrderDTO> workList = null;
 
         PoPService serv = new PoPService();
 
-        Controls.ucList selectedList = null;
+        Controls.ucList selectedOrder = null;
 
         public frmProductionList()
         {
             InitializeComponent();
         }
 
+        private void frmProductionList_Activated(object sender, EventArgs e)
+        {
+            pnlList.Controls.Clear();
+            for (int i = 0; i < ((frmParent)this.MdiParent).WorkOrderList.Count; i++)
+            {
+                Controls.ucList list = new Controls.ucList();
+
+                list.Size = new Size(100, 100);
+                list.Dock = DockStyle.Top;
+                list.Name = $"list{i}";
+                list.Status = ((frmParent)this.MdiParent).WorkOrderList[i].Wo_Status;
+                list.Status_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wo_Status_Code;
+                list.Plan_Date = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Date;
+                list.Prd_Date = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Date;
+                list.WorkOrderNo = ((frmParent)this.MdiParent).WorkOrderList[i].WorkOrderNo;
+                list.ItemName = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Name;
+                list.ItemCode = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Code;
+                list.PlanQty = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Qty_Box;
+                list.Prd_Qty = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Qty;
+                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_StartTime;
+                list.EndTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_EndTime;
+                list.Remark = ((frmParent)this.MdiParent).WorkOrderList[i].Remark;
+                list.Wc_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wc_Code;
+                list.isClick = false;
+
+                list.UcListClick += List_ucListClick;
+
+                pnlList.Controls.Add(list);
+            }
+
+        }
+
         private void frmProductionList_Load(object sender, EventArgs e)
         {
             ((frmParent)this.MdiParent).btnBack.Visible = false;
+
             int screenWidh = Screen.PrimaryScreen.Bounds.Width;
             btnStart.Size = btnStop.Size = btnPalette.Size = btnPerfomance.Size = btnFinish.Size = btnNonP.Size = new Size(screenWidh / 6, 150);
             btnStop.Location = new Point((screenWidh / 6), 0);
@@ -35,66 +68,6 @@ namespace Team2_Project_POP
             btnPerfomance.Location = new Point((screenWidh / 6) * 3, 0);
             btnFinish.Location = new Point((screenWidh / 6) * 4, 0);
             btnNonP.Location = new Point((screenWidh / 6) * 5, 0);
-
-            workList = ((frmParent)this.MdiParent).LoginedOrders;
-
-            for (int i = 0; i < workList.Count; i++)
-            {
-                Controls.ucList list = new Controls.ucList();
-                
-                list.Size = new Size(100, 100);
-                list.Dock = DockStyle.Top;
-                list.Name = $"list{i}";
-                list.Status = workList[i].Wo_Status;
-                list.Status_Code = workList[i].Wo_Status_Code;
-                list.Plan_Date = workList[i].Plan_Date;
-                list.Prd_Date = workList[i].Prd_Date;
-                list.WorkOrderNo = workList[i].WorkOrderNo;
-                list.ItemName = workList[i].Item_Name;
-                list.ItemCode = workList[i].Item_Code;
-                list.PlanQty = workList[i].Plan_Qty_Box;
-                list.Prd_Qty = workList[i].Prd_Qty;
-                list.StartTime = workList[i].Prd_StartTime;
-                list.EndTime = workList[i].Prd_EndTime;
-                list.Remark = workList[i].Remark;
-                list.Wc_Code = workList[i].Wc_Code;
-                list.isClick = false;
-
-                list.UcListClick += List_ucListClick;
-                
-                pnlList.Controls.Add(list);
-            }
-
-
-        }
-
-        private void List_ucListLeave(object sender, EventArgs e)
-        {
-            if (((Controls.ucList)sender).isClick) return;
-
-            ((Controls.ucList)sender).lblPlanDate.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblProductDate.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblProcessNum.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblProductName.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblPlanQty.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblIngQty.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblStartTime.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblFinishTime.BackColor = Color.LightSkyBlue;
-            ((Controls.ucList)sender).lblRemark.BackColor = Color.LightSkyBlue;
-        }
-
-        private void List_ucListEnter(object sender, EventArgs e)
-        {
-            if (((Controls.ucList)sender).isClick) return;
-            ((Controls.ucList)sender).lblPlanDate.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblProductDate.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblProcessNum.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblProductName.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblPlanQty.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblIngQty.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblStartTime.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblFinishTime.BackColor = Color.GreenYellow;
-            ((Controls.ucList)sender).lblRemark.BackColor = Color.GreenYellow;
         }
 
         private void List_ucListClick(object sender, EventArgs e)
@@ -102,7 +75,9 @@ namespace Team2_Project_POP
             if (((Controls.ucList)sender).isClick)
             {
                 ((Controls.ucList)sender).isClick = false;
-                selectedList = null;
+                selectedOrder = null;
+                ((frmParent)MdiParent).SelectedWorkOrder = new PopPrdDTO();
+                
                 ((Controls.ucList)sender).lblPlanDate.BackColor = Color.LightSkyBlue;
                 ((Controls.ucList)sender).lblProductDate.BackColor = Color.LightSkyBlue;
                 ((Controls.ucList)sender).lblProcessNum.BackColor = Color.LightSkyBlue;
@@ -131,9 +106,8 @@ namespace Team2_Project_POP
                         ((Controls.ucList)listitem).lblRemark.BackColor = Color.LightSkyBlue;
                     }
                 }
-
                 ((Controls.ucList)sender).isClick = true;
-                selectedList = (Controls.ucList)sender;
+                selectedOrder = (Controls.ucList)sender;
                 ((Controls.ucList)sender).lblPlanDate.BackColor = Color.Pink;
                 ((Controls.ucList)sender).lblProductDate.BackColor = Color.Pink;
                 ((Controls.ucList)sender).lblProcessNum.BackColor = Color.Pink;
@@ -145,77 +119,117 @@ namespace Team2_Project_POP
                 ((Controls.ucList)sender).lblRemark.BackColor = Color.Pink;
             }
         }
-
+        /// <summary>
+        /// Start
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (selectedList == null) return;
+            if (selectedOrder == null || selectedOrder.Status_Code == "W02" || selectedOrder.Status_Code == "W04") return;
 
             // 대기 >>  생산 중인 경우
 
-            ((frmParent)this.MdiParent).LoginedOrders = serv.StartWork(selectedList.WorkOrderNo, ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Code);
-            pnlList.Controls.Clear();
+            ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W02");
+            frmProductionList_Activated(this, e);
+        }
+        /// <summary>
+        /// Stop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            if (selectedOrder == null || selectedOrder.Status_Code != "W02") return;
 
-            workList = ((frmParent)this.MdiParent).LoginedOrders;
-
-            for (int i = 0; i < workList.Count; i++)
-            {
-                Controls.ucList list = new Controls.ucList();
-
-                list.Size = new Size(100, 100);
-                list.Dock = DockStyle.Top;
-                list.Name = $"list{i}";
-                list.Status = workList[i].Wo_Status;
-                list.Status_Code = workList[i].Wo_Status_Code;
-                list.Plan_Date = workList[i].Plan_Date;
-                list.Prd_Date = workList[i].Prd_Date;
-                list.WorkOrderNo = workList[i].WorkOrderNo;
-                list.ItemName = workList[i].Item_Name;
-                list.ItemCode = workList[i].Item_Code;
-                list.PlanQty = workList[i].Plan_Qty_Box;
-                list.Prd_Qty = workList[i].Prd_Qty;
-                list.StartTime = workList[i].Prd_StartTime;
-                list.EndTime = workList[i].Prd_EndTime;
-                list.Remark = workList[i].Remark;
-                list.Wc_Code = workList[i].Wc_Code;
-                list.isClick = false;
-
-                list.UcListClick += List_ucListClick;
-                pnlList.Controls.Add(list);
-            }
+            ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W03");
+            frmProductionList_Activated(this, e);
+        }
+        /// <summary>
+        /// 팔렛트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPalette_Click(object sender, EventArgs e)
+        {
+            frmPalette frm = new frmPalette();
+            frm.MdiParent = MdiParent;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
 
+        /// <summary>
+        /// 현장마감
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFinish_Click(object sender, EventArgs e)
+        {
+            if (selectedOrder == null || selectedOrder.Status_Code != "W02" || selectedOrder.PlanQty > selectedOrder.Prd_Qty) return;
+
+            ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W04");
+            frmProductionList_Activated(this, e);
+        }
+        /// <summary>
+        /// 실적등록
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPerfomance_Click(object sender, EventArgs e)
         {
-            if (selectedList == null || selectedList.Status_Code != "W02") return;
+            if (selectedOrder == null || selectedOrder.Status_Code != "W02") return;
 
-            PopPrdDTO selected = new PopPrdDTO
-            {
-                WorkLineName = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Name,
-                WorkLineCode = ((frmParent)this.MdiParent).LoginedWorkCenter.Wc_Code,
-                WorkOrderDate = selectedList.Plan_Date,
-                PrdDate = selectedList.Prd_Date,
-                WrokOrderNum = selectedList.WorkOrderNo,
-                PrdCode = selectedList.ItemCode,
-                PrdName = selectedList.ItemName,
-                PlanQty = selectedList.PlanQty,
-                PrdStartTime = selectedList.StartTime,
-                PrdEndTime = selectedList.EndTime,
-                Remark = selectedList.Remark
-            };
+            ((frmParent)this.MdiParent).SelectedWorkOrder = serv.SetWrorkOrder(selectedOrder.WorkOrderNo);
 
-            ((frmParent)this.MdiParent).SelectedWorkLine = selected;
+            //PopPrdDTO selected = new PopPrdDTO
+            //{
+            //    WorkLineName = ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Name,
+            //    WorkLineCode = ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code,
+            //    WorkOrderDate = selectedOrder.Plan_Date,
+            //    PrdDate = selectedOrder.Prd_Date,
+            //    WorkOrderNo = selectedOrder.WorkOrderNo,
+            //    PrdCode = selectedOrder.ItemCode,
+            //    PrdName = selectedOrder.ItemName,
+            //    PlanQty = selectedOrder.PlanQty,
+            //    PrdStartTime = selectedOrder.StartTime,
+            //    PrdEndTime = selectedOrder.EndTime,
+            //    Remark = selectedOrder.Remark
+            //};
+
+            //((frmParent)this.MdiParent).SelectedWorkOrder = selected;
 
             frmPerformance frm = new frmPerformance();
             frm.MdiParent = this.MdiParent;
             frm.WindowState = FormWindowState.Maximized;
             
             frm.Show();
+
+            frmProductionList_Activated(this, e);
         }
 
-        private void frmProductionList_Activated(object sender, EventArgs e)
+        
+        
+        /// <summary>
+        /// 비가동
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNonP_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("이게 맞나 싶다 ");                                                                                                                  
-            
+            if (selectedOrder == null || selectedOrder.Status_Code != "W02") return;
+
+            frmNonOperate frm = new frmNonOperate();
+            frm.MdiParent = this.MdiParent;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+
+
+
+
+
+            frmProductionList_Activated(this, e);
+
         }
     }
 }

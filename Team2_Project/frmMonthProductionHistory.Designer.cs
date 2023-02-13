@@ -52,7 +52,7 @@ namespace Team2_Project
             this.rdoInQty = new System.Windows.Forms.RadioButton();
             this.rdoOutQty = new System.Windows.Forms.RadioButton();
             this.rdoPlanQty = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panCriteria = new System.Windows.Forms.Panel();
             this.rdoLossQty = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.pnlSub.SuspendLayout();
@@ -71,12 +71,12 @@ namespace Team2_Project
             this.splitContainerChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtDataLine)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panCriteria.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSub
             // 
-            this.pnlSub.Controls.Add(this.panel3);
+            this.pnlSub.Controls.Add(this.panCriteria);
             this.pnlSub.Controls.Add(this.label1);
             this.pnlSub.Controls.Add(this.ucItemSearch);
             this.pnlSub.Controls.Add(this.label6);
@@ -101,7 +101,7 @@ namespace Team2_Project
             // 
             // dtpDate
             // 
-            this.dtpDate.CustomFormat = "yyyy-mm";
+            this.dtpDate.CustomFormat = "yyyy-MM";
             this.dtpDate.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDate.Location = new System.Drawing.Point(111, 17);
@@ -169,6 +169,7 @@ namespace Team2_Project
             this.dgvData.Size = new System.Drawing.Size(1834, 330);
             this.dgvData.TabIndex = 4;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
+            this.dgvData.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvData_CellFormatting);
             // 
             // splitContainer1
             // 
@@ -297,7 +298,7 @@ namespace Team2_Project
             // 
             this.rdoPrdQty.AutoSize = true;
             this.rdoPrdQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoPrdQty.Location = new System.Drawing.Point(77, 9);
+            this.rdoPrdQty.Location = new System.Drawing.Point(68, 9);
             this.rdoPrdQty.Name = "rdoPrdQty";
             this.rdoPrdQty.Size = new System.Drawing.Size(82, 21);
             this.rdoPrdQty.TabIndex = 79;
@@ -310,12 +311,12 @@ namespace Team2_Project
             // 
             this.rdoInQty.AutoSize = true;
             this.rdoInQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoInQty.Location = new System.Drawing.Point(273, 9);
+            this.rdoInQty.Location = new System.Drawing.Point(260, 9);
             this.rdoInQty.Name = "rdoInQty";
-            this.rdoInQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoInQty.Size = new System.Drawing.Size(82, 21);
             this.rdoInQty.TabIndex = 80;
             this.rdoInQty.TabStop = true;
-            this.rdoInQty.Text = "투입량";
+            this.rdoInQty.Text = "투입수량";
             this.rdoInQty.UseVisualStyleBackColor = false;
             this.rdoInQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
@@ -323,12 +324,12 @@ namespace Team2_Project
             // 
             this.rdoOutQty.AutoSize = true;
             this.rdoOutQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoOutQty.Location = new System.Drawing.Point(364, 9);
+            this.rdoOutQty.Location = new System.Drawing.Point(356, 9);
             this.rdoOutQty.Name = "rdoOutQty";
-            this.rdoOutQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoOutQty.Size = new System.Drawing.Size(82, 21);
             this.rdoOutQty.TabIndex = 81;
             this.rdoOutQty.TabStop = true;
-            this.rdoOutQty.Text = "산출량";
+            this.rdoOutQty.Text = "산출수량";
             this.rdoOutQty.UseVisualStyleBackColor = false;
             this.rdoOutQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
@@ -336,39 +337,39 @@ namespace Team2_Project
             // 
             this.rdoPlanQty.AutoSize = true;
             this.rdoPlanQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoPlanQty.Location = new System.Drawing.Point(182, 9);
+            this.rdoPlanQty.Location = new System.Drawing.Point(164, 9);
             this.rdoPlanQty.Name = "rdoPlanQty";
-            this.rdoPlanQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoPlanQty.Size = new System.Drawing.Size(82, 21);
             this.rdoPlanQty.TabIndex = 82;
             this.rdoPlanQty.TabStop = true;
-            this.rdoPlanQty.Text = "목표량";
+            this.rdoPlanQty.Text = "목표수량";
             this.rdoPlanQty.UseVisualStyleBackColor = false;
             this.rdoPlanQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
-            // panel3
+            // panCriteria
             // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.rdoLossQty);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.rdoPrdQty);
-            this.panel3.Controls.Add(this.rdoPlanQty);
-            this.panel3.Controls.Add(this.rdoOutQty);
-            this.panel3.Controls.Add(this.rdoInQty);
-            this.panel3.Location = new System.Drawing.Point(741, 11);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(561, 37);
-            this.panel3.TabIndex = 83;
+            this.panCriteria.BackColor = System.Drawing.Color.Transparent;
+            this.panCriteria.Controls.Add(this.rdoLossQty);
+            this.panCriteria.Controls.Add(this.label5);
+            this.panCriteria.Controls.Add(this.rdoPrdQty);
+            this.panCriteria.Controls.Add(this.rdoPlanQty);
+            this.panCriteria.Controls.Add(this.rdoOutQty);
+            this.panCriteria.Controls.Add(this.rdoInQty);
+            this.panCriteria.Location = new System.Drawing.Point(741, 11);
+            this.panCriteria.Name = "panCriteria";
+            this.panCriteria.Size = new System.Drawing.Size(561, 37);
+            this.panCriteria.TabIndex = 83;
             // 
             // rdoLossQty
             // 
             this.rdoLossQty.AutoSize = true;
             this.rdoLossQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoLossQty.Location = new System.Drawing.Point(455, 10);
+            this.rdoLossQty.Location = new System.Drawing.Point(452, 10);
             this.rdoLossQty.Name = "rdoLossQty";
             this.rdoLossQty.Size = new System.Drawing.Size(82, 21);
             this.rdoLossQty.TabIndex = 85;
             this.rdoLossQty.TabStop = true;
-            this.rdoLossQty.Text = "Loss수량";
+            this.rdoLossQty.Text = "불량수량";
             this.rdoLossQty.UseVisualStyleBackColor = false;
             this.rdoLossQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
@@ -380,7 +381,7 @@ namespace Team2_Project
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 17);
             this.label5.TabIndex = 84;
-            this.label5.Text = "품목";
+            this.label5.Text = "기준";
             // 
             // frmMonthProductionHistory
             // 
@@ -408,8 +409,8 @@ namespace Team2_Project
             ((System.ComponentModel.ISupportInitialize)(this.chtDataLine)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panCriteria.ResumeLayout(false);
+            this.panCriteria.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -431,7 +432,7 @@ namespace Team2_Project
         private System.Windows.Forms.RadioButton rdoPrdQty;
         private System.Windows.Forms.RadioButton rdoPlanQty;
         private System.Windows.Forms.RadioButton rdoOutQty;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panCriteria;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton rdoLossQty;
         private System.Windows.Forms.SplitContainer splitContainerChart;

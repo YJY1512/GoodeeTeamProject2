@@ -44,18 +44,6 @@ namespace Team2_Project_POP
             this.lblWorkOrderNum = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDef = new System.Windows.Forms.Button();
-            this.btnDefCode = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pnlDef = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlPrd = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -66,17 +54,26 @@ namespace Team2_Project_POP
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnPrd = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnlDef = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnDef = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -285,7 +282,7 @@ namespace Team2_Project_POP
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnDef, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
@@ -298,158 +295,6 @@ namespace Team2_Project_POP
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1416, 575);
             this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel4.Controls.Add(this.btnDef, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnDefCode, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(566, 460);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(850, 115);
-            this.tableLayoutPanel4.TabIndex = 3;
-            // 
-            // btnDef
-            // 
-            this.btnDef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDef.Location = new System.Drawing.Point(402, 10);
-            this.btnDef.Margin = new System.Windows.Forms.Padding(10);
-            this.btnDef.Name = "btnDef";
-            this.btnDef.Size = new System.Drawing.Size(438, 95);
-            this.btnDef.TabIndex = 2;
-            this.btnDef.Text = "입력";
-            this.btnDef.UseVisualStyleBackColor = true;
-            this.btnDef.Click += new System.EventHandler(this.btnDef_Click);
-            // 
-            // btnDefCode
-            // 
-            this.btnDefCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDefCode.Location = new System.Drawing.Point(10, 10);
-            this.btnDefCode.Margin = new System.Windows.Forms.Padding(10);
-            this.btnDefCode.Name = "btnDefCode";
-            this.btnDefCode.Size = new System.Drawing.Size(372, 95);
-            this.btnDefCode.TabIndex = 1;
-            this.btnDefCode.Text = "불량코드";
-            this.btnDefCode.UseVisualStyleBackColor = true;
-            this.btnDefCode.Click += new System.EventHandler(this.btnDefCode_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.pnlDef);
-            this.panel3.Controls.Add(this.panel6);
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(566, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(850, 460);
-            this.panel3.TabIndex = 1;
-            // 
-            // pnlDef
-            // 
-            this.pnlDef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDef.Location = new System.Drawing.Point(0, 100);
-            this.pnlDef.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlDef.Name = "pnlDef";
-            this.pnlDef.Size = new System.Drawing.Size(770, 360);
-            this.pnlDef.TabIndex = 3;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.tableLayoutPanel6);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(770, 100);
-            this.panel6.TabIndex = 2;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutPanel6.ColumnCount = 4;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel6.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label15, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label7, 3, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(770, 100);
-            this.tableLayoutPanel6.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.DarkBlue;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(387, 2);
-            this.label2.Margin = new System.Windows.Forms.Padding(2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(265, 96);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "등록일시";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.BackColor = System.Drawing.Color.DarkBlue;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(79, 2);
-            this.label15.Margin = new System.Windows.Forms.Padding(2);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(304, 96);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "불량분류";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.DarkBlue;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(2, 2);
-            this.label8.Margin = new System.Windows.Forms.Padding(2);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 96);
-            this.label8.TabIndex = 7;
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.DarkBlue;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(656, 2);
-            this.label7.Margin = new System.Windows.Forms.Padding(2);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 96);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "불량수량";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(770, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(80, 460);
-            this.panel5.TabIndex = 1;
             // 
             // panel1
             // 
@@ -575,6 +420,130 @@ namespace Team2_Project_POP
             this.btnPrd.UseVisualStyleBackColor = true;
             this.btnPrd.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(770, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(80, 460);
+            this.panel5.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.tableLayoutPanel6);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(770, 100);
+            this.panel6.TabIndex = 2;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutPanel6.ColumnCount = 4;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel6.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label15, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label7, 3, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(770, 100);
+            this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.DarkBlue;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(656, 2);
+            this.label7.Margin = new System.Windows.Forms.Padding(2);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 96);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "불량수량";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.DarkBlue;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(2, 2);
+            this.label8.Margin = new System.Windows.Forms.Padding(2);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 96);
+            this.label8.TabIndex = 7;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.DarkBlue;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(79, 2);
+            this.label15.Margin = new System.Windows.Forms.Padding(2);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(304, 96);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "불량분류";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.DarkBlue;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(387, 2);
+            this.label2.Margin = new System.Windows.Forms.Padding(2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(265, 96);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "등록일시";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlDef
+            // 
+            this.pnlDef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDef.Location = new System.Drawing.Point(0, 100);
+            this.pnlDef.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlDef.Name = "pnlDef";
+            this.pnlDef.Size = new System.Drawing.Size(770, 360);
+            this.pnlDef.TabIndex = 3;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pnlDef);
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(566, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(850, 460);
+            this.panel3.TabIndex = 1;
+            // 
+            // btnDef
+            // 
+            this.btnDef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDef.Location = new System.Drawing.Point(576, 470);
+            this.btnDef.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDef.Name = "btnDef";
+            this.btnDef.Size = new System.Drawing.Size(830, 95);
+            this.btnDef.TabIndex = 3;
+            this.btnDef.Text = "불량 입력";
+            this.btnDef.UseVisualStyleBackColor = true;
+            this.btnDef.Click += new System.EventHandler(this.btnDef_Click);
+            // 
             // frmPerformance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -591,14 +560,13 @@ namespace Team2_Project_POP
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -619,27 +587,25 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label lblWorkOrderNum;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button btnDef;
-        private System.Windows.Forms.Button btnDefCode;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnPrd;
-        private System.Windows.Forms.Panel pnlDef;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel pnlPrd;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnDef;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlDef;
+        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel5;
     }
 }

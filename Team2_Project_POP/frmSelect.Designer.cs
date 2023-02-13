@@ -30,7 +30,6 @@ namespace Team2_Project_POP
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblClear = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,23 +46,12 @@ namespace Team2_Project_POP
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.panel1.Controls.Add(this.lblClear);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1253, 120);
             this.panel1.TabIndex = 0;
-            // 
-            // lblClear
-            // 
-            this.lblClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblClear.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.lblClear.Image = global::Team2_Project_POP.Properties.Resources.png__10_;
-            this.lblClear.Location = new System.Drawing.Point(1144, 16);
-            this.lblClear.Name = "lblClear";
-            this.lblClear.Size = new System.Drawing.Size(94, 93);
-            this.lblClear.TabIndex = 2;
             // 
             // lblTitle
             // 
@@ -134,11 +122,14 @@ namespace Team2_Project_POP
             // 
             this.ucTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucTitle.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucTitle.Group = "그  룹";
             this.ucTitle.Location = new System.Drawing.Point(0, 0);
             this.ucTitle.Margin = new System.Windows.Forms.Padding(0);
             this.ucTitle.Name = "ucTitle";
             this.ucTitle.Size = new System.Drawing.Size(982, 120);
+            this.ucTitle.Statuse = "상  태";
             this.ucTitle.TabIndex = 0;
+            this.ucTitle.WorkSpace = "작 업 장";
             // 
             // frmSelect
             // 
@@ -152,6 +143,7 @@ namespace Team2_Project_POP
             this.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
             this.Name = "frmSelect";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.frmSelect_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -167,7 +159,6 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblClear;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel2;

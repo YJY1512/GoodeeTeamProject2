@@ -56,13 +56,9 @@ namespace Team2_Project_POP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string maName = dgvMaDef.SelectedRows[0].Cells[0].Value.ToString();
-            string miName = dgvMiDef.SelectedRows[0].Cells[0].Value.ToString();
-
-            ((frmParent)Owner).DefMaCodeP = defList.First((a) => a.Name == maName).Code;
-            ((frmParent)Owner).DefMaNameP = maName;
-            ((frmParent)Owner).DefMiCodeP = defList.First((a) => a.Name == miName).Code;
-            ((frmParent)Owner).DefMiNameP = miName;
+            
+            ((frmParent)Owner).DefMaCodeP = dgvMaDef.SelectedRows[0].Cells[1].Value.ToString();
+            ((frmParent)Owner).DefMiCodeP = dgvMiDef.SelectedRows[0].Cells[1].Value.ToString();
 
             DialogResult = DialogResult.OK;
             this.Close();

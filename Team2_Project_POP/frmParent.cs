@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_Project_DTO;
 
@@ -13,14 +7,29 @@ namespace Team2_Project_POP
 {
     public partial class frmParent : Form
     {
-        public WorkCenterDTO LoginedWorkCenter { get; set; }
-        public List<WorkOrderDTO> LoginedOrders { get; set; }
-        public PopPrdDTO SelectedWorkLine { get; set; }
+        // frmSelect에 리스트
+        public List<WorkCenterDTO> WrokLineList { get; set; } 
+
+        // frmSelect에서 선택된 작업장
+        public WorkCenterDTO SelectedWorkLine { get; set; }
+
+        // frmSelect에서 선택된 작업장의 작업지시 리스트
+        public List<WorkOrderDTO> WorkOrderList { get; set; }
+
+        // 선택된 작업장의 실적 리스트
+        public PopPrdDTO SelectedWorkOrder { get; set; }
+        // 
+        public PopPrdQtyDTO PrdWork { get; set; }
+        // 불량
+        public PopDefQtyDTO DefWork { get; set; }
+
         public string DefMaCodeP { get; set; }
-        public string DefMaNameP { get; set; }
+        //public string DefMaNameP { get; set; }
         public string DefMiCodeP { get; set; }
-        public string DefMiNameP { get; set; }
-        public int PDQtyP { get; set; }
+        //public string DefMiNameP { get; set; }
+        //public int PDQtyP { get; set; }
+
+        public List<NonDTO> NonList { get; set; }
         public frmParent()
         {
             InitializeComponent();
@@ -61,11 +70,10 @@ namespace Team2_Project_POP
                 this.lblSelected.Text = "";
                 return;
             }
-                
 
             this.lblSelected.Text = "";
-            this.LoginedOrders = null;
-            this.LoginedWorkCenter = null;
+            this.WorkOrderList = null;
+            this.SelectedWorkLine = null;
 
             foreach(Form frms in this.MdiChildren)
                 frms.Close();
@@ -74,7 +82,6 @@ namespace Team2_Project_POP
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-
         }
 
         private void btnBack_Click(object sender, EventArgs e)

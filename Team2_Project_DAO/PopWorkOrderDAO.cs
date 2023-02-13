@@ -52,7 +52,7 @@ namespace Team2_Project_DAO
 
         }
 
-        public List<WorkOrderDTO> StartWork(string work, string Wc_Code)
+        public List<WorkOrderDTO> UpdateWork(string work, string Wc_Code, string To_Code)
         {
             List<WorkOrderDTO> result = new List<WorkOrderDTO>();
             try 
@@ -62,6 +62,7 @@ namespace Team2_Project_DAO
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@WorkOrderNo", work);
                     cmd.Parameters.AddWithValue("@Wc_Code", Wc_Code);
+                    cmd.Parameters.AddWithValue("@To_Status_Code", To_Code);
 
                     conn.Open();
                     result = Helper.DataReaderMapToList<WorkOrderDTO>(cmd.ExecuteReader());
@@ -77,9 +78,10 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<PopPrdQtyDTO> InPrd(PopPrdQtyDTO prdQty)
+
+        public bool InPrd(PopPrdQtyDTO prdQty)
         {
-            List<PopPrdQtyDTO> result = new List<PopPrdQtyDTO>();
+            
             try
             {
                 using (SqlCommand cmd = new SqlCommand("Sp_PopItemInProduction", conn))
@@ -94,22 +96,22 @@ namespace Team2_Project_DAO
 
 
                     conn.Open();
-                    result = Helper.DataReaderMapToList<PopPrdQtyDTO>(cmd.ExecuteReader());
+
+                    int result = cmd.ExecuteNonQuery();
                     conn.Close();
 
-                    return result;
+                    return true;
                 }
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return null;
+                return false;
             }
         }
 
-        public List<PopDefQtyDTO> InDef(PopDefQtyDTO defQty)
+        public  bool InDef(PopDefQtyDTO defQty)
         {
-            List<PopDefQtyDTO> result = new List<PopDefQtyDTO>();
             try
             {
                 using (SqlCommand cmd = new SqlCommand("Sp_PopDefInProduction", conn))
@@ -122,16 +124,16 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Def_Date", defQty.Item_time);
 
                     conn.Open();
-                    result = Helper.DataReaderMapToList<PopDefQtyDTO>(cmd.ExecuteReader());
+                    int result = cmd.ExecuteNonQuery();
                     conn.Close();
 
-                    return result;
+                    return (result > 0);
                 }
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
-                return null;
+                return false;
             }
         }
 
@@ -146,6 +148,98 @@ namespace Team2_Project_DAO
                     
                     conn.Open();
                     result = Helper.DataReaderMapToList<DefVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 확인 필요함
+        /// </summary>
+        /// <param name="WorkOrderNo"></param>
+        /// <returns></returns>
+        public PopPrdDTO SetWrorkOrder(string WorkOrderNo)
+        {
+            PopPrdDTO result = new PopPrdDTO();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Sp_SetSelectedOrder1", conn);
+                
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
+                // 확인필요
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.Read())
+                {
+                    result.WorkLineName = reader["WorkLineName"].ToString();
+                    result.WorkLineCode = reader["WorkLineCode"].ToString();
+                    result.WorkOrderDate = Convert.ToDateTime(reader["WorkOrderDate"]);
+                    result.PrdDate = Convert.ToDateTime(reader["PrdDate"]);
+                    result.WorkOrderNo = reader["WorkOrderNo"].ToString();
+                    result.PrdName = reader["PrdName"].ToString();
+                    result.PrdCode = reader["PrdCode"].ToString();
+                    result.PlanQty = Convert.ToInt32(reader["PlanQty"]);
+                    result.PrdStartTime = Convert.ToDateTime(reader["PrdStartTime"]);
+                    result.PrdEndTime = (reader["PrdEndTime"] == DBNull.Value )? DateTime.MinValue: Convert.ToDateTime(reader["PrdEndTime"]);
+                    result.Remark = reader["Remark"].ToString();
+                }
+                conn.Close();
+
+                //
+                SqlCommand cmd2 = new SqlCommand("Sp_SetSelectedOrder2", conn);
+
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
+                // 확인필요
+                List<PopPrdQtyDTO> resultPrd = new List<PopPrdQtyDTO>();
+                conn.Open();
+                resultPrd = Helper.DataReaderMapToList<PopPrdQtyDTO>(cmd2.ExecuteReader());
+                conn.Close();
+                //
+                SqlCommand cmd3 = new SqlCommand("Sp_SetSelectedOrder3", conn);
+
+                cmd3.CommandType = CommandType.StoredProcedure;
+                cmd3.Parameters.AddWithValue("@WorkOrderNo", WorkOrderNo);
+                // 확인필요
+                List<PopDefQtyDTO> resultDef = new List<PopDefQtyDTO>();
+                conn.Open();
+                resultDef = Helper.DataReaderMapToList<PopDefQtyDTO>(cmd3.ExecuteReader());
+                conn.Close();
+
+
+                result.PrdQty = resultPrd;
+                result.DefQty = resultDef;
+                return result;
+                
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public List<NonDTO> GetNonList(string wc_COde)
+        {
+            List<NonDTO> result = new List<NonDTO>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_SetNonList", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Wc_code", wc_COde);
+
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<NonDTO>(cmd.ExecuteReader());
                     conn.Close();
 
                     return result;

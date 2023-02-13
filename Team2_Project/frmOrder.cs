@@ -43,8 +43,8 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvOrder);
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "생산요청코드", "Prd_Req_No", 120, align:DataGridViewContentAlignment.MiddleCenter, frosen:true); //0
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "순번", "Req_Seq", 50, align: DataGridViewContentAlignment.MiddleCenter, frosen: true); //1
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 120); //2
-            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 140); //3
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트코드", "Prj_No", 70); //2
+            DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "프로젝트명", "Prj_Name", 190); //3
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "Company_Name", 140); //4
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "요청일자", "Req_Date", 125, align: DataGridViewContentAlignment.MiddleCenter); //5
             DataGridViewUtil.AddGridTextBoxColumn(dgvOrder, "납기일자", "Delivery_Date", 125, align: DataGridViewContentAlignment.MiddleCenter); //6
