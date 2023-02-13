@@ -203,7 +203,13 @@ namespace Team2_Project
                 return;
             }
 
-            bool result = srv.SaveAuthority(grpCode, empID, authList);
+            AuthDTO auth = new AuthDTO
+            {
+                Screen_Code = txtScreenCode.Text.Trim().ToString(),
+                Pre_Type = cboAuthNM.SelectedValue.ToString()
+            };
+
+            bool result = srv.SaveAuthority(grpCode, empID, auth);
             if (result)
             {
                 MessageBox.Show("수정이 완료되었습니다.");
@@ -214,6 +220,7 @@ namespace Team2_Project
                 ((frmMain)this.MdiParent).EditClickEvent();
                 return;
             }
+            OnCancel();
         }
 
         public void OnCancel()
@@ -227,6 +234,7 @@ namespace Team2_Project
         public void OnReLoad()
         {
             SetInitEditPnl();   //폼 하단 입력 패널 clear 및 잠금 
+            OpenSearchPnl();
             LoadData();         //초기 로드 화면
         }
         #endregion
