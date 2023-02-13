@@ -17,7 +17,7 @@ namespace Team2_Project
     public partial class frmMonthProductionHistory : Team2_Project.frmList
     {
         AnalysisService srv = new AnalysisService();
-        List<ItemDTO> itemList = new List<ItemDTO>();
+        List<ItemDTO> itemList;
         List<MonthProductionHistoryDTO> MTHistoryList = new List<MonthProductionHistoryDTO>();
 
         public frmMonthProductionHistory()
