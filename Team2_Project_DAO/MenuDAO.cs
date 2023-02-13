@@ -28,17 +28,24 @@ namespace Team2_Project_DAO
 
         public List<MenuDTO> GetMenuInfo(string grpCode)
         {
-            string sql = @"select Screen_Code, Parent_Screen_Code, Sort_Index, Type, Form_Name, Menu_Name, Menu_Image, Menu_Level, Use_YN
-                            from Screenitem_Master 
-                            where Screen_Code in (select Screen_Code 
-                            						from ScreenItem_Authority SA inner join UserGroup_Mapping UM on SA.UserGroup_Code = UM.UserGroup_Code
-                            						where UM.UserGroup_Code = @UserGroup_Code)
-                            union 
-                            select distinct S.Screen_Code, S.Parent_Screen_Code, S.Sort_Index, S.Type, S.Form_Name, S.Menu_Name, S.Menu_Image, S.Menu_Level, S.Use_YN
-                            from Screenitem_Master S inner join Screenitem_Master M on S.Screen_Code = M.Parent_Screen_Code
-                            where M.Screen_Code in (select Screen_Code 
-                            					     from ScreenItem_Authority SA inner join UserGroup_Mapping UM on SA.UserGroup_Code = UM.UserGroup_Code
-                            					     where UM.UserGroup_Code = @UserGroup_Code)";
+            string sql = @"select SM.Screen_Code, Parent_Screen_Code, Sort_Index, Type, Form_Name, Menu_Name, Menu_Image, Menu_Level, SM.Use_YN, SA.Pre_Type
+                            from Screenitem_Master SM inner join ScreenItem_Authority SA on SM.Screen_Code = SA.Screen_Code 
+                           						   inner join UserGroup_Master UM on SA.UserGroup_Code = UM.UserGroup_Code
+                           where UM.UserGroup_Code = @UserGroup_Code and SA.Pre_Type <> 'N'";
+
+            //select Screen_Code, Parent_Screen_Code, Sort_Index, Type, Form_Name, Menu_Name, Menu_Image, Menu_Level, Use_YN
+            //                from Screenitem_Master
+            //                where Screen_Code in (select Screen_Code
+            //                                        from ScreenItem_Authority SA inner join UserGroup_Mapping UM on SA.UserGroup_Code = UM.UserGroup_Code
+
+            //                                        where UM.UserGroup_Code = @UserGroup_Code)
+            //                union
+            //                select distinct S.Screen_Code, S.Parent_Screen_Code, S.Sort_Index, S.Type, S.Form_Name, S.Menu_Name, S.Menu_Image, S.Menu_Level, S.Use_YN
+            //                from Screenitem_Master S inner join Screenitem_Master M on S.Screen_Code = M.Parent_Screen_Code
+            //                where M.Screen_Code in (select Screen_Code
+            //                                         from ScreenItem_Authority SA inner join UserGroup_Mapping UM on SA.UserGroup_Code = UM.UserGroup_Code
+
+            //                                         where UM.UserGroup_Code = @UserGroup_Code)
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@UserGroup_Code", grpCode);

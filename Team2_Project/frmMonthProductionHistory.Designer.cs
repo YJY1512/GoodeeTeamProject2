@@ -298,7 +298,7 @@ namespace Team2_Project
             // 
             this.rdoPrdQty.AutoSize = true;
             this.rdoPrdQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoPrdQty.Location = new System.Drawing.Point(77, 9);
+            this.rdoPrdQty.Location = new System.Drawing.Point(68, 9);
             this.rdoPrdQty.Name = "rdoPrdQty";
             this.rdoPrdQty.Size = new System.Drawing.Size(82, 21);
             this.rdoPrdQty.TabIndex = 79;
@@ -311,12 +311,12 @@ namespace Team2_Project
             // 
             this.rdoInQty.AutoSize = true;
             this.rdoInQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoInQty.Location = new System.Drawing.Point(273, 9);
+            this.rdoInQty.Location = new System.Drawing.Point(260, 9);
             this.rdoInQty.Name = "rdoInQty";
-            this.rdoInQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoInQty.Size = new System.Drawing.Size(82, 21);
             this.rdoInQty.TabIndex = 80;
             this.rdoInQty.TabStop = true;
-            this.rdoInQty.Text = "투입량";
+            this.rdoInQty.Text = "투입수량";
             this.rdoInQty.UseVisualStyleBackColor = false;
             this.rdoInQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
@@ -324,12 +324,12 @@ namespace Team2_Project
             // 
             this.rdoOutQty.AutoSize = true;
             this.rdoOutQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoOutQty.Location = new System.Drawing.Point(364, 9);
+            this.rdoOutQty.Location = new System.Drawing.Point(356, 9);
             this.rdoOutQty.Name = "rdoOutQty";
-            this.rdoOutQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoOutQty.Size = new System.Drawing.Size(82, 21);
             this.rdoOutQty.TabIndex = 81;
             this.rdoOutQty.TabStop = true;
-            this.rdoOutQty.Text = "산출량";
+            this.rdoOutQty.Text = "산출수량";
             this.rdoOutQty.UseVisualStyleBackColor = false;
             this.rdoOutQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
@@ -337,12 +337,12 @@ namespace Team2_Project
             // 
             this.rdoPlanQty.AutoSize = true;
             this.rdoPlanQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoPlanQty.Location = new System.Drawing.Point(182, 9);
+            this.rdoPlanQty.Location = new System.Drawing.Point(164, 9);
             this.rdoPlanQty.Name = "rdoPlanQty";
-            this.rdoPlanQty.Size = new System.Drawing.Size(68, 21);
+            this.rdoPlanQty.Size = new System.Drawing.Size(82, 21);
             this.rdoPlanQty.TabIndex = 82;
             this.rdoPlanQty.TabStop = true;
-            this.rdoPlanQty.Text = "목표량";
+            this.rdoPlanQty.Text = "목표수량";
             this.rdoPlanQty.UseVisualStyleBackColor = false;
             this.rdoPlanQty.CheckedChanged += new System.EventHandler(this.rdoChecked_CheckedChanged);
             // 
@@ -364,7 +364,7 @@ namespace Team2_Project
             // 
             this.rdoLossQty.AutoSize = true;
             this.rdoLossQty.BackColor = System.Drawing.Color.Transparent;
-            this.rdoLossQty.Location = new System.Drawing.Point(455, 10);
+            this.rdoLossQty.Location = new System.Drawing.Point(452, 10);
             this.rdoLossQty.Name = "rdoLossQty";
             this.rdoLossQty.Size = new System.Drawing.Size(82, 21);
             this.rdoLossQty.TabIndex = 85;
