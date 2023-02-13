@@ -88,33 +88,32 @@ namespace Team2_Project
         {
             string from = dtpDate.Value.ToString("yyyy-MM") + "-01";
             string to = dtpDate.Value.AddMonths(1).ToString("yyyy-MM") + "-01";
-            List<MonthProductionHistoryDTO> list = null;
+            //List<MonthProductionHistoryDTO> list = null;
 
             MTHistoryList = srv.GetMonthProductionHistory(from, to);
             if (MTHistoryList != null && MTHistoryList.Count > 0)
             {
-                //AdvancedListBind(MTHistoryList, dgvData);
-
                 string ItemSC = ucItemSearch._Code ?? "";
-
-                if (MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList() == null)
+                if (MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList() == null) //조회조건없을 때
                     AdvancedListBind(MTHistoryList, dgvData);
                 else
                 {
-                    list = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList();
-                    AdvancedListBind(list, dgvData);
+                    MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건있을 때
+                    AdvancedListBind(MTHistoryList, dgvData);
                 }
 
-                if (dgvData.Rows.Count > 0)
+                if (dgvData.Rows.Count > 0) //데이터가 있을 때
                 {
-                    if (dgvData.CurrentRow != null)
-                        dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                    ChartData();
                 }
-                else
-                    chtDataPie.Series.Clear();
             }
             else
+            {
                 dgvData.DataSource = null;
+                chtDataPie.Series.Clear();
+                chtDataLine.Series.Clear();
+            }
+
         }
 
         public void OnReLoad()  //새로고침
@@ -134,11 +133,11 @@ namespace Team2_Project
         {
             //1. 조회조건으로 검색하면  (DB에서 List<생산현황>가져와서)   dgv가 뜸 
             //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
-            if (e.RowIndex < 0) return;
-            else if (dgvData.Rows.Count > 0)
-            {
-                ChartData();
-            }
+            //if (e.RowIndex < 0) return;
+            //else if (dgvData.Rows.Count > 0)
+            //{
+            //    ChartData();
+            //}
         }
 
         public void ChartData() //(테스트중)반복부분 메서드만들어서 수정해야함
@@ -267,7 +266,7 @@ namespace Team2_Project
                     dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
 
 
-                if (dgvData.CurrentRow != null) dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                if (dgvData.Rows.Count > 0) ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
                 else chtDataPie.Series.Clear();
 
                 dgvData.ClearSelection();
