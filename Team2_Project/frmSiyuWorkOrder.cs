@@ -496,6 +496,7 @@ namespace Team2_Project
                     break;
                 case "W05": //작업지시마감
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.DarkBlue;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.White;
                     break;
                 default: break;
             }

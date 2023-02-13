@@ -550,18 +550,23 @@ namespace Team2_Project
             {
                 case "W01": //생산대기
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.Orange;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W02": //생산중
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.ForestGreen;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W03": //생산중지
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.Gold;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W04": //현장마감
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.LightSkyBlue;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W05": //작업지시마감
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.DarkBlue;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.White;
                     break;
                 default: break;
             }
