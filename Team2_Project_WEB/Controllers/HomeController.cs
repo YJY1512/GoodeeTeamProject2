@@ -25,7 +25,7 @@ namespace Team2_Project_WEB.Controllers
             return RedirectToAction("ProdO", "Home");
         } // 로그인 기능 주석
 
-        public ActionResult Item(string from = "", string to = "") //품목별 거래현황 조회
+        public ActionResult Item(string from = "", string to = "") //품목별 수주현황 조회
         {
             ViewBag.ColText = "선택기간 ";
             ViewBag.FromDate = from;
@@ -140,7 +140,9 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ToDate = toDate;
             if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
             {
-                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                //ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                //ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
+                ViewBag.FromDate = DateTime.Today.AddDays(-13).ToString("yyyy-MM-dd");
                 ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
             }
             else if (string.IsNullOrWhiteSpace(fromDate))
