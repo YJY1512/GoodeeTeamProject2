@@ -10,6 +10,7 @@ using Team2_Project.BaseForms;
 using Team2_Project.Utils;
 using Team2_Project.Services;
 using Team2_Project_DTO;
+using System.Text.RegularExpressions;
 
 namespace Team2_Project
 {
@@ -25,6 +26,7 @@ namespace Team2_Project
         List<UserGroupAuthorityDTO> grpList = null;
         string empID;
         string grpCode;
+        string substringList = "[▶▷L]";
         public frmAuthority()
         {
             InitializeComponent();
@@ -196,6 +198,10 @@ namespace Team2_Project
         public void OnSave()
         {
             grpCode = ucgrpSearch._Code;
+            string value = txtScreenCode.Text.Trim().ToString();
+            string RegexResult = Regex.Replace(value, substringList, "");
+
+
             if (cboAuthNM.SelectedIndex == 0)
             {
                 MessageBox.Show($"{lblAuth.Text}를 선택해주세요.");
@@ -205,7 +211,7 @@ namespace Team2_Project
 
             AuthDTO auth = new AuthDTO
             {
-                Screen_Code = txtScreenCode.Text.Trim().ToString(),
+                Screen_Code = RegexResult,
                 Pre_Type = cboAuthNM.SelectedValue.ToString()
             };
 
@@ -244,8 +250,10 @@ namespace Team2_Project
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             string type = dgvAuthority["Type", e.RowIndex].Value.ToString();
+            string value = dgvAuthority["Screen_Code", e.RowIndex].Value.ToString().Trim();
+            string RegexResult = Regex.Replace(value, substringList, "");
 
-            txtScreenCode.Text = dgvAuthority["Screen_Code", e.RowIndex].Value.ToString().Trim();
+            txtScreenCode.Text = RegexResult;
             txtMenuNM.Text = dgvAuthority["Menu_Name", e.RowIndex].Value.ToString();
             txtAuthType.Text = dgvAuthority["Type", e.RowIndex].Value.ToString();
             if (type == "MODULE")

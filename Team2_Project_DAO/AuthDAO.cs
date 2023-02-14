@@ -76,15 +76,15 @@ namespace Team2_Project_DAO
             try
             {
                 string sql = @"update ScreenItem_Authority
-                              set  Screen_Code = @Screen_Code, Pre_Type= @Pre_Type, Up_Date = GETDATE(), Up_Emp = @Up_Emp
-                              where UserGroup_Code = @UserGroup_Code";
+                              set Pre_Type= @Pre_Type, Up_Date = GETDATE(), Up_Emp = @Up_Emp
+                              where UserGroup_Code = @UserGroup_Code and Screen_Code = @Screen_Code";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Screen_Code", auth.Screen_Code);
-                    cmd.Parameters.AddWithValue("@Pre_Type", auth.Screen_Code);
+                    cmd.Parameters.AddWithValue("@Pre_Type", auth.Pre_Type);
                     cmd.Parameters.AddWithValue("@Up_Emp", userID);
                     cmd.Parameters.AddWithValue("@UserGroup_Code", grpCode);
+                    cmd.Parameters.AddWithValue("@Screen_Code", auth.Screen_Code);
 
                     conn.Open();
                     int iRowAffect = cmd.ExecuteNonQuery();
@@ -103,7 +103,7 @@ namespace Team2_Project_DAO
 
 
         }
-        //public bool SaveAuthority(string grpCode, string userID ,List<AuthDTO> authList)
+        //public bool SaveAuthority(string grpCode, string userID, List<AuthDTO> authList)
         //{
         //    conn.Open();
         //    SqlTransaction trans = conn.BeginTransaction();
