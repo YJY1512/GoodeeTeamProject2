@@ -83,10 +83,10 @@
                         @foreach (var item in Model)
                         {
                             string startDate = item.Prd_StartTime.ToString(@"HH\:mm\:ss");
-                            string EndDate = item.Worker_CloseTime.ToString(@"HH\:mm\:ss");
+                            string EndDate = item.Prd_EndTime.ToString(@"HH\:mm\:ss");
                             decimal progress = item.Progress;
                             if (item.Prd_StartTime == default(DateTime)) { startDate = ""; }
-                            if (item.Worker_CloseTime == default(DateTime)) { EndDate = ""; }
+                            if (item.Prd_EndTime == default(DateTime)) { EndDate = ""; }
                             if (item.Progress > 1.00m) { progress = 1.00m; }
                         <tr style="text-align:center">
                             <td>@item.WorkOrderNo</td>

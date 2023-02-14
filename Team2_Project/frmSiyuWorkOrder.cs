@@ -52,8 +52,8 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "품목명", "Item_Name", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획수량", "Plan_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "작업지시수량", "Plan_Qty_Box", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "거래처", "Company_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "납기일", "Delivery_Date", 120, DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "거래처명", "Company_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "납기일자", "Delivery_Date", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "생산계획상태", "Prd_Plan_Status", 120, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvPlan, "Plan_Month", "Plan_Month", visible:false);
 
@@ -72,7 +72,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "작업장코드", "Wc_Code", 120, OrangebackColor: true);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "작업장명", "Wc_Name", 150, OrangebackColor: true);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산일자", "Prd_Date", 120);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산수량", "Prd_Qty", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "전달사항", "Remark", 200, OrangebackColor: true);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Wo_Status_code", "Wo_Status_code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Prd_Plan_No", "Prd_Plan_No", visible:false);
@@ -484,18 +484,23 @@ namespace Team2_Project
             {
                 case "W01": //생산대기
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.Orange;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W02": //생산중
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.ForestGreen;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W03": //생산중지
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.Gold;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W04": //현장마감
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.LightSkyBlue;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.Black;
                     break;
                 case "W05": //작업지시마감
                     dgvWorkOrder["Wo_Status", e.RowIndex].Style.BackColor = Color.DarkBlue;
+                    dgvWorkOrder["Wo_Status", e.RowIndex].Style.ForeColor = Color.White;
                     break;
                 default: break;
             }

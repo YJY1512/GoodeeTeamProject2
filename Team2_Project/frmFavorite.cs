@@ -241,7 +241,7 @@ namespace Team2_Project
             {
                 MessageBox.Show("저장되었습니다. 즐겨찾기List 변경사항은 다음 로그인시 적용됩니다.");
                 favoriteList = srv.GetFavoriteInfo(LoginEmp.User_ID);
-                trvFavorite.SelectedNode.BackColor = Color.White;
+                //trvFavorite.SelectedNode.BackColor = Color.White;
             }
             else
             {
@@ -255,18 +255,8 @@ namespace Team2_Project
             int curCnt = trvFavorite.Nodes.Count;
             currentList = srv.GetFavoriteInfo(LoginEmp.User_ID);
             int dbfavList = currentList.Count;
-            bool result = Enumerable.SequenceEqual(currentList, favoriteList);
 
             if (dbfavList != curCnt)
-            {
-                if (MessageBox.Show("현재 즐겨찾기 List에 수정된 사항이 있습니다. \n 종료하시면 수정된 내용이 저장되지 않습니다. 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    this.Close();
-                }
-                else
-                    return;
-            }
-            else if (result == false)
             {
                 if (MessageBox.Show("현재 즐겨찾기 List에 수정된 사항이 있습니다. \n 종료하시면 수정된 내용이 저장되지 않습니다. 그래도 종료하시겠습니까?", "종료확인", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {

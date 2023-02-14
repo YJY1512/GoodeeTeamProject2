@@ -3,7 +3,7 @@
 @using Team2_Project_WEB.Models
 
 @{
-    ViewBag.Title = "  품목별 거래현황 조회";
+    ViewBag.Title = "  품목별 수주현황 조회";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 
@@ -103,7 +103,7 @@
         <div class="col-sm-4">
             <div class="card card-danger">
                 <div class="card-header">
-                    <h3 class="card-title">품목별 수주량 비율 차트</h3>
+                    <h3 class="card-title">수주 비율 차트</h3>
                 </div>
                 <div class="card-body">
                     <canvas id="donutChart1" style="min-height: 275px; height: 275px; max-height: 275px; max-width: 100%; "></canvas>
@@ -114,7 +114,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">품목별 수주고객수 비율 차트</h3>
+                    <h3 class="card-title">고객 비율 차트</h3>
                 </div>
                 <div class="card-body">
                     <canvas id="donutChart2" style="min-height: 275px; height: 275px; max-height: 275px; max-width: 100%; "></canvas>

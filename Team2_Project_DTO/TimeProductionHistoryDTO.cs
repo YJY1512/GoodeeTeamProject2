@@ -35,6 +35,7 @@ namespace Team2_Project_DTO
 
         public int Start_Hour { get; set; }     //시작시간대
         public string Prd_Unit { get; set; }     //생산수량단위
+        public string Ins_Date { get; set; }     //작성시간
 
 
         //public int Prd_Qty { get; set; }

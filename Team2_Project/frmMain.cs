@@ -38,6 +38,7 @@ namespace Team2_Project
 
         MenuService srv = new MenuService();
         List<MenuDTO> menuList;
+        //List<MenuDTO> favList;
         Panel pnlChildMenu = new Panel();
         TreeView menuTree = new TreeView();
         const int MaxWidth = 212;
@@ -66,15 +67,9 @@ namespace Team2_Project
                 tStripDept.Text = LoginEmp.UserGroup_Name;
 
                 menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
+                //favList = srv.GetMenuFavInfo(LoginEmp.User_ID);
                 DrawSideMenu();
                 pnlChildMenu.Visible = false;
-                //menuTree.ItemHeight = 30;
-                //menuTree.ExpandAll();
-                //menuTree.ShowLines = false;
-                //menuTree.ShowRootLines = false;
-                //menuTree.AfterSelect += MenuTree_AfterSelect;
-                //menuTree.Font = new Font("나눔고딕", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(129)));
-                //menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
                 chkHide.Checked = true;
                 RoadClickEvent();
                 OpenChildPage("frmDashBoard" , "HOME");
@@ -103,7 +98,7 @@ namespace Team2_Project
             }
             pnlMenu.Update();
         }
-
+        #region 메뉴 구현
         private void DrawSideMenu()
         {
             List<MenuDTO> menu1List = menuList.FindAll((m) => m.Menu_Level == 1).OrderBy((m) => m.Sort_Index).ToList();
@@ -166,7 +161,6 @@ namespace Team2_Project
         private void Btn_Click(object sender, EventArgs e)
         {
             chkHide.Checked = false;
-
             Button btn = (Button)sender;
             string menuID = btn.Name;
             int pnlIndex = Convert.ToInt32(btn.Tag) + 1;
@@ -187,9 +181,11 @@ namespace Team2_Project
 
             menuTree.Nodes.Clear();
 
+            
+
             var menu2List = menuList.FindAll((m) => m.Parent_Screen_Code == menuID
-                                                    && m.Menu_Level == 2)
-                                    .OrderBy((m) => m.Sort_Index).ToList();
+                                                && m.Menu_Level == 2)
+                                .OrderBy((m) => m.Sort_Index).ToList();
 
             for (int k = 0; k < menu2List.Count; k++)
             {
@@ -229,6 +225,11 @@ namespace Team2_Project
             menuTree.BackColor = Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             menuTree.NodeMouseClick += MenuTree_NodeMouseClick;
         }
+        #endregion
+        //private void DrawSideFavMenu()
+        //{
+        //    List<MenuDTO> menu1List = favList.FindAll((m) => m.Menu_Level == 1).OrderBy((m) => m.Sort_Index).ToList();
+        //}
 
         private void MenuTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {

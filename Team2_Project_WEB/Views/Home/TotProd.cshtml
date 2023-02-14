@@ -76,9 +76,9 @@
                             @foreach (var item in Model)
                             {
                                 string startDate = item.Prd_StartTime.ToString(@"HH\:mm\:ss");
-                                string EndDate = item.Worker_CloseTime.ToString(@"HH\:mm\:ss");
+                                string EndDate = item.Prd_EndTime.ToString(@"HH\:mm\:ss");
                                 if (item.Prd_StartTime == default(DateTime)) { startDate = ""; }
-                                if (item.Worker_CloseTime == default(DateTime)) { EndDate = ""; }
+                                if (item.Prd_EndTime == default(DateTime)) { EndDate = ""; }
                                 <tr style="text-align:center">
                                     <td>@item.Dates</td>
                                     <td>@item.Total</td>
@@ -107,7 +107,7 @@
             <!-- STACKED BAR CHART -->
             <div class="card card-success">
                 <div class="card-header">
-                    <h3 class="card-title">일별 작업지시 실적 차트</h3>
+                    <h3 class="card-title">작업일자별 작업지시 실적 차트</h3>
                 </div>
                 <div class="card-body">
                     <div class="chart">
