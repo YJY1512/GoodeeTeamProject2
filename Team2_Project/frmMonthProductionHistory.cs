@@ -156,6 +156,7 @@ namespace Team2_Project
                     chtDataPie.Series.Clear();
                     chtDataLine.Series.Clear();
 
+
                     chtDataPie.Series.Add(chartTitle);
                     chtDataPie.Series[chartTitle].Points.Clear();
                     chtDataPie.Series[chartTitle].ChartType = SeriesChartType.Doughnut;
@@ -191,7 +192,7 @@ namespace Team2_Project
                             chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
                             chtDataLine.Series[chartTitle].BorderColor = Color.Gray;
                             chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
-                            //chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                            //.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
                             //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         }
                         num++;
@@ -237,11 +238,10 @@ namespace Team2_Project
                 }
                 dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
 
-
                 string[] backColorCell = null;
                 if (rdoPrdQty.Checked) //생산수량 양품
                 {
-                    backColorCell = new string[] { "TotInQty", "TotOutQty", "TotPrdQty", "QualityRate" }; //투입수량, 산출수량, 생산수량, 양품률
+                    backColorCell = new string[] { "TotInQty", "TotOutQty", "TotPrdQty", "AttainmentRate"/*, "TotDefectQty"*/ }; //투입수량, 산출수량, 생산수량, 달성률, 불량수량
                 }
                 else if (rdoPlanQty.Checked) //목표량 
                 {
@@ -249,11 +249,11 @@ namespace Team2_Project
                 }
                 else if (rdoInQty.Checked) //투입량
                 {
-                    backColorCell = new string[] { "TotInQty", "TotPrdQty", "AttainmentRate", "QualityRate", "TotDefectQty", "DefectRate" }; //투입수량, 산출수량, 달성율, 양품률, 불량수량, 불량비율
+                    backColorCell = new string[] { "TotInQty", "TotPrdQty", "OperatingRate" }; //투입수량, 산출수량, 가동률
                 }
                 else if (rdoOutQty.Checked) //산출량
                 {
-                    backColorCell = new string[] { "TotPlanQty", "TotOutQty", "AttainmentRate" , "QualityRate" }; //목표량, 산출수량, 달성율
+                    backColorCell = new string[] { "TotPlanQty", "TotOutQty", "AttainmentRate" , "QualityRate" }; //목표량, 산출수량, 달성율, 양품률
                 }
                 else if (rdoLossQty.Checked) //Loss수량
                 {
@@ -264,7 +264,8 @@ namespace Team2_Project
                     dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
 
 
-                if (dgvData.Rows.Count > 0) ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
+                if (dgvData.Rows.Count > 0) 
+                    ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
                 else chtDataPie.Series.Clear();
 
                 dgvData.ClearSelection();
