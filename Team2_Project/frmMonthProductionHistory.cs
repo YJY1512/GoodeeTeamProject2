@@ -187,6 +187,10 @@ namespace Team2_Project
                         chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
                         chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        chtDataPie.Series[chartTitle].BorderColor = Color.Gray;
+                        //chtDataPie.Series[chartTitle].BorderWidth 
+                        //chtDataPie.Series[chartTitle].BoardDashStyle = 
+
                         //chtDataPie.Series[chartTitle].Points[num].LabelFormat = "N2";
 
                         if (rdoChartTwo.Checked)
@@ -194,6 +198,7 @@ namespace Team2_Project
                             chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
                             chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
                             chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                            chtDataLine.Series[chartTitle].BorderColor = Color.Gray;
                             //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         }
                         num++;
