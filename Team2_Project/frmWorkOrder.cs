@@ -404,6 +404,9 @@ namespace Team2_Project
             SetInitPnl();
             SetEditEnd();
             clickState = ButtonClick.None;
+
+            if (dgvWorkOrder.CurrentRow != null)
+                dgvWorkOrder_CellClick(dgvWorkOrder, new DataGridViewCellEventArgs(0, dgvWorkOrder.CurrentRow.Index));
         }
 
         public void OnReLoad()  //새로고침
