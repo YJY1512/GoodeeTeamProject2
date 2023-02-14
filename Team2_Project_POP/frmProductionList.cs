@@ -25,37 +25,6 @@ namespace Team2_Project_POP
             InitializeComponent();
         }
 
-        private void frmProductionList_Activated(object sender, EventArgs e)
-        {
-            pnlList.Controls.Clear();
-            for (int i = 0; i < ((frmParent)this.MdiParent).WorkOrderList.Count; i++)
-            {
-                Controls.ucList list = new Controls.ucList();
-
-                list.Size = new Size(100, 100);
-                list.Dock = DockStyle.Top;
-                list.Name = $"list{i}";
-                list.Status = ((frmParent)this.MdiParent).WorkOrderList[i].Wo_Status;
-                list.Status_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wo_Status_Code;
-                list.Plan_Date = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Date;
-                list.Prd_Date = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Date;
-                list.WorkOrderNo = ((frmParent)this.MdiParent).WorkOrderList[i].WorkOrderNo;
-                list.ItemName = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Name;
-                list.ItemCode = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Code;
-                list.PlanQty = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Qty_Box;
-                list.Prd_Qty = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Qty;
-                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_StartTime;
-                list.EndTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_EndTime;
-                list.Remark = ((frmParent)this.MdiParent).WorkOrderList[i].Remark;
-                list.Wc_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wc_Code;
-                list.isClick = false;
-
-                list.UcListClick += List_ucListClick;
-
-                pnlList.Controls.Add(list);
-            }
-
-        }
 
         private void frmProductionList_Load(object sender, EventArgs e)
         {
@@ -131,7 +100,7 @@ namespace Team2_Project_POP
             // 대기 >>  생산 중인 경우
 
             ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W02");
-            frmProductionList_Activated(this, e);
+            frmProductionList_Enter(this, e);
         }
         /// <summary>
         /// Stop
@@ -143,7 +112,7 @@ namespace Team2_Project_POP
             if (selectedOrder == null || selectedOrder.Status_Code != "W02") return;
 
             ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W03");
-            frmProductionList_Activated(this, e);
+            frmProductionList_Enter(this, e);
         }
         /// <summary>
         /// 팔렛트
@@ -168,7 +137,7 @@ namespace Team2_Project_POP
             if (selectedOrder == null || selectedOrder.Status_Code != "W02" || selectedOrder.PlanQty > selectedOrder.Prd_Qty) return;
 
             ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W04");
-            frmProductionList_Activated(this, e);
+            frmProductionList_Enter(this, e);
         }
         /// <summary>
         /// 실적등록
@@ -204,7 +173,7 @@ namespace Team2_Project_POP
             
             frm.Show();
 
-            frmProductionList_Activated(this, e);
+            frmProductionList_Enter(this, e);
         }
 
         
@@ -228,8 +197,40 @@ namespace Team2_Project_POP
 
 
 
-            frmProductionList_Activated(this, e);
+            frmProductionList_Enter(this, e);
 
+        }
+
+        private void frmProductionList_Enter(object sender, EventArgs e)
+        {
+            //((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W04");
+            pnlList.Controls.Clear();
+            for (int i = 0; i < ((frmParent)this.MdiParent).WorkOrderList.Count; i++)
+            {
+                Controls.ucList list = new Controls.ucList();
+
+                list.Size = new Size(100, 100);
+                list.Dock = DockStyle.Top;
+                list.Name = $"list{i}";
+                list.Status = ((frmParent)this.MdiParent).WorkOrderList[i].Wo_Status;
+                list.Status_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wo_Status_Code;
+                list.Plan_Date = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Date;
+                list.Prd_Date = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Date;
+                list.WorkOrderNo = ((frmParent)this.MdiParent).WorkOrderList[i].WorkOrderNo;
+                list.ItemName = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Name;
+                list.ItemCode = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Code;
+                list.PlanQty = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Qty_Box;
+                list.Prd_Qty = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Qty;
+                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_StartTime;
+                list.EndTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_EndTime;
+                list.Remark = ((frmParent)this.MdiParent).WorkOrderList[i].Remark;
+                list.Wc_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wc_Code;
+                list.isClick = false;
+
+                list.UcListClick += List_ucListClick;
+
+                pnlList.Controls.Add(list);
+            }
         }
     }
 }

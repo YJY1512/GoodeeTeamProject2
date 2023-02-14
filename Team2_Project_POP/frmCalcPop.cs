@@ -65,6 +65,7 @@ namespace Team2_Project_POP
                     Item_time = DateTime.Now
                 };
                 result = ser.InPrd(inPrd);
+               
             }
             else if(this.Tag.ToString() == "Def")
             {

@@ -82,5 +82,13 @@ namespace Team2_Project_POP.Services
             return list;
         }
 
+        public List<DefVO> SetNonCodes()
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            List<DefVO> list = db.SetNonCodes();
+            db.Dispose();
+
+            return list;
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace Team2_Project_POP
         //public int PDQtyP { get; set; }
 
         public List<NonDTO> NonList { get; set; }
+
         public frmParent()
         {
             InitializeComponent();

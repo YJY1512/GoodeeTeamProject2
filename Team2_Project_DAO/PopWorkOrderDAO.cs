@@ -252,5 +252,28 @@ namespace Team2_Project_DAO
             }
         }
 
+        public List<DefVO> SetNonCodes()
+        {
+            List<DefVO> result = new List<DefVO>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_nonCodes", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<DefVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
     }
 }

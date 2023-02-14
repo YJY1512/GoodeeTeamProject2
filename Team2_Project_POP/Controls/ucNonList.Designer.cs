@@ -1,7 +1,7 @@
 ﻿
 namespace Team2_Project_POP.Controls
 {
-    partial class frmNonList
+    partial class ucNonList
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -98,16 +98,17 @@ namespace Team2_Project_POP.Controls
             this.lblNonMa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblNonMa.Click += new System.EventHandler(this.lblNonMa_Click);
             // 
-            // frmNonList
+            // ucNonList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "frmNonList";
+            this.Name = "ucNonList";
             this.Size = new System.Drawing.Size(788, 124);
             this.Load += new System.EventHandler(this.frmNonList_Load);
+            this.Click += new System.EventHandler(this.ucNonList_Click);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -115,7 +116,7 @@ namespace Team2_Project_POP.Controls
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lblNonMa;
         private System.Windows.Forms.Label lblNonMi;
         private System.Windows.Forms.Label lblNonTime;

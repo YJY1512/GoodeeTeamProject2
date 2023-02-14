@@ -352,8 +352,8 @@ namespace Team2_Project_POP
             this.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
             this.Name = "frmProductionList";
             this.Text = "frmProductionList";
-            this.Activated += new System.EventHandler(this.frmProductionList_Activated);
             this.Load += new System.EventHandler(this.frmProductionList_Load);
+            this.Enter += new System.EventHandler(this.frmProductionList_Enter);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
