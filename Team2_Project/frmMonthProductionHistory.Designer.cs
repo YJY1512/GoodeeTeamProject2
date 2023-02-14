@@ -153,7 +153,6 @@ namespace Team2_Project
             this.chtDataPie.Legends.Add(legend2);
             this.chtDataPie.Location = new System.Drawing.Point(0, 0);
             this.chtDataPie.Name = "chtDataPie";
-            this.chtDataPie.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             this.chtDataPie.Size = new System.Drawing.Size(985, 431);
             this.chtDataPie.TabIndex = 3;
             this.chtDataPie.Text = "chart1";
@@ -225,7 +224,6 @@ namespace Team2_Project
             this.chtDataLine.Legends.Add(legend1);
             this.chtDataLine.Location = new System.Drawing.Point(0, 0);
             this.chtDataLine.Name = "chtDataLine";
-            this.chtDataLine.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             this.chtDataLine.Size = new System.Drawing.Size(845, 431);
             this.chtDataLine.TabIndex = 4;
             this.chtDataLine.Text = "chart1";
