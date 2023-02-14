@@ -175,7 +175,6 @@ namespace Team2_Project
             this.chtData.Legends.Add(legend1);
             this.chtData.Location = new System.Drawing.Point(0, 0);
             this.chtData.Name = "chtData";
-            this.chtData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             this.chtData.Size = new System.Drawing.Size(1834, 414);
             this.chtData.TabIndex = 0;
             this.chtData.Text = "chart";

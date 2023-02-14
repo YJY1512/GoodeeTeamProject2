@@ -16,7 +16,7 @@ namespace Team2_Project_WEB.Models
         public int Prd_Qty { get; set; }
         public int TotDef { get; set; }
         public DateTime Prd_StartTime { get; set; }
-        public DateTime Worker_CloseTime { get; set; }
+        public DateTime Prd_EndTime { get; set; }
         public string Dates { get; set; }
         public int Total { get { return Prd_Qty + TotDef; } }
         public decimal FairRatio { get 
@@ -44,10 +44,10 @@ namespace Team2_Project_WEB.Models
         }
         public TimeSpan TotWorkTime { get 
             {
-                if (Prd_StartTime == default(DateTime) || Worker_CloseTime == default(DateTime))
+                if (Prd_StartTime == default(DateTime) || Prd_EndTime == default(DateTime))
                     return TimeSpan.Zero;
                 else
-                    return Convert.ToDateTime(Worker_CloseTime) - Convert.ToDateTime(Prd_StartTime);
+                    return Convert.ToDateTime(Prd_EndTime) - Convert.ToDateTime(Prd_StartTime);
             } 
         }
         public double ProductPerHour { get 
@@ -55,7 +55,7 @@ namespace Team2_Project_WEB.Models
                 if (TotWorkTime == TimeSpan.Zero)
                     return 0;
                 else
-                    return (double)Total / TotWorkTime.Seconds / 3600;
+                    return (Total / (((double)(TotWorkTime.Hours * 3600 + TotWorkTime.Minutes * 60 + TotWorkTime.Seconds)) / 3600));
             } 
         }
     }

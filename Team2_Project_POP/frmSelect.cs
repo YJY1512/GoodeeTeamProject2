@@ -43,7 +43,7 @@ namespace Team2_Project_POP
                 list.Size = new Size(100, 100);
                 list.Dock = DockStyle.Top;
                 list.Name = $"list{i}";
-                list.Statuse = (((frmParent)MdiParent).WrokLineList[i].Wc_Status == "W02")? "RUN" : "STOP";
+                list.Statuse = ((frmParent)MdiParent).WrokLineList[i].Wc_Status;
                 list.WorkSpace = ((frmParent)MdiParent).WrokLineList[i].Wc_Name;
                 list.Group = ((frmParent)MdiParent).WrokLineList[i].Wc_Group_Name;
                 list.Tag = ((frmParent)MdiParent).WrokLineList[i].Wc_Code;
