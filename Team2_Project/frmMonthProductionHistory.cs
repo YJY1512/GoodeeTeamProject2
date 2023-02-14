@@ -238,6 +238,7 @@ namespace Team2_Project
                 {
                     backColorCell = new string[] { "TotInQty", "TotOutQty", "TotDefectQty", "DefectRate" }; //투입수량, 산출수량, 불량수량, 불량비율
                 }
+
                 foreach (string item in backColorCell)
                     dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
 
@@ -255,7 +256,6 @@ namespace Team2_Project
             {
                 splitContainerChart.Panel1Collapsed = true;
             }
-
             else if (rdoChartTwo.Checked)
             {
                 splitContainerChart.Panel1Collapsed = false;
