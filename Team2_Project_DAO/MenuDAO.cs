@@ -28,34 +28,44 @@ namespace Team2_Project_DAO
 
         public List<MenuDTO> GetMenuInfo(string grpCode)
         {
-            string sql = @"select SM.Screen_Code, Parent_Screen_Code, Sort_Index, Type, Form_Name, Menu_Name, Menu_Image, Menu_Level, SM.Use_YN, SA.Pre_Type
-                            from Screenitem_Master SM inner join ScreenItem_Authority SA on SM.Screen_Code = SA.Screen_Code 
-                           						   inner join UserGroup_Master UM on SA.UserGroup_Code = UM.UserGroup_Code
-                           where UM.UserGroup_Code = @UserGroup_Code and SA.Pre_Type <> 'N'";
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "SP_GetScreenMenuInfo";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserGroup_Code", grpCode);
 
-            //select Screen_Code, Parent_Screen_Code, Sort_Index, Type, Form_Name, Menu_Name, Menu_Image, Menu_Level, Use_YN
-            //                from Screenitem_Master
-            //                where Screen_Code in (select Screen_Code
-            //                                        from ScreenItem_Authority SA inner join UserGroup_Mapping UM on SA.UserGroup_Code = UM.UserGroup_Code
+                    conn.Open();
+                    List<MenuDTO> list = Helper.DataReaderMapToList<MenuDTO>(cmd.ExecuteReader());
+                    conn.Close();
 
-            //                                        where UM.UserGroup_Code = @UserGroup_Code)
-            //                union
-            //                select distinct S.Screen_Code, S.Parent_Screen_Code, S.Sort_Index, S.Type, S.Form_Name, S.Menu_Name, S.Menu_Image, S.Menu_Level, S.Use_YN
-            //                from Screenitem_Master S inner join Screenitem_Master M on S.Screen_Code = M.Parent_Screen_Code
-            //                where M.Screen_Code in (select Screen_Code
-            //                                         from ScreenItem_Authority SA inner join UserGroup_Mapping UM on SA.UserGroup_Code = UM.UserGroup_Code
-
-            //                                         where UM.UserGroup_Code = @UserGroup_Code)
-
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@UserGroup_Code", grpCode);
-
-            conn.Open();
-            List<MenuDTO> list = Helper.DataReaderMapToList<MenuDTO>(cmd.ExecuteReader());
-            conn.Close();
-
-            return list;
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
         }
+
+        //public List<MenuDTO> GetMenuFavInfo(string userID)
+        //{
+        //    string sql = @"select SM.Screen_Code, FM.Screen_Code Fav_Screen_Code, SM.Parent_Screen_Code, FM.Sort_Index, SM.Type, SS.Form_Name,SM.Menu_Image,SM.Menu_Level
+        //                    from Favorite_Master FM inner join Screenitem_Master SM on SM.Parent_Screen_Code = FM.Parent_Screen_Code
+        //                    						inner join Screenitem_Master SS on SS.Screen_Code = FM.Screen_Code
+        //                    where SM.Screen_Code = 'FAV' and FM.User_ID = @User_ID";
+        //    SqlCommand cmd = new SqlCommand(sql, conn);
+        //    cmd.Parameters.AddWithValue("@User_ID", userID);
+
+        //    conn.Open();
+        //    List<MenuDTO> list = Helper.DataReaderMapToList<MenuDTO>(cmd.ExecuteReader());
+        //    conn.Close();
+
+        //    return list;
+        //}
 
         public List<MenuDTO> GetFavoriteInfo(string userID)
         {
@@ -94,8 +104,8 @@ namespace Team2_Project_DAO
                 cmd.Transaction = trans;
                 cmd.ExecuteNonQuery();
 
-                sql = @"insert into Favorite_Master (User_ID, Screen_Code, Parent_Screen_Code, Sort_Index, Ins_Date, Ins_Emp)
-					values (@User_ID, @Screen_Code, @Parent_Screen_Code,  @Sort_Index, GETDATE(), @Ins_Emp)";
+                sql = @"insert into Favorite_Master (User_ID, Screen_Code, Parent_Screen_Code, Type, Sort_Index, Ins_Date, Ins_Emp)
+					values (@User_ID, @Screen_Code, @Parent_Screen_Code, 'FAVORITE' , @Sort_Index, GETDATE(), @Ins_Emp)";
 
                 SqlCommand cmd2 = new SqlCommand(sql, conn);
                 cmd2.Parameters.Add(new SqlParameter("@User_ID", SqlDbType.NVarChar, 20));

@@ -154,7 +154,7 @@ namespace Team2_Project
             this.chtDataPie.Location = new System.Drawing.Point(0, 0);
             this.chtDataPie.Name = "chtDataPie";
             this.chtDataPie.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtDataPie.Size = new System.Drawing.Size(981, 431);
+            this.chtDataPie.Size = new System.Drawing.Size(985, 431);
             this.chtDataPie.TabIndex = 3;
             this.chtDataPie.Text = "chart1";
             // 
@@ -213,7 +213,7 @@ namespace Team2_Project
             // 
             this.splitContainerChart.Panel2.Controls.Add(this.chtDataPie);
             this.splitContainerChart.Size = new System.Drawing.Size(1834, 431);
-            this.splitContainerChart.SplitterDistance = 849;
+            this.splitContainerChart.SplitterDistance = 845;
             this.splitContainerChart.TabIndex = 0;
             // 
             // chtDataLine
@@ -226,7 +226,7 @@ namespace Team2_Project
             this.chtDataLine.Location = new System.Drawing.Point(0, 0);
             this.chtDataLine.Name = "chtDataLine";
             this.chtDataLine.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            this.chtDataLine.Size = new System.Drawing.Size(849, 431);
+            this.chtDataLine.Size = new System.Drawing.Size(845, 431);
             this.chtDataLine.TabIndex = 4;
             this.chtDataLine.Text = "chart1";
             // 
