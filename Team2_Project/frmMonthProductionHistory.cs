@@ -131,8 +131,6 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //1. 조회조건으로 검색하면  (DB에서 List<생산현황>가져와서)   dgv가 뜸 
-            //2. 제품 dgv를 선택하면 제품코드 DB가져가서 (DB에서 List<월별생산비율>가져와서)    chart에 반영
             //if (e.RowIndex < 0) return;
             //else if (dgvData.Rows.Count > 0)
             //{
@@ -142,8 +140,6 @@ namespace Team2_Project
 
         public void ChartData() //(테스트중)반복부분 메서드만들어서 수정해야함
         {
-
-
             if (rdoPrdQty.Checked || rdoPlanQty.Checked || rdoInQty.Checked || rdoOutQty.Checked || rdoLossQty.Checked)
             {
                 string chartTitle = "";
@@ -185,20 +181,17 @@ namespace Team2_Project
                         else if (chartTitle.Equals("월별 제품 불량수량")) TotQty = item.TotDefectQty;
 
                         chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotQty);
-                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
                         chtDataPie.Series[chartTitle].BorderColor = Color.Gray;
-                        //chtDataPie.Series[chartTitle].BorderWidth 
-                        //chtDataPie.Series[chartTitle].BoardDashStyle = 
-
+                        chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
+                        //chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
                         //chtDataPie.Series[chartTitle].Points[num].LabelFormat = "N2";
 
                         if (rdoChartTwo.Checked)
                         {
                             chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
-                            chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
-                            chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
                             chtDataLine.Series[chartTitle].BorderColor = Color.Gray;
+                            chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
+                            //chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
                             //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         }
                         num++;
@@ -242,15 +235,15 @@ namespace Team2_Project
                 {
                     col.DefaultCellStyle.BackColor = Color.White;
                 }
-                dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
+                dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
 
 
                 string[] backColorCell = null;
-                if (rdoPrdQty.Checked) //생산수량
+                if (rdoPrdQty.Checked) //생산수량 양품
                 {
                     backColorCell = new string[] { "TotInQty", "TotOutQty", "TotPrdQty", "QualityRate" }; //투입수량, 산출수량, 생산수량, 양품률
                 }
-                else if (rdoPlanQty.Checked) //목표량
+                else if (rdoPlanQty.Checked) //목표량 
                 {
                     backColorCell = new string[] { "TotPlanQty", "TotPrdQty", "AttainmentRate", "QualityRate" }; //목표량, 총생산량, 달성율, 양품률
                 }
@@ -260,15 +253,15 @@ namespace Team2_Project
                 }
                 else if (rdoOutQty.Checked) //산출량
                 {
-                    backColorCell = new string[] { "TotPlanQty", "TotOutQty", "AttainmentRate" }; //목표량, 산출수량, 달성율
+                    backColorCell = new string[] { "TotPlanQty", "TotOutQty", "AttainmentRate" , "QualityRate" }; //목표량, 산출수량, 달성율
                 }
                 else if (rdoLossQty.Checked) //Loss수량
                 {
                     backColorCell = new string[] { "TotInQty", "TotOutQty", "TotDefectQty", "DefectRate" }; //투입수량, 산출수량, 불량수량, 불량비율
                 }
 
-                foreach (string item in backColorCell) 
-                    dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
+                foreach (string item in backColorCell)
+                    dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
 
 
                 if (dgvData.Rows.Count > 0) ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
