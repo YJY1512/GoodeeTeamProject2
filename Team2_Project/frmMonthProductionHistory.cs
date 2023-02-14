@@ -142,8 +142,6 @@ namespace Team2_Project
                     else if (rdoOutQty.Checked) chartTitle = "월별 제품 산출량";
                     else if (rdoLossQty.Checked) chartTitle = "월별 제품 불량수량";
 
-                    int num = 0;
-                    int colors = 5;
                     chtDataPie.Series.Clear();
                     chtDataLine.Series.Clear();
 
@@ -157,6 +155,8 @@ namespace Team2_Project
                     chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
                     chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
 
+                    int num = 0;
+                    int colors = 5;
                     foreach (var item in MTHistoryList)
                     {
                         int TotQty = 0;
