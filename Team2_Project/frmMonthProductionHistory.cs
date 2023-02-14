@@ -282,14 +282,12 @@ namespace Team2_Project
         {
             if (rdoChartOne.Checked)
             {
-                chtDataLine.Visible = false;
-                
+                splitContainerChart.Panel1Collapsed = true;
             }
 
             else if (rdoChartTwo.Checked)
             {
-                splitContainerChart.Visible = true;
-                chtDataLine.Visible = true;
+                splitContainerChart.Panel1Collapsed = false;
             }
             ChartData();
         }
