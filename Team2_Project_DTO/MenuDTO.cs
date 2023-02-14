@@ -9,6 +9,7 @@ namespace Team2_Project_DTO
     public class MenuDTO
     {
         public string Screen_Code        { get; set; }
+        public string Fav_Screen_Code    { get; set; }
         public string Parent_Screen_Code { get; set; }
         public int    Sort_Index         { get; set; }
         public string Type               { get; set; }
