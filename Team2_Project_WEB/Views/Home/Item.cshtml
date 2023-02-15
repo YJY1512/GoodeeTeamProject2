@@ -187,43 +187,5 @@
             data: donutData2,
             options: donutOptions
         })
-
-        //Date range as a button
-        @*$('#daterange-btn').daterangepicker(
-            {
-                ranges: {
-                    '최근 일주일': [moment().subtract(6, 'days'), moment()],
-                    '최근 1개월': [moment().subtract(1, 'month'), moment()],
-                    '최근 3개월': [moment().subtract(3, 'month'), moment()],
-                    '최근 6개월': [moment().subtract(6, 'month'), moment()],
-                    '최근 1년': [moment().subtract(1, 'month'), moment()]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment()
-            },
-            function (start, end) {
-                $('#reportrange span').html(start.format('YYYY - MMMM - D') + ' - ' + end.format('YYYY - MMMM - D'))
-            }
-        )
-
-        $(function () {
-            $('#datetimepicker1').datetimepicker({
-                format: 'YYYY-MM-DD',
-                locale: 'ko'
-            });
-            $('#datetimepicker2').datetimepicker({
-                format: 'YYYY-MM-DD',
-                locale: 'ko',
-                useCurrent: false
-            });
-            $("#datetimepicker1").on("change.datetimepicker", function (e) {
-                $('#datetimepicker2').datetimepicker('minDate', e.date);
-            });
-            $("#datetimepicker2").on("change.datetimepicker", function (e) {
-                $('#datetimepicker1').datetimepicker('maxDate', e.date);
-            });
-        });
-            *@
-
     </script>
 }

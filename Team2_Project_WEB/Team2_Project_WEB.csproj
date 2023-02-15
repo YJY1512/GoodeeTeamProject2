@@ -127,10 +127,8 @@
     <Content Include="Views\Menu\MenuList.cshtml" />
     <Content Include="Views\Home\Item.cshtml" />
     <Content Include="Views\Home\ProdO.cshtml" />
-    <Content Include="Views\Home\ProdT.cshtml" />
     <Content Include="Views\Home\Defect.cshtml" />
     <Content Include="Views\Home\WPlace.cshtml" />
-    <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\TotProd.cshtml" />
     <None Include="Web.Debug.config">
