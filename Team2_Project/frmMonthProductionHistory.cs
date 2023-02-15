@@ -33,19 +33,13 @@ namespace Team2_Project
         public void LoadData()
         {
             dtpDate.Value = DateTime.Now;
-
             DataGridViewUtil.SetInitDataGridView(dgvData);
-
             DataGridViewCheckBoxColumn cbk2 = new DataGridViewCheckBoxColumn();
             cbk2.Width = 30;
-            //cbk2.Frozen = true;
             dgvData.Columns.Add(cbk2);
-
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 100);
-
-            //예상컬럼//
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표수량", "TotPlanQty", 110, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "TotInQty", 110, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 110, DataGridViewContentAlignment.MiddleRight);
@@ -101,7 +95,6 @@ namespace Team2_Project
                     MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건있을 때
                     AdvancedListBind(MTHistoryList, dgvData);
                 }
-
                 //if (dgvData.Rows.Count > 0) //데이터가 있을 때
                     //ChartData();
             }
