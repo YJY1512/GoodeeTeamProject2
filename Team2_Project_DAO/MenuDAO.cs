@@ -26,7 +26,7 @@ namespace Team2_Project_DAO
                 conn.Close();
         }
 
-        public List<MenuDTO> GetMenuInfo(string grpCode)
+        public List<MenuDTO> GetMenuInfo(string grpCode, string userId)
         {
             try
             {
@@ -36,6 +36,7 @@ namespace Team2_Project_DAO
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserGroup_Code", grpCode);
+                    cmd.Parameters.AddWithValue("@User_ID", userId);
 
                     conn.Open();
                     List<MenuDTO> list = Helper.DataReaderMapToList<MenuDTO>(cmd.ExecuteReader());

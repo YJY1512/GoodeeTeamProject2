@@ -66,7 +66,7 @@ namespace Team2_Project
                 tStripName.Text = LoginEmp.User_Name;
                 tStripDept.Text = LoginEmp.UserGroup_Name;
 
-                menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
+                menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code, LoginEmp.User_ID);
                 //favList = srv.GetMenuFavInfo(LoginEmp.User_ID);
                 DrawSideMenu();
                 pnlChildMenu.Visible = false;

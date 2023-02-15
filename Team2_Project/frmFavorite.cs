@@ -30,7 +30,7 @@ namespace Team2_Project
         private void frmFavorite_Load(object sender, EventArgs e)
         {
             this.LoginEmp = ((frmMain)this.Owner).LoginEmp;
-            allMenuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
+            allMenuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code, LoginEmp.User_ID);
             favoriteList = srv.GetFavoriteInfo(LoginEmp.User_ID);
             AllMenuBinding();
             FavritListBinding();      
