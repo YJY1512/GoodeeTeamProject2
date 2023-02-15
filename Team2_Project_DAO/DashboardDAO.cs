@@ -140,13 +140,13 @@ namespace Team2_Project_DAO
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SP_NopHistory", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_GetDashBoardNop", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DateFrom", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") );
-                    cmd.Parameters.AddWithValue("@DateTo", DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@Ma_Code", "%%");
-                    cmd.Parameters.AddWithValue("@Ma_Name", "%%");
+                    //cmd.Parameters.AddWithValue("@DateFrom", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") );
+                    //cmd.Parameters.AddWithValue("@DateTo", DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"));
+                    //cmd.Parameters.AddWithValue("@Ma_Code", "%%");
+                    //cmd.Parameters.AddWithValue("@Ma_Name", "%%");
 
                     conn.Open();
                     List<NopHistoryDTO> list = Helper.DataReaderMapToList<NopHistoryDTO>(cmd.ExecuteReader());

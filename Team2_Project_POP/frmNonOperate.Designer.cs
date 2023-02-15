@@ -204,6 +204,7 @@ namespace Team2_Project_POP
             this.Text = "frmNonOperate";
             this.Activated += new System.EventHandler(this.frmNonOperate_Activated);
             this.Load += new System.EventHandler(this.frmNonOperate_Load);
+            this.Enter += new System.EventHandler(this.frmNonOperate_Enter);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

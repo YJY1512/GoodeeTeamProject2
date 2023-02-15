@@ -39,7 +39,7 @@ namespace Team2_Project
         private void AllMenuBinding()   //allList에 대메뉴 중메뉴만 출력 
         {
             List<MenuDTO> menus = allMenuList;
-            var menu1 = menus.FindAll((k) => k.Menu_Level == 1 && k.Type == "MODULE").OrderBy((k) => k.Sort_Index).ToList();
+            var menu1 = menus.FindAll((k) => k.Menu_Level == 1 && k.Type == "MODULE" && k.FAV == "N").OrderBy((k) => k.Sort_Index).ToList();
             for (int b = 0; b < menu1.Count; b++)
             {
                 TreeNode bigNode = new TreeNode();
@@ -50,7 +50,7 @@ namespace Team2_Project
                 bigNode.ForeColor = Color.DarkGray;
 
                 string menu1ID = bigNode.Name;
-                var menu2 = menus.FindAll((k) => k.Menu_Level == 2 && k.Parent_Screen_Code == menu1ID).OrderBy((k) => k.Sort_Index).ToList();
+                var menu2 = menus.FindAll((k) => k.Menu_Level == 2 && k.Parent_Screen_Code == menu1ID && k.FAV == "N").OrderBy((k) => k.Sort_Index).ToList();
                 for (int m = 0; m < menu2.Count; m++)
                 {
                     TreeNode middleNode = new TreeNode();
@@ -69,7 +69,7 @@ namespace Team2_Project
         private void FavritListBinding()
         {
             List<MenuDTO> lists = favoriteList;
-            var list1 = lists.FindAll((k) => k.Menu_Level == 3).OrderBy((k) => k.Sort_Index).ToList();
+            var list1 = lists.FindAll((k) => k.Menu_Level == 3 ).OrderBy((k) => k.Sort_Index).ToList();
             for (int l = 0; l < list1.Count; l++)
             {
                 TreeNode favList = new TreeNode();
@@ -91,7 +91,7 @@ namespace Team2_Project
 
             if (e.Node.Tag == null) return;
             string menuID = e.Node.Name;
-            var menu3 = allMenuList.FindAll((k) => k.Menu_Level == 3 && k.Parent_Screen_Code == menuID).OrderBy((k) => k.Sort_Index).ToList();
+            var menu3 = allMenuList.FindAll((k) => k.Menu_Level == 3 && k.Parent_Screen_Code == menuID && k.FAV =="N").OrderBy((k) => k.Sort_Index).ToList();
             for (int s = 0; s <menu3.Count; s++)
             {
 

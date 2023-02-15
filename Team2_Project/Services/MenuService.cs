@@ -10,10 +10,10 @@ namespace Team2_Project.Services
 {
     public class MenuService
     {
-        public List<MenuDTO> GetMenuInfo(string grpCode, string userId)
+        public List<MenuDTO> GetMenuInfo(string grpCode, string userID)
         {
             MenuDAO db = new MenuDAO();
-            List<MenuDTO> list = db.GetMenuInfo(grpCode, userId);
+            List<MenuDTO> list = db.GetMenuInfo(grpCode, userID);
             db.Dispose();
 
             return list;

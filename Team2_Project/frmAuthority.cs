@@ -40,15 +40,15 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvAuthority);
             DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 메뉴 코드", "Screen_Code", 300);       //0
             DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 메뉴 명", "Menu_Name", 250);           //1
-            DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 권한타입", "Type", 100);               //2
-            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 모듈권한", "Module", 100, disable:true);  //3
-            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 조회권한", "Src", 100, disable: true);    //4
-            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 추가권한", "Ins", 100, disable: true);    //5
-            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 수정권한", "Upd", 100, disable: true);    //6
-            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 삭제권한", "Del", 100, disable: true);    //7
-            DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 권한문자", "Pre_Type_NM", 100);           //8
+            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 모듈권한", "Module", 100, disable:true);  //2
+            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 조회권한", "Src", 100, disable: true);    //3
+            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 추가권한", "Ins", 100, disable: true);    //4
+            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 수정권한", "Upd", 100, disable: true);    //5
+            DataGridViewUtil.AddCheckBoxColumn(dgvAuthority, " 삭제권한", "Del", 100, disable: true);    //6
+            DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 권한타입", "Type", 100);               //7
+            DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 권한문자", "Pre_Type_NM", 100);        //8
 
-            DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 권한문자", "Pre_Type", visible: false);           //8
+            DataGridViewUtil.AddGridTextBoxColumn(dgvAuthority, " 권한문자", "Pre_Type", visible: false); 
             dgvAuthority.MultiSelect = false;
 
             CommonCodeUtil.ComboBinding(cboAuthNM, moduel, "PRE_TYPE");
