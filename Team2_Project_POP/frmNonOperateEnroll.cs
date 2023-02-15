@@ -66,12 +66,12 @@ namespace Team2_Project_POP
 
         }
 
-        private void dgvMaNon_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvMaNon_RowEnter_1(object sender, DataGridViewCellEventArgs e)
         {
             var defmilist = nonCodes.FindAll((ma) => ma.Parent == dgvMaNon["Code", e.RowIndex].Value.ToString()).ToList();
             dgvMiNon.DataSource = defmilist;
 
-            dgvMiNon.Refresh();            
+            dgvMiNon.Refresh();
         }
 
         private void dgvMiNon_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -79,26 +79,6 @@ namespace Team2_Project_POP
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            this.Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            lblYear.Text = DateTime.Now.Year.ToString();
-            lblMonth.Text = DateTime.Now.Month.ToString();
-            lblDay.Text = DateTime.Now.Day.ToString();
-            lblHour.Text = DateTime.Now.Hour.ToString();
-            lblMinute.Text = DateTime.Now.Minute.ToString();
-            lblSecond.Text = DateTime.Now.Second.ToString();
-        }
 
         private void btnYU_Click(object sender, EventArgs e)
         {
@@ -159,5 +139,35 @@ namespace Team2_Project_POP
         {
             lblSecond.Text = ((Convert.ToInt32(lblSecond.Text) - 1) > 0) ? "59" : (Convert.ToInt32(lblSecond.Text) - 1).ToString();
         }
+
+        
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            DateTime time = DateTime.Parse($"{lblYear.Text.ToString()}-{lblMonth.Text.ToString()}-{lblDay.Text.ToString()} {lblHour.Text.ToString()}:{lblMinute.Text.ToString()}:{lblSecond.Text.ToString()}");
+
+            //ser.SetNop(dgvWorkLine[1,dgvWorkLine.SelectedRows[0].Index].Value.ToString(), dgvMaNon[1, dgvMaNon.SelectedRows[0].Index].Value.ToString(), dgvMiNon[1, dgvMiNon.SelectedRows[0].Index].Value.ToString(), time);
+
+            this.Close();
+        }
+
+        private void btnCancle_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnNow_Click(object sender, EventArgs e)
+        {
+            lblYear.Text = DateTime.Now.Year.ToString();
+            lblMonth.Text = DateTime.Now.Month.ToString();
+            lblDay.Text = DateTime.Now.Day.ToString();
+            lblHour.Text = DateTime.Now.Hour.ToString();
+            lblMinute.Text = DateTime.Now.Minute.ToString();
+            lblSecond.Text = DateTime.Now.Second.ToString();
+        }
+
+        
     }
+
+    
 }

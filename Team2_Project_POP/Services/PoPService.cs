@@ -90,5 +90,14 @@ namespace Team2_Project_POP.Services
 
             return list;
         }
+
+        public List<PaletteDTO> GetPaletteList(string WorkOrderNo)
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            List<PaletteDTO> list = db.GetPaletteList(WorkOrderNo);
+            db.Dispose();
+
+            return list;
+        }
     }
 }

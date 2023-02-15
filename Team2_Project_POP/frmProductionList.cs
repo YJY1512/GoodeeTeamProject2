@@ -97,6 +97,14 @@ namespace Team2_Project_POP
         {
             if (selectedOrder == null || selectedOrder.Status_Code == "W02" || selectedOrder.Status_Code == "W04") return;
 
+            foreach(var list in pnlList.Controls)
+            {
+                if (((Controls.ucList)list).Status_Code == "W02") 
+                {
+                    
+                    return; 
+                }
+            }
             // 대기 >>  생산 중인 경우
 
             ((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W02");
@@ -121,6 +129,7 @@ namespace Team2_Project_POP
         /// <param name="e"></param>
         private void btnPalette_Click(object sender, EventArgs e)
         {
+            ((frmParent)this.MdiParent).SelectedWorkOrder = serv.SetWrorkOrder(selectedOrder.WorkOrderNo);
             frmPalette frm = new frmPalette();
             frm.MdiParent = MdiParent;
             frm.WindowState = FormWindowState.Maximized;
@@ -185,17 +194,12 @@ namespace Team2_Project_POP
         /// <param name="e"></param>
         private void btnNonP_Click(object sender, EventArgs e)
         {
-            if (selectedOrder == null || selectedOrder.Status_Code != "W02") return;
-
+            
             frmNonOperate frm = new frmNonOperate();
             frm.MdiParent = this.MdiParent;
             frm.WindowState = FormWindowState.Maximized;
 
             frm.Show();
-
-
-
-
 
             frmProductionList_Enter(this, e);
 
@@ -204,6 +208,10 @@ namespace Team2_Project_POP
         private void frmProductionList_Enter(object sender, EventArgs e)
         {
             //((frmParent)this.MdiParent).WorkOrderList = serv.UpdateWork(selectedOrder.WorkOrderNo, ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code, "W04");
+            // parent에 작업장 리스트 중에 선택된 작업장 리스트를 DB 에서 가져와 넣기
+            ((frmParent)this.MdiParent).WorkOrderList = serv.GetOrders(((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code);
+
+
             pnlList.Controls.Clear();
             for (int i = 0; i < ((frmParent)this.MdiParent).WorkOrderList.Count; i++)
             {

@@ -54,7 +54,6 @@ namespace Team2_Project_POP
                 cal.Tag = "Def";
                 cal.ShowDialog(this.MdiParent);
             }
-
             frmPerformance_Activated(this, e);
         }
 

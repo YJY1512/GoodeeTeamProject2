@@ -127,7 +127,7 @@ namespace Team2_Project_WEB.Controllers
             {
                 TotalItems = totalCount,
                 CurrentPage = page,
-                ItemsPerPage = pageSize
+                ItemsPerPage = 7
         };
 
             StringBuilder sb1 = new StringBuilder();

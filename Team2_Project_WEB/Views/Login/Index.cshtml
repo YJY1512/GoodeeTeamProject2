@@ -29,7 +29,7 @@
             <div class="card-body">
                 @if (Convert.ToBoolean(Session["LoginFailed"]))
                 {
-                    <p class="login-box-msg" style="font-size:9px;color:crimson">"로그인에 실패하였습니다. 다시 시도해 주세요."</p>
+                    <p class="login-box-msg" style="font-size:12px;color:crimson">"로그인에 실패하였습니다. 다시 시도해 주세요."</p>
                 }
                 <p class="login-box-msg"><b>ID</b> 와<b>Password</b> 를 입력해 주세요.</p>
                 <form action="~/Login/Login" method="post">

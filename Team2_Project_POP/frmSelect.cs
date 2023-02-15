@@ -64,7 +64,7 @@ namespace Team2_Project_POP
             //작업장 리스트 중에 작업장을 선택
             ((frmParent)this.MdiParent).SelectedWorkLine = ((frmParent)MdiParent).WrokLineList.Find((work) => work.Wc_Code == ((Controls.ucSelectedList)sender).Tag.ToString());
             ((frmParent)this.MdiParent).lblSelected.Text = ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Name;
-            ((frmParent)this.MdiParent).WorkOrderList = ser.GetOrders(((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -32,7 +32,6 @@ namespace Team2_Project_POP
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblProductionLine = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -71,7 +70,6 @@ namespace Team2_Project_POP
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
@@ -79,17 +77,6 @@ namespace Team2_Project_POP
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(300, 642);
             this.panel3.TabIndex = 5;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Firebrick;
-            this.button4.Location = new System.Drawing.Point(24, 451);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(264, 200);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "비가동 삭제";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -218,7 +205,6 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblProductionLine;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
