@@ -79,7 +79,7 @@ namespace Team2_Project_POP
                 };
                 result = ser.InDef(inDef);
             }
-
+            
             if (!result) MessageBox.Show("입력 오류");
 
             //((frmParent)Owner).PDQtyP = Convert.ToInt32(sb.ToString());

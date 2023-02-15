@@ -124,10 +124,10 @@ namespace Team2_Project_DAO
                     cmd.Parameters.AddWithValue("@Def_Date", defQty.Item_time);
 
                     conn.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     conn.Close();
 
-                    return (result > 0);
+                    return true;
                 }
             }
             catch (Exception err)
@@ -254,7 +254,7 @@ namespace Team2_Project_DAO
 
         public List<DefVO> SetNonCodes()
         {
-            List<DefVO> result = new List<DefVO>();
+            List<DefVO> result = new List<DefVO>( );
             try
             {
                 using (SqlCommand cmd = new SqlCommand("Sp_nonCodes", conn))
@@ -263,6 +263,30 @@ namespace Team2_Project_DAO
 
                     conn.Open();
                     result = Helper.DataReaderMapToList<DefVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public List<PaletteDTO> GetPaletteList(string workOrderNo)
+        {
+            List<PaletteDTO> result = new List<PaletteDTO>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Wc_code", workOrderNo);
+
+                    conn.Open();
+                    result = Helper.DataReaderMapToList<PaletteDTO>(cmd.ExecuteReader());
                     conn.Close();
 
                     return result;

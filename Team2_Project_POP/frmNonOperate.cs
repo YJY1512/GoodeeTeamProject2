@@ -34,14 +34,12 @@ namespace Team2_Project_POP
 
         private void List_list_Click(object sender, EventArgs e)
         {
-            selectedList = ((ucNonList)sender);
-            foreach(var item in pnlNon.Controls)
+            foreach (var item in pnlNon.Controls)
             {
                 ((ucNonList)item).isClick = false;
                 ((ucNonList)item).tableLayoutPanel1.BackColor = Color.White;
             }
             ((ucNonList)sender).isClick = true;
-
             ((ucNonList)sender).tableLayoutPanel1.BackColor = Color.Black;
         }
 

@@ -15,6 +15,8 @@ namespace Team2_Project_POP.Utils
             dgv.AutoGenerateColumns = false;//DataSource를 기준으로 자동 컬럼을 생성 (기본값이 true)
             dgv.AllowUserToAddRows = false;//마지막에 + 행추가 삭제 (기본값이 true)
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.PeachPuff;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv.ColumnHeadersVisible = false;
             dgv.RowHeadersWidth = 10;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
