@@ -19,6 +19,7 @@ namespace Team2_Project
         AnalysisService srv = new AnalysisService();
         List<ItemDTO> itemList;
         List<MonthProductionHistoryDTO> MTHistoryList = new List<MonthProductionHistoryDTO>();
+        CheckBox headerChk = new CheckBox();
 
         public frmMonthProductionHistory()
         {
@@ -34,9 +35,21 @@ namespace Team2_Project
         {
             dtpDate.Value = DateTime.Now;
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewCheckBoxColumn cbk2 = new DataGridViewCheckBoxColumn();
-            cbk2.Width = 30;
-            dgvData.Columns.Add(cbk2);
+
+            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            chk.Name = "chk";
+            chk.Width = 30;
+            chk.HeaderText = "";
+            dgvData.Columns.Add(chk);
+
+            Point headerCell = dgvData.GetCellDisplayRectangle(0, -1, true).Location; //컬럼헤더부분에 사각형의 위치를 가져옴 (-1)
+            headerChk.Location = new Point(headerCell.X + 8, headerCell.Y + 12);
+            headerChk.Size = new Size(18, 18);
+            headerChk.BackColor = Color.Transparent;
+
+            headerChk.Click += HeaderChk_Click;
+            dgvData.Controls.Add(headerChk);
+
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 100);
@@ -70,6 +83,15 @@ namespace Team2_Project
             rdoPrdQty.Checked = rdoChartTwo.Checked = true;
         }
 
+        private void HeaderChk_Click(object sender, EventArgs e)
+        {
+            dgvData.EndEdit(); //포커스가 가있으면 편집상태라고떠서 반영이안되는점 실행되도록
+            foreach (DataGridViewRow dr in dgvData.Rows)
+            {
+                dr.Cells["chk"].Value = headerChk.Checked;
+            }
+        }
+
         private void AdvancedListBind(List<MonthProductionHistoryDTO> datasource, DataGridView dgv)
         {
             BindingSource bs = new BindingSource(new AdvancedList<MonthProductionHistoryDTO>(datasource), null);
@@ -95,8 +117,6 @@ namespace Team2_Project
                     MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건있을 때
                     AdvancedListBind(MTHistoryList, dgvData);
                 }
-                //if (dgvData.Rows.Count > 0) //데이터가 있을 때
-                    //ChartData();
             }
             else
             {
@@ -108,8 +128,8 @@ namespace Team2_Project
 
         public void OnReLoad()  //새로고침
         {
-            ResetTop();//검색리셋
-            OnSearch();//로드
+            ResetTop(); //검색리셋
+            OnSearch(); //로드
             chtDataPie.Series.Clear();
             chtDataLine.Series.Clear();
         }
@@ -156,13 +176,17 @@ namespace Team2_Project
 
                     chtDataLine.Series.Add(chartTitle);
                     chtDataLine.Series[chartTitle].Points.Clear();
-                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
                     chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
 
                     int num = 0;
-                    int colors = 5;
+                    Random rd = new Random();
                     foreach (var item in list)
                     {
+                        int rbColor = rd.Next(1, 255);
+                        int gbColor = rd.Next(1, 255);
+                        int bColor = rd.Next(1, 255);
+
                         int TotQty = 0;
                         string itemName = item.Item_Name;
                         if (chartTitle.Equals("월별 제품 생산비율")) TotQty = item.TotPrdQty;
@@ -174,16 +198,15 @@ namespace Team2_Project
                         chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataPie.Series[chartTitle].BorderColor = Color.Gray;
                         chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                        //chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(rbColor, gbColor, bColor);
                         //chtDataPie.Series[chartTitle].Points[num].LabelFormat = "N2";
 
                         chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataLine.Series[chartTitle].BorderColor = Color.Gray;
                         chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
-                        //.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(rbColor, gbColor, bColor);
                         //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         num++;
-                        colors += 7;
                     }
                 }
             }
@@ -284,10 +307,15 @@ namespace Team2_Project
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
                     txt.Add(row.Cells["Item_Code"].Value.ToString());
-                }                
+                }
+                else
+                {
+                    MessageBox.Show("차트확인 할 항목을 선택하여 주십시오.");
+                    return;
+                }
             }
             ChartData(txt);
-            //splitContainer1.SplitterDistance = splitContainer1.Height / 2;
+            splitContainer1.SplitterDistance = splitContainer1.Height / 2;
         }
     }
 }
