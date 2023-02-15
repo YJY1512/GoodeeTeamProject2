@@ -66,7 +66,7 @@ namespace Team2_Project
                 tStripName.Text = LoginEmp.User_Name;
                 tStripDept.Text = LoginEmp.UserGroup_Name;
 
-                menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code);
+                menuList = srv.GetMenuInfo(LoginEmp.UserGroup_Code, LoginEmp.User_ID);
                 //favList = srv.GetMenuFavInfo(LoginEmp.User_ID);
                 DrawSideMenu();
                 pnlChildMenu.Visible = false;
@@ -131,8 +131,6 @@ namespace Team2_Project
 
                 btn.Tag = i;
 
-
-
                 pnlMenu.Controls.Add(btn);
                 
                 btn.Click += Btn_Click;
@@ -181,10 +179,46 @@ namespace Team2_Project
 
             menuTree.Nodes.Clear();
 
-            
+            if (menuID == "FAV")
+            {
+                var menu4List = menuList.FindAll((m) => m.Type == "MODULE"
+                                                && m.Menu_Level == 2 && m.FAV == "Y")
+                                .OrderBy((m) => m.Sort_Index).ToList();
 
+                for (int k = 0; k < menu4List.Count; k++)
+                {
+                    TreeNode treeNode1 = new TreeNode();
+                    treeNode1.Name = menu4List[k].Screen_Code;
+                    treeNode1.Text = menu4List[k].Menu_Name;
+                    treeNode1.Tag = menu4List[k].Form_Name;
+                    treeNode1.BackColor = Color.FromArgb(211, 226, 223);
+                    treeNode1.NodeFont = new Font("나눔고딕", 11.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
+                    treeNode1.ForeColor = Color.Black;
+
+                    string menu1ID = treeNode1.Name;
+                    var menu5List = menuList.FindAll((m) => m.Parent_Screen_Code == menu1ID
+                                            && m.Menu_Level == 3 &&  m.Type == "FAVORITE" && m.FAV == "Y").OrderBy((m) => m.Sort_Index).ToList();
+
+                    for (int c = 0; c < menu5List.Count; c++)
+                    {
+                        TreeNode childNode = new TreeNode();
+                        childNode.Name = menu5List[c].Screen_Code;
+                        childNode.Text = menu5List[c].Menu_Name;
+                        childNode.Tag = menu5List[c].Form_Name;
+                        childNode.BackColor = Color.FromArgb(211, 226, 223);
+                        childNode.NodeFont = new Font("나눔고딕", 9.75F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(129)));
+                        childNode.ForeColor = Color.Black;
+
+                        treeNode1.Nodes.Add(childNode);
+
+                    }
+
+                    menuTree.Nodes.Add(treeNode1);
+                }
+            }
+            
             var menu2List = menuList.FindAll((m) => m.Parent_Screen_Code == menuID
-                                                && m.Menu_Level == 2)
+                                                && m.Menu_Level == 2 && m.FAV == "N" )
                                 .OrderBy((m) => m.Sort_Index).ToList();
 
             for (int k = 0; k < menu2List.Count; k++)
@@ -199,7 +233,7 @@ namespace Team2_Project
 
                 string menu1ID = treeNode1.Name;
                 var menu3List = menuList.FindAll((m) => m.Parent_Screen_Code == menu1ID
-                                        && m.Menu_Level == 3).OrderBy((m) => m.Sort_Index).ToList();
+                                        && m.Menu_Level == 3 && m.FAV == "N").OrderBy((m) => m.Sort_Index).ToList();
 
                 for (int c = 0; c < menu3List.Count; c++)
                 {
@@ -217,6 +251,7 @@ namespace Team2_Project
 
                 menuTree.Nodes.Add(treeNode1);
             }
+
             pnlChildMenu.Visible = true;
             menuTree.ItemHeight = 30;
             menuTree.ExpandAll();
@@ -471,19 +506,19 @@ namespace Team2_Project
         }
         #endregion
 
-        private void tsBtnLogOut_Click(object sender, EventArgs e)
+        private void tsBtnLogOut_Click(object sender, EventArgs e)  //로그아웃
         {
             this.Close();
             Application.Restart();
         }
 
-        private void tsBtnSetting_Click(object sender, EventArgs e)
+        private void tsBtnSetting_Click(object sender, EventArgs e) //설정
         {
             frmSettings pop = new frmSettings();
             pop.ShowDialog(this);
         }
 
-        private void tsBtnFavorite_Click(object sender, EventArgs e)
+        private void tsBtnFavorite_Click(object sender, EventArgs e) //즐겨찾기
         {
             frmFavorite pop = new frmFavorite();
             pop.ShowDialog(this);

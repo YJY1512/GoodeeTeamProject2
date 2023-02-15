@@ -20,5 +20,6 @@ namespace Team2_Project_DTO
         public string Use_YN             { get; set; }
         public int    Seq                { get; set; }
         public string Pre_Type           { get; set; }
+        public string FAV                { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace Team2_Project
         AnalysisService srv = new AnalysisService();
         List<ItemDTO> itemList;
         List<MonthProductionHistoryDTO> MTHistoryList = new List<MonthProductionHistoryDTO>();
+        CheckBox headerChk = new CheckBox();
 
         public frmMonthProductionHistory()
         {
@@ -33,25 +34,37 @@ namespace Team2_Project
         public void LoadData()
         {
             dtpDate.Value = DateTime.Now;
-
             DataGridViewUtil.SetInitDataGridView(dgvData);
+
+            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            chk.Name = "chk";
+            chk.Width = 30;
+            chk.HeaderText = "";
+            dgvData.Columns.Add(chk);
+
+            Point headerCell = dgvData.GetCellDisplayRectangle(0, -1, true).Location; //컬럼헤더부분에 사각형의 위치를 가져옴 (-1)
+            headerChk.Location = new Point(headerCell.X + 8, headerCell.Y + 12);
+            headerChk.Size = new Size(18, 18);
+            headerChk.BackColor = Color.Transparent;
+
+            headerChk.Click += HeaderChk_Click;
+            dgvData.Controls.Add(headerChk);
+
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 120);
-
-            //예상컬럼//
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표수량", "TotPlanQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "TotInQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "TotPrdQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "TotDefectQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성률", "AttainmentRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "양품률", "QualityRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동률", "OperatingRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량률", "DefectRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일평균생산수량", "AverageDailyProduction", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 100);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표수량", "TotPlanQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "TotInQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "TotPrdQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "TotDefectQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성률", "AttainmentRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "양품률", "QualityRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동률", "OperatingRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량률", "DefectRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일평균생산수량", "AverageDailyProduction", 130, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "월평균생산수량", "AverageMonthProduction", 150, DataGridViewContentAlignment.MiddleRight); //일일생산량?
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "TotalProductionDays", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "TotalProductionDays", 110, DataGridViewContentAlignment.MiddleRight);
             string[] dotCell = new string[] { "TotPlanQty", "TotInQty", "TotOutQty", "TotPrdQty", "AverageMonthProduction", "TotalProductionDays", "TotDefectQty" };
             foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
@@ -68,6 +81,15 @@ namespace Team2_Project
             dgvData.ClearSelection();
             OnSearch();
             rdoPrdQty.Checked = rdoChartTwo.Checked = true;
+        }
+
+        private void HeaderChk_Click(object sender, EventArgs e)
+        {
+            dgvData.EndEdit(); //포커스가 가있으면 편집상태라고떠서 반영이안되는점 실행되도록
+            foreach (DataGridViewRow dr in dgvData.Rows)
+            {
+                dr.Cells["chk"].Value = headerChk.Checked;
+            }
         }
 
         private void AdvancedListBind(List<MonthProductionHistoryDTO> datasource, DataGridView dgv)
@@ -95,9 +117,6 @@ namespace Team2_Project
                     MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건있을 때
                     AdvancedListBind(MTHistoryList, dgvData);
                 }
-
-                if (dgvData.Rows.Count > 0) //데이터가 있을 때
-                    ChartData();
             }
             else
             {
@@ -109,8 +128,10 @@ namespace Team2_Project
 
         public void OnReLoad()  //새로고침
         {
-            ResetTop();//검색리셋
-            OnSearch();//로드
+            ResetTop(); //검색리셋
+            OnSearch(); //로드
+            chtDataPie.Series.Clear();
+            chtDataLine.Series.Clear();
         }
         #endregion
 
@@ -129,12 +150,15 @@ namespace Team2_Project
             //}
         }
 
-        public void ChartData() //(테스트중)반복부분 메서드만들어서 수정해야함
+        public void ChartData(List<string> txt)
         {
+            List<MonthProductionHistoryDTO> list = new List<MonthProductionHistoryDTO>();
+            list = MTHistoryList.Where(dto => txt.Contains(dto.Item_Code)).ToList();
+
             if (rdoPrdQty.Checked || rdoPlanQty.Checked || rdoInQty.Checked || rdoOutQty.Checked || rdoLossQty.Checked)
             {
                 string chartTitle = "";
-                if (MTHistoryList != null && MTHistoryList.Count > 0)
+                if (list != null && list.Count > 0)
                 {
                     if (rdoPrdQty.Checked) chartTitle = "월별 제품 생산비율";
                     else if (rdoPlanQty.Checked) chartTitle = "월별 제품 목표량";
@@ -152,13 +176,17 @@ namespace Team2_Project
 
                     chtDataLine.Series.Add(chartTitle);
                     chtDataLine.Series[chartTitle].Points.Clear();
-                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
                     chtDataLine.Series[chartTitle].IsValueShownAsLabel = true;
+                    chtDataLine.Series[chartTitle].ChartType = SeriesChartType.StackedColumn;
 
                     int num = 0;
-                    int colors = 5;
-                    foreach (var item in MTHistoryList)
+                    Random rd = new Random();
+                    foreach (var item in list)
                     {
+                        int rbColor = rd.Next(1, 255);
+                        int gbColor = rd.Next(1, 255);
+                        int bColor = rd.Next(1, 255);
+
                         int TotQty = 0;
                         string itemName = item.Item_Name;
                         if (chartTitle.Equals("월별 제품 생산비율")) TotQty = item.TotPrdQty;
@@ -170,16 +198,15 @@ namespace Team2_Project
                         chtDataPie.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataPie.Series[chartTitle].BorderColor = Color.Gray;
                         chtDataPie.Series[chartTitle].Points[num].LegendText = itemName;
-                        //chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        chtDataPie.Series[chartTitle].Points[num].Color = Color.FromArgb(rbColor, gbColor, bColor);
                         //chtDataPie.Series[chartTitle].Points[num].LabelFormat = "N2";
 
                         chtDataLine.Series[chartTitle].Points.AddXY(itemName, TotQty);
                         chtDataLine.Series[chartTitle].BorderColor = Color.Gray;
                         chtDataLine.Series[chartTitle].Points[num].LegendText = itemName;
-                        //.Series[chartTitle].Points[num].Color = Color.FromArgb(211 + colors, 226, 223);
+                        chtDataLine.Series[chartTitle].Points[num].Color = Color.FromArgb(rbColor, gbColor, bColor);
                         //chtDataLine.Series[chartTitle].Points[num].LabelFormat = "#,###";
                         num++;
-                        colors += 7;
                     }
                 }
             }
@@ -215,7 +242,7 @@ namespace Team2_Project
                 {
                     col.DefaultCellStyle.BackColor = Color.White;
                 }
-                dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
+                dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(215, 215, 215);
 
                 string[] backColorCell = null;
                 if (rdoPrdQty.Checked) //생산수량 양품
@@ -240,11 +267,11 @@ namespace Team2_Project
                 }
 
                 foreach (string item in backColorCell)
-                    dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
+                    dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(215, 215, 215);
 
-                if (dgvData.Rows.Count > 0)
-                    ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
-                else chtDataPie.Series.Clear();
+                //if (dgvData.Rows.Count > 0)//////////////////////////////////////////////////////////////////////////////////////////
+                //ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
+                //else chtDataPie.Series.Clear();
 
                 dgvData.ClearSelection();
             }
@@ -260,7 +287,7 @@ namespace Team2_Project
             {
                 splitContainerChart.Panel1Collapsed = false;
             }
-            ChartData();
+            //ChartData();
         }
 
         private void dgvData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -270,6 +297,25 @@ namespace Team2_Project
             else if (column.HeaderText == "양품률") column.HeaderCell.ToolTipText = "(산출수량 / 투입수량) *100";
             else if (column.HeaderText == "가동률") column.HeaderCell.ToolTipText = "(투입수량 / 목표수량) *100";
             else if (column.HeaderText == "불량률") column.HeaderCell.ToolTipText = "(불량수량 / 생산수량 ) *100";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<string> txt = new List<string>();
+            foreach (DataGridViewRow row in dgvData.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    txt.Add(row.Cells["Item_Code"].Value.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("차트확인 할 항목을 선택하여 주십시오.");
+                    return;
+                }
+            }
+            ChartData(txt);
+            splitContainer1.SplitterDistance = splitContainer1.Height / 2;
         }
     }
 }

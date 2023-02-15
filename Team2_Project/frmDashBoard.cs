@@ -124,7 +124,7 @@ namespace Team2_Project
             ProductionHistoryList = srv.Production();
             if (ProductionHistoryList.Count > 0)
             {
-                var newList = ProductionHistoryList.OrderByDescending(x => x.Plan_Date).ToList();
+                var newList = ProductionHistoryList.OrderByDescending(x => x.Prd_StartTime).ToList();
                 dgv.DataSource = newList;
             }
             else

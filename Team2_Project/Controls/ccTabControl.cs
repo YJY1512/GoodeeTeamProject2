@@ -37,7 +37,7 @@ namespace Team2_Project.Controls
                 //선택된 탭의 백그라운드색상은 흰색 (나머지 탭은 기본값)
                 if (this.SelectedIndex == e.Index)
                 {
-                    e.Graphics.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(165, 209, 217)), e.Bounds);
                 }
                 //탭의 글씨
                 SolidBrush titleBrush = new SolidBrush(Color.Black);
