@@ -35,23 +35,29 @@ namespace Team2_Project
             dtpDate.Value = DateTime.Now;
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
+
+            DataGridViewCheckBoxColumn cbk2 = new DataGridViewCheckBoxColumn();
+            cbk2.Width = 30;
+            //cbk2.Frozen = true;
+            dgvData.Columns.Add(cbk2);
+
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목코드", "Item_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목명", "Item_Name", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "품목유형", "Item_Type", 100);
 
             //예상컬럼//
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표수량", "TotPlanQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "TotInQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "TotPrdQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "TotDefectQty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성률", "AttainmentRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "양품률", "QualityRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동률", "OperatingRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량률", "DefectRate", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일평균생산수량", "AverageDailyProduction", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "목표수량", "TotPlanQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "투입수량", "TotInQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "산출수량", "TotOutQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산수량", "TotPrdQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량수량", "TotDefectQty", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "달성률", "AttainmentRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "양품률", "QualityRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "가동률", "OperatingRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "불량률", "DefectRate", 110, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "일평균생산수량", "AverageDailyProduction", 130, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "월평균생산수량", "AverageMonthProduction", 150, DataGridViewContentAlignment.MiddleRight); //일일생산량?
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "TotalProductionDays", 120, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "생산일수", "TotalProductionDays", 110, DataGridViewContentAlignment.MiddleRight);
             string[] dotCell = new string[] { "TotPlanQty", "TotInQty", "TotOutQty", "TotPrdQty", "AverageMonthProduction", "TotalProductionDays", "TotDefectQty" };
             foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
@@ -96,8 +102,8 @@ namespace Team2_Project
                     AdvancedListBind(MTHistoryList, dgvData);
                 }
 
-                if (dgvData.Rows.Count > 0) //데이터가 있을 때
-                    ChartData();
+                //if (dgvData.Rows.Count > 0) //데이터가 있을 때
+                    //ChartData();
             }
             else
             {
@@ -111,6 +117,8 @@ namespace Team2_Project
         {
             ResetTop();//검색리셋
             OnSearch();//로드
+            chtDataPie.Series.Clear();
+            chtDataLine.Series.Clear();
         }
         #endregion
 
@@ -129,12 +137,15 @@ namespace Team2_Project
             //}
         }
 
-        public void ChartData() //(테스트중)반복부분 메서드만들어서 수정해야함
+        public void ChartData(List<string> txt)
         {
+            List<MonthProductionHistoryDTO> list = new List<MonthProductionHistoryDTO>();
+            list = MTHistoryList.Where(dto => txt.Contains(dto.Item_Code)).ToList();
+
             if (rdoPrdQty.Checked || rdoPlanQty.Checked || rdoInQty.Checked || rdoOutQty.Checked || rdoLossQty.Checked)
             {
                 string chartTitle = "";
-                if (MTHistoryList != null && MTHistoryList.Count > 0)
+                if (list != null && list.Count > 0)
                 {
                     if (rdoPrdQty.Checked) chartTitle = "월별 제품 생산비율";
                     else if (rdoPlanQty.Checked) chartTitle = "월별 제품 목표량";
@@ -157,7 +168,7 @@ namespace Team2_Project
 
                     int num = 0;
                     int colors = 5;
-                    foreach (var item in MTHistoryList)
+                    foreach (var item in list)
                     {
                         int TotQty = 0;
                         string itemName = item.Item_Name;
@@ -215,7 +226,7 @@ namespace Team2_Project
                 {
                     col.DefaultCellStyle.BackColor = Color.White;
                 }
-                dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
+                dgvData.Columns[/*"Item_Name"*/ "Item_Code"].DefaultCellStyle.BackColor = Color.FromArgb(215, 215, 215);
 
                 string[] backColorCell = null;
                 if (rdoPrdQty.Checked) //생산수량 양품
@@ -240,11 +251,11 @@ namespace Team2_Project
                 }
 
                 foreach (string item in backColorCell)
-                    dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
+                    dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(215, 215, 215);
 
-                if (dgvData.Rows.Count > 0)
-                    ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
-                else chtDataPie.Series.Clear();
+                //if (dgvData.Rows.Count > 0)//////////////////////////////////////////////////////////////////////////////////////////
+                //ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
+                //else chtDataPie.Series.Clear();
 
                 dgvData.ClearSelection();
             }
@@ -260,7 +271,7 @@ namespace Team2_Project
             {
                 splitContainerChart.Panel1Collapsed = false;
             }
-            ChartData();
+            //ChartData();
         }
 
         private void dgvData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -270,6 +281,20 @@ namespace Team2_Project
             else if (column.HeaderText == "양품률") column.HeaderCell.ToolTipText = "(산출수량 / 투입수량) *100";
             else if (column.HeaderText == "가동률") column.HeaderCell.ToolTipText = "(투입수량 / 목표수량) *100";
             else if (column.HeaderText == "불량률") column.HeaderCell.ToolTipText = "(불량수량 / 생산수량 ) *100";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<string> txt = new List<string>();
+            foreach (DataGridViewRow row in dgvData.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    txt.Add(row.Cells["Item_Code"].Value.ToString());
+                }                
+            }
+            ChartData(txt);
+            splitContainer1.SplitterDistance = splitContainer1.Height / 2;
         }
     }
 }

@@ -55,6 +55,7 @@ namespace Team2_Project
             this.panCriteria = new System.Windows.Forms.Panel();
             this.rdoLossQty = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -96,8 +97,11 @@ namespace Team2_Project
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.button1);
             this.pnlTitle.Location = new System.Drawing.Point(0, 60);
             this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
+            this.pnlTitle.Controls.SetChildIndex(this.button1, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.lblTitle, 0);
             // 
             // dtpDate
             // 
@@ -153,7 +157,7 @@ namespace Team2_Project
             this.chtDataPie.Legends.Add(legend2);
             this.chtDataPie.Location = new System.Drawing.Point(0, 0);
             this.chtDataPie.Name = "chtDataPie";
-            this.chtDataPie.Size = new System.Drawing.Size(985, 431);
+            this.chtDataPie.Size = new System.Drawing.Size(985, 0);
             this.chtDataPie.TabIndex = 3;
             this.chtDataPie.Text = "chart1";
             // 
@@ -165,7 +169,7 @@ namespace Team2_Project
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 330);
+            this.dgvData.Size = new System.Drawing.Size(1834, 763);
             this.dgvData.TabIndex = 4;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             this.dgvData.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvData_CellFormatting);
@@ -186,7 +190,7 @@ namespace Team2_Project
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 808);
-            this.splitContainer1.SplitterDistance = 330;
+            this.splitContainer1.SplitterDistance = 763;
             this.splitContainer1.TabIndex = 5;
             // 
             // panel1
@@ -195,7 +199,7 @@ namespace Team2_Project
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1834, 431);
+            this.panel1.Size = new System.Drawing.Size(1834, 0);
             this.panel1.TabIndex = 4;
             // 
             // splitContainerChart
@@ -211,7 +215,7 @@ namespace Team2_Project
             // splitContainerChart.Panel2
             // 
             this.splitContainerChart.Panel2.Controls.Add(this.chtDataPie);
-            this.splitContainerChart.Size = new System.Drawing.Size(1834, 431);
+            this.splitContainerChart.Size = new System.Drawing.Size(1834, 0);
             this.splitContainerChart.SplitterDistance = 845;
             this.splitContainerChart.TabIndex = 0;
             // 
@@ -224,7 +228,7 @@ namespace Team2_Project
             this.chtDataLine.Legends.Add(legend1);
             this.chtDataLine.Location = new System.Drawing.Point(0, 0);
             this.chtDataLine.Name = "chtDataLine";
-            this.chtDataLine.Size = new System.Drawing.Size(845, 431);
+            this.chtDataLine.Size = new System.Drawing.Size(845, 0);
             this.chtDataLine.TabIndex = 4;
             this.chtDataLine.Text = "chart1";
             // 
@@ -381,6 +385,17 @@ namespace Team2_Project
             this.label5.TabIndex = 84;
             this.label5.Text = "기준";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Location = new System.Drawing.Point(119, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(65, 26);
+            this.button1.TabIndex = 84;
+            this.button1.Text = "차트";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmMonthProductionHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -437,5 +452,6 @@ namespace Team2_Project
         private System.Windows.Forms.DataVisualization.Charting.Chart chtDataLine;
         private System.Windows.Forms.RadioButton rdoChartOne;
         private System.Windows.Forms.RadioButton rdoChartTwo;
+        private System.Windows.Forms.Button button1;
     }
 }
