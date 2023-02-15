@@ -29,7 +29,11 @@ namespace Team2_Project_POP
         //public string DefMiNameP { get; set; }
         //public int PDQtyP { get; set; }
 
+        // 비가동 리스트
         public List<NonDTO> NonList { get; set; }
+
+        // 팔레트 리스트
+        public List<PaletteDTO> PaletteList { get; set; }
 
         public frmParent()
         {
