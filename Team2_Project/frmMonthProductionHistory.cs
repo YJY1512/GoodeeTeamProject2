@@ -287,7 +287,7 @@ namespace Team2_Project
                 }                
             }
             ChartData(txt);
-            splitContainer1.SplitterDistance = splitContainer1.Height / 2;
+            //splitContainer1.SplitterDistance = splitContainer1.Height / 2;
         }
     }
 }

@@ -36,14 +36,6 @@ namespace Team2_Project
             List<CodeDTO> SpecList = srv.GetWoStatus();
             CommonCodeUtil.ComboBinding(cboWoStatus, SpecList, "WO_STATUS", blankText: "전체");
             cboWoStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            #region cboWoStatus항목
-            //cboWoStatus.Items.Add("전체");
-            //cboWoStatus.Items.Add("생산대기");
-            //cboWoStatus.Items.Add("생산중");
-            //cboWoStatus.Items.Add("생산중지");
-            //cboWoStatus.Items.Add("현장마감");
-            //cboWoStatus.Items.Add("작업지시마감"); //추후 DB에서 CODE 가져오기
-            #endregion
 
             DataGridViewUtil.SetInitDataGridView(dgvData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업지시상태", "Wo_Status", 120, DataGridViewContentAlignment.MiddleCenter);
@@ -197,23 +189,13 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //1. 조회조건으로 검색하면  (DB에서 List<작업지시테이블기반>가져와서)   dgv가 뜸 
-            //2. 작업지시 dgv를 선택하면 작업지시번호 DB가져가서 (DB에서 List<시간대별실적조회>가져와서)    chart에 반영
-
-            //string txt = dgvData["WorkOrderNo", e.RowIndex].Value.ToString();
-            //MessageBox.Show($"차트불러올 작업지시번호 : {txt}", "TEST");
-
             if (e.RowIndex < 0) return;           
             else if(dgvData.Rows.Count > 0)
                 ChartData();
         }
 
         public void ChartData()
-        {
-            //---test----
-            //string curInfo = cboTest.Text;
-            //------------
-
+        {            
             string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
             TPHistoryList = srv.GetTimeProductionHistory(curInfo); //SP 테스트용 아닌걸로 수정
 
@@ -233,37 +215,8 @@ namespace Team2_Project
                 chtData.Series["불량"].Color = Color.FromArgb(255, 217, 217);
                 chtData.Series["불량"].BorderColor = Color.Gray;
                 chtData.Series["불량"].Points.DataBind(TPHistoryList, "Start_Hour", "Def_Qty", "Label=Def_Qty"); // X축: Time, Y축: Score
-            }
-            
-            #region test
-            //(방법2)//////////////////
-
-            //chtData.Series["Series1"].Points.AddXY(10, 100);
-            //chtData.Series["Series1"].Points.AddXY(20, 200);
-            //chtData.Series["Series1"].Points.AddXY(30, 300);
-            //chtData.Series["Series1"].Points.AddXY(40, 400);
-
-            //List<string> x = new List<string> { "철수", "영희", "길동", "재동", "민희" };
-            //List<double> y = new List<double> { 80, 90, 85, 70, 95 };
-            //chtData.Series[0].Points.DataBindXY(x, y);
-
-
-            //(방법3)//////////////////
-            //List<Student> students = new List<Student>();
-            //for (int i = 8; i <= 24; i++)
-            //{
-            //    students.Add(new Student($"{i}시", i * 100));
-            //}
-            //chtData.Series[0].Points.DataBind(students, "Time", "Score", null); // X축: Time, Y축: Score
-            //                                                                    // (참고) DataBindTable() 사용시. (X축: Time, Y축: 자동검색)
-            //                                                                    //chtData.DataBindTable(students, "Time");
-            #endregion
+            }            
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ChartData();
-        } //test
 
         private void dgvData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
