@@ -23,46 +23,6 @@ namespace Team2_Project_WEB.Controllers
             }
 
             return RedirectToAction("ProdO", "Home");
-        } // 로그인 기능 주석
-
-        public ActionResult Item(string from = "", string to = "") //품목별 수주현황 조회
-        {
-            ViewBag.ColText = "선택기간 ";
-            ViewBag.FromDate = from;
-            ViewBag.ToDate = to;
-
-            if (string.IsNullOrWhiteSpace(from) && string.IsNullOrWhiteSpace(from))
-            {
-                ViewBag.ColText = "최근 30일 ";
-                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
-                ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
-            }
-            else if (string.IsNullOrWhiteSpace(from))
-                ViewBag.FromDate = Convert.ToDateTime(to).AddMonths(-1).ToString("yyyy-MM-dd");
-            else if (string.IsNullOrWhiteSpace(to))
-                ViewBag.ToDate = Convert.ToDateTime(from).AddMonths(1).ToString("yyyy-MM-dd");
-
-            ItemDAO dao = new ItemDAO();
-            List<ItemVO> list = dao.GetItemList(ViewBag.FromDate, ViewBag.ToDate);
-            StringBuilder sb1 = new StringBuilder();
-            List<int> OrderSumList = new List<int>();
-            List<int> CustomerSumList = new List<int>();
-            foreach (ItemVO item in list)
-            {
-                if (item.OrderSum < 1)
-                    continue;
-                sb1.Append(item.Name).Append(",");
-                OrderSumList.Add(item.OrderSum);
-                CustomerSumList.Add(item.CustomerSum);
-            }
-
-            ViewData["Name"] = string.IsNullOrWhiteSpace(sb1.ToString().TrimEnd(',')) ? "주문없음" : sb1.ToString().TrimEnd(',');
-            ViewData["OrderSum"] = "[" + string.Join(",", OrderSumList) + "]";
-            ViewData["CustomerSum"] = "[" + string.Join(",", CustomerSumList) + "]";
-
-            Session["SelectedAM"] = "Item";
-
-            return View(list);
         }
 
         public ActionResult ProdO(string date, string itemCode, int page = 1) //작업지시 실적 조회
@@ -140,9 +100,7 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ToDate = toDate;
             if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
             {
-                //ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
-                //ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
-                ViewBag.FromDate = DateTime.Today.AddDays(-13).ToString("yyyy-MM-dd");
+                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
                 ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
             }
             else if (string.IsNullOrWhiteSpace(fromDate))
@@ -296,38 +254,46 @@ namespace Team2_Project_WEB.Controllers
 
             Session["SelectedAM"] = "WPlace";  
             return View(nopList); 
-        } 
-
-        #region 미사용
-        public ActionResult ProdT(string prdCode) //시간당 생산량 조회 - 구현 불가능으로 폐기(실적 테이블 없음)
-        {
-            //생산지시 선택 -> 시작시간 ~ 작업장 마감시간 시간별로 쪼개서 생산량 분석
-            //바 차트로 시간당 생산량
-            //추가)생산량 가장 많은 시간, 적은 시간 색갈 따로
-            //작업지시번호(작업일자) 시간당 생산량
-            //작업장:작업장명(작업장번호)  생산품목:품목명(품목코드)
-            //시간(09:00) 생산량, 양품수량, 불량수량, 양품률, 불량률, 비고:비가동(빨간색으로?)
-
-            /*
-            // 작업지시번호 DropDown 50개
-            ProductionDAO dao = new ProductionDAO();
-            List<string> codeList = dao.GetProdNoList();
-            ViewBag.CodeList = new SelectList(codeList);
-
-            // 선택된 생산지시 정보 불러오기
-            if (string.IsNullOrWhiteSpace(prdCode))
-                return View();
-            */
-
-            return View();
         }
 
-        public ActionResult Schedule() //월별 스케쥴 조회 - 답없어서 폐기
+        public ActionResult Item(string from = "", string to = "") //품목별 수주현황 조회
         {
-            Session["SelectedAM"] = "Schedule";
+            ViewBag.ColText = "선택기간 ";
+            ViewBag.FromDate = from;
+            ViewBag.ToDate = to;
 
-            return View();
+            if (string.IsNullOrWhiteSpace(from) && string.IsNullOrWhiteSpace(from))
+            {
+                ViewBag.ColText = "최근 30일 ";
+                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+            else if (string.IsNullOrWhiteSpace(from))
+                ViewBag.FromDate = Convert.ToDateTime(to).AddMonths(-1).ToString("yyyy-MM-dd");
+            else if (string.IsNullOrWhiteSpace(to))
+                ViewBag.ToDate = Convert.ToDateTime(from).AddMonths(1).ToString("yyyy-MM-dd");
+
+            ItemDAO dao = new ItemDAO();
+            List<ItemVO> list = dao.GetItemList(ViewBag.FromDate, ViewBag.ToDate);
+            StringBuilder sb1 = new StringBuilder();
+            List<int> OrderSumList = new List<int>();
+            List<int> CustomerSumList = new List<int>();
+            foreach (ItemVO item in list)
+            {
+                if (item.OrderSum < 1)
+                    continue;
+                sb1.Append(item.Name).Append(",");
+                OrderSumList.Add(item.OrderSum);
+                CustomerSumList.Add(item.CustomerSum);
+            }
+
+            ViewData["Name"] = string.IsNullOrWhiteSpace(sb1.ToString().TrimEnd(',')) ? "주문없음" : sb1.ToString().TrimEnd(',');
+            ViewData["OrderSum"] = "[" + string.Join(",", OrderSumList) + "]";
+            ViewData["CustomerSum"] = "[" + string.Join(",", CustomerSumList) + "]";
+
+            Session["SelectedAM"] = "Item";
+
+            return View(list);
         }
-        #endregion
     }
 }
