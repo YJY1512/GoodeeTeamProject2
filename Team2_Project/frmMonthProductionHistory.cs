@@ -132,6 +132,7 @@ namespace Team2_Project
             OnSearch(); //로드
             chtDataPie.Series.Clear();
             chtDataLine.Series.Clear();
+            headerChk.Checked = false;
         }
         #endregion
 
@@ -150,11 +151,16 @@ namespace Team2_Project
             //}
         }
 
-        public void ChartData(List<string> txt)
+        public void ChartData()
         {
             List<MonthProductionHistoryDTO> list = new List<MonthProductionHistoryDTO>();
+            List<string> txt = new List<string>();
+            foreach (DataGridViewRow row in dgvData.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                    txt.Add(row.Cells["Item_Code"].Value.ToString());
+            }
             list = MTHistoryList.Where(dto => txt.Contains(dto.Item_Code)).ToList();
-
             if (rdoPrdQty.Checked || rdoPlanQty.Checked || rdoInQty.Checked || rdoOutQty.Checked || rdoLossQty.Checked)
             {
                 string chartTitle = "";
@@ -270,8 +276,9 @@ namespace Team2_Project
                     dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(215, 215, 215);
 
                 //if (dgvData.Rows.Count > 0)//////////////////////////////////////////////////////////////////////////////////////////
-                //ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
+                //    ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
                 //else chtDataPie.Series.Clear();
+                ChartData();
 
                 dgvData.ClearSelection();
             }
@@ -305,31 +312,25 @@ namespace Team2_Project
             foreach (DataGridViewRow row in dgvData.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
-                {
                     txt.Add(row.Cells["Item_Code"].Value.ToString());
-                }
-                else
-                {
-                    MessageBox.Show("차트확인 할 항목을 선택하여 주십시오.");
-                    return;
-                }
             }
-            ChartData(txt);
-            splitContainer1.SplitterDistance = splitContainer1.Height / 2;
+
+            if (txt.Count < 1)
+            {
+                MessageBox.Show("차트확인 할 항목을 선택하여 주십시오.");
+                chtDataPie.Series.Clear();
+                chtDataLine.Series.Clear();
+                return;
+            }
+            else
+            {
+                ChartData();
+                splitContainer1.SplitterDistance = splitContainer1.Height / 2;
+            }
         }
     }
 }
 
-//"목표량", "TotPlanQty", 150, D
-// "INPUT(투입량)", "TotInQty", 1
-// "OUTPUT(산출량)", "TotOutQty",
-// "총생산량", "TotPrdQty", 150, 
-// "달성율", "", 150);
-//"가동율", "", 150);
-//"일일생산량", "", 150);
-//"생산일수", "", 150);
-//"LOSS수량", "TotLoss", 150, Da
-// "LOSS비율", "", 150);
 /*
  (분석소재)
 - 월별 제품 생산 비율
