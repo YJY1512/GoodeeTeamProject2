@@ -26,7 +26,7 @@ namespace Team2_Project_POP
         {
             lblWorkOrderNo.Text = ((frmParent)MdiParent).SelectedWorkOrder.WorkOrderNo;
             lblItemName.Text = ((frmParent)MdiParent).SelectedWorkOrder.PrdName;
-            //lblItemSize.Text = ((frmParent)MdiParent).SelectedWorkOrder.;
+            lblItemSize.Text = ((frmParent)MdiParent).SelectedWorkOrder.PrdSize;
             // PrdQtysub = 0 으로 처리되는
             double d = Math.Ceiling(Convert.ToDouble(((frmParent)MdiParent).SelectedWorkOrder.PlanQty) / 72);
             lblBoxQty.Text = d.ToString();
@@ -38,7 +38,7 @@ namespace Team2_Project_POP
             // pnlPalette 그리기
             pnlPalette.Controls.Clear();
 
-            ((frmParent)MdiParent).PaletteList = ser.GetPaletteList(((frmParent)MdiParent).SelectedWorkOrder.WorkOrderNo);
+            ((frmParent)MdiParent).PaletteList = ser.GetPaletteList(((frmParent)MdiParent).SelectedWorkOrder.WorkLineCode);
 
             for (int i = 0; i < ((frmParent)MdiParent).PaletteList.Count; i++)
             {
@@ -80,7 +80,14 @@ namespace Team2_Project_POP
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            foreach(var item in pnlPalette.Controls)
+            {
+                if (((ucPaletteList)item).WorkOrderNo == lblWorkOrderNo.Text) return;
+            }
 
+            ser.SetPalette(((frmParent)MdiParent).SelectedWorkOrder);
+
+            frmPalette_Enter(this, e);
         }
 
         private void btnLabel_Click(object sender, EventArgs e)

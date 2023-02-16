@@ -89,9 +89,10 @@ namespace Team2_Project_POP
                 list.Name = $"list{i}";
                 list.Size = new Size(100, 80);
                 list.Dock = DockStyle.Top;
-                list.NonMaName = ((frmParent)MdiParent).NonList[i].NonTypeName;
+                list.NonMaName = ((frmParent)MdiParent).NonList[i].NonMaName;
                 list.NonMiName = ((frmParent)MdiParent).NonList[i].NonMiName;
                 list.NonStartTime = ((frmParent)MdiParent).NonList[i].NonHappenTime;
+                list.NonEndTime = ((frmParent)MdiParent).NonList[i].NonCancelTime;
 
                 list.list_Click += List_list_Click;
                 pnlNon.Controls.Add(list);

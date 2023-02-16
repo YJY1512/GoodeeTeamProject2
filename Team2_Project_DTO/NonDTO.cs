@@ -13,8 +13,8 @@ namespace Team2_Project_DTO
         public DateTime NonCancelTime { get; set; }
         public string NonMiCode { get; set; }
         public string NonMiName { get; set; }
-        public string NonType { get; set; }
-        public string NonTypeName { get; set; }
+        public string NonMaCode { get; set; }
+        public string NonMaName { get; set; }
         public string Wc_Code { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Team2_Project_DTO
         public string WorkOrderNo { get; set; }
         public string PrdName { get; set; }
         public string PrdCode { get; set; }
+        public string PrdSize { get; set; }
         public int PlanQty { get; set; }
         private int prdQtySum;
         public int PrdQtySum

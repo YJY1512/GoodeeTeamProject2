@@ -45,6 +45,7 @@ namespace Team2_Project_POP
                 list.Name = $"list{i}";
                 list.Statuse = ((frmParent)MdiParent).WrokLineList[i].Wc_Status;
                 list.WorkSpace = ((frmParent)MdiParent).WrokLineList[i].Wc_Name;
+                list.isPalette = ((frmParent)MdiParent).WrokLineList[i].Pallet_YN;
                 list.Group = ((frmParent)MdiParent).WrokLineList[i].Wc_Group_Name;
                 list.Tag = ((frmParent)MdiParent).WrokLineList[i].Wc_Code;
                 if (list.Statuse == "RUN")

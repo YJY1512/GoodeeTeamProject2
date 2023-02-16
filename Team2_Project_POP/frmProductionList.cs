@@ -129,6 +129,8 @@ namespace Team2_Project_POP
         /// <param name="e"></param>
         private void btnPalette_Click(object sender, EventArgs e)
         {
+            if (((frmParent)this.MdiParent).SelectedWorkLine.Pallet_YN == "아니오") return;
+            if (selectedOrder == null) return;
             ((frmParent)this.MdiParent).SelectedWorkOrder = serv.SetWrorkOrder(selectedOrder.WorkOrderNo);
             frmPalette frm = new frmPalette();
             frm.MdiParent = MdiParent;

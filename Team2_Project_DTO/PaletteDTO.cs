@@ -8,6 +8,7 @@ namespace Team2_Project_DTO
 {
     public class PaletteDTO
     {
+        public string Wc_Code { get; set; }
         public string WorkOrderNo { get; set; }
         public string PaletteNo { get; set; }
         public string ItemName { get; set; }
