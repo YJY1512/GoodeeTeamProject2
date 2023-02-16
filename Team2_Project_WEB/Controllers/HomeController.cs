@@ -27,6 +27,12 @@ namespace Team2_Project_WEB.Controllers
 
         public ActionResult ProdO(string date, string itemCode, int page = 1) //작업지시 실적 조회
         {
+            Session["LoginFailed"] = false;
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             ViewBag.Date = date;
             if (string.IsNullOrWhiteSpace(date))
                 ViewBag.Date = DateTime.Today.ToString("yyyy-MM-dd");
@@ -83,6 +89,12 @@ namespace Team2_Project_WEB.Controllers
             // 작업일자, 작업수량, 양품수량, 불량수량, 양품률, 불량률, 작업시작시각, 작업종료시각, 작업시간, 시간당 생샨량
 
             // 작업장, 품목 목록 불러오기
+            Session["LoginFailed"] = false;
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             WorkCenterDAO daoW = new WorkCenterDAO();
             List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
             daoW.Dispose();
@@ -127,7 +139,7 @@ namespace Team2_Project_WEB.Controllers
             {
                 TotalItems = totalCount,
                 CurrentPage = page,
-                ItemsPerPage = pageSize
+                ItemsPerPage = 7
         };
 
             StringBuilder sb1 = new StringBuilder();
@@ -155,6 +167,12 @@ namespace Team2_Project_WEB.Controllers
             // 발생일시, 작업지시번호, 작업장명, 품목명, 불량현상 대분류명, 불량현상 상세분류명, 불량수량
 
             // 작업장, 품목 목록 불러오기
+            Session["LoginFailed"] = false;
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             WorkCenterDAO daoW = new WorkCenterDAO();
             List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
             daoW.Dispose();
@@ -214,6 +232,12 @@ namespace Team2_Project_WEB.Controllers
             // 발생일자, 작업장명, 비가동 대분류명, 비가동 상세분류명, 비가동발생일시, 비가동해제일시, 비가동시간
 
             // 작업장, 품목 목록 불러오기
+            Session["LoginFailed"] = false;
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             WorkCenterDAO daoW = new WorkCenterDAO();
             List<CommonVO> wcList = daoW.GetWorkCenterCodeList();
             daoW.Dispose();
@@ -258,6 +282,12 @@ namespace Team2_Project_WEB.Controllers
 
         public ActionResult Item(string from = "", string to = "") //품목별 수주현황 조회
         {
+            Session["LoginFailed"] = false;
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             ViewBag.ColText = "선택기간 ";
             ViewBag.FromDate = from;
             ViewBag.ToDate = to;

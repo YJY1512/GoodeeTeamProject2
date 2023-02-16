@@ -24,7 +24,7 @@ namespace Team2_Project
         WorkOrderService srv = new WorkOrderService();
 
         enum ButtonClick { Add, Edit, None };
-        ButtonClick clickState;
+        ButtonClick clickState = ButtonClick.None;
 
         public frmWorkOrder()
         {
@@ -58,6 +58,12 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Wo_Status_code", "Wo_Status_code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Process_Code", "Process_Code", visible: false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkOrder, "Process_Name", "Process_Name", visible: false);
+
+            ucProcess.Tag = ucWc;
+            ucWc.Tag = ucProcess;
+
+            ucProcess2.Tag = ucWc2;
+            ucWc2.Tag = ucProcess2;
 
             SetInit();
             LoadData();            
@@ -162,7 +168,7 @@ namespace Team2_Project
             }
 
             SetEditEnd();
-            OnReLoad();
+            LoadData();
         }
 
         private void btnCancel_Click(object sender, EventArgs e) //작업지시 마감취소
@@ -208,7 +214,7 @@ namespace Team2_Project
             }
 
             SetEditEnd();
-            OnReLoad();
+            LoadData();
 
         }
         #endregion
@@ -338,7 +344,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetEditEnd();
-            OnReLoad();
+            LoadData();
         }
 
         public void OnSave()    //저장
@@ -396,7 +402,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetEditEnd();
-            OnReLoad();
+            LoadData();
         }
 
         public void OnCancel()  //취소
@@ -459,16 +465,23 @@ namespace Team2_Project
 
 
         #region 데이터그리드뷰 pop열기 관련 메서드
-        private CommonPop<WorkCenterDTO> GetWcPopInfo()
+        private CommonPop<WorkCenterDTO> GetWcPopInfo(string prcCode="")
         {
+            List<WorkCenterDTO> list = new List<WorkCenterDTO>();
+            
             if (wcList == null)
             {
                 WorkCenterService srv = new WorkCenterService();
-                wcList = srv.GetWcCodeName();
+                wcList = srv.GetWcCodeName();                           
             }
 
+            if (!string.IsNullOrWhiteSpace(prcCode))
+                list = wcList.FindAll((w) => w.Process_Code == prcCode).ToList();
+            else
+                list = wcList;
+
             CommonPop<WorkCenterDTO> wcPopInfo = new CommonPop<WorkCenterDTO>();
-            wcPopInfo.DgvDatasource = wcList;
+            wcPopInfo.DgvDatasource = list;
             wcPopInfo.PopName = "작업장 검색";
 
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
@@ -533,13 +546,36 @@ namespace Team2_Project
         private void ucWc_BtnClick(object sender, EventArgs e)
         {
             ucSearch ucWc = (ucSearch)sender;
-            ucWc.OpenPop(GetWcPopInfo());
+            ucSearch ucPrc = (ucSearch)ucWc.Tag;
+
+            if (!string.IsNullOrWhiteSpace(ucPrc._Code))
+                ucWc.OpenPop(GetWcPopInfo(ucPrc._Code));
+            else
+                ucWc.OpenPop(GetWcPopInfo());
+
+            if (clickState != ButtonClick.None && !string.IsNullOrWhiteSpace(ucWc._Code))
+            {
+                var item = (from code in wcList
+                            where code.Wc_Code == ucWc._Code
+                            select code).FirstOrDefault();
+
+                ucPrc._Code = item.Process_Code;
+                ucPrc._Name = item.Process_Name;
+            }
         }
 
         private void ucProcess_BtnClick(object sender, EventArgs e)
         {
-            ucSearch ucProcess = (ucSearch)sender;
-            ucProcess.OpenPop(GetProcessPopInfo());
+            ucSearch ucPrc = (ucSearch)sender;
+            ucSearch ucWc = (ucSearch)ucPrc.Tag;
+
+            ucPrc.OpenPop(GetProcessPopInfo());
+
+            if (clickState != ButtonClick.None && !string.IsNullOrWhiteSpace(ucPrc._Code) && !string.IsNullOrWhiteSpace(ucWc._Code))
+            {
+                ucWc._Code = "";
+                ucWc._Name = "";
+            }
         }
 
         private void dgvWorkOrder_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

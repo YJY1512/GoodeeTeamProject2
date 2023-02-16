@@ -193,7 +193,11 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
+                int rIdx = dgvMa.CurrentRow.Index;
                 OnReLoad();
+
+                dgvMa.CurrentCell = dgvMa.Rows[rIdx].Cells[0];
+                dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, rIdx));
             }
 
             dgvMa.Enabled = dgvMi.Enabled = true;
@@ -273,7 +277,12 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             dgvMa.Enabled = dgvMi.Enabled = true;
-            OnReLoad();                     
+
+            int rIdx = dgvMa.CurrentRow.Index;
+            OnReLoad();
+
+            dgvMa.CurrentCell = dgvMa.Rows[rIdx].Cells[0];
+            dgvMa_CellClick(dgvMa, new DataGridViewCellEventArgs(0, rIdx));                
         }
 
         public void OnCancel()  //취소
@@ -317,7 +326,7 @@ namespace Team2_Project
             string code = dgvMa["Userdefine_Ma_Code", e.RowIndex].Value.ToString();
 
             var list = (from c in codeList
-                        where c.Userdefine_Ma_Code == code && c.Use_YN.Contains(useYN)
+                        where c.Userdefine_Ma_Code == code && c.Use_YN.Contains(useYN) && !string.IsNullOrWhiteSpace(c.Userdefine_Mi_Code)
                         select c).ToList();
 
             if (list.Count > 0)
@@ -329,6 +338,9 @@ namespace Team2_Project
             {
                 dgvMi.DataSource = null;
                 SetInitPnl();
+
+                ucMaCode._Code = dgvMa["Userdefine_Ma_Code", e.RowIndex].Value.ToString();
+                ucMaCode._Name = dgvMa["Userdefine_Ma_Name", e.RowIndex].Value.ToString();
             }            
         }
 

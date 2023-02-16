@@ -70,7 +70,7 @@ namespace Team2_Project_WEB.Models.DAO
                 cmd.Parameters.AddWithValue("@From", from);
                 cmd.Parameters.AddWithValue("@To", to);
                 cmd.Parameters.AddWithValue("@Page", page);
-                cmd.Parameters.AddWithValue("@PageSize", pageSize);
+                cmd.Parameters.AddWithValue("@PageSize", 7);
                 if (wcCode == null)
                     cmd.Parameters.AddWithValue("@WcCode", DBNull.Value);
                 else

@@ -159,7 +159,7 @@ namespace Team2_Project
                 }
             }
 
-            OnReLoad();
+            LoadData();
         }
 
 
@@ -286,7 +286,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetEditEnd();
-            OnReLoad();
+            LoadData();
 
         }
 
@@ -334,7 +334,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetEditEnd();
-            OnReLoad();
+            LoadData();
         }
 
         private void btnMsgEdit_Click(object sender, EventArgs e) //전달메세지 수정저장
@@ -380,7 +380,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetEditEnd();
-            OnReLoad();
+            LoadData();
         }
 
         #endregion
@@ -796,7 +796,7 @@ namespace Team2_Project
                 clickState = ButtonClick.None;
                 rIdx = -1;
                 SetEditEnd();
-                OnReLoad();
+                LoadData();
             }
             else
             {
