@@ -276,6 +276,7 @@ namespace Team2_Project
                 {
                     MessageBox.Show("계획생성이 완료되었습니다.");
                     tab1LoadData();
+                    tab2LoadData();
                 }
                 else
                 {
@@ -422,7 +423,7 @@ namespace Team2_Project
                     MessageBox.Show("계획 분할 중 요류가 발생하였습니다.");
                 }
 
-                OnReLoad();
+                tab2LoadData();
             }
 
             dgvPlan.Enabled = true;
@@ -460,7 +461,7 @@ namespace Team2_Project
 
             dgvPlan.Enabled = true;
             SetPlanbtnEnabled(true);
-            OnReLoad();
+            tab2LoadData();
 
         }
 
@@ -495,7 +496,7 @@ namespace Team2_Project
 
             dgvPlan.Enabled = true;
             SetPlanbtnEnabled(true);
-            OnReLoad();
+            tab2LoadData();
         }
         #endregion
 
@@ -719,7 +720,7 @@ namespace Team2_Project
                     MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.");
                 }
 
-                OnReLoad();
+                tab2LoadData();
             }
 
             dgvPlan.Enabled = true;
@@ -820,7 +821,7 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetPlanbtnEnabled(true);
-            OnReLoad();
+            tab2LoadData();
         }
 
         public void OnCancel()  //취소
