@@ -112,7 +112,7 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ToDate = toDate;
             if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
             {
-                ViewBag.FromDate = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+                ViewBag.FromDate = DateTime.Today.AddDays(-14).ToString("yyyy-MM-dd");
                 ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
             }
             else if (string.IsNullOrWhiteSpace(fromDate))
@@ -310,6 +310,8 @@ namespace Team2_Project_WEB.Controllers
             List<int> CustomerSumList = new List<int>();
             foreach (ItemVO item in list)
             {
+                if (OrderSumList.Count == 5)
+                    break;
                 if (item.OrderSum < 1)
                     continue;
                 sb1.Append(item.Name).Append(",");
