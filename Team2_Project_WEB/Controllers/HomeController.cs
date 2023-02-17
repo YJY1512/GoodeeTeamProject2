@@ -310,6 +310,8 @@ namespace Team2_Project_WEB.Controllers
             List<int> CustomerSumList = new List<int>();
             foreach (ItemVO item in list)
             {
+                if (OrderSumList.Count == 5)
+                    break;
                 if (item.OrderSum < 1)
                     continue;
                 sb1.Append(item.Name).Append(",");
