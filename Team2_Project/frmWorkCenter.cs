@@ -36,13 +36,13 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 상태", "Wc_Status", 200, align : DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 코드", "Wc_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 명", "Wc_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 그룹 명", "Wc_Group_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 작업장 그룹", "Wc_Group_Name", 120);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 공정 코드", "Process_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 공정명", "Process_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 팔렛생성여부", "Pallet_YN", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 사용여부", "Use_YN", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 실적단위", "Prd_Unit_Name", 150);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 150); 
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 팔렛생성여부", "Pallet_YN", 120);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "  사용여부", "Use_YN", 90);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "  실적단위", "Prd_Unit_Name", 90);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 비고", "Remark", 250); 
 
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, " 실적단위", "Prd_Unit", visible:false);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkShop, "작업장 그룹", "Wc_Group",visible:false);
@@ -423,12 +423,12 @@ namespace Team2_Project
 
         private void dgvWorkShop_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Run")
+            if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "RUN")
             {
                 dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Lime;
                 dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.Black;
             }
-            else if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "Stop")
+            else if (dgvWorkShop.Rows[e.RowIndex].Cells[0].Value.ToString() == "STOP")
             {
                 dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.BackColor = Color.Red;
                 dgvWorkShop.Rows[e.RowIndex].Cells[0].Style.ForeColor = Color.White;
