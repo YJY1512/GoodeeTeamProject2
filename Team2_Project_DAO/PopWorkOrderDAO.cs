@@ -187,6 +187,7 @@ namespace Team2_Project_DAO
                     result.WorkOrderNo = reader["WorkOrderNo"].ToString();
                     result.PrdName = reader["PrdName"].ToString();
                     result.PrdCode = reader["PrdCode"].ToString();
+                    result.PrdSize = reader["PrdSize"].ToString();
                     result.PlanQty = Convert.ToInt32(reader["PlanQty"]);
                     result.PrdStartTime = Convert.ToDateTime(reader["PrdStartTime"]);
                     result.PrdEndTime = (reader["PrdEndTime"] == DBNull.Value )? DateTime.MinValue: Convert.ToDateTime(reader["PrdEndTime"]);
@@ -275,15 +276,15 @@ namespace Team2_Project_DAO
             }
         }
 
-        public List<PaletteDTO> GetPaletteList(string workOrderNo)
+        public List<PaletteDTO> GetPaletteList(string wcCode)
         {
             List<PaletteDTO> result = new List<PaletteDTO>();
             try
             {
-                using (SqlCommand cmd = new SqlCommand("", conn))
+                using (SqlCommand cmd = new SqlCommand("Sp_PaletteList", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Wc_code", workOrderNo);
+                    cmd.Parameters.AddWithValue("@Wc_code", wcCode);
 
                     conn.Open();
                     result = Helper.DataReaderMapToList<PaletteDTO>(cmd.ExecuteReader());
@@ -296,6 +297,32 @@ namespace Team2_Project_DAO
             {
                 Debug.WriteLine(err.Message);
                 return null;
+            }
+        }
+
+
+        public bool SetPalette(PopPrdDTO selected)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_SetPalette", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@WorkOrderNo", selected.WorkOrderNo);
+                    cmd.Parameters.AddWithValue("@ItemCOde", selected.PrdCode);
+                    cmd.Parameters.AddWithValue("@In_Qty", selected.PlanQty);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return false;
             }
         }
 

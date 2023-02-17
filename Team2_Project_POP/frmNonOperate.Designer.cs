@@ -40,6 +40,7 @@ namespace Team2_Project_POP
             this.lblNonMi = new System.Windows.Forms.Label();
             this.lblNonMa = new System.Windows.Forms.Label();
             this.pnlNon = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -112,10 +113,12 @@ namespace Team2_Project_POP
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNonTime, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNonMi, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNonMa, 0, 0);
@@ -134,12 +137,12 @@ namespace Team2_Project_POP
             this.lblNonTime.BackColor = System.Drawing.Color.DarkBlue;
             this.lblNonTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNonTime.ForeColor = System.Drawing.Color.White;
-            this.lblNonTime.Location = new System.Drawing.Point(787, 5);
+            this.lblNonTime.Location = new System.Drawing.Point(842, 5);
             this.lblNonTime.Margin = new System.Windows.Forms.Padding(5);
             this.lblNonTime.Name = "lblNonTime";
-            this.lblNonTime.Size = new System.Drawing.Size(327, 114);
+            this.lblNonTime.Size = new System.Drawing.Size(272, 114);
             this.lblNonTime.TabIndex = 4;
-            this.lblNonTime.Text = "발생시";
+            this.lblNonTime.Text = "해제시";
             this.lblNonTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNonMi
@@ -147,12 +150,12 @@ namespace Team2_Project_POP
             this.lblNonMi.BackColor = System.Drawing.Color.DarkBlue;
             this.lblNonMi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNonMi.ForeColor = System.Drawing.Color.White;
-            this.lblNonMi.Location = new System.Drawing.Point(396, 5);
+            this.lblNonMi.Location = new System.Drawing.Point(5, 5);
             this.lblNonMi.Margin = new System.Windows.Forms.Padding(5);
             this.lblNonMi.Name = "lblNonMi";
-            this.lblNonMi.Size = new System.Drawing.Size(381, 114);
+            this.lblNonMi.Size = new System.Drawing.Size(269, 114);
             this.lblNonMi.TabIndex = 2;
-            this.lblNonMi.Text = "상세분류";
+            this.lblNonMi.Text = "대분류";
             this.lblNonMi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNonMa
@@ -160,12 +163,12 @@ namespace Team2_Project_POP
             this.lblNonMa.BackColor = System.Drawing.Color.DarkBlue;
             this.lblNonMa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNonMa.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblNonMa.Location = new System.Drawing.Point(5, 5);
+            this.lblNonMa.Location = new System.Drawing.Point(284, 5);
             this.lblNonMa.Margin = new System.Windows.Forms.Padding(5);
             this.lblNonMa.Name = "lblNonMa";
-            this.lblNonMa.Size = new System.Drawing.Size(381, 114);
+            this.lblNonMa.Size = new System.Drawing.Size(269, 114);
             this.lblNonMa.TabIndex = 1;
-            this.lblNonMa.Text = "대분류";
+            this.lblNonMa.Text = "상세분류";
             this.lblNonMa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlNon
@@ -175,6 +178,19 @@ namespace Team2_Project_POP
             this.pnlNon.Name = "pnlNon";
             this.pnlNon.Size = new System.Drawing.Size(1119, 518);
             this.pnlNon.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.DarkBlue;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(563, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(269, 114);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "발생시";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmNonOperate
             // 
@@ -213,5 +229,6 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label lblNonTime;
         private System.Windows.Forms.Label lblNonMi;
         private System.Windows.Forms.Label lblNonMa;
+        private System.Windows.Forms.Label label1;
     }
 }

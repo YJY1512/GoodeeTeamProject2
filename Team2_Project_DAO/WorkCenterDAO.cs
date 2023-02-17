@@ -180,9 +180,9 @@ namespace Team2_Project_DAO
         //작업장 코드랑 이름만 가져오는 메서드 -- 0127 이은실
         public List<WorkCenterDTO> GetWcCodeName()
         {
-            string sql = @"select Wc_Code, Wc_Name
-                            from WorkCenter_Master
-                            where Use_YN = 'Y'";
+            string sql = @"select Wc_Code, Wc_Name, w.Process_Code, Process_Name
+                            from WorkCenter_Master w inner join Process_Master p on w.Process_Code = p.Process_Code
+                            where w.Use_YN = 'Y'";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {

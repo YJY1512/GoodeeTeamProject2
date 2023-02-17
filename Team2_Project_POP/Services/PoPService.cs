@@ -64,10 +64,10 @@ namespace Team2_Project_POP.Services
 
             return list;
         }
-        public PopPrdDTO SetWrorkOrder(string WorkOrderNo)
+        public PopPrdDTO SetWrorkOrder(string wcCode)
         {
             PopWorkOrderDAO db = new PopWorkOrderDAO();
-            PopPrdDTO list = db.SetWrorkOrder(WorkOrderNo);
+            PopPrdDTO list = db.SetWrorkOrder(wcCode);
             db.Dispose();
 
             return list;
@@ -91,13 +91,23 @@ namespace Team2_Project_POP.Services
             return list;
         }
 
-        public List<PaletteDTO> GetPaletteList(string WorkOrderNo)
+        public List<PaletteDTO> GetPaletteList(string wcCode)
         {
             PopWorkOrderDAO db = new PopWorkOrderDAO();
-            List<PaletteDTO> list = db.GetPaletteList(WorkOrderNo);
+            List<PaletteDTO> list = db.GetPaletteList(wcCode);
             db.Dispose();
 
             return list;
         }
+
+        public bool SetPalette(PopPrdDTO selected)
+        {
+            PopWorkOrderDAO db = new PopWorkOrderDAO();
+            bool result = db.SetPalette(selected);
+            db.Dispose();
+
+            return result;
+        }
+
     }
 }

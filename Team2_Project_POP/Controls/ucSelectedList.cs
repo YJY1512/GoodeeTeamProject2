@@ -18,8 +18,9 @@ namespace Team2_Project_POP.Controls
         public string WorkSpace { get { return workSpace; } set { workSpace = value; } }
         string group = "그  룹";
         public string Group { get { return group; } set { group = value; } }
+        public string isPalette { get; set; }
 
-        
+
         public event EventHandler ucListClick;
      
         public ucSelectedList()

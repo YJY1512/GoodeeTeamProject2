@@ -30,80 +30,87 @@ namespace Team2_Project_POP.Controls
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblNonTime = new System.Windows.Forms.Label();
-            this.lblNonMi = new System.Windows.Forms.Label();
             this.lblNonMa = new System.Windows.Forms.Label();
+            this.lblNonMi = new System.Windows.Forms.Label();
+            this.lblStartTime = new System.Windows.Forms.Label();
+            this.lblEndTime = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Controls.Add(this.lblNonTime, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblNonMi, 0, 0);
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.lblEndTime, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblStartTime, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblNonMi, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNonMa, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(788, 124);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Click += new System.EventHandler(this.lblNonMa_Click);
-            // 
-            // lblNonTime
-            // 
-            this.lblNonTime.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.lblNonTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNonTime.ForeColor = System.Drawing.Color.Black;
-            this.lblNonTime.Location = new System.Drawing.Point(557, 7);
-            this.lblNonTime.Margin = new System.Windows.Forms.Padding(7);
-            this.lblNonTime.Name = "lblNonTime";
-            this.lblNonTime.Size = new System.Drawing.Size(224, 110);
-            this.lblNonTime.TabIndex = 4;
-            this.lblNonTime.Text = "발생시";
-            this.lblNonTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblNonTime.Click += new System.EventHandler(this.lblNonMa_Click);
-            // 
-            // lblNonMi
-            // 
-            this.lblNonMi.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.lblNonMi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNonMi.ForeColor = System.Drawing.Color.Black;
-            this.lblNonMi.Location = new System.Drawing.Point(282, 7);
-            this.lblNonMi.Margin = new System.Windows.Forms.Padding(7);
-            this.lblNonMi.Name = "lblNonMi";
-            this.lblNonMi.Size = new System.Drawing.Size(261, 110);
-            this.lblNonMi.TabIndex = 2;
-            this.lblNonMi.Text = "상세분류";
-            this.lblNonMi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblNonMi.Click += new System.EventHandler(this.lblNonMa_Click);
             // 
             // lblNonMa
             // 
             this.lblNonMa.BackColor = System.Drawing.Color.LightSkyBlue;
             this.lblNonMa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNonMa.ForeColor = System.Drawing.Color.Black;
-            this.lblNonMa.Location = new System.Drawing.Point(7, 7);
-            this.lblNonMa.Margin = new System.Windows.Forms.Padding(7);
+            this.lblNonMa.Location = new System.Drawing.Point(2, 2);
+            this.lblNonMa.Margin = new System.Windows.Forms.Padding(2);
             this.lblNonMa.Name = "lblNonMa";
-            this.lblNonMa.Size = new System.Drawing.Size(261, 110);
-            this.lblNonMa.TabIndex = 1;
+            this.lblNonMa.Size = new System.Drawing.Size(193, 120);
+            this.lblNonMa.TabIndex = 0;
             this.lblNonMa.Text = "대분류";
             this.lblNonMa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblNonMa.Click += new System.EventHandler(this.lblNonMa_Click);
+            // 
+            // lblNonMi
+            // 
+            this.lblNonMi.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblNonMi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNonMi.Location = new System.Drawing.Point(199, 2);
+            this.lblNonMi.Margin = new System.Windows.Forms.Padding(2);
+            this.lblNonMi.Name = "lblNonMi";
+            this.lblNonMi.Size = new System.Drawing.Size(193, 120);
+            this.lblNonMi.TabIndex = 1;
+            this.lblNonMi.Text = "세분류";
+            this.lblNonMi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblStartTime
+            // 
+            this.lblStartTime.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblStartTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStartTime.Location = new System.Drawing.Point(396, 2);
+            this.lblStartTime.Margin = new System.Windows.Forms.Padding(2);
+            this.lblStartTime.Name = "lblStartTime";
+            this.lblStartTime.Size = new System.Drawing.Size(193, 120);
+            this.lblStartTime.TabIndex = 2;
+            this.lblStartTime.Text = "등록시";
+            this.lblStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblEndTime
+            // 
+            this.lblEndTime.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblEndTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEndTime.Location = new System.Drawing.Point(593, 2);
+            this.lblEndTime.Margin = new System.Windows.Forms.Padding(2);
+            this.lblEndTime.Name = "lblEndTime";
+            this.lblEndTime.Size = new System.Drawing.Size(193, 120);
+            this.lblEndTime.TabIndex = 3;
+            this.lblEndTime.Text = "해제시";
+            this.lblEndTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucNonList
             // 
+            this.Appearance.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucNonList";
             this.Size = new System.Drawing.Size(788, 124);
@@ -117,8 +124,9 @@ namespace Team2_Project_POP.Controls
         #endregion
 
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblNonMa;
+        private System.Windows.Forms.Label lblEndTime;
+        private System.Windows.Forms.Label lblStartTime;
         private System.Windows.Forms.Label lblNonMi;
-        private System.Windows.Forms.Label lblNonTime;
+        private System.Windows.Forms.Label lblNonMa;
     }
 }
