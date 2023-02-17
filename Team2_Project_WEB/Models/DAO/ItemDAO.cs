@@ -39,7 +39,7 @@ namespace Team2_Project_WEB.Models.DAO
                             (
 	                            select im.Item_Code, Item_Name, isnull(OrderSum, 0) OrderSum, isnull(ProjCnt, 0) ProjCnt, round(convert(decimal, isnull(OrderSum, 0)) / (select sum(OrderSum) from OrderData), 4) ratio
 	                            from Item_Master im left outer join OrderData od on im.Item_Code = od.Item_Code
-	                            where Item_Type = 'PR'
+	                            where Item_Type = 'PR' and Use_YN = 'Y'
                             )
 
                             select Item_Code Code, Item_Name Name, OrderSum, ProjCnt CustomerSum, ratio Ratio

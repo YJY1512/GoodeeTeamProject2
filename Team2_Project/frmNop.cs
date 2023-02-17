@@ -133,7 +133,7 @@ namespace Team2_Project
 
         private void ResetDtp()
         {
-            dtpFrom.Value = DateTime.Now.AddDays(-7);
+            dtpFrom.Value = DateTime.Now.AddMonths(-1);
             dtpTo.Value = DateTime.Now;
         }
     }
