@@ -51,10 +51,20 @@ namespace Team2_Project_POP
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblStatuse = new System.Windows.Forms.Label();
             this.pnlList = new System.Windows.Forms.Panel();
+            this.tplUpDown = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTotPage = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblPage = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tplUpDown.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -137,6 +147,7 @@ namespace Team2_Project_POP
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.tplUpDown);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(1166, 0);
             this.panel3.Name = "panel3";
@@ -150,12 +161,12 @@ namespace Team2_Project_POP
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1166, 160);
+            this.panel1.Size = new System.Drawing.Size(1166, 150);
             this.panel1.TabIndex = 4;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Gray;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
@@ -169,7 +180,7 @@ namespace Team2_Project_POP
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1166, 160);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1166, 150);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // lblRemark
@@ -180,14 +191,14 @@ namespace Team2_Project_POP
             this.lblRemark.Location = new System.Drawing.Point(933, 4);
             this.lblRemark.Margin = new System.Windows.Forms.Padding(2, 4, 4, 4);
             this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(229, 152);
+            this.lblRemark.Size = new System.Drawing.Size(229, 142);
             this.lblRemark.TabIndex = 2;
             this.lblRemark.Text = "전달 사항";
             this.lblRemark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Gray;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
@@ -208,7 +219,7 @@ namespace Team2_Project_POP
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(757, 160);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(757, 150);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblProductDate
@@ -216,10 +227,10 @@ namespace Team2_Project_POP
             this.lblProductDate.BackColor = System.Drawing.Color.DarkBlue;
             this.lblProductDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProductDate.ForeColor = System.Drawing.Color.White;
-            this.lblProductDate.Location = new System.Drawing.Point(2, 82);
+            this.lblProductDate.Location = new System.Drawing.Point(2, 77);
             this.lblProductDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
             this.lblProductDate.Name = "lblProductDate";
-            this.lblProductDate.Size = new System.Drawing.Size(207, 74);
+            this.lblProductDate.Size = new System.Drawing.Size(207, 69);
             this.lblProductDate.TabIndex = 7;
             this.lblProductDate.Text = "생산 일자";
             this.lblProductDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -232,7 +243,7 @@ namespace Team2_Project_POP
             this.lblPlanDate.Location = new System.Drawing.Point(2, 4);
             this.lblPlanDate.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
             this.lblPlanDate.Name = "lblPlanDate";
-            this.lblPlanDate.Size = new System.Drawing.Size(207, 74);
+            this.lblPlanDate.Size = new System.Drawing.Size(207, 69);
             this.lblPlanDate.TabIndex = 3;
             this.lblPlanDate.Text = "작업지시 일자";
             this.lblPlanDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -245,7 +256,7 @@ namespace Team2_Project_POP
             this.lblProcessNum.Location = new System.Drawing.Point(213, 4);
             this.lblProcessNum.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
             this.lblProcessNum.Name = "lblProcessNum";
-            this.lblProcessNum.Size = new System.Drawing.Size(207, 74);
+            this.lblProcessNum.Size = new System.Drawing.Size(207, 69);
             this.lblProcessNum.TabIndex = 4;
             this.lblProcessNum.Text = "작업지시 번호";
             this.lblProcessNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -259,7 +270,7 @@ namespace Team2_Project_POP
             this.lblPlanQty.Location = new System.Drawing.Point(424, 4);
             this.lblPlanQty.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
             this.lblPlanQty.Name = "lblPlanQty";
-            this.lblPlanQty.Size = new System.Drawing.Size(117, 74);
+            this.lblPlanQty.Size = new System.Drawing.Size(117, 69);
             this.lblPlanQty.TabIndex = 5;
             this.lblPlanQty.Text = "계획 수량";
             this.lblPlanQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -272,7 +283,7 @@ namespace Team2_Project_POP
             this.lblStartTime.Location = new System.Drawing.Point(545, 4);
             this.lblStartTime.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
             this.lblStartTime.Name = "lblStartTime";
-            this.lblStartTime.Size = new System.Drawing.Size(210, 74);
+            this.lblStartTime.Size = new System.Drawing.Size(210, 69);
             this.lblStartTime.TabIndex = 6;
             this.lblStartTime.Text = "생산 시작 시간";
             this.lblStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -283,10 +294,10 @@ namespace Team2_Project_POP
             this.lblIngQty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblIngQty.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblIngQty.ForeColor = System.Drawing.Color.White;
-            this.lblIngQty.Location = new System.Drawing.Point(424, 82);
+            this.lblIngQty.Location = new System.Drawing.Point(424, 77);
             this.lblIngQty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
             this.lblIngQty.Name = "lblIngQty";
-            this.lblIngQty.Size = new System.Drawing.Size(117, 74);
+            this.lblIngQty.Size = new System.Drawing.Size(117, 69);
             this.lblIngQty.TabIndex = 9;
             this.lblIngQty.Text = "실적 수량";
             this.lblIngQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -296,10 +307,10 @@ namespace Team2_Project_POP
             this.lblFinishTime.BackColor = System.Drawing.Color.DarkBlue;
             this.lblFinishTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFinishTime.ForeColor = System.Drawing.Color.White;
-            this.lblFinishTime.Location = new System.Drawing.Point(545, 82);
+            this.lblFinishTime.Location = new System.Drawing.Point(545, 77);
             this.lblFinishTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
             this.lblFinishTime.Name = "lblFinishTime";
-            this.lblFinishTime.Size = new System.Drawing.Size(210, 74);
+            this.lblFinishTime.Size = new System.Drawing.Size(210, 69);
             this.lblFinishTime.TabIndex = 10;
             this.lblFinishTime.Text = "생산 종료 시간";
             this.lblFinishTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -309,10 +320,10 @@ namespace Team2_Project_POP
             this.lblProductName.BackColor = System.Drawing.Color.DarkBlue;
             this.lblProductName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProductName.ForeColor = System.Drawing.Color.White;
-            this.lblProductName.Location = new System.Drawing.Point(213, 82);
+            this.lblProductName.Location = new System.Drawing.Point(213, 77);
             this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 4);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(207, 74);
+            this.lblProductName.Size = new System.Drawing.Size(207, 69);
             this.lblProductName.TabIndex = 8;
             this.lblProductName.Text = "품목명";
             this.lblProductName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -325,19 +336,119 @@ namespace Team2_Project_POP
             this.lblStatuse.Location = new System.Drawing.Point(4, 4);
             this.lblStatuse.Margin = new System.Windows.Forms.Padding(4, 4, 2, 4);
             this.lblStatuse.Name = "lblStatuse";
-            this.lblStatuse.Size = new System.Drawing.Size(168, 152);
+            this.lblStatuse.Size = new System.Drawing.Size(168, 142);
             this.lblStatuse.TabIndex = 1;
             this.lblStatuse.Text = "상  태";
             this.lblStatuse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlList
             // 
-            this.pnlList.AutoScroll = true;
+            this.pnlList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlList.Location = new System.Drawing.Point(0, 160);
+            this.pnlList.Location = new System.Drawing.Point(0, 150);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(1166, 477);
+            this.pnlList.Size = new System.Drawing.Size(1166, 487);
             this.pnlList.TabIndex = 5;
+            // 
+            // tplUpDown
+            // 
+            this.tplUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.tplUpDown.ColumnCount = 1;
+            this.tplUpDown.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tplUpDown.Controls.Add(this.btnUp, 0, 1);
+            this.tplUpDown.Controls.Add(this.btnDown, 0, 3);
+            this.tplUpDown.Controls.Add(this.tableLayoutPanel3, 0, 2);
+            this.tplUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tplUpDown.Location = new System.Drawing.Point(0, 0);
+            this.tplUpDown.Margin = new System.Windows.Forms.Padding(0);
+            this.tplUpDown.Name = "tplUpDown";
+            this.tplUpDown.RowCount = 4;
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tplUpDown.Size = new System.Drawing.Size(150, 637);
+            this.tplUpDown.TabIndex = 1;
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUp.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUp.Location = new System.Drawing.Point(10, 160);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(10);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(130, 150);
+            this.btnUp.TabIndex = 0;
+            this.btnUp.Text = "▲";
+            this.btnUp.UseVisualStyleBackColor = false;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDown.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDown.Location = new System.Drawing.Point(10, 476);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(130, 151);
+            this.btnDown.TabIndex = 1;
+            this.btnDown.Text = "▼";
+            this.btnDown.UseVisualStyleBackColor = false;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.lblTotPage, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.panel4, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblPage, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(15, 335);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(15);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(120, 116);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // lblTotPage
+            // 
+            this.lblTotPage.AutoSize = true;
+            this.lblTotPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotPage.Location = new System.Drawing.Point(3, 66);
+            this.lblTotPage.Margin = new System.Windows.Forms.Padding(3);
+            this.lblTotPage.Name = "lblTotPage";
+            this.lblTotPage.Size = new System.Drawing.Size(114, 47);
+            this.lblTotPage.TabIndex = 2;
+            this.lblTotPage.Text = "1";
+            this.lblTotPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Black;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(1, 54);
+            this.panel4.Margin = new System.Windows.Forms.Padding(1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(118, 8);
+            this.panel4.TabIndex = 0;
+            // 
+            // lblPage
+            // 
+            this.lblPage.AutoSize = true;
+            this.lblPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPage.Location = new System.Drawing.Point(3, 3);
+            this.lblPage.Margin = new System.Windows.Forms.Padding(3);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(114, 47);
+            this.lblPage.TabIndex = 1;
+            this.lblPage.Text = "1";
+            this.lblPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmProductionList
             // 
@@ -355,9 +466,13 @@ namespace Team2_Project_POP
             this.Load += new System.EventHandler(this.frmProductionList_Load);
             this.Enter += new System.EventHandler(this.frmProductionList_Enter);
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tplUpDown.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -385,5 +500,12 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Label lblStatuse;
         private System.Windows.Forms.Panel pnlList;
+        private System.Windows.Forms.TableLayoutPanel tplUpDown;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label lblTotPage;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblPage;
     }
 }

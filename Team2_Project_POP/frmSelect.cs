@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_Project_POP.Services;
 using Team2_Project_DTO;
+using Team2_Project_POP.Controls;
 
 namespace Team2_Project_POP
 {
     public partial class frmSelect : Form
     {
         PoPService ser = new PoPService();
+        int pages = 1;
+        ucSelectedList selected = null;
         //List<WorkCenterDTO> workCenterList = null;
 
         public frmSelect()
@@ -29,11 +32,93 @@ namespace Team2_Project_POP
             lblTitle.Location = new Point(screenWidh * 50 / 2, 30);
         }
 
-        private void frmSelect_Activated(object sender, EventArgs e)
+        private void List_ListClick(object sender, EventArgs e)
         {
+            //작업장 리스트 중에 작업장을 선택
+            
+
+            //
+            if (((Controls.ucSelectedList)sender).isClick)
+            {
+                ((Controls.ucSelectedList)sender).isClick = false;
+                selected = null;
+                ((frmParent)MdiParent).SelectedWorkOrder = new PopPrdDTO();
+
+                ((Controls.ucSelectedList)sender).lblWorkSpace.BackColor = Color.White;
+                ((Controls.ucSelectedList)sender).lblGroup.BackColor = Color.White;
+
+                ((frmParent)this.MdiParent).SelectedWorkLine = null;
+                ((frmParent)this.MdiParent).lblSelected.Text = "";
+
+            }
+            else
+            {
+                foreach (var listitem in pnlList.Controls)
+                {
+                    if (((Controls.ucSelectedList)listitem).isClick == true)
+                    {
+                        ((Controls.ucSelectedList)listitem).isClick = false;
+                        ((Controls.ucSelectedList)listitem).lblWorkSpace.BackColor = Color.White;
+                        ((Controls.ucSelectedList)listitem).lblGroup.BackColor = Color.White;
+                        ((frmParent)this.MdiParent).SelectedWorkLine = null;
+                        ((frmParent)this.MdiParent).lblSelected.Text = "";
+                    }
+                }
+                ((Controls.ucSelectedList)sender).isClick = true;
+                selected = (Controls.ucSelectedList)sender;
+                ((Controls.ucSelectedList)sender).lblWorkSpace.BackColor = Color.PeachPuff;
+                ((Controls.ucSelectedList)sender).lblGroup.BackColor = Color.PeachPuff;
+
+                ((frmParent)this.MdiParent).SelectedWorkLine = ((frmParent)MdiParent).WrokLineList.Find((work) => work.Wc_Code == ((Controls.ucSelectedList)sender).Tag.ToString());
+                ((frmParent)this.MdiParent).lblSelected.Text = ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Name;
+            }
+            //
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if ((((frmParent)this.MdiParent).SelectedWorkLine == null))
+            {
+                return;
+            }
+
+            frmProductionList frm = new frmProductionList();
+            frm.MdiParent = this.MdiParent;
+            frm.WindowState = FormWindowState.Maximized;
+            this.Close();
+            frm.Show();
+        }
+
+        private void frmSelect_Enter(object sender, EventArgs e)
+        {
+            pnlList.Controls.Clear();
             // 작업장 리스트 DB 가져오기
             ((frmParent)MdiParent).WrokLineList = ser.GetWorkCenterInfo();
             // 작업장 리스트 만들기
+
+            if (pages == 1)
+            {
+                btnUp.Visible = false;
+            }
+            else
+            {
+                btnUp.Visible = true;
+            }
+
+            lblPage.Text = pages.ToString();
+
+            lblTotPage.Text = Math.Ceiling(((frmParent)MdiParent).WrokLineList.Count / 6.0).ToString();
+
+            if (pages == Math.Ceiling(((frmParent)MdiParent).WrokLineList.Count / 6.0))
+            {
+                btnDown.Visible = false;
+            }
+            else
+            {
+                btnDown.Visible = true;
+            }
+            
+
             for (int i = 0; i < ((frmParent)MdiParent).WrokLineList.Count; i++)
             {
                 Controls.ucSelectedList list = new Controls.ucSelectedList();
@@ -52,35 +137,35 @@ namespace Team2_Project_POP
                     list.lblStatuse.BackColor = Color.Green;
                 else if (list.Statuse == "STOP")
                     list.lblStatuse.BackColor = Color.Red;
-                list.lblWorkSpace.BackColor = list.lblGroup.BackColor = Color.LightSkyBlue;
+                list.lblWorkSpace.BackColor = list.lblGroup.BackColor = Color.White;
                 list.lblWorkSpace.ForeColor = list.lblGroup.ForeColor = Color.Black;
                 list.ucListClick += List_ListClick;
 
-                panel2.Controls.Add(list);
+                if (pages == (Math.Ceiling((i+1) / (6.0))) )
+                {
+                    pnlList.Controls.Add(list);
+                }
+                
+                
             }
         }
 
-        private void List_ListClick(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            //작업장 리스트 중에 작업장을 선택
-            ((frmParent)this.MdiParent).SelectedWorkLine = ((frmParent)MdiParent).WrokLineList.Find((work) => work.Wc_Code == ((Controls.ucSelectedList)sender).Tag.ToString());
-            ((frmParent)this.MdiParent).lblSelected.Text = ((frmParent)this.MdiParent).SelectedWorkLine.Wc_Name;
-            
+            if (pages <= 1) return;
+            pages--;
+            ((frmParent)this.MdiParent).SelectedWorkLine = null;
+            ((frmParent)this.MdiParent).lblSelected.Text = "";
+            frmSelect_Enter(this, e);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDown_Click(object sender, EventArgs e)
         {
-            if ((((frmParent)this.MdiParent).SelectedWorkLine == null))
-            {
-                MessageBox.Show("선택해주세요");
-                return;
-            }
-
-            frmProductionList frm = new frmProductionList();
-            frm.MdiParent = this.MdiParent;
-            frm.WindowState = FormWindowState.Maximized;
-            this.Close();
-            frm.Show();
+            if (pages >= 3) return;
+            pages++;
+            ((frmParent)this.MdiParent).SelectedWorkLine = null;
+            ((frmParent)this.MdiParent).lblSelected.Text = "";
+            frmSelect_Enter(this, e);
         }
     }
 }
