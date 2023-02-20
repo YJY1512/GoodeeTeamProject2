@@ -67,6 +67,13 @@ namespace Team2_Project.Services
             return list;
         }
 
-
+        public List<DefCodeDTO> GetDefHistory()
+        {
+            DashboardDAO db = new DashboardDAO();
+            List<DefCodeDTO> list = db.GetDefHistory();
+            db.Dispose();
+            return list;
+        }
+        
     }
 }

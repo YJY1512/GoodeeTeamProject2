@@ -215,5 +215,30 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
+
+        public List<DefCodeDTO> GetDefHistory() //불량실적현황
+        {
+            try
+            {
+                string sql = @"SELECT TOP 10 WorkOrderNo, Def_Seq, DH.Def_Mi_Code, Def_Mi_Name, CONVERT(VARCHAR(23), Def_Date, 21) Def_Date , Def_Qty
+                                 FROM Def_History DH LEFT JOIN Def_Mi_Master DM ON DH.Def_Mi_Code = DM.Def_Mi_Code
+                             ORDER BY Def_Date DESC";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    List<DefCodeDTO> list = Helper.DataReaderMapToList<DefCodeDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

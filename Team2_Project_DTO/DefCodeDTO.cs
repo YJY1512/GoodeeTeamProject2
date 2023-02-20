@@ -18,5 +18,11 @@ namespace Team2_Project_DTO
 
 		public string Def_Mi_Code { get; set; } //
 		public string Def_Mi_Name { get; set; } //
-	}
+
+		//----대시보드----김인애----//
+		public string WorkOrderNo { get; set; }
+        public int Def_Seq { get; set; }
+        public string Def_Date { get; set; }
+        public int Def_Qty { get; set; }
+    }
 }

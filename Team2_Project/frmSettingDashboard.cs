@@ -34,7 +34,7 @@ namespace Team2_Project
 
         public void LoadData()
         {
-            foreach (var item in srv.GetDashList()) //생산진행현황, 작업장현황, 생산실적현황, 비가동현황
+            foreach (var item in srv.GetDashList()) //생산진행현황, 작업장현황, 생산실적현황, 비가동현황, 불량내역
             {
                 lstContent.Items.Add(item.Title_Ko);
             }
