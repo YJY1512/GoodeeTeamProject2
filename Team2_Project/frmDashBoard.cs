@@ -44,12 +44,14 @@ namespace Team2_Project
                 else if (lblTitleUp.Text == "생산진행현황") ProductionData(dgvDataA);
                 else if (lblTitleUp.Text == "생산실적현황") ProductionHistoryData(dgvDataA);
                 else if (lblTitleUp.Text == "비가동내역") NopData(dgvDataA);
+                else if (lblTitleUp.Text == "불량내역") DefData(dgvDataA);
                 else lblTitleDown.Text = "미선택";
 
                 if (lblTitleDown.Text == "작업장현황") WorkCenterData(dgvDataB);
                 else if (lblTitleDown.Text == "생산진행현황") ProductionData(dgvDataB);
                 else if (lblTitleDown.Text == "생산실적현황") ProductionHistoryData(dgvDataB);
                 else if (lblTitleDown.Text == "비가동내역") NopData(dgvDataB);
+                else if (lblTitleDown.Text == "불량내역") DefData(dgvDataB);
                 else lblTitleDown.Text = "미선택";
             }
             else
@@ -59,7 +61,7 @@ namespace Team2_Project
             dgvDataB.MultiSelect = false;
             dgvDataA.ReadOnly = true;
             dgvDataB.ReadOnly = true;
-
+            
             //dgvDataA.ClearSelection();
             //dgvDataB.ClearSelection();
 
@@ -181,6 +183,28 @@ namespace Team2_Project
             if (NopHistoryList.Count > 0)
             {
                 dgv.DataSource = NopHistoryList;
+            }
+            else
+            {
+                NoData(dgv);
+                //dgv.Rows.Add("데이터가 없습니다.");
+            }
+        }
+
+        private void DefData(DataGridView dgv) //불량내역
+        {//WorkOrderNo, Def_Seq, DH.Def_Mi_Code, Def_Mi_Name, Def_Date , Def_Qty
+            DataGridViewUtil.SetInitDataGridView(dgv);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업지시번호", "WorkOrderNo", 200, DataGridViewContentAlignment.MiddleCenter);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량순번", "Def_Seq", 80, DataGridViewContentAlignment.MiddleRight);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량상세분류코드", "Def_Mi_Code", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량상세분류명", "Def_Mi_Name", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량일자", "Def_Date", 230);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량수량", "Def_Qty", 100, DataGridViewContentAlignment.MiddleRight);
+            List<DefCodeDTO> DefHistoryList = new List<DefCodeDTO>();
+            DefHistoryList = srv.GetDefHistory();
+            if (DefHistoryList.Count > 0)
+            {
+                dgv.DataSource = DefHistoryList;
             }
             else
             {

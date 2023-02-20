@@ -9,8 +9,7 @@
 }
 
 @section css{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+    
     <!-- Select2 -->
     <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
 }
@@ -24,11 +23,11 @@
                     <h3 class="card-title">@ViewBag.DateStr 목표달성률</h3>
                 </div>
                 <div class="card-body row">
-                    <div class="col-sm-2"><h3 style="font-weight:normal;text-align:center">@ViewBag.DateProgress.ToString("P")</h3></div>
+                    <div class="col-sm-2"><h3 style="font-weight:normal;text-align:center">@(ViewBag.DateProgress.ToString())%</h3></div>
                     <div class="col-sm-10">
                         <div class="progress" style="height: 2.5rem">
-                            <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="(@ViewBag.DateProgress*100)" aria-valuemin="0" aria-valuemax="100" style="width:@ViewBag.DateProgress.ToString("P")">
-                                <span class="sr-only">@ViewBag.DateProgress.ToString("P") Complete (success)</span>
+                            <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="@ViewBag.DateProgress" aria-valuemin="0" aria-valuemax="100" style="width:@(ViewBag.DateProgress.ToString())%">
+                                <span class="sr-only">@ViewBag.DateProgress.ToString() Complete (success)</span>
                             </div>
                         </div>
                     </div>

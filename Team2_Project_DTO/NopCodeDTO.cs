@@ -31,6 +31,7 @@ namespace Team2_Project_DTO
         public string Regular_Type { get; set; }
         public string Remark { get; set; }
         public string Nop_type { get; set; }
+        public string MA_Use_YN { get; set; }
         public string Use_YN { get; set; }
         public string Ins_Date { get; set; }
         public string Ins_Emp { get; set; }

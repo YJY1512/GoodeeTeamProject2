@@ -73,7 +73,7 @@ namespace Team2_Project_WEB.Controllers
             if (prodOlist.Count > 0 && prodOlist.Sum((e) => e.Plan_Qty_Box) != 0)
             {
                 double totProgress = (double)prodOlist.Sum((e) => e.Total) / prodOlist.Sum((e) => e.Plan_Qty_Box);
-                ViewBag.DateProgress = totProgress > 1.00 ? 1.00 : totProgress;
+                ViewBag.DateProgress = totProgress > 1.00 ? 100.00 : totProgress* 100;
             }
             else
                 ViewBag.DateProgress = 0.00;
@@ -112,7 +112,7 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ToDate = toDate;
             if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
             {
-                ViewBag.FromDate = DateTime.Today.AddDays(-14).ToString("yyyy-MM-dd");
+                ViewBag.FromDate = DateTime.Today.AddDays(-7).ToString("yyyy-MM-dd");
                 ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
             }
             else if (string.IsNullOrWhiteSpace(fromDate))

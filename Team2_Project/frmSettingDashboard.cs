@@ -34,7 +34,7 @@ namespace Team2_Project
 
         public void LoadData()
         {
-            foreach (var item in srv.GetDashList()) //생산진행현황, 작업장현황, 생산실적현황, 비가동현황
+            foreach (var item in srv.GetDashList()) //생산진행현황, 작업장현황, 생산실적현황, 비가동현황, 불량내역
             {
                 lstContent.Items.Add(item.Title_Ko);
             }
@@ -65,7 +65,7 @@ namespace Team2_Project
         private void panBottom_DragDrop(object sender, DragEventArgs e) => lblBottom.Text = (string)e.Data.GetData(typeof(string));
         #endregion
 
-        #region 버튼 클릭이벤트
+        #region 버튼이벤트
         public void SettingSave()   //저장 버튼 클릭시 
         {
             if (lblTop.Text.Equals(lblBottom.Text))
@@ -87,7 +87,6 @@ namespace Team2_Project
                 if (result)
                 {
                     MessageBox.Show("저장이 완료되었습니다.", "저장완료", MessageBoxButtons.OK, MessageBoxIcon.None);
-
                     this.ParentForm.Close();
                 }
                 else MessageBox.Show("저장중 오류가 발생했습니다. 다시 시도하여 주십시오.", "저장오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

@@ -86,7 +86,7 @@ namespace Team2_Project_DAO
                 string sql = @"INSERT INTO Item_Master(Item_Code , Item_Name , Item_Type , Item_Spec , Remark , Ins_Emp, Ins_Date) 
                                                VALUES (@Item_Code , @Item_Name , @Item_Type , @Item_Spec , @Remark , @Ins_Emp, GETDATE())";
                 SqlCommand cmd = new SqlCommand(sql,conn);
-                cmd.Parameters.AddWithValue("@Item_Code", item.Item_Code); /////////////////////////// 추후 자동발행
+                cmd.Parameters.AddWithValue("@Item_Code", item.Item_Code);
                 cmd.Parameters.AddWithValue("@Item_Name", item.Item_Name);
                 cmd.Parameters.AddWithValue("@Item_Type", item.Item_Type);
 
@@ -182,15 +182,12 @@ namespace Team2_Project_DAO
                 string sql = @"SELECT count(*) cnt
                                 FROM Item_Master
                                 WHERE Item_Code = @Item_Code";
-
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
                     cmd.Parameters.AddWithValue("@Item_Code", ItemCode);
-
                     int cnt = Convert.ToInt32(cmd.ExecuteScalar());
                     conn.Close();
-
                     return (cnt < 1);
                 }
             }
@@ -265,7 +262,6 @@ namespace Team2_Project_DAO
                 return null;
             }
         }
-
 
 
         // 완제품 코드랑 이름만 가져오는 코드 - 0124 이승원

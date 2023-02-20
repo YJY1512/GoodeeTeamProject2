@@ -48,13 +48,6 @@ namespace Team2_Project
             cboUseYN.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void AdvancedListBind(List<NopMaCodeDTO> datasource, DataGridView dgv)
-        {
-            BindingSource bs = new BindingSource(new AdvancedList<NopMaCodeDTO>(datasource), null);
-            dgv.DataSource = null;
-            dgv.DataSource = bs;
-        }
-
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -65,15 +58,13 @@ namespace Team2_Project
             };
             NopMaList = srv.GetNopMaSearch(item);
             AdvancedListBind(NopMaList, dgvData);
-            //dgvData.ClearSelection();
             ResetBottom();  //입력패널 리셋
             DeactivationBottom(); //입력패널 비활성화
 
             if (NopMaList != null && NopMaList.Count > 0)
             {
                 dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
-            }
-            
+            }            
         }
 
         public void OnAdd()     //추가
@@ -97,7 +88,6 @@ namespace Team2_Project
             situation = "Update";
             DeactivationTop();      //검색조건 비활성화
             ActivationBottom(situation);  //입력패널 활성화
-            //txtName.Focus();
         }
 
         public void OnDelete()  //삭제
@@ -128,6 +118,14 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(txtCode.Text) || string.IsNullOrWhiteSpace(txtName.Text)) //|| cboUseYN.SelectedIndex == 0
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.","미입력", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (situation == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (situation == "Update")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
@@ -140,7 +138,7 @@ namespace Team2_Project
                 Up_Emp = empID
             };
 
-            if (situation == "Add") //cboUseYN "아니오"로 저장하면 "예"로 저장되는 오류찾기!!*****
+            if (situation == "Add")
             {
                 bool pkresult = srv.CheckPK(txtCode.Text);
                 if (!pkresult)
@@ -193,6 +191,24 @@ namespace Team2_Project
         }
         #endregion
 
+        #region DGV메서드
+        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            txtCode.Text = dgvData["Nop_Ma_Code", e.RowIndex].Value.ToString();
+            txtName.Text = dgvData["Nop_Ma_Name", e.RowIndex].Value.ToString();
+            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
+        }
+
+        private void AdvancedListBind(List<NopMaCodeDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<NopMaCodeDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+        #endregion
+
+        #region 리셋,활성화메서드
         private void ResetTop() //검색 리셋
         {
             ucCodeSearch.Text = "";
@@ -228,27 +244,6 @@ namespace Team2_Project
         {
             txtCode.Enabled = txtName.Enabled = cboUseYN.Enabled = false;
         }
-
-        //private void ucCodeSearch_BtnClick(object sender, EventArgs e)
-        //{
-        //    var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-        //    List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-        //    col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-        //    col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
-
-        //    CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
-        //    dto.DgvDatasource = list;
-        //    dto.DgvCols = col;
-        //    dto.PopName = "비가동 대분류코드 검색";
-        //    ucCodeSearchs.OpenPop(dto);
-        //}
-
-        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            txtCode.Text = dgvData["Nop_Ma_Code", e.RowIndex].Value.ToString();
-            txtName.Text = dgvData["Nop_Ma_Name", e.RowIndex].Value.ToString();
-            cboUseYN.SelectedItem = dgvData["Use_YN", e.RowIndex].Value.ToString();
-        }
+        #endregion
     }
 }

@@ -116,7 +116,8 @@ namespace Team2_Project_DAO
                                 from WorkOrder wo inner join WorkCenter_Master wc on wo.Wc_Code = wc.Wc_Code
                                 				inner join Production_Plan_Detail d on wo.Prd_Plan_No = d.Prd_Plan_No and d.Plan_Month = @Plan_Month
                                 				inner join Item_Master i on d.Item_Code = i.Item_Code
-												inner join Sys_Mi_Master s on s.Sys_Mi_Code = wo.Wo_Status and s.Sys_Ma_Code = 'WO_STATUS'";
+												inner join Sys_Mi_Master s on s.Sys_Mi_Code = wo.Wo_Status and s.Sys_Ma_Code = 'WO_STATUS'
+                                order by Plan_Date";
 
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                 da.SelectCommand.Parameters.AddWithValue("@Plan_Month", planMonth);
@@ -145,7 +146,8 @@ namespace Team2_Project_DAO
                                 					inner join Process_Master p on wc.Process_Code = p.Process_Code
                                 					inner join Item_Master i on wo.Item_Code = i.Item_Code
                                 					inner join Sys_Mi_Master s on s.Sys_Mi_Code = wo.Wo_Status and s.Sys_Ma_Code = 'WO_STATUS'
-                                where Plan_Date between @start and @end";
+                                where Plan_Date between @start and @end
+                                order by Plan_Date";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

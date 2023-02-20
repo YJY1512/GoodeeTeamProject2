@@ -70,13 +70,6 @@ namespace Team2_Project
             OnSearch();
         }
 
-        private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
-        {
-            BindingSource bs = new BindingSource(new AdvancedList<TimeProductionHistoryDTO>(datasource), null);
-            dgv.DataSource = null;
-            dgv.DataSource = bs;
-        }
-
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
         {
@@ -120,6 +113,7 @@ namespace Team2_Project
         }
         #endregion
 
+        #region 리셋 메서드
         private void ResetTop() //검색 리셋
         {
             ResetDtp();
@@ -134,7 +128,9 @@ namespace Team2_Project
             dtpFrom.Value = DateTime.Now.AddDays(-7);
             dtpTo.Value = DateTime.Now;
         }
+        #endregion
 
+        #region 팝업이벤트
         private CommonPop<WorkCenterDTO> GetWcPopInfo()
         {
             if (wcList == null)
@@ -150,9 +146,7 @@ namespace Team2_Project
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장코드", "Wc_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("작업장명", "Wc_Name", 200));
-
             wcPopInfo.DgvCols = colList;
-
             return wcPopInfo;
         }
 
@@ -171,9 +165,7 @@ namespace Team2_Project
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정코드", "Process_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("공정명", "Process_Name", 200));
-
             prcPopInfo.DgvCols = colList;
-
             return prcPopInfo;
         }
 
@@ -186,7 +178,9 @@ namespace Team2_Project
         {
             ucWcCode.OpenPop(GetWcPopInfo());
         }
+        #endregion
 
+        #region DGV메서드
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;           
@@ -197,7 +191,7 @@ namespace Team2_Project
         public void ChartData()
         {            
             string curInfo = dgvData["WorkOrderNo", dgvData.CurrentRow.Index].Value.ToString();
-            TPHistoryList = srv.GetTimeProductionHistory(curInfo); //SP 테스트용 아닌걸로 수정
+            TPHistoryList = srv.GetTimeProductionHistory(curInfo);
 
             chtData.Series.Clear();
             chtData.Series.Add("생산량");
@@ -245,5 +239,13 @@ namespace Team2_Project
                 default: break;
             }
         }
+
+        private void AdvancedListBind(List<TimeProductionHistoryDTO> datasource, DataGridView dgv)
+        {
+            BindingSource bs = new BindingSource(new AdvancedList<TimeProductionHistoryDTO>(datasource), null);
+            dgv.DataSource = null;
+            dgv.DataSource = bs;
+        }
+        #endregion
     }    
 }

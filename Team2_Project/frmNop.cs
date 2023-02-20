@@ -28,25 +28,22 @@ namespace Team2_Project
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
-            LoadData();
-            
+            LoadData();            
             ResetDtp();//초기dtp (1주전~today)
         }
 
         private void LoadData()
         {
             DataGridViewUtil.SetInitDataGridView(dgvData);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "순번", "Nop_Seq", 60);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "순번", "Nop_Seq", 60, DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일자", "Nop_Date", 160);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동발생일시", "Nop_HappenTime", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동해제일시", "Nop_CancelTime", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동시간(분)", "Nop_Time", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동시간(분)", "Nop_Time", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장코드", "Wc_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "작업장그룹", "Wc_Group", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "공정명", "Process_Name", 100);
-            //DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정그룹(작업장)", "", 200);
-            //DataGridViewUtil.AddGridTextBoxColumn(dataGridView1, "공정그룹(비가동)", "", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동대분류코드", "Nop_Ma_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동상세분류코드", "Nop_Mi_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvData, "비가동상세분류명", "Nop_Mi_Name", 150);
@@ -67,7 +64,7 @@ namespace Team2_Project
             dgv.DataSource = bs;
         }
 
-        #region main 버튼 클릭이벤트
+        #region 버튼이벤트
         public void OnSearch()  //검색 
         {
             NopHistoryDTO item = new NopHistoryDTO
@@ -89,12 +86,7 @@ namespace Team2_Project
         }
         #endregion
 
-        private void ResetTop() //검색 리셋
-        {
-            ucCodeSearch._Code = ucCodeSearch._Name = "";
-            ResetDtp();
-        }
-
+        #region 팝업이벤트
         private CommonPop<NopMaCodeDTO> GetNopPopInfo()
         {
             if (NopMaList == null)
@@ -110,32 +102,29 @@ namespace Team2_Project
             List<DataGridViewTextBoxColumn> colList = new List<DataGridViewTextBoxColumn>();
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
             colList.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
-
             PopInfo.DgvCols = colList;
-
             return PopInfo;
         }
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
             ucCodeSearch.OpenPop(GetNopPopInfo());
-            //var list = NopMaList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-            //List<DataGridViewTextBoxColumn> col = new List<DataGridViewTextBoxColumn>();
-            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류코드", "Nop_Ma_Code", 200));
-            //col.Add(DataGridViewUtil.ReturnNewDgvColumn("비가동 대분류명", "Nop_Ma_Name", 200));
-
-            //CommonPop<NopMaCodeDTO> dto = new CommonPop<NopMaCodeDTO>();
-            //dto.DgvDatasource = list;
-            //dto.DgvCols = col;
-            //dto.PopName = "비가동 대분류코드 검색";
-            //ucCodeSearch.OpenPop(dto);
         }
+        #endregion
 
+        #region 리셋메서드
         private void ResetDtp()
         {
             dtpFrom.Value = DateTime.Now.AddMonths(-1);
             dtpTo.Value = DateTime.Now;
         }
+
+        private void ResetTop() //검색 리셋
+        {
+            ucCodeSearch._Code = ucCodeSearch._Name = "";
+            ResetDtp();
+        }
+        #endregion
     }
 }
 

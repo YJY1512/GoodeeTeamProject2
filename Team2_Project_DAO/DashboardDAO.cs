@@ -32,7 +32,7 @@ namespace Team2_Project_DAO
             {
                 string sql = @"SELECT User_ID , D.DashboardItem, Loc
 	                                , CASE WHEN M.Use_YN = 'N' THEN '미사용대쉬보드'
-		                                ELSE M.Title_Ko END AS Title_Ko
+		                              ELSE M.Title_Ko END AS Title_Ko
 	                                , M.Use_YN
                                  FROM Dashboard_Mapping D INNER JOIN Dashboard_Master M ON D.DashboardItem = M.DashboardItem
                                 WHERE USER_ID = @USER_ID
@@ -56,7 +56,6 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
-                
 
         public bool UpdateDashboardMapping(DashboardDTO dto) //사용자 대시보드 매핑 UPDATE
         {
@@ -87,12 +86,11 @@ namespace Team2_Project_DAO
             }
         }
 
-
         public List<DashboardDTO> GetDashList()
         {
             try
             {
-                string sql = @"SELECT Title_Ko FROM Dashboard_Master";
+                string sql = @"SELECT Title_Ko FROM Dashboard_Master ORDER BY Title_Ko";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -143,11 +141,6 @@ namespace Team2_Project_DAO
                 using (SqlCommand cmd = new SqlCommand("SP_GetDashBoardNop", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.Parameters.AddWithValue("@DateFrom", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") );
-                    //cmd.Parameters.AddWithValue("@DateTo", DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"));
-                    //cmd.Parameters.AddWithValue("@Ma_Code", "%%");
-                    //cmd.Parameters.AddWithValue("@Ma_Name", "%%");
-
                     conn.Open();
                     List<NopHistoryDTO> list = Helper.DataReaderMapToList<NopHistoryDTO>(cmd.ExecuteReader());
                     return list;
@@ -202,6 +195,31 @@ namespace Team2_Project_DAO
                     //cmd.CommandType = CommandType.StoredProcedure;
                     conn.Open();
                     List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<DefCodeDTO> GetDefHistory() //불량실적현황
+        {
+            try
+            {
+                string sql = @"SELECT TOP 10 WorkOrderNo, Def_Seq, DH.Def_Mi_Code, Def_Mi_Name, CONVERT(VARCHAR(23), Def_Date, 21) Def_Date , Def_Qty
+                                 FROM Def_History DH LEFT JOIN Def_Mi_Master DM ON DH.Def_Mi_Code = DM.Def_Mi_Code
+                             ORDER BY Def_Date DESC";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    List<DefCodeDTO> list = Helper.DataReaderMapToList<DefCodeDTO>(cmd.ExecuteReader());
                     return list;
                 }
             }
