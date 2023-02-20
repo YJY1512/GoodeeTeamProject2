@@ -112,7 +112,7 @@ namespace Team2_Project_WEB.Controllers
             ViewBag.ToDate = toDate;
             if (string.IsNullOrWhiteSpace(fromDate) && string.IsNullOrWhiteSpace(toDate))
             {
-                ViewBag.FromDate = DateTime.Today.AddDays(-14).ToString("yyyy-MM-dd");
+                ViewBag.FromDate = DateTime.Today.AddDays(-13).ToString("yyyy-MM-dd");
                 ViewBag.ToDate = DateTime.Today.ToString("yyyy-MM-dd");
             }
             else if (string.IsNullOrWhiteSpace(fromDate))
