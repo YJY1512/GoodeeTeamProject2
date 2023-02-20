@@ -781,6 +781,7 @@ namespace Team2_Project_POP
             this.btnDef.TabIndex = 6;
             this.btnDef.Text = "불량 입력";
             this.btnDef.UseVisualStyleBackColor = false;
+            this.btnDef.Click += new System.EventHandler(this.btnDef_Click_1);
             // 
             // frmPerformance
             // 

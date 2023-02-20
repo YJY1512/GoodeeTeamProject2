@@ -255,7 +255,7 @@ namespace Team2_Project_POP
                 list.ItemCode = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Code;
                 list.PlanQty = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Qty_Box;
                 list.Prd_Qty= ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Qty;
-                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_EndTime;
+                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_StartTime;
                 list.Remark = ((frmParent)this.MdiParent).WorkOrderList[i].Remark;
                 list.Wc_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wc_Code;
                 list.isClick = false;
