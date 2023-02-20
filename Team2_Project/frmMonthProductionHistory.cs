@@ -23,7 +23,7 @@ namespace Team2_Project
 
         public frmMonthProductionHistory()
         {
-            InitializeComponent(); //월별 제품 생산비율 폼
+            InitializeComponent(); //월별 제품 생산비율 화면
         }
 
         private void frmMonthProductionHistory_Load(object sender, EventArgs e)
@@ -35,7 +35,6 @@ namespace Team2_Project
         {
             dtpDate.Value = DateTime.Now;
             DataGridViewUtil.SetInitDataGridView(dgvData);
-
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
             chk.Name = "chk";
             chk.Width = 30;
@@ -46,7 +45,6 @@ namespace Team2_Project
             headerChk.Location = new Point(headerCell.X + 8, headerCell.Y + 12);
             headerChk.Size = new Size(18, 18);
             headerChk.BackColor = Color.Transparent;
-
             headerChk.Click += HeaderChk_Click;
             dgvData.Controls.Add(headerChk);
 
@@ -68,13 +66,6 @@ namespace Team2_Project
             string[] dotCell = new string[] { "TotPlanQty", "TotInQty", "TotOutQty", "TotPrdQty", "AverageMonthProduction", "TotalProductionDays", "TotDefectQty" };
             foreach (string item in dotCell) dgvData.Columns[item].DefaultCellStyle.Format = "N0";
 
-            //string[] dotPersentCell = new string[] { "AttainmentRate", "QualityRate", "OperatingRate", "DefectRate" };
-            //foreach (string item in dotPersentCell)
-            //{
-            //    dgvData.Columns[item].DefaultCellStyle.Format = "N0";
-            //    //dgvData.Columns[item].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
-            //}
-
             dgvData.ColumnHeadersDefaultCellStyle.Font = dgvData.DefaultCellStyle.Font = new Font("나눔고딕", 11);
             this.dgvData.Columns["Item_Name"].Frozen = true;
             dgvData.MultiSelect = false;
@@ -85,11 +76,14 @@ namespace Team2_Project
 
         private void HeaderChk_Click(object sender, EventArgs e)
         {
-            dgvData.EndEdit(); //포커스가 가있으면 편집상태라고떠서 반영이안되는점 실행되도록
+            dgvData.EndEdit();
             foreach (DataGridViewRow dr in dgvData.Rows)
             {
                 dr.Cells["chk"].Value = headerChk.Checked;
             }
+            //dgvData의 chk컬럼에 체크가 되어있으면 headerChk.Checked는 true, 체크된게 없으면 headerChk.Checked는 false
+            
+
         }
 
         private void AdvancedListBind(List<MonthProductionHistoryDTO> datasource, DataGridView dgv)
@@ -104,17 +98,16 @@ namespace Team2_Project
         {
             string from = dtpDate.Value.ToString("yyyy-MM") + "-01";
             string to = dtpDate.Value.AddMonths(1).ToString("yyyy-MM") + "-01";
-            //List<MonthProductionHistoryDTO> list = null;
 
             MTHistoryList = srv.GetMonthProductionHistory(from, to);
             if (MTHistoryList != null && MTHistoryList.Count > 0)
             {
                 string ItemSC = ucItemSearch._Code ?? "";
-                if (MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList() == null) //조회조건없을 때
+                if (MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList() == null) //조회조건 없을 때
                     AdvancedListBind(MTHistoryList, dgvData);
                 else
                 {
-                    MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건있을 때
+                    MTHistoryList = MTHistoryList.Where(t => t.Item_Code == (string.IsNullOrWhiteSpace(ItemSC) ? t.Item_Code : ItemSC)).ToList(); //조회조건 있을 때
                     AdvancedListBind(MTHistoryList, dgvData);
                 }
             }
@@ -275,11 +268,7 @@ namespace Team2_Project
                 foreach (string item in backColorCell)
                     dgvData.Columns[item].DefaultCellStyle.BackColor = Color.FromArgb(215, 215, 215);
 
-                //if (dgvData.Rows.Count > 0)//////////////////////////////////////////////////////////////////////////////////////////
-                //    ChartData();/* dgvData_CellClick(dgvData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));*/
-                //else chtDataPie.Series.Clear();
                 ChartData();
-
                 dgvData.ClearSelection();
             }
         }
@@ -294,7 +283,6 @@ namespace Team2_Project
             {
                 splitContainerChart.Panel1Collapsed = false;
             }
-            //ChartData();
         }
 
         private void dgvData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -306,7 +294,7 @@ namespace Team2_Project
             else if (column.HeaderText == "불량률") column.HeaderCell.ToolTipText = "(불량수량 / 생산수량 ) *100";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnChart_Click(object sender, EventArgs e)
         {
             List<string> txt = new List<string>();
             foreach (DataGridViewRow row in dgvData.Rows)
