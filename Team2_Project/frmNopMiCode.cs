@@ -116,6 +116,10 @@ namespace Team2_Project
             ActivationBottom(situation);  //입력패널 활성화
             cboUseYN.SelectedIndex = cboNoptype.SelectedIndex = 0;
             txtInfoCodeMi.Focus();
+
+            int idx = dgvMaData.CurrentRow.Index;
+            ucMaCode._Code = dgvMaData["Nop_Ma_Code", idx].Value.ToString();
+            ucMaCode._Name = dgvMaData["Nop_Ma_Name", idx].Value.ToString();
         }
 
         public void OnEdit()    //수정
