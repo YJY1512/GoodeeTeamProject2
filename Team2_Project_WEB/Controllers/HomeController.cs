@@ -73,7 +73,7 @@ namespace Team2_Project_WEB.Controllers
             if (prodOlist.Count > 0 && prodOlist.Sum((e) => e.Plan_Qty_Box) != 0)
             {
                 double totProgress = (double)prodOlist.Sum((e) => e.Total) / prodOlist.Sum((e) => e.Plan_Qty_Box);
-                ViewBag.DateProgress = totProgress > 1.00 ? 1.00 : totProgress;
+                ViewBag.DateProgress = totProgress > 1.00 ? 100.00 : totProgress* 100;
             }
             else
                 ViewBag.DateProgress = 0.00;
