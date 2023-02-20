@@ -289,7 +289,6 @@ namespace Team2_Project
                 {
                     form.Activate();
                     form.BringToFront();
-                    
 
                     return;
                 }
@@ -358,6 +357,7 @@ namespace Team2_Project
                 Form frm = ((TabTag)tabControl1.SelectedTab.Tag).ActiveOpenForm;
                 frm.Select();
                 btnSearch_Click(frm, new EventArgs());
+                RoadClickEvent();
             }
         }
 
@@ -429,6 +429,8 @@ namespace Team2_Project
         public void RoadClickEvent()
         {
             btnSave.Enabled = btnCancel.Enabled = false;
+            btnSearch.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReLoad.Enabled = true;
+            btnSearch.BackColor = btnAdd.BackColor = btnEdit.BackColor = btnDelete.BackColor = btnReLoad.BackColor = Color.FromArgb(211, 226, 223);
             btnSave.BackColor = btnCancel.BackColor = Color.DarkGray;
         }
         public void AddClickEvent() //추가 버튼 클릭시
