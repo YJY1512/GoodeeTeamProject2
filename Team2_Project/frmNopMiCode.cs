@@ -160,6 +160,14 @@ namespace Team2_Project
             if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text) || cboNoptype.SelectedIndex == 0) //|| cboUseYN.SelectedIndex == 0
             {
                 MessageBox.Show("필수항목을 입력하여 주십시오.","미입력", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (situation == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (situation == "Update")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
