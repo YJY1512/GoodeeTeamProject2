@@ -16,6 +16,7 @@ namespace Team2_Project_POP
     {
         ucNonList selectedList = null;
         PoPService ser = new PoPService();
+        int pages = 1;
 
         public frmNonOperate()
         {
@@ -82,6 +83,29 @@ namespace Team2_Project_POP
 
             ((frmParent)MdiParent).NonList = ser.GetNonList(((frmParent)MdiParent).SelectedWorkLine.Wc_Code);
 
+            if (pages == 1)
+            {
+                btnUp.Visible = false;
+            }
+            else
+            {
+                btnUp.Visible = true;
+            }
+
+            lblPage.Text = pages.ToString();
+
+            lblTotPage.Text = Math.Ceiling(((frmParent)MdiParent).NonList.Count / 6.0).ToString();
+
+            if (pages == Math.Ceiling(((frmParent)MdiParent).NonList.Count / 6.0))
+            {
+                btnDown.Visible = false;
+            }
+            else
+            {
+                btnDown.Visible = true;
+            }
+
+
             for (int i = 0; i < ((frmParent)MdiParent).NonList.Count; i++)
             {
                 ucNonList list = new ucNonList();
@@ -95,8 +119,27 @@ namespace Team2_Project_POP
                 list.NonEndTime = ((frmParent)MdiParent).NonList[i].NonCancelTime;
 
                 list.list_Click += List_list_Click;
-                pnlNon.Controls.Add(list);
+
+                if (pages == (Math.Ceiling((i + 1) / (6.0))))
+                {
+                    pnlNon.Controls.Add(list);
+                }
+               
             }
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if (pages <= 1) return;
+            pages--;
+            frmNonOperate_Enter(this, e);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (pages >= 3) return;
+            pages++;
+            frmNonOperate_Enter(this, e);
         }
     }
 }

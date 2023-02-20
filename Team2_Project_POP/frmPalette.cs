@@ -15,7 +15,7 @@ namespace Team2_Project_POP
     public partial class frmPalette : Form
     {
         PoPService ser = new PoPService();
-
+        int pages = 1;
 
         public frmPalette()
         {
@@ -40,6 +40,29 @@ namespace Team2_Project_POP
 
             ((frmParent)MdiParent).PaletteList = ser.GetPaletteList(((frmParent)MdiParent).SelectedWorkOrder.WorkLineCode);
 
+            if (pages == 1)
+            {
+                btnUp.Visible = false;
+            }
+            else
+            {
+                btnUp.Visible = true;
+            }
+
+            lblPage.Text = pages.ToString();
+
+            lblTotPage.Text = Math.Ceiling(((frmParent)MdiParent).PaletteList.Count / 8.0).ToString();
+
+            if (pages == Math.Ceiling(((frmParent)MdiParent).PaletteList.Count / 8.0))
+            {
+                btnDown.Visible = false;
+            }
+            else
+            {
+                btnDown.Visible = true;
+            }
+
+
             for (int i = 0; i < ((frmParent)MdiParent).PaletteList.Count; i++)
             {
                 ucPaletteList list = new ucPaletteList();
@@ -56,7 +79,11 @@ namespace Team2_Project_POP
                 list.isClick = false;
 
                 list.ucPaletteList_click += List_ucPaletteList_click;
-                pnlPalette.Controls.Add(list);
+
+                if (pages == (Math.Ceiling((i + 1) / (6.0))))
+                {
+                    pnlPalette.Controls.Add(list);
+                }
             }
 
             // wkrdjqwltl 
@@ -100,5 +127,20 @@ namespace Team2_Project_POP
 
         }
 
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if (pages <= 1) return;
+            pages--;
+
+            frmPalette_Enter(this, e);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (pages >= 3) return;
+            pages++;
+
+            frmPalette_Enter(this, e);
+        }
     }
 }

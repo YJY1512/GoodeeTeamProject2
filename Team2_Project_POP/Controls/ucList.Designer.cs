@@ -47,7 +47,7 @@ namespace Team2_Project_POP.Controls
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
@@ -67,7 +67,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblRemark
             // 
-            this.lblRemark.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblRemark.BackColor = System.Drawing.Color.White;
             this.lblRemark.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblRemark.ForeColor = System.Drawing.Color.Black;
             this.lblRemark.Location = new System.Drawing.Point(909, 4);
@@ -81,7 +81,7 @@ namespace Team2_Project_POP.Controls
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
@@ -109,7 +109,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblProductDate
             // 
-            this.lblProductDate.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblProductDate.BackColor = System.Drawing.Color.White;
             this.lblProductDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProductDate.ForeColor = System.Drawing.Color.Black;
             this.lblProductDate.Location = new System.Drawing.Point(2, 61);
@@ -123,7 +123,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblPlanDate
             // 
-            this.lblPlanDate.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblPlanDate.BackColor = System.Drawing.Color.White;
             this.lblPlanDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPlanDate.ForeColor = System.Drawing.Color.Black;
             this.lblPlanDate.Location = new System.Drawing.Point(2, 4);
@@ -137,7 +137,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblProcessNum
             // 
-            this.lblProcessNum.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblProcessNum.BackColor = System.Drawing.Color.White;
             this.lblProcessNum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProcessNum.ForeColor = System.Drawing.Color.Black;
             this.lblProcessNum.Location = new System.Drawing.Point(208, 4);
@@ -151,7 +151,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblPlanQty
             // 
-            this.lblPlanQty.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblPlanQty.BackColor = System.Drawing.Color.White;
             this.lblPlanQty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPlanQty.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPlanQty.ForeColor = System.Drawing.Color.Black;
@@ -166,7 +166,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblStartTime
             // 
-            this.lblStartTime.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblStartTime.BackColor = System.Drawing.Color.White;
             this.lblStartTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStartTime.ForeColor = System.Drawing.Color.Black;
             this.lblStartTime.Location = new System.Drawing.Point(531, 4);
@@ -180,7 +180,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblIngQty
             // 
-            this.lblIngQty.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblIngQty.BackColor = System.Drawing.Color.White;
             this.lblIngQty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblIngQty.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblIngQty.ForeColor = System.Drawing.Color.Black;
@@ -195,7 +195,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblFinishTime
             // 
-            this.lblFinishTime.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblFinishTime.BackColor = System.Drawing.Color.White;
             this.lblFinishTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFinishTime.ForeColor = System.Drawing.Color.Black;
             this.lblFinishTime.Location = new System.Drawing.Point(531, 61);
@@ -209,7 +209,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblProductName
             // 
-            this.lblProductName.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblProductName.BackColor = System.Drawing.Color.White;
             this.lblProductName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProductName.ForeColor = System.Drawing.Color.Black;
             this.lblProductName.Location = new System.Drawing.Point(208, 61);
@@ -223,7 +223,7 @@ namespace Team2_Project_POP.Controls
             // 
             // lblStatuse
             // 
-            this.lblStatuse.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.lblStatuse.BackColor = System.Drawing.Color.White;
             this.lblStatuse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStatuse.ForeColor = System.Drawing.Color.Black;
             this.lblStatuse.Location = new System.Drawing.Point(4, 4);
@@ -239,7 +239,7 @@ namespace Team2_Project_POP.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "ucList";
