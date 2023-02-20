@@ -39,12 +39,11 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvMaData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류명", "Nop_Ma_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "Use_YN");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "MA_Use_YN");
 
             DataGridViewUtil.SetInitDataGridView(dgvMiData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Mi_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Mi_Name", 200);
-            //DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 구분", "Regular_Type", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동유형", "Nop_type", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 100);
             dgvMaData.MultiSelect = false;
@@ -53,11 +52,6 @@ namespace Team2_Project
             List<CodeDTO> cboList = srv.GetNopType();
             CommonCodeUtil.ComboBinding(cboNoptype, cboList, "PROC_GROUP", blankText: "-선택-");
             cboNoptype.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-            //cboNoptype.Items.Add("-선택-");
-            //cboNoptype.Items.Add("시유");
-            ////cboNoptype.Items.Add("포장");
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUse);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
@@ -68,8 +62,6 @@ namespace Team2_Project
             DeactivationBottom(); //입력패널 비활성화
             OnSearch();
             nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
-
-
         }
 
         private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
@@ -107,14 +99,13 @@ namespace Team2_Project
             {
                 dgvMaData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
             }
-
         }
 
         public void OnAdd()     //추가
         {
             if (dgvMaData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("추가할 항목을 선택하여 주십시오.","추가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("추가할 항목을 선택하여 주십시오.", "추가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -124,13 +115,17 @@ namespace Team2_Project
             ActivationBottom(situation);  //입력패널 활성화
             cboUseYN.SelectedIndex = cboNoptype.SelectedIndex = 0;
             txtInfoCodeMi.Focus();
+
+            int idx = dgvMaData.CurrentRow.Index;
+            ucMaCode._Code = dgvMaData["Nop_Ma_Code", idx].Value.ToString();
+            ucMaCode._Name = dgvMaData["Nop_Ma_Name", idx].Value.ToString();
         }
 
         public void OnEdit()    //수정
         {
             if (dgvMiData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("수정할 항목을 선택하여 주십시오.","수정", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("수정할 항목을 선택하여 주십시오.", "수정", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ((frmMain)this.MdiParent).BtnEditReturn(true);
                 return;
             }
@@ -143,7 +138,7 @@ namespace Team2_Project
         {
             if (dgvMiData.SelectedRows.Count < 1)
             {
-                MessageBox.Show("삭제할 항목을 선택하여 주십시오.","삭제", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("삭제할 항목을 선택하여 주십시오.", "삭제", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -152,19 +147,28 @@ namespace Team2_Project
             if (MessageBox.Show($"{txtInfoNameMi.Text}을 삭제하시겠습니까?", "삭제확인", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 int result = srv.DeleteMiCode(txtInfoCodeMi.Text);
-                if (result == 0) MessageBox.Show("삭제가 완료되었습니다.","삭제완료", MessageBoxButtons.OK, MessageBoxIcon.None); //성공
-                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다.","삭제불가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); //FK 충돌
-                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.","삭제오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (result == 0) MessageBox.Show("삭제가 완료되었습니다.", "삭제완료", MessageBoxButtons.OK, MessageBoxIcon.None); //성공
+                else if (result == 3726) MessageBox.Show("데이터를 삭제할 수 없습니다.", "삭제불가", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); //FK 충돌
+                else MessageBox.Show("삭제 중 오류가 발생하였습니다. 다시 시도하여 주십시오.", "삭제오류", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ResetBottom(); //입력패널 리셋
                 OnSearch();    //로드
             }
             dgvMaData.Enabled = dgvMiData.Enabled = true;
         }
+
         public void OnSave()    //저장
         {
             if (string.IsNullOrWhiteSpace(txtInfoCodeMi.Text) || string.IsNullOrWhiteSpace(txtInfoNameMi.Text) || cboNoptype.SelectedIndex == 0) //|| cboUseYN.SelectedIndex == 0
             {
-                MessageBox.Show("필수항목을 입력하여 주십시오.","미입력", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("필수항목을 입력하여 주십시오.", "미입력", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (situation == "Add")
+                {
+                    ((frmMain)this.MdiParent).AddClickEvent();
+                }
+                else if (situation == "Update")
+                {
+                    ((frmMain)this.MdiParent).EditClickEvent();
+                }
                 return;
             }
 
@@ -184,7 +188,7 @@ namespace Team2_Project
                 bool pkresult = srv.CheckMiPK(txtInfoCodeMi.Text);
                 if (!pkresult)
                 {
-                    MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.","코드중복", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("상세코드가 중복되었습니다. 다시 입력하여 주십시오.", "코드중복", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     txtInfoCodeMi.Clear();
                     txtInfoCodeMi.Focus();
                     return;
@@ -263,6 +267,7 @@ namespace Team2_Project
         {
             foreach (Control ctrl in splitContainer2.Panel2.Controls)
                 ctrl.Enabled = true;
+
             if (situation.Equals("Update"))
             {
                 ucMaCode.Enabled = false;
@@ -276,7 +281,8 @@ namespace Team2_Project
         private void DeactivationBottom() //입력 비활성화
         {
             foreach (Control ctrl in splitContainer2.Panel2.Controls)
-                ctrl.Enabled = false;
+                if (ctrl is TextBox || ctrl is ComboBox)
+                    ctrl.Enabled = false;
         }
 
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)

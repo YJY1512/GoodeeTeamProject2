@@ -16,6 +16,9 @@ namespace Team2_Project_POP
     public partial class frmPerformance : Form
     {
         PoPService ser = new PoPService();
+        int pagePrd = 1;
+        int pageDef = 1;
+
 
         public frmPerformance()
         {
@@ -36,7 +39,7 @@ namespace Team2_Project_POP
             frmCalcPop cal = new frmCalcPop();
             cal.Tag = "Prd";
             cal.ShowDialog(this.MdiParent);
-            frmPerformance_Activated(this, e);
+            frmPerformance_Enter(this, e);
         }
         /// <summary>
         /// 불량품 입력
@@ -54,10 +57,39 @@ namespace Team2_Project_POP
                 cal.Tag = "Def";
                 cal.ShowDialog(this.MdiParent);
             }
-            frmPerformance_Activated(this, e);
+            frmPerformance_Enter(this, e);
         }
 
-        private void frmPerformance_Activated(object sender, EventArgs e)
+
+        private void btnUpPRD_Click(object sender, EventArgs e)
+        {
+            if (pagePrd <= 1) return;
+            pagePrd--;
+            frmPerformance_Enter(this, e);
+        }
+
+        private void btnDownPRD_Click(object sender, EventArgs e)
+        {
+            if (pagePrd >= 3) return;
+            pagePrd++;
+            frmPerformance_Enter(this, e);
+        }
+
+        private void btnUpDEF_Click(object sender, EventArgs e)
+        {
+            if (pageDef <= 1) return;
+            pageDef--;
+            frmPerformance_Enter(this, e);
+        }
+
+        private void btnDownDEF_Click(object sender, EventArgs e)
+        {
+            if (pageDef >= 3) return;
+            pageDef++;
+            frmPerformance_Enter(this, e);
+        }
+
+        private void frmPerformance_Enter(object sender, EventArgs e)
         {
             pnlDef.Controls.Clear();
             pnlPrd.Controls.Clear();
@@ -69,6 +101,52 @@ namespace Team2_Project_POP
             lblPlanDate.Text = ((frmParent)this.MdiParent).SelectedWorkOrder.WorkOrderDate.ToString("yyyy-MM-dd");
             lblPlanQty.Text = ((frmParent)this.MdiParent).SelectedWorkOrder.PlanQty.ToString();
 
+            if (pagePrd == 1)
+            {
+                btnUpPRD.Visible = false;
+            }
+            else
+            {
+                btnUpPRD.Visible = true;
+            }
+
+            lblPagePRD.Text = pagePrd.ToString();
+
+            lblTotPagePRD.Text = Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0).ToString();
+
+            if (pageDef == Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0))
+            {
+                btnDownDEF.Visible = false;
+            }
+            else
+            {
+                btnDownDEF.Visible = true;
+            }
+
+
+            if (pageDef == 1)
+            {
+                btnUpDEF.Visible = false;
+            }
+            else
+            {
+                btnUpDEF.Visible = true;
+            }
+
+            lblPageDEF.Text = pageDef.ToString();
+
+            lblTotPageDEF.Text = Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0).ToString();
+
+            if (pageDef == Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0))
+            {
+                btnDownDEF.Visible = false;
+            }
+            else
+            {
+                btnDownDEF.Visible = true;
+            }
+
+
             for (int i = 0; i < ((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count; i++)
             {
                 sum += ((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty[i].Item_Qty;
@@ -79,9 +157,12 @@ namespace Team2_Project_POP
                 prdList.Size = new Size(100, 80);
                 prdList.Dock = DockStyle.Top;
 
-                pnlPrd.Controls.Add(prdList);
+                if (pagePrd == (Math.Ceiling((i + 1) / (6.0))))
+                {
+                    pnlPrd.Controls.Add(prdList);
+                }
             }
-            
+
             lblPrdQty.Text = sum.ToString();
             sum = 0;
 
@@ -96,9 +177,12 @@ namespace Team2_Project_POP
                 defList.Size = new Size(100, 80);
                 defList.Dock = DockStyle.Top;
 
-                pnlDef.Controls.Add(defList);
+                if (pageDef == (Math.Ceiling((i + 1) / (6.0))))
+                {
+                    pnlDef.Controls.Add(defList);
+                }
             }
-            
+
             lblDefQty.Text = sum.ToString();
         }
     }

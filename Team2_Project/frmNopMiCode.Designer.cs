@@ -61,15 +61,15 @@ namespace Team2_Project
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(687, 66);
+            this.label14.Location = new System.Drawing.Point(632, 119);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(710, 66);
+            this.label10.Location = new System.Drawing.Point(655, 119);
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(43, 225);
+            this.label9.Location = new System.Drawing.Point(655, 66);
             this.label9.Size = new System.Drawing.Size(78, 17);
             this.label9.Text = "비가동유형";
             // 
@@ -107,7 +107,7 @@ namespace Team2_Project
             // 
             // nudSort
             // 
-            this.nudSort.Location = new System.Drawing.Point(1054, 217);
+            this.nudSort.Location = new System.Drawing.Point(1042, 168);
             this.nudSort.Size = new System.Drawing.Size(40, 25);
             this.nudSort.Visible = false;
             // 
@@ -122,7 +122,7 @@ namespace Team2_Project
             // 
             this.splitContainer2.Panel2.Controls.Add(this.cboNoptype);
             this.splitContainer2.Size = new System.Drawing.Size(1177, 692);
-            this.splitContainer2.SplitterDistance = 422;
+            this.splitContainer2.SplitterDistance = 463;
             // 
             // ucMaCode
             // 
@@ -133,7 +133,7 @@ namespace Team2_Project
             // cboUseYN
             // 
             this.cboUseYN.ItemHeight = 17;
-            this.cboUseYN.Location = new System.Drawing.Point(794, 62);
+            this.cboUseYN.Location = new System.Drawing.Point(781, 115);
             // 
             // ucMaCodeSC
             // 
@@ -144,21 +144,21 @@ namespace Team2_Project
             // label12
             // 
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(20, 225);
+            this.label12.Location = new System.Drawing.Point(632, 66);
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(687, 119);
+            this.label13.Location = new System.Drawing.Point(632, 172);
             // 
             // txtRemark
             // 
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemark.Location = new System.Drawing.Point(794, 115);
-            this.txtRemark.Size = new System.Drawing.Size(300, 89);
+            this.txtRemark.Location = new System.Drawing.Point(781, 168);
+            this.txtRemark.Size = new System.Drawing.Size(255, 25);
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(710, 119);
+            this.label8.Location = new System.Drawing.Point(655, 172);
             // 
             // pnlSub
             // 
@@ -193,7 +193,7 @@ namespace Team2_Project
             this.dgvMiData.Location = new System.Drawing.Point(0, 0);
             this.dgvMiData.Name = "dgvMiData";
             this.dgvMiData.RowTemplate.Height = 23;
-            this.dgvMiData.Size = new System.Drawing.Size(1177, 422);
+            this.dgvMiData.Size = new System.Drawing.Size(1177, 463);
             this.dgvMiData.TabIndex = 1;
             this.dgvMiData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMiData_CellClick);
             // 
@@ -201,7 +201,7 @@ namespace Team2_Project
             // 
             this.cboNoptype.FormattingEnabled = true;
             this.cboNoptype.ItemHeight = 17;
-            this.cboNoptype.Location = new System.Drawing.Point(182, 221);
+            this.cboNoptype.Location = new System.Drawing.Point(781, 62);
             this.cboNoptype.Name = "cboNoptype";
             this.cboNoptype.Size = new System.Drawing.Size(130, 25);
             this.cboNoptype.TabIndex = 35;

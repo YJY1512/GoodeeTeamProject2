@@ -82,6 +82,45 @@ namespace Team2_Project_POP
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkLine)).BeginInit();
             this.SuspendLayout();
             // 
+            // label3
+            // 
+            label3.BackColor = System.Drawing.Color.DarkBlue;
+            label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            label3.ForeColor = System.Drawing.Color.White;
+            label3.Location = new System.Drawing.Point(1065, 10);
+            label3.Margin = new System.Windows.Forms.Padding(10);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(549, 114);
+            label3.TabIndex = 2;
+            label3.Text = "세 분 류";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            label2.BackColor = System.Drawing.Color.DarkBlue;
+            label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(497, 10);
+            label2.Margin = new System.Windows.Forms.Padding(10);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(548, 114);
+            label2.TabIndex = 1;
+            label2.Text = "대 분 류";
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            label1.BackColor = System.Drawing.Color.DarkBlue;
+            label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(10, 10);
+            label1.Margin = new System.Windows.Forms.Padding(10);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(467, 114);
+            label1.TabIndex = 0;
+            label1.Text = "작 업 장";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
@@ -112,7 +151,7 @@ namespace Team2_Project_POP
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 611);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(2080, 130);
+            this.panel4.Size = new System.Drawing.Size(1924, 130);
             this.panel4.TabIndex = 8;
             // 
             // btnSD
@@ -386,7 +425,7 @@ namespace Team2_Project_POP
             this.panel3.Controls.Add(this.btnCancle);
             this.panel3.Controls.Add(this.btnRegister);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1780, 0);
+            this.panel3.Location = new System.Drawing.Point(1624, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(300, 611);
             this.panel3.TabIndex = 10;
@@ -430,12 +469,12 @@ namespace Team2_Project_POP
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1780, 134);
+            this.panel2.Size = new System.Drawing.Size(1624, 134);
             this.panel2.TabIndex = 11;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Gray;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
@@ -449,47 +488,8 @@ namespace Team2_Project_POP
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1780, 134);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1624, 134);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label3
-            // 
-            label3.BackColor = System.Drawing.Color.DarkBlue;
-            label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            label3.ForeColor = System.Drawing.Color.White;
-            label3.Location = new System.Drawing.Point(1167, 10);
-            label3.Margin = new System.Windows.Forms.Padding(10);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(603, 114);
-            label3.TabIndex = 2;
-            label3.Text = "세 분 류";
-            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            label2.BackColor = System.Drawing.Color.DarkBlue;
-            label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            label2.ForeColor = System.Drawing.Color.White;
-            label2.Location = new System.Drawing.Point(544, 10);
-            label2.Margin = new System.Windows.Forms.Padding(10);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(603, 114);
-            label2.TabIndex = 1;
-            label2.Text = "대 분 류";
-            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            label1.BackColor = System.Drawing.Color.DarkBlue;
-            label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(10, 10);
-            label1.Margin = new System.Windows.Forms.Padding(10);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(514, 114);
-            label1.TabIndex = 0;
-            label1.Text = "작 업 장";
-            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlNon
             // 
@@ -497,11 +497,12 @@ namespace Team2_Project_POP
             this.pnlNon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlNon.Location = new System.Drawing.Point(0, 134);
             this.pnlNon.Name = "pnlNon";
-            this.pnlNon.Size = new System.Drawing.Size(1780, 477);
+            this.pnlNon.Size = new System.Drawing.Size(1624, 477);
             this.pnlNon.TabIndex = 12;
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
@@ -515,48 +516,51 @@ namespace Team2_Project_POP
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1780, 477);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1624, 477);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dgvMiNon
             // 
+            this.dgvMiNon.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.dgvMiNon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMiNon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMiNon.Location = new System.Drawing.Point(1162, 5);
+            this.dgvMiNon.Location = new System.Drawing.Point(1060, 5);
             this.dgvMiNon.Margin = new System.Windows.Forms.Padding(5);
             this.dgvMiNon.Name = "dgvMiNon";
             this.dgvMiNon.RowTemplate.Height = 23;
-            this.dgvMiNon.Size = new System.Drawing.Size(613, 467);
+            this.dgvMiNon.Size = new System.Drawing.Size(559, 467);
             this.dgvMiNon.TabIndex = 2;
             // 
             // dgvMaNon
             // 
+            this.dgvMaNon.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.dgvMaNon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaNon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMaNon.Location = new System.Drawing.Point(539, 5);
+            this.dgvMaNon.Location = new System.Drawing.Point(492, 5);
             this.dgvMaNon.Margin = new System.Windows.Forms.Padding(5);
             this.dgvMaNon.Name = "dgvMaNon";
             this.dgvMaNon.RowTemplate.Height = 23;
-            this.dgvMaNon.Size = new System.Drawing.Size(613, 467);
+            this.dgvMaNon.Size = new System.Drawing.Size(558, 467);
             this.dgvMaNon.TabIndex = 1;
             this.dgvMaNon.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaNon_RowEnter_1);
             // 
             // dgvWorkLine
             // 
+            this.dgvWorkLine.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.dgvWorkLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWorkLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkLine.Location = new System.Drawing.Point(5, 5);
             this.dgvWorkLine.Margin = new System.Windows.Forms.Padding(5);
             this.dgvWorkLine.Name = "dgvWorkLine";
             this.dgvWorkLine.RowTemplate.Height = 23;
-            this.dgvWorkLine.Size = new System.Drawing.Size(524, 467);
+            this.dgvWorkLine.Size = new System.Drawing.Size(477, 467);
             this.dgvWorkLine.TabIndex = 0;
             // 
             // frmNonOperateEnroll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2080, 741);
+            this.ClientSize = new System.Drawing.Size(1924, 741);
             this.Controls.Add(this.pnlNon);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);

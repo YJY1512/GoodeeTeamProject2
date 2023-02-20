@@ -59,10 +59,10 @@ namespace Team2_Project_POP.Controls
             this.lblGroup.BackColor = System.Drawing.Color.DarkBlue;
             this.lblGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblGroup.ForeColor = System.Drawing.Color.White;
-            this.lblGroup.Location = new System.Drawing.Point(673, 10);
-            this.lblGroup.Margin = new System.Windows.Forms.Padding(5, 10, 10, 10);
+            this.lblGroup.Location = new System.Drawing.Point(669, 2);
+            this.lblGroup.Margin = new System.Windows.Forms.Padding(1, 2, 2, 2);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(114, 80);
+            this.lblGroup.Size = new System.Drawing.Size(126, 96);
             this.lblGroup.TabIndex = 2;
             this.lblGroup.Text = "그  룹";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -73,10 +73,10 @@ namespace Team2_Project_POP.Controls
             this.lblWorkSpace.BackColor = System.Drawing.Color.DarkBlue;
             this.lblWorkSpace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblWorkSpace.ForeColor = System.Drawing.Color.White;
-            this.lblWorkSpace.Location = new System.Drawing.Point(132, 10);
-            this.lblWorkSpace.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.lblWorkSpace.Location = new System.Drawing.Point(128, 2);
+            this.lblWorkSpace.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.lblWorkSpace.Name = "lblWorkSpace";
-            this.lblWorkSpace.Size = new System.Drawing.Size(531, 80);
+            this.lblWorkSpace.Size = new System.Drawing.Size(539, 96);
             this.lblWorkSpace.TabIndex = 1;
             this.lblWorkSpace.Text = "작 업 장";
             this.lblWorkSpace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -87,10 +87,10 @@ namespace Team2_Project_POP.Controls
             this.lblStatuse.BackColor = System.Drawing.Color.DarkBlue;
             this.lblStatuse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStatuse.ForeColor = System.Drawing.Color.White;
-            this.lblStatuse.Location = new System.Drawing.Point(10, 10);
-            this.lblStatuse.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
+            this.lblStatuse.Location = new System.Drawing.Point(2, 2);
+            this.lblStatuse.Margin = new System.Windows.Forms.Padding(2, 2, 1, 2);
             this.lblStatuse.Name = "lblStatuse";
-            this.lblStatuse.Size = new System.Drawing.Size(112, 80);
+            this.lblStatuse.Size = new System.Drawing.Size(124, 96);
             this.lblStatuse.TabIndex = 0;
             this.lblStatuse.Text = "상  태";
             this.lblStatuse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -100,6 +100,7 @@ namespace Team2_Project_POP.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "ucSelectedList";
