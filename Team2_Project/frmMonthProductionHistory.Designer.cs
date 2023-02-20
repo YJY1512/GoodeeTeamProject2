@@ -157,7 +157,7 @@ namespace Team2_Project
             this.chtDataPie.Legends.Add(legend2);
             this.chtDataPie.Location = new System.Drawing.Point(0, 0);
             this.chtDataPie.Name = "chtDataPie";
-            this.chtDataPie.Size = new System.Drawing.Size(985, 4);
+            this.chtDataPie.Size = new System.Drawing.Size(985, 3);
             this.chtDataPie.TabIndex = 3;
             this.chtDataPie.Text = "chart1";
             // 
@@ -169,7 +169,7 @@ namespace Team2_Project
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 757);
+            this.dgvData.Size = new System.Drawing.Size(1834, 758);
             this.dgvData.TabIndex = 4;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             this.dgvData.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvData_CellFormatting);
@@ -190,7 +190,7 @@ namespace Team2_Project
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 808);
-            this.splitContainer1.SplitterDistance = 757;
+            this.splitContainer1.SplitterDistance = 758;
             this.splitContainer1.TabIndex = 5;
             // 
             // panel1
@@ -199,7 +199,7 @@ namespace Team2_Project
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1834, 4);
+            this.panel1.Size = new System.Drawing.Size(1834, 3);
             this.panel1.TabIndex = 4;
             // 
             // splitContainerChart
@@ -215,7 +215,7 @@ namespace Team2_Project
             // splitContainerChart.Panel2
             // 
             this.splitContainerChart.Panel2.Controls.Add(this.chtDataPie);
-            this.splitContainerChart.Size = new System.Drawing.Size(1834, 4);
+            this.splitContainerChart.Size = new System.Drawing.Size(1834, 3);
             this.splitContainerChart.SplitterDistance = 845;
             this.splitContainerChart.TabIndex = 0;
             // 
@@ -228,7 +228,7 @@ namespace Team2_Project
             this.chtDataLine.Legends.Add(legend1);
             this.chtDataLine.Location = new System.Drawing.Point(0, 0);
             this.chtDataLine.Name = "chtDataLine";
-            this.chtDataLine.Size = new System.Drawing.Size(845, 4);
+            this.chtDataLine.Size = new System.Drawing.Size(845, 3);
             this.chtDataLine.TabIndex = 4;
             this.chtDataLine.Text = "chart1";
             // 
