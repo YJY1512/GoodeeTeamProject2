@@ -92,7 +92,7 @@ namespace Team2_Project_DAO
         {
             try
             {
-                string sql = @"SELECT Title_Ko FROM Dashboard_Master";
+                string sql = @"SELECT Title_Ko FROM Dashboard_Master ORDER BY Title_Ko";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
