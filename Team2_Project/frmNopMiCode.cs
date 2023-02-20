@@ -39,12 +39,11 @@ namespace Team2_Project
             DataGridViewUtil.SetInitDataGridView(dgvMaData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류코드", "Nop_Ma_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "비가동 대분류명", "Nop_Ma_Name", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "Use_YN");
+            DataGridViewUtil.AddGridTextBoxColumn(dgvMaData, "사용유무", "MA_Use_YN");
 
             DataGridViewUtil.SetInitDataGridView(dgvMiData);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류코드", "Nop_Mi_Code", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 상세분류명", "Nop_Mi_Name", 200);
-            //DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동 구분", "Regular_Type", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "비가동유형", "Nop_type", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgvMiData, "사용유무", "Use_YN", 100);
             dgvMaData.MultiSelect = false;
@@ -53,11 +52,6 @@ namespace Team2_Project
             List<CodeDTO> cboList = srv.GetNopType();
             CommonCodeUtil.ComboBinding(cboNoptype, cboList, "PROC_GROUP", blankText: "-선택-");
             cboNoptype.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-            //cboNoptype.Items.Add("-선택-");
-            //cboNoptype.Items.Add("시유");
-            ////cboNoptype.Items.Add("포장");
 
             CommonCodeUtil.UseYNComboBinding(cboSearchUse);
             CommonCodeUtil.UseYNComboBinding(cboUseYN, false);
@@ -68,8 +62,6 @@ namespace Team2_Project
             DeactivationBottom(); //입력패널 비활성화
             OnSearch();
             nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
-
-
         }
 
         private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
