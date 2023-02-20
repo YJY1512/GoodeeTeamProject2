@@ -402,7 +402,8 @@ namespace Team2_Project
 
             clickState = ButtonClick.None;
             SetEditEnd();
-            LoadData();
+            SetInitPnl();
+            LoadData();            
         }
 
         public void OnCancel()  //취소
