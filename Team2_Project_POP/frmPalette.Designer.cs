@@ -30,6 +30,11 @@ namespace Team2_Project_POP
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlRadio = new System.Windows.Forms.Panel();
+            this.btnA4 = new System.Windows.Forms.Button();
+            this.btnLabel = new System.Windows.Forms.Button();
+            this.lblBoxQty = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblItemSize = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -38,12 +43,7 @@ namespace Team2_Project_POP
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblBoxQty = new System.Windows.Forms.Label();
-            this.pnlRadio = new System.Windows.Forms.Panel();
-            this.btnLabel = new System.Windows.Forms.Button();
-            this.btnA4 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlPalette = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,20 +54,30 @@ namespace Team2_Project_POP
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.pnlPalette = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tplUpDown = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTotPage = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblPage = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.pnlRadio.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tplUpDown.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.panel3.Controls.Add(this.pnlRadio);
             this.panel3.Controls.Add(this.lblBoxQty);
             this.panel3.Controls.Add(this.label2);
@@ -83,6 +93,69 @@ namespace Team2_Project_POP
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(415, 679);
             this.panel3.TabIndex = 6;
+            // 
+            // pnlRadio
+            // 
+            this.pnlRadio.Controls.Add(this.btnA4);
+            this.pnlRadio.Controls.Add(this.btnLabel);
+            this.pnlRadio.Location = new System.Drawing.Point(0, 426);
+            this.pnlRadio.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.pnlRadio.Name = "pnlRadio";
+            this.pnlRadio.Size = new System.Drawing.Size(415, 110);
+            this.pnlRadio.TabIndex = 23;
+            // 
+            // btnA4
+            // 
+            this.btnA4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.btnA4.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnA4.ForeColor = System.Drawing.Color.White;
+            this.btnA4.Location = new System.Drawing.Point(213, 5);
+            this.btnA4.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.btnA4.Name = "btnA4";
+            this.btnA4.Size = new System.Drawing.Size(200, 100);
+            this.btnA4.TabIndex = 1;
+            this.btnA4.Text = "A4 용지";
+            this.btnA4.UseVisualStyleBackColor = false;
+            this.btnA4.Click += new System.EventHandler(this.btnA4_Click);
+            // 
+            // btnLabel
+            // 
+            this.btnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.btnLabel.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLabel.ForeColor = System.Drawing.Color.White;
+            this.btnLabel.Location = new System.Drawing.Point(8, 5);
+            this.btnLabel.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.btnLabel.Name = "btnLabel";
+            this.btnLabel.Size = new System.Drawing.Size(200, 100);
+            this.btnLabel.TabIndex = 0;
+            this.btnLabel.Text = "라벨 용지";
+            this.btnLabel.UseVisualStyleBackColor = false;
+            this.btnLabel.Click += new System.EventHandler(this.btnLabel_Click);
+            // 
+            // lblBoxQty
+            // 
+            this.lblBoxQty.BackColor = System.Drawing.Color.White;
+            this.lblBoxQty.ForeColor = System.Drawing.Color.Black;
+            this.lblBoxQty.Location = new System.Drawing.Point(163, 200);
+            this.lblBoxQty.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
+            this.lblBoxQty.Name = "lblBoxQty";
+            this.lblBoxQty.Size = new System.Drawing.Size(250, 60);
+            this.lblBoxQty.TabIndex = 22;
+            this.lblBoxQty.Text = "수량";
+            this.lblBoxQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(8, 200);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 5, 0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(150, 60);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "박스수량";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnPrint
             // 
@@ -183,77 +256,14 @@ namespace Team2_Project_POP
             this.panel4.Size = new System.Drawing.Size(996, 679);
             this.panel4.TabIndex = 9;
             // 
-            // label2
+            // pnlPalette
             // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 200);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 60);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "박스수량";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblBoxQty
-            // 
-            this.lblBoxQty.BackColor = System.Drawing.Color.White;
-            this.lblBoxQty.ForeColor = System.Drawing.Color.Black;
-            this.lblBoxQty.Location = new System.Drawing.Point(163, 200);
-            this.lblBoxQty.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.lblBoxQty.Name = "lblBoxQty";
-            this.lblBoxQty.Size = new System.Drawing.Size(250, 60);
-            this.lblBoxQty.TabIndex = 22;
-            this.lblBoxQty.Text = "수량";
-            this.lblBoxQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlRadio
-            // 
-            this.pnlRadio.Controls.Add(this.btnA4);
-            this.pnlRadio.Controls.Add(this.btnLabel);
-            this.pnlRadio.Location = new System.Drawing.Point(0, 426);
-            this.pnlRadio.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.pnlRadio.Name = "pnlRadio";
-            this.pnlRadio.Size = new System.Drawing.Size(415, 110);
-            this.pnlRadio.TabIndex = 23;
-            // 
-            // btnLabel
-            // 
-            this.btnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnLabel.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLabel.ForeColor = System.Drawing.Color.White;
-            this.btnLabel.Location = new System.Drawing.Point(8, 5);
-            this.btnLabel.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.btnLabel.Name = "btnLabel";
-            this.btnLabel.Size = new System.Drawing.Size(200, 100);
-            this.btnLabel.TabIndex = 0;
-            this.btnLabel.Text = "라벨 용지";
-            this.btnLabel.UseVisualStyleBackColor = false;
-            this.btnLabel.Click += new System.EventHandler(this.btnLabel_Click);
-            // 
-            // btnA4
-            // 
-            this.btnA4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnA4.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnA4.ForeColor = System.Drawing.Color.White;
-            this.btnA4.Location = new System.Drawing.Point(213, 5);
-            this.btnA4.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.btnA4.Name = "btnA4";
-            this.btnA4.Size = new System.Drawing.Size(200, 100);
-            this.btnA4.TabIndex = 1;
-            this.btnA4.Text = "A4 용지";
-            this.btnA4.UseVisualStyleBackColor = false;
-            this.btnA4.Click += new System.EventHandler(this.btnA4_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(916, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(80, 679);
-            this.panel1.TabIndex = 0;
+            this.pnlPalette.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.pnlPalette.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlPalette.Location = new System.Drawing.Point(0, 115);
+            this.pnlPalette.Name = "pnlPalette";
+            this.pnlPalette.Size = new System.Drawing.Size(916, 564);
+            this.pnlPalette.TabIndex = 10;
             // 
             // panel5
             // 
@@ -342,6 +352,7 @@ namespace Team2_Project_POP
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.label11, 0, 0);
@@ -393,13 +404,115 @@ namespace Team2_Project_POP
             this.label14.Size = new System.Drawing.Size(37, 111);
             this.label14.TabIndex = 1;
             // 
-            // pnlPalette
+            // panel1
             // 
-            this.pnlPalette.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPalette.Location = new System.Drawing.Point(0, 115);
-            this.pnlPalette.Name = "pnlPalette";
-            this.pnlPalette.Size = new System.Drawing.Size(916, 564);
-            this.pnlPalette.TabIndex = 10;
+            this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.tplUpDown);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(916, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(80, 679);
+            this.panel1.TabIndex = 0;
+            // 
+            // tplUpDown
+            // 
+            this.tplUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.tplUpDown.ColumnCount = 1;
+            this.tplUpDown.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tplUpDown.Controls.Add(this.btnUp, 0, 1);
+            this.tplUpDown.Controls.Add(this.btnDown, 0, 3);
+            this.tplUpDown.Controls.Add(this.tableLayoutPanel4, 0, 2);
+            this.tplUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tplUpDown.Location = new System.Drawing.Point(0, 0);
+            this.tplUpDown.Margin = new System.Windows.Forms.Padding(0);
+            this.tplUpDown.Name = "tplUpDown";
+            this.tplUpDown.RowCount = 4;
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tplUpDown.Size = new System.Drawing.Size(80, 679);
+            this.tplUpDown.TabIndex = 2;
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUp.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUp.Location = new System.Drawing.Point(10, 125);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(10);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(60, 177);
+            this.btnUp.TabIndex = 0;
+            this.btnUp.Text = "▲";
+            this.btnUp.UseVisualStyleBackColor = false;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDown.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDown.Location = new System.Drawing.Point(10, 491);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(60, 178);
+            this.btnDown.TabIndex = 1;
+            this.btnDown.Text = "▼";
+            this.btnDown.UseVisualStyleBackColor = false;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.lblTotPage, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblPage, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(15, 327);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(15);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(50, 139);
+            this.tableLayoutPanel4.TabIndex = 2;
+            // 
+            // lblTotPage
+            // 
+            this.lblTotPage.AutoSize = true;
+            this.lblTotPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotPage.Location = new System.Drawing.Point(3, 77);
+            this.lblTotPage.Margin = new System.Windows.Forms.Padding(3);
+            this.lblTotPage.Name = "lblTotPage";
+            this.lblTotPage.Size = new System.Drawing.Size(44, 59);
+            this.lblTotPage.TabIndex = 2;
+            this.lblTotPage.Text = "1";
+            this.lblTotPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(1, 65);
+            this.panel2.Margin = new System.Windows.Forms.Padding(1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(48, 8);
+            this.panel2.TabIndex = 0;
+            // 
+            // lblPage
+            // 
+            this.lblPage.AutoSize = true;
+            this.lblPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPage.Location = new System.Drawing.Point(3, 3);
+            this.lblPage.Margin = new System.Windows.Forms.Padding(3);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(44, 58);
+            this.lblPage.TabIndex = 1;
+            this.lblPage.Text = "1";
+            this.lblPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmPalette
             // 
@@ -415,13 +528,17 @@ namespace Team2_Project_POP
             this.Load += new System.EventHandler(this.frmPalette_Load);
             this.Enter += new System.EventHandler(this.frmPalette_Enter);
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.pnlRadio.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.tplUpDown.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -453,5 +570,12 @@ namespace Team2_Project_POP
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tplUpDown;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label lblTotPage;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblPage;
     }
 }

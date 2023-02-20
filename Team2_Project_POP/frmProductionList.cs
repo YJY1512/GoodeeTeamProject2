@@ -15,7 +15,7 @@ namespace Team2_Project_POP
     public partial class frmProductionList : Form
     {
         //List<WorkOrderDTO> workList = null;
-
+        int pages = 1;
         PoPService serv = new PoPService();
 
         Controls.ucList selectedOrder = null;
@@ -47,15 +47,15 @@ namespace Team2_Project_POP
                 selectedOrder = null;
                 ((frmParent)MdiParent).SelectedWorkOrder = new PopPrdDTO();
                 
-                ((Controls.ucList)sender).lblPlanDate.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblProductDate.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblProcessNum.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblProductName.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblPlanQty.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblIngQty.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblStartTime.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblFinishTime.BackColor = Color.LightSkyBlue;
-                ((Controls.ucList)sender).lblRemark.BackColor = Color.LightSkyBlue;
+                ((Controls.ucList)sender).lblPlanDate.BackColor = Color.White;
+                ((Controls.ucList)sender).lblProductDate.BackColor = Color.White;
+                ((Controls.ucList)sender).lblProcessNum.BackColor = Color.White;
+                ((Controls.ucList)sender).lblProductName.BackColor = Color.White;
+                ((Controls.ucList)sender).lblPlanQty.BackColor = Color.White;
+                ((Controls.ucList)sender).lblIngQty.BackColor = Color.White;
+                ((Controls.ucList)sender).lblStartTime.BackColor = Color.White;
+                ((Controls.ucList)sender).lblFinishTime.BackColor = Color.White;
+                ((Controls.ucList)sender).lblRemark.BackColor = Color.White;
             }
             else
             {
@@ -64,28 +64,28 @@ namespace Team2_Project_POP
                     if(((Controls.ucList)listitem).isClick == true)
                     {
                         ((Controls.ucList)listitem).isClick = false;
-                        ((Controls.ucList)listitem).lblPlanDate.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblProductDate.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblProcessNum.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblProductName.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblPlanQty.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblIngQty.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblStartTime.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblFinishTime.BackColor = Color.LightSkyBlue;
-                        ((Controls.ucList)listitem).lblRemark.BackColor = Color.LightSkyBlue;
+                        ((Controls.ucList)listitem).lblPlanDate.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblProductDate.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblProcessNum.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblProductName.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblPlanQty.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblIngQty.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblStartTime.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblFinishTime.BackColor = Color.White;
+                        ((Controls.ucList)listitem).lblRemark.BackColor = Color.White;
                     }
                 }
                 ((Controls.ucList)sender).isClick = true;
                 selectedOrder = (Controls.ucList)sender;
-                ((Controls.ucList)sender).lblPlanDate.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblProductDate.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblProcessNum.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblProductName.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblPlanQty.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblIngQty.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblStartTime.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblFinishTime.BackColor = Color.Pink;
-                ((Controls.ucList)sender).lblRemark.BackColor = Color.Pink;
+                ((Controls.ucList)sender).lblPlanDate.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblProductDate.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblProcessNum.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblProductName.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblPlanQty.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblIngQty.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblStartTime.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblFinishTime.BackColor = Color.PeachPuff;
+                ((Controls.ucList)sender).lblRemark.BackColor = Color.PeachPuff;
             }
         }
         /// <summary>
@@ -213,8 +213,32 @@ namespace Team2_Project_POP
             // parent에 작업장 리스트 중에 선택된 작업장 리스트를 DB 에서 가져와 넣기
             ((frmParent)this.MdiParent).WorkOrderList = serv.GetOrders(((frmParent)this.MdiParent).SelectedWorkLine.Wc_Code);
 
+            if (pages == 1)
+            {
+                btnUp.Visible = false;
+            }
+            else
+            {
+                btnUp.Visible = true;
+            }
+
+            lblPage.Text = pages.ToString();
+
+            lblTotPage.Text = Math.Ceiling(((frmParent)this.MdiParent).WorkOrderList.Count / 6.0).ToString();
+
+            if (pages == Math.Ceiling(((frmParent)this.MdiParent).WorkOrderList.Count / 6.0))
+            {
+                btnDown.Visible = false;
+            }
+            else
+            {
+                btnDown.Visible = true;
+            }
+
 
             pnlList.Controls.Clear();
+
+            //for (int i = 0; i < 10; i++)
             for (int i = 0; i < ((frmParent)this.MdiParent).WorkOrderList.Count; i++)
             {
                 Controls.ucList list = new Controls.ucList();
@@ -230,17 +254,37 @@ namespace Team2_Project_POP
                 list.ItemName = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Name;
                 list.ItemCode = ((frmParent)this.MdiParent).WorkOrderList[i].Item_Code;
                 list.PlanQty = ((frmParent)this.MdiParent).WorkOrderList[i].Plan_Qty_Box;
-                list.Prd_Qty = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Qty;
-                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_StartTime;
-                list.EndTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_EndTime;
+                list.Prd_Qty= ((frmParent)this.MdiParent).WorkOrderList[i].Prd_Qty;
+                list.StartTime = ((frmParent)this.MdiParent).WorkOrderList[i].Prd_EndTime;
                 list.Remark = ((frmParent)this.MdiParent).WorkOrderList[i].Remark;
                 list.Wc_Code = ((frmParent)this.MdiParent).WorkOrderList[i].Wc_Code;
                 list.isClick = false;
 
                 list.UcListClick += List_ucListClick;
 
-                pnlList.Controls.Add(list);
+                
+
+                if (pages == (Math.Ceiling((i + 1) / (6.0))))
+                {
+                    pnlList.Controls.Add(list);
+                }
             }
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if (pages <= 1) return;
+            pages--;
+            selectedOrder = null;
+            frmProductionList_Enter(this, e);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (pages >= 3) return;
+            pages++;
+            selectedOrder = null;
+            frmProductionList_Enter(this, e);
         }
     }
 }
