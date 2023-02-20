@@ -99,7 +99,6 @@ namespace Team2_Project
             {
                 dgvMaData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
             }
-
         }
 
         public void OnAdd()     //추가
