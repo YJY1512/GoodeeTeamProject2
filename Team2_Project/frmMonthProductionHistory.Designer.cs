@@ -55,7 +55,7 @@ namespace Team2_Project
             this.panCriteria = new System.Windows.Forms.Panel();
             this.rdoLossQty = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnChart = new System.Windows.Forms.Button();
             this.pnlSub.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -97,10 +97,10 @@ namespace Team2_Project
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Controls.Add(this.button1);
+            this.pnlTitle.Controls.Add(this.btnChart);
             this.pnlTitle.Location = new System.Drawing.Point(0, 60);
             this.pnlTitle.Size = new System.Drawing.Size(1834, 43);
-            this.pnlTitle.Controls.SetChildIndex(this.button1, 0);
+            this.pnlTitle.Controls.SetChildIndex(this.btnChart, 0);
             this.pnlTitle.Controls.SetChildIndex(this.lblTitle, 0);
             // 
             // dtpDate
@@ -385,16 +385,16 @@ namespace Team2_Project
             this.label5.TabIndex = 84;
             this.label5.Text = "기준";
             // 
-            // button1
+            // btnChart
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(119, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 26);
-            this.button1.TabIndex = 84;
-            this.button1.Text = "차트";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnChart.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnChart.Location = new System.Drawing.Point(119, 6);
+            this.btnChart.Name = "btnChart";
+            this.btnChart.Size = new System.Drawing.Size(65, 26);
+            this.btnChart.TabIndex = 84;
+            this.btnChart.Text = "차트";
+            this.btnChart.UseVisualStyleBackColor = false;
+            this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
             // 
             // frmMonthProductionHistory
             // 
@@ -452,6 +452,6 @@ namespace Team2_Project
         private System.Windows.Forms.DataVisualization.Charting.Chart chtDataLine;
         private System.Windows.Forms.RadioButton rdoChartOne;
         private System.Windows.Forms.RadioButton rdoChartTwo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnChart;
     }
 }

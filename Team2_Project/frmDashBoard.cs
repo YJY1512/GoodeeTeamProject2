@@ -61,7 +61,7 @@ namespace Team2_Project
             dgvDataB.MultiSelect = false;
             dgvDataA.ReadOnly = true;
             dgvDataB.ReadOnly = true;
-
+            
             //dgvDataA.ClearSelection();
             //dgvDataB.ClearSelection();
 
