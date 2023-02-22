@@ -25,8 +25,7 @@ namespace Team2_Project_DAO
             if (conn.State == ConnectionState.Open)
                 conn.Close();
         }
-
-        
+                
         public List<TimeProductionHistoryDTO> GetWorkOrder(string from, string to) //날짜기준 시간대별실적 (작업지시번호 기준) dgv 데이터 가져오기
         {
             try
@@ -137,6 +136,5 @@ namespace Team2_Project_DAO
                 conn.Close();
             }
         }
-
     }
 }

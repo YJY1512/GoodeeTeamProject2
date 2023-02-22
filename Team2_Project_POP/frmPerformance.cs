@@ -48,16 +48,7 @@ namespace Team2_Project_POP
         /// <param name="e"></param>
         private void btnDef_Click(object sender, EventArgs e)
         {
-            frmDefListPopUp popUP = new frmDefListPopUp();
-            DialogResult drcode = popUP.ShowDialog(this.MdiParent);
-
-            if (drcode == DialogResult.OK)
-            {
-                frmCalcPop cal = new frmCalcPop();
-                cal.Tag = "Def";
-                cal.ShowDialog(this.MdiParent);
-            }
-            frmPerformance_Enter(this, e);
+            
         }
 
 
@@ -112,15 +103,15 @@ namespace Team2_Project_POP
 
             lblPagePRD.Text = pagePrd.ToString();
 
-            lblTotPagePRD.Text = Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0).ToString();
+            lblTotPagePRD.Text = (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0).ToString() == "0")? "1": Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0).ToString();
 
-            if (pageDef == Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0))
+            if (pagePrd >= (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0)))
             {
-                btnDownDEF.Visible = false;
+                btnDownPRD.Visible = false;
             }
             else
             {
-                btnDownDEF.Visible = true;
+                btnDownPRD.Visible = true;
             }
 
 
@@ -135,9 +126,9 @@ namespace Team2_Project_POP
 
             lblPageDEF.Text = pageDef.ToString();
 
-            lblTotPageDEF.Text = Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0).ToString();
+            lblTotPageDEF.Text = (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0).ToString() == "0")? "1" : Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0).ToString();
 
-            if (pageDef == Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0))
+            if (pageDef >= (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0)))
             {
                 btnDownDEF.Visible = false;
             }
@@ -184,6 +175,20 @@ namespace Team2_Project_POP
             }
 
             lblDefQty.Text = sum.ToString();
+        }
+
+        private void btnDef_Click_1(object sender, EventArgs e)
+        {
+            frmDefListPopUp popUP = new frmDefListPopUp();
+            DialogResult drcode = popUP.ShowDialog(this.MdiParent);
+
+            if (drcode == DialogResult.OK)
+            {
+                frmCalcPop cal = new frmCalcPop();
+                cal.Tag = "Def";
+                cal.ShowDialog(this.MdiParent);
+            }
+            frmPerformance_Enter(this, e);
         }
     }
 }

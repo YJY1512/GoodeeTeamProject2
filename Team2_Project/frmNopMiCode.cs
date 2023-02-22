@@ -17,7 +17,6 @@ namespace Team2_Project
     public partial class frmNopMiCode : frmCodeControlBase
     {
         NopCodeService srv = new NopCodeService();
-        //List<NopMaCodeDTO> NopMaList = new List<NopMaCodeDTO>();
         List<NopMiCodeDTO> NopMiList = new List<NopMiCodeDTO>();
         string situation = "";
         string empID;
@@ -64,12 +63,53 @@ namespace Team2_Project
             nudSort.Visible = label13.Visible = label8.Visible = txtRemark.Visible = false;
         }
 
+        #region DGV메서드
+        private void dgvMaData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (!string.IsNullOrWhiteSpace(NopMiList[0].Nop_Ma_Code))
+            {
+                string code = dgvMaData["Nop_Ma_Code", e.RowIndex].Value.ToString();
+                //List<NopMiCodeDTO> list = NopMiList.FindAll((c) => c.Nop_Ma_Code == code);
+
+                var list = (from n in NopMiList
+                            where n.Nop_Ma_Code.Equals(code) && n.Nop_Mi_Code != null
+                            select n).ToList();
+
+                //var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
+                if (NopMiList == null) return;
+
+                if (list.Count > 0)
+                {
+                    AdvancedListBind(list, dgvMiData);
+                    dgvMiData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
+                }
+                else
+                {
+                    dgvMiData.DataSource = null;
+                    ResetBottom();
+                }
+            }
+        }
+
+        private void dgvMiData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            ucMaCode._Code = dgvMaData["Nop_Ma_Code", dgvMaData.CurrentRow.Index].Value.ToString();
+            ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
+            txtInfoCodeMi.Text = dgvMiData["Nop_Mi_Code", e.RowIndex].Value.ToString();
+            txtInfoNameMi.Text = dgvMiData["Nop_Mi_Name", e.RowIndex].Value.ToString();
+            cboNoptype.Text = dgvMiData["Nop_type", e.RowIndex].Value.ToString();
+            cboUseYN.Text = dgvMiData["Use_YN", e.RowIndex].Value.ToString();
+        }
+
         private void AdvancedListBind(List<NopMiCodeDTO> datasource, DataGridView dgv)
         {
             BindingSource bs = new BindingSource(new AdvancedList<NopMiCodeDTO>(datasource), null);
             dgv.DataSource = null;
             dgv.DataSource = bs;
         }
+        #endregion
 
         #region Main 버튼 클릭이벤트
         public void OnSearch()  //검색 
@@ -90,7 +130,6 @@ namespace Team2_Project
 
             if (situation == "")
                 dgvMiData.DataSource = null;
-            //dgvMiData.DataSource = NopMiList;
 
             ResetBottom();        //입력 리셋
             DeactivationBottom(); //입력 비활성화
@@ -236,6 +275,7 @@ namespace Team2_Project
         }
         #endregion
 
+        #region 리셋,활성화메서드
         private void ResetTop() //검색 리셋
         {
             ucMaCodeSC._Code = ucMaCodeSC._Name = "";
@@ -284,7 +324,9 @@ namespace Team2_Project
                 if (ctrl is TextBox || ctrl is ComboBox)
                     ctrl.Enabled = false;
         }
+        #endregion
 
+        #region 팝업이벤트
         private void ucCodeSearch_BtnClick(object sender, EventArgs e)
         {
             var list = NopMiList.GroupBy((g) => g.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
@@ -312,45 +354,6 @@ namespace Team2_Project
             dto.PopName = "비가동 대분류코드 검색";
             ucMaCode.OpenPop(dto);
         }
-
-        private void dgvMaData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            if (!string.IsNullOrWhiteSpace(NopMiList[0].Nop_Ma_Code))
-            {
-                string code = dgvMaData["Nop_Ma_Code", e.RowIndex].Value.ToString();
-                //List<NopMiCodeDTO> list = NopMiList.FindAll((c) => c.Nop_Ma_Code == code);
-
-                var list = (from n in NopMiList
-                            where n.Nop_Ma_Code.Equals(code) && n.Nop_Mi_Code != null
-                            select n).ToList();
-
-                //var list = NopMiList.GroupBy((n) => n.Nop_Ma_Code).Select((g) => g.FirstOrDefault()).ToList();
-                if (NopMiList == null) return;
-                
-                if (list.Count > 0)
-                {
-                    AdvancedListBind(list, dgvMiData);
-                    dgvMiData_CellClick(dgvMaData.CurrentRow.Index, new DataGridViewCellEventArgs(0, 0));
-                }
-                else
-                {
-                    dgvMiData.DataSource = null;
-                    ResetBottom();
-                }
-            }
-            //dgvMiData.ClearSelection();
-        }
-
-        private void dgvMiData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            ucMaCode._Code = dgvMaData["Nop_Ma_Code", dgvMaData.CurrentRow.Index].Value.ToString();
-            ucMaCode._Name = dgvMaData["Nop_Ma_Name", dgvMaData.CurrentRow.Index].Value.ToString();
-            txtInfoCodeMi.Text = dgvMiData["Nop_Mi_Code", e.RowIndex].Value.ToString();
-            txtInfoNameMi.Text = dgvMiData["Nop_Mi_Name", e.RowIndex].Value.ToString();
-            cboNoptype.Text = dgvMiData["Nop_type", e.RowIndex].Value.ToString();
-            cboUseYN.Text = dgvMiData["Use_YN", e.RowIndex].Value.ToString();
-        }
+        #endregion
     }
 }

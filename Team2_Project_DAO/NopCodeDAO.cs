@@ -206,7 +206,6 @@ namespace Team2_Project_DAO
             }
         }
 
-
         public int DeleteMaCode(string Code)
         {
             try
