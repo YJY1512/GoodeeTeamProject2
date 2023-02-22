@@ -111,12 +111,12 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "산출수량", "Out_Qty_Main", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산수량", "Prd_Qty", 120, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "불량수량", "Def_Qty", 120, DataGridViewContentAlignment.MiddleRight);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "품목코드", "Item_Code", 180);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "품목명", "Item_Name", 180);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산일자", "Prd_Date", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산시작", "Prd_StartTime", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "생산종료", "Prd_EndTime", 200);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "품목코드", "Item_Code", 180);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "품목명", "Item_Name", 180);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장코드", "Wc_Code", 120);
             dgv.Columns["WorkOrderNo"].Frozen = true;
             string[] dotCell = new string[] { "Plan_Qty_Box", "In_Qty_Main", "Out_Qty_Main", "Prd_Qty", "Def_Qty" };
@@ -240,7 +240,11 @@ namespace Team2_Project
             //dgvDataA.DataSource = dgvDataB.DataSource = null;
             //LoadData();
         }
-    }
-    
+
+        private void dgvDataA_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dgvDataA.ClearSelection();
+            dgvDataB.ClearSelection();
+        }
+    }    
 }
-//= Color.FromArgb(211, 226, 223);
