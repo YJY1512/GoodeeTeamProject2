@@ -37,6 +37,13 @@ namespace Team2_Project_POP
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tplUpDown = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTotPage = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblPage = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblRemark = new System.Windows.Forms.Label();
@@ -51,20 +58,13 @@ namespace Team2_Project_POP
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblStatuse = new System.Windows.Forms.Label();
             this.pnlList = new System.Windows.Forms.Panel();
-            this.tplUpDown = new System.Windows.Forms.TableLayoutPanel();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTotPage = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblPage = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.tplUpDown.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tplUpDown.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -119,7 +119,7 @@ namespace Team2_Project_POP
             this.btnPalette.Name = "btnPalette";
             this.btnPalette.Size = new System.Drawing.Size(180, 130);
             this.btnPalette.TabIndex = 2;
-            this.btnPalette.Text = " 팔렛   생성";
+            this.btnPalette.Text = " 팔레트   생성";
             this.btnPalette.UseVisualStyleBackColor = true;
             this.btnPalette.Click += new System.EventHandler(this.btnPalette_Click);
             // 
@@ -153,6 +153,106 @@ namespace Team2_Project_POP
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(150, 637);
             this.panel3.TabIndex = 3;
+            // 
+            // tplUpDown
+            // 
+            this.tplUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.tplUpDown.ColumnCount = 1;
+            this.tplUpDown.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tplUpDown.Controls.Add(this.btnUp, 0, 1);
+            this.tplUpDown.Controls.Add(this.btnDown, 0, 3);
+            this.tplUpDown.Controls.Add(this.tableLayoutPanel3, 0, 2);
+            this.tplUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tplUpDown.Location = new System.Drawing.Point(0, 0);
+            this.tplUpDown.Margin = new System.Windows.Forms.Padding(0);
+            this.tplUpDown.Name = "tplUpDown";
+            this.tplUpDown.RowCount = 4;
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tplUpDown.Size = new System.Drawing.Size(150, 637);
+            this.tplUpDown.TabIndex = 1;
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUp.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUp.Location = new System.Drawing.Point(10, 160);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(10);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(130, 150);
+            this.btnUp.TabIndex = 0;
+            this.btnUp.Text = "▲";
+            this.btnUp.UseVisualStyleBackColor = false;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
+            this.btnDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDown.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDown.Location = new System.Drawing.Point(10, 476);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(130, 151);
+            this.btnDown.TabIndex = 1;
+            this.btnDown.Text = "▼";
+            this.btnDown.UseVisualStyleBackColor = false;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.lblTotPage, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.panel4, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblPage, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(15, 335);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(15);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(120, 116);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // lblTotPage
+            // 
+            this.lblTotPage.AutoSize = true;
+            this.lblTotPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotPage.Location = new System.Drawing.Point(3, 66);
+            this.lblTotPage.Margin = new System.Windows.Forms.Padding(3);
+            this.lblTotPage.Name = "lblTotPage";
+            this.lblTotPage.Size = new System.Drawing.Size(114, 47);
+            this.lblTotPage.TabIndex = 2;
+            this.lblTotPage.Text = "1";
+            this.lblTotPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Black;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(1, 54);
+            this.panel4.Margin = new System.Windows.Forms.Padding(1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(118, 8);
+            this.panel4.TabIndex = 0;
+            // 
+            // lblPage
+            // 
+            this.lblPage.AutoSize = true;
+            this.lblPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPage.Location = new System.Drawing.Point(3, 3);
+            this.lblPage.Margin = new System.Windows.Forms.Padding(3);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(114, 47);
+            this.lblPage.TabIndex = 1;
+            this.lblPage.Text = "1";
+            this.lblPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -350,106 +450,6 @@ namespace Team2_Project_POP
             this.pnlList.Size = new System.Drawing.Size(1166, 487);
             this.pnlList.TabIndex = 5;
             // 
-            // tplUpDown
-            // 
-            this.tplUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.tplUpDown.ColumnCount = 1;
-            this.tplUpDown.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tplUpDown.Controls.Add(this.btnUp, 0, 1);
-            this.tplUpDown.Controls.Add(this.btnDown, 0, 3);
-            this.tplUpDown.Controls.Add(this.tableLayoutPanel3, 0, 2);
-            this.tplUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplUpDown.Location = new System.Drawing.Point(0, 0);
-            this.tplUpDown.Margin = new System.Windows.Forms.Padding(0);
-            this.tplUpDown.Name = "tplUpDown";
-            this.tplUpDown.RowCount = 4;
-            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tplUpDown.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tplUpDown.Size = new System.Drawing.Size(150, 637);
-            this.tplUpDown.TabIndex = 1;
-            // 
-            // btnUp
-            // 
-            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.btnUp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUp.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUp.Location = new System.Drawing.Point(10, 160);
-            this.btnUp.Margin = new System.Windows.Forms.Padding(10);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(130, 150);
-            this.btnUp.TabIndex = 0;
-            this.btnUp.Text = "▲";
-            this.btnUp.UseVisualStyleBackColor = false;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(223)))));
-            this.btnDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDown.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDown.Location = new System.Drawing.Point(10, 476);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(10);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(130, 151);
-            this.btnDown.TabIndex = 1;
-            this.btnDown.Text = "▼";
-            this.btnDown.UseVisualStyleBackColor = false;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.lblTotPage, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.panel4, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.lblPage, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(15, 335);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(15);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(120, 116);
-            this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // lblTotPage
-            // 
-            this.lblTotPage.AutoSize = true;
-            this.lblTotPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotPage.Location = new System.Drawing.Point(3, 66);
-            this.lblTotPage.Margin = new System.Windows.Forms.Padding(3);
-            this.lblTotPage.Name = "lblTotPage";
-            this.lblTotPage.Size = new System.Drawing.Size(114, 47);
-            this.lblTotPage.TabIndex = 2;
-            this.lblTotPage.Text = "1";
-            this.lblTotPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Black;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(1, 54);
-            this.panel4.Margin = new System.Windows.Forms.Padding(1);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(118, 8);
-            this.panel4.TabIndex = 0;
-            // 
-            // lblPage
-            // 
-            this.lblPage.AutoSize = true;
-            this.lblPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPage.Location = new System.Drawing.Point(3, 3);
-            this.lblPage.Margin = new System.Windows.Forms.Padding(3);
-            this.lblPage.Name = "lblPage";
-            this.lblPage.Size = new System.Drawing.Size(114, 47);
-            this.lblPage.TabIndex = 1;
-            this.lblPage.Text = "1";
-            this.lblPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // frmProductionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -467,12 +467,12 @@ namespace Team2_Project_POP
             this.Enter += new System.EventHandler(this.frmProductionList_Enter);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.tplUpDown.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

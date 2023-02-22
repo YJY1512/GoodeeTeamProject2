@@ -60,8 +60,8 @@ namespace Team2_Project_POP.Controls
             lblProductDate.Text = (Prd_Date.ToString("yyyy-MM-dd") == "0001-01-01") ? "-" : Prd_Date.ToString("yyyy-MM-dd");
             lblProcessNum.Text = WorkOrderNo;
             lblProductName.Text = ItemName;
-            lblPlanQty.Text = PlanQty.ToString();
-            lblIngQty.Text = Prd_Qty.ToString();
+            lblPlanQty.Text = String.Format("{0:0,0}", PlanQty);
+            lblIngQty.Text = String.Format("{0:0}", Prd_Qty);
             lblStartTime.Text = (StartTime.ToString("HH:mm:ss") == "00:00:00") ? "-" : StartTime.ToString("HH:mm:ss");
             lblFinishTime.Text = (EndTime.ToString("HH:mm:ss") == "00:00:00") ? "-" : EndTime.ToString("HH:mm:ss"); ;
             lblRemark.Text = Remark;

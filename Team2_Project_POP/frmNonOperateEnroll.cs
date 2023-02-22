@@ -26,6 +26,8 @@ namespace Team2_Project_POP
 
         private void frmNonOperateEnroll_Load(object sender, EventArgs e)
         {
+            ((frmParent)MdiParent).btnBack.Visible = true;
+
             DataGridViewUtil.SetInitDataGridView(dgvWorkLine);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkLine, "작업장", "Name", 400, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridViewUtil.AddGridTextBoxColumn(dgvWorkLine, "작업장", "Code", 400, align: DataGridViewContentAlignment.MiddleCenter, visible: false);
@@ -40,6 +42,8 @@ namespace Team2_Project_POP
 
         private void frmNonOperateEnroll_Enter(object sender, EventArgs e)
         {
+            ((frmParent)MdiParent).btnBack.Visible = true;
+
             lblYear.Text = DateTime.Now.Year.ToString();
             lblMonth.Text = DateTime.Now.Month.ToString();
             lblDay.Text = DateTime.Now.Day.ToString();

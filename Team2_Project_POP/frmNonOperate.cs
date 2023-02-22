@@ -25,7 +25,7 @@ namespace Team2_Project_POP
 
         private void frmNonOperate_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void frmNonOperate_Activated(object sender, EventArgs e)
@@ -79,6 +79,7 @@ namespace Team2_Project_POP
 
         private void frmNonOperate_Enter(object sender, EventArgs e)
         {
+            ((frmParent)MdiParent).btnBack.Visible = true;
             pnlNon.Controls.Clear();
 
             ((frmParent)MdiParent).NonList = ser.GetNonList(((frmParent)MdiParent).SelectedWorkLine.Wc_Code);
@@ -126,6 +127,7 @@ namespace Team2_Project_POP
                 }
                
             }
+            ((frmParent)MdiParent).btnBack.Visible = true;
         }
 
         private void btnUp_Click(object sender, EventArgs e)

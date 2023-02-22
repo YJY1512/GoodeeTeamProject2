@@ -30,7 +30,8 @@ namespace Team2_Project_POP.Controls
         {
             lblDate.Text = PrdDate.ToString("yyyy-MM-dd HH:mm:ss");
             lblDefMiName.Text = DefMiName;
-            lblDefQty.Text = Qty.ToString();
+            lblDefQty.Text = String.Format("{0:0}", Qty);
+            
         }
     }
 }

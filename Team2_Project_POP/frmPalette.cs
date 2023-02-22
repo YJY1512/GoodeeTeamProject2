@@ -35,6 +35,7 @@ namespace Team2_Project_POP
 
         private void frmPalette_Enter(object sender, EventArgs e)
         {
+            ((frmParent)MdiParent).btnBack.Visible = true;
             // pnlPalette 그리기
             pnlPalette.Controls.Clear();
 
@@ -73,7 +74,7 @@ namespace Team2_Project_POP
                 list.WorkOrderNo = ((frmParent)MdiParent).PaletteList[i].WorkOrderNo;
                 list.PaletteNo = ((frmParent)MdiParent).PaletteList[i].PaletteNo;
                 list.ItemName = ((frmParent)MdiParent).PaletteList[i].ItemName;
-                list.ItemName= ((frmParent)MdiParent).PaletteList[i].ItemCode;
+                list.ItemCode= ((frmParent)MdiParent).PaletteList[i].ItemCode;
                 list.ItemSize = ((frmParent)MdiParent).PaletteList[i].ItemSize;
                 list.BoxQty = ((frmParent)MdiParent).PaletteList[i].BoxQty;
                 list.isClick = false;

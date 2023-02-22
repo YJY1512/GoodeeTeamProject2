@@ -31,7 +31,7 @@ namespace Team2_Project_POP.Controls
         private void ucPrdList_Load(object sender, EventArgs e)
         {
             lblDate.Text = PrdDate.ToString("yyyy-MM-dd HH:mm:ss");
-            lblQty.Text = Qty.ToString();
+            lblQty.Text = String.Format("{0:0}", Qty);
             isClick = false;
         } 
     }

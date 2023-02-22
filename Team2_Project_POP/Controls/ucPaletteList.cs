@@ -33,7 +33,7 @@ namespace Team2_Project_POP.Controls
             lblPaletteNo.Text = PaletteNo;
             lblItemName.Text = ItemName;
             lblSize.Text = ItemSize;
-            lblBoxQty.Text = BoxQty.ToString();
+            lblBoxQty.Text = String.Format("{0:0,0}", BoxQty);
         }
 
         private void tableLayoutPanel1_Click(object sender, EventArgs e)

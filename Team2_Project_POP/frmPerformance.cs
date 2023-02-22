@@ -90,7 +90,7 @@ namespace Team2_Project_POP
             lblWorkOrderNum.Text = ((frmParent)this.MdiParent).SelectedWorkOrder.WorkOrderNo;
             lblPrdName.Text = ((frmParent)this.MdiParent).SelectedWorkOrder.PrdName;
             lblPlanDate.Text = ((frmParent)this.MdiParent).SelectedWorkOrder.WorkOrderDate.ToString("yyyy-MM-dd");
-            lblPlanQty.Text = ((frmParent)this.MdiParent).SelectedWorkOrder.PlanQty.ToString();
+            lblPlanQty.Text = String.Format("{0:0}", ((frmParent)this.MdiParent).SelectedWorkOrder.PlanQty);
 
             if (pagePrd == 1)
             {
@@ -128,7 +128,7 @@ namespace Team2_Project_POP
 
             lblTotPageDEF.Text = (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0).ToString() == "0")? "1" : Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0).ToString();
 
-            if (pageDef >= (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.PrdQty.Count / 6.0)))
+            if (pageDef >= (Math.Ceiling(((frmParent)this.MdiParent).SelectedWorkOrder.DefQty.Count / 6.0)))
             {
                 btnDownDEF.Visible = false;
             }
