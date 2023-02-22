@@ -325,6 +325,7 @@ namespace Team2_Project
             {
                 ChartData();
                 splitContainer1.SplitterDistance = splitContainer1.Height / 2;
+                splitContainerChart.SplitterDistance = splitContainerChart.Width / 2;
             }
         }
     }

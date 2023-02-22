@@ -91,12 +91,12 @@ namespace Team2_Project
             if (wcList.Count > 0)
             {
                 dgv.DataSource = wcList;
+                dgv.Columns["Wc_Status"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
             }
             else
             {
                 NoData(dgv);
             }
-
         }
 
         private void ProductionData(DataGridView dgv) //생산진행현황 (작업지시별)
@@ -128,6 +128,7 @@ namespace Team2_Project
             {
                 var newList = ProductionHistoryList.OrderByDescending(x => x.Prd_StartTime).ToList();
                 dgv.DataSource = newList;
+                dgv.Columns["Wo_Status"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
             }
             else
             {
@@ -151,6 +152,7 @@ namespace Team2_Project
             if (ProductionHistoryList.Count > 0)
             {
                 dgv.DataSource = ProductionHistoryList;
+                dgv.Columns["WorkOrderNo"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
             }
             else
             {
@@ -165,7 +167,7 @@ namespace Team2_Project
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동발생일자", "Nop_Date", 160);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동발생일시", "Nop_HappenTime", 200);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동해제일시", "Nop_CancelTime", 200);
-            DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동시간(분)", "Nop_Time", 150);
+            DataGridViewUtil.AddGridTextBoxColumn(dgv, "비가동시간(분)", "Nop_Time", 150, DataGridViewContentAlignment.MiddleRight);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장코드", "Wc_Code", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장명", "Wc_Name", 150);
             DataGridViewUtil.AddGridTextBoxColumn(dgv, "작업장그룹", "Wc_Group", 150);
@@ -183,6 +185,8 @@ namespace Team2_Project
             if (NopHistoryList.Count > 0)
             {
                 dgv.DataSource = NopHistoryList;
+                dgv.Columns["Nop_Seq"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
+                //dgv.Columns["Nop_Date"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
             }
             else
             {
@@ -205,6 +209,7 @@ namespace Team2_Project
             if (DefHistoryList.Count > 0)
             {
                 dgv.DataSource = DefHistoryList;
+                dgv.Columns["WorkOrderNo"].DefaultCellStyle.BackColor = Color.FromArgb(211, 226, 223);
             }
             else
             {
