@@ -161,12 +161,9 @@ namespace Team2_Project_DAO
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SP_TimeProductionHistory", conn))
+                using (SqlCommand cmd = new SqlCommand("SP_GetDashBoardTimeProductionHistory", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@PrdDateFrom", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@PrdDateTo", DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"));
-
                     conn.Open();
                     List<TimeProductionHistoryDTO> list = Helper.DataReaderMapToList<TimeProductionHistoryDTO>(cmd.ExecuteReader());
                     return list;

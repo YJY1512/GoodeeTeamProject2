@@ -78,7 +78,7 @@ namespace Team2_Project
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvData);
-            this.pnlList.Size = new System.Drawing.Size(1834, 700);
+            this.pnlList.Size = new System.Drawing.Size(1834, 673);
             // 
             // pnlArea
             // 
@@ -91,13 +91,13 @@ namespace Team2_Project
             this.pnlArea.Controls.Add(this.txtCode);
             this.pnlArea.Controls.Add(this.label6);
             this.pnlArea.Controls.Add(this.label7);
-            this.pnlArea.Size = new System.Drawing.Size(1834, 61);
+            this.pnlArea.Size = new System.Drawing.Size(1834, 88);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Location = new System.Drawing.Point(0, 60);
             this.splitContainer1.Size = new System.Drawing.Size(1834, 851);
-            this.splitContainer1.SplitterDistance = 743;
+            this.splitContainer1.SplitterDistance = 716;
             // 
             // pnlTitleD
             // 
@@ -139,7 +139,7 @@ namespace Team2_Project
             // 
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hangul;
-            this.txtName.Location = new System.Drawing.Point(641, 14);
+            this.txtName.Location = new System.Drawing.Point(641, 29);
             this.txtName.MaxLength = 20;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 25);
@@ -149,7 +149,7 @@ namespace Team2_Project
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(505, 18);
+            this.label6.Location = new System.Drawing.Point(505, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(110, 17);
             this.label6.TabIndex = 19;
@@ -158,7 +158,7 @@ namespace Team2_Project
             // txtCode
             // 
             this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCode.Location = new System.Drawing.Point(192, 14);
+            this.txtCode.Location = new System.Drawing.Point(192, 29);
             this.txtCode.MaxLength = 20;
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(170, 25);
@@ -168,7 +168,7 @@ namespace Team2_Project
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(56, 18);
+            this.label7.Location = new System.Drawing.Point(56, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(124, 17);
             this.label7.TabIndex = 17;
@@ -179,7 +179,7 @@ namespace Team2_Project
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(472, 18);
+            this.label8.Location = new System.Drawing.Point(472, 33);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 17);
             this.label8.TabIndex = 60;
@@ -190,7 +190,7 @@ namespace Team2_Project
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(25, 18);
+            this.label9.Location = new System.Drawing.Point(25, 33);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(17, 17);
             this.label9.TabIndex = 59;
@@ -204,14 +204,14 @@ namespace Team2_Project
             this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(1834, 700);
+            this.dgvData.Size = new System.Drawing.Size(1834, 673);
             this.dgvData.TabIndex = 1;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
             // cboUseYN
             // 
             this.cboUseYN.FormattingEnabled = true;
-            this.cboUseYN.Location = new System.Drawing.Point(1054, 14);
+            this.cboUseYN.Location = new System.Drawing.Point(1054, 29);
             this.cboUseYN.Name = "cboUseYN";
             this.cboUseYN.Size = new System.Drawing.Size(130, 25);
             this.cboUseYN.TabIndex = 5;
@@ -220,7 +220,7 @@ namespace Team2_Project
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(975, 18);
+            this.label10.Location = new System.Drawing.Point(975, 33);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 17;
@@ -230,7 +230,7 @@ namespace Team2_Project
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(946, 18);
+            this.label11.Location = new System.Drawing.Point(946, 33);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 17);
             this.label11.TabIndex = 61;

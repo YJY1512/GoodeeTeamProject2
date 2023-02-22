@@ -82,6 +82,7 @@ namespace Team2_Project
             this.dgvDataA.RowTemplate.Height = 23;
             this.dgvDataA.Size = new System.Drawing.Size(1834, 408);
             this.dgvDataA.TabIndex = 2;
+            this.dgvDataA.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDataA_CellFormatting);
             // 
             // dgvDataB
             // 
@@ -93,6 +94,7 @@ namespace Team2_Project
             this.dgvDataB.RowTemplate.Height = 23;
             this.dgvDataB.Size = new System.Drawing.Size(1834, 413);
             this.dgvDataB.TabIndex = 2;
+            this.dgvDataB.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDataA_CellFormatting);
             // 
             // lblMsg1
             // 

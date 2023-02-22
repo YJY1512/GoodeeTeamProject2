@@ -77,13 +77,11 @@ namespace Team2_Project
         private void HeaderChk_Click(object sender, EventArgs e)
         {
             dgvData.EndEdit();
+
             foreach (DataGridViewRow dr in dgvData.Rows)
             {
                 dr.Cells["chk"].Value = headerChk.Checked;
             }
-            //dgvData의 chk컬럼에 체크가 되어있으면 headerChk.Checked는 true, 체크된게 없으면 headerChk.Checked는 false
-            
-
         }
 
         private void AdvancedListBind(List<MonthProductionHistoryDTO> datasource, DataGridView dgv)
@@ -137,11 +135,24 @@ namespace Team2_Project
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) return;
             //else if (dgvData.Rows.Count > 0)
             //{
             //    ChartData();
             //}
+
+            //dgvData의 chk컬럼에 체크된게 없으면 headerChk.Checked는 false
+            bool isAnyRowChecked = false;
+            foreach (DataGridViewRow row in dgvData.Rows)
+            {
+                DataGridViewCheckBoxCell chk = row.Cells["chk"] as DataGridViewCheckBoxCell;
+                if (!Convert.ToBoolean(chk.Value))
+                {
+                    isAnyRowChecked = false;
+                    break;
+                }
+            }
+            headerChk.Checked = isAnyRowChecked;
         }
 
         public void ChartData()
@@ -314,6 +325,7 @@ namespace Team2_Project
             {
                 ChartData();
                 splitContainer1.SplitterDistance = splitContainer1.Height / 2;
+                splitContainerChart.SplitterDistance = splitContainerChart.Width / 2;
             }
         }
     }
